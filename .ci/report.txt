@@ -18,50 +18,281 @@
 
 [1m[46m RUN [49m[22m [36mv3.2.7 [39m[90m/home/runner/work/Math/Math[39m
 
- [32m✓[39m src/state/validate.test.ts [2m([22m[2m19 tests[22m[2m)[22m[32m 17[2mms[22m[39m
- [32m✓[39m src/state/store.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 38[2mms[22m[39m
+ [32m✓[39m src/state/validate.test.ts [2m([22m[2m19 tests[22m[2m)[22m[32m 12[2mms[22m[39m
+ [32m✓[39m src/state/store.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 35[2mms[22m[39m
  [32m✓[39m src/state/progress.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 12[2mms[22m[39m
- [32m✓[39m src/lang/hebrewNumbers.test.ts [2m([22m[2m81 tests[22m[2m)[22m[33m 2118[2mms[22m[39m
-   [33m[2m✓[22m[39m numberToWords, properties[2m > [22mis injective on 0–99,999: different numbers never produce the same words [33m 2047[2mms[22m[39m
- [32m✓[39m src/engine/topics/addSub20.test.ts [2m([22m[2m14 tests[22m[2m)[22m[33m 553[2mms[22m[39m
- [32m✓[39m src/audio/speaker.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 45[2mms[22m[39m
- [32m✓[39m src/engine/session.test.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 25[2mms[22m[39m
+ [32m✓[39m src/lang/hebrewNumbers.test.ts [2m([22m[2m81 tests[22m[2m)[22m[33m 1811[2mms[22m[39m
+   [33m[2m✓[22m[39m numberToWords, properties[2m > [22mis injective on 0–99,999: different numbers never produce the same words [33m 1736[2mms[22m[39m
+ [32m✓[39m src/audio/speaker.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 23[2mms[22m[39m
+ [32m✓[39m src/engine/topics/addSub20.test.ts [2m([22m[2m14 tests[22m[2m)[22m[33m 800[2mms[22m[39m
+ [32m✓[39m src/engine/session.test.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 19[2mms[22m[39m
  [32m✓[39m src/engine/journey.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 10[2mms[22m[39m
- [32m✓[39m src/ui/components.test.tsx [2m([22m[2m7 tests[22m[2m)[22m[33m 412[2mms[22m[39m
- [32m✓[39m src/parent/gate.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[33m 613[2mms[22m[39m
- [32m✓[39m src/state/streak.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 6[2mms[22m[39m
- [32m✓[39m scripts/tts/pronunciation.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 8[2mms[22m[39m
- [32m✓[39m src/screens/JourneyScreen.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[32m 143[2mms[22m[39m
- [32m✓[39m src/lang/compose.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 9[2mms[22m[39m
- [32m✓[39m src/i18n/i18n.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 59[2mms[22m[39m
- [32m✓[39m src/lang/spoken.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 6[2mms[22m[39m
- [32m✓[39m src/lang/spokenLabel.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 9[2mms[22m[39m
- [32m✓[39m src/audio/hash.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 9[2mms[22m[39m
- [32m✓[39m src/state/pin.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 19[2mms[22m[39m
- [32m✓[39m src/ui/MathExpr.test.tsx [2m([22m[2m3 tests[22m[2m)[22m[32m 65[2mms[22m[39m
- [32m✓[39m src/state/backup.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 8[2mms[22m[39m
- [32m✓[39m src/lang/fractions.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 6[2mms[22m[39m
- [32m✓[39m src/app/router.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m src/ui/components.test.tsx [2m([22m[2m7 tests[22m[2m)[22m[33m 301[2mms[22m[39m
+ [32m✓[39m src/parent/gate.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[33m 486[2mms[22m[39m
+ [32m✓[39m src/lang/compose.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+ [32m✓[39m src/state/streak.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+ [32m✓[39m scripts/tts/pronunciation.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m src/i18n/i18n.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 38[2mms[22m[39m
+ [32m✓[39m src/screens/JourneyScreen.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[32m 114[2mms[22m[39m
+ [32m✓[39m src/lang/spokenLabel.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+ [32m✓[39m src/lang/spoken.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+ [32m✓[39m src/audio/hash.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+ [32m✓[39m src/state/pin.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+ [32m✓[39m src/ui/MathExpr.test.tsx [2m([22m[2m3 tests[22m[2m)[22m[32m 44[2mms[22m[39m
+ [32m✓[39m src/state/backup.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+ [32m✓[39m src/lang/fractions.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+ [32m✓[39m src/app/router.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 9[2mms[22m[39m
  [32m✓[39m src/ui/ageBand.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 5[2mms[22m[39m
- [32m✓[39m src/engine/topics/all.test.ts [2m([22m[2m106 tests[22m[2m)[22m[33m 21152[2mms[22m[39m
-   [33m[2m✓[22m[39m topic count-10[2m > [22mlevel 10 produces valid exercises [33m 466[2mms[22m[39m
-   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 2 produces valid exercises [33m 517[2mms[22m[39m
-   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 3 produces valid exercises [33m 784[2mms[22m[39m
-   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 4 produces valid exercises [33m 2357[2mms[22m[39m
-   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 5 produces valid exercises [33m 937[2mms[22m[39m
-   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 6 produces valid exercises [33m 720[2mms[22m[39m
-   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 7 produces valid exercises [33m 349[2mms[22m[39m
-   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 8 produces valid exercises [33m 383[2mms[22m[39m
-   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 9 produces valid exercises [33m 1050[2mms[22m[39m
-   [33m[2m✓[22m[39m topic numbers-100[2m > [22mavoids an immediate repeat [33m 342[2mms[22m[39m
-   [33m[2m✓[22m[39m topic numbers-10000[2m > [22mhas a finite spoken bank without digits [33m 337[2mms[22m[39m
-   [33m[2m✓[22m[39m topic fractions-1[2m > [22mlevel 7 produces valid exercises [33m 315[2mms[22m[39m
+ [31m❯[39m src/engine/topics/all.test.ts [2m([22m[2m142 tests[22m[2m | [22m[31m4 failed[39m[2m)[22m[33m 30580[2mms[22m[39m
+   [32m✓[39m topic count-10[2m > [22mhas ten levels with labels[32m 5[2mms[22m[39m
+   [32m✓[39m topic count-10[2m > [22mlevel 1 produces valid exercises[32m 171[2mms[22m[39m
+   [32m✓[39m topic count-10[2m > [22mlevel 2 produces valid exercises[32m 101[2mms[22m[39m
+   [32m✓[39m topic count-10[2m > [22mlevel 3 produces valid exercises[32m 166[2mms[22m[39m
+   [32m✓[39m topic count-10[2m > [22mlevel 4 produces valid exercises[32m 233[2mms[22m[39m
+   [32m✓[39m topic count-10[2m > [22mlevel 5 produces valid exercises[32m 155[2mms[22m[39m
+   [32m✓[39m topic count-10[2m > [22mlevel 6 produces valid exercises[32m 109[2mms[22m[39m
+   [32m✓[39m topic count-10[2m > [22mlevel 7 produces valid exercises[32m 126[2mms[22m[39m
+   [32m✓[39m topic count-10[2m > [22mlevel 8 produces valid exercises[32m 134[2mms[22m[39m
+   [32m✓[39m topic count-10[2m > [22mlevel 9 produces valid exercises[32m 137[2mms[22m[39m
+   [33m[2m✓[22m[39m topic count-10[2m > [22mlevel 10 produces valid exercises [33m 374[2mms[22m[39m
+   [32m✓[39m topic count-10[2m > [22mavoids an immediate repeat[32m 94[2mms[22m[39m
+   [32m✓[39m topic count-10[2m > [22mhas a finite spoken bank without digits[32m 27[2mms[22m[39m
+   [32m✓[39m topic add-sub-20[2m > [22mhas ten levels with labels[32m 0[2mms[22m[39m
+   [32m✓[39m topic add-sub-20[2m > [22mlevel 1 produces valid exercises[32m 68[2mms[22m[39m
+   [32m✓[39m topic add-sub-20[2m > [22mlevel 2 produces valid exercises[32m 69[2mms[22m[39m
+   [32m✓[39m topic add-sub-20[2m > [22mlevel 3 produces valid exercises[32m 79[2mms[22m[39m
+   [32m✓[39m topic add-sub-20[2m > [22mlevel 4 produces valid exercises[32m 85[2mms[22m[39m
+   [32m✓[39m topic add-sub-20[2m > [22mlevel 5 produces valid exercises[32m 81[2mms[22m[39m
+   [32m✓[39m topic add-sub-20[2m > [22mlevel 6 produces valid exercises[32m 53[2mms[22m[39m
+   [32m✓[39m topic add-sub-20[2m > [22mlevel 7 produces valid exercises[32m 62[2mms[22m[39m
+   [32m✓[39m topic add-sub-20[2m > [22mlevel 8 produces valid exercises[32m 79[2mms[22m[39m
+   [32m✓[39m topic add-sub-20[2m > [22mlevel 9 produces valid exercises[32m 64[2mms[22m[39m
+   [32m✓[39m topic add-sub-20[2m > [22mlevel 10 produces valid exercises[32m 83[2mms[22m[39m
+   [32m✓[39m topic add-sub-20[2m > [22mavoids an immediate repeat[32m 27[2mms[22m[39m
+   [32m✓[39m topic add-sub-20[2m > [22mhas a finite spoken bank without digits[32m 162[2mms[22m[39m
+   [32m✓[39m topic numbers-100[2m > [22mhas ten levels with labels[32m 0[2mms[22m[39m
+   [32m✓[39m topic numbers-100[2m > [22mlevel 1 produces valid exercises[32m 135[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 2 produces valid exercises [33m 468[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 3 produces valid exercises [33m 919[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 4 produces valid exercises [33m 2267[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 5 produces valid exercises [33m 743[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 6 produces valid exercises [33m 683[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 7 produces valid exercises [33m 452[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 8 produces valid exercises [33m 395[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 9 produces valid exercises [33m 1103[2mms[22m[39m
+   [32m✓[39m topic numbers-100[2m > [22mlevel 10 produces valid exercises[32m 195[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mavoids an immediate repeat [33m 572[2mms[22m[39m
+   [32m✓[39m topic numbers-100[2m > [22mhas a finite spoken bank without digits[32m 234[2mms[22m[39m
+   [32m✓[39m topic add-sub-100[2m > [22mhas ten levels with labels[32m 0[2mms[22m[39m
+   [32m✓[39m topic add-sub-100[2m > [22mlevel 1 produces valid exercises[32m 297[2mms[22m[39m
+   [33m[2m✓[22m[39m topic add-sub-100[2m > [22mlevel 2 produces valid exercises [33m 334[2mms[22m[39m
+   [33m[2m✓[22m[39m topic add-sub-100[2m > [22mlevel 3 produces valid exercises [33m 414[2mms[22m[39m
+   [32m✓[39m topic add-sub-100[2m > [22mlevel 4 produces valid exercises[32m 192[2mms[22m[39m
+   [32m✓[39m topic add-sub-100[2m > [22mlevel 5 produces valid exercises[32m 230[2mms[22m[39m
+   [32m✓[39m topic add-sub-100[2m > [22mlevel 6 produces valid exercises[32m 220[2mms[22m[39m
+   [32m✓[39m topic add-sub-100[2m > [22mlevel 7 produces valid exercises[32m 182[2mms[22m[39m
+   [32m✓[39m topic add-sub-100[2m > [22mlevel 8 produces valid exercises[32m 183[2mms[22m[39m
+   [32m✓[39m topic add-sub-100[2m > [22mlevel 9 produces valid exercises[32m 180[2mms[22m[39m
+   [32m✓[39m topic add-sub-100[2m > [22mlevel 10 produces valid exercises[32m 190[2mms[22m[39m
+   [32m✓[39m topic add-sub-100[2m > [22mavoids an immediate repeat[32m 7[2mms[22m[39m
+   [32m✓[39m topic add-sub-100[2m > [22mhas a finite spoken bank without digits[32m 233[2mms[22m[39m
+   [32m✓[39m topic mult-intro[2m > [22mhas ten levels with labels[32m 0[2mms[22m[39m
+   [32m✓[39m topic mult-intro[2m > [22mlevel 1 produces valid exercises[32m 101[2mms[22m[39m
+   [32m✓[39m topic mult-intro[2m > [22mlevel 2 produces valid exercises[32m 126[2mms[22m[39m
+   [32m✓[39m topic mult-intro[2m > [22mlevel 3 produces valid exercises[32m 115[2mms[22m[39m
+   [32m✓[39m topic mult-intro[2m > [22mlevel 4 produces valid exercises[32m 144[2mms[22m[39m
+   [32m✓[39m topic mult-intro[2m > [22mlevel 5 produces valid exercises[32m 101[2mms[22m[39m
+   [32m✓[39m topic mult-intro[2m > [22mlevel 6 produces valid exercises[32m 99[2mms[22m[39m
+   [32m✓[39m topic mult-intro[2m > [22mlevel 7 produces valid exercises[32m 100[2mms[22m[39m
+   [32m✓[39m topic mult-intro[2m > [22mlevel 8 produces valid exercises[32m 167[2mms[22m[39m
+   [32m✓[39m topic mult-intro[2m > [22mlevel 9 produces valid exercises[32m 214[2mms[22m[39m
+   [32m✓[39m topic mult-intro[2m > [22mlevel 10 produces valid exercises[32m 179[2mms[22m[39m
+   [32m✓[39m topic mult-intro[2m > [22mavoids an immediate repeat[32m 52[2mms[22m[39m
+   [32m✓[39m topic mult-intro[2m > [22mhas a finite spoken bank without digits[32m 60[2mms[22m[39m
+   [32m✓[39m topic mult-table[2m > [22mhas ten levels with labels[32m 0[2mms[22m[39m
+   [32m✓[39m topic mult-table[2m > [22mlevel 1 produces valid exercises[32m 202[2mms[22m[39m
+   [32m✓[39m topic mult-table[2m > [22mlevel 2 produces valid exercises[32m 201[2mms[22m[39m
+   [32m✓[39m topic mult-table[2m > [22mlevel 3 produces valid exercises[32m 200[2mms[22m[39m
+   [32m✓[39m topic mult-table[2m > [22mlevel 4 produces valid exercises[32m 195[2mms[22m[39m
+   [32m✓[39m topic mult-table[2m > [22mlevel 5 produces valid exercises[32m 216[2mms[22m[39m
+   [32m✓[39m topic mult-table[2m > [22mlevel 6 produces valid exercises[32m 197[2mms[22m[39m
+   [32m✓[39m topic mult-table[2m > [22mlevel 7 produces valid exercises[32m 206[2mms[22m[39m
+   [32m✓[39m topic mult-table[2m > [22mlevel 8 produces valid exercises[32m 220[2mms[22m[39m
+   [32m✓[39m topic mult-table[2m > [22mlevel 9 produces valid exercises[32m 208[2mms[22m[39m
+   [32m✓[39m topic mult-table[2m > [22mlevel 10 produces valid exercises[32m 184[2mms[22m[39m
+   [32m✓[39m topic mult-table[2m > [22mavoids an immediate repeat[32m 6[2mms[22m[39m
+   [32m✓[39m topic mult-table[2m > [22mhas a finite spoken bank without digits[32m 210[2mms[22m[39m
+   [32m✓[39m topic numbers-10000[2m > [22mhas ten levels with labels[32m 0[2mms[22m[39m
+   [32m✓[39m topic numbers-10000[2m > [22mlevel 1 produces valid exercises[32m 245[2mms[22m[39m
+   [32m✓[39m topic numbers-10000[2m > [22mlevel 2 produces valid exercises[32m 221[2mms[22m[39m
+   [32m✓[39m topic numbers-10000[2m > [22mlevel 3 produces valid exercises[32m 238[2mms[22m[39m
+   [32m✓[39m topic numbers-10000[2m > [22mlevel 4 produces valid exercises[32m 240[2mms[22m[39m
+   [32m✓[39m topic numbers-10000[2m > [22mlevel 5 produces valid exercises[32m 187[2mms[22m[39m
+   [32m✓[39m topic numbers-10000[2m > [22mlevel 6 produces valid exercises[32m 186[2mms[22m[39m
+   [32m✓[39m topic numbers-10000[2m > [22mlevel 7 produces valid exercises[32m 216[2mms[22m[39m
+   [32m✓[39m topic numbers-10000[2m > [22mlevel 8 produces valid exercises[32m 215[2mms[22m[39m
+   [32m✓[39m topic numbers-10000[2m > [22mlevel 9 produces valid exercises[32m 278[2mms[22m[39m
+   [32m✓[39m topic numbers-10000[2m > [22mlevel 10 produces valid exercises[32m 207[2mms[22m[39m
+   [32m✓[39m topic numbers-10000[2m > [22mavoids an immediate repeat[32m 7[2mms[22m[39m
+   [32m✓[39m topic numbers-10000[2m > [22mhas a finite spoken bank without digits[32m 294[2mms[22m[39m
+   [32m✓[39m topic fractions-1[2m > [22mhas ten levels with labels[32m 0[2mms[22m[39m
+   [32m✓[39m topic fractions-1[2m > [22mlevel 1 produces valid exercises[32m 73[2mms[22m[39m
+   [32m✓[39m topic fractions-1[2m > [22mlevel 2 produces valid exercises[32m 104[2mms[22m[39m
+   [32m✓[39m topic fractions-1[2m > [22mlevel 3 produces valid exercises[32m 99[2mms[22m[39m
+   [32m✓[39m topic fractions-1[2m > [22mlevel 4 produces valid exercises[32m 121[2mms[22m[39m
+   [32m✓[39m topic fractions-1[2m > [22mlevel 5 produces valid exercises[32m 138[2mms[22m[39m
+   [32m✓[39m topic fractions-1[2m > [22mlevel 6 produces valid exercises[32m 113[2mms[22m[39m
+   [32m✓[39m topic fractions-1[2m > [22mlevel 7 produces valid exercises[32m 299[2mms[22m[39m
+   [32m✓[39m topic fractions-1[2m > [22mlevel 8 produces valid exercises[32m 189[2mms[22m[39m
+   [32m✓[39m topic fractions-1[2m > [22mlevel 9 produces valid exercises[32m 195[2mms[22m[39m
+   [32m✓[39m topic fractions-1[2m > [22mlevel 10 produces valid exercises[32m 72[2mms[22m[39m
+   [32m✓[39m topic fractions-1[2m > [22mavoids an immediate repeat[32m 86[2mms[22m[39m
+   [32m✓[39m topic fractions-1[2m > [22mhas a finite spoken bank without digits[32m 22[2mms[22m[39m
+   [32m✓[39m topic big-numbers[2m > [22mhas ten levels with labels[32m 0[2mms[22m[39m
+   [32m✓[39m topic big-numbers[2m > [22mlevel 1 produces valid exercises[32m 168[2mms[22m[39m
+   [32m✓[39m topic big-numbers[2m > [22mlevel 2 produces valid exercises[32m 236[2mms[22m[39m
+   [32m✓[39m topic big-numbers[2m > [22mlevel 3 produces valid exercises[32m 240[2mms[22m[39m
+   [32m✓[39m topic big-numbers[2m > [22mlevel 4 produces valid exercises[32m 276[2mms[22m[39m
+   [32m✓[39m topic big-numbers[2m > [22mlevel 5 produces valid exercises[32m 196[2mms[22m[39m
+   [32m✓[39m topic big-numbers[2m > [22mlevel 6 produces valid exercises[32m 197[2mms[22m[39m
+   [32m✓[39m topic big-numbers[2m > [22mlevel 7 produces valid exercises[32m 248[2mms[22m[39m
+   [32m✓[39m topic big-numbers[2m > [22mlevel 8 produces valid exercises[32m 247[2mms[22m[39m
+   [32m✓[39m topic big-numbers[2m > [22mlevel 9 produces valid exercises[32m 214[2mms[22m[39m
+   [32m✓[39m topic big-numbers[2m > [22mlevel 10 produces valid exercises[32m 231[2mms[22m[39m
+   [32m✓[39m topic big-numbers[2m > [22mavoids an immediate repeat[32m 7[2mms[22m[39m
+   [33m[2m✓[22m[39m topic big-numbers[2m > [22mhas a finite spoken bank without digits [33m 314[2mms[22m[39m
+   [32m✓[39m topic long-mul-div[2m > [22mhas ten levels with labels[32m 0[2mms[22m[39m
+   [32m✓[39m topic long-mul-div[2m > [22mlevel 1 produces valid exercises[32m 199[2mms[22m[39m
+   [32m✓[39m topic long-mul-div[2m > [22mlevel 2 produces valid exercises[32m 199[2mms[22m[39m
+   [32m✓[39m topic long-mul-div[2m > [22mlevel 3 produces valid exercises[32m 221[2mms[22m[39m
+   [32m✓[39m topic long-mul-div[2m > [22mlevel 4 produces valid exercises[32m 219[2mms[22m[39m
+   [32m✓[39m topic long-mul-div[2m > [22mlevel 5 produces valid exercises[32m 185[2mms[22m[39m
+   [32m✓[39m topic long-mul-div[2m > [22mlevel 6 produces valid exercises[32m 197[2mms[22m[39m
+   [32m✓[39m topic long-mul-div[2m > [22mlevel 7 produces valid exercises[32m 207[2mms[22m[39m
+   [32m✓[39m topic long-mul-div[2m > [22mlevel 8 produces valid exercises[32m 208[2mms[22m[39m
+[31m   [31m×[31m topic long-mul-div[2m > [22mlevel 9 produces valid exercises[39m[32m 191[2mms[22m[39m
+[31m     → ord:2 + 3 × 4 = ?: expected '2 + 3 × 4 = 14' not to be '2 + 3 × 4 = 14' // Object.is equality[39m
+   [32m✓[39m topic long-mul-div[2m > [22mlevel 10 produces valid exercises[32m 190[2mms[22m[39m
+   [32m✓[39m topic long-mul-div[2m > [22mavoids an immediate repeat[32m 7[2mms[22m[39m
+   [32m✓[39m topic long-mul-div[2m > [22mhas a finite spoken bank without digits[32m 218[2mms[22m[39m
+   [32m✓[39m differentExample[2m > [22mkeeps a suggested example that already differs[32m 1[2mms[22m[39m
+   [32m✓[39m differentExample[2m > [22mnudges a matching example, keeping it valid[32m 0[2mms[22m[39m
+   [32m✓[39m the audio bank covers what a child can hear[2m > [22mcount-10[32m 261[2mms[22m[39m
+   [32m✓[39m the audio bank covers what a child can hear[2m > [22madd-sub-20[32m 86[2mms[22m[39m
+   [33m[2m✓[22m[39m the audio bank covers what a child can hear[2m > [22mnumbers-100 [33m 1927[2mms[22m[39m
+[31m   [31m×[31m the audio bank covers what a child can hear[2m > [22madd-sub-100[39m[32m 219[2mms[22m[39m
+[31m     → expected [ …(10) ] to deeply equal [][39m
+[31m   [31m×[31m the audio bank covers what a child can hear[2m > [22mmult-intro[39m[33m 324[2mms[22m[39m
+[31m     → expected [ Array(1) ] to deeply equal [][39m
+[31m   [31m×[31m the audio bank covers what a child can hear[2m > [22mmult-table[39m[32m 241[2mms[22m[39m
+[31m     → expected [ …(2) ] to deeply equal [][39m
+   [32m✓[39m the audio bank covers what a child can hear[2m > [22mnumbers-10000[32m 299[2mms[22m[39m
+   [33m[2m✓[22m[39m the audio bank covers what a child can hear[2m > [22mfractions-1 [33m 520[2mms[22m[39m
+   [33m[2m✓[22m[39m the audio bank covers what a child can hear[2m > [22mbig-numbers [33m 318[2mms[22m[39m
+   [32m✓[39m the audio bank covers what a child can hear[2m > [22mlong-mul-div[32m 241[2mms[22m[39m
 
-[2m Test Files [22m [1m[32m25 passed[39m[22m[90m (25)[39m
-[2m      Tests [22m [1m[32m341 passed[39m[22m[90m (341)[39m
-[2m   Start at [22m 21:00:41
-[2m   Duration [22m 26.06s[2m (transform 914ms, setup 5.70s, collect 1.90s, tests 25.35s, environment 14.42s, prepare 3.12s)[22m
+[31m⎯⎯⎯⎯⎯⎯⎯[39m[1m[41m Failed Tests 4 [49m[22m[31m⎯⎯⎯⎯⎯⎯⎯[39m
 
+[41m[1m FAIL [22m[49m src/engine/topics/all.test.ts[2m > [22mtopic long-mul-div[2m > [22mlevel 9 produces valid exercises
+[31m[1mAssertionError[22m: ord:2 + 3 × 4 = ?: expected '2 + 3 × 4 = 14' not to be '2 + 3 × 4 = 14' // Object.is equality[39m
+[36m [2m❯[22m src/engine/topics/all.test.ts:[2m63:47[22m[39m
+    [90m 61| [39m      [35mconst[39m example [33m=[39m e[33m.[39mhints[[34m2[39m][33m.[39mexample[33m;[39m
+    [90m 62| [39m      [35mif[39m (example [33m&&[39m e[33m.[39mdisplay)
+    [90m 63| [39m        expect(example.display, e.factId).not.toBe(e.display.replace('…
+    [90m   | [39m                                              [31m^[39m
+    [90m 64| [39m    }
+    [90m 65| [39m  })[33m;[39m
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯[22m[39m
+
+[41m[1m FAIL [22m[49m src/engine/topics/all.test.ts[2m > [22mthe audio bank covers what a child can hear[2m > [22madd-sub-100
+[31m[1mAssertionError[22m: expected [ …(10) ] to deeply equal [][39m
+
+[32m- Expected[39m
+[31m+ Received[39m
+
+[32m- [][39m
+[31m+ [[39m
+[31m+   "גולות. בכמה גולות יש לדנה יותר?",[39m
+[31m+   "שקלים למאיה. כמה שקלים נשארו לנועם?",[39m
+[31m+   "תפוחים לנועם. כמה תפוחים נשארו לסבתא?",[39m
+[31m+   "שקלים לסבתא. כמה שקלים נשארו ליובל?",[39m
+[31m+   "חרוזים לסבתא. כמה חרוזים נשארו לדנה?",[39m
+[31m+   "עוגיות ליובל. כמה עוגיות נשארו לסבתא?",[39m
+[31m+   "גולות. לסבא יש",[39m
+[31m+   "בלונים לסבא. כמה בלונים נשארו לנועם?",[39m
+[31m+   "בלונים לסבא. כמה בלונים נשארו למאיה?",[39m
+[31m+   "עפרונות למאיה. כמה עפרונות נשארו ליובל?",[39m
+[31m+ ][39m
+
+[36m [2m❯[22m src/engine/topics/all.test.ts:[2m124:39[22m[39m
+    [90m122| [39m      }
+    [90m123| [39m    }
+    [90m124| [39m    [34mexpect[39m([[33m...[39mmissing][33m.[39m[34mslice[39m([34m0[39m[33m,[39m [34m10[39m))[33m.[39m[34mtoEqual[39m([])[33m;[39m
+    [90m   | [39m                                      [31m^[39m
+    [90m125| [39m  })[33m;[39m
+    [90m126| [39m})[33m;[39m
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯[22m[39m
+
+[41m[1m FAIL [22m[49m src/engine/topics/all.test.ts[2m > [22mthe audio bank covers what a child can hear[2m > [22mmult-intro
+[31m[1mAssertionError[22m: expected [ Array(1) ] to deeply equal [][39m
+
+[32m- Expected[39m
+[31m+ Received[39m
+
+[32m- [][39m
+[31m+ [[39m
+[31m+   "חרוזים. הוא שם שני חרוזים בכל שקית. כמה שקיות הוא מילא?",[39m
+[31m+ ][39m
+
+[36m [2m❯[22m src/engine/topics/all.test.ts:[2m124:39[22m[39m
+    [90m122| [39m      }
+    [90m123| [39m    }
+    [90m124| [39m    [34mexpect[39m([[33m...[39mmissing][33m.[39m[34mslice[39m([34m0[39m[33m,[39m [34m10[39m))[33m.[39m[34mtoEqual[39m([])[33m;[39m
+    [90m   | [39m                                      [31m^[39m
+    [90m125| [39m  })[33m;[39m
+    [90m126| [39m})[33m;[39m
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/4]⎯[22m[39m
+
+[41m[1m FAIL [22m[49m src/engine/topics/all.test.ts[2m > [22mthe audio bank covers what a child can hear[2m > [22mmult-table
+[31m[1mAssertionError[22m: expected [ …(2) ] to deeply equal [][39m
+
+[32m- Expected[39m
+[31m+ Received[39m
+
+[32m- [][39m
+[31m+ [[39m
+[31m+   "בלונים. היא שמה שני בלונים בכל שקית. כמה שקיות היא מילאה?",[39m
+[31m+   "בלונים. הוא שם שני בלונים בכל שקית. כמה שקיות הוא מילא?",[39m
+[31m+ ][39m
+
+[36m [2m❯[22m src/engine/topics/all.test.ts:[2m124:39[22m[39m
+    [90m122| [39m      }
+    [90m123| [39m    }
+    [90m124| [39m    [34mexpect[39m([[33m...[39mmissing][33m.[39m[34mslice[39m([34m0[39m[33m,[39m [34m10[39m))[33m.[39m[34mtoEqual[39m([])[33m;[39m
+    [90m   | [39m                                      [31m^[39m
+    [90m125| [39m  })[33m;[39m
+    [90m126| [39m})[33m;[39m
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/4]⎯[22m[39m
+
+
+[2m Test Files [22m [1m[31m1 failed[39m[22m[2m | [22m[1m[32m24 passed[39m[22m[90m (25)[39m
+[2m      Tests [22m [1m[31m4 failed[39m[22m[2m | [22m[1m[32m375 passed[39m[22m[90m (379)[39m
+[2m   Start at [22m 21:10:19
+[2m   Duration [22m 33.42s[2m (transform 813ms, setup 5.33s, collect 1.70s, tests 34.37s, environment 13.65s, prepare 2.89s)[22m
+
+
+::error file=/home/runner/work/Math/Math/src/engine/topics/all.test.ts,title=src/engine/topics/all.test.ts > topic long-mul-div > level 9 produces valid exercises,line=63,column=47::AssertionError: ord:2 + 3 × 4 = ?: expected '2 + 3 × 4 = 14' not to be '2 + 3 × 4 = 14' // Object.is equality%0A ❯ src/engine/topics/all.test.ts:63:47%0A%0A
+
+::error file=/home/runner/work/Math/Math/src/engine/topics/all.test.ts,title=src/engine/topics/all.test.ts > the audio bank covers what a child can hear > add-sub-100,line=124,column=39::AssertionError: expected [ …(10) ] to deeply equal []%0A%0A- Expected%0A+ Received%0A%0A- []%0A+ [%0A+   "גולות. בכמה גולות יש לדנה יותר?",%0A+   "שקלים למאיה. כמה שקלים נשארו לנועם?",%0A+   "תפוחים לנועם. כמה תפוחים נשארו לסבתא?",%0A+   "שקלים לסבתא. כמה שקלים נשארו ליובל?",%0A+   "חרוזים לסבתא. כמה חרוזים נשארו לדנה?",%0A+   "עוגיות ליובל. כמה עוגיות נשארו לסבתא?",%0A+   "גולות. לסבא יש",%0A+   "בלונים לסבא. כמה בלונים נשארו לנועם?",%0A+   "בלונים לסבא. כמה בלונים נשארו למאיה?",%0A+   "עפרונות למאיה. כמה עפרונות נשארו ליובל?",%0A+ ]%0A%0A ❯ src/engine/topics/all.test.ts:124:39%0A%0A
+
+::error file=/home/runner/work/Math/Math/src/engine/topics/all.test.ts,title=src/engine/topics/all.test.ts > the audio bank covers what a child can hear > mult-intro,line=124,column=39::AssertionError: expected [ Array(1) ] to deeply equal []%0A%0A- Expected%0A+ Received%0A%0A- []%0A+ [%0A+   "חרוזים. הוא שם שני חרוזים בכל שקית. כמה שקיות הוא מילא?",%0A+ ]%0A%0A ❯ src/engine/topics/all.test.ts:124:39%0A%0A
+
+::error file=/home/runner/work/Math/Math/src/engine/topics/all.test.ts,title=src/engine/topics/all.test.ts > the audio bank covers what a child can hear > mult-table,line=124,column=39::AssertionError: expected [ …(2) ] to deeply equal []%0A%0A- Expected%0A+ Received%0A%0A- []%0A+ [%0A+   "בלונים. היא שמה שני בלונים בכל שקית. כמה שקיות היא מילאה?",%0A+   "בלונים. הוא שם שני בלונים בכל שקית. כמה שקיות הוא מילא?",%0A+ ]%0A%0A ❯ src/engine/topics/all.test.ts:124:39%0A%0A
+TESTS FAILED
 
 ## build
 
@@ -70,19 +301,19 @@
 
 [36mvite v7.3.7 [32mbuilding client environment for production...[36m[39m
 transforming...
-[32m✓[39m 94 modules transformed.
+[32m✓[39m 96 modules transformed.
 rendering chunks...
 computing gzip size...
 [2mdist/[22m[32mmanifest.webmanifest                        [39m[1m[2m  0.53 kB[22m[1m[22m
 [2mdist/[22m[32mindex.html                                  [39m[1m[2m  1.26 kB[22m[1m[22m[2m │ gzip:   0.60 kB[22m
 [2mdist/[22m[2massets/[22m[35mindex-CwSEelGF.css                   [39m[1m[2m 21.42 kB[22m[1m[22m[2m │ gzip:   4.69 kB[22m
 [2mdist/[22m[2massets/[22m[36mworkbox-window.prod.es5-BBnX5xw4.js  [39m[1m[2m  5.75 kB[22m[1m[22m[2m │ gzip:   2.36 kB[22m
-[2mdist/[22m[2massets/[22m[36mindex-1oV7jEdv.js                    [39m[1m[2m380.58 kB[22m[1m[22m[2m │ gzip: 116.12 kB[22m
-[32m✓ built in 2.73s[39m
+[2mdist/[22m[2massets/[22m[36mindex-DsPyBIC9.js                    [39m[1m[2m393.25 kB[22m[1m[22m[2m │ gzip: 119.34 kB[22m
+[32m✓ built in 2.63s[39m
 
 [36mPWA v1.3.0[39m
 mode      [35mgenerateSW[39m
-precache  [32m14 entries[39m [2m(462.67 KiB)[22m
+precache  [32m14 entries[39m [2m(475.04 KiB)[22m
 files generated
   [2mdist/sw.js[22m
   [2mdist/workbox-35e397ac.js[22m
@@ -92,9 +323,9 @@ files generated
 > heshbon@0.1.0 tts:build
 > tsx --tsconfig tsconfig.node.json scripts/tts/generate.ts --dry-run
 
-9868 phrases in the bank, 1090 to generate.
-  chirp3-hd/Leda: 170 clips, 0.00 USD (Chirp 3 HD, 4061 chars within the 1M free tier)
-  wavenet/he-IL-Wavenet-A: 920 clips, 0.00 USD (WaveNet/Standard, 33069 chars within the 4M free tier)
+10200 phrases in the bank, 1537 to generate.
+  chirp3-hd/Leda: 319 clips, 0.00 USD (Chirp 3 HD, 7999 chars within the 1M free tier)
+  wavenet/he-IL-Wavenet-A: 1218 clips, 0.00 USD (WaveNet/Standard, 46240 chars within the 4M free tier)
   [chirp3-hd/Leda] ui.topic.multTable: לוח הכפל
   [wavenet/he-IL-Wavenet-A] ui.level.multTable.1: כפל בשש ובשבע
   [wavenet/he-IL-Wavenet-A] ui.level.multTable.2: כפל בשמונה ובתשע
@@ -115,7 +346,7 @@ files generated
   [chirp3-hd/Leda] ui.level.numbers10000.9: אומדן
   [chirp3-hd/Leda] ui.topic.fractions1: שברים: היכרות
   [wavenet/he-IL-Wavenet-A] ui.level.fractions1.1: חצי, שליש, רבע
-  … and 1070 more
+  … and 1517 more
 
 ## e2e
 
@@ -125,5 +356,5 @@ files generated
 
 Running 75 tests using 2 workers
 ···········································································
-  75 passed (2.8m)
-::notice title=🎭 Playwright Run Summary::  75 passed (2.8m)
+  75 passed (2.7m)
+::notice title=🎭 Playwright Run Summary::  75 passed (2.7m)

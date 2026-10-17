@@ -87,17 +87,30 @@ function placeValue(rng: Rng): Exercise {
     input: numpad(6),
     hints: [
       hint(say('ex.placeValue.hint1', { d, place: t(PLACE_KEYS[i] ?? 'place.units') })),
-      hint(say('ex.placeValue.hint2'), { visual: { type: 'placeValue', n: n === 352_418 ? 241_635 : 352_418 } }),
-      exampleHint('352,418: 5 → 50,000', say('ex.placeValue.solution', { d: 5, n: 352_418, v: 50_000 })),
+      hint(say('ex.placeValue.hint2'), {
+        visual: { type: 'placeValue', n: n === 352_418 ? 241_635 : 352_418 },
+      }),
+      exampleHint(
+        '352,418: 5 → 50,000',
+        say('ex.placeValue.solution', { d: 5, n: 352_418, v: 50_000 }),
+      ),
     ],
     solution: say('ex.placeValue.solution', { d, n, v: answer }),
-    diagnose: (v) => ([0, 1, 2, 3, 4, 5].some((k) => k !== i && v === d * 10 ** k) ? 'placeValue' : null),
+    diagnose: (v) =>
+      [0, 1, 2, 3, 4, 5].some((k) => k !== i && v === d * 10 ** k) ? 'placeValue' : null,
   });
 }
 
 function compare(rng: Rng): Exercise {
   const a = bigNumber(rng, 6);
-  const b = pick(rng, [a + 1000, a - 1000, a + 10_000, a - 100, Math.floor(a / 10), bigNumber(rng, 6)]);
+  const b = pick(rng, [
+    a + 1000,
+    a - 1000,
+    a + 10_000,
+    a - 100,
+    Math.floor(a / 10),
+    bigNumber(rng, 6),
+  ]);
   if (b === a || b < 10_000 || b > 999_999) return compare(rng);
   return exercise({
     factId: `bcmp:${a},${b}`,
@@ -159,7 +172,10 @@ function timesPower(rng: Rng): Exercise {
     a,
     op: '×',
     b: k,
-    hints: [hint(say('hint.timesPower', { z: { n: String(k).length - 1, noun: ZERO } })), hint(say('hint.timesPower2'))],
+    hints: [
+      hint(say('hint.timesPower', { z: { n: String(k).length - 1, noun: ZERO } })),
+      hint(say('hint.timesPower2')),
+    ],
     example: { a: 37, b: k },
     input: numpad(7),
   });
@@ -174,7 +190,10 @@ function dividePower(rng: Rng): Exercise {
     a: q * k,
     op: '÷',
     b: k,
-    hints: [hint(say('hint.dividePower', { z: { n: String(k).length - 1, noun: ZERO } })), hint(say('hint.dividePower2'))],
+    hints: [
+      hint(say('hint.dividePower', { z: { n: String(k).length - 1, noun: ZERO } })),
+      hint(say('hint.dividePower2')),
+    ],
     example: { a: 37 * k, b: k },
     input: numpad(6),
   });
@@ -192,7 +211,16 @@ function column(level: number, op: '+' | '-'): (rng: Rng) => Exercise {
     let a = randInt(rng, 10_000, 600_000);
     let b = randInt(rng, 1000, 400_000);
     if (op === '-' && a < b) [a, b] = [b, a];
-    return arith({ topicId: ID, level, a, op, b, hints: columnHints(op), example: op === '+' ? { a: 24_315, b: 13_472 } : { a: 52_400, b: 18_250 }, input: numpad(7) });
+    return arith({
+      topicId: ID,
+      level,
+      a,
+      op,
+      b,
+      hints: columnHints(op),
+      example: op === '+' ? { a: 24_315, b: 13_472 } : { a: 52_400, b: 18_250 },
+      input: numpad(7),
+    });
   };
 }
 
@@ -209,7 +237,14 @@ function roundSums(rng: Rng): Exercise {
     a,
     op,
     b,
-    hints: [hint(say('hint.roundSums', { unit: unit === 1000 ? t('place.thousands') : t('place.tenThousands') })), hint(say('hint.roundSums2'))],
+    hints: [
+      hint(
+        say('hint.roundSums', {
+          unit: unit === 1000 ? t('place.thousands') : t('place.tenThousands'),
+        }),
+      ),
+      hint(say('hint.roundSums2')),
+    ],
     example: op === '+' ? { a: 340_000, b: 25_000 } : { a: 500_000, b: 120_000 },
     input: numpad(7),
   });
@@ -219,11 +254,33 @@ function word(rng: Rng): Exercise {
   if (rng() < 0.5) {
     const a = randInt(rng, 10, 400) * 100;
     const b = randInt(rng, 10, 400) * 100;
-    return wordProblem({ topicId: ID, level: 10, key: 'wp.save', rng, a, op: '+', b, example: { a: 12_500, b: 4300 }, input: numpad(6), nouns: SHEKELS });
+    return wordProblem({
+      topicId: ID,
+      level: 10,
+      key: 'wp.save',
+      rng,
+      a,
+      op: '+',
+      b,
+      example: { a: 12_500, b: 4300 },
+      input: numpad(6),
+      nouns: SHEKELS,
+    });
   }
   const a = randInt(rng, 100, 900) * 100;
   const b = randInt(rng, 10, Math.floor(a / 100) - 5) * 100;
-  return wordProblem({ topicId: ID, level: 10, key: pick(rng, ['wp.spend', 'wp.compare'] as const), rng, a, op: '-', b, example: { a: 24_000, b: 8500 }, input: numpad(6), nouns: SHEKELS });
+  return wordProblem({
+    topicId: ID,
+    level: 10,
+    key: pick(rng, ['wp.spend', 'wp.compare'] as const),
+    rng,
+    a,
+    op: '-',
+    b,
+    example: { a: 24_000, b: 8500 },
+    input: numpad(6),
+    nouns: SHEKELS,
+  });
 }
 
 export const bigNumbers = defineTopic({

@@ -33,7 +33,12 @@ function byTens(rng: Rng): Exercise {
     a,
     op: '×',
     b: k,
-    hints: [hint(say('hint.byTens', { d: k >= 100 ? k / 100 : k / 10 })), hint(say('hint.mul.tensExample'), { example: { display: '12 × 3 = 36 → 12 × 30 = 360', spoken: say('hint.mul.tensExample') } })],
+    hints: [
+      hint(say('hint.byTens', { d: k >= 100 ? k / 100 : k / 10 })),
+      hint(say('hint.mul.tensExample'), {
+        example: { display: '12 × 3 = 36 → 12 × 30 = 360', spoken: say('hint.mul.tensExample') },
+      }),
+    ],
     example: { a: 12, b: 30 },
     input: numpad(5),
   });
@@ -46,19 +51,52 @@ function splitHints(a: number): [ReturnType<typeof hint>, ReturnType<typeof hint
 function threeByOne(rng: Rng): Exercise {
   const a = randInt(rng, 102, 989);
   const b = randInt(rng, 2, 9);
-  return arith({ topicId: ID, level: 2, a, op: '×', b, hints: splitHints(a), example: { a: 213, b: 4 }, input: numpad(4) });
+  return arith({
+    topicId: ID,
+    level: 2,
+    a,
+    op: '×',
+    b,
+    hints: splitHints(a),
+    example: { a: 213, b: 4 },
+    input: numpad(4),
+  });
 }
 
 function twoByTwoEasy(rng: Rng): Exercise {
   const a = randInt(rng, 11, 39);
   const b = randInt(rng, 11, 19);
-  return arith({ topicId: ID, level: 3, a, op: '×', b, hints: [hint(say('hint.longMul.twoByTwo', { b, t: Math.floor(b / 10) * 10, u: b % 10 })), hint(say('hint.longMul.column'))], example: { a: 23, b: 12 }, input: numpad(4) });
+  return arith({
+    topicId: ID,
+    level: 3,
+    a,
+    op: '×',
+    b,
+    hints: [
+      hint(say('hint.longMul.twoByTwo', { b, t: Math.floor(b / 10) * 10, u: b % 10 })),
+      hint(say('hint.longMul.column')),
+    ],
+    example: { a: 23, b: 12 },
+    input: numpad(4),
+  });
 }
 
 function twoByTwo(rng: Rng): Exercise {
   const a = randInt(rng, 21, 99);
   const b = randInt(rng, 21, 99);
-  return arith({ topicId: ID, level: 4, a, op: '×', b, hints: [hint(say('hint.longMul.twoByTwo', { b, t: Math.floor(b / 10) * 10, u: b % 10 })), hint(say('hint.longMul.column'))], example: { a: 34, b: 25 }, input: numpad(4) });
+  return arith({
+    topicId: ID,
+    level: 4,
+    a,
+    op: '×',
+    b,
+    hints: [
+      hint(say('hint.longMul.twoByTwo', { b, t: Math.floor(b / 10) * 10, u: b % 10 })),
+      hint(say('hint.longMul.column')),
+    ],
+    example: { a: 34, b: 25 },
+    input: numpad(4),
+  });
 }
 
 function divHints(): [ReturnType<typeof hint>, ReturnType<typeof hint>] {
@@ -69,7 +107,16 @@ function divExact(level: number, lo: number, hi: number): (rng: Rng) => Exercise
   return (rng) => {
     const b = randInt(rng, 2, 9);
     const q = randInt(rng, Math.ceil(lo / b), Math.floor(hi / b));
-    return arith({ topicId: ID, level, a: b * q, op: '÷', b, hints: divHints(), example: level === 5 ? { a: 252, b: 7 } : { a: 1236, b: 4 }, input: numpad(4) });
+    return arith({
+      topicId: ID,
+      level,
+      a: b * q,
+      op: '÷',
+      b,
+      hints: divHints(),
+      example: level === 5 ? { a: 252, b: 7 } : { a: 1236, b: 4 },
+      input: numpad(4),
+    });
   };
 }
 
@@ -109,7 +156,10 @@ function remainderExercise(
     hints: [
       hint(say('hint.longDiv.steps')),
       hint(say('hint.longDiv.remainder', { b })),
-      exampleHint(`${ex.a} ÷ ${ex.b} = ${ex.q} (${ex.r})`, sayText('{a} חלקי {b} זה {q}, ונשאר {r}.', ex)),
+      exampleHint(
+        `${ex.a} ÷ ${ex.b} = ${ex.q} (${ex.r})`,
+        sayText('{a} חלקי {b} זה {q}, ונשאר {r}.', ex),
+      ),
     ],
     solution: solved,
     diagnose: (v) => (v === (askRemainder ? q : r) ? 'remainder' : null),
@@ -137,7 +187,11 @@ function order(rng: Rng): Exercise {
       display = `(${a} + ${b}) × ${c} = ?`;
       answer = (a + b) * c;
       wrong = a + b * c;
-      spoken = compose('כמה זה, פותחים סוגריים, {a} ועוד {b}, סוגרים סוגריים, כפול {c}?', { a, b, c });
+      spoken = compose('כמה זה, פותחים סוגריים, {a} ועוד {b}, סוגרים סוגריים, כפול {c}?', {
+        a,
+        b,
+        c,
+      });
       break;
     case 'ab-c': {
       display = `${b} × ${c} − ${a} = ?`;
@@ -169,7 +223,10 @@ function order(rng: Rng): Exercise {
     hints: [
       hint(say(kind === '(a+b)c' ? 'hint.order.brackets' : 'hint.order.first')),
       hint(say('hint.order.rule')),
-      exampleHint('2 + 3 × 4 = 14', compose('{a} ועוד {b} כפול {c} זה {r}, כי קודם כופלים.', { a: 2, b: 3, c: 4, r: 14 })),
+      exampleHint(
+        '2 + 3 × 4 = 14',
+        compose('{a} ועוד {b} כפול {c} זה {r}, כי קודם כופלים.', { a: 2, b: 3, c: 4, r: 14 }),
+      ),
     ],
     solution: compose('התשובה היא {r}.', { r: answer }),
     diagnose: (v) => (v === wrong ? 'wrongOperation' : null),
@@ -181,14 +238,45 @@ function word(rng: Rng): Exercise {
   if (kind === '×') {
     const a = randInt(rng, 12, 60);
     const b = randInt(rng, 12, 40);
-    return wordProblem({ topicId: ID, level: 10, key: 'wp.boxes', rng, a, op: '×', b, example: { a: 24, b: 15 }, input: numpad(4) });
+    return wordProblem({
+      topicId: ID,
+      level: 10,
+      key: 'wp.boxes',
+      rng,
+      a,
+      op: '×',
+      b,
+      example: { a: 24, b: 15 },
+      input: numpad(4),
+    });
   }
   const b = randInt(rng, 3, 9);
   const q = randInt(rng, 12, 60);
   if (kind === 'rem') {
-    return wordProblem({ topicId: ID, level: 10, key: 'wp.leftover', rng, a: b * q + randInt(rng, 1, b - 1), op: '÷', b, example: { a: 127, b: 5 }, input: numpad(1), askRemainder: true });
+    return wordProblem({
+      topicId: ID,
+      level: 10,
+      key: 'wp.leftover',
+      rng,
+      a: b * q + randInt(rng, 1, b - 1),
+      op: '÷',
+      b,
+      example: { a: 127, b: 5 },
+      input: numpad(1),
+      askRemainder: true,
+    });
   }
-  return wordProblem({ topicId: ID, level: 10, key: pick(rng, ['wp.share', 'wp.bags'] as const), rng, a: b * q, op: '÷', b, example: { a: 144, b: 6 }, input: numpad(3) });
+  return wordProblem({
+    topicId: ID,
+    level: 10,
+    key: pick(rng, ['wp.share', 'wp.bags'] as const),
+    rng,
+    a: b * q,
+    op: '÷',
+    b,
+    example: { a: 144, b: 6 },
+    input: numpad(3),
+  });
 }
 
 export const longMulDiv = defineTopic({
