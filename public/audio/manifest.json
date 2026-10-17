@@ -35184,6 +35184,4366 @@
     "60967fa0761e8f20": {
       "text": "מדבקות בכל שקית. כמה שקיות הוא מילא?",
       "voice": "chirp3-hd/Leda"
+    },
+    "a286dd0e1c5fefd6": {
+      "text": "כפל בשמונה ובתשע",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ad91980b2eeae847": {
+      "text": "כפל בשש ובשבע",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a705dcd4c8b9cbbb": {
+      "text": "מספרים עד עשרת אלפים",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ebb15e3ad4f7001c": {
+      "text": "חיבור במאונך: מאות",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "8eb016ff43950d45": {
+      "text": "חיסור במאונך: מאות",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "30c8207da74f03b6": {
+      "text": "לוח הכפל",
+      "voice": "chirp3-hd/Leda"
+    },
+    "21900f499c264172": {
+      "text": "חיבור במאונך: אלפים",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "9b9936f8891bba28": {
+      "text": "חיסור במאונך: אלפים",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "fe41c48bfff4e8b7": {
+      "text": ", ואז נוסיף אפס בסוף.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "aadbcb976c6a6b2d": {
+      "text": "חצי, שליש, רבע",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "093a5e886cb2e72e": {
+      "text": "אלפים:",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "db112780689c9cff": {
+      "text": ". מאות:",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "5a3218744e51b8d8": {
+      "text": ", מאות:",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "7f2348c028f9a223": {
+      "text": "כל לוח הכפל",
+      "voice": "chirp3-hd/Leda"
+    },
+    "352e1fcf7be2f35b": {
+      "text": "כל ספרה נכתבת במקום שלה, משמאל לימין: אלפים, מאות, עשרות, אחדות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "066501b634ec3b13": {
+      "text": "מעוגל לאלף הקרוב?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "eca7bb31f3c568c5": {
+      "text": "מעוגל לאלף הקרוב הוא",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "4ab4e0c2b36229d6": {
+      "text": "גולות. הוא שם שתי גולות בכל שקית. כמה שקיות הוא מילא?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "681ac0026997a274": {
+      "text": "מעוגל למאה הקרובה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ca0c0702264bbdaa": {
+      "text": "מעוגל למאה הקרובה הוא",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f9ea0dd2a5aff927": {
+      "text": "חילוק בלוח הכפל",
+      "voice": "chirp3-hd/Leda"
+    },
+    "c8f9599e33a2eef8": {
+      "text": "מעוגל לעשרת הקרובה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "6069d47beb227c94": {
+      "text": "אם במקום אחד יוצא עשר או יותר, כותבים את האחדות ומעבירים אחד למקום הבא.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "49aca0d3afa193a2": {
+      "text": "מעוגל לעשרת הקרובה הוא",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "7f456e5c301712cd": {
+      "text": "אם הספרה למעלה קטנה מהספרה למטה, פורטים אחד מהמקום שמשמאל.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c07e8e5b0b16e54f": {
+      "text": "נעגל כל מספר למאה הקרובה, ואז נחשב.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f51f52acfe91bce2": {
+      "text": "מספר חסר בחילוק",
+      "voice": "chirp3-hd/Leda"
+    },
+    "dc5c5df802afb13f": {
+      "text": "למשל, השלם מחולק לארבעה חלקים, ואחד מהם צבועים. זה רבע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "fb9d260cf10d74a0": {
+      "text": "מהם צבועים. זה חצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "9a295549445c59a1": {
+      "text": "כפל בעשרות",
+      "voice": "chirp3-hd/Leda"
+    },
+    "8fa838fb1c0a07be": {
+      "text": "השלם מחולק לשניים חלקים, ואחד מהם צבועים. זה חצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "5eb3512668b99f2a": {
+      "text": "השלם מחולק לשלושה חלקים, ואחד מהם צבועים. זה שליש.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "308c497b7a639f98": {
+      "text": "מהם צבועים. זה שליש.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "dc69254a63668c21": {
+      "text": "דו-ספרתי כפול חד-ספרתי",
+      "voice": "chirp3-hd/Leda"
+    },
+    "ca2404cb72f0c731": {
+      "text": "מהם צבועים. זה רבע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f726d8cd2e2bdaa2": {
+      "text": "השלם מחולק לארבעה חלקים, ואחד מהם צבועים. זה רבע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "dd7fb9358121d1c6": {
+      "text": "למשל, השלם מחולק לשלושה חלקים, ואחד מהם צבועים. זה שליש.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "fc9d24336417a432": {
+      "text": "השלם מחולק לשמונה חלקים, ואחד מהם צבועים. זה שמינית.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "94ed6e1af89af8ab": {
+      "text": "השלם מחולק לשישה חלקים, ואחד מהם צבועים. זה שישית.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "7e683fc4820ed5db": {
+      "text": "השלם מחולק לעשרה חלקים, ואחד מהם צבועים. זה עשירית.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "2cdb8a2f6d9c9ed7": {
+      "text": "חילוק עם שארית",
+      "voice": "chirp3-hd/Leda"
+    },
+    "d3360e0abfb0c31e": {
+      "text": "השלם מחולק לחמישה חלקים, ואחד מהם צבועים. זה חמישית.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ebe0b41099663e30": {
+      "text": "השלם מחולק לשלושה חלקים, ושניים מהם צבועים. זה שני שלישים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "4272a3612f056211": {
+      "text": "מהם צבועים. זה שני שלישים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "088bb71fe944c049": {
+      "text": "השלם מחולק לארבעה חלקים, ושניים מהם צבועים. זה שני רבעים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "6ae43071f4ee8407": {
+      "text": "בונים מספר",
+      "voice": "chirp3-hd/Leda"
+    },
+    "31ad4c0a37dc81e4": {
+      "text": "מהם צבועים. זה שני רבעים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b6e8008f83e95d31": {
+      "text": "השלם מחולק לארבעה חלקים, ושלושה מהם צבועים. זה שלושה רבעים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "3cfa26d0400b5aaf": {
+      "text": "מהם צבועים. זה שלושה רבעים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "724a6b18d421f829": {
+      "text": "השלם מחולק לחמישה חלקים, ושניים מהם צבועים. זה שתי חמישיות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "66f3171d976cc650": {
+      "text": "ערך המקום",
+      "voice": "chirp3-hd/Leda"
+    },
+    "d14d557d959c2a35": {
+      "text": "מהם צבועים. זה שתי חמישיות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "3cf70c1c9e84ba96": {
+      "text": "השלם מחולק לחמישה חלקים, ושלושה מהם צבועים. זה שלוש חמישיות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d9749bc9eee14be6": {
+      "text": "השלם מחולק לחמישה חלקים, וארבעה מהם צבועים. זה ארבע חמישיות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "2591689f585f34da": {
+      "text": "מהם צבועים. זה ארבע חמישיות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "4933a9a2700e850f": {
+      "text": "עיגול מספרים",
+      "voice": "chirp3-hd/Leda"
+    },
+    "44df1adf89567cdf": {
+      "text": "מהם צבועים. זה שלוש חמישיות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "327ce5fdf742486a": {
+      "text": "מהם צבועים. זה שתי שישיות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "6d1f4933427647a2": {
+      "text": "השלם מחולק לשישה חלקים, ושלושה מהם צבועים. זה שלוש שישיות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "54a4cf8d6b495a14": {
+      "text": "אומדן",
+      "voice": "chirp3-hd/Leda"
+    },
+    "0d581e009e54ca70": {
+      "text": "השלם מחולק לשישה חלקים, ושניים מהם צבועים. זה שתי שישיות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "7b059a6b776a6974": {
+      "text": "מהם צבועים. זה שלוש שישיות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c4be4d0ab92aad69": {
+      "text": "מהם צבועים. זה ארבע שישיות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "9375ebdd78172999": {
+      "text": "שברים: היכרות",
+      "voice": "chirp3-hd/Leda"
+    },
+    "58b16e16d8c2db36": {
+      "text": "השלם מחולק לשמונה חלקים, ושניים מהם צבועים. זה שתי שמיניות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "49b23e4f41fed88c": {
+      "text": "השלם מחולק לשישה חלקים, וחמישה מהם צבועים. זה חמש שישיות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d31faf956fbecbb6": {
+      "text": "השלם מחולק לשישה חלקים, וארבעה מהם צבועים. זה ארבע שישיות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "18806181a426a2f1": {
+      "text": "מהם צבועים. זה חמש שישיות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "952580e541905003": {
+      "text": "כמה חלקים צבועים?",
+      "voice": "chirp3-hd/Leda"
+    },
+    "59e91e91673cad43": {
+      "text": "מהם צבועים. זה שלוש שמיניות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "075262e2b2ae6fa9": {
+      "text": "מהם צבועים. זה שתי שמיניות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "9a838b796463f410": {
+      "text": "השלם מחולק לשמונה חלקים, ושלושה מהם צבועים. זה שלוש שמיניות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b7e8460339d62cf6": {
+      "text": "המונה",
+      "voice": "chirp3-hd/Leda"
+    },
+    "9794aaa742459eab": {
+      "text": "מהם צבועים. זה ארבע שמיניות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e3858ea095c879f0": {
+      "text": "מהם צבועים. זה חמש שמיניות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "4e38496af11cb0fe": {
+      "text": "השלם מחולק לשמונה חלקים, וחמישה מהם צבועים. זה חמש שמיניות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "1a233067376ccc83": {
+      "text": "השלם מחולק לשמונה חלקים, וארבעה מהם צבועים. זה ארבע שמיניות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "80e104044a4652b6": {
+      "text": "מהם צבועים. זה שש שמיניות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "35c803d4f1bd0ac8": {
+      "text": "חלק מכמות",
+      "voice": "chirp3-hd/Leda"
+    },
+    "d402d7babd838f8b": {
+      "text": "השלם מחולק לשמונה חלקים, ושבעה מהם צבועים. זה שבע שמיניות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "1aab693466b365b3": {
+      "text": "השלם מחולק לשמונה חלקים, ושישה מהם צבועים. זה שש שמיניות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "05cc3cef152569ff": {
+      "text": "מהם צבועים. זה שבע שמיניות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "7fa1d8874c97fe10": {
+      "text": "מהם צבועים. זה שתי עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "07b50637b0546d4f": {
+      "text": "השלם מחולק לעשרה חלקים, ושלושה מהם צבועים. זה שלוש עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "6e25262eac1ce1d3": {
+      "text": "כמה חלקים מכמות",
+      "voice": "chirp3-hd/Leda"
+    },
+    "b1d9e80ab79faad1": {
+      "text": "השלם מחולק לעשרה חלקים, ושניים מהם צבועים. זה שתי עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "7bd2fa80de3fa3d1": {
+      "text": "מהם צבועים. זה ארבע עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "57702a307d5f8ac3": {
+      "text": "השלם מחולק לעשרה חלקים, וארבעה מהם צבועים. זה ארבע עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "fd1bf32e16fd951c": {
+      "text": "השלם מחולק לעשרה חלקים, וחמישה מהם צבועים. זה חמש עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "0f9e42c728c9ca3b": {
+      "text": "השוואת שברי יחידה",
+      "voice": "chirp3-hd/Leda"
+    },
+    "bdb2f39f6582eb6f": {
+      "text": "מהם צבועים. זה שלוש עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "00932e959610add0": {
+      "text": "מהם צבועים. זה שש עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "8d6bbed546680550": {
+      "text": "מהם צבועים. זה חמש עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "cb887743a30e802d": {
+      "text": "השלם מחולק לעשרה חלקים, ושישה מהם צבועים. זה שש עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "3196bf8a957cbe77": {
+      "text": "השוואה עם אותו מכנה",
+      "voice": "chirp3-hd/Leda"
+    },
+    "51da87943ae5f889": {
+      "text": "מהם צבועים. זה שבע עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "58dff785ced56189": {
+      "text": "השלם מחולק לעשרה חלקים, ושמונה מהם צבועים. זה שמונה עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d74daf89127bbf0e": {
+      "text": "השלם מחולק לעשרה חלקים, ושבעה מהם צבועים. זה שבע עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d3b4edb71b10ef71": {
+      "text": "חיבור עם אותו מכנה",
+      "voice": "chirp3-hd/Leda"
+    },
+    "cc03346a686f50b2": {
+      "text": "מהם צבועים. זה שמונה עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c41a883b22b166a8": {
+      "text": "השלם מחולק לעשרה חלקים, ותשעה מהם צבועים. זה תשע עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "37bc8be78166c138": {
+      "text": "מהם צבועים. זה תשע עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "17d493358098409c": {
+      "text": "צבועים חצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "9c701e9068f36e2e": {
+      "text": "למשל, צבועים שלוש חמישיות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "1ed4aeb1d21dc2fe": {
+      "text": "צבועים שלוש חמישיות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d079f68a24cfac1c": {
+      "text": "חיסור עם אותו מכנה",
+      "voice": "chirp3-hd/Leda"
+    },
+    "a9ef0ab8590de8e7": {
+      "text": "כמה שלישים צבועים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "3978d594fc9ef1a3": {
+      "text": "צבועים שליש.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "6a81ec52e936be94": {
+      "text": "השלם מחולק לשתיים חלקים שווים. כמה מהם צבועים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b37e957eeee65646": {
+      "text": "צבועים שני שלישים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "48c2e2e31f193494": {
+      "text": "כמה רבעים צבועים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "240b08dceda1073c": {
+      "text": "שלמים ושברים",
+      "voice": "chirp3-hd/Leda"
+    },
+    "0dab8f847cb34631": {
+      "text": "צבועים רבע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b839b68b623b6a50": {
+      "text": "צבועים שני רבעים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d0da2d38fb77a51e": {
+      "text": "צבועים שלושה רבעים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "dc5974d4168185ce": {
+      "text": "השלם מחולק לשלוש חלקים שווים. כמה מהם צבועים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "85d850febcce802d": {
+      "text": "השלם מחולק לארבע חלקים שווים. כמה מהם צבועים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b865a44e47a392ae": {
+      "text": "כמה חמישיות צבועים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "8309fe7c1a9bd52f": {
+      "text": "למשל, צבועים שלושה רבעים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "18174b506f54a532": {
+      "text": "צבועים ארבע חמישיות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d9f9838b9e89b423": {
+      "text": "צבועים שתי חמישיות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "7f8a4d49718a1ae4": {
+      "text": "חילוק הוא כפל הפוך: איזה מספר כפול",
+      "voice": "chirp3-hd/Leda"
+    },
+    "b9858e099cdbebba": {
+      "text": "השלם מחולק לחמש חלקים שווים. כמה מהם צבועים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ef84afb086a15227": {
+      "text": "צבועים שלוש שישיות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "061958aa74644e71": {
+      "text": "צבועים שתי שישיות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "812a25023ad5e02b": {
+      "text": "צבועים ארבע שישיות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "4396b650aaf023bc": {
+      "text": "השלם מחולק לשש חלקים שווים. כמה מהם צבועים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d925786e1e1d3901": {
+      "text": "נותן את המספר שמחלקים?",
+      "voice": "chirp3-hd/Leda"
+    },
+    "8b5fb00b5c12e02f": {
+      "text": "צבועים חמש שישיות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a5283f81a76b162a": {
+      "text": "צבועים שתי שמיניות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "baef4b9550a8f97a": {
+      "text": "השלם מחולק לשמונה חלקים שווים. כמה מהם צבועים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "0f548a9bd72a77c7": {
+      "text": "צבועים שלוש שמיניות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "150d0175dd12ea29": {
+      "text": "צבועים חמש שמיניות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "46cff956e9501dde": {
+      "text": "צבועים ארבע שמיניות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "5e61b2084f5c18c4": {
+      "text": "חלקי כמה זה",
+      "voice": "chirp3-hd/Leda"
+    },
+    "d2b1f491c3ba5a79": {
+      "text": "צבועים שש שמיניות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "85299cc855ba7488": {
+      "text": "צבועים שתי עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "609f7f706159db62": {
+      "text": "צבועים שלוש עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ec39fd6f7135601e": {
+      "text": "צבועים שבע שמיניות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "852a248be0af9b6b": {
+      "text": "השלם מחולק לעשר חלקים שווים. כמה מהם צבועים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "eff33bccece2c534": {
+      "text": "צבועים ארבע עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "dd8f602f2c3cc921": {
+      "text": "צבועים חמש עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "85e18560d3a2e3f6": {
+      "text": "חלקי איזה מספר נותן",
+      "voice": "chirp3-hd/Leda"
+    },
+    "8f4dec9a15bcbdfa": {
+      "text": "צבועים שש עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a39cdf03870a718c": {
+      "text": "צבועים שבע עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "23a19ecddb95083b": {
+      "text": "צבועים שמונה עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "7b5fa8cd1c8622d0": {
+      "text": "כמה זה חצי מתוך ארבע?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "359d4fc09d32b0b0": {
+      "text": "צבועים תשע עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "507b7710b7c42016": {
+      "text": "חצי מתוך ארבע זה שתיים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "54261a3a0bc47aca": {
+      "text": "למשל, שליש מתוך תשע זה שלוש.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "8aecaca8bbb58334": {
+      "text": "בציור: כל שורה היא קבוצה אחת מתוך שתיים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a8c0b8687dabe5eb": {
+      "text": "נחלק את הכמות לשתיים קבוצות שוות. כמה יש בכל קבוצה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "285c290b3d501d9c": {
+      "text": "? אפשר לשאול: איזה מספר כפול",
+      "voice": "chirp3-hd/Leda"
+    },
+    "80f1841759af9c22": {
+      "text": "כמה זה חצי מתוך",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "9440f4221836407f": {
+      "text": "שליש מתוך",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "31b00d9a06e22e61": {
+      "text": "חצי מתוך",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a8bdc086c8dc6575": {
+      "text": "בציור: כל שורה היא קבוצה אחת מתוך",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "1662ecdb561f4c60": {
+      "text": "כמה זה חצי מתוך שש?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "51ea22d2d9a1a925": {
+      "text": "חצי מתוך שש זה שלוש.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d4b58f6d03e0ec00": {
+      "text": "כמה זה חצי מתוך שמונה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "43e197a32b1df6f5": {
+      "text": "כמה חלקי",
+      "voice": "chirp3-hd/Leda"
+    },
+    "9567a74d1519e83c": {
+      "text": "חצי מתוך שמונה זה ארבע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "4b6194b541ec4d51": {
+      "text": "חצי מתוך עשר זה חמש.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f11d34400b6d30de": {
+      "text": "שליש מתוך שש זה שתיים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f0669e016f2e4c2a": {
+      "text": "כמה זה חצי מתוך עשר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d326f03610e0a61b": {
+      "text": "כמה זה שליש מתוך שש?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "6046f29803fc6e69": {
+      "text": "למשל, רבע מתוך שמונה זה שתיים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "cabac240f2ba1235": {
+      "text": "בציור: כל שורה היא קבוצה אחת מתוך שלוש.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a82808a99f63adbd": {
+      "text": "נחלק את הכמות לשלוש קבוצות שוות. כמה יש בכל קבוצה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "bd1b4c1f4f43dfaf": {
+      "text": "כמה זה שליש מתוך",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a5182211384a72bd": {
+      "text": "שליש מתוך תשע זה שלוש.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "4dcb84ccbf725875": {
+      "text": "רבע מתוך",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d1298a50b0fea3e0": {
+      "text": "המספר שמחלקים הוא התוצאה כפול המספר שמחלקים בו.",
+      "voice": "chirp3-hd/Leda"
+    },
+    "8d1b9fa7544f0430": {
+      "text": "כמה זה שליש מתוך תשע?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "31fbbd36f08a8685": {
+      "text": "כמה זה שליש מתוך שתים עשרה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "abb3745f2db8e389": {
+      "text": "שליש מתוך שתים עשרה זה ארבע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "4784826cf8d0b164": {
+      "text": "כמה זה שליש מתוך חמש עשרה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "4f5a1185762432a9": {
+      "text": "כמה זה רבע מתוך שמונה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "444b73e14847d082": {
+      "text": "נכפיל",
+      "voice": "chirp3-hd/Leda"
+    },
+    "076ed91974ec37f9": {
+      "text": "שליש מתוך חמש עשרה זה חמש.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "7039d21c4b40cb40": {
+      "text": "רבע מתוך שמונה זה שתיים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a079920514000716": {
+      "text": "בציור: כל שורה היא קבוצה אחת מתוך ארבע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "5afa6974eb82eea8": {
+      "text": "כמה זה רבע מתוך",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ab0b38cf42fb5221": {
+      "text": "נחלק את הכמות לארבע קבוצות שוות. כמה יש בכל קבוצה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "fc135f88d7af1a2d": {
+      "text": "כמה זה רבע מתוך שתים עשרה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f04cdf895fbfdbe7": {
+      "text": "רבע מתוך שתים עשרה זה שלוש.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "96329df10ae5e182": {
+      "text": "כמה זה רבע מתוך שש עשרה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "1160722bf96b3812": {
+      "text": "ככה זה עובד על מספרים אחרים:",
+      "voice": "chirp3-hd/Leda"
+    },
+    "c459eafece20a7d7": {
+      "text": "כמה זה רבע מתוך עשרים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "dff1987ea32ca67f": {
+      "text": "רבע מתוך שש עשרה זה ארבע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "57b0d31a578c8197": {
+      "text": "כמה זה חמישית מתוך עשר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "601b8700c8948f91": {
+      "text": "רבע מתוך עשרים זה חמש.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "66f076bf50eeddbd": {
+      "text": "חמישית מתוך עשר זה שתיים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "cd40ceb1f7566450": {
+      "text": "כמה זה חמישית מתוך חמש עשרה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "9abbd978f8c592f4": {
+      "text": "בציור: כל שורה היא קבוצה אחת מתוך חמש.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "93f5a89f7bedff54": {
+      "text": "נפרק את",
+      "voice": "chirp3-hd/Leda"
+    },
+    "6deb7fa71b08b0bc": {
+      "text": "חמישית מתוך חמש עשרה זה שלוש.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "1721d2836f8087fb": {
+      "text": "כמה זה חמישית מתוך עשרים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "dce6b15e2e613f5c": {
+      "text": "נחלק את הכמות לחמש קבוצות שוות. כמה יש בכל קבוצה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "25f1e5f33fac510e": {
+      "text": "חמישית מתוך עשרים זה ארבע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "cd46296ac6721429": {
+      "text": "כמה זה שישית מתוך שתים עשרה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "20aa86e0d607a719": {
+      "text": "כמה זה חמישית מתוך עשרים וחמש?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d3583337ded47ab1": {
+      "text": "חמישית מתוך עשרים וחמש זה חמש.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "99ccf886c927653a": {
+      "text": "שישית מתוך שתים עשרה זה שתיים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "76e8f3c8043b6398": {
+      "text": "לעשרות ואחדות:",
+      "voice": "chirp3-hd/Leda"
+    },
+    "8dac9b154c5b499a": {
+      "text": "כמה זה שישית מתוך שמונה עשרה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "0ae1e1e1c2c204ec": {
+      "text": "נחלק את הכמות לשש קבוצות שוות. כמה יש בכל קבוצה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "42fc67b44781f9d0": {
+      "text": "בציור: כל שורה היא קבוצה אחת מתוך שש.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "caa2704227ef294a": {
+      "text": "שישית מתוך שמונה עשרה זה שלוש.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "450c35b684d30d2b": {
+      "text": "כמה זה שישית מתוך עשרים וארבע?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e597af3bbefb5fbc": {
+      "text": "שישית מתוך עשרים וארבע זה ארבע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e95008d5d71d3012": {
+      "text": "כמה זה שישית מתוך שלושים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f38d787c303f8a14": {
+      "text": ". נכפיל כל חלק לחוד, ונחבר.",
+      "voice": "chirp3-hd/Leda"
+    },
+    "bd02ed84b2e43f7a": {
+      "text": "שישית מתוך שלושים זה חמש.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "da7c8ea4a73da0f5": {
+      "text": "שמינית מתוך שש עשרה זה שתיים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "1b66be4ad62db403": {
+      "text": "כמה זה שמינית מתוך שש עשרה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "4741e387ae38b291": {
+      "text": "בציור: כל שורה היא קבוצה אחת מתוך שמונה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "5b7d43917c363230": {
+      "text": "כמה זה שמינית מתוך עשרים וארבע?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "8d5eccb80aaa6f1b": {
+      "text": "שמינית מתוך עשרים וארבע זה שלוש.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "dd43cb3046e30e7b": {
+      "text": "נחלק את הכמות לשמונה קבוצות שוות. כמה יש בכל קבוצה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e1ea0ae1eb85a174": {
+      "text": "שמינית מתוך שלושים ושתיים זה ארבע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "77e29ceeb3c359d3": {
+      "text": "כמה זה שמינית מתוך שלושים ושתיים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "3dafd159029db047": {
+      "text": "כמה זה שמינית מתוך ארבעים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "0982f22df669a88d": {
+      "text": "אפשר לכתוב את זה כך:",
+      "voice": "chirp3-hd/Leda"
+    },
+    "473ad6a9eb668570": {
+      "text": "שמינית מתוך ארבעים זה חמש.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "3aa9e1704f993b8f": {
+      "text": "כמה זה עשירית מתוך עשרים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e850eb60aaf31187": {
+      "text": "עשירית מתוך עשרים זה שתיים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "7c3582f65dd4ce0a": {
+      "text": "כמה זה עשירית מתוך שלושים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "04d053725229d05d": {
+      "text": "בציור: כל שורה היא קבוצה אחת מתוך עשר.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "57b516a7d2536e23": {
+      "text": "כמה זה עשירית מתוך ארבעים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "50051c29f1fc5f24": {
+      "text": "עשירית מתוך שלושים זה שלוש.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "338d4fd2caada7c6": {
+      "text": ". מה המנה?",
+      "voice": "chirp3-hd/Leda"
+    },
+    "273320a339ae7920": {
+      "text": "נחלק את הכמות לעשר קבוצות שוות. כמה יש בכל קבוצה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "40361d437e5033aa": {
+      "text": "עשירית מתוך ארבעים זה ארבע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "766a407293458584": {
+      "text": "שני שלישים מתוך שש זה ארבע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ff64914d6f4b68ab": {
+      "text": "כמה זה שני שלישים מתוך שש?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e467e2b2d0247088": {
+      "text": "קודם נחלק לשלוש קבוצות שוות, ואז ניקח שתיים קבוצות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "243c1291314ae71e": {
+      "text": "שני שלישים מתוך",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "bf88ba4d40cafb88": {
+      "text": ", ונשאר",
+      "voice": "chirp3-hd/Leda"
+    },
+    "f11a433a8d40cda2": {
+      "text": "כמה זה שני שלישים מתוך",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "31904f567b05e5a1": {
+      "text": "שני שלישים מתוך תשע זה שש.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "476e36e14d084454": {
+      "text": "כמה זה שני שלישים מתוך שתים עשרה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "263d07674e3f838d": {
+      "text": "כמה זה שני שלישים מתוך תשע?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "67b1a4e7ffb8e76c": {
+      "text": "שני שלישים מתוך שתים עשרה זה שמונה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "9498f198c65da5a4": {
+      "text": "שני שלישים מתוך חמש עשרה זה עשר.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "783209f3adb21f09": {
+      "text": "כמה זה שני שלישים מתוך חמש עשרה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "3e19b733f8e71356": {
+      "text": "כמה זה שני שלישים מתוך שמונה עשרה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "98276475e45adbc8": {
+      "text": "נחפש בלוח הכפל של",
+      "voice": "chirp3-hd/Leda"
+    },
+    "d215b52ea0cfff12": {
+      "text": "שני רבעים מתוך שמונה זה ארבע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "dbd0495657f300d1": {
+      "text": "כמה זה שני רבעים מתוך שמונה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b121d2fcde9f4400": {
+      "text": "שני שלישים מתוך שמונה עשרה זה שתים עשרה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "25b6caa3694a649f": {
+      "text": "קודם נחלק לארבע קבוצות שוות, ואז ניקח שתיים קבוצות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b908eef5a44e33d0": {
+      "text": "כמה זה שני רבעים מתוך",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f7df98435b5bc4f6": {
+      "text": "כמה זה שני רבעים מתוך שתים עשרה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c2880b8ee6178f79": {
+      "text": "שני רבעים מתוך",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "acda4611ebbcea24": {
+      "text": "כמה זה שני רבעים מתוך שש עשרה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "3a48892cab12173d": {
+      "text": "שני רבעים מתוך שש עשרה זה שמונה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "9c48fba15e426c73": {
+      "text": "שני רבעים מתוך שתים עשרה זה שש.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "eebbc5d876ef3643": {
+      "text": "כמה זה שני רבעים מתוך עשרים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "7c44adf3d770f7e2": {
+      "text": "שני רבעים מתוך עשרים זה עשר.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "de21705547c09aa4": {
+      "text": "כמה זה שני רבעים מתוך עשרים וארבע?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "83a5995b98624ef0": {
+      "text": "שני רבעים מתוך עשרים וארבע זה שתים עשרה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "66fa6d7cbc2aaed5": {
+      "text": "שלושה רבעים מתוך שמונה זה שש.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "23e54e7bce5b2e81": {
+      "text": "את המספר הגדול ביותר שלא עובר את המספר שמחלקים. מה שנשאר עד אליו הוא השארית.",
+      "voice": "chirp3-hd/Leda"
+    },
+    "457be9582b237669": {
+      "text": "כמה זה שלושה רבעים מתוך שמונה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "593bd633f1d653d1": {
+      "text": "כמה זה שלושה רבעים מתוך",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a22997ff1d4e623b": {
+      "text": "קודם נחלק לארבע קבוצות שוות, ואז ניקח שלוש קבוצות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "45ac0e05fe8d52db": {
+      "text": "שלושה רבעים מתוך שתים עשרה זה תשע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c42d2963fab26ae1": {
+      "text": "שלושה רבעים מתוך",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "94fda752dd2ef765": {
+      "text": "כמה זה שלושה רבעים מתוך שתים עשרה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "7f297e6daebb0265": {
+      "text": "כמה זה שלושה רבעים מתוך שש עשרה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "37b30e0e3fd680f0": {
+      "text": "כמה זה שלושה רבעים מתוך עשרים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ab1a7613a7507a49": {
+      "text": "שלושה רבעים מתוך שש עשרה זה שתים עשרה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "917438346d2bc23c": {
+      "text": "שלושה רבעים מתוך עשרים זה חמש עשרה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e5d73dcb19ba922f": {
+      "text": "כמה זה שלושה רבעים מתוך עשרים וארבע?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "31968887cdc6f8d0": {
+      "text": "כמה זה שתי חמישיות מתוך עשר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "8daf821525321f0c": {
+      "text": "שתי חמישיות מתוך עשר זה ארבע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "16545589b15f3abb": {
+      "text": ". מה השארית?",
+      "voice": "chirp3-hd/Leda"
+    },
+    "980a573f5d7ab1fa": {
+      "text": "שלושה רבעים מתוך עשרים וארבע זה שמונה עשרה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "80ad326744b297fd": {
+      "text": "שתי חמישיות מתוך",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "9416b78624592a63": {
+      "text": "כמה זה שתי חמישיות מתוך",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "8404968b53694424": {
+      "text": "קודם נחלק לחמש קבוצות שוות, ואז ניקח שתיים קבוצות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "60dd08ea4a5a4b50": {
+      "text": "כמה זה שתי חמישיות מתוך חמש עשרה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "67c15ac0405c5e43": {
+      "text": "שתי חמישיות מתוך חמש עשרה זה שש.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "0c524b1f88593e5b": {
+      "text": "חרוזים בין",
+      "voice": "chirp3-hd/Leda"
+    },
+    "7008506e3db06545": {
+      "text": "כמה זה שתי חמישיות מתוך עשרים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f7036aa5a8ef6248": {
+      "text": "כמה זה שתי חמישיות מתוך עשרים וחמש?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "25580e13c7fd1673": {
+      "text": "שתי חמישיות מתוך עשרים זה שמונה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "eb829ce8129b749d": {
+      "text": "כמה זה שתי חמישיות מתוך שלושים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d59e2dda236a9e07": {
+      "text": "כמה זה שלוש חמישיות מתוך עשר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "90eb2277c617a37f": {
+      "text": "שתי חמישיות מתוך עשרים וחמש זה עשר.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "7873adec14e6bf6c": {
+      "text": "שתי חמישיות מתוך שלושים זה שתים עשרה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ad92a35c33f10e08": {
+      "text": "שלוש חמישיות מתוך עשר זה שש.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "6b878b061b96a032": {
+      "text": "כמה זה שלוש חמישיות מתוך",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c220d54f4fdb30cd": {
+      "text": "קודם נחלק לחמש קבוצות שוות, ואז ניקח שלוש קבוצות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "31d34ede82d9e1da": {
+      "text": "ילדים, ולכל ילד אותו מספר. כמה חרוזים יישארו בסוף?",
+      "voice": "chirp3-hd/Leda"
+    },
+    "4997e7b6e68fb3de": {
+      "text": "שלוש חמישיות מתוך",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "151ae61b3d0336fb": {
+      "text": "כמה זה שלוש חמישיות מתוך חמש עשרה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ca3e62c6542fc51e": {
+      "text": "כמה זה שלוש חמישיות מתוך עשרים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c5a30ff9063214dd": {
+      "text": "שלוש חמישיות מתוך חמש עשרה זה תשע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e7b208f99f3d97f9": {
+      "text": "כמה זה שלוש חמישיות מתוך עשרים וחמש?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "cc581727a7ce5297": {
+      "text": "שלוש חמישיות מתוך עשרים זה שתים עשרה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a1b1a231996f6c42": {
+      "text": "שלוש חמישיות מתוך עשרים וחמש זה חמש עשרה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "36d5a767709a6715": {
+      "text": "שלוש חמישיות מתוך שלושים זה שמונה עשרה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a0c3b16b39dd2216": {
+      "text": "כמה זה שלוש חמישיות מתוך שלושים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "baeaf6f3730c90dc": {
+      "text": "כמה זה ארבע חמישיות מתוך עשר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "0aa038d3780261c9": {
+      "text": "ארבע חמישיות מתוך עשר זה שמונה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "fb025464b0cb304d": {
+      "text": "כמה זה ארבע חמישיות מתוך",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "9446c143cca7add5": {
+      "text": "ארבע חמישיות מתוך",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "46c11fd93efd9a2d": {
+      "text": "קודם נחלק לחמש קבוצות שוות, ואז ניקח ארבע קבוצות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "891bfdbaa6c09455": {
+      "text": "ארבע חמישיות מתוך חמש עשרה זה שתים עשרה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "422f4f2daacf72a5": {
+      "text": "מחלקים שווה בשווה, ומה שאי אפשר לחלק נשאר. זו השארית.",
+      "voice": "chirp3-hd/Leda"
+    },
+    "c2acea7a2ab71878": {
+      "text": "כמה זה ארבע חמישיות מתוך חמש עשרה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "43c0a6d25c4aeaae": {
+      "text": "כמה זה ארבע חמישיות מתוך עשרים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "75fd2c29ea996110": {
+      "text": "ארבע חמישיות מתוך עשרים זה שש עשרה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "233244091734055c": {
+      "text": "ארבע חמישיות מתוך עשרים וחמש זה עשרים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c88a37f678dd5e5b": {
+      "text": "כמה זה ארבע חמישיות מתוך עשרים וחמש?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a56537bf0c53261a": {
+      "text": "איזה שבר גדול יותר: חצי או שליש?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "69aeb6e7a7feb337": {
+      "text": "ארבע חמישיות מתוך שלושים זה עשרים וארבע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "86984e22050672e8": {
+      "text": "ספרים בין",
+      "voice": "chirp3-hd/Leda"
+    },
+    "68d8c1281234a05b": {
+      "text": "כמה זה ארבע חמישיות מתוך שלושים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "288f82569f370e47": {
+      "text": "למשל, שליש גדול יותר משישית.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "9cffea9396957335": {
+      "text": "חצי גדול יותר משליש.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e6a19797a951e0c2": {
+      "text": "שליש גדול יותר משישית.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "711c7d6714324787": {
+      "text": "כשמחלקים לחלקים רבים יותר, כל חלק קטן יותר. חצי עוגה גדול משמינית עוגה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "18c3eb2b40348881": {
+      "text": "איזה שבר גדול יותר: חצי או רבע?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "8f339096f826bd41": {
+      "text": "חצי גדול יותר מרבע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "74fa0e6231e704e2": {
+      "text": "איזה שבר גדול יותר: חצי או חמישית?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "2aeb29082749d3cb": {
+      "text": "חצי גדול יותר מחמישית.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "468a49d63cf693aa": {
+      "text": "חצי גדול יותר משישית.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "80618ddae60f12e7": {
+      "text": "איזה שבר גדול יותר: חצי או שישית?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "590c09b74e225531": {
+      "text": "חצי גדול יותר משמינית.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "5feed90f193598ad": {
+      "text": "ילדים, ולכל ילד אותו מספר. כמה ספרים יישארו בסוף?",
+      "voice": "chirp3-hd/Leda"
+    },
+    "89e57fe8acd9020e": {
+      "text": "איזה שבר גדול יותר: חצי או שמינית?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d75d499ec8c1bbc6": {
+      "text": "חצי גדול יותר מעשירית.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "65cc3d076f146335": {
+      "text": "איזה שבר גדול יותר: שליש או חצי?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "bc0bc7e4c914eb14": {
+      "text": "איזה שבר גדול יותר: חצי או עשירית?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "1bb1955e5dfdb8b2": {
+      "text": "שליש גדול יותר מרבע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "65ef0df3a7169872": {
+      "text": "איזה שבר גדול יותר: שליש או חמישית?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "636de3feb62021d2": {
+      "text": "איזה שבר גדול יותר: שליש או רבע?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a64c1105aca92bd5": {
+      "text": "תפוחים בין",
+      "voice": "chirp3-hd/Leda"
+    },
+    "5a748ca2be373856": {
+      "text": "שליש גדול יותר משמינית.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "02693a5d5aeb8712": {
+      "text": "שליש גדול יותר מחמישית.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "1c10a569eca8919e": {
+      "text": "איזה שבר גדול יותר: שליש או שישית?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "76e915888f0134dc": {
+      "text": "איזה שבר גדול יותר: שליש או עשירית?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "78034233a3347100": {
+      "text": "שליש גדול יותר מעשירית.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "582390b1a2bc8367": {
+      "text": "איזה שבר גדול יותר: רבע או חצי?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d134de55a8d98fca": {
+      "text": "איזה שבר גדול יותר: רבע או שליש?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ad37b15045a2b2e2": {
+      "text": "איזה שבר גדול יותר: רבע או חמישית?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b373f5684d7fdaf6": {
+      "text": "רבע גדול יותר מחמישית.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d8907868212e7fd4": {
+      "text": "איזה שבר גדול יותר: רבע או שישית?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "cb85ac643d0621ad": {
+      "text": "ילדים, ולכל ילד אותו מספר. כמה תפוחים יישארו בסוף?",
+      "voice": "chirp3-hd/Leda"
+    },
+    "047fe27325ac252c": {
+      "text": "רבע גדול יותר משישית.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "8acf66a4b9cf868a": {
+      "text": "איזה שבר גדול יותר: רבע או שמינית?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ef701d4a1e1fe923": {
+      "text": "רבע גדול יותר משמינית.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "7ebd9eb84c032b89": {
+      "text": "רבע גדול יותר מעשירית.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "655b12d68a959a8f": {
+      "text": "איזה שבר גדול יותר: חמישית או חצי?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "29f694d8e16ef417": {
+      "text": "איזה שבר גדול יותר: רבע או עשירית?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "3256b7af05fc133a": {
+      "text": "בלונים בין",
+      "voice": "chirp3-hd/Leda"
+    },
+    "f82b2e4f03eb67d3": {
+      "text": "איזה שבר גדול יותר: שליש או שמינית?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "179ee4b559941fa8": {
+      "text": "איזה שבר גדול יותר: חמישית או רבע?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "130012c106682fc4": {
+      "text": "איזה שבר גדול יותר: שישית או חצי?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "376c31e0f0a9940c": {
+      "text": "איזה שבר גדול יותר: חמישית או שליש?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "708883681416199c": {
+      "text": "איזה שבר גדול יותר: שישית או שליש?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "00d6395173759301": {
+      "text": "איזה שבר גדול יותר: שישית או רבע?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "0ca422956dbb9458": {
+      "text": "איזה שבר גדול יותר: שמינית או חצי?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "deb7fe7148e6d40c": {
+      "text": "איזה שבר גדול יותר: שמינית או שליש?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "5a2e6ae6613a26c0": {
+      "text": "איזה שבר גדול יותר: עשירית או שליש?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "8468fed47a18aea0": {
+      "text": "איזה שבר גדול יותר: עשירית או חצי?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "46a18567bcc1c7ba": {
+      "text": "איזה שבר גדול יותר: עשירית או רבע?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "288aa017a058805b": {
+      "text": "איזה שבר גדול יותר: שמינית או רבע?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "28c515b6d1347e99": {
+      "text": "ילדים, ולכל ילד אותו מספר. כמה בלונים יישארו בסוף?",
+      "voice": "chirp3-hd/Leda"
+    },
+    "da5ff37fb52929e1": {
+      "text": "שלוש חמישיות גדול יותר משתי חמישיות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d31d5f2e29119395": {
+      "text": "איזה שבר גדול יותר: שליש או שני שלישים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "2d46606ccc65bc41": {
+      "text": "שני שלישים גדול יותר משליש.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f6aaa203ba876d6a": {
+      "text": "למשל, שלוש חמישיות גדול יותר משתי חמישיות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "87d5d4a60086a046": {
+      "text": "איזה שבר גדול יותר: שני שלישים או שליש?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a823a1db03e6d549": {
+      "text": "איזה שבר גדול יותר: רבע או שלושה רבעים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "3f7623f2960437f3": {
+      "text": "שני רבעים גדול יותר מרבע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "eea97fed454f73cb": {
+      "text": "איזה שבר גדול יותר: רבע או שני רבעים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "69c5cccac516d629": {
+      "text": "סוכריות בין",
+      "voice": "chirp3-hd/Leda"
+    },
+    "71cf2aed355baafc": {
+      "text": "איזה שבר גדול יותר: שני רבעים או רבע?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d16c3f5f173bcc28": {
+      "text": "שלושה רבעים גדול יותר מרבע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ad9f482f80bf30b1": {
+      "text": "איזה שבר גדול יותר: שני רבעים או שלושה רבעים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "74cbaac4de26d57c": {
+      "text": "שלושה רבעים גדול יותר משני רבעים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "24d7d7be78782f01": {
+      "text": "איזה שבר גדול יותר: שלושה רבעים או רבע?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ec79060d2e126155": {
+      "text": "שתי חמישיות גדול יותר מחמישית.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "49191188ae6feb45": {
+      "text": "איזה שבר גדול יותר: חמישית או שתי חמישיות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "6380789efbc06df0": {
+      "text": "איזה שבר גדול יותר: שלושה רבעים או שני רבעים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "1cf2669e3a878f5e": {
+      "text": "שלוש חמישיות גדול יותר מחמישית.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b947b87bf8c77496": {
+      "text": "איזה שבר גדול יותר: חמישית או שלוש חמישיות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "872ae4d0d20da614": {
+      "text": "איזה שבר גדול יותר: חמישית או ארבע חמישיות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f9622acb04594ed4": {
+      "text": "ארבע חמישיות גדול יותר מחמישית.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "89ee242b657dff5e": {
+      "text": "ילדים, ולכל ילד אותו מספר. כמה סוכריות יישארו בסוף?",
+      "voice": "chirp3-hd/Leda"
+    },
+    "a87d8ce3e53211df": {
+      "text": "איזה שבר גדול יותר: שתי חמישיות או חמישית?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "0177a9cf0c12f6f4": {
+      "text": "איזה שבר גדול יותר: שתי חמישיות או שלוש חמישיות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b2e4bd77afc681f0": {
+      "text": "איזה שבר גדול יותר: שתי חמישיות או ארבע חמישיות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c176b87e2950eb8e": {
+      "text": "איזה שבר גדול יותר: שלוש חמישיות או חמישית?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "984412de010fb66e": {
+      "text": "שקלים בין",
+      "voice": "chirp3-hd/Leda"
+    },
+    "9348dc90d4f39c64": {
+      "text": "איזה שבר גדול יותר: שלוש חמישיות או שתי חמישיות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e4daf490a4b98120": {
+      "text": "ארבע חמישיות גדול יותר משתי חמישיות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "7508216c876c1129": {
+      "text": "איזה שבר גדול יותר: שלוש חמישיות או ארבע חמישיות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "08d852743eec8991": {
+      "text": "ארבע חמישיות גדול יותר משלוש חמישיות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "1443cf19edd55751": {
+      "text": "איזה שבר גדול יותר: ארבע חמישיות או חמישית?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "007ba0f7b86a04b6": {
+      "text": "איזה שבר גדול יותר: ארבע חמישיות או שתי חמישיות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e60eeb8028254ba7": {
+      "text": "איזה שבר גדול יותר: ארבע חמישיות או שלוש חמישיות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "63153d21637ba69e": {
+      "text": "איזה שבר גדול יותר: שישית או שתי שישיות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "8eb9faef9de6598f": {
+      "text": "שתי שישיות גדול יותר משישית.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "6ed1daf17547cfef": {
+      "text": "איזה שבר גדול יותר: שישית או שלוש שישיות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c36a25e24b784f2d": {
+      "text": "איזה שבר גדול יותר: שישית או ארבע שישיות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "2d13f8091cd38fc2": {
+      "text": "שלוש שישיות גדול יותר משישית.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ce8a1d556821efe9": {
+      "text": "ילדים, ולכל ילד אותו מספר. כמה שקלים יישארו בסוף?",
+      "voice": "chirp3-hd/Leda"
+    },
+    "f87fa7754c26ca56": {
+      "text": "ארבע שישיות גדול יותר משישית.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "9b263298f58eee1a": {
+      "text": "איזה שבר גדול יותר: שישית או חמש שישיות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "91abe60b3d5684d2": {
+      "text": "איזה שבר גדול יותר: שתי שישיות או שישית?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "111b98d609e6600e": {
+      "text": "איזה שבר גדול יותר: שתי שישיות או שלוש שישיות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b5e43ebad1f58a40": {
+      "text": "איזה שבר גדול יותר: שתי שישיות או ארבע שישיות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "dd93e01d428962fa": {
+      "text": "גולות בין",
+      "voice": "chirp3-hd/Leda"
+    },
+    "8e7b62068dc5db64": {
+      "text": "ארבע שישיות גדול יותר משתי שישיות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "952604bf0c90ffef": {
+      "text": "שלוש שישיות גדול יותר משתי שישיות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a7741de2c7c95858": {
+      "text": "חמש שישיות גדול יותר משישית.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "5d4f76c2b25d563d": {
+      "text": "חמש שישיות גדול יותר משתי שישיות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "599c1c7043210596": {
+      "text": "איזה שבר גדול יותר: שתי שישיות או חמש שישיות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "9cc260d1e23a4ee5": {
+      "text": "איזה שבר גדול יותר: שלוש שישיות או שישית?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c9cd0e41a90a1ed2": {
+      "text": "איזה שבר גדול יותר: שלוש שישיות או ארבע שישיות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e85d0bdbfea7ae06": {
+      "text": "ארבע שישיות גדול יותר משלוש שישיות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e396f7089adab279": {
+      "text": "איזה שבר גדול יותר: שלוש שישיות או שתי שישיות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "fd102c35a16eff39": {
+      "text": "איזה שבר גדול יותר: ארבע שישיות או שישית?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e317494f8ae2f52a": {
+      "text": "חמש שישיות גדול יותר משלוש שישיות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f29e95a238232832": {
+      "text": "איזה שבר גדול יותר: שלוש שישיות או חמש שישיות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "db915ca354279e03": {
+      "text": "ילדים, ולכל ילד אותו מספר. כמה גולות יישארו בסוף?",
+      "voice": "chirp3-hd/Leda"
+    },
+    "46f5b2e3d7689bec": {
+      "text": "איזה שבר גדול יותר: ארבע שישיות או שתי שישיות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ab1f488fac1737ea": {
+      "text": "איזה שבר גדול יותר: ארבע שישיות או חמש שישיות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "2c409933abcf1443": {
+      "text": "איזה שבר גדול יותר: ארבע שישיות או שלוש שישיות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "6562c1b4a47030ac": {
+      "text": "חמש שישיות גדול יותר מארבע שישיות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ce63e8622461495c": {
+      "text": "איזה שבר גדול יותר: חמש שישיות או שישית?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d3b0e2b8d593ed86": {
+      "text": "איזה שבר גדול יותר: חמש שישיות או שתי שישיות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ed7173c99ee1b87c": {
+      "text": "איזה שבר גדול יותר: חמש שישיות או ארבע שישיות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ac4e49a7d55ebcef": {
+      "text": "איזה שבר גדול יותר: חמש שישיות או שלוש שישיות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "be79c15ea8996b90": {
+      "text": "איזה שבר גדול יותר: שמינית או שתי שמיניות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "cf6575ff4c7e9621": {
+      "text": "עוגיות בין",
+      "voice": "chirp3-hd/Leda"
+    },
+    "c998bbf8e7fcc013": {
+      "text": "שתי שמיניות גדול יותר משמינית.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a4a9af84da1b3831": {
+      "text": "איזה שבר גדול יותר: שמינית או שלוש שמיניות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "3c4130232b7ab7c6": {
+      "text": "שלוש שמיניות גדול יותר משמינית.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f740c2eac38c1e2f": {
+      "text": "איזה שבר גדול יותר: שמינית או ארבע שמיניות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "21fe1903605abd47": {
+      "text": "איזה שבר גדול יותר: שמינית או חמש שמיניות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "594d0a5880646c89": {
+      "text": "ארבע שמיניות גדול יותר משמינית.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f621e399c360d0f6": {
+      "text": "חמש שמיניות גדול יותר משמינית.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a4f0642e210d4a61": {
+      "text": "איזה שבר גדול יותר: שמינית או שש שמיניות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "913192621fd60e83": {
+      "text": "שש שמיניות גדול יותר משמינית.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "31f3ace6fe147be3": {
+      "text": "איזה שבר גדול יותר: שמינית או שבע שמיניות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "dd90d5102f729a12": {
+      "text": "שבע שמיניות גדול יותר משמינית.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "0eefd573c2cf09e0": {
+      "text": "ילדים, ולכל ילד אותו מספר. כמה עוגיות יישארו בסוף?",
+      "voice": "chirp3-hd/Leda"
+    },
+    "b511930b0c116992": {
+      "text": "איזה שבר גדול יותר: שתי שמיניות או שלוש שמיניות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e5a1b4e5b6db1b33": {
+      "text": "איזה שבר גדול יותר: שתי שמיניות או שמינית?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "dbab6f0367b7be9a": {
+      "text": "שלוש שמיניות גדול יותר משתי שמיניות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "7fdaaeafa2037ad9": {
+      "text": "איזה שבר גדול יותר: שתי שמיניות או ארבע שמיניות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "7f7562c90fb3d219": {
+      "text": "ארבע שמיניות גדול יותר משתי שמיניות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "8d515cd6763ee68a": {
+      "text": "איזה שבר גדול יותר: שתי שמיניות או חמש שמיניות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d0d1ac021c923200": {
+      "text": "חמש שמיניות גדול יותר משתי שמיניות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e040b79683afe5b3": {
+      "text": "איזה שבר גדול יותר: שתי שמיניות או שש שמיניות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "92c5a13f06fbf6e6": {
+      "text": "מדבקות בין",
+      "voice": "chirp3-hd/Leda"
+    },
+    "ef9c4239426f6682": {
+      "text": "איזה שבר גדול יותר: שתי שמיניות או שבע שמיניות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b4fa4c9af0b578aa": {
+      "text": "שבע שמיניות גדול יותר משתי שמיניות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "8a015b95e58583a7": {
+      "text": "שש שמיניות גדול יותר משתי שמיניות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "5bafaae21f225886": {
+      "text": "איזה שבר גדול יותר: שלוש שמיניות או שמינית?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f4d4a19ea925153d": {
+      "text": "איזה שבר גדול יותר: שלוש שמיניות או ארבע שמיניות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "9b8053939e65feda": {
+      "text": "איזה שבר גדול יותר: שלוש שמיניות או שתי שמיניות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "6774e1866e9166c3": {
+      "text": "ארבע שמיניות גדול יותר משלוש שמיניות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "309370c99517f0b0": {
+      "text": "איזה שבר גדול יותר: שלוש שמיניות או חמש שמיניות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "bc7936ea1590f76a": {
+      "text": "חמש שמיניות גדול יותר משלוש שמיניות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "9f738b6565f995ee": {
+      "text": "איזה שבר גדול יותר: שלוש שמיניות או שש שמיניות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "edb902ccb55db413": {
+      "text": "שש שמיניות גדול יותר משלוש שמיניות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "27c0877107343b7d": {
+      "text": "איזה שבר גדול יותר: שלוש שמיניות או שבע שמיניות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d6c93e28f359a6ad": {
+      "text": "ילדים, ולכל ילד אותו מספר. כמה מדבקות יישארו בסוף?",
+      "voice": "chirp3-hd/Leda"
+    },
+    "5917c42851d7e47c": {
+      "text": "שבע שמיניות גדול יותר משלוש שמיניות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "194439cbbc400a33": {
+      "text": "איזה שבר גדול יותר: ארבע שמיניות או שמינית?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "598e2df1052177c8": {
+      "text": "איזה שבר גדול יותר: ארבע שמיניות או שתי שמיניות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "071ca6fe999c3b03": {
+      "text": "איזה שבר גדול יותר: ארבע שמיניות או חמש שמיניות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e3d5803ca7913a62": {
+      "text": "איזה שבר גדול יותר: ארבע שמיניות או שלוש שמיניות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b33455af8daa03cd": {
+      "text": "חמש שמיניות גדול יותר מארבע שמיניות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "4da796d7a71d0038": {
+      "text": "פרחים בין",
+      "voice": "chirp3-hd/Leda"
+    },
+    "a6bd10c369ed6627": {
+      "text": "שש שמיניות גדול יותר מארבע שמיניות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "da80f4e9e3f4c195": {
+      "text": "איזה שבר גדול יותר: ארבע שמיניות או שש שמיניות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c3b6236767fd90a3": {
+      "text": "איזה שבר גדול יותר: ארבע שמיניות או שבע שמיניות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "7d19bcc77eb1d70a": {
+      "text": "שבע שמיניות גדול יותר מארבע שמיניות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b03f86cc2b004330": {
+      "text": "איזה שבר גדול יותר: חמש שמיניות או שמינית?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c28be51066af1b42": {
+      "text": "איזה שבר גדול יותר: חמש שמיניות או שתי שמיניות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "8f79c279f4411cff": {
+      "text": "איזה שבר גדול יותר: חמש שמיניות או שלוש שמיניות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "939bf179a7f98e3b": {
+      "text": "איזה שבר גדול יותר: חמש שמיניות או ארבע שמיניות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "2deef18b524d350c": {
+      "text": "איזה שבר גדול יותר: חמש שמיניות או שש שמיניות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f24dd546d7d3f4c6": {
+      "text": "שש שמיניות גדול יותר מחמש שמיניות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "630bc4da98b3627a": {
+      "text": "איזה שבר גדול יותר: חמש שמיניות או שבע שמיניות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "48f9f8cc9c5b7060": {
+      "text": "שבע שמיניות גדול יותר מחמש שמיניות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "4675b95f63462b30": {
+      "text": "איזה שבר גדול יותר: שש שמיניות או שמינית?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "6edf9db934390d3c": {
+      "text": "ילדים, ולכל ילד אותו מספר. כמה פרחים יישארו בסוף?",
+      "voice": "chirp3-hd/Leda"
+    },
+    "2b5d5917251911d0": {
+      "text": "איזה שבר גדול יותר: שש שמיניות או שתי שמיניות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c80ce02bf7a5de56": {
+      "text": "איזה שבר גדול יותר: שש שמיניות או ארבע שמיניות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "098a5071cb2c2313": {
+      "text": "איזה שבר גדול יותר: שש שמיניות או חמש שמיניות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "fe773c66f8e478c4": {
+      "text": "איזה שבר גדול יותר: שש שמיניות או שלוש שמיניות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d46d7b701571ccde": {
+      "text": "שבע שמיניות גדול יותר משש שמיניות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a429e6f223663976": {
+      "text": "איזה שבר גדול יותר: שבע שמיניות או שמינית?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f53d44080cc35d15": {
+      "text": "עפרונות בין",
+      "voice": "chirp3-hd/Leda"
+    },
+    "959ac22277febd71": {
+      "text": "איזה שבר גדול יותר: שש שמיניות או שבע שמיניות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a1d60e0d2cdf4934": {
+      "text": "איזה שבר גדול יותר: שבע שמיניות או שתי שמיניות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "2208d2ab3a6f947c": {
+      "text": "איזה שבר גדול יותר: שבע שמיניות או ארבע שמיניות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d5b7c1496fd52fd7": {
+      "text": "איזה שבר גדול יותר: שבע שמיניות או חמש שמיניות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "bf406ebe0d477f6e": {
+      "text": "איזה שבר גדול יותר: שבע שמיניות או שלוש שמיניות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d428d1082ad24cf3": {
+      "text": "איזה שבר גדול יותר: שבע שמיניות או שש שמיניות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "afa88a5df3fca9d0": {
+      "text": "איזה שבר גדול יותר: עשירית או שלוש עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "2f27ef5c59f528ad": {
+      "text": "שתי עשיריות גדול יותר מעשירית.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ec0cc655cd7256d3": {
+      "text": "איזה שבר גדול יותר: עשירית או שתי עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f2158bbe99d86565": {
+      "text": "ילדים, ולכל ילד אותו מספר. כמה עפרונות יישארו בסוף?",
+      "voice": "chirp3-hd/Leda"
+    },
+    "d9f215fd785b45ab": {
+      "text": "איזה שבר גדול יותר: עשירית או ארבע עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "31b936eeb4fa97d5": {
+      "text": "שלוש עשיריות גדול יותר מעשירית.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "5fa43d68da21c4ff": {
+      "text": "ארבע עשיריות גדול יותר מעשירית.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "fd1c34046e839494": {
+      "text": "איזה שבר גדול יותר: עשירית או חמש עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "75e422213a324b19": {
+      "text": "חמש עשיריות גדול יותר מעשירית.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "21f0f3d211605a15": {
+      "text": ". עשרות:",
+      "voice": "chirp3-hd/Leda"
+    },
+    "53a3a53c3208d941": {
+      "text": "איזה שבר גדול יותר: עשירית או שש עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e3dd2b11f9642a20": {
+      "text": "איזה שבר גדול יותר: עשירית או שבע עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c24861a60e2588ee": {
+      "text": "שבע עשיריות גדול יותר מעשירית.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "90e838c803179be1": {
+      "text": "איזה שבר גדול יותר: עשירית או שמונה עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "633a8cc178fc4758": {
+      "text": "שמונה עשיריות גדול יותר מעשירית.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "7e627be36f364607": {
+      "text": "איזה שבר גדול יותר: עשירית או תשע עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a0fbf09c9832b555": {
+      "text": "תשע עשיריות גדול יותר מעשירית.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "2f5b6fbfc5ec9981": {
+      "text": ". אחדות:",
+      "voice": "chirp3-hd/Leda"
+    },
+    "29c9468a91878457": {
+      "text": "שש עשיריות גדול יותר מעשירית.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e2be8f35b092801a": {
+      "text": "איזה שבר גדול יותר: שתי עשיריות או שלוש עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "8c1225d0e06ddc0d": {
+      "text": "שלוש עשיריות גדול יותר משתי עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a124ae24e010d420": {
+      "text": "איזה שבר גדול יותר: שתי עשיריות או ארבע עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "6321ad80380f225b": {
+      "text": "איזה שבר גדול יותר: שתי עשיריות או עשירית?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "5b8d2b44629ce0d9": {
+      "text": ". איזה מספר זה?",
+      "voice": "chirp3-hd/Leda"
+    },
+    "96dabc8d10a2f4c8": {
+      "text": "חמש עשיריות גדול יותר משתי עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b1dba48d05231a0e": {
+      "text": "איזה שבר גדול יותר: שתי עשיריות או חמש עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "4e928517828fcbb6": {
+      "text": "ארבע עשיריות גדול יותר משתי עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a2f00e14f75ad21f": {
+      "text": "איזה שבר גדול יותר: שתי עשיריות או שש עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "93cc300d54c84a61": {
+      "text": "שש עשיריות גדול יותר משתי עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "116a17bd6a73eb00": {
+      "text": "איזה שבר גדול יותר: שתי עשיריות או שמונה עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "1640b3b413f9f74b": {
+      "text": "שבע עשיריות גדול יותר משתי עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "bbb96c8a530d8971": {
+      "text": "איזה שבר גדול יותר: שתי עשיריות או שבע עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "62cf3de1a368afc7": {
+      "text": ", עשרות:",
+      "voice": "chirp3-hd/Leda"
+    },
+    "1f9fbda02364be5f": {
+      "text": "תשע עשיריות גדול יותר משתי עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ff6359d4bb49e81b": {
+      "text": "שמונה עשיריות גדול יותר משתי עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ffc7f89d61cbcf1f": {
+      "text": "איזה שבר גדול יותר: שתי עשיריות או תשע עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "2f710f3d121d66b3": {
+      "text": "איזה שבר גדול יותר: שלוש עשיריות או עשירית?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c5abf6fd18aff383": {
+      "text": ", אחדות:",
+      "voice": "chirp3-hd/Leda"
+    },
+    "7ff0477de24f0437": {
+      "text": "ארבע עשיריות גדול יותר משלוש עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "3acb32e439a9189b": {
+      "text": "איזה שבר גדול יותר: שלוש עשיריות או חמש עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "0ce807b345e83b28": {
+      "text": "איזה שבר גדול יותר: שלוש עשיריות או ארבע עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "018bbbf608a5f127": {
+      "text": "איזה שבר גדול יותר: שלוש עשיריות או שתי עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "fee1aea44de6b4b7": {
+      "text": "חמש עשיריות גדול יותר משלוש עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "3f07850a5a23120b": {
+      "text": ". זה",
+      "voice": "chirp3-hd/Leda"
+    },
+    "95bad22308654e25": {
+      "text": "שש עשיריות גדול יותר משלוש עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "22e27540a181a6f1": {
+      "text": "איזה שבר גדול יותר: שלוש עשיריות או שש עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "1a348427ce5d6bef": {
+      "text": "שבע עשיריות גדול יותר משלוש עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e098d1cc16e70956": {
+      "text": "איזה שבר גדול יותר: שלוש עשיריות או שבע עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e29f5faa454b0074": {
+      "text": "איזה שבר גדול יותר: שלוש עשיריות או שמונה עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a7626af8ce1070e2": {
+      "text": "שמונה עשיריות גדול יותר משלוש עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "6de82cc62e2d765d": {
+      "text": "תשע עשיריות גדול יותר משלוש עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e59df805414f7319": {
+      "text": "איזה שבר גדול יותר: שלוש עשיריות או תשע עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "6565954f13481a9e": {
+      "text": "כך נראה מספר אחר, מפורק לפי ערך המקום:",
+      "voice": "chirp3-hd/Leda"
+    },
+    "538fbf3cc152742f": {
+      "text": "איזה שבר גדול יותר: ארבע עשיריות או עשירית?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "100c4fdecb42b5a8": {
+      "text": "איזה שבר גדול יותר: ארבע עשיריות או שתי עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "36274cbf96291c1c": {
+      "text": "איזה שבר גדול יותר: ארבע עשיריות או שלוש עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "4a3731d3bd4f8bc3": {
+      "text": "חמש עשיריות גדול יותר מארבע עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a5d8bbfabec89c14": {
+      "text": "איזה שבר גדול יותר: ארבע עשיריות או חמש עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "0fc6e6261e841dc9": {
+      "text": "איזה שבר גדול יותר: ארבע עשיריות או שש עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "1703641e46c63056": {
+      "text": "שש עשיריות גדול יותר מארבע עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "8253c86b00d7d180": {
+      "text": "מה הערך של הספרה",
+      "voice": "chirp3-hd/Leda"
+    },
+    "48f377c7d6d63329": {
+      "text": "שבע עשיריות גדול יותר מארבע עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a16c238369d0d57e": {
+      "text": "איזה שבר גדול יותר: ארבע עשיריות או שבע עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "9c0736a20811af03": {
+      "text": "איזה שבר גדול יותר: ארבע עשיריות או שמונה עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "3127eeb101416586": {
+      "text": "שמונה עשיריות גדול יותר מארבע עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "39508a6890c55a20": {
+      "text": "תשע עשיריות גדול יותר מארבע עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "7816ba1e9af6bd70": {
+      "text": "איזה שבר גדול יותר: ארבע עשיריות או תשע עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ee8633dcb0123fff": {
+      "text": ", הספרה",
+      "voice": "chirp3-hd/Leda"
+    },
+    "99b85aa4f62b0eb5": {
+      "text": "איזה שבר גדול יותר: חמש עשיריות או שתי עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "1859adeb5dbbf71e": {
+      "text": "איזה שבר גדול יותר: חמש עשיריות או עשירית?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a0c7b15e32e4c2db": {
+      "text": "איזה שבר גדול יותר: חמש עשיריות או שלוש עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "64b7d802c97242d8": {
+      "text": "איזה שבר גדול יותר: חמש עשיריות או שש עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c87cf11db9704d2d": {
+      "text": "איזה שבר גדול יותר: חמש עשיריות או ארבע עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "eb2c29385127cafd": {
+      "text": "שווה",
+      "voice": "chirp3-hd/Leda"
+    },
+    "181e360c2e3c4b4c": {
+      "text": "שש עשיריות גדול יותר מחמש עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "0d67909b7ca7ea96": {
+      "text": "שבע עשיריות גדול יותר מחמש עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "74ce1db16736af27": {
+      "text": "איזה שבר גדול יותר: חמש עשיריות או שבע עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "fd8799e0882d72a5": {
+      "text": "איזה שבר גדול יותר: חמש עשיריות או שמונה עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "4955575e80205e05": {
+      "text": "תשע עשיריות גדול יותר מחמש עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d1b22caa8af756e6": {
+      "text": "הספרה",
+      "voice": "chirp3-hd/Leda"
+    },
+    "a494f5bc785d3167": {
+      "text": "איזה שבר גדול יותר: שש עשיריות או עשירית?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "76419f9293a44839": {
+      "text": "שמונה עשיריות גדול יותר מחמש עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "af5bfecb35279b03": {
+      "text": "איזה שבר גדול יותר: חמש עשיריות או תשע עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a55671458f4276d2": {
+      "text": "איזה שבר גדול יותר: שש עשיריות או שתי עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "0d8e578a145d9493": {
+      "text": "איזה שבר גדול יותר: שש עשיריות או שלוש עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "7170e5f907e56586": {
+      "text": "איזה שבר גדול יותר: שש עשיריות או ארבע עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "99f46f5ad084daf3": {
+      "text": "שבע עשיריות גדול יותר משש עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "8338fe966c33e62a": {
+      "text": "איזה שבר גדול יותר: שש עשיריות או שבע עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "5cd0d4f56873b25c": {
+      "text": "איזה שבר גדול יותר: שש עשיריות או חמש עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c7cdc12b27fa8ece": {
+      "text": "נמצאת במקום העשרות.",
+      "voice": "chirp3-hd/Leda"
+    },
+    "ae916e90f1f9ca38": {
+      "text": "איזה שבר גדול יותר: שש עשיריות או שמונה עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "6b4efd0184bf136c": {
+      "text": "שמונה עשיריות גדול יותר משש עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "669e4b5683db3924": {
+      "text": "איזה שבר גדול יותר: שש עשיריות או תשע עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ca2a218632e5d296": {
+      "text": "תשע עשיריות גדול יותר משש עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f4ad04b327e2e1e8": {
+      "text": "איזה שבר גדול יותר: שבע עשיריות או עשירית?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "1080944ce0698f93": {
+      "text": "איזה שבר גדול יותר: שבע עשיריות או שתי עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f9b9ffb6c6c27193": {
+      "text": "איזה שבר גדול יותר: שבע עשיריות או שלוש עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "1d7f4913c9d29ac5": {
+      "text": "נמצאת במקום המאות.",
+      "voice": "chirp3-hd/Leda"
+    },
+    "e02726987fbd49b5": {
+      "text": "איזה שבר גדול יותר: שבע עשיריות או חמש עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a07cd390c0c9bf39": {
+      "text": "איזה שבר גדול יותר: שבע עשיריות או שש עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a5bf55e7c6ea3ea1": {
+      "text": "איזה שבר גדול יותר: שבע עשיריות או ארבע עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "350f221bf77feb0d": {
+      "text": "איזה שבר גדול יותר: שבע עשיריות או שמונה עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "7e0638537f8c70c0": {
+      "text": "איזה שבר גדול יותר: שבע עשיריות או תשע עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "614fef652dca6118": {
+      "text": "איזה שבר גדול יותר: שמונה עשיריות או עשירית?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "38fbb544a1927d17": {
+      "text": "שמונה עשיריות גדול יותר משבע עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b4c8a59f1411e42f": {
+      "text": "תשע עשיריות גדול יותר משבע עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "7a62915503a7c37c": {
+      "text": "נמצאת במקום האחדות.",
+      "voice": "chirp3-hd/Leda"
+    },
+    "7aaf4ddc2b215774": {
+      "text": "איזה שבר גדול יותר: שמונה עשיריות או שלוש עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a5f519b067eb4b23": {
+      "text": "איזה שבר גדול יותר: שמונה עשיריות או שתי עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a3cdf90d72ef7544": {
+      "text": "איזה שבר גדול יותר: שמונה עשיריות או ארבע עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f71c43fc44aa59a1": {
+      "text": "איזה שבר גדול יותר: שמונה עשיריות או חמש עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "7ebde705527cb331": {
+      "text": "איזה שבר גדול יותר: שמונה עשיריות או שבע עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e2c699c271193bff": {
+      "text": "איזה שבר גדול יותר: שמונה עשיריות או שש עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b39a07c98e4efeec": {
+      "text": "תשע עשיריות גדול יותר משמונה עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d22352dd252f9ff6": {
+      "text": "נמצאת במקום האלפים.",
+      "voice": "chirp3-hd/Leda"
+    },
+    "50dd8a1c27da42d7": {
+      "text": "איזה שבר גדול יותר: שמונה עשיריות או תשע עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f7cde370017693a5": {
+      "text": "איזה שבר גדול יותר: תשע עשיריות או שתי עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d77f548c3cbbe333": {
+      "text": "איזה שבר גדול יותר: תשע עשיריות או עשירית?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ca0a3ff1e55c8d06": {
+      "text": "איזה שבר גדול יותר: תשע עשיריות או שלוש עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "95298abbd75489d2": {
+      "text": "איזה שבר גדול יותר: תשע עשיריות או חמש עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a7cca5c4a24534bc": {
+      "text": "איזה שבר גדול יותר: תשע עשיריות או ארבע עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "5a0dbee81f2646d3": {
+      "text": "איזה שבר גדול יותר: תשע עשיריות או שמונה עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "53020e306306fc2c": {
+      "text": "איזה שבר גדול יותר: תשע עשיריות או שבע עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "8ac9a9f97a61982b": {
+      "text": "כמה זה שליש ועוד שליש?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "debdb642cc53eace": {
+      "text": "איזה שבר גדול יותר: תשע עשיריות או שש עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "29899c9c8e761099": {
+      "text": "משווים ספרה אחרי ספרה משמאל: קודם האלפים, אחר כך המאות, וכן הלאה.",
+      "voice": "chirp3-hd/Leda"
+    },
+    "893dabf7f5ec15e4": {
+      "text": "שליש ועוד שליש זה שני שלישים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b8d2a30e13fb37f3": {
+      "text": "למשל, חמישית ועוד שתי חמישיות זה שלוש חמישיות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "682c8809c0f44a8c": {
+      "text": "חמישית ועוד שתי חמישיות זה שלוש חמישיות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "bd12e2b05f9f92f4": {
+      "text": "כמה זה רבע ועוד רבע?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "28cc250a17ccd53b": {
+      "text": "רבע ועוד רבע זה שני רבעים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "8d22e0ba067c7626": {
+      "text": "כמה זה רבע ועוד שני רבעים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "477339473759fed7": {
+      "text": "רבע ועוד שני רבעים זה שלושה רבעים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "96e81dd15dd1ea09": {
+      "text": "החלקים באותו גודל, אז פשוט סופרים כמה שלישים יש ביחד. המכנה לא משתנה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "7a99da40aa40a341": {
+      "text": "החלקים באותו גודל, אז פשוט סופרים כמה רבעים יש ביחד. המכנה לא משתנה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "6a740cfdedbd6232": {
+      "text": "כמה זה שני רבעים ועוד רבע?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "18723cdf5ea9bc07": {
+      "text": "כך נראה המספר הראשון, מפורק לפי ערך המקום:",
+      "voice": "chirp3-hd/Leda"
+    },
+    "8e25e155e8061292": {
+      "text": "שני רבעים ועוד רבע זה שלושה רבעים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ad084bdaebd5b4c1": {
+      "text": "חמישית ועוד חמישית זה שתי חמישיות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "748a14d614085b84": {
+      "text": "החלקים באותו גודל, אז פשוט סופרים כמה חמישיות יש ביחד. המכנה לא משתנה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "382e49d80208f34d": {
+      "text": "כמה זה חמישית ועוד שתי חמישיות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "cc2b8d57b6cf6d3e": {
+      "text": "למשל, שביעית ועוד שתי שביעיות זה שלוש שביעיות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "bf083e8912a9d5f2": {
+      "text": "שביעית ועוד שתי שביעיות זה שלוש שביעיות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "eea3d331ff5a035c": {
+      "text": "מה",
+      "voice": "chirp3-hd/Leda"
+    },
+    "c693f45df7773b89": {
+      "text": "כמה זה חמישית ועוד שלוש חמישיות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "57e86d398033ee14": {
+      "text": "חמישית ועוד שלוש חמישיות זה ארבע חמישיות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "7bf9daaada2a34da": {
+      "text": "כמה זה שתי חמישיות ועוד חמישית?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "69455e8b0e27393c": {
+      "text": "שתי חמישיות ועוד חמישית זה שלוש חמישיות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "00cb47a5370c6962": {
+      "text": "כמה זה שתי חמישיות ועוד שתי חמישיות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d1a6c4ea26a561b0": {
+      "text": "כמה זה שלוש חמישיות ועוד חמישית?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e5ebfef3c61afa20": {
+      "text": "שתי חמישיות ועוד שתי חמישיות זה ארבע חמישיות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "9decff4d948a8e3e": {
+      "text": "שלוש חמישיות ועוד חמישית זה ארבע חמישיות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a3366804f61c5481": {
+      "text": "שישית ועוד שישית זה שתי שישיות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "90e983e5c482c5c6": {
+      "text": "נמצא בין",
+      "voice": "chirp3-hd/Leda"
+    },
+    "414fbc2fed6bee8d": {
+      "text": "שישית ועוד שתי שישיות זה שלוש שישיות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "9f4d75f8c2c4e340": {
+      "text": "כמה זה שישית ועוד שתי שישיות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "53f43b9f448958bc": {
+      "text": "שישית ועוד שלוש שישיות זה ארבע שישיות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "82c1f7eee94e175e": {
+      "text": "ל",
+      "voice": "chirp3-hd/Leda"
+    },
+    "2e718bdace5c1cba": {
+      "text": "כמה זה שישית ועוד ארבע שישיות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "56cd2827544e9b4c": {
+      "text": "כמה זה שישית ועוד שלוש שישיות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "62a2effa6e88d9fc": {
+      "text": "כמה זה שתי שישיות ועוד שישית?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "8044ff4f0f65eb2e": {
+      "text": "שישית ועוד ארבע שישיות זה חמש שישיות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "922b4dce5e70d57a": {
+      "text": "כמה זה שתי שישיות ועוד שתי שישיות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "2a9423be16778744": {
+      "text": "כמה זה שתי שישיות ועוד שלוש שישיות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "1a7c6659a2b95990": {
+      "text": "שתי שישיות ועוד שתי שישיות זה ארבע שישיות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "51b10e782b68be28": {
+      "text": "שתי שישיות ועוד שישית זה שלוש שישיות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "70a2af8a3a42aeb7": {
+      "text": ". לאיזה מהם הוא קרוב יותר?",
+      "voice": "chirp3-hd/Leda"
+    },
+    "6df9755bd0ef1570": {
+      "text": "שלוש שישיות ועוד שישית זה ארבע שישיות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "72c2d2e49041cfa2": {
+      "text": "שתי שישיות ועוד שלוש שישיות זה חמש שישיות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "559985477f2d338c": {
+      "text": "כמה זה שלוש שישיות ועוד שתי שישיות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "3d3e320eebbb5024": {
+      "text": "כמה זה שלוש שישיות ועוד שישית?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "417511fa933b8171": {
+      "text": "שלוש שישיות ועוד שתי שישיות זה חמש שישיות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "7bed31866d4d54d7": {
+      "text": "כמה זה ארבע שישיות ועוד שישית?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "89cb5ef5910e74d6": {
+      "text": "האמצע הוא",
+      "voice": "chirp3-hd/Leda"
+    },
+    "b9b2cac3c171f992": {
+      "text": "ארבע שישיות ועוד שישית זה חמש שישיות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d390c41d69c7376f": {
+      "text": "שמינית ועוד שמינית זה שתי שמיניות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a5dac93411032c4a": {
+      "text": "כמה זה שמינית ועוד שתי שמיניות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a5cc178ef22276b3": {
+      "text": "שמינית ועוד שתי שמיניות זה שלוש שמיניות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e36705eddaf781df": {
+      "text": "כמה זה שמינית ועוד ארבע שמיניות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f39eeac679b91c2f": {
+      "text": "שמינית ועוד שלוש שמיניות זה ארבע שמיניות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "0b534cc4c7d79ce8": {
+      "text": "כמה זה שמינית ועוד שלוש שמיניות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "5b4d92f36f0ada2b": {
+      "text": "שמינית ועוד ארבע שמיניות זה חמש שמיניות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "2bb6367908a03009": {
+      "text": "כמה זה שמינית ועוד חמש שמיניות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c58416a5f163da0d": {
+      "text": ". מהאמצע והלאה מעגלים כלפי מעלה.",
+      "voice": "chirp3-hd/Leda"
+    },
+    "bf7151c5f955b1d9": {
+      "text": "כמה זה שמינית ועוד שש שמיניות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a4b7712159b17c4c": {
+      "text": "שמינית ועוד חמש שמיניות זה שש שמיניות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f49ab226d2c55126": {
+      "text": "שמינית ועוד שש שמיניות זה שבע שמיניות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "5da677906306aa99": {
+      "text": "שתי שמיניות ועוד שמינית זה שלוש שמיניות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "59fb295d45b55639": {
+      "text": "כמה זה שתי שמיניות ועוד שתי שמיניות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "466bfef988836492": {
+      "text": "שתי שמיניות ועוד שתי שמיניות זה ארבע שמיניות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "772bb770bf34906a": {
+      "text": "כמה זה שתי שמיניות ועוד שלוש שמיניות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "82901e9429dbad34": {
+      "text": "כמה זה שתי שמיניות ועוד שמינית?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "08c4d0e7733e335c": {
+      "text": "שתי שמיניות ועוד שלוש שמיניות זה חמש שמיניות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "bdf0d3705f3c4425": {
+      "text": "כמה זה שתי שמיניות ועוד ארבע שמיניות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d6ef25d1a9138f22": {
+      "text": "שתי שמיניות ועוד ארבע שמיניות זה שש שמיניות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "1a98347006dba1e0": {
+      "text": "כמה זה שתי שמיניות ועוד חמש שמיניות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "1f3c6f1e4a47d38b": {
+      "text": "נכתוב את המספרים זה מתחת לזה, אחדות מתחת לאחדות, ונחבר מימין לשמאל.",
+      "voice": "chirp3-hd/Leda"
+    },
+    "9fa2cbf51d294e4c": {
+      "text": "כמה זה שלוש שמיניות ועוד שמינית?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e6ff6780524f17b4": {
+      "text": "שלוש שמיניות ועוד שמינית זה ארבע שמיניות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d34e380964a35009": {
+      "text": "כמה זה שלוש שמיניות ועוד שתי שמיניות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "98e85b952c83a084": {
+      "text": "שתי שמיניות ועוד חמש שמיניות זה שבע שמיניות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "8157383ee723c89e": {
+      "text": "שלוש שמיניות ועוד שתי שמיניות זה חמש שמיניות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ffcd5ad42213f8bf": {
+      "text": "כמה זה שלוש שמיניות ועוד שלוש שמיניות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "89128b81ab9a1ba4": {
+      "text": "שלוש שמיניות ועוד שלוש שמיניות זה שש שמיניות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "04a8031fb98ed3c9": {
+      "text": "שלוש שמיניות ועוד ארבע שמיניות זה שבע שמיניות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "7ad87696fae3660b": {
+      "text": "כמה זה שלוש שמיניות ועוד ארבע שמיניות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "896ffca390d5b8b6": {
+      "text": "כמה זה ארבע שמיניות ועוד שמינית?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "47b145960fefaf86": {
+      "text": "ארבע שמיניות ועוד שמינית זה חמש שמיניות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "9f7446ca8e982211": {
+      "text": "נכתוב את המספרים זה מתחת לזה, אחדות מתחת לאחדות, ונחסר מימין לשמאל.",
+      "voice": "chirp3-hd/Leda"
+    },
+    "8799b1dd26df284b": {
+      "text": "כמה זה ארבע שמיניות ועוד שתי שמיניות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "2f2be67e99ea8e81": {
+      "text": "ארבע שמיניות ועוד שתי שמיניות זה שש שמיניות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "149533f1f23baecd": {
+      "text": "כמה זה חמש שמיניות ועוד שמינית?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "9ea6f6027f912de1": {
+      "text": "ארבע שמיניות ועוד שלוש שמיניות זה שבע שמיניות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a8e96d35d76092a0": {
+      "text": "כמה זה חמש שמיניות ועוד שתי שמיניות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d0c5317fb5f1ffef": {
+      "text": "בערך כמה זה",
+      "voice": "chirp3-hd/Leda"
+    },
+    "b1ad382e9365f54f": {
+      "text": "חמש שמיניות ועוד שמינית זה שש שמיניות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "5acdc4587c1a78cd": {
+      "text": "כמה זה ארבע שמיניות ועוד שלוש שמיניות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "2cc6b877723de58c": {
+      "text": "חמש שמיניות ועוד שתי שמיניות זה שבע שמיניות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c3097804724ee52d": {
+      "text": "כמה זה שש שמיניות ועוד שמינית?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "1158d13187a14e58": {
+      "text": "כמה זה עשירית ועוד שתי עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d3a9012a02990f60": {
+      "text": "שש שמיניות ועוד שמינית זה שבע שמיניות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ee4f5ac9c74e3e6b": {
+      "text": "עשירית ועוד עשירית זה שתי עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "4cc284626b8181e8": {
+      "text": ". אז התשובה בערך",
+      "voice": "chirp3-hd/Leda"
+    },
+    "0ad46f81228a228e": {
+      "text": "עשירית ועוד שתי עשיריות זה שלוש עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "310223904f194e6e": {
+      "text": "עשירית ועוד שלוש עשיריות זה ארבע עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "6d41adf4ca977a24": {
+      "text": "כמה זה עשירית ועוד שלוש עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "772e85ae9c55e522": {
+      "text": "כמה זה עשירית ועוד ארבע עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a71cdc170cef8e0f": {
+      "text": "עשירית ועוד חמש עשיריות זה שש עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "3e836c15851e8d48": {
+      "text": "כמה זה עשירית ועוד חמש עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "204efba51821872c": {
+      "text": "אחרי העיגול:",
+      "voice": "chirp3-hd/Leda"
+    },
+    "3aca1e9ed4a779d1": {
+      "text": "כמה זה עשירית ועוד שש עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "88be640cf7c558dc": {
+      "text": "כמה זה עשירית ועוד שבע עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "066c0bcc8ba89122": {
+      "text": "עשירית ועוד ארבע עשיריות זה חמש עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "5a7b7414e616203f": {
+      "text": "עשירית ועוד שבע עשיריות זה שמונה עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "3a03f2d417ac6aff": {
+      "text": "ו",
+      "voice": "chirp3-hd/Leda"
+    },
+    "558507d6cfc2e589": {
+      "text": "עשירית ועוד שש עשיריות זה שבע עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f5e43df48f97a44a": {
+      "text": "כמה זה שתי עשיריות ועוד עשירית?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "2a5ac71dfb78fc73": {
+      "text": "כמה זה עשירית ועוד שמונה עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c212040848943295": {
+      "text": "עשירית ועוד שמונה עשיריות זה תשע עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "6d1eaedc5c63f45f": {
+      "text": "שתי עשיריות ועוד שתי עשיריות זה ארבע עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "582b3421937e3eb1": {
+      "text": "שתי עשיריות ועוד עשירית זה שלוש עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "547eab8cded4d8b0": {
+      "text": "כמה זה שתי עשיריות ועוד שתי עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "693feb2b0b621001": {
+      "text": "כמה זה שתי עשיריות ועוד שלוש עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "1878ea6c259ea789": {
+      "text": "שתי עשיריות ועוד ארבע עשיריות זה שש עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "10c52444505f73f6": {
+      "text": "שתי עשיריות ועוד שלוש עשיריות זה חמש עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f92df86825e14d82": {
+      "text": "כמה זה שתי עשיריות ועוד ארבע עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c773a07adf399776": {
+      "text": "כמה זה שתי עשיריות ועוד חמש עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c88fe323fbcee304": {
+      "text": "שתי עשיריות ועוד חמש עשיריות זה שבע עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e4d1dfb5e6609ba8": {
+      "text": "כמה זה שתי עשיריות ועוד שש עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "8b8df971356f809d": {
+      "text": "שתי עשיריות ועוד שש עשיריות זה שמונה עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b249e311a3ef8401": {
+      "text": "כמה זה שתי עשיריות ועוד שבע עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e6874cc2dbe0fa39": {
+      "text": "שתי עשיריות ועוד שבע עשיריות זה תשע עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e2094711c19fabc2": {
+      "text": "שקלים. היא קנתה אופניים ב",
+      "voice": "chirp3-hd/Leda"
+    },
+    "40e75ac2044d1e80": {
+      "text": "כמה זה שלוש עשיריות ועוד עשירית?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "6d4d17dd0c505335": {
+      "text": "כמה זה שלוש עשיריות ועוד שתי עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c05f558b32f60373": {
+      "text": "שלוש עשיריות ועוד עשירית זה ארבע עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "af296fb2e5cb4f55": {
+      "text": "כמה זה שלוש עשיריות ועוד שלוש עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "8c0787b6017eb665": {
+      "text": "שלוש עשיריות ועוד שתי עשיריות זה חמש עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c934546ace3978cf": {
+      "text": "שלוש עשיריות ועוד ארבע עשיריות זה שבע עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a160ed7fcf2709e8": {
+      "text": "כמה זה שלוש עשיריות ועוד ארבע עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f3901889df06081c": {
+      "text": "שלוש עשיריות ועוד שלוש עשיריות זה שש עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a9cfe7bf2ae63f6d": {
+      "text": "כמה זה שלוש עשיריות ועוד שש עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d53d9f3286e670bc": {
+      "text": "כמה זה שלוש עשיריות ועוד חמש עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a0a5790d80c3c273": {
+      "text": "שלוש עשיריות ועוד חמש עשיריות זה שמונה עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "cc48dd3bdc5583ff": {
+      "text": "שלוש עשיריות ועוד שש עשיריות זה תשע עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "889818247d22d62d": {
+      "text": "ארבע עשיריות ועוד שתי עשיריות זה שש עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "22f9d1ae69661ccf": {
+      "text": "כמה זה ארבע עשיריות ועוד שתי עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "2e9ac1fb6cc48e1c": {
+      "text": "כמה זה ארבע עשיריות ועוד עשירית?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "dde0e4e10015491f": {
+      "text": "ארבע עשיריות ועוד עשירית זה חמש עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "16982f664fd7ec6e": {
+      "text": "שקלים. כמה שקלים נשארו לה?",
+      "voice": "chirp3-hd/Leda"
+    },
+    "c7ec9a5706d8724b": {
+      "text": "כמה זה ארבע עשיריות ועוד ארבע עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "260c82af71a02538": {
+      "text": "ארבע עשיריות ועוד ארבע עשיריות זה שמונה עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "24249ca50b1c0a53": {
+      "text": "כמה זה ארבע עשיריות ועוד שלוש עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "8ea9c38426c55125": {
+      "text": "ארבע עשיריות ועוד שלוש עשיריות זה שבע עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b08ba652471f2c00": {
+      "text": "כמה זה ארבע עשיריות ועוד חמש עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "66d9c522858a8046": {
+      "text": "ארבע עשיריות ועוד חמש עשיריות זה תשע עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a49e4aec19d83a74": {
+      "text": "כמה זה חמש עשיריות ועוד עשירית?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a7dc59667bd3dc15": {
+      "text": "חמש עשיריות ועוד עשירית זה שש עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "68b57620145b8b05": {
+      "text": "כמה זה חמש עשיריות ועוד שתי עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "3a3c98dd2bd31e0f": {
+      "text": "היה סכום, ושילמו חלק ממנו. מחסרים.",
+      "voice": "chirp3-hd/Leda"
+    },
+    "f9993f930db8f381": {
+      "text": "חמש עשיריות ועוד שתי עשיריות זה שבע עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b167cbaa4fad753e": {
+      "text": "כמה זה חמש עשיריות ועוד שלוש עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "bea3f3719c329625": {
+      "text": "חמש עשיריות ועוד שלוש עשיריות זה שמונה עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "01ba47add0414405": {
+      "text": "כמה זה חמש עשיריות ועוד ארבע עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "afe7baf80c5e68bc": {
+      "text": "כמה זה שש עשיריות ועוד עשירית?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "5f136065f1918573": {
+      "text": "שש עשיריות ועוד עשירית זה שבע עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "dfcec9ad3367dc26": {
+      "text": "מאיה חסכה",
+      "voice": "chirp3-hd/Leda"
+    },
+    "04277b0dd607a1aa": {
+      "text": "חמש עשיריות ועוד ארבע עשיריות זה תשע עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "37257d2ea3048759": {
+      "text": "כמה זה שש עשיריות ועוד שתי עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "485880f8b2be8454": {
+      "text": "שש עשיריות ועוד שתי עשיריות זה שמונה עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "230fce2d7a61a835": {
+      "text": "כמה זה שבע עשיריות ועוד עשירית?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "4f7e40f171e9d3b3": {
+      "text": "כמה זה שש עשיריות ועוד שלוש עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "81d2cd9ef2ff9417": {
+      "text": "שש עשיריות ועוד שלוש עשיריות זה תשע עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b50b9a99727b445a": {
+      "text": "כמה זה שבע עשיריות ועוד שתי עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e3c42665dda10370": {
+      "text": "שבע עשיריות ועוד שתי עשיריות זה תשע עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ef99d1907508413a": {
+      "text": "כמה זה שמונה עשיריות ועוד עשירית?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "995f2a6cc7e85997": {
+      "text": "שקלים. ליום ההולדת היא קיבלה עוד",
+      "voice": "chirp3-hd/Leda"
+    },
+    "1f3c905a74db4338": {
+      "text": "שמונה עשיריות ועוד עשירית זה תשע עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "77ef39915e9e97a3": {
+      "text": "כמה זה שני שלישים פחות שליש?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "9a2ead2ebb23212b": {
+      "text": "שני שלישים פחות שליש זה שליש.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "6cee94d1696148ca": {
+      "text": "החלקים באותו גודל, אז פשוט סופרים כמה שלישים נשארו. המכנה לא משתנה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "953ad4dbd7157a33": {
+      "text": "ארבע חמישיות פחות חמישית זה שלוש חמישיות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "8e18ec1d86e1b042": {
+      "text": "למשל, ארבע חמישיות פחות חמישית זה שלוש חמישיות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "4c4f22281936d5c9": {
+      "text": "שקלים. כמה שקלים יש לה עכשיו?",
+      "voice": "chirp3-hd/Leda"
+    },
+    "2bc053ce71c5b990": {
+      "text": "כמה זה שני רבעים פחות רבע?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "bae1206e6de9b038": {
+      "text": "שני רבעים פחות רבע זה רבע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "37b90967c7cc2bf1": {
+      "text": "כמה זה שלושה רבעים פחות רבע?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "13c6fb8fabbd7794": {
+      "text": "שלושה רבעים פחות רבע זה שני רבעים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "11ecbadf7562b669": {
+      "text": "שבע עשיריות ועוד עשירית זה שמונה עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "172f933287614f66": {
+      "text": "החלקים באותו גודל, אז פשוט סופרים כמה רבעים נשארו. המכנה לא משתנה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "22950b914ad8335e": {
+      "text": "כמה זה שלושה רבעים פחות שני רבעים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "fe9a9c9e43d08d2f": {
+      "text": "שלושה רבעים פחות שני רבעים זה רבע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "0901d320c5a5a337": {
+      "text": "היה סכום, ונוסף עוד. מחברים.",
+      "voice": "chirp3-hd/Leda"
+    },
+    "675991adf6bd02d7": {
+      "text": "כמה זה שתי חמישיות פחות חמישית?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "156a3e1c3afdb885": {
+      "text": "שתי חמישיות פחות חמישית זה חמישית.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "247ba8cae029f6ce": {
+      "text": "ארבע שביעיות פחות שביעית זה שלוש שביעיות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "9cce1f30edc15dbf": {
+      "text": "החלקים באותו גודל, אז פשוט סופרים כמה חמישיות נשארו. המכנה לא משתנה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d6f4f288bb151b2f": {
+      "text": "כמה זה שלוש חמישיות פחות חמישית?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "343d4020986f7960": {
+      "text": "למשל, ארבע שביעיות פחות שביעית זה שלוש שביעיות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "bdb58192ed04a66a": {
+      "text": "סבא חסך",
+      "voice": "chirp3-hd/Leda"
+    },
+    "4bb0152c02cf0d38": {
+      "text": "כמה זה ארבע חמישיות פחות חמישית?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c583ec6217a1ffa4": {
+      "text": "שלוש חמישיות פחות חמישית זה שתי חמישיות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "4a5f1739611cab91": {
+      "text": "שלוש חמישיות פחות שתי חמישיות זה חמישית.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "6baa9cb2cba019ac": {
+      "text": "כמה זה שלוש חמישיות פחות שתי חמישיות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "02c13413c750ca28": {
+      "text": "כמה זה ארבע חמישיות פחות שלוש חמישיות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "2649a9e3f4c97573": {
+      "text": "כמה זה ארבע חמישיות פחות שתי חמישיות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "9bca5e4e9884429e": {
+      "text": "ארבע חמישיות פחות שלוש חמישיות זה חמישית.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "80d8819dd251301c": {
+      "text": "ארבע חמישיות פחות שתי חמישיות זה שתי חמישיות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "8aa4a948428b32b2": {
+      "text": "כמה זה שתי שישיות פחות שישית?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "68a92bf6ccceece0": {
+      "text": "שתי שישיות פחות שישית זה שישית.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "9dfe5eb86274cf19": {
+      "text": "כמה זה שלוש שישיות פחות שתי שישיות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "8d3c50596db2e2b9": {
+      "text": "כמה זה שלוש שישיות פחות שישית?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "bea819a43c621f25": {
+      "text": "שלוש שישיות פחות שישית זה שתי שישיות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "98878eccf4cd5577": {
+      "text": "שלוש שישיות פחות שתי שישיות זה שישית.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "cf34f3e2edc4c2dd": {
+      "text": "שקלים. ליום ההולדת הוא קיבל עוד",
+      "voice": "chirp3-hd/Leda"
+    },
+    "e2dba006370b9edb": {
+      "text": "ארבע שישיות פחות שישית זה שלוש שישיות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "2cf41ea52cad7917": {
+      "text": "כמה זה ארבע שישיות פחות שישית?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "0f78406df59917bd": {
+      "text": "כמה זה ארבע שישיות פחות שתי שישיות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "60ec492f24743cc5": {
+      "text": "ארבע שישיות פחות שתי שישיות זה שתי שישיות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c8a430c6ba504dc6": {
+      "text": "כמה זה ארבע שישיות פחות שלוש שישיות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "1a489d30142c4513": {
+      "text": "ארבע שישיות פחות שלוש שישיות זה שישית.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "876da8caa2ef9ee1": {
+      "text": "חמש שישיות פחות שישית זה ארבע שישיות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "469ff49ba2de367c": {
+      "text": "כמה זה חמש שישיות פחות שישית?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "4f181a00ef104c36": {
+      "text": "כמה זה חמש שישיות פחות שתי שישיות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "4041c593ee0249a0": {
+      "text": "שקלים. כמה שקלים יש לו עכשיו?",
+      "voice": "chirp3-hd/Leda"
+    },
+    "3cff8bd94f9123ce": {
+      "text": "חמש שישיות פחות שתי שישיות זה שלוש שישיות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "4e698ad81d2d07fc": {
+      "text": "חמש שישיות פחות שלוש שישיות זה שתי שישיות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "bea3751cce993968": {
+      "text": "כמה זה חמש שישיות פחות ארבע שישיות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e3628685bec9c822": {
+      "text": "כמה זה חמש שישיות פחות שלוש שישיות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c610b388cbe80f28": {
+      "text": "כמה זה שתי שמיניות פחות שמינית?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "291816f9ad0918de": {
+      "text": "כמה זה שלוש שמיניות פחות שמינית?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "6312a28050dcaec4": {
+      "text": "חמש שישיות פחות ארבע שישיות זה שישית.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "87d1afd7e82f5c0c": {
+      "text": "נועם חסך",
+      "voice": "chirp3-hd/Leda"
+    },
+    "75d78195e58c0f61": {
+      "text": "שתי שמיניות פחות שמינית זה שמינית.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "4a1994ed599ba0e0": {
+      "text": "כמה זה שלוש שמיניות פחות שתי שמיניות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "7b89e45c5044f310": {
+      "text": "כמה זה ארבע שמיניות פחות שמינית?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "8f9eb8472088e478": {
+      "text": "שלוש שמיניות פחות שתי שמיניות זה שמינית.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "761e0dcaccbb941d": {
+      "text": "שלוש שמיניות פחות שמינית זה שתי שמיניות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "4f5b69ecc458ced5": {
+      "text": "ארבע שמיניות פחות שמינית זה שלוש שמיניות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e4014dcf387b1b05": {
+      "text": "כמה זה ארבע שמיניות פחות שתי שמיניות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "458aedf73e837396": {
+      "text": "ארבע שמיניות פחות שתי שמיניות זה שתי שמיניות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b217c4e130fe9291": {
+      "text": "כמה זה ארבע שמיניות פחות שלוש שמיניות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "5827574bdb4ceaff": {
+      "text": "ארבע שמיניות פחות שלוש שמיניות זה שמינית.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d5d5d1050a8c893d": {
+      "text": "שקלים. הוא קנה אופניים ב",
+      "voice": "chirp3-hd/Leda"
+    },
+    "09978e4007b146bc": {
+      "text": "חמש שמיניות פחות שמינית זה ארבע שמיניות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "76f25300f5a43731": {
+      "text": "כמה זה חמש שמיניות פחות שמינית?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "bd70582f1672135f": {
+      "text": "כמה זה חמש שמיניות פחות שתי שמיניות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ad4909b1e45e7ebc": {
+      "text": "חמש שמיניות פחות שתי שמיניות זה שלוש שמיניות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e8f2ef6d4fd3f68c": {
+      "text": "חמש שמיניות פחות שלוש שמיניות זה שתי שמיניות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "cbb52398f56c76a1": {
+      "text": "כמה זה חמש שמיניות פחות ארבע שמיניות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "5d61236dd4ed5750": {
+      "text": "חמש שמיניות פחות ארבע שמיניות זה שמינית.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ec9ced1086e2055f": {
+      "text": "כמה זה חמש שמיניות פחות שלוש שמיניות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c29d70f0be6e523d": {
+      "text": "כמה זה שש שמיניות פחות שמינית?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "4009c21ccd819513": {
+      "text": "כמה זה שש שמיניות פחות שתי שמיניות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "85d6b1f586f16d67": {
+      "text": "כמה זה שש שמיניות פחות שלוש שמיניות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "eeca9cf827ce8b31": {
+      "text": "שש שמיניות פחות שמינית זה חמש שמיניות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e1eb8bc7f4abd75f": {
+      "text": "שש שמיניות פחות שתי שמיניות זה ארבע שמיניות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "3afe24b2ddb87b7b": {
+      "text": "שקלים. כמה שקלים נשארו לו?",
+      "voice": "chirp3-hd/Leda"
+    },
+    "cd70d5bc1b5ec3bc": {
+      "text": "שש שמיניות פחות ארבע שמיניות זה שתי שמיניות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "cc3b576d47174a07": {
+      "text": "שש שמיניות פחות שלוש שמיניות זה שלוש שמיניות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "83691378189b2b2e": {
+      "text": "כמה זה שש שמיניות פחות חמש שמיניות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "4ca1ae254dab1f5b": {
+      "text": "כמה זה שש שמיניות פחות ארבע שמיניות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "2c5fc92ca6de3e77": {
+      "text": "שש שמיניות פחות חמש שמיניות זה שמינית.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "3d0f68ea5b74ec74": {
+      "text": "דנה חסכה",
+      "voice": "chirp3-hd/Leda"
+    },
+    "578acd5083cb7c53": {
+      "text": "כמה זה שבע שמיניות פחות שתי שמיניות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "70997fda697f7fab": {
+      "text": "שבע שמיניות פחות שמינית זה שש שמיניות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "4257d0cb01f6f076": {
+      "text": "כמה זה שבע שמיניות פחות שמינית?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c074d9a1115b468f": {
+      "text": "כמה זה שבע שמיניות פחות שלוש שמיניות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "028bc15d29e14a9d": {
+      "text": "שבע שמיניות פחות שתי שמיניות זה חמש שמיניות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "788cf9b79a4b18bd": {
+      "text": "שבע שמיניות פחות שלוש שמיניות זה ארבע שמיניות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c2f266c88d8f4dbc": {
+      "text": "כמה זה שבע שמיניות פחות חמש שמיניות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "2b1f8d59cc1f2f09": {
+      "text": "סבתא חסכה",
+      "voice": "chirp3-hd/Leda"
+    },
+    "f585e54f73e6fcee": {
+      "text": "כמה זה שבע שמיניות פחות ארבע שמיניות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "946abf30161b3db1": {
+      "text": "שבע שמיניות פחות ארבע שמיניות זה שלוש שמיניות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "7901d84c16dffe87": {
+      "text": "שבע שמיניות פחות חמש שמיניות זה שתי שמיניות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "2fea478507c2fe6b": {
+      "text": "כמה זה שבע שמיניות פחות שש שמיניות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f2d5e4c3fceb07e2": {
+      "text": "שבע שמיניות פחות שש שמיניות זה שמינית.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a5c81a1416118fc0": {
+      "text": "כמה זה שתי עשיריות פחות עשירית?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "898fbcfd4bf93e0c": {
+      "text": "שתי עשיריות פחות עשירית זה עשירית.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "de33f2dc98031eb3": {
+      "text": "כמה זה שלוש עשיריות פחות עשירית?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f609d8d5bd44b386": {
+      "text": "שלוש עשיריות פחות עשירית זה שתי עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a3b7dba3cf6ab1fb": {
+      "text": "יובל חסך",
+      "voice": "chirp3-hd/Leda"
+    },
+    "e38bf73cfb8020a4": {
+      "text": "כמה זה שלוש עשיריות פחות שתי עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e961cb7c2158eb6d": {
+      "text": "שלוש עשיריות פחות שתי עשיריות זה עשירית.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "34f48512b951a8f6": {
+      "text": "ארבע עשיריות פחות עשירית זה שלוש עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d174449243477fcf": {
+      "text": "כמה זה ארבע עשיריות פחות שתי עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b2b0e2f4d084eb8a": {
+      "text": "כמה זה ארבע עשיריות פחות עשירית?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "0be9bdae425850a4": {
+      "text": "ארבע עשיריות פחות שתי עשיריות זה שתי עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "cc69bbf2dfa48421": {
+      "text": "כמה זה ארבע עשיריות פחות שלוש עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "dddb0223e6e76dc4": {
+      "text": "ארבע עשיריות פחות שלוש עשיריות זה עשירית.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "3c1aa18047b6f0df": {
+      "text": "כמה זה חמש עשיריות פחות עשירית?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "3edb86bff73409e3": {
+      "text": "איזה חלק צבוע?",
+      "voice": "chirp3-hd/Leda"
+    },
+    "9989ea0564a77163": {
+      "text": "חמש עשיריות פחות עשירית זה ארבע עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "439283fa94271402": {
+      "text": "כמה זה חמש עשיריות פחות שתי עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "464fbf42b75f9b39": {
+      "text": "חמש עשיריות פחות שתי עשיריות זה שלוש עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "109ae8f2b4b8103a": {
+      "text": "כמה זה חמש עשיריות פחות שלוש עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "caadd67cc7962a76": {
+      "text": "חמש עשיריות פחות שלוש עשיריות זה שתי עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e60f3d1d523ecbf7": {
+      "text": "כמה זה חמש עשיריות פחות ארבע עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "61f858050599cc73": {
+      "text": "כמה זה שש עשיריות פחות עשירית?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "3c0a4ce64cce22d1": {
+      "text": "חמש עשיריות פחות ארבע עשיריות זה עשירית.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "89c22cfac4ae3fed": {
+      "text": "כמה זה שש עשיריות פחות שתי עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "46d1b76197064c90": {
+      "text": "שש עשיריות פחות עשירית זה חמש עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "5e5aa5681c1a43b2": {
+      "text": "כמה זה שש עשיריות פחות שלוש עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "7a0f59907db91d55": {
+      "text": "שש עשיריות פחות שתי עשיריות זה ארבע עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "3228ce186ee837e7": {
+      "text": "נספור לכמה חלקים שווים חילקו את השלם. זה המכנה, המספר למטה.",
+      "voice": "chirp3-hd/Leda"
+    },
+    "36eef2f6176f3b4c": {
+      "text": "שש עשיריות פחות שלוש עשיריות זה שלוש עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c3942591c1211a1e": {
+      "text": "שש עשיריות פחות ארבע עשיריות זה שתי עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "fe7b045a29377630": {
+      "text": "כמה זה שש עשיריות פחות ארבע עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "3264bacdc14f1b94": {
+      "text": "כמה זה שש עשיריות פחות חמש עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "398e35c7054b9830": {
+      "text": "שש עשיריות פחות חמש עשיריות זה עשירית.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c8bf52e72c6928b9": {
+      "text": "שבע עשיריות פחות עשירית זה שש עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c4f2afcca33e4c8c": {
+      "text": "כמה זה שבע עשיריות פחות עשירית?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f6ce4a8053b3200f": {
+      "text": "כמה זה שבע עשיריות פחות שתי עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f8e71c14c4fcdddc": {
+      "text": "שבע עשיריות פחות שתי עשיריות זה חמש עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ee8a08ce6b905206": {
+      "text": "כמה זה שבע עשיריות פחות שלוש עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ce2af8670b2e7a3d": {
+      "text": "שבע עשיריות פחות שלוש עשיריות זה ארבע עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "58e4169524e8cb13": {
+      "text": "כמה זה שבע עשיריות פחות ארבע עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c9c0ca6478f62f8c": {
+      "text": "כמה זה שבע עשיריות פחות חמש עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "1c634f15208b196c": {
+      "text": "שבע עשיריות פחות חמש עשיריות זה שתי עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "037b01602d596186": {
+      "text": "שבע עשיריות פחות ארבע עשיריות זה שלוש עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b85e085efb8c46ce": {
+      "text": "עכשיו נספור כמה חלקים צבועים. זה המונה, המספר למעלה.",
+      "voice": "chirp3-hd/Leda"
+    },
+    "63dd7b39b6533714": {
+      "text": "כמה זה שבע עשיריות פחות שש עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "25d3a8816c3c4feb": {
+      "text": "שבע עשיריות פחות שש עשיריות זה עשירית.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "19f8679d6f4a3695": {
+      "text": "כמה זה שמונה עשיריות פחות עשירית?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "98cd34bb8af4322b": {
+      "text": "שמונה עשיריות פחות עשירית זה שבע עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ab7c1cb4c077d9cb": {
+      "text": "כמה זה שמונה עשיריות פחות שתי עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "2c45c89295632361": {
+      "text": "שמונה עשיריות פחות שתי עשיריות זה שש עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c06cc197d90288dd": {
+      "text": "כמה זה שמונה עשיריות פחות שלוש עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "6a77444a49334c41": {
+      "text": "שמונה עשיריות פחות שלוש עשיריות זה חמש עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "216df5fd4c359060": {
+      "text": "השלם מחולק ל",
+      "voice": "chirp3-hd/Leda"
+    },
+    "f14f6c8a19f7045f": {
+      "text": "שמונה עשיריות פחות ארבע עשיריות זה ארבע עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "dac9fe120bb2052d": {
+      "text": "כמה זה שמונה עשיריות פחות חמש עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "9704d662538f611a": {
+      "text": "כמה זה שמונה עשיריות פחות ארבע עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "cfdb7db7b74a83d6": {
+      "text": "שמונה עשיריות פחות חמש עשיריות זה שלוש עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "227ede3f1a472165": {
+      "text": "כמה זה שמונה עשיריות פחות שש עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "5c298331e6828dae": {
+      "text": "שמונה עשיריות פחות שש עשיריות זה שתי עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f8913d1d8fbafd2f": {
+      "text": "שמונה עשיריות פחות שבע עשיריות זה עשירית.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d0b332c64c69d21a": {
+      "text": "חלקים, ו",
+      "voice": "chirp3-hd/Leda"
+    },
+    "19bc68eeb86f144a": {
+      "text": "כמה זה שמונה עשיריות פחות שבע עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "1f89f07e09658ae8": {
+      "text": "תשע עשיריות פחות עשירית זה שמונה עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "03d8986c7ff13cca": {
+      "text": "כמה זה תשע עשיריות פחות עשירית?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "3c515ebe8bca9c7b": {
+      "text": "תשע עשיריות פחות שתי עשיריות זה שבע עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "61dc3d3beaf51f8c": {
+      "text": "כמה זה תשע עשיריות פחות שתי עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f2c1e20df9743b19": {
+      "text": "כמה זה תשע עשיריות פחות שלוש עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c91e1573b4d3388b": {
+      "text": "כמה זה תשע עשיריות פחות ארבע עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "38fe94dd75c0fc11": {
+      "text": "תשע עשיריות פחות שלוש עשיריות זה שש עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "58278e403a376c2b": {
+      "text": "תשע עשיריות פחות ארבע עשיריות זה חמש עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "229964af6973b483": {
+      "text": "כמה זה תשע עשיריות פחות חמש עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "177f064df75193e7": {
+      "text": "מהם צבועים. זה חמישית.",
+      "voice": "chirp3-hd/Leda"
+    },
+    "9505bb775015f885": {
+      "text": "כמה זה תשע עשיריות פחות שש עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d182c8a78779f8a0": {
+      "text": "כמה זה תשע עשיריות פחות שבע עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "9f9eb00e3607d438": {
+      "text": "תשע עשיריות פחות חמש עשיריות זה ארבע עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "34315875abef667c": {
+      "text": "תשע עשיריות פחות שש עשיריות זה שלוש עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d530194a20506535": {
+      "text": "תשע עשיריות פחות שבע עשיריות זה שתי עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a07af80eb137b44f": {
+      "text": "כמה זה תשע עשיריות פחות שמונה עשיריות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "038ee3057a3fe7cc": {
+      "text": "כמה חצאים יש בשלם אחד?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "9e087bfac3c4e19f": {
+      "text": "תשע עשיריות פחות שמונה עשיריות זה עשירית.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "118c064b50688ef2": {
+      "text": "כך נראה שלם אחד:",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a310ff488daf6577": {
+      "text": "נספור כמה חצאים ממלאים שלם אחד.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a3f68fdf600570f9": {
+      "text": "מהם צבועים. זה שישית.",
+      "voice": "chirp3-hd/Leda"
+    },
+    "229335f9b8f1e375": {
+      "text": "התשובה: שני חצאים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "5578a8071cec40c2": {
+      "text": "למשל, התשובה: ארבעה רבעים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "2b4f655ce47a65d9": {
+      "text": "כמה חצאים יש בשני שלמים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "7ef61f475aa69fc8": {
+      "text": "התשובה: ארבעה חצאים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f8a1b4739b15fbe9": {
+      "text": "התשובה: ארבעה רבעים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "0540edb6aa4a8260": {
+      "text": "התשובה: שישה חצאים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ff00a09dcb7999d5": {
+      "text": "כמה חצאים יש בשלושה שלמים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "89114dd00a5b3df8": {
+      "text": "כמה שלישים יש בשלם אחד?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ac4351706075f6fb": {
+      "text": "מהם צבועים. זה שמינית.",
+      "voice": "chirp3-hd/Leda"
+    },
+    "a20924644a7f9650": {
+      "text": "כמה שלישים יש בשני שלמים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "35d074fe86c116ed": {
+      "text": "התשובה: שלושה שלישים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "efead2338e94fc79": {
+      "text": "נספור כמה שלישים ממלאים שלם אחד.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c455812d776b34bb": {
+      "text": "התשובה: שישה שלישים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c31ba11ccb51b4fe": {
+      "text": "כמה רבעים יש בשלם אחד?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "3db0243343da9bac": {
+      "text": "כמה שלישים יש בשלושה שלמים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "152320e9668f9d4d": {
+      "text": "נספור כמה רבעים ממלאים שלם אחד.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "84cccc1af85c458b": {
+      "text": "התשובה: תשעה שלישים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "7f8dfe0987154556": {
+      "text": "מהם צבועים. זה עשירית.",
+      "voice": "chirp3-hd/Leda"
+    },
+    "81a9390bfd02df79": {
+      "text": "למשל, התשובה: שלושה שלישים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d88a5445f514168f": {
+      "text": "כמה רבעים יש בשני שלמים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "864962d8dae47161": {
+      "text": "כמה רבעים יש בשלושה שלמים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "dc3d48b0cd4e451f": {
+      "text": "התשובה: שמונה רבעים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "206460f92e2c4cea": {
+      "text": "התשובה: שנים עשר רבעים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "837fcbbc70a378a9": {
+      "text": "כמה חמישיות יש בשלם אחד?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "9ced8fc0ef763b39": {
+      "text": "התשובה: חמש חמישיות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a3cadd356958d52d": {
+      "text": "נספור כמה חמישיות ממלאים שלם אחד.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "971d5061d5f34024": {
+      "text": "כמה חצאים צבועים?",
+      "voice": "chirp3-hd/Leda"
+    },
+    "00fe4bd8a88ae20c": {
+      "text": "כמה חמישיות יש בשני שלמים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d3ad7ceb44e528ee": {
+      "text": "התשובה: עשר חמישיות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a99bb3de5f5541e0": {
+      "text": "כמה חמישיות יש בשלושה שלמים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "9512dae1771a25cc": {
+      "text": "התשובה: חמש עשרה חמישיות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "887b8ebbeb102133": {
+      "text": "כמה שישיות יש בשלם אחד?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "4306fa499ee8682c": {
+      "text": "התשובה: שש שישיות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "4bd21635e2f9b540": {
+      "text": "כמה שישיות יש בשני שלמים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "945789729d46b28d": {
+      "text": "התשובה: שתים עשרה שישיות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "441d3fcece25ee0d": {
+      "text": "נספור רק את החלקים הצבועים.",
+      "voice": "chirp3-hd/Leda"
+    },
+    "ca5e43c9a839cb5d": {
+      "text": "נספור כמה שישיות ממלאים שלם אחד.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "4c7f28ab3779ef49": {
+      "text": "התשובה: שמונה עשרה שישיות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "65a889d3617d3567": {
+      "text": "כמה שמיניות יש בשלם אחד?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "7015dd1e8bc0787f": {
+      "text": "כמה שישיות יש בשלושה שלמים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ad9ada9002e59d57": {
+      "text": "התשובה: שמונה שמיניות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "94017a981a4056d7": {
+      "text": "נספור כמה שמיניות ממלאים שלם אחד.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c896421b16858a30": {
+      "text": "התשובה: שש עשרה שמיניות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "cb35ec8326800430": {
+      "text": "כמה שמיניות יש בשני שלמים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "2bef89bb00d11c26": {
+      "text": "חלקים שווים. כמה מהם צבועים?",
+      "voice": "chirp3-hd/Leda"
+    },
+    "9526c4746ddca07a": {
+      "text": "כמה עשיריות יש בשלם אחד?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "dc9d06adf0b0df3b": {
+      "text": "התשובה: עשר עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "63f536d57dbb6a92": {
+      "text": "כמה עשיריות יש בשני שלמים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "35ba03e8e98a1f8c": {
+      "text": "נספור כמה עשיריות ממלאים שלם אחד.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ab1624f7400173cd": {
+      "text": "התשובה: עשרים עשיריות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "7e52fc24a5b2ea96": {
+      "text": "צבועים חמישית.",
+      "voice": "chirp3-hd/Leda"
+    },
+    "6f8da65f21e72174": {
+      "text": "כמה שישיות צבועים?",
+      "voice": "chirp3-hd/Leda"
+    },
+    "57817217fb7f5767": {
+      "text": "צבועים שישית.",
+      "voice": "chirp3-hd/Leda"
+    },
+    "1a79a495dddaae56": {
+      "text": "כמה שמיניות צבועים?",
+      "voice": "chirp3-hd/Leda"
+    },
+    "91fed5671b193030": {
+      "text": "צבועים שמינית.",
+      "voice": "chirp3-hd/Leda"
+    },
+    "12cbf24338b98104": {
+      "text": "כמה עשיריות צבועים?",
+      "voice": "chirp3-hd/Leda"
+    },
+    "681d4705a4d35e4a": {
+      "text": "צבועים עשירית.",
+      "voice": "chirp3-hd/Leda"
+    },
+    "b74024bdbdbe0acc": {
+      "text": "נחלק את הכמות ל",
+      "voice": "chirp3-hd/Leda"
+    },
+    "293ba0644503b2f7": {
+      "text": "קבוצות שוות. כמה יש בכל קבוצה?",
+      "voice": "chirp3-hd/Leda"
+    },
+    "3fb53ea77a5eecac": {
+      "text": "כמה זה חמישית מתוך",
+      "voice": "chirp3-hd/Leda"
+    },
+    "723417611061bc42": {
+      "text": "חמישית מתוך",
+      "voice": "chirp3-hd/Leda"
+    },
+    "b59b03bace3f48fc": {
+      "text": "כמה זה שישית מתוך",
+      "voice": "chirp3-hd/Leda"
+    },
+    "352ad4a836e90411": {
+      "text": "שישית מתוך",
+      "voice": "chirp3-hd/Leda"
+    },
+    "6e1da4d9e0171c34": {
+      "text": "כמה זה שמינית מתוך",
+      "voice": "chirp3-hd/Leda"
+    },
+    "0c4a6fbe6a803407": {
+      "text": "שמינית מתוך",
+      "voice": "chirp3-hd/Leda"
+    },
+    "583b63b5e2deb883": {
+      "text": "כמה זה עשירית מתוך",
+      "voice": "chirp3-hd/Leda"
+    },
+    "38c66dd508e9b316": {
+      "text": "עשירית מתוך",
+      "voice": "chirp3-hd/Leda"
+    },
+    "56ce561f10ecb232": {
+      "text": "קודם נחלק ל",
+      "voice": "chirp3-hd/Leda"
+    },
+    "9356a4cc9cc397c3": {
+      "text": "קבוצות שוות, ואז ניקח",
+      "voice": "chirp3-hd/Leda"
+    },
+    "244ccdb4a81ad436": {
+      "text": "קבוצות.",
+      "voice": "chirp3-hd/Leda"
+    },
+    "c00f510b59cb303d": {
+      "text": "הנה השבר השני בציור. נשווה:",
+      "voice": "chirp3-hd/Leda"
+    },
+    "936e99ffaf632046": {
+      "text": "איזה שבר גדול יותר: חמישית או שישית?",
+      "voice": "chirp3-hd/Leda"
+    },
+    "b15260b589713e44": {
+      "text": "חמישית גדול יותר משישית.",
+      "voice": "chirp3-hd/Leda"
+    },
+    "8b76dfdb9316a159": {
+      "text": "איזה שבר גדול יותר: חמישית או שמינית?",
+      "voice": "chirp3-hd/Leda"
+    },
+    "269cdaa273f4fa20": {
+      "text": "חמישית גדול יותר משמינית.",
+      "voice": "chirp3-hd/Leda"
+    },
+    "78bb86baa7d2b940": {
+      "text": "איזה שבר גדול יותר: חמישית או עשירית?",
+      "voice": "chirp3-hd/Leda"
+    },
+    "7b254852bb0e3c18": {
+      "text": "חמישית גדול יותר מעשירית.",
+      "voice": "chirp3-hd/Leda"
+    },
+    "453bb82f3ad99f01": {
+      "text": "איזה שבר גדול יותר: שישית או חמישית?",
+      "voice": "chirp3-hd/Leda"
+    },
+    "ccbf3210ebb30df3": {
+      "text": "איזה שבר גדול יותר: שישית או שמינית?",
+      "voice": "chirp3-hd/Leda"
+    },
+    "9b743aeff7003c70": {
+      "text": "שישית גדול יותר משמינית.",
+      "voice": "chirp3-hd/Leda"
+    },
+    "dc0ef85b276d2486": {
+      "text": "איזה שבר גדול יותר: שישית או עשירית?",
+      "voice": "chirp3-hd/Leda"
+    },
+    "8dc755ee668504bf": {
+      "text": "שישית גדול יותר מעשירית.",
+      "voice": "chirp3-hd/Leda"
+    },
+    "aba6577373005c94": {
+      "text": "איזה שבר גדול יותר: שמינית או חמישית?",
+      "voice": "chirp3-hd/Leda"
+    },
+    "08d9e884b75d9d11": {
+      "text": "איזה שבר גדול יותר: שמינית או שישית?",
+      "voice": "chirp3-hd/Leda"
+    },
+    "7becd4d0d3d73914": {
+      "text": "איזה שבר גדול יותר: שמינית או עשירית?",
+      "voice": "chirp3-hd/Leda"
+    },
+    "1e24c9b4338ba568": {
+      "text": "שמינית גדול יותר מעשירית.",
+      "voice": "chirp3-hd/Leda"
+    },
+    "04763d3e747507ce": {
+      "text": "איזה שבר גדול יותר: עשירית או חמישית?",
+      "voice": "chirp3-hd/Leda"
+    },
+    "d595b02b8cde2d52": {
+      "text": "איזה שבר גדול יותר: עשירית או שישית?",
+      "voice": "chirp3-hd/Leda"
+    },
+    "1a5595504061ae6d": {
+      "text": "איזה שבר גדול יותר: עשירית או שמינית?",
+      "voice": "chirp3-hd/Leda"
+    },
+    "f50b52ef7cda53ad": {
+      "text": "כשהחלקים באותו גודל, מי שיש לו יותר חלקים, גדול יותר.",
+      "voice": "chirp3-hd/Leda"
+    },
+    "4eb380d7f82e1c66": {
+      "text": "בציור:",
+      "voice": "chirp3-hd/Leda"
+    },
+    "edeeda9b21ca9592": {
+      "text": "כמה זה חמישית ועוד חמישית?",
+      "voice": "chirp3-hd/Leda"
+    },
+    "6f9c2df89846a942": {
+      "text": "כמה זה שישית ועוד שישית?",
+      "voice": "chirp3-hd/Leda"
+    },
+    "0b9442f3a78ea068": {
+      "text": "החלקים באותו גודל, אז פשוט סופרים כמה שישיות יש ביחד. המכנה לא משתנה.",
+      "voice": "chirp3-hd/Leda"
+    },
+    "368b82478b850e4c": {
+      "text": "כמה זה שמינית ועוד שמינית?",
+      "voice": "chirp3-hd/Leda"
+    },
+    "e6039003eb0c29d5": {
+      "text": "החלקים באותו גודל, אז פשוט סופרים כמה שמיניות יש ביחד. המכנה לא משתנה.",
+      "voice": "chirp3-hd/Leda"
+    },
+    "b59a5d7385aeed83": {
+      "text": "כמה זה עשירית ועוד עשירית?",
+      "voice": "chirp3-hd/Leda"
+    },
+    "eab3b8e220628897": {
+      "text": "החלקים באותו גודל, אז פשוט סופרים כמה עשיריות יש ביחד. המכנה לא משתנה.",
+      "voice": "chirp3-hd/Leda"
+    },
+    "88dd3ca77899395b": {
+      "text": "החלקים באותו גודל, אז פשוט סופרים כמה שישיות נשארו. המכנה לא משתנה.",
+      "voice": "chirp3-hd/Leda"
+    },
+    "56eee077a504aed6": {
+      "text": "החלקים באותו גודל, אז פשוט סופרים כמה שמיניות נשארו. המכנה לא משתנה.",
+      "voice": "chirp3-hd/Leda"
+    },
+    "5c7520b46c44c7d1": {
+      "text": "החלקים באותו גודל, אז פשוט סופרים כמה עשיריות נשארו. המכנה לא משתנה.",
+      "voice": "chirp3-hd/Leda"
     }
   }
 }
