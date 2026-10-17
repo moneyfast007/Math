@@ -10,7 +10,13 @@ test.skip(!process.env['SCREENSHOTS'], 'visual review only');
 
 const OUT = '.ci/screens';
 
-async function addChild(page: Page, name: string, grade: string, avatar: string, gender = 'בלשון נקבה') {
+async function addChild(
+  page: Page,
+  name: string,
+  grade: string,
+  avatar: string,
+  gender = 'בלשון נקבה',
+) {
   await page.getByRole('button', { name: 'הוספת ילד או ילדה' }).click();
   const dialog = page.getByRole('dialog', { name: 'פרופיל חדש' });
   await dialog.getByLabel('שם', { exact: true }).fill(name);
@@ -59,8 +65,14 @@ for (const orientation of ['landscape', 'portrait'] as const) {
     await shot(page, `${o}-07-journey-grade2`);
     await page.getByRole('button', { name: 'יאללה, מתחילים!' }).click();
     await shot(page, `${o}-08-practice-grade2`);
-    await page.getByRole('group', { name: 'התשובה' }).getByRole('button', { name: '1', exact: true }).click();
-    await page.getByRole('group', { name: 'התשובה' }).getByRole('button', { name: 'אישור' }).click();
+    await page
+      .getByRole('group', { name: 'התשובה' })
+      .getByRole('button', { name: '1', exact: true })
+      .click();
+    await page
+      .getByRole('group', { name: 'התשובה' })
+      .getByRole('button', { name: 'אישור' })
+      .click();
     await shot(page, `${o}-09-practice-wrong`);
     await page.getByRole('button', { name: 'סיום' }).click();
     await page.getByRole('button', { name: 'האלבום' }).click();
