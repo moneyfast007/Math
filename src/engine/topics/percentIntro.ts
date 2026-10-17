@@ -221,8 +221,14 @@ function rest(p: number): Exercise {
       hint(sayP('ex.pct.rest.hint2')),
       // Never the exercise itself.
       p === 35
-        ? exampleHint('100% − 40% = 60%', sayP('ex.pct.rest.solution', { p: 40, r: 60 }, 'f', ['p', 'r']))
-        : exampleHint('100% − 35% = 65%', sayP('ex.pct.rest.solution', { p: 35, r: 65 }, 'f', ['p', 'r'])),
+        ? exampleHint(
+            '100% − 40% = 60%',
+            sayP('ex.pct.rest.solution', { p: 40, r: 60 }, 'f', ['p', 'r']),
+          )
+        : exampleHint(
+            '100% − 35% = 65%',
+            sayP('ex.pct.rest.solution', { p: 35, r: 65 }, 'f', ['p', 'r']),
+          ),
     ],
     solution: sayP('ex.pct.rest.solution', { p, r: answer }, 'f', ['p', 'r']),
   });

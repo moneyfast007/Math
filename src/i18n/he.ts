@@ -960,14 +960,16 @@ export const he = {
   'level.percent.8': 'סקר בכיתה',
   'level.percent.9': 'שתי הנחות ברצף',
   'level.percent.10': 'בעיות מילוליות',
-  'ex.pct6.of.hint1': 'אחוז אחד הוא מאית מהכמות. אפשר למצוא עשרה אחוזים או חמישה אחוזים, ולבנות מהם.',
+  'ex.pct6.of.hint1':
+    'אחוז אחד הוא מאית מהכמות. אפשר למצוא עשרה אחוזים או חמישה אחוזים, ולבנות מהם.',
   'ex.pct6.what.hint2': 'החלק חלקי השלם, כפול מאה.',
   'ex.pct6.whole.spoken': '{p} ממספר מסוים זה {part}. מה המספר?',
   'ex.pct6.whole.hint1': 'אם {p} זה החלק הזה, כמה זה אחוז אחד? או עשרה אחוזים?',
   'ex.pct6.whole.hint2': 'מכאן מגיעים למאה אחוזים, שזה השלם.',
   'ex.pct6.whole.solution': '{p} מ{base} זה {part}.',
   'ex.pct6.discount.prompt': 'כמה עולה אחרי ההנחה?',
-  'ex.pct6.discount.spoken': 'המחיר הוא {base} שקלים, ויש הנחה של {p}. כמה שקלים זה עולה אחרי ההנחה?',
+  'ex.pct6.discount.spoken':
+    'המחיר הוא {base} שקלים, ויש הנחה של {p}. כמה שקלים זה עולה אחרי ההנחה?',
   'ex.pct6.discount.hint1': 'קודם מחשבים את ההנחה בשקלים, ואז מורידים אותה מהמחיר.',
   'ex.pct6.discount.solution': 'אחרי הנחה של {p}, {base} שקלים הופכים ל{r} שקלים.',
   'ex.pct6.increase.prompt': 'כמה עולה אחרי ההתייקרות?',
@@ -978,7 +980,8 @@ export const he = {
   'ex.pct6.dp.spoken': 'המחיר ירד מ{base} שקלים ל{after} שקלים. כמה אחוזים הייתה ההנחה?',
   'ex.pct6.dp.hint1': 'קודם נמצא בכמה שקלים ירד המחיר.',
   'ex.pct6.dp.solution': 'ירידה מ{base} ל{after} היא הנחה של {p}.',
-  'ex.pct6.two.spoken': 'מחיר של {base} שקלים ירד ב{p}, ואחר כך עוד ב{q} מהמחיר החדש. כמה שקלים זה עולה בסוף?',
+  'ex.pct6.two.spoken':
+    'מחיר של {base} שקלים ירד ב{p}, ואחר כך עוד ב{q} מהמחיר החדש. כמה שקלים זה עולה בסוף?',
   'ex.pct6.two.hint1': 'כל הנחה מחושבת מהמחיר שהיה לפניה, לא מהמחיר המקורי.',
   'ex.pct6.two.hint2': 'נחשב שלב אחרי שלב: קודם ההנחה הראשונה, ואז השנייה.',
   'ex.pct6.two.solution': 'מ{base} ל{mid}, ומשם ל{r}.',
@@ -1011,8 +1014,10 @@ export const he = {
   'ex.ratio.equiv.hint2': 'מכפילים את שני חלקי היחס באותו מספר.',
   'ex.ratio.divide.promptBoys': 'כמה בנים יש בכיתה?',
   'ex.ratio.divide.promptGirls': 'כמה בנות יש בכיתה?',
-  'ex.ratio.divide.spokenBoys': 'בכיתה יש {n}. היחס בין הבנים לבנות הוא {a} ל{b}. כמה בנים יש בכיתה?',
-  'ex.ratio.divide.spokenGirls': 'בכיתה יש {n}. היחס בין הבנים לבנות הוא {a} ל{b}. כמה בנות יש בכיתה?',
+  'ex.ratio.divide.spokenBoys':
+    'בכיתה יש {n}. היחס בין הבנים לבנות הוא {a} ל{b}. כמה בנים יש בכיתה?',
+  'ex.ratio.divide.spokenGirls':
+    'בכיתה יש {n}. היחס בין הבנים לבנות הוא {a} ל{b}. כמה בנות יש בכיתה?',
   'ex.ratio.divide.hint1': 'היחס {a} ל{b} אומר שהכיתה מחולקת ל{parts} שווים.',
   'ex.ratio.divide.hint2': 'נחלק את מספר הילדים במספר החלקים, ואז נכפיל.',
   'ex.ratio.divide.solution': 'יש {boys} ו{girls}.',
@@ -1096,7 +1101,8 @@ export const he = {
   'ex.vol.litre.hint1': 'בליטר אחד יש אלף סנטימטרים מעוקבים.',
   'ex.vol.litre.hint2': 'נכפיל באלף.',
   'ex.vol.aquarium.prompt': 'כמה ליטרים?',
-  'ex.vol.aquarium.spoken': 'לאקווריום יש אורך של {a}, רוחב של {b} וגובה של {c}. כמה ליטרים של מים הוא מכיל?',
+  'ex.vol.aquarium.spoken':
+    'לאקווריום יש אורך של {a}, רוחב של {b} וגובה של {c}. כמה ליטרים של מים הוא מכיל?',
   'ex.vol.aquarium.solution': 'הוא מכיל {r}{u}.',
   'ex.vol.aquarium.hint1': 'קודם נחשב את הנפח בסנטימטרים מעוקבים.',
 
