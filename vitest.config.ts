@@ -8,6 +8,8 @@ export default defineConfig({
   test: {
     environment: 'jsdom',
     globals: false,
+    // The topic property tests sample every level of every world; coverage makes them slower.
+    testTimeout: 60_000,
     setupFiles: ['./tests/setup.ts'],
     include: ['src/**/*.test.{ts,tsx}', 'scripts/**/*.test.ts'],
     exclude: ['tests/e2e/**', 'node_modules/**'],
