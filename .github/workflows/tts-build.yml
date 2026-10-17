@@ -45,4 +45,5 @@ jobs:
           if git diff --cached --quiet; then echo "nothing new"; exit 0; fi
           git commit -m "audio: regenerate the bank (WaveNet A for numbers, Chirp Leda for the rest)"
           git pull --rebase origin main
-          git push origin HEAD:main
+          # Another workflow may have pushed meanwhile: rebase and retry.
+          for i in 1 2 3; do git pull --rebase origin main && git push origin HEAD:main && break; sleep 5; done

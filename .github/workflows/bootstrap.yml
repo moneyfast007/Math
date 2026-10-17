@@ -51,7 +51,8 @@ jobs:
             git add -f .ci/report.txt
             if git diff --cached --quiet; then echo "nothing to commit"; exit 0; fi
             git commit -m "chore: bootstrap report"
-            git push
+            # Another workflow (the audio build) may have pushed meanwhile: rebase and retry.
+            for i in 1 2 3; do git pull --rebase origin main && git push && break; sleep 5; done
           } 2>&1 | tee commit.log
           status=${PIPESTATUS[0]}
           if [ "$status" != "0" ]; then
