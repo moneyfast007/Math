@@ -31,7 +31,7 @@ const ID = 'percent-intro';
 const PERCENT: Noun = { singular: 'אחוז', plural: 'אחוזים', gender: 'm' };
 
 /** Like `say`, but the percent slots are read as "עשרים וחמישה אחוזים" (masculine noun). */
-function sayP(
+export function sayP(
   key: TranslationKey,
   slots: Record<string, Slot> = {},
   gender: Gender = 'f',

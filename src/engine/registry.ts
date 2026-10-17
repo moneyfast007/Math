@@ -3,6 +3,7 @@ import type { ProfileProgress } from '@/state/schema';
 import { addSub100 } from './topics/addSub100';
 import { addSub20 } from './topics/addSub20';
 import { bigNumbers } from './topics/bigNumbers';
+import { circleVolume } from './topics/circleVolume';
 import { count10 } from './topics/count10';
 import { decimalOps } from './topics/decimalOps';
 import { decimals } from './topics/decimals';
@@ -16,7 +17,9 @@ import { numbers100 } from './topics/numbers100';
 import { numbers10000 } from './topics/numbers10000';
 import { orderOps } from './topics/orderOps';
 import { perimeterArea } from './topics/perimeterArea';
+import { percent } from './topics/percent';
 import { percentIntro } from './topics/percentIntro';
+import { ratio } from './topics/ratio';
 import type { Topic } from './types';
 
 /** All topics (worlds), in curriculum order (Ministry of Education, 2006/2024). */
@@ -38,6 +41,9 @@ export const TOPICS: readonly Topic[] = [
   decimalOps,
   percentIntro,
   orderOps,
+  percent,
+  ratio,
+  circleVolume,
 ];
 
 export function topicById(id: string): Topic | undefined {
