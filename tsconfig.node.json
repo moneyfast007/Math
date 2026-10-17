@@ -28,6 +28,8 @@
     "tests",
     "src/lang",
     "src/i18n",
-    "src/audio"
+    "src/audio",
+    "src/profiles",
+    "src/ui/ageBand.ts"
   ]
 }
