@@ -10,6 +10,7 @@ on:
 permissions:
   contents: write
   issues: write
+  actions: write
 
 jobs:
   bootstrap:
@@ -62,6 +63,8 @@ jobs:
             git commit -m "chore: bootstrap report"
             # Another workflow (the audio build) may have pushed meanwhile: rebase and retry.
             for i in 1 2 3; do git pull --rebase origin main && git push && break; sleep 5; done
+            # Bot pushes don't trigger CI; a dispatch does, so the formatted commit gets its own run.
+            gh workflow run ci.yml --ref main || true
           } 2>&1 | tee commit.log
           status=${PIPESTATUS[0]}
           if [ "$status" != "0" ]; then
