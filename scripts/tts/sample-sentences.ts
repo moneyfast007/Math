@@ -116,3 +116,19 @@ export const PROBE: readonly string[] = [
   'היו עשרה בלונים. לקחו שלושה בלונים. כמה בלונים נשארו?',
   'למשל, עשר ועוד עשר זה עשרים.',
 ];
+
+/** Isolated number words, for the clip-assembly plan: do they read right on their own? */
+export const WORDS: readonly string[] = [
+  'אחת',
+  'שתיים',
+  'שלוש',
+  'ארבע',
+  'עשר',
+  'שלוש עשרה',
+  'ארבע עשרה',
+  'עשרים',
+  'עשרים וארבע',
+  'עשרה',
+  'עשרים וארבעה',
+  'למשל',
+];

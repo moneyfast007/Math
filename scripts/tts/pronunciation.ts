@@ -44,7 +44,27 @@ const LEXICON: Readonly<Record<string, string>> = {
   לחלק: 'לְחַלֵּק',
   גולות: 'גֻּלּוֹת',
   שוות: 'שָׁווֹת',
-  // Round 4: vocalizing שש and עשרים made things worse; they stay plain.
+  // Round 4: vocalizing שש made things worse; it stays plain.
+  // Pronunciations given by a native speaker (round 5):
+  למשל: 'לְמָשָׁל',
+  עשרים: 'עֶשְׂרִים',
+  ארבע: 'אַרְבַּע',
+  ארבעה: 'אַרְבָּעָה',
+  אחת: 'אַחַת',
+  שתיים: 'שְׁתַּיִם',
+};
+
+/**
+ * Full vocalizations of specific sentences, hand-written to match the native
+ * speaker's pronunciations (round 5). Used for the "full" comparison column.
+ */
+export const FULL_NIKUD: Readonly<Record<string, string>> = {
+  'למשל, כאן יש ארבעה כוכבים: אחת, שתיים, שלוש, ארבע.':
+    'לְמָשָׁל, כָּאן יֵשׁ אַרְבָּעָה כּוֹכָבִים: אַחַת, שְׁתַּיִם, שָׁלוֹשׁ, אַרְבַּע.',
+  'שמונה ועוד חמש זה שלוש עשרה.': 'שְׁמוֹנֶה וְעוֹד חָמֵשׁ זֶה שְׁלוֹשׁ עֶשְׂרֵה.',
+  'היו עשרה בלונים. לקחו שלושה בלונים. כמה בלונים נשארו?':
+    'הָיוּ עֲשָׂרָה בַּלּוֹנִים. לָקְחוּ שְׁלוֹשָׁה בַּלּוֹנִים. כַּמָּה בַּלּוֹנִים נִשְׁאֲרוּ?',
+  'למשל, עשר ועוד עשר זה עשרים.': 'לְמָשָׁל, עֶשֶׂר וְעוֹד עֶשֶׂר זֶה עֶשְׂרִים.',
 };
 
 const SHEVA = 'ְ';
@@ -84,13 +104,30 @@ function vocalizeWord(word: string, previous: string | undefined): string {
   return LEXICON[word] ?? word;
 }
 
+const TEEN_UNITS: Readonly<Record<string, string>> = {
+  שלוש: 'שְׁלוֹשׁ',
+  ארבע: 'אַרְבַּע',
+  חמש: 'חֲמֵשׁ',
+  שש: 'שֵׁשׁ',
+  שבע: 'שְׁבַע',
+  שמונה: 'שְׁמוֹנֶה',
+  תשע: 'תְּשַׁע',
+};
+
 export function vocalizeForTts(text: string): string {
   let previous: string | undefined;
-  return text
-    .split(' ')
+  const tokens = text.split(' ');
+  // Feminine teens: vocalize the unit together with עשרה (shlosh esre), as a native speaker spelled it.
+  for (let i = 0; i + 1 < tokens.length; i++) {
+    const unit = tokens[i] ?? '';
+    const next = tokens[i + 1] ?? '';
+    if (/^עשרה[^\u05d0-\u05ea]*$/.test(next) && unit in TEEN_UNITS) tokens[i] = TEEN_UNITS[unit] ?? unit;
+  }
+  return tokens
     .map((token) => {
-      const { pre, word, post } = parts(token);
-      const vocalized = vocalizeWord(word, previous);
+      const { pre, word, post } = parts(token.replace(/[\u0591-\u05c7]/g, ''));
+      const already = token !== pre + word + post ? token.replace(/[^\u05d0-\u05ea\u0591-\u05c7]+$/, '') : null;
+      const vocalized = already ?? vocalizeWord(word, previous);
       const prefix = pre && vocalized !== word ? conjunction(vocalized) : pre;
       // A sentence boundary resets the context.
       previous = /[.?!,:]$/.test(post) ? undefined : word;

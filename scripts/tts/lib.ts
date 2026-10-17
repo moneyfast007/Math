@@ -12,7 +12,7 @@ import { CLIP_ID_LENGTH, normalizeSpokenText } from '../../src/audio/hash';
  * gcloud default). Nothing here is ever imported by the browser bundle.
  */
 
-export type Engine = 'gemini-flash' | 'gemini-pro' | 'chirp3-hd';
+export type Engine = 'gemini-flash' | 'gemini-pro' | 'chirp3-hd' | 'wavenet';
 
 export interface VoiceSpec {
   engine: Engine;
@@ -85,6 +85,15 @@ function buildBody(text: string, spec: VoiceSpec): SynthesizeBody {
       const body: SynthesizeBody = {
         input: { text },
         voice: { languageCode: LANGUAGE, name: `${LANGUAGE}-Chirp3-HD-${spec.voice}` },
+        audioConfig: { audioEncoding: 'MP3' },
+      };
+      return body;
+    }
+    case 'wavenet': {
+      // Classic voices: spec.voice is the full name, e.g. he-IL-Wavenet-A or he-IL-Standard-B.
+      const body: SynthesizeBody = {
+        input: { text },
+        voice: { languageCode: LANGUAGE, name: spec.voice },
         audioConfig: { audioEncoding: 'MP3' },
       };
       return body;
@@ -168,6 +177,8 @@ export function estimateCost(texts: readonly string[], engine: Engine): string {
       return `${(seconds * 25 * (10 / 1_000_000)).toFixed(2)} USD (Gemini 2.5 Flash, ~${Math.round(seconds / 60)} min audio)`;
     case 'gemini-pro':
       return `${(seconds * 25 * (20 / 1_000_000)).toFixed(2)} USD (Gemini 2.5 Pro, ~${Math.round(seconds / 60)} min audio)`;
+    case 'wavenet':
+      return `0.00 USD (WaveNet/Standard, ${chars} chars within the 4M free tier)`;
     case 'chirp3-hd':
       return chars <= 1_000_000
         ? `0.00 USD (Chirp 3 HD, ${chars} chars within the 1M free tier)`

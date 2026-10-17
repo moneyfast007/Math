@@ -9,8 +9,8 @@ import {
   synthesize,
   type VoiceSpec,
 } from './lib';
-import { vocalizeForTts } from './pronunciation';
-import { BANK_CHECK, NIKUD_PAIRS, PROBE, SENTENCES as SAMPLE_SENTENCES } from './sample-sentences';
+import { FULL_NIKUD, vocalizeForTts } from './pronunciation';
+import { BANK_CHECK, NIKUD_PAIRS, PROBE, SENTENCES as SAMPLE_SENTENCES, WORDS } from './sample-sentences';
 
 /**
  * Voice comparison batch. Produces, for each variant, one MP3 per test sentence
@@ -44,7 +44,13 @@ const { values } = parseArgs({
 });
 
 const SENTENCES: readonly string[] =
-  values.set === 'bank' ? BANK_CHECK : values.set === 'probe' ? PROBE : SAMPLE_SENTENCES;
+  values.set === 'bank'
+    ? BANK_CHECK
+    : values.set === 'probe'
+      ? PROBE
+      : values.set === 'words'
+        ? WORDS
+        : SAMPLE_SENTENCES;
 
 interface Variant {
   name: string;
@@ -82,13 +88,24 @@ const variants: Variant[] = values.voices
       .split(',')
       .map((v) => v.trim())
       .filter(Boolean)
-      .flatMap((voice) =>
-        Array.from({ length: takes }, (_, k) => ({
-          name: takes > 1 ? `${voice}-t${k + 1}` : voice,
-          spec: { engine: 'chirp3-hd' as const, voice },
-          texts: [...SENTENCES],
-        })),
-      )
+      .flatMap((entry) => {
+        const [voice = entry, mode = 'plain'] = entry.split('+');
+        const texts =
+          mode === 'fixed'
+            ? SENTENCES.map(vocalizeForTts)
+            : mode === 'full'
+              ? SENTENCES.map((t) => FULL_NIKUD[t] ?? vocalizeForTts(t))
+              : [...SENTENCES];
+        return Array.from({ length: takes }, (_, k) => ({
+          name: (takes > 1 ? `${voice}-t${k + 1}` : voice) + (mode === 'plain' ? '' : `+${mode}`),
+          // Full classic names (he-IL-Wavenet-A, he-IL-Standard-B) use the classic engine.
+          spec: voice.startsWith('he-IL-')
+            ? { engine: 'wavenet' as const, voice }
+            : { engine: 'chirp3-hd' as const, voice },
+          // "fixed" suffix: the same voice reading the targeted-nikud text.
+          texts,
+        }));
+      })
   : ALL_VARIANTS.filter((v) => !only || only.includes(v.name));
 
 const HTML_ESCAPES: Record<string, string> = {
