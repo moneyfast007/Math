@@ -9,7 +9,7 @@ import {
   synthesize,
   type VoiceSpec,
 } from './lib';
-import { NIKUD_SENTENCES, SENTENCES } from './sample-sentences';
+import { NIKUD_PAIRS, NIKUD_SENTENCES, SENTENCES } from './sample-sentences';
 
 /**
  * Voice comparison batch. Produces, for each variant, one MP3 per test sentence
@@ -71,19 +71,14 @@ function escapeHtml(s: string): string {
   return s.replace(/[&<>"]/g, (c) => HTML_ESCAPES[c] ?? c);
 }
 
-/** Removes Hebrew vowel points and cantillation marks. */
-function stripNikud(text: string): string {
-  return text.replace(/[\u0591-\u05C7]/g, '');
-}
-
 /** Each variant's sentences, aligned to SENTENCES (null where a variant has no version). */
 function aligned(v: Variant): (string | null)[] {
   if (v.sentences === SENTENCES) return [...SENTENCES];
   const out: (string | null)[] = SENTENCES.map(() => null);
-  for (const text of v.sentences) {
-    const i = SENTENCES.indexOf(stripNikud(text));
-    if (i < 0) throw new Error(`Vocalized sentence has no plain match: ${text}`);
-    out[i] = text;
+  for (const { plain, vocalized } of NIKUD_PAIRS) {
+    const i = SENTENCES.indexOf(plain);
+    if (i < 0) throw new Error(`Vocalized sentence has no plain match: ${vocalized}`);
+    out[i] = vocalized;
   }
   return out;
 }
