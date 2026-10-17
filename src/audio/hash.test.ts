@@ -5,7 +5,10 @@ import { CLIP_ID_LENGTH, clipId, normalizeSpokenText } from './hash';
 describe('clipId', () => {
   it('matches the Node implementation used by the build script', async () => {
     const text = 'כמה זה שלוש ועוד חמש?';
-    const expected = createHash('sha256').update(text, 'utf8').digest('hex').slice(0, CLIP_ID_LENGTH);
+    const expected = createHash('sha256')
+      .update(text, 'utf8')
+      .digest('hex')
+      .slice(0, CLIP_ID_LENGTH);
     await expect(clipId(text)).resolves.toBe(expected);
   });
 

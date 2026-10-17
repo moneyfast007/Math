@@ -45,7 +45,7 @@ test.describe('foundations', () => {
         const expr = /\d\s*[+−×÷=]\s*[\d?]/;
         for (let n = walker.nextNode(); n; n = walker.nextNode()) {
           const text = n.textContent ?? '';
-          if (expr.test(text) && !(n.parentElement?.closest('[data-math]'))) found.push(text);
+          if (expr.test(text) && !n.parentElement?.closest('[data-math]')) found.push(text);
         }
         return found;
       });

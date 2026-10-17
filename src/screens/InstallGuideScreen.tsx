@@ -12,7 +12,11 @@ export function InstallGuideScreen() {
     <main className="screen" data-screen="install">
       <header className="screen__header">
         <h1>{t('install.title')}</h1>
-        <button type="button" className="btn btn--secondary" onClick={() => navigate({ name: 'home' })}>
+        <button
+          type="button"
+          className="btn btn--secondary"
+          onClick={() => navigate({ name: 'home' })}
+        >
           {t('action.back')}
         </button>
       </header>

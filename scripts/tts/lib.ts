@@ -46,7 +46,8 @@ async function accessToken(): Promise<string> {
   if (cachedToken && cachedToken.expires > Date.now() + 60_000) return cachedToken.value;
   const client = await auth.getClient();
   const res = await client.getAccessToken();
-  if (!res.token) throw new Error('Could not obtain an access token. Run: gcloud auth application-default login');
+  if (!res.token)
+    throw new Error('Could not obtain an access token. Run: gcloud auth application-default login');
   cachedToken = { value: res.token, expires: Date.now() + 50 * 60_000 };
   return res.token;
 }

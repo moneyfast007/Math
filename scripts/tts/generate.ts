@@ -74,10 +74,17 @@ async function main(): Promise<void> {
   }
 
   const phrases = allPhrases();
-  const missing = phrases.filter((p) => !existsSync(path.join(OUT_DIR, `${clipIdNode(p.text)}.mp3`)));
+  const missing = phrases.filter(
+    (p) => !existsSync(path.join(OUT_DIR, `${clipIdNode(p.text)}.mp3`)),
+  );
 
   console.log(`${phrases.length} phrases in the bank, ${missing.length} to generate.`);
-  console.log(`Estimated cost: ${estimateCost(missing.map((p) => p.text), spec.engine)}`);
+  console.log(
+    `Estimated cost: ${estimateCost(
+      missing.map((p) => p.text),
+      spec.engine,
+    )}`,
+  );
   if (values['dry-run'] || missing.length === 0) {
     for (const p of missing.slice(0, 20)) console.log(`  ${p.id}: ${p.text}`);
     if (missing.length > 20) console.log(`  … and ${missing.length - 20} more`);
@@ -98,7 +105,9 @@ async function main(): Promise<void> {
   });
 
   await writeJson(MANIFEST, manifest);
-  console.log(`Done. ${Object.keys(manifest.clips).length} clips in ${path.relative(ROOT, OUT_DIR)}.`);
+  console.log(
+    `Done. ${Object.keys(manifest.clips).length} clips in ${path.relative(ROOT, OUT_DIR)}.`,
+  );
 }
 
 main().catch((err: unknown) => {

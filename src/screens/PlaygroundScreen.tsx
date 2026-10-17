@@ -5,7 +5,10 @@ import { displayBinary, spokenQuestion } from '@/lang/spoken';
 import { AGE_BANDS, applyAgeBand, type AgeBand } from '@/ui/ageBand';
 import { MathExpr } from '@/ui/MathExpr';
 
-const BAND_LABEL: Record<AgeBand, 'playground.band.young' | 'playground.band.middle' | 'playground.band.older'> = {
+const BAND_LABEL: Record<
+  AgeBand,
+  'playground.band.young' | 'playground.band.middle' | 'playground.band.older'
+> = {
   young: 'playground.band.young',
   middle: 'playground.band.middle',
   older: 'playground.band.older',
@@ -27,7 +30,11 @@ export function PlaygroundScreen() {
     <main className="screen" data-screen="playground">
       <header className="screen__header">
         <h1>{t('playground.title')}</h1>
-        <button type="button" className="btn btn--secondary" onClick={() => navigate({ name: 'home' })}>
+        <button
+          type="button"
+          className="btn btn--secondary"
+          onClick={() => navigate({ name: 'home' })}
+        >
           {t('action.back')}
         </button>
       </header>

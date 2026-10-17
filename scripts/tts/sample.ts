@@ -1,7 +1,14 @@
 import { writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { parseArgs } from 'node:util';
-import { DEFAULT_PROMPT, ensureDir, estimateCost, mapLimit, synthesize, type VoiceSpec } from './lib';
+import {
+  DEFAULT_PROMPT,
+  ensureDir,
+  estimateCost,
+  mapLimit,
+  synthesize,
+  type VoiceSpec,
+} from './lib';
 import { NIKUD_SENTENCES, SENTENCES } from './sample-sentences';
 
 /**
@@ -51,7 +58,12 @@ const variants: Variant[] = [
   },
 ].filter((v) => !values.only || v.name === values.only);
 
-const HTML_ESCAPES: Record<string, string> = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' };
+const HTML_ESCAPES: Record<string, string> = {
+  '&': '&amp;',
+  '<': '&lt;',
+  '>': '&gt;',
+  '"': '&quot;',
+};
 
 function escapeHtml(s: string): string {
   return s.replace(/[&<>"]/g, (c) => HTML_ESCAPES[c] ?? c);
@@ -60,7 +72,9 @@ function escapeHtml(s: string): string {
 async function main(): Promise<void> {
   await ensureDir(OUT);
   for (const v of variants) {
-    console.log(`\n${v.name}: ${v.sentences.length} sentences, ${estimateCost(v.sentences, v.spec.engine)}`);
+    console.log(
+      `\n${v.name}: ${v.sentences.length} sentences, ${estimateCost(v.sentences, v.spec.engine)}`,
+    );
     const dir = path.join(OUT, v.name);
     await ensureDir(dir);
     await mapLimit(v.sentences, 3, async (text, i) => {

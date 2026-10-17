@@ -25,7 +25,11 @@ export function HomeScreen() {
       </section>
 
       <footer className="row" style={{ justifyContent: 'center', marginTop: 'auto' }}>
-        <button type="button" className="btn btn--ghost" onClick={() => navigate({ name: 'install' })}>
+        <button
+          type="button"
+          className="btn btn--ghost"
+          onClick={() => navigate({ name: 'install' })}
+        >
           {t('install.title')}
         </button>
         <button
