@@ -29,6 +29,8 @@ jobs:
             echo; echo "## lint"; npm run lint 2>&1 || echo "LINT FAILED"
             echo; echo "## unit tests"; npm run test 2>&1 || echo "TESTS FAILED"
             echo; echo "## build"; npm run build 2>&1 || echo "BUILD FAILED"
+            echo; echo "## audio bank (dry run: what would be generated, and the cost)"
+            npm run tts:build -- --dry-run 2>&1 | tail -40 || echo "TTS DRY RUN FAILED"
           } > .ci/report.txt
           tail -c 4000 .ci/report.txt
       - name: Playwright

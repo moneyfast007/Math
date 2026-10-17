@@ -1,6 +1,6 @@
 import { he } from '../../src/i18n/he';
 import { allSpokenTexts } from '../../src/engine/registry';
-import { numberToWords } from '../../src/lang/hebrewNumbers';
+import { numberToWords, vavForms } from '../../src/lang/hebrewNumbers';
 
 /**
  * The fixed phrase bank: everything the app can say that does not depend on a
@@ -65,6 +65,11 @@ export function numberPhrases(): Phrase[] {
   }
   out.push({ id: 'num.word.elef', text: 'אלף' });
   out.push({ id: 'num.word.million', text: 'מיליון' });
+  out.push({ id: 'num.word.twoMillion', text: 'שני מיליון' });
+  // Groups after thousands or millions carry the ו ("ארבעת אלפים ושלוש מאות"); see numberParts.
+  for (const g of ['f', 'm'] as const) {
+    for (const text of vavForms(g)) out.push({ id: `num.vav.${g}.${text}`, text });
+  }
   return out;
 }
 
