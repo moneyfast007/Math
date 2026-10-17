@@ -20,12 +20,17 @@ jobs:
         with:
           node-version: 22
       - run: npm install --no-audit --no-fund
-      - run: npx prettier --write .
+      - name: Format
+        run: |
+          mkdir -p .ci
+          # A file Prettier can't parse is reported, not fatal: the report says which.
+          npx prettier --write . > .ci/prettier.txt 2>&1 || { echo "PRETTIER FAILED"; grep -iE "error|\[error\]" .ci/prettier.txt | head -20; } >> .ci/prettier-errors.txt
       - name: Run checks and write report
         run: |
           mkdir -p .ci
           {
-            echo "## typecheck"; npm run typecheck 2>&1 || echo "TYPECHECK FAILED"
+            echo "## format"; cat .ci/prettier-errors.txt 2>/dev/null || echo "ok"
+            echo; echo "## typecheck"; npm run typecheck 2>&1 || echo "TYPECHECK FAILED"
             echo; echo "## lint"; npm run lint 2>&1 || echo "LINT FAILED"
             echo; echo "## unit tests"; npm run test 2>&1 || echo "TESTS FAILED"
             echo; echo "## build"; npm run build 2>&1 || echo "BUILD FAILED"
