@@ -14,7 +14,9 @@ import { multIntro } from './topics/multIntro';
 import { multTable } from './topics/multTable';
 import { numbers100 } from './topics/numbers100';
 import { numbers10000 } from './topics/numbers10000';
+import { orderOps } from './topics/orderOps';
 import { perimeterArea } from './topics/perimeterArea';
+import { percentIntro } from './topics/percentIntro';
 import type { Topic } from './types';
 
 /** All topics (worlds), in curriculum order (Ministry of Education, 2006/2024). */
@@ -34,6 +36,8 @@ export const TOPICS: readonly Topic[] = [
   perimeterArea,
   fractionMulDiv,
   decimalOps,
+  percentIntro,
+  orderOps,
 ];
 
 export function topicById(id: string): Topic | undefined {
