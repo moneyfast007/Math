@@ -33,7 +33,7 @@ jobs:
             echo "## format"; cat .ci/prettier-errors.txt 2>/dev/null || echo "ok"
             echo; echo "## typecheck"; npm run typecheck 2>&1 || echo "TYPECHECK FAILED"
             echo; echo "## lint"; npm run lint 2>&1 || echo "LINT FAILED"
-            echo; echo "## unit tests"; npm run test -- --coverage 2>&1 | grep -v "^ *[a-zA-Z0-9_./-]*\.tsx\? *|" || echo "TESTS FAILED"
+            echo; echo "## unit tests"; npm run test 2>&1 || echo "TESTS FAILED"
             echo; echo "## build"; npm run build 2>&1 || echo "BUILD FAILED"
             echo; echo "## audio bank (dry run: what would be generated, and the cost)"
             npm run tts:build -- --dry-run 2>&1 | tail -40 || echo "TTS DRY RUN FAILED"
