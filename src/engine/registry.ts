@@ -4,7 +4,9 @@ import { addSub100 } from './topics/addSub100';
 import { addSub20 } from './topics/addSub20';
 import { bigNumbers } from './topics/bigNumbers';
 import { count10 } from './topics/count10';
+import { decimalOps } from './topics/decimalOps';
 import { decimals } from './topics/decimals';
+import { fractionMulDiv } from './topics/fractionMulDiv';
 import { fractionOps } from './topics/fractionOps';
 import { fractions1 } from './topics/fractions1';
 import { longMulDiv } from './topics/longMulDiv';
@@ -30,6 +32,8 @@ export const TOPICS: readonly Topic[] = [
   fractionOps,
   decimals,
   perimeterArea,
+  fractionMulDiv,
+  decimalOps,
 ];
 
 export function topicById(id: string): Topic | undefined {

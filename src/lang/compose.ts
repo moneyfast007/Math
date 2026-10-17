@@ -56,7 +56,8 @@ function resolve(slot: Slot): Resolved {
  */
 export function decimalParts(x: number): string[] {
   if (x < 0) throw new RangeError('decimalParts: negative numbers are not supported');
-  const [whole = '0', frac = ''] = String(Math.round(x * 1000) / 1000).split('.');
+  // Up to six decimal places; String() of such a number never uses exponent notation.
+  const [whole = '0', frac = ''] = String(Math.round(x * 1e6) / 1e6).split('.');
   const parts = [...numberParts(Number(whole)), 'נקודה'];
   const zeros = /^0*/.exec(frac)?.[0].length ?? 0;
   for (let i = 0; i < zeros; i++) parts.push('אפס');
