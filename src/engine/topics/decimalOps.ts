@@ -11,7 +11,6 @@ import {
   open,
   round,
   say,
-  sayText,
   type Character,
 } from '../build';
 import { pick, randInt } from '../rng';

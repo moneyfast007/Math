@@ -8,7 +8,6 @@ import {
   numpad,
   open,
   say,
-  sayText,
   wordProblem,
 } from '../build';
 import { pick, randInt } from '../rng';

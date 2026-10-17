@@ -1,5 +1,4 @@
 import { t } from '@/i18n';
-import { compose } from '@/lang/compose';
 import {
   arith,
   defineTopic,
@@ -9,8 +8,8 @@ import {
   numpad,
   open,
   say,
-  sayText,
   wordProblem,
+  type Said,
 } from '../build';
 import { pick, randInt } from '../rng';
 import type { Exercise, Rng } from '../types';
@@ -140,7 +139,7 @@ function remainderExercise(
   r: number,
   askRemainder: boolean,
   answer: number,
-  solved: ReturnType<typeof sayText>,
+  solved: Said,
   ex: { a: number; b: number; q: number; r: number },
 ): Exercise {
   return exercise({
