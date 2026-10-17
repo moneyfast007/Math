@@ -120,14 +120,13 @@ function parseTopicStats(value: unknown, where: string): TopicStats {
 function parseStreak(value: unknown): Streak {
   if (value === undefined) return emptyStreak(); // schema 1
   const s = record(value, 'רצף');
-  const lastDay = s['lastDay'];
-  if (lastDay !== null && (typeof lastDay !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(lastDay))) {
-    fail('רצף: תאריך לא חוקי');
+  const raw = s['lastDay'];
+  let lastDay: string | null = null;
+  if (raw !== null) {
+    if (typeof raw !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(raw)) fail('רצף: תאריך לא חוקי');
+    lastDay = raw;
   }
-  return {
-    count: intInRange(s['count'], 0, Number.MAX_SAFE_INTEGER, 'רצף'),
-    lastDay: lastDay as string | null,
-  };
+  return { count: intInRange(s['count'], 0, Number.MAX_SAFE_INTEGER, 'רצף'), lastDay };
 }
 
 function parseProgress(

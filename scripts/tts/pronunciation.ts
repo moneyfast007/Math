@@ -127,8 +127,10 @@ export function vocalizeForTts(text: string): string {
   return tokens
     .map((token) => {
       const { pre, word, post } = parts(token.replace(/[\u0591-\u05c7]/g, ''));
-      const already =
-        token !== pre + word + post ? token.replace(/[^\u05d0-\u05ea\u0591-\u05c7]+$/, '') : null;
+      // Combining marks belong in this class: they are the nikud being kept.
+      // eslint-disable-next-line no-misleading-character-class
+      const trailing = /[^\u05d0-\u05ea\u0591-\u05c7]+$/;
+      const already = token !== pre + word + post ? token.replace(trailing, '') : null;
       const vocalized = already ?? vocalizeWord(word, previous);
       const prefix = pre && vocalized !== word ? conjunction(vocalized) : pre;
       // A sentence boundary resets the context.

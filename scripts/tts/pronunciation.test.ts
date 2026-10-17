@@ -3,7 +3,7 @@ import { vocalizeForTts } from './pronunciation';
 
 describe('vocalizeForTts', () => {
   it('reads the feminine teens as esre', () => {
-    expect(vocalizeForTts('אחת עשרה בובות')).toBe('אחת עֶשְׂרֵה בובות');
+    expect(vocalizeForTts('אחת עשרה בובות')).toBe('אַחַת עֶשְׂרֵה בובות');
     expect(vocalizeForTts('שבע עשרה גולות ועוד שלוש עשרה גולות.')).toBe(
       'שבע עֶשְׂרֵה גֻּלּוֹת ועוד שלוש עֶשְׂרֵה גֻּלּוֹת.',
     );
@@ -20,14 +20,15 @@ describe('vocalizeForTts', () => {
 
   it('leaves number words that read well plain untouched', () => {
     expect(vocalizeForTts('כמה זה שבע כפול שמונה?')).toBe('כמה זה שבע כפול שמונה?');
-    expect(vocalizeForTts('ארבע מאות שלושים ושתיים')).toBe('ארבע מאות שלושים ושתיים');
+    // Round 5: a native speaker's readings of ארבע and שתיים are applied everywhere.
+    expect(vocalizeForTts('ארבע מאות שלושים ושתיים')).toBe('אַרְבַּע מאות שלושים וּשְׁתַּיִם');
     expect(vocalizeForTts('שלושה רבעים')).toBe('שלושה רבעים');
   });
 
   it('vocalizes the listed words and gives a ו prefix its vowel', () => {
     expect(vocalizeForTts('שלושת אלפים וחמש')).toBe('שלושת אֲלָפִים וחמש');
     expect(vocalizeForTts('כמה זה שש ועוד שבע?')).toBe('כמה זה שש ועוד שבע?');
-    expect(vocalizeForTts('עשרים ושש')).toBe('עשרים ושש');
+    expect(vocalizeForTts('עשרים ושש')).toBe('עֶשְׂרִים ושש');
     expect(vocalizeForTts('הם מתחלקים לשש קבוצות שוות.')).toBe(
       'הם מתחלקים לְשֵׁשׁ קבוצות שָׁווֹת.',
     );

@@ -1,8 +1,9 @@
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
-import { layoutStations, pathThrough } from './JourneyScreen';
+import { layoutStations, pathThrough } from './journeyLayout';
 import { Plusi } from '@/ui/Plusi';
-import { Sticker, stickerForWorld } from '@/ui/Sticker';
+import { Sticker } from '@/ui/Sticker';
+import { stickerForWorld } from '@/ui/stickers';
 
 describe('journey map layout', () => {
   it('snakes bottom-up, right-to-left first, inside a 100-wide map', () => {

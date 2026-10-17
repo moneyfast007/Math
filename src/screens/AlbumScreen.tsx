@@ -6,7 +6,8 @@ import { useActiveProfile, useApp } from '@/state/store';
 import { ageBandForGrade, applyAgeBand } from '@/ui/ageBand';
 import { Plusi } from '@/ui/Plusi';
 import { SpeakerButton } from '@/ui/SpeakerButton';
-import { Sticker, stickerForWorld, stickerLabel } from '@/ui/Sticker';
+import { Sticker } from '@/ui/Sticker';
+import { stickerForWorld, stickerLabel } from '@/ui/stickers';
 
 /** One sticker per completed world; the rest are shown as numbered, closed slots. */
 export function AlbumScreen() {

@@ -73,13 +73,15 @@ describe('parseAppData', () => {
   });
 
   it('rejects malformed stations and streaks', () => {
-    const base = {
+    const base: Record<string, unknown> = {
       level: 1,
       attempts: 0,
       correct: 0,
       lastPracticedAt: 0,
       recent: [],
       mistakes: {},
+      completedLevels: [],
+      reviewPassed: false,
     };
     const withTopic = (extra: Record<string, unknown>, streak?: unknown) =>
       parseAppData(
