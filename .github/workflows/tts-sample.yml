@@ -39,8 +39,13 @@ jobs:
         with:
           credentials_json: ${{ secrets.GCP_SA_KEY }}
       - name: Generate samples
-        run: npm run tts:sample -- --voice "${{ inputs.voice }}"
-      - name: Publish to the tts-sample branch
+        id: generate
+        continue-on-error: true
+        run: |
+          set -o pipefail
+          mkdir -p scripts/tts/out-sample
+          npm run tts:sample -- --voice "${{ inputs.voice }}" 2>&1 | tee scripts/tts/out-sample/log.txt
+      - name: Publish to the tts-sample branch (also on failure, with the log)
         run: |
           rm -rf public/tts-sample
           mkdir -p public/tts-sample
@@ -53,3 +58,6 @@ jobs:
           git add public/tts-sample
           git commit -m "TTS sample: voice ${{ inputs.voice }}"
           git push --force origin tts-sample
+      - name: Fail if generation failed
+        if: steps.generate.outcome == 'failure'
+        run: exit 1
