@@ -1,6 +1,7 @@
 import { he } from '../../src/i18n/he';
 import { allSpokenTexts } from '../../src/engine/registry';
 import { numberToWords, vavForms } from '../../src/lang/hebrewNumbers';
+import { spokenLabel } from '../../src/lang/spokenLabel';
 
 /**
  * The fixed phrase bank: everything the app can say that does not depend on a
@@ -33,20 +34,31 @@ const SPOKEN_PREFIXES = [
   'practice.',
 ] as const;
 
-function isSpoken(key: string, text: string): boolean {
-  // Phrases with {placeholders} are assembled at runtime from smaller clips.
-  return SPOKEN_PREFIXES.some((p) => key.startsWith(p)) && !text.includes('{');
+function isSpoken(key: string): boolean {
+  return SPOKEN_PREFIXES.some((p) => key.startsWith(p));
+}
+
+/** The literal pieces of a template, as `compose` will ask for them. */
+function templatePieces(text: string): string[] {
+  return text
+    .split(/\{\w+\}/)
+    .map((p) => p.trim())
+    .filter((p) => p && !/^[\s.,:;!?()"'־-]*$/.test(p));
 }
 
 export function uiPhrases(): Phrase[] {
   const out: Phrase[] = [];
   for (const [key, value] of Object.entries(he)) {
-    const sample = typeof value === 'string' ? value : value.f;
-    if (!isSpoken(key, sample)) continue;
-    if (typeof value === 'string') out.push({ id: `ui.${key}`, text: value });
-    else {
-      out.push({ id: `ui.${key}.f`, text: value.f });
-      if (value.m !== value.f) out.push({ id: `ui.${key}.m`, text: value.m });
+    if (!isSpoken(key)) continue;
+    const forms = typeof value === 'string' ? { f: value } : value.m === value.f ? { f: value.f } : value;
+    for (const [g, raw] of Object.entries(forms)) {
+      const id = typeof value === 'string' ? `ui.${key}` : `ui.${key}.${g}`;
+      if (raw.includes('{')) {
+        // Assembled at runtime (lang/compose): record the pieces between the slots.
+        templatePieces(raw).forEach((text, i) => out.push({ id: `${id}.piece${i}`, text }));
+      } else {
+        out.push({ id, text: spokenLabel(raw) });
+      }
     }
   }
   return out;

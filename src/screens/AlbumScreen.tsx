@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { navigate } from '@/app/router';
 import { stickersEarned, worldsFor } from '@/engine/journey';
 import { t, type TranslationKey } from '@/i18n';
+import { compose } from '@/lang/compose';
 import { useActiveProfile, useApp } from '@/state/store';
 import { ageBandForGrade, applyAgeBand } from '@/ui/ageBand';
 import { Plusi } from '@/ui/Plusi';
@@ -29,6 +30,11 @@ export function AlbumScreen() {
       : earned === total
         ? t('album.count.all')
         : t('album.count', { params: { earned, total } });
+  // Read aloud with the numbers as words, assembled from clips (the screen keeps digits).
+  const spoken =
+    earned > 0 && earned < total
+      ? compose(t('album.count'), { earned: { n: earned, gender: 'f' }, total: { n: total, gender: 'f' } })
+      : { text: line, parts: [line] };
 
   return (
     <main className="screen album" data-screen="album">
@@ -49,7 +55,7 @@ export function AlbumScreen() {
       <section className="card album__status">
         <Plusi mood={earned > 0 ? 'cheering' : 'happy'} size={56} decorative />
         <p className="album__line">{line}</p>
-        <SpeakerButton text={line} />
+        <SpeakerButton text={spoken.text} parts={spoken.parts} />
       </section>
 
       <ul className="album__grid" aria-label={t('journey.album')}>

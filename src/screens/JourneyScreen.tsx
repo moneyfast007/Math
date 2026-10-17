@@ -3,6 +3,7 @@ import { navigate } from '@/app/router';
 import { activeWorld, nextStop, type World, type WorldStation } from '@/engine/journey';
 import { makeT, t, type TranslationKey } from '@/i18n';
 import { gradeLabel } from '@/i18n/labels';
+import { spokenLabel } from '@/lang/spokenLabel';
 import type { Profile } from '@/state/schema';
 import { useActiveProfile, useApp } from '@/state/store';
 import { currentStreak } from '@/state/streak';
@@ -117,7 +118,7 @@ function Journey({ profile }: { profile: Profile }) {
             <span className="station__eyebrow">{t('child.nextStation')}</span>
             <h2 id="station-title">{stopName}</h2>
           </div>
-          <SpeakerButton text={stopName} />
+          <SpeakerButton text={spokenLabel(stopName)} />
         </div>
         <button type="button" className="btn btn--hero journey__start" onClick={start}>
           {startLabel}
