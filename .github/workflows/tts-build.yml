@@ -1,0 +1,56 @@
+# Generates the app's full audio bank into public/audio/ and commits it to main.
+# Manual only. Idempotent: only clips whose text changed are regenerated.
+name: TTS build
+
+on:
+  workflow_dispatch:
+    inputs:
+      engine:
+        description: 'wavenet | chirp3-hd | gemini-flash'
+        required: true
+        default: 'wavenet'
+      voice:
+        description: 'Voice name (he-IL-Wavenet-A for wavenet; Leda etc. for Chirp/Gemini)'
+        required: true
+        default: 'he-IL-Wavenet-A'
+      dry_run:
+        description: 'Only report what would be generated'
+        required: false
+        default: 'false'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: tts-build
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      GOOGLE_CLOUD_PROJECT: ${{ secrets.GOOGLE_CLOUD_PROJECT }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm ci
+      - uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+      - name: Generate
+        run: |
+          DRY="${{ inputs.dry_run }}"
+          npm run tts:build -- --engine "${{ inputs.engine }}" --voice "${{ inputs.voice }}" ${DRY:+$([ "$DRY" = "true" ] && echo --dry-run)}
+      - name: Commit the audio bank
+        if: inputs.dry_run != 'true'
+        run: |
+          rm -f gha-creds-*.json
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/audio
+          if git diff --cached --quiet; then echo "nothing new"; exit 0; fi
+          git commit -m "audio: ${{ inputs.engine }} / ${{ inputs.voice }}"
+          git pull --rebase origin main
+          git push origin HEAD:main

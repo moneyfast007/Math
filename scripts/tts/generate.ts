@@ -44,8 +44,9 @@ interface Manifest {
 
 const { values } = parseArgs({
   options: {
-    engine: { type: 'string', default: 'gemini-flash' },
-    voice: { type: 'string', default: 'Leda' },
+    // Chosen after five listening rounds: WaveNet A read every number word correctly, plain text, no nikud.
+    engine: { type: 'string', default: 'wavenet' },
+    voice: { type: 'string', default: 'he-IL-Wavenet-A' },
     'dry-run': { type: 'boolean', default: false },
     concurrency: { type: 'string', default: '4' },
   },
@@ -54,7 +55,7 @@ const { values } = parseArgs({
 const spec: VoiceSpec = {
   engine: values.engine as Engine,
   voice: values.voice,
-  prompt: DEFAULT_PROMPT,
+  ...(values.engine.startsWith('gemini') ? { prompt: DEFAULT_PROMPT } : {}),
 };
 
 async function main(): Promise<void> {
@@ -96,7 +97,9 @@ async function main(): Promise<void> {
   await mapLimit(missing, Number(values.concurrency), async (p) => {
     const id = clipIdNode(p.text);
     // Ambiguous words get nikud on the way to the engine; the file is still named by the plain text.
-    const mp3 = await synthesize(vocalizeForTts(p.text), spec);
+    // Nikud hints are only for Chirp; the classic engine reads plain text correctly.
+    const text = spec.engine === 'chirp3-hd' ? vocalizeForTts(p.text) : p.text;
+    const mp3 = await synthesize(text, spec);
     await writeFile(path.join(OUT_DIR, `${id}.mp3`), mp3);
     manifest.clips[id] = p.text;
     done++;
