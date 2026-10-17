@@ -230,3 +230,351 @@ ol.steps {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* ---------- Phase 2 components ---------- */
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: default;
+  transform: none;
+}
+
+/* Destructive parent actions. Muted, not alarm red: it is a parent screen, and
+   red is reserved for nothing in this app. */
+.btn--danger {
+  background: #9c4a3c;
+}
+
+.btn--danger:active {
+  background: #7d3a2f;
+}
+
+.btn--small {
+  min-height: 44px;
+  padding: 0 var(--space-3);
+  font-size: var(--text-sm);
+}
+
+/* Long press: a fill sweeps from the start edge while the button is held. */
+.long-press {
+  position: relative;
+  overflow: hidden;
+  -webkit-touch-callout: none;
+}
+
+.long-press::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--color-accent-soft);
+  transform: scaleX(0);
+  transform-origin: right center;
+  transition: transform 120ms var(--ease);
+}
+
+.long-press[data-pressing='true']::after {
+  transform: scaleX(1);
+  transition: transform var(--press-ms, 1500ms) linear;
+}
+
+.long-press__label {
+  position: relative;
+  z-index: 1;
+}
+
+/* Number pad */
+.numpad {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(var(--tap-min), 1fr));
+  gap: var(--space-2);
+  max-width: calc(var(--tap-min) * 3 + var(--space-2) * 2 + 120px);
+  width: 100%;
+  margin-inline: auto;
+}
+
+.numpad__key {
+  min-height: calc(var(--tap-min) + 8px);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+  font-family: var(--font-math);
+  font-size: var(--text-lg);
+  font-weight: 700;
+  transition: transform var(--dur-fast) var(--ease);
+}
+
+.numpad__key:active:not(:disabled) {
+  transform: scale(0.95);
+  background: var(--color-accent-soft);
+}
+
+.numpad__key--muted {
+  background: var(--color-surface-alt);
+  color: var(--color-text-muted);
+}
+
+.numpad__key--submit {
+  background: var(--color-accent);
+  color: var(--color-text-on-accent);
+}
+
+.numpad__key:disabled {
+  opacity: 0.4;
+}
+
+/* Dialog */
+.dialog-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-3);
+  background: rgb(58 47 42 / 35%);
+}
+
+.dialog {
+  width: min(560px, 100%);
+  max-height: calc(100dvh - 2 * var(--space-3));
+  overflow: auto;
+  background: var(--color-bg);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.dialog:focus {
+  outline: none;
+}
+
+.dialog__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.dialog__close {
+  padding: 0;
+  font-size: var(--text-md);
+}
+
+.dialog__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: var(--space-2);
+}
+
+/* Parent gate */
+.gate__question {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.gate__value {
+  display: block;
+  min-height: 1.4em;
+  text-align: center;
+  font-family: var(--font-math);
+  font-size: var(--text-xl);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.gate__error {
+  min-height: 1.45em;
+  text-align: center;
+  color: var(--color-almost);
+  font-weight: 600;
+}
+
+/* Avatars (system emoji) */
+.avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.avatar--sm {
+  font-size: 32px;
+}
+
+.avatar--md {
+  font-size: 48px;
+}
+
+.avatar--lg {
+  font-size: 96px;
+}
+
+/* Home: profile picker */
+.profiles {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: var(--space-3);
+}
+
+.profile-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: 200px;
+  padding: var(--space-3);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+  font-size: var(--text-lg);
+  font-weight: 800;
+  transition: transform var(--dur-fast) var(--ease);
+}
+
+.profile-card:active {
+  transform: scale(0.97);
+}
+
+.parent-entry {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+/* Parent area */
+.child-row {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+}
+
+.child-row + .child-row {
+  border-top: 1px solid var(--color-border);
+  padding-top: var(--space-3);
+}
+
+.child-row__main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.child-row__name {
+  font-weight: 800;
+  font-size: var(--text-md);
+}
+
+.notice {
+  border-radius: var(--radius-md);
+  padding: var(--space-2) var(--space-3);
+  background: var(--color-almost-soft);
+}
+
+.notice--ok {
+  background: var(--color-success-soft);
+}
+
+/* Forms */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+
+.field > legend,
+.field > label {
+  font-weight: 700;
+  padding: 0;
+  margin-bottom: var(--space-1);
+}
+
+.text-input {
+  min-height: var(--tap-min);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 0 var(--space-3);
+  font: inherit;
+  background: var(--color-surface);
+  color: var(--color-text);
+}
+
+.text-input:focus {
+  outline: none;
+  border-color: var(--color-accent);
+}
+
+.choices {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+}
+
+.choice {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+  min-height: var(--tap-min);
+  min-width: var(--tap-min);
+  padding: 0 var(--space-3);
+  border-radius: var(--radius-pill);
+  border: 2px solid var(--color-border);
+  background: var(--color-surface);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.choice--avatar {
+  padding: 0;
+  border-radius: var(--radius-md);
+}
+
+.choice:has(input:checked) {
+  border-color: var(--color-accent);
+  background: var(--color-accent-soft);
+  color: var(--color-accent-strong);
+}
+
+.choice:has(input:focus-visible) {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+.choice input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+}
+
+.toggle {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: var(--tap-min);
+  font-weight: 600;
+}
+
+.toggle input {
+  width: 28px;
+  height: 28px;
+  accent-color: var(--color-accent);
+}
+
+.form-error {
+  color: #9c4a3c;
+  font-weight: 600;
+}

@@ -2,20 +2,25 @@ import { useEffect, useState } from 'react';
 
 /**
  * A deliberately tiny client-side router. The app has a handful of screens and
- * no deep links worth a routing library. Routes are plain paths so Cloudflare's
- * `/* → index.html` rewrite serves them.
+ * no deep links worth a routing library. Routes are plain paths; the hosting
+ * serves index.html for any unknown path (wrangler.json: single-page-application).
  */
-export type Route = { name: 'home' } | { name: 'install' } | { name: 'playground' };
+export type RouteName = 'home' | 'play' | 'parents' | 'install' | 'playground';
+export type Route = { name: RouteName };
 
-const PATHS: Record<Route['name'], string> = {
+const PATHS: Record<RouteName, string> = {
   home: '/',
+  play: '/play',
+  parents: '/parents',
   install: '/install',
   playground: '/playground',
 };
 
+export const ROUTE_NAMES = Object.keys(PATHS) as RouteName[];
+
 export function routeFromPath(pathname: string): Route {
   const clean = pathname.replace(/\/+$/, '') || '/';
-  const entry = (Object.entries(PATHS) as [Route['name'], string][]).find(([, p]) => p === clean);
+  const entry = (Object.entries(PATHS) as [RouteName, string][]).find(([, p]) => p === clean);
   return entry ? { name: entry[0] } : { name: 'home' };
 }
 
@@ -23,8 +28,10 @@ export function pathForRoute(route: Route): string {
   return PATHS[route.name];
 }
 
-export function navigate(route: Route): void {
-  window.history.pushState(null, '', pathForRoute(route));
+export function navigate(route: Route, options: { replace?: boolean } = {}): void {
+  const path = pathForRoute(route);
+  if (options.replace) window.history.replaceState(null, '', path);
+  else window.history.pushState(null, '', path);
   window.dispatchEvent(new PopStateEvent('popstate'));
 }
 

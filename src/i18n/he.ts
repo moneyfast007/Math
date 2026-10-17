@@ -16,10 +16,19 @@ export const he = {
   'app.tagline': 'תרגול חשבון, מגן חובה ועד כיתה ו׳',
 
   // Home
-  'home.whoIsPlaying': 'מי משחקת היום?',
-  'home.addProfile': 'הוספת ילד או ילדה',
-  'home.noProfilesYet': 'עדיין אין פרופילים. הורים, לחצו כאן כדי להתחיל.',
+  // Gendered by the profiles on the device: feminine only if every profile is feminine.
+  'home.whoIsPlaying': { f: 'מי משחקת היום?', m: 'מי משחק היום?' },
   'home.parents': 'הורים',
+  'home.parentsHoldHint': 'לחיצה ארוכה',
+  'home.firstRun.title': 'ברוכים הבאים!',
+  'home.firstRun.body': 'כדי להתחיל, הורה יוצר פרופיל לכל ילד או ילדה. זה לוקח דקה.',
+  'home.firstRun.cta': 'יצירת פרופיל ראשון',
+
+  // Child home (the exercise engine replaces the placeholder in phase 3)
+  'child.hello': 'שלום {name}!',
+  'child.ready': { f: 'מוכנה לשחק?', m: 'מוכן לשחק?' },
+  'child.comingSoon': 'המשחקים יגיעו ממש בקרוב.',
+  'child.switch': 'מי משחק?',
 
   // Generic actions
   'action.back': 'חזרה',
@@ -31,6 +40,126 @@ export const he = {
   'action.listenSlow': 'הקראה איטית',
   'action.stop': 'עצירה',
   'action.close': 'סגירה',
+  'action.confirm': 'אישור',
+  'action.cancel': 'ביטול',
+  'action.backspace': 'מחיקת ספרה',
+
+  // Parent gate
+  'gate.title': 'כניסת הורים',
+  'gate.explain': 'האזור הזה מיועד להורים.',
+  'gate.question': 'כמה זה?',
+  'gate.pinPrompt': 'הקלידו את קוד ההורים',
+  'gate.wrong': 'לא נכון. נסו שוב.',
+
+  // Parent area
+  'parent.title': 'אזור הורים',
+  'parent.exit': 'יציאה',
+  'parent.children': 'הילדים',
+  'parent.addChild': 'הוספת ילד או ילדה',
+  'parent.edit': 'עריכה',
+  'parent.limitReached': 'אפשר עד {max} פרופילים.',
+  'parent.noPracticeYet': { f: 'עדיין לא תרגלה.', m: 'עדיין לא תרגל.' },
+  'parent.topicsPracticedOne': { f: 'תרגלה נושא אחד', m: 'תרגל נושא אחד' },
+  'parent.topicsPracticed': { f: 'תרגלה {count} נושאים', m: 'תרגל {count} נושאים' },
+  'parent.attempts': '{count} תרגילים',
+  'parent.successRate': 'הצלחה: {percent}',
+  'parent.lastPracticed': 'תרגול אחרון: {date}',
+  'parent.struggling': 'נושאים לחיזוק:',
+  'parent.strong': 'נושאים חזקים:',
+  'parent.commonMistakes': 'טעויות נפוצות:',
+
+  'parent.backup.title': 'גיבוי',
+  'parent.backup.body':
+    'ההתקדמות נשמרת רק במכשיר הזה. כדאי לשמור גיבוי מדי פעם, ובוודאי לפני החלפת מכשיר.',
+  'parent.backup.export': 'שמירת גיבוי',
+  'parent.backup.import': 'שחזור מגיבוי',
+  'parent.backup.last': 'גיבוי אחרון: {date}',
+  'parent.backup.never': 'עדיין לא נשמר גיבוי.',
+  'parent.backup.stale': 'עברו יותר משבועיים מהגיבוי האחרון.',
+  'parent.backup.exported': 'הגיבוי נשמר.',
+  'parent.backup.confirmTitle': 'לשחזר מהגיבוי?',
+  'parent.backup.confirmBody':
+    'הנתונים שבמכשיר יוחלפו בנתונים מהקובץ ({count} פרופילים). אי אפשר לבטל את הפעולה.',
+  'parent.backup.confirm': 'שחזור',
+  'parent.backup.imported': 'השחזור הושלם.',
+  'parent.backup.importError': 'לא הצלחנו לקרוא את הקובץ: {reason}',
+
+  'parent.security.title': 'נעילת אזור ההורים',
+  'parent.security.noPin':
+    'כרגע הכניסה היא לחיצה ארוכה ותרגיל כפל. ילדה בכיתה ד׳ יכולה לפתור אותו, ולכן קוד בן 4 ספרות בטוח יותר.',
+  'parent.security.hasPin': 'מוגדר קוד הורים.',
+  'parent.security.setPin': 'הגדרת קוד',
+  'parent.security.changePin': 'שינוי קוד',
+  'parent.security.removePin': 'ביטול הקוד',
+  'parent.security.newPin': 'בחרו קוד בן 4 ספרות',
+  'parent.security.repeatPin': 'הקלידו את הקוד שוב',
+  'parent.security.mismatch': 'הקודים לא תואמים. נתחיל מחדש.',
+  'parent.security.saved': 'הקוד נשמר.',
+
+  'parent.device.title': 'המכשיר',
+  'parent.device.installed': 'האתר מותקן על מסך הבית.',
+  'parent.device.notInstalled': 'האתר לא מותקן על מסך הבית.',
+  'parent.device.persisted': 'הדפדפן התחייב לשמור את הנתונים.',
+  'parent.device.notPersisted': 'הדפדפן עלול למחוק את הנתונים אם האתר לא ייפתח זמן רב.',
+  'parent.device.unavailable':
+    'אין גישה לאחסון במכשיר (אולי גלישה פרטית). הנתונים יימחקו כשהדפדפן ייסגר.',
+  'parent.device.writeFailed': 'שמירת הנתונים נכשלה. מומלץ לשמור גיבוי עכשיו.',
+  'parent.device.recovered':
+    'הנתונים שבמכשיר היו פגומים, ולכן התחלנו מחדש. עותק שלהם נשמר בצד. אם יש לכם גיבוי, שחזרו ממנו.',
+  'parent.device.installGuide': 'איך מוסיפים למסך הבית',
+  'parent.device.playground': 'בדיקת תצוגה',
+
+  // Profile form
+  'profile.newTitle': 'פרופיל חדש',
+  'profile.editTitle': 'עריכת פרופיל',
+  'profile.name': 'שם',
+  'profile.namePlaceholder': 'למשל: נועה',
+  'profile.nameRequired': 'צריך לכתוב שם.',
+  'profile.avatar': 'דמות',
+  'profile.grade': 'כיתה',
+  'profile.gender': 'פנייה',
+  'profile.gender.f': 'בלשון נקבה',
+  'profile.gender.m': 'בלשון זכר',
+  'profile.allowLevelChange': 'מותר לשנות רמת קושי לבד',
+  'profile.save': 'שמירה',
+  'profile.delete': 'מחיקת הפרופיל',
+  'profile.deleteTitle': 'למחוק את הפרופיל של {name}?',
+  'profile.deleteBody': 'כל ההתקדמות של {name} תימחק. אי אפשר לבטל, אלא אם יש גיבוי.',
+  'profile.deleteConfirm': 'מחיקה',
+
+  // Grades
+  'grade.0': 'גן חובה',
+  'grade.1': 'כיתה א׳',
+  'grade.2': 'כיתה ב׳',
+  'grade.3': 'כיתה ג׳',
+  'grade.4': 'כיתה ד׳',
+  'grade.5': 'כיתה ה׳',
+  'grade.6': 'כיתה ו׳',
+
+  // Avatars (screen-reader names)
+  'avatar.fox': 'שועל',
+  'avatar.panda': 'פנדה',
+  'avatar.koala': 'קואלה',
+  'avatar.lion': 'אריה',
+  'avatar.tiger': 'נמר',
+  'avatar.frog': 'צפרדע',
+  'avatar.monkey': 'קוף',
+  'avatar.unicorn': 'חד קרן',
+  'avatar.octopus': 'תמנון',
+  'avatar.turtle': 'צב',
+  'avatar.rabbit': 'ארנב',
+  'avatar.cat': 'חתול',
+
+  // Mistake kinds, as parents read them
+  'mistake.wrongOperation': 'פעולה לא נכונה (למשל חיבור במקום חיסור)',
+  'mistake.offByOne': 'טעות של אחד',
+  'mistake.digitReversal': 'החלפת סדר הספרות',
+  'mistake.placeValue': 'ערך המקום (אחדות ועשרות)',
+  'mistake.remainder': 'שארית בחילוק',
+  'mistake.other': 'אחר',
+
+  // Topics
+  'topic.addSub20': 'חיבור וחיסור עד 20',
 
   // Feedback (never a red X, never a failure sound)
   'feedback.correct': { f: 'נכון! כל הכבוד', m: 'נכון! כל הכבוד' },

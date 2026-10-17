@@ -14,9 +14,22 @@ export interface Phrase {
   text: string;
 }
 
+/**
+ * Only child-facing UI is spoken. Parent screens, install instructions and
+ * labels are read by adults and are never voiced, so they are not generated.
+ */
+const SPOKEN_PREFIXES = ['action.', 'feedback.', 'child.', 'audio.'] as const;
+
+function isSpoken(key: string, text: string): boolean {
+  // Phrases with {placeholders} are assembled at runtime from smaller clips.
+  return SPOKEN_PREFIXES.some((p) => key.startsWith(p)) && !text.includes('{');
+}
+
 export function uiPhrases(): Phrase[] {
   const out: Phrase[] = [];
   for (const [key, value] of Object.entries(he)) {
+    const sample = typeof value === 'string' ? value : value.f;
+    if (!isSpoken(key, sample)) continue;
     if (typeof value === 'string') out.push({ id: `ui.${key}`, text: value });
     else {
       out.push({ id: `ui.${key}.f`, text: value.f });
