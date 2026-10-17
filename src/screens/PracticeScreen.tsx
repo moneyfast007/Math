@@ -261,7 +261,9 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
         {e.display ? (
           <MathExpr block label={e.spokenText}>
             {before}
-            {hasSlot ? <span className={finished ? 'slot slot--done' : 'slot'}>{slotValue}</span> : null}
+            {hasSlot ? (
+              <span className={finished ? 'slot slot--done' : 'slot'}>{slotValue}</span>
+            ) : null}
             {after}
           </MathExpr>
         ) : null}
@@ -432,7 +434,14 @@ function explanation(s: SessionState, tc: TC): string {
     const op = s.exercise.operation ?? 'add';
     return tc(`explain.wrongOperation.${op}`);
   }
-  if (m === 'offByOne' || m === 'digitReversal' || m === 'placeValue' || m === 'carry' || m === 'offByTen' || m === 'remainder') {
+  if (
+    m === 'offByOne' ||
+    m === 'digitReversal' ||
+    m === 'placeValue' ||
+    m === 'carry' ||
+    m === 'offByTen' ||
+    m === 'remainder'
+  ) {
     return tc(`explain.${m}`);
   }
   // Other kinds have no specific advice yet: a gentle, general nudge.

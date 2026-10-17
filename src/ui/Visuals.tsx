@@ -128,14 +128,19 @@ function Fraction({ v }: { v: Extract<Visual, { type: 'fraction' }> }) {
       const a0 = (i / v.parts) * 2 * Math.PI - Math.PI / 2;
       const a1 = ((i + 1) / v.parts) * 2 * Math.PI - Math.PI / 2;
       const large = v.parts === 1 ? 1 : 0;
-      if (v.parts === 1) return `M ${cx} ${cy} m -${r} 0 a ${r} ${r} 0 1 0 ${r * 2} 0 a ${r} ${r} 0 1 0 -${r * 2} 0`;
+      if (v.parts === 1)
+        return `M ${cx} ${cy} m -${r} 0 a ${r} ${r} 0 1 0 ${r * 2} 0 a ${r} ${r} 0 1 0 -${r * 2} 0`;
       return `M ${cx} ${cy} L ${cx + r * Math.cos(a0)} ${cy + r * Math.sin(a0)} A ${r} ${r} 0 ${large} 1 ${cx + r * Math.cos(a1)} ${cy + r * Math.sin(a1)} Z`;
     });
     return (
       <div className="fraction fraction--circle" dir="ltr" data-visual="fraction">
         <svg viewBox="0 0 100 100" role="img" aria-hidden="true">
           {slices.map((d, i) => (
-            <path key={i} d={d} className={i < v.shaded ? 'frac-cell frac-cell--on' : 'frac-cell'} />
+            <path
+              key={i}
+              d={d}
+              className={i < v.shaded ? 'frac-cell frac-cell--on' : 'frac-cell'}
+            />
           ))}
         </svg>
       </div>
@@ -178,7 +183,13 @@ function Rect({ v }: { v: Extract<Visual, { type: 'rect' }> }) {
         <text x={40 + w / 2} y={h + 50} textAnchor="middle" className="rect__label">
           {v.width} {unit}
         </text>
-        <text x={w + 56} y={20 + h / 2} textAnchor="start" dominantBaseline="middle" className="rect__label">
+        <text
+          x={w + 56}
+          y={20 + h / 2}
+          textAnchor="start"
+          dominantBaseline="middle"
+          className="rect__label"
+        >
           {v.height} {unit}
         </text>
       </svg>
@@ -188,7 +199,15 @@ function Rect({ v }: { v: Extract<Visual, { type: 'rect' }> }) {
 
 function PlaceValue({ v }: { v: Extract<Visual, { type: 'placeValue' }> }) {
   const digits = String(v.n).split('').map(Number);
-  const names = [t('place.units'), t('place.tens'), t('place.hundreds'), t('place.thousands'), t('place.tenThousands'), t('place.hundredThousands'), t('place.millions')];
+  const names = [
+    t('place.units'),
+    t('place.tens'),
+    t('place.hundreds'),
+    t('place.thousands'),
+    t('place.tenThousands'),
+    t('place.hundredThousands'),
+    t('place.millions'),
+  ];
   return (
     <div className="place-value" dir="ltr" data-visual="placeValue" aria-hidden="true">
       {digits.map((d, i) => {

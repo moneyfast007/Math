@@ -50,13 +50,16 @@ describe.each(TOPICS.map((t) => [t.id, t] as const))('topic %s', (_id, topic) =>
         expect(new Set(e.input.choices).size).toBe(e.input.choices.length);
         if (e.input.labels) expect(e.input.labels).toHaveLength(e.input.choices.length);
       } else {
-        expect(String(Math.floor(e.answer)).length, e.factId).toBeLessThanOrEqual(e.input.maxDigits);
+        expect(String(Math.floor(e.answer)).length, e.factId).toBeLessThanOrEqual(
+          e.input.maxDigits,
+        );
       }
       // A right answer is never diagnosed as a mistake.
       expect(e.diagnose(e.answer), e.factId).toBeNull();
       // The worked example is not the exercise itself.
       const example = e.hints[2].example;
-      if (example && e.display) expect(example.display, e.factId).not.toBe(e.display.replace('?', String(e.answer)));
+      if (example && e.display)
+        expect(example.display, e.factId).not.toBe(e.display.replace('?', String(e.answer)));
     }
   });
 

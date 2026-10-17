@@ -89,7 +89,11 @@ export function NumberPad({
       {onSubmit ? (
         <button
           type="button"
-          className={decimal ? 'numpad__key numpad__key--submit numpad__key--wide' : 'numpad__key numpad__key--submit'}
+          className={
+            decimal
+              ? 'numpad__key numpad__key--submit numpad__key--wide'
+              : 'numpad__key numpad__key--submit'
+          }
           onClick={onSubmit}
           disabled={disabled}
           aria-label={t('action.confirm')}

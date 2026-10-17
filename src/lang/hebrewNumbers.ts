@@ -218,6 +218,7 @@ export function vavForms(gender: Gender): string[] {
   for (let n = 1; n <= 999; n++) {
     if (groupsUnderThousand(n, gender).length === 1) out.push(`ו${numberToWords(n, gender)}`);
   }
-  if (gender === 'm') for (let k = 1; k <= 10; k++) out.push(`ו${THOUSANDS_CONSTRUCT[k] as string}`);
+  if (gender === 'm')
+    for (let k = 1; k <= 10; k++) out.push(`ו${THOUSANDS_CONSTRUCT[k] as string}`);
   return out;
 }

@@ -20,7 +20,11 @@ import type { Exercise, Hint, LevelInfo, Rng, Topic, Visual } from './types';
 export type Said = Spoken;
 
 /** A sentence from a template key, with the child's or a character's gender. */
-export function say(key: TranslationKey, slots: Readonly<Record<string, Slot>> = {}, gender: Gender = 'f'): Said {
+export function say(
+  key: TranslationKey,
+  slots: Readonly<Record<string, Slot>> = {},
+  gender: Gender = 'f',
+): Said {
   return compose(t(key, { gender }), slots);
 }
 
@@ -60,12 +64,23 @@ export function opChar(op: Op): string {
 }
 
 /** "3 + 5 = ?", "? + 5 = 8", "3 + ? = 8". */
-export function displayEquation(a: number | string, op: Op, b: number | string, c: number | string): string {
+export function displayEquation(
+  a: number | string,
+  op: Op,
+  b: number | string,
+  c: number | string,
+): string {
   return `${a} ${opChar(op)} ${b} = ${c}`;
 }
 
 /** The spoken question for an equation with one unknown. */
-export function spokenEquationQuestion(a: number, op: Op, b: number, c: number, missing: 'a' | 'b' | 'c'): Said {
+export function spokenEquationQuestion(
+  a: number,
+  op: Op,
+  b: number,
+  c: number,
+  missing: 'a' | 'b' | 'c',
+): Said {
   const w = OP_WORD[op];
   if (missing === 'c') return sayText(`כמה זה {a} ${w} {b}?`, { a, b });
   if (missing === 'b') return sayText(`{a} ${w} כמה זה {c}?`, { a, c });
@@ -80,7 +95,13 @@ export function spokenEquationSolved(a: number, op: Op, b: number, c: number): S
 /* ---------- Answers and choices ---------- */
 
 /** Three or four choices around the answer, distinct, within [min, max], sorted. */
-export function choicesAround(rng: Rng, answer: number, min: number, max: number, count = 3): number[] {
+export function choicesAround(
+  rng: Rng,
+  answer: number,
+  min: number,
+  max: number,
+  count = 3,
+): number[] {
   const near = [answer - 2, answer - 1, answer + 1, answer + 2, answer + 10, answer - 10].filter(
     (v) => v >= min && v <= max && v !== answer,
   );
@@ -119,7 +140,14 @@ function wrongOperationValue(f: ArithFacts): number | null {
   const missing = f.missing ?? 'c';
   if (missing !== 'c') {
     // 7 + ? = 12 → 19; 15 − ? = 9 → 24: adding what is visible.
-    const c = f.op === '+' ? (missing === 'b' ? f.a + f.answer : f.answer + f.b) : missing === 'b' ? f.a - f.answer : f.answer - f.b;
+    const c =
+      f.op === '+'
+        ? missing === 'b'
+          ? f.a + f.answer
+          : f.answer + f.b
+        : missing === 'b'
+          ? f.a - f.answer
+          : f.answer - f.b;
     const visible = missing === 'b' ? f.a : f.b;
     return f.op === '+' || f.op === '-' ? visible + c : null;
   }
@@ -149,7 +177,8 @@ export function diagnoseArith(value: number, f: ArithFacts): MistakeKind | null 
   }
   if (Math.abs(value - answer) === 10 || Math.abs(value - answer) === 100) return 'offByTen';
   if (reversedDigits(answer) === value) return 'digitReversal';
-  if (answer >= 10 && String(value).length !== String(answer).length && value > 0) return 'placeValue';
+  if (answer >= 10 && String(value).length !== String(answer).length && value > 0)
+    return 'placeValue';
   return null;
 }
 
@@ -193,13 +222,18 @@ export function exercise(p: ExerciseParts): Exercise {
 }
 
 /** A hint from a sentence, optionally with a picture or a worked example. */
-export function hint(said: Said, extra: { visual?: Visual; example?: { display: string; spoken: Said } } = {}): Hint {
+export function hint(
+  said: Said,
+  extra: { visual?: Visual; example?: { display: string; spoken: Said } } = {},
+): Hint {
   return {
     text: said.text,
     spoken: said.text,
     spokenParts: said.parts,
     ...(extra.visual ? { visual: extra.visual } : {}),
-    ...(extra.example ? { example: { display: extra.example.display, spoken: extra.example.spoken.text } } : {}),
+    ...(extra.example
+      ? { example: { display: extra.example.display, spoken: extra.example.spoken.text } }
+      : {}),
   };
 }
 
@@ -262,7 +296,10 @@ export function defineTopic(def: TopicDef): Topic & { enumerate: (level: number)
     }
     const facts = l.facts() as readonly never[];
     const build = l.build;
-    const pool = facts.length > 1 ? facts.filter((f) => build(f, () => 0, gender).factId !== avoidFactId) : facts;
+    const pool =
+      facts.length > 1
+        ? facts.filter((f) => build(f, () => 0, gender).factId !== avoidFactId)
+        : facts;
     return build(pick(rng, pool.length > 0 ? pool : facts), rng, gender);
   };
 
@@ -274,7 +311,10 @@ export function defineTopic(def: TopicDef): Topic & { enumerate: (level: number)
       const rng = seededRng(level * 7919);
       return Array.from({ length: BANK_SAMPLES }, () => l.gen(rng, pick(rng, ['f', 'm'])));
     }
-    return (l.facts() as readonly never[]).flatMap((f) => [l.build(f, fixed, 'f'), l.build(f, fixed, 'm')]);
+    return (l.facts() as readonly never[]).flatMap((f) => [
+      l.build(f, fixed, 'f'),
+      l.build(f, fixed, 'm'),
+    ]);
   };
 
   const spokenBank = (): string[] => {
@@ -283,12 +323,22 @@ export function defineTopic(def: TopicDef): Topic & { enumerate: (level: number)
       const l = levelDef(level);
       const list = enumerate(level);
       // Open levels also contribute a larger sample of their pieces (finite, small).
-      const sampled = 'gen' in l
-        ? [...list, ...Array.from({ length: BANK_SAMPLES * 2 }, (_, i) => l.gen(seededRng(level * 104729 + i), i % 2 ? 'f' : 'm'))]
-        : list;
+      const sampled =
+        'gen' in l
+          ? [
+              ...list,
+              ...Array.from({ length: BANK_SAMPLES * 2 }, (_, i) =>
+                l.gen(seededRng(level * 104729 + i), i % 2 ? 'f' : 'm'),
+              ),
+            ]
+          : list;
       for (const e of sampled) {
         const texts = [e.spokenText, e.solutionSpoken, ...e.hints.map((h) => h.spoken)];
-        const parts = [e.spokenParts ?? [], e.solutionParts ?? [], ...e.hints.map((h) => h.spokenParts ?? [])];
+        const parts = [
+          e.spokenParts ?? [],
+          e.solutionParts ?? [],
+          ...e.hints.map((h) => h.spokenParts ?? []),
+        ];
         if ('gen' in l) {
           for (const p of parts.flat()) out.add(p);
         } else {
@@ -389,7 +439,10 @@ export function arith(o: ArithOptions): Exercise {
     hints: [
       o.hints[0],
       o.hints[1],
-      exampleHint(displayEquation(o.example.a, o.op, o.example.b, exC), spokenEquationSolved(o.example.a, o.op, o.example.b, exC)),
+      exampleHint(
+        displayEquation(o.example.a, o.op, o.example.b, exC),
+        spokenEquationSolved(o.example.a, o.op, o.example.b, exC),
+      ),
     ],
     solution: spokenEquationSolved(o.a, o.op, o.b, c),
     diagnose: (value) => o.diagnose?.(value) ?? diagnoseArith(value, facts),
@@ -397,7 +450,13 @@ export function arith(o: ArithOptions): Exercise {
 }
 
 /** A different pair of the same shape, for the worked example: shifted, kept in range. */
-export function shifted(a: number, b: number, lo: number, hi: number, by = 3): { a: number; b: number } {
+export function shifted(
+  a: number,
+  b: number,
+  lo: number,
+  hi: number,
+  by = 3,
+): { a: number; b: number } {
   const wrap = (n: number) => lo + ((n - lo + by) % (hi - lo + 1));
   return { a: wrap(a), b: wrap(b) };
 }
@@ -475,15 +534,28 @@ export function wordProblem(o: WordProblemOptions): Exercise {
     singular: noun.singular,
   });
   const story = compose(t(storyKey, { gender: who.gender }), slots(o.a, o.b));
-  const c = o.askRemainder ? o.a % o.b : o.op === '÷' ? Math.floor(o.a / o.b) : result(o.a, o.op, o.b);
-  const exC = o.askRemainder ? o.example.a % o.example.b : o.op === '÷' ? Math.floor(o.example.a / o.example.b) : result(o.example.a, o.op, o.example.b);
+  const c = o.askRemainder
+    ? o.a % o.b
+    : o.op === '÷'
+      ? Math.floor(o.a / o.b)
+      : result(o.a, o.op, o.b);
+  const exC = o.askRemainder
+    ? o.example.a % o.example.b
+    : o.op === '÷'
+      ? Math.floor(o.example.a / o.example.b)
+      : result(o.example.a, o.op, o.example.b);
   const eq = (a: number, b: number, r: number | string) =>
     o.askRemainder ? `${a} ÷ ${b} = ${Math.floor(a / b)} (${r})` : displayEquation(a, o.op, b, r);
   const solved = o.askRemainder
     ? sayText('{a} חלקי {b} זה {q}, ונשאר {r}.', { a: o.a, b: o.b, q: Math.floor(o.a / o.b), r: c })
     : spokenEquationSolved(o.a, o.op, o.b, c);
   const exSolved = o.askRemainder
-    ? sayText('{a} חלקי {b} זה {q}, ונשאר {r}.', { a: o.example.a, b: o.example.b, q: Math.floor(o.example.a / o.example.b), r: exC })
+    ? sayText('{a} חלקי {b} זה {q}, ונשאר {r}.', {
+        a: o.example.a,
+        b: o.example.b,
+        q: Math.floor(o.example.a / o.example.b),
+        r: exC,
+      })
     : spokenEquationSolved(o.example.a, o.op, o.example.b, exC);
   const facts: ArithFacts = { a: o.a, op: o.op, b: o.b, answer: c };
   return exercise({

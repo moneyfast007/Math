@@ -44,7 +44,9 @@ function wholeTens(level: number, tens: number, rng: Rng): Exercise {
     input: { type: 'choices', choices: choicesAround(rng, answer, 10, 100) },
     hints: [
       hint(say('ex.tens.hint1')),
-      hint(say('ex.tens.hint2'), { visual: { type: 'numberLine', from: 0, to: 100, start: 0, hops: tens, step: 10 } }),
+      hint(say('ex.tens.hint2'), {
+        visual: { type: 'numberLine', from: 0, to: 100, start: 0, hops: tens, step: 10 },
+      }),
       exampleHint(`${ex} × 10 = ${ex * 10}`, say('ex.tens.solution', { tens: ex, n: ex * 10 })),
     ],
     solution: say('ex.tens.solution', { tens, n: answer }),
@@ -71,10 +73,14 @@ function build(level: number, n: number, rng: Rng): Exercise {
     hints: [
       hint(say('ex.build.hint1', { tens, n: tens * 10 })),
       hint(say('ex.build.hint2')),
-      exampleHint(`${ex.a * 10} + ${ex.b} = ${ex.a * 10 + ex.b}`, say('ex.build.solution', { tens: ex.a, units: ex.b, n: ex.a * 10 + ex.b })),
+      exampleHint(
+        `${ex.a * 10} + ${ex.b} = ${ex.a * 10 + ex.b}`,
+        say('ex.build.solution', { tens: ex.a, units: ex.b, n: ex.a * 10 + ex.b }),
+      ),
     ],
     solution: say('ex.build.solution', { tens, units, n }),
-    diagnose: (v) => (v === tens + units ? 'placeValue' : v === units * 10 + tens ? 'digitReversal' : null),
+    diagnose: (v) =>
+      v === tens + units ? 'placeValue' : v === units * 10 + tens ? 'digitReversal' : null,
   });
 }
 
@@ -98,8 +104,13 @@ function decompose(level: number, n: number, askTens: boolean): Exercise {
     input: numpad(1),
     hints: [
       hint(say('ex.decompose.hint1')),
-      hint(say('ex.decompose.hint2'), { example: { display: splitTensUnits(n), spoken: say('ex.decompose.hint2') } }),
-      exampleHint(splitTensUnits(ex), say('ex.decompose.solution', { n: ex, tens: Math.floor(ex / 10), units: ex % 10 })),
+      hint(say('ex.decompose.hint2'), {
+        example: { display: splitTensUnits(n), spoken: say('ex.decompose.hint2') },
+      }),
+      exampleHint(
+        splitTensUnits(ex),
+        say('ex.decompose.solution', { n: ex, tens: Math.floor(ex / 10), units: ex % 10 }),
+      ),
     ],
     solution: say('ex.decompose.solution', { n, tens, units }),
     diagnose: (v) => (v === (askTens ? units : tens) ? 'placeValue' : null),
@@ -122,7 +133,12 @@ function compare(level: number, a: number, b: number): Exercise {
     input: labelledChoices([String(a), String(b)]),
     hints: [
       hint(say('ex.compare100.hint1')),
-      hint(say('ex.compare100.hint2'), { example: { display: `${splitTensUnits(a)}   ${splitTensUnits(b)}`, spoken: say('ex.compare100.hint2') } }),
+      hint(say('ex.compare100.hint2'), {
+        example: {
+          display: `${splitTensUnits(a)}   ${splitTensUnits(b)}`,
+          spoken: say('ex.compare100.hint2'),
+        },
+      }),
       exampleHint('63 > 47', say('ex.bigger.solution', { w: 63, l: 47 })),
     ],
     solution: say('ex.bigger.solution', { w: big, l: small }),
@@ -132,7 +148,14 @@ function compare(level: number, a: number, b: number): Exercise {
 /** The number before/after, or ten more/less. */
 function neighbour(level: number, n: number, delta: 1 | -1 | 10 | -10): Exercise {
   const answer = n + delta;
-  const key = delta === 1 ? 'ex.after' : delta === -1 ? 'ex.before' : delta === 10 ? 'ex.tenMore' : 'ex.tenLess';
+  const key =
+    delta === 1
+      ? 'ex.after'
+      : delta === -1
+        ? 'ex.before'
+        : delta === 10
+          ? 'ex.tenMore'
+          : 'ex.tenLess';
   const prompt = t(`${key}.prompt` as 'ex.after.prompt', { params: { n } });
   const spoken = say(`${key}.spoken` as 'ex.after.spoken', { n });
   const ex = n + 23 <= 89 ? n + 23 : n - 23;
@@ -148,9 +171,19 @@ function neighbour(level: number, n: number, delta: 1 | -1 | 10 | -10): Exercise
     hints: [
       hint(say(`${key}.hint1` as 'ex.after.hint1')),
       hint(say('hint.numberLine'), {
-        visual: { type: 'numberLine', from: Math.max(0, Math.floor(n / 10) * 10 - 10), to: Math.min(100, Math.floor(n / 10) * 10 + 20), start: n, hops: Math.abs(delta) === 10 ? 0 : delta, ...(Math.abs(delta) === 10 ? { target: answer } : {}) },
+        visual: {
+          type: 'numberLine',
+          from: Math.max(0, Math.floor(n / 10) * 10 - 10),
+          to: Math.min(100, Math.floor(n / 10) * 10 + 20),
+          start: n,
+          hops: Math.abs(delta) === 10 ? 0 : delta,
+          ...(Math.abs(delta) === 10 ? { target: answer } : {}),
+        },
       }),
-      exampleHint(`${ex} → ${ex + delta}`, say(`${key}.solution` as 'ex.after.solution', { n: ex, c: ex + delta })),
+      exampleHint(
+        `${ex} → ${ex + delta}`,
+        say(`${key}.solution` as 'ex.after.solution', { n: ex, c: ex + delta }),
+      ),
     ],
     solution: say(`${key}.solution` as 'ex.after.solution', { n, c: answer }),
     diagnose: (v) => (Math.abs(v - answer) === 10 ? 'offByTen' : null),
@@ -199,7 +232,16 @@ function skip(level: number, step: 2 | 5 | 10, start: number, count: number, rng
     input: { type: 'choices', choices: choicesAround(rng, answer, 0, 100, 4) },
     hints: [
       hint(say('ex.skip.hint1', { step })),
-      hint(say('hint.numberLine'), { visual: { type: 'numberLine', from: Math.max(0, start - step), to: Math.min(100, answer + step), start: seq.at(-1) ?? start, hops: 1, step } }),
+      hint(say('hint.numberLine'), {
+        visual: {
+          type: 'numberLine',
+          from: Math.max(0, start - step),
+          to: Math.min(100, answer + step),
+          start: seq.at(-1) ?? start,
+          hops: 1,
+          step,
+        },
+      }),
       exampleHint(`5, 10, 15, 20`, say('ex.skip.solution', { last: 15, step, next: 20 })),
     ],
     solution: say('ex.skip.solution', { last: seq.at(-1) ?? start, step, next: answer }),
@@ -208,7 +250,9 @@ function skip(level: number, step: 2 | 5 | 10, start: number, count: number, rng
 
 const tensHints = (): [Hint, Hint] => [
   hint(say('ex.tensAdd.hint1')),
-  hint(say('hint.numberLine'), { visual: { type: 'numberLine', from: 0, to: 100, start: 0, hops: 0, step: 10 } }),
+  hint(say('hint.numberLine'), {
+    visual: { type: 'numberLine', from: 0, to: 100, start: 0, hops: 0, step: 10 },
+  }),
 ];
 
 export const numbers100 = defineTopic({
@@ -217,18 +261,75 @@ export const numbers100 = defineTopic({
   grades: [1],
   startLevel: () => 1,
   levels: [
-    closed(L(1), () => range(1, 10), (tens, rng) => wholeTens(1, tens, rng)),
-    closed(L(2), () => range(11, 99).filter((n) => n % 10 !== 0), (n, rng) => build(2, n, rng)),
-    closed(L(3), () => range(11, 99).filter((n) => n % 10 !== 0).flatMap((n) => [{ n, tens: true }, { n, tens: false }]), (f) => decompose(3, f.n, f.tens)),
-    closed(L(4), () => range(10, 99).flatMap((a) => [a + 1, a + 9, a + 10, a + 11, a - 1, a - 9, a - 10].filter((b) => b >= 10 && b <= 99 && b !== a).map((b) => ({ a, b }))), (p) => compare(4, p.a, p.b)),
-    closed(L(5), () => range(10, 98).flatMap((n) => [{ n, d: 1 as const }, { n, d: -1 as const }]), (f) => neighbour(5, f.n, f.d)),
-    closed(L(6), () => range(10, 89).flatMap((n) => [{ n, d: 10 as const }, { n, d: -10 as const }].filter((f) => f.n + f.d >= 0)), (f) => neighbour(6, f.n, f.d)),
-    closed(L(7), () => range(1, 99).filter((n) => n % 10 !== 0 || n % 5 === 0), (n, rng) => marked(7, n, rng)),
+    closed(
+      L(1),
+      () => range(1, 10),
+      (tens, rng) => wholeTens(1, tens, rng),
+    ),
+    closed(
+      L(2),
+      () => range(11, 99).filter((n) => n % 10 !== 0),
+      (n, rng) => build(2, n, rng),
+    ),
+    closed(
+      L(3),
+      () =>
+        range(11, 99)
+          .filter((n) => n % 10 !== 0)
+          .flatMap((n) => [
+            { n, tens: true },
+            { n, tens: false },
+          ]),
+      (f) => decompose(3, f.n, f.tens),
+    ),
+    closed(
+      L(4),
+      () =>
+        range(10, 99).flatMap((a) =>
+          [a + 1, a + 9, a + 10, a + 11, a - 1, a - 9, a - 10]
+            .filter((b) => b >= 10 && b <= 99 && b !== a)
+            .map((b) => ({ a, b })),
+        ),
+      (p) => compare(4, p.a, p.b),
+    ),
+    closed(
+      L(5),
+      () =>
+        range(10, 98).flatMap((n) => [
+          { n, d: 1 as const },
+          { n, d: -1 as const },
+        ]),
+      (f) => neighbour(5, f.n, f.d),
+    ),
+    closed(
+      L(6),
+      () =>
+        range(10, 89).flatMap((n) =>
+          [
+            { n, d: 10 as const },
+            { n, d: -10 as const },
+          ].filter((f) => f.n + f.d >= 0),
+        ),
+      (f) => neighbour(6, f.n, f.d),
+    ),
+    closed(
+      L(7),
+      () => range(1, 99).filter((n) => n % 10 !== 0 || n % 5 === 0),
+      (n, rng) => marked(7, n, rng),
+    ),
     closed(
       L(8),
       () => [
-        ...range(1, 9).flatMap((a) => range(1, 9).filter((b) => a + b <= 10).map((b) => ({ a: a * 10, op: '+' as const, b: b * 10 }))),
-        ...range(2, 10).flatMap((a) => range(1, 9).filter((b) => b < a).map((b) => ({ a: a * 10, op: '-' as const, b: b * 10 }))),
+        ...range(1, 9).flatMap((a) =>
+          range(1, 9)
+            .filter((b) => a + b <= 10)
+            .map((b) => ({ a: a * 10, op: '+' as const, b: b * 10 })),
+        ),
+        ...range(2, 10).flatMap((a) =>
+          range(1, 9)
+            .filter((b) => b < a)
+            .map((b) => ({ a: a * 10, op: '-' as const, b: b * 10 })),
+        ),
       ],
       (f) =>
         arith({
@@ -238,16 +339,27 @@ export const numbers100 = defineTopic({
           op: f.op,
           b: f.b,
           hints: tensHints(),
-          example: f.a === 30 && f.b === 20 ? { a: 40, b: 20 } : f.op === '+' ? { a: 30, b: 20 } : { a: 50, b: 20 },
+          example:
+            f.a === 30 && f.b === 20
+              ? { a: 40, b: 20 }
+              : f.op === '+'
+                ? { a: 30, b: 20 }
+                : { a: 50, b: 20 },
           input: numpad(3),
         }),
     ),
     closed(
       L(9),
       () => [
-        ...range(1, 9).flatMap((tens) => range(1, 9).map((u) => ({ a: tens * 10, op: '+' as const, b: u }))),
-        ...range(1, 9).flatMap((tens) => range(1, 9).map((u) => ({ a: tens * 10 + u, op: '-' as const, b: u }))),
-        ...range(1, 9).flatMap((tens) => range(1, 9).map((u) => ({ a: tens * 10 + u, op: '-' as const, b: tens * 10 }))),
+        ...range(1, 9).flatMap((tens) =>
+          range(1, 9).map((u) => ({ a: tens * 10, op: '+' as const, b: u })),
+        ),
+        ...range(1, 9).flatMap((tens) =>
+          range(1, 9).map((u) => ({ a: tens * 10 + u, op: '-' as const, b: u })),
+        ),
+        ...range(1, 9).flatMap((tens) =>
+          range(1, 9).map((u) => ({ a: tens * 10 + u, op: '-' as const, b: tens * 10 })),
+        ),
       ],
       (f) =>
         arith({
@@ -256,7 +368,15 @@ export const numbers100 = defineTopic({
           a: f.a,
           op: f.op,
           b: f.b,
-          hints: [hint(say('ex.tensUnits.hint1')), hint(say('ex.decompose.hint2'), { example: { display: splitTensUnits(f.op === '+' ? f.a + f.b : f.a), spoken: say('ex.decompose.hint2') } })],
+          hints: [
+            hint(say('ex.tensUnits.hint1')),
+            hint(say('ex.decompose.hint2'), {
+              example: {
+                display: splitTensUnits(f.op === '+' ? f.a + f.b : f.a),
+                spoken: say('ex.decompose.hint2'),
+              },
+            }),
+          ],
           example: f.op === '+' ? { a: 50, b: 3 } : f.b < 10 ? { a: 53, b: 3 } : { a: 53, b: 50 },
           input: numpad(2),
         }),
@@ -264,12 +384,39 @@ export const numbers100 = defineTopic({
     closed(
       L(10),
       () => [
-        ...[10, 5, 2].flatMap((step) => range(0, 4).flatMap((k) => [{ step: step as 2 | 5 | 10, start: step * (k + 1), count: 3 }])),
+        ...[10, 5, 2].flatMap((step) =>
+          range(0, 4).flatMap((k) => [
+            { step: step as 2 | 5 | 10, start: step * (k + 1), count: 3 },
+          ]),
+        ),
         ...range(1, 9).map((tens) => ({ to100: tens * 10 })),
       ],
       (f, rng) =>
         'to100' in f
-          ? arith({ topicId: ID, level: 10, a: f.to100, op: '+', b: 100 - f.to100, missing: 'b', hints: [hint(say('ex.to100.hint1')), hint(say('hint.numberLineGap'), { visual: { type: 'numberLine', from: 0, to: 100, start: f.to100, hops: 0, target: 100, step: 10 } })], example: { a: 30, b: 70 }, input: numpad(3) })
+          ? arith({
+              topicId: ID,
+              level: 10,
+              a: f.to100,
+              op: '+',
+              b: 100 - f.to100,
+              missing: 'b',
+              hints: [
+                hint(say('ex.to100.hint1')),
+                hint(say('hint.numberLineGap'), {
+                  visual: {
+                    type: 'numberLine',
+                    from: 0,
+                    to: 100,
+                    start: f.to100,
+                    hops: 0,
+                    target: 100,
+                    step: 10,
+                  },
+                }),
+              ],
+              example: { a: 30, b: 70 },
+              input: numpad(3),
+            })
           : skip(10, f.step, f.start, f.count, rng),
     ),
   ],

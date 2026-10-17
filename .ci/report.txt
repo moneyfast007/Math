@@ -3,12 +3,33 @@
 > heshbon@0.1.0 typecheck
 > tsc -b
 
+src/engine/topics/numbers100.ts(57,42): error TS6133: 'rng' is declared but its value is never read.
+src/engine/topics/numbers100.ts(57,42): error TS6133: 'rng' is declared but its value is never read.
+TYPECHECK FAILED
 
 ## lint
 
 > heshbon@0.1.0 lint
 > eslint .
 
+
+/home/runner/work/Math/Math/src/engine/build.ts
+  261:36  error  This assertion is unnecessary since the receiver accepts the original type of the expression  @typescript-eslint/no-unnecessary-type-assertion
+
+/home/runner/work/Math/Math/src/engine/topics/count10.ts
+  47:52  error  '_gender' is defined but never used  @typescript-eslint/no-unused-vars
+
+/home/runner/work/Math/Math/src/engine/topics/numbers100.ts
+  57:42  error  'rng' is defined but never used  @typescript-eslint/no-unused-vars
+
+/home/runner/work/Math/Math/src/lang/hebrewNumbers.test.ts
+  191:31  error  This assertion is unnecessary since it does not change the type of the expression  @typescript-eslint/no-unnecessary-type-assertion
+  191:77  error  This assertion is unnecessary since it does not change the type of the expression  @typescript-eslint/no-unnecessary-type-assertion
+
+✖ 5 problems (5 errors, 0 warnings)
+  3 errors and 0 warnings potentially fixable with the `--fix` option.
+
+LINT FAILED
 
 ## unit tests
 
@@ -18,58 +39,283 @@
 
 [1m[46m RUN [49m[22m [36mv3.2.7 [39m[90m/home/runner/work/Math/Math[39m
 
- [32m✓[39m src/state/validate.test.ts [2m([22m[2m19 tests[22m[2m)[22m[32m 7[2mms[22m[39m
- [32m✓[39m src/state/store.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 19[2mms[22m[39m
- [32m✓[39m src/state/progress.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 7[2mms[22m[39m
- [32m✓[39m src/lang/hebrewNumbers.test.ts [2m([22m[2m77 tests[22m[2m)[22m[33m 894[2mms[22m[39m
-   [33m[2m✓[22m[39m numberToWords, properties[2m > [22mis injective on 0–99,999: different numbers never produce the same words [33m 872[2mms[22m[39m
- [32m✓[39m src/engine/topics/addSub20.test.ts [2m([22m[2m14 tests[22m[2m)[22m[33m 346[2mms[22m[39m
- [32m✓[39m src/engine/session.test.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 9[2mms[22m[39m
- [32m✓[39m src/ui/components.test.tsx [2m([22m[2m7 tests[22m[2m)[22m[32m 196[2mms[22m[39m
- [32m✓[39m src/engine/journey.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 5[2mms[22m[39m
- [32m✓[39m src/parent/gate.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[32m 289[2mms[22m[39m
- [32m✓[39m src/state/streak.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 4[2mms[22m[39m
- [32m✓[39m scripts/tts/pronunciation.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 5[2mms[22m[39m
- [32m✓[39m src/audio/speaker.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 9[2mms[22m[39m
- [32m✓[39m src/screens/JourneyScreen.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[32m 66[2mms[22m[39m
- [32m✓[39m src/i18n/i18n.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 16[2mms[22m[39m
- [32m✓[39m src/lang/spoken.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 3[2mms[22m[39m
- [32m✓[39m src/audio/hash.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 4[2mms[22m[39m
- [32m✓[39m src/state/pin.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 13[2mms[22m[39m
- [32m✓[39m src/ui/MathExpr.test.tsx [2m([22m[2m3 tests[22m[2m)[22m[32m 29[2mms[22m[39m
- [32m✓[39m src/state/backup.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 3[2mms[22m[39m
- [32m✓[39m src/app/router.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 3[2mms[22m[39m
- [32m✓[39m src/ui/ageBand.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+ [32m✓[39m src/state/validate.test.ts [2m([22m[2m19 tests[22m[2m)[22m[32m 19[2mms[22m[39m
+ [32m✓[39m src/state/store.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 42[2mms[22m[39m
+ [32m✓[39m src/state/progress.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 11[2mms[22m[39m
+ [32m✓[39m src/lang/hebrewNumbers.test.ts [2m([22m[2m81 tests[22m[2m)[22m[33m 2010[2mms[22m[39m
+   [33m[2m✓[22m[39m numberToWords, properties[2m > [22mis injective on 0–99,999: different numbers never produce the same words [33m 1939[2mms[22m[39m
+ [32m✓[39m src/engine/topics/addSub20.test.ts [2m([22m[2m14 tests[22m[2m)[22m[33m 632[2mms[22m[39m
+ [32m✓[39m src/audio/speaker.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 32[2mms[22m[39m
+ [32m✓[39m src/engine/session.test.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 20[2mms[22m[39m
+ [32m✓[39m src/ui/components.test.tsx [2m([22m[2m7 tests[22m[2m)[22m[33m 395[2mms[22m[39m
+ [31m❯[39m src/engine/journey.test.ts [2m([22m[2m7 tests[22m[2m | [22m[31m2 failed[39m[2m)[22m[32m 23[2mms[22m[39m
+   [32m✓[39m worldFor[2m > [22ma new grade-2 child starts at her grade level with earlier stations done[32m 4[2mms[22m[39m
+[31m   [31m×[31m worldFor[2m > [22ma kindergartener starts at the first station[39m[32m 11[2mms[22m[39m
+[31m     → expected 'done' to be 'current' // Object.is equality[39m
+   [32m✓[39m worldFor[2m > [22mpassed stations above the current level stay done after a level-down[32m 1[2mms[22m[39m
+   [32m✓[39m worldFor[2m > [22mopens the review when every level is done, and completes the world when it is passed[32m 1[2mms[22m[39m
+   [32m✓[39m worldFor[2m > [22mthe review passed early (imported data) does not complete a world with open stations[32m 1[2mms[22m[39m
+[31m   [31m×[31m worlds[2m > [22mlists the grade’s topics in order and picks the first unfinished one[39m[32m 5[2mms[22m[39m
+[31m     → expected [ 1, 2 ] to deeply equal [ 1 ][39m
+   [32m✓[39m worlds[2m > [22man older child without topics of her own gets the whole list[32m 0[2mms[22m[39m
+ [32m✓[39m src/parent/gate.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[33m 492[2mms[22m[39m
+ [32m✓[39m src/state/streak.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m scripts/tts/pronunciation.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+ [32m✓[39m src/lang/compose.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+ [32m✓[39m src/screens/JourneyScreen.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[32m 147[2mms[22m[39m
+ [32m✓[39m src/lang/spoken.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+ [32m✓[39m src/i18n/i18n.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 74[2mms[22m[39m
+ [32m✓[39m src/audio/hash.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 11[2mms[22m[39m
+ [32m✓[39m src/state/pin.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+ [32m✓[39m src/ui/MathExpr.test.tsx [2m([22m[2m3 tests[22m[2m)[22m[32m 48[2mms[22m[39m
+ [32m✓[39m src/state/backup.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+ [32m✓[39m src/app/router.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m src/ui/ageBand.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+ [31m❯[39m src/engine/topics/all.test.ts [2m([22m[2m65 tests[22m[2m | [22m[31m7 failed[39m[2m)[22m[33m 12777[2mms[22m[39m
+   [32m✓[39m topic count-10[2m > [22mhas ten levels with labels[32m 4[2mms[22m[39m
+   [32m✓[39m topic count-10[2m > [22mlevel 1 produces valid exercises[32m 151[2mms[22m[39m
+   [32m✓[39m topic count-10[2m > [22mlevel 2 produces valid exercises[32m 136[2mms[22m[39m
+   [32m✓[39m topic count-10[2m > [22mlevel 3 produces valid exercises[32m 268[2mms[22m[39m
+   [32m✓[39m topic count-10[2m > [22mlevel 4 produces valid exercises[32m 293[2mms[22m[39m
+   [32m✓[39m topic count-10[2m > [22mlevel 5 produces valid exercises[32m 152[2mms[22m[39m
+   [32m✓[39m topic count-10[2m > [22mlevel 6 produces valid exercises[32m 162[2mms[22m[39m
+   [32m✓[39m topic count-10[2m > [22mlevel 7 produces valid exercises[32m 163[2mms[22m[39m
+   [32m✓[39m topic count-10[2m > [22mlevel 8 produces valid exercises[32m 164[2mms[22m[39m
+   [32m✓[39m topic count-10[2m > [22mlevel 9 produces valid exercises[32m 206[2mms[22m[39m
+   [33m[2m✓[22m[39m topic count-10[2m > [22mlevel 10 produces valid exercises [33m 442[2mms[22m[39m
+   [32m✓[39m topic count-10[2m > [22mavoids an immediate repeat[32m 58[2mms[22m[39m
+   [32m✓[39m topic count-10[2m > [22mhas a finite spoken bank without digits[32m 12[2mms[22m[39m
+   [32m✓[39m topic add-sub-20[2m > [22mhas ten levels with labels[32m 0[2mms[22m[39m
+   [32m✓[39m topic add-sub-20[2m > [22mlevel 1 produces valid exercises[32m 55[2mms[22m[39m
+   [32m✓[39m topic add-sub-20[2m > [22mlevel 2 produces valid exercises[32m 55[2mms[22m[39m
+   [32m✓[39m topic add-sub-20[2m > [22mlevel 3 produces valid exercises[32m 82[2mms[22m[39m
+   [32m✓[39m topic add-sub-20[2m > [22mlevel 4 produces valid exercises[32m 85[2mms[22m[39m
+   [32m✓[39m topic add-sub-20[2m > [22mlevel 5 produces valid exercises[32m 67[2mms[22m[39m
+   [32m✓[39m topic add-sub-20[2m > [22mlevel 6 produces valid exercises[32m 84[2mms[22m[39m
+   [32m✓[39m topic add-sub-20[2m > [22mlevel 7 produces valid exercises[32m 65[2mms[22m[39m
+   [32m✓[39m topic add-sub-20[2m > [22mlevel 8 produces valid exercises[32m 85[2mms[22m[39m
+   [32m✓[39m topic add-sub-20[2m > [22mlevel 9 produces valid exercises[32m 78[2mms[22m[39m
+   [32m✓[39m topic add-sub-20[2m > [22mlevel 10 produces valid exercises[32m 90[2mms[22m[39m
+   [32m✓[39m topic add-sub-20[2m > [22mavoids an immediate repeat[32m 22[2mms[22m[39m
+   [32m✓[39m topic add-sub-20[2m > [22mhas a finite spoken bank without digits[32m 153[2mms[22m[39m
+   [32m✓[39m topic numbers-100[2m > [22mhas ten levels with labels[32m 1[2mms[22m[39m
+   [32m✓[39m topic numbers-100[2m > [22mlevel 1 produces valid exercises[32m 118[2mms[22m[39m
+[31m   [31m×[31m topic numbers-100[2m > [22mlevel 2 produces valid exercises[39m[33m 307[2mms[22m[39m
+[31m     → build:11: expected 'digitReversal' to be null[39m
+[31m   [31m×[31m topic numbers-100[2m > [22mlevel 3 produces valid exercises[39m[33m 561[2mms[22m[39m
+[31m     → tensOf:11: expected 'placeValue' to be null[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 4 produces valid exercises [33m 2325[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 5 produces valid exercises [33m 730[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 6 produces valid exercises [33m 741[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 7 produces valid exercises [33m 375[2mms[22m[39m
+[31m   [31m×[31m topic numbers-100[2m > [22mlevel 8 produces valid exercises[39m[32m 269[2mms[22m[39m
+[31m     → sub:50-20: expected '50 − 20 = 30' not to be '50 − 20 = 30' // Object.is equality[39m
+[31m   [31m×[31m topic numbers-100[2m > [22mlevel 9 produces valid exercises[39m[33m 404[2mms[22m[39m
+[31m     → add:50+3: expected '50 + 3 = 53' not to be '50 + 3 = 53' // Object.is equality[39m
+[31m   [31m×[31m topic numbers-100[2m > [22mlevel 10 produces valid exercises[39m[32m 58[2mms[22m[39m
+[31m     → skip5:5:3: expected '5, 10, 15, 20' not to be '5, 10, 15, 20' // Object.is equality[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mavoids an immediate repeat [33m 321[2mms[22m[39m
+   [32m✓[39m topic numbers-100[2m > [22mhas a finite spoken bank without digits[32m 86[2mms[22m[39m
+   [32m✓[39m topic add-sub-100[2m > [22mhas ten levels with labels[32m 0[2mms[22m[39m
+   [32m✓[39m topic add-sub-100[2m > [22mlevel 1 produces valid exercises[32m 186[2mms[22m[39m
+   [32m✓[39m topic add-sub-100[2m > [22mlevel 2 produces valid exercises[32m 182[2mms[22m[39m
+   [32m✓[39m topic add-sub-100[2m > [22mlevel 3 produces valid exercises[32m 182[2mms[22m[39m
+   [32m✓[39m topic add-sub-100[2m > [22mlevel 4 produces valid exercises[32m 183[2mms[22m[39m
+   [32m✓[39m topic add-sub-100[2m > [22mlevel 5 produces valid exercises[32m 184[2mms[22m[39m
+   [32m✓[39m topic add-sub-100[2m > [22mlevel 6 produces valid exercises[32m 190[2mms[22m[39m
+   [32m✓[39m topic add-sub-100[2m > [22mlevel 7 produces valid exercises[32m 184[2mms[22m[39m
+   [32m✓[39m topic add-sub-100[2m > [22mlevel 8 produces valid exercises[32m 184[2mms[22m[39m
+   [32m✓[39m topic add-sub-100[2m > [22mlevel 9 produces valid exercises[32m 183[2mms[22m[39m
+   [32m✓[39m topic add-sub-100[2m > [22mlevel 10 produces valid exercises[32m 193[2mms[22m[39m
+   [32m✓[39m topic add-sub-100[2m > [22mavoids an immediate repeat[32m 7[2mms[22m[39m
+   [32m✓[39m topic add-sub-100[2m > [22mhas a finite spoken bank without digits[32m 260[2mms[22m[39m
+   [32m✓[39m topic mult-intro[2m > [22mhas ten levels with labels[32m 0[2mms[22m[39m
+   [32m✓[39m topic mult-intro[2m > [22mlevel 1 produces valid exercises[32m 103[2mms[22m[39m
+   [32m✓[39m topic mult-intro[2m > [22mlevel 2 produces valid exercises[32m 128[2mms[22m[39m
+   [32m✓[39m topic mult-intro[2m > [22mlevel 3 produces valid exercises[32m 118[2mms[22m[39m
+[31m   [31m×[31m topic mult-intro[2m > [22mlevel 4 produces valid exercises[39m[32m 79[2mms[22m[39m
+[31m     → mul:10×10: expected 3 to be less than or equal to 2[39m
+   [32m✓[39m topic mult-intro[2m > [22mlevel 5 produces valid exercises[32m 102[2mms[22m[39m
+   [32m✓[39m topic mult-intro[2m > [22mlevel 6 produces valid exercises[32m 102[2mms[22m[39m
+   [32m✓[39m topic mult-intro[2m > [22mlevel 7 produces valid exercises[32m 103[2mms[22m[39m
+   [32m✓[39m topic mult-intro[2m > [22mlevel 8 produces valid exercises[32m 171[2mms[22m[39m
+[31m   [31m×[31m topic mult-intro[2m > [22mlevel 9 produces valid exercises[39m[32m 27[2mms[22m[39m
+[31m     → mul:a:3×5: expected '3 × 5 = 15' not to be '3 × 5 = 15' // Object.is equality[39m
+   [32m✓[39m topic mult-intro[2m > [22mlevel 10 produces valid exercises[32m 181[2mms[22m[39m
+   [32m✓[39m topic mult-intro[2m > [22mavoids an immediate repeat[32m 53[2mms[22m[39m
+   [32m✓[39m topic mult-intro[2m > [22mhas a finite spoken bank without digits[32m 56[2mms[22m[39m
 
-[2m Test Files [22m [1m[32m21 passed[39m[22m[90m (21)[39m
-[2m      Tests [22m [1m[32m215 passed[39m[22m[90m (215)[39m
-[2m   Start at [22m 19:47:31
-[2m   Duration [22m 5.41s[2m (transform 487ms, setup 2.46s, collect 997ms, tests 1.93s, environment 6.47s, prepare 1.40s)[22m
+[31m⎯⎯⎯⎯⎯⎯⎯[39m[1m[41m Failed Tests 9 [49m[22m[31m⎯⎯⎯⎯⎯⎯⎯[39m
 
+[41m[1m FAIL [22m[49m src/engine/journey.test.ts[2m > [22mworldFor[2m > [22ma kindergartener starts at the first station
+[31m[1mAssertionError[22m: expected 'done' to be 'current' // Object.is equality[39m
+
+Expected: [32m"current"[39m
+Received: [31m"done"[39m
+
+[36m [2m❯[22m src/engine/journey.test.ts:[2m33:34[22m[39m
+    [90m 31| [39m  [34mit[39m([32m'a kindergartener starts at the first station'[39m[33m,[39m () [33m=>[39m {
+    [90m 32| [39m    [35mconst[39m w [33m=[39m [34mworldFor[39m(addSub20[33m,[39m [34m1[39m[33m,[39m [34m0[39m[33m,[39m undefined)[33m;[39m
+    [90m 33| [39m    [34mexpect[39m(w[33m.[39mstations[[34m0[39m][33m?.[39mstate)[33m.[39m[34mtoBe[39m([32m'current'[39m)[33m;[39m
+    [90m   | [39m                                 [31m^[39m
+    [90m 34| [39m    [34mexpect[39m(w[33m.[39mdone)[33m.[39m[34mtoBe[39m([34m0[39m)[33m;[39m
+    [90m 35| [39m  })[33m;[39m
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/9]⎯[22m[39m
+
+[41m[1m FAIL [22m[49m src/engine/journey.test.ts[2m > [22mworlds[2m > [22mlists the grade’s topics in order and picks the first unfinished one
+[31m[1mAssertionError[22m: expected [ 1, 2 ] to deeply equal [ 1 ][39m
+
+[32m- Expected[39m
+[31m+ Received[39m
+
+[2m  [[22m
+[2m    1,[22m
+[31m+   2,[39m
+[2m  ][22m
+
+[36m [2m❯[22m src/engine/journey.test.ts:[2m69:40[22m[39m
+    [90m 67| [39m  it('lists the grade’s topics in order and picks the first unfinished…
+    [90m 68| [39m    [35mconst[39m worlds [33m=[39m [34mworldsFor[39m([34m2[39m[33m,[39m undefined)[33m;[39m
+    [90m 69| [39m    [34mexpect[39m(worlds[33m.[39m[34mmap[39m((w) [33m=>[39m w[33m.[39mindex))[33m.[39m[34mtoEqual[39m([[34m1[39m])[33m;[39m
+    [90m   | [39m                                       [31m^[39m
+    [90m 70| [39m    [34mexpect[39m([34mactiveWorld[39m([34m2[39m[33m,[39m undefined)[33m?.[39mtopic[33m.[39mid)[33m.[39m[34mtoBe[39m(addSub20[33m.[39mid)[33m;[39m
+    [90m 71| [39m    [34mexpect[39m([34mstickersEarned[39m(worlds))[33m.[39m[34mtoBe[39m([34m0[39m)[33m;[39m
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/9]⎯[22m[39m
+
+[41m[1m FAIL [22m[49m src/engine/topics/all.test.ts[2m > [22mtopic numbers-100[2m > [22mlevel 2 produces valid exercises
+[31m[1mAssertionError[22m: build:11: expected 'digitReversal' to be null[39m
+
+[32m- Expected:[39m 
+null
+
+[31m+ Received:[39m 
+"digitReversal"
+
+[36m [2m❯[22m src/engine/topics/all.test.ts:[2m58:46[22m[39m
+    [90m 56| [39m      }
+    [90m 57| [39m      [90m// A right answer is never diagnosed as a mistake.[39m
+    [90m 58| [39m      [34mexpect[39m(e[33m.[39m[34mdiagnose[39m(e[33m.[39manswer)[33m,[39m e[33m.[39mfactId)[33m.[39m[34mtoBeNull[39m()[33m;[39m
+    [90m   | [39m                                             [31m^[39m
+    [90m 59| [39m      [90m// The worked example is not the exercise itself.[39m
+    [90m 60| [39m      [35mconst[39m example [33m=[39m e[33m.[39mhints[[34m2[39m][33m.[39mexample[33m;[39m
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/9]⎯[22m[39m
+
+[41m[1m FAIL [22m[49m src/engine/topics/all.test.ts[2m > [22mtopic numbers-100[2m > [22mlevel 3 produces valid exercises
+[31m[1mAssertionError[22m: tensOf:11: expected 'placeValue' to be null[39m
+
+[32m- Expected:[39m 
+null
+
+[31m+ Received:[39m 
+"placeValue"
+
+[36m [2m❯[22m src/engine/topics/all.test.ts:[2m58:46[22m[39m
+    [90m 56| [39m      }
+    [90m 57| [39m      [90m// A right answer is never diagnosed as a mistake.[39m
+    [90m 58| [39m      [34mexpect[39m(e[33m.[39m[34mdiagnose[39m(e[33m.[39manswer)[33m,[39m e[33m.[39mfactId)[33m.[39m[34mtoBeNull[39m()[33m;[39m
+    [90m   | [39m                                             [31m^[39m
+    [90m 59| [39m      [90m// The worked example is not the exercise itself.[39m
+    [90m 60| [39m      [35mconst[39m example [33m=[39m e[33m.[39mhints[[34m2[39m][33m.[39mexample[33m;[39m
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/9]⎯[22m[39m
+
+[41m[1m FAIL [22m[49m src/engine/topics/all.test.ts[2m > [22mtopic numbers-100[2m > [22mlevel 8 produces valid exercises
+[31m[1mAssertionError[22m: sub:50-20: expected '50 − 20 = 30' not to be '50 − 20 = 30' // Object.is equality[39m
+[36m [2m❯[22m src/engine/topics/all.test.ts:[2m62:47[22m[39m
+    [90m 60| [39m      [35mconst[39m example [33m=[39m e[33m.[39mhints[[34m2[39m][33m.[39mexample[33m;[39m
+    [90m 61| [39m      [35mif[39m (example [33m&&[39m e[33m.[39mdisplay)
+    [90m 62| [39m        expect(example.display, e.factId).not.toBe(e.display.replace('…
+    [90m   | [39m                                              [31m^[39m
+    [90m 63| [39m    }
+    [90m 64| [39m  })[33m;[39m
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/9]⎯[22m[39m
+
+[41m[1m FAIL [22m[49m src/engine/topics/all.test.ts[2m > [22mtopic numbers-100[2m > [22mlevel 9 produces valid exercises
+[31m[1mAssertionError[22m: add:50+3: expected '50 + 3 = 53' not to be '50 + 3 = 53' // Object.is equality[39m
+[36m [2m❯[22m src/engine/topics/all.test.ts:[2m62:47[22m[39m
+    [90m 60| [39m      [35mconst[39m example [33m=[39m e[33m.[39mhints[[34m2[39m][33m.[39mexample[33m;[39m
+    [90m 61| [39m      [35mif[39m (example [33m&&[39m e[33m.[39mdisplay)
+    [90m 62| [39m        expect(example.display, e.factId).not.toBe(e.display.replace('…
+    [90m   | [39m                                              [31m^[39m
+    [90m 63| [39m    }
+    [90m 64| [39m  })[33m;[39m
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/9]⎯[22m[39m
+
+[41m[1m FAIL [22m[49m src/engine/topics/all.test.ts[2m > [22mtopic numbers-100[2m > [22mlevel 10 produces valid exercises
+[31m[1mAssertionError[22m: skip5:5:3: expected '5, 10, 15, 20' not to be '5, 10, 15, 20' // Object.is equality[39m
+[36m [2m❯[22m src/engine/topics/all.test.ts:[2m62:47[22m[39m
+    [90m 60| [39m      [35mconst[39m example [33m=[39m e[33m.[39mhints[[34m2[39m][33m.[39mexample[33m;[39m
+    [90m 61| [39m      [35mif[39m (example [33m&&[39m e[33m.[39mdisplay)
+    [90m 62| [39m        expect(example.display, e.factId).not.toBe(e.display.replace('…
+    [90m   | [39m                                              [31m^[39m
+    [90m 63| [39m    }
+    [90m 64| [39m  })[33m;[39m
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/9]⎯[22m[39m
+
+[41m[1m FAIL [22m[49m src/engine/topics/all.test.ts[2m > [22mtopic mult-intro[2m > [22mlevel 4 produces valid exercises
+[31m[1mAssertionError[22m: mul:10×10: expected 3 to be less than or equal to 2[39m
+[36m [2m❯[22m src/engine/topics/all.test.ts:[2m53:63[22m[39m
+    [90m 51| [39m        if (e.input.labels) expect(e.input.labels).toHaveLength(e.inpu…
+    [90m 52| [39m      } [35melse[39m {
+    [90m 53| [39m        expect(String(Math.floor(e.answer)).length, e.factId).toBeLess…
+    [90m   | [39m                                                              [31m^[39m
+    [90m 54| [39m          e[33m.[39minput[33m.[39mmaxDigits[33m,[39m
+    [90m 55| [39m        )[33m;[39m
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/9]⎯[22m[39m
+
+[41m[1m FAIL [22m[49m src/engine/topics/all.test.ts[2m > [22mtopic mult-intro[2m > [22mlevel 9 produces valid exercises
+[31m[1mAssertionError[22m: mul:a:3×5: expected '3 × 5 = 15' not to be '3 × 5 = 15' // Object.is equality[39m
+[36m [2m❯[22m src/engine/topics/all.test.ts:[2m62:47[22m[39m
+    [90m 60| [39m      [35mconst[39m example [33m=[39m e[33m.[39mhints[[34m2[39m][33m.[39mexample[33m;[39m
+    [90m 61| [39m      [35mif[39m (example [33m&&[39m e[33m.[39mdisplay)
+    [90m 62| [39m        expect(example.display, e.factId).not.toBe(e.display.replace('…
+    [90m   | [39m                                              [31m^[39m
+    [90m 63| [39m    }
+    [90m 64| [39m  })[33m;[39m
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/9]⎯[22m[39m
+
+
+[2m Test Files [22m [1m[31m2 failed[39m[22m[2m | [22m[1m[32m21 passed[39m[22m[90m (23)[39m
+[2m      Tests [22m [1m[31m9 failed[39m[22m[2m | [22m[1m[32m283 passed[39m[22m[90m (292)[39m
+[2m   Start at [22m 20:13:17
+[2m   Duration [22m 17.54s[2m (transform 784ms, setup 5.00s, collect 1.57s, tests 16.79s, environment 12.72s, prepare 2.75s)[22m
+
+
+::error file=/home/runner/work/Math/Math/src/engine/journey.test.ts,title=src/engine/journey.test.ts > worldFor > a kindergartener starts at the first station,line=33,column=34::AssertionError: expected 'done' to be 'current' // Object.is equality%0A%0AExpected: "current"%0AReceived: "done"%0A%0A ❯ src/engine/journey.test.ts:33:34%0A%0A
+
+::error file=/home/runner/work/Math/Math/src/engine/journey.test.ts,title=src/engine/journey.test.ts > worlds > lists the grade’s topics in order and picks the first unfinished one,line=69,column=40::AssertionError: expected [ 1, 2 ] to deeply equal [ 1 ]%0A%0A- Expected%0A+ Received%0A%0A  [%0A    1,%0A+   2,%0A  ]%0A%0A ❯ src/engine/journey.test.ts:69:40%0A%0A
+
+::error file=/home/runner/work/Math/Math/src/engine/topics/all.test.ts,title=src/engine/topics/all.test.ts > topic numbers-100 > level 2 produces valid exercises,line=58,column=46::AssertionError: build:11: expected 'digitReversal' to be null%0A%0A- Expected: %0Anull%0A%0A+ Received: %0A"digitReversal"%0A%0A ❯ src/engine/topics/all.test.ts:58:46%0A%0A
+
+::error file=/home/runner/work/Math/Math/src/engine/topics/all.test.ts,title=src/engine/topics/all.test.ts > topic numbers-100 > level 3 produces valid exercises,line=58,column=46::AssertionError: tensOf:11: expected 'placeValue' to be null%0A%0A- Expected: %0Anull%0A%0A+ Received: %0A"placeValue"%0A%0A ❯ src/engine/topics/all.test.ts:58:46%0A%0A
+
+::error file=/home/runner/work/Math/Math/src/engine/topics/all.test.ts,title=src/engine/topics/all.test.ts > topic numbers-100 > level 8 produces valid exercises,line=62,column=47::AssertionError: sub:50-20: expected '50 − 20 = 30' not to be '50 − 20 = 30' // Object.is equality%0A ❯ src/engine/topics/all.test.ts:62:47%0A%0A
+
+::error file=/home/runner/work/Math/Math/src/engine/topics/all.test.ts,title=src/engine/topics/all.test.ts > topic numbers-100 > level 9 produces valid exercises,line=62,column=47::AssertionError: add:50+3: expected '50 + 3 = 53' not to be '50 + 3 = 53' // Object.is equality%0A ❯ src/engine/topics/all.test.ts:62:47%0A%0A
+
+::error file=/home/runner/work/Math/Math/src/engine/topics/all.test.ts,title=src/engine/topics/all.test.ts > topic numbers-100 > level 10 produces valid exercises,line=62,column=47::AssertionError: skip5:5:3: expected '5, 10, 15, 20' not to be '5, 10, 15, 20' // Object.is equality%0A ❯ src/engine/topics/all.test.ts:62:47%0A%0A
+
+::error file=/home/runner/work/Math/Math/src/engine/topics/all.test.ts,title=src/engine/topics/all.test.ts > topic mult-intro > level 4 produces valid exercises,line=53,column=63::AssertionError: mul:10×10: expected 3 to be less than or equal to 2%0A ❯ src/engine/topics/all.test.ts:53:63%0A%0A
+
+::error file=/home/runner/work/Math/Math/src/engine/topics/all.test.ts,title=src/engine/topics/all.test.ts > topic mult-intro > level 9 produces valid exercises,line=62,column=47::AssertionError: mul:a:3×5: expected '3 × 5 = 15' not to be '3 × 5 = 15' // Object.is equality%0A ❯ src/engine/topics/all.test.ts:62:47%0A%0A
+TESTS FAILED
 
 ## build
 
 > heshbon@0.1.0 build
 > tsc -b && vite build
 
-[36mvite v7.3.7 [32mbuilding client environment for production...[36m[39m
-transforming...
-[32m✓[39m 83 modules transformed.
-rendering chunks...
-computing gzip size...
-[2mdist/[22m[32mmanifest.webmanifest                        [39m[1m[2m  0.53 kB[22m[1m[22m
-[2mdist/[22m[32mindex.html                                  [39m[1m[2m  1.26 kB[22m[1m[22m[2m │ gzip:  0.60 kB[22m
-[2mdist/[22m[2massets/[22m[35mindex-twc0GCyv.css                   [39m[1m[2m 19.67 kB[22m[1m[22m[2m │ gzip:  4.39 kB[22m
-[2mdist/[22m[2massets/[22m[36mworkbox-window.prod.es5-BBnX5xw4.js  [39m[1m[2m  5.75 kB[22m[1m[22m[2m │ gzip:  2.36 kB[22m
-[2mdist/[22m[2massets/[22m[36mindex-CSC9BU13.js                    [39m[1m[2m313.60 kB[22m[1m[22m[2m │ gzip: 97.79 kB[22m
-[32m✓ built in 2.16s[39m
-
-[36mPWA v1.3.0[39m
-mode      [35mgenerateSW[39m
-precache  [32m14 entries[39m [2m(395.56 KiB)[22m
-files generated
-  [2mdist/sw.js[22m
-  [2mdist/workbox-35e397ac.js[22m
+src/engine/topics/numbers100.ts(57,42): error TS6133: 'rng' is declared but its value is never read.
+src/engine/topics/numbers100.ts(57,42): error TS6133: 'rng' is declared but its value is never read.
+BUILD FAILED
 
 ## e2e
 
@@ -77,7 +323,9 @@ files generated
 > playwright test
 
 
-Running 72 tests using 2 workers
-········································································
-  72 passed (1.8m)
-::notice title=🎭 Playwright Run Summary::  72 passed (1.8m)
+Error: Process from config.webServer was not able to start. Exit code: 1
+::error ::Error: Process from config.webServer was not able to start. Exit code: 1
+
+
+::notice title=🎭 Playwright Run Summary::
+E2E FAILED
