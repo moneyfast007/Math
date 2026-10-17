@@ -1,0 +1,34 @@
+# One-off helper, run by hand: installs dependencies on a machine with registry
+# access, writes package-lock.json, formats the tree with Prettier, and commits
+# the result back to main. Used once to bootstrap the lockfile; harmless later.
+name: Bootstrap lockfile
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  bootstrap:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm install --no-audit --no-fund
+      - run: npx prettier --write .
+      - name: Report what check finds (does not fail the job)
+        run: |
+          npm run typecheck || true
+          npm run lint || true
+          npm run test || true
+      - name: Commit lockfile and formatting
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add package-lock.json .
+          if git diff --cached --quiet; then echo "nothing to commit"; exit 0; fi
+          git commit -m "chore: add package-lock.json and apply Prettier"
+          git push
