@@ -231,7 +231,9 @@ test.describe('journey', () => {
   });
 });
 
-test('an exercise without an equation shows the typed answer (grade 4 dictation)', async ({ page }) => {
+test('an exercise without an equation shows the typed answer (grade 4 dictation)', async ({
+  page,
+}) => {
   await setupChild(page, 'מאיה', 'כיתה ד׳');
   const box = page.locator('.exercise .answer-box');
   await expect(box).toHaveText('?');
