@@ -1410,3 +1410,237 @@ ol.steps {
 .choice-big--label {
   font-size: var(--text-md);
 }
+
+/* ---------- Kid-friendly pass (after the first visual review) ---------- */
+
+/* Home: the brand on top, cards centred in the free space, each child a soft colour. */
+.home__header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  text-align: center;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.brand__name {
+  font-size: var(--text-xl);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.home__title {
+  margin: 0;
+}
+
+.home .profiles {
+  margin-block: auto;
+  width: 100%;
+  max-width: 900px;
+  margin-inline: auto;
+}
+
+.home .profile-card {
+  min-height: 240px;
+  border: 3px solid transparent;
+}
+
+.profile-card--c0 { background: #fde3d2; }
+.profile-card--c1 { background: #d8efec; }
+.profile-card--c2 { background: #e2e3f8; }
+.profile-card--c3 { background: #fbeccf; }
+.profile-card--c4 { background: #e6f2dc; }
+.profile-card--c5 { background: #f6e1ec; }
+
+.home .profile-card .avatar--lg {
+  font-size: 104px;
+}
+
+/* Journey: map and the start card side by side on a landscape tablet, so the
+   big button is always on screen. */
+.journey__body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.journey__mapcol {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+@media (orientation: landscape) and (min-width: 900px) {
+  .journey__body {
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(320px, 1fr);
+    align-items: center;
+  }
+
+  .journey__body .journey__next {
+    margin-top: 0;
+  }
+
+  .journey__mapcol .map {
+    max-height: calc(100dvh - 230px);
+  }
+}
+
+/* Practice: Plusi coaches from beside the feedback bubble. */
+.coach {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: calc(var(--tap-min) + 24px);
+}
+
+.coach__plusi {
+  flex: none;
+  animation: plusi-in var(--dur-med) var(--ease);
+}
+
+.coach__plusi.plusi--cheering {
+  animation: plusi-hop 600ms var(--ease);
+}
+
+.coach__plusi.plusi--thinking {
+  animation: plusi-tilt 900ms var(--ease);
+}
+
+@keyframes plusi-in {
+  from { transform: scale(0.85); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes plusi-hop {
+  0% { transform: translateY(0) scale(1); }
+  35% { transform: translateY(-22px) scale(1.06); }
+  60% { transform: translateY(0) scale(0.97); }
+  80% { transform: translateY(-6px) scale(1.01); }
+  100% { transform: translateY(0) scale(1); }
+}
+
+@keyframes plusi-tilt {
+  0%, 100% { transform: rotate(0); }
+  40% { transform: rotate(-8deg); }
+  70% { transform: rotate(4deg); }
+}
+
+/* The feedback becomes a speech bubble pointing at Plusi (who stands at the start, on the right). */
+.coach .feedback {
+  position: relative;
+  flex: 1;
+  justify-content: flex-start;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-lg);
+}
+
+.coach .feedback:not(.feedback--empty)::before {
+  content: '';
+  position: absolute;
+  inset-inline-start: -10px;
+  top: 50%;
+  width: 20px;
+  height: 20px;
+  background: inherit;
+  transform: translateY(-50%) rotate(45deg);
+  border-radius: 4px;
+}
+
+.feedback--empty {
+  background: transparent;
+}
+
+/* A small burst of colour on a right answer. */
+.confetti {
+  position: absolute;
+  inset-inline-start: 44px;
+  top: 30%;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+.confetti__bit {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  opacity: 0;
+  animation: confetti 900ms var(--ease) forwards;
+}
+
+.confetti__bit:nth-child(3n) { background: #e8793a; }
+.confetti__bit:nth-child(3n + 1) { background: #2f8f83; border-radius: 50%; }
+.confetti__bit:nth-child(3n + 2) { background: #e2a33b; }
+
+.confetti__bit--0 { --dx: -70px; --dy: -60px; }
+.confetti__bit--1 { --dx: -30px; --dy: -90px; }
+.confetti__bit--2 { --dx: 20px; --dy: -95px; }
+.confetti__bit--3 { --dx: 65px; --dy: -70px; }
+.confetti__bit--4 { --dx: 90px; --dy: -25px; }
+.confetti__bit--5 { --dx: -90px; --dy: -20px; }
+.confetti__bit--6 { --dx: -55px; --dy: 30px; }
+.confetti__bit--7 { --dx: 55px; --dy: 35px; }
+.confetti__bit--8 { --dx: 5px; --dy: -120px; }
+.confetti__bit--9 { --dx: 100px; --dy: -95px; }
+
+@keyframes confetti {
+  0% { transform: translate(0, 0) scale(0.6) rotate(0); opacity: 1; }
+  100% { transform: translate(var(--dx), var(--dy)) scale(1) rotate(200deg); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .confetti { display: none; }
+}
+
+/* The typed answer when there is no equation to hold it. */
+.answer-box {
+  min-width: 4ch;
+  padding: var(--space-1) var(--space-3);
+  border-bottom: 4px solid var(--color-accent);
+  font-family: var(--font-math);
+  font-size: var(--text-math);
+  font-weight: 800;
+  color: var(--color-accent-strong);
+  text-align: center;
+  line-height: 1.1;
+}
+
+.answer-box--done {
+  border-bottom-color: var(--color-success);
+  color: var(--color-success);
+}
+
+/* Gan: bigger pictures and big, friendly answer buttons in soft colours. */
+:root[data-age='young'] .obj {
+  font-size: calc(var(--text-math) * 0.8);
+}
+
+:root[data-age='young'] .objects__group {
+  max-width: 480px;
+}
+
+:root[data-age='young'] .choice-big {
+  width: 148px;
+  height: 148px;
+  font-size: 76px;
+  border-radius: 36px;
+}
+
+:root[data-age='young'] .choices-big .choice-big:nth-child(3n + 1) { background: #fde3d2; }
+:root[data-age='young'] .choices-big .choice-big:nth-child(3n + 2) { background: #d8efec; }
+:root[data-age='young'] .choices-big .choice-big:nth-child(3n + 3) { background: #e2e3f8; }
+
+/* Done dots in the progress bar are little stars' worth of colour: the band accent. */
+.progress-dots .dot--done {
+  background: var(--color-accent);
+  opacity: 0.55;
+}

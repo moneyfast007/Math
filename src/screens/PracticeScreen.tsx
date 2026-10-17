@@ -18,7 +18,7 @@ import { appStore, useActiveProfile, useApp } from '@/state/store';
 import { ageBandForGrade, applyAgeBand } from '@/ui/ageBand';
 import { MathExpr } from '@/ui/MathExpr';
 import { NumberPad } from '@/ui/NumberPad';
-import { Plusi } from '@/ui/Plusi';
+import { Plusi, type PlusiMood } from '@/ui/Plusi';
 import { SpeakerButton } from '@/ui/SpeakerButton';
 import { VisualView } from '@/ui/Visuals';
 
@@ -267,9 +267,19 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
             {after}
           </MathExpr>
         ) : null}
+        {e.input.type === 'numpad' && !hasSlot ? (
+          // No equation to hold the slot (stories, dictation): the typed answer shows here.
+          <div className={finished ? 'answer-box answer-box--done' : 'answer-box'} dir="ltr" aria-live="polite">
+            {finished ? answerLabel(e) : value || '?'}
+          </div>
+        ) : null}
       </section>
 
-      <Feedback state={s} tc={tc} slow={slow} />
+      <div className="coach">
+        <Plusi key={`${s.done}:${s.phase}`} mood={plusiMood(s)} size={band === 'young' ? 112 : 88} decorative className="coach__plusi" />
+        {s.phase === 'correct' ? <Confetti /> : null}
+        <Feedback state={s} tc={tc} slow={slow} />
+      </div>
 
       {!finished ? (
         <section className="answer">
@@ -361,6 +371,25 @@ function resultLine(o: RoundOutcome, tc: TC, profileId: string, grade: Profile['
   return tc('practice.done.passed');
 }
 
+/** Plusi reacts to the moment: never a sad face (see ui/Plusi.tsx). */
+function plusiMood(s: SessionState): PlusiMood {
+  if (s.phase === 'correct') return 'cheering';
+  if (s.phase === 'wrong' || s.phase === 'revealed') return 'calm';
+  if (s.hintsShown > 0) return 'thinking';
+  return 'happy';
+}
+
+/** A few coloured dots that burst and fade on a right answer. Decorative only. */
+function Confetti() {
+  return (
+    <span className="confetti" aria-hidden="true">
+      {Array.from({ length: 10 }, (_, i) => (
+        <span key={i} className={`confetti__bit confetti__bit--${i}`} />
+      ))}
+    </span>
+  );
+}
+
 /** The answer as shown: the choice's label when the buttons carry labels. */
 function answerLabel(e: Exercise): string {
   if (e.input.type === 'choices' && e.input.labels) {
@@ -425,7 +454,7 @@ function Feedback({ state: s, tc, slow }: { state: SessionState; tc: TC; slow: b
       </div>
     );
   }
-  return <div className="feedback" aria-hidden="true" />;
+  return <div className="feedback feedback--empty" aria-hidden="true" />;
 }
 
 function explanation(s: SessionState, tc: TC): string {

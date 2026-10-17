@@ -184,8 +184,8 @@ export function diagnoseArith(value: number, f: ArithFacts): MistakeKind | null 
   }
   if (Math.abs(value - answer) === 10 || Math.abs(value - answer) === 100) return 'offByTen';
   if (reversedDigits(answer) === value) return 'digitReversal';
-  if (answer >= 10 && String(value).length !== String(answer).length && value > 0)
-    return 'placeValue';
+  // Place value only for a real factor-of-ten slip (40 for 4, 4 for 40), not any length difference.
+  if (value > 0 && [10, 100].some((k) => value === answer * k || value * k === answer)) return 'placeValue';
   return null;
 }
 

@@ -82,6 +82,8 @@ function Journey({ profile }: { profile: Profile }) {
         </div>
       </header>
 
+      <div className="journey__body">
+        <div className="journey__mapcol">
       {!young ? (
         <div className="journey__world">
           <h2 className="journey__world-name">
@@ -112,6 +114,8 @@ function Journey({ profile }: { profile: Profile }) {
         }
       />
 
+        </div>
+
       <section className="station card journey__next" aria-labelledby="station-title">
         <div className="journey__next-row">
           <div className="journey__next-text">
@@ -129,6 +133,7 @@ function Journey({ profile }: { profile: Profile }) {
           </button>
         ) : null}
       </section>
+      </div>
 
       {picking ? (
         <Dialog title={t('child.pickLevel')} onClose={() => setPicking(false)}>

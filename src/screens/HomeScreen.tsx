@@ -5,6 +5,7 @@ import { ParentGate } from '@/parent/ParentGate';
 import { useApp } from '@/state/store';
 import { applyAgeBand } from '@/ui/ageBand';
 import { Avatar } from '@/ui/Avatar';
+import { Plusi } from '@/ui/Plusi';
 import { LongPressButton } from '@/ui/LongPressButton';
 
 /**
@@ -37,6 +38,7 @@ export function HomeScreen() {
     return (
       <main className="screen" data-screen="home">
         <header className="stack" style={{ alignItems: 'center', textAlign: 'center' }}>
+          <Plusi size={120} mood="cheering" decorative />
           <h1>{t('app.name')}</h1>
           <p className="muted">{t('app.tagline')}</p>
         </header>
@@ -63,17 +65,21 @@ export function HomeScreen() {
   const addressAs = profiles.every((p) => p.gender === 'f') ? 'f' : 'm';
 
   return (
-    <main className="screen" data-screen="home">
-      <header className="stack" style={{ alignItems: 'center', textAlign: 'center' }}>
-        <h1>{t('home.whoIsPlaying', { gender: addressAs })}</h1>
+    <main className="screen home" data-screen="home">
+      <header className="home__header">
+        <div className="brand" aria-hidden="true">
+          <Plusi size={72} decorative />
+          <span className="brand__name">{t('app.name')}</span>
+        </div>
+        <h1 className="home__title">{t('home.whoIsPlaying', { gender: addressAs })}</h1>
       </header>
 
       <ul className="profiles" role="list" style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-        {profiles.map((p) => (
+        {profiles.map((p, i) => (
           <li key={p.id}>
             <button
               type="button"
-              className="profile-card"
+              className={`profile-card profile-card--c${i % 6}`}
               style={{ width: '100%' }}
               onClick={() => {
                 selectProfile(p.id);
