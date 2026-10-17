@@ -1,0 +1,94 @@
+## typecheck
+
+> heshbon@0.1.0 typecheck
+> tsc -b
+
+src/ui/MathExpr.test.tsx(9,16): error TS2339: Property 'toHaveAttribute' does not exist on type 'Assertion<HTMLElement>'.
+src/ui/MathExpr.test.tsx(10,16): error TS2339: Property 'toHaveClass' does not exist on type 'Assertion<HTMLElement>'.
+src/ui/MathExpr.test.tsx(11,16): error TS2339: Property 'toHaveAttribute' does not exist on type 'Assertion<HTMLElement>'.
+src/ui/MathExpr.test.tsx(16,60): error TS2339: Property 'toBeInTheDocument' does not exist on type 'Assertion<HTMLElement>'.
+src/ui/MathExpr.test.tsx(21,43): error TS2339: Property 'toHaveClass' does not exist on type 'Assertion<HTMLElement>'.
+scripts/tts/lib.ts(4,53): error TS6307: File '/home/runner/work/Math/Math/src/audio/hash.ts' is not listed within the file list of project '/home/runner/work/Math/Math/tsconfig.node.json'. Projects must list all files or use an 'include' pattern.
+scripts/tts/phrases.ts(1,20): error TS6307: File '/home/runner/work/Math/Math/src/i18n/he.ts' is not listed within the file list of project '/home/runner/work/Math/Math/tsconfig.node.json'. Projects must list all files or use an 'include' pattern.
+scripts/tts/phrases.ts(2,31): error TS6307: File '/home/runner/work/Math/Math/src/lang/hebrewNumbers.ts' is not listed within the file list of project '/home/runner/work/Math/Math/tsconfig.node.json'. Projects must list all files or use an 'include' pattern.
+scripts/tts/sample.ts(43,7): error TS2322: Type '({ name: string; spec: { engine: string; voice: string; prompt: string; }; sentences: readonly string[]; } | { name: string; spec: { engine: string; voice: string; prompt?: undefined; }; sentences: readonly string[]; })[]' is not assignable to type 'Variant[]'.
+  Type '{ name: string; spec: { engine: string; voice: string; prompt: string; }; sentences: readonly string[]; } | { name: string; spec: { engine: string; voice: string; prompt?: undefined; }; sentences: readonly string[]; }' is not assignable to type 'Variant'.
+    Type '{ name: string; spec: { engine: string; voice: string; prompt: string; }; sentences: readonly string[]; }' is not assignable to type 'Variant'.
+      The types of 'spec.engine' are incompatible between these types.
+        Type 'string' is not assignable to type 'Engine'.
+src/lang/hebrewNumbers.ts(1,29): error TS6307: File '/home/runner/work/Math/Math/src/lang/gender.ts' is not listed within the file list of project '/home/runner/work/Math/Math/tsconfig.node.json'. Projects must list all files or use an 'include' pattern.
+TYPECHECK FAILED
+
+## lint
+
+> heshbon@0.1.0 lint
+> eslint .
+
+
+/home/runner/work/Math/Math/src/ui/MathExpr.test.tsx
+   9:5  error  Unsafe call of a type that could not be resolved  @typescript-eslint/no-unsafe-call
+  10:5  error  Unsafe call of a type that could not be resolved  @typescript-eslint/no-unsafe-call
+  11:5  error  Unsafe call of a type that could not be resolved  @typescript-eslint/no-unsafe-call
+  16:5  error  Unsafe call of a type that could not be resolved  @typescript-eslint/no-unsafe-call
+  21:5  error  Unsafe call of a type that could not be resolved  @typescript-eslint/no-unsafe-call
+
+✖ 5 problems (5 errors, 0 warnings)
+
+LINT FAILED
+
+## unit tests
+
+> heshbon@0.1.0 test
+> vitest run
+
+
+[1m[46m RUN [49m[22m [36mv3.2.7 [39m[90m/home/runner/work/Math/Math[39m
+
+ [32m✓[39m src/lang/spoken.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+ [32m✓[39m src/i18n/i18n.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 13[2mms[22m[39m
+ [32m✓[39m src/audio/hash.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+ [32m✓[39m src/ui/MathExpr.test.tsx [2m([22m[2m3 tests[22m[2m)[22m[32m 36[2mms[22m[39m
+ [32m✓[39m src/app/router.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+ [32m✓[39m src/lang/hebrewNumbers.test.ts [2m([22m[2m77 tests[22m[2m)[22m[33m 2046[2mms[22m[39m
+   [33m[2m✓[22m[39m numberToWords, properties[2m > [22mis injective on 0–99,999: different numbers never produce the same words [33m 1989[2mms[22m[39m
+ [32m✓[39m src/ui/ageBand.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m7 passed[39m[22m[90m (7)[39m
+[2m      Tests [22m [1m[32m99 passed[39m[22m[90m (99)[39m
+[2m   Start at [22m 11:59:37
+[2m   Duration [22m 3.33s[2m (transform 275ms, setup 605ms, collect 512ms, tests 2.13s, environment 3.88s, prepare 786ms)[22m
+
+
+## build
+
+> heshbon@0.1.0 build
+> tsc -b && vite build
+
+src/ui/MathExpr.test.tsx(9,16): error TS2339: Property 'toHaveAttribute' does not exist on type 'Assertion<HTMLElement>'.
+src/ui/MathExpr.test.tsx(10,16): error TS2339: Property 'toHaveClass' does not exist on type 'Assertion<HTMLElement>'.
+src/ui/MathExpr.test.tsx(11,16): error TS2339: Property 'toHaveAttribute' does not exist on type 'Assertion<HTMLElement>'.
+src/ui/MathExpr.test.tsx(16,60): error TS2339: Property 'toBeInTheDocument' does not exist on type 'Assertion<HTMLElement>'.
+src/ui/MathExpr.test.tsx(21,43): error TS2339: Property 'toHaveClass' does not exist on type 'Assertion<HTMLElement>'.
+scripts/tts/lib.ts(4,53): error TS6307: File '/home/runner/work/Math/Math/src/audio/hash.ts' is not listed within the file list of project '/home/runner/work/Math/Math/tsconfig.node.json'. Projects must list all files or use an 'include' pattern.
+scripts/tts/phrases.ts(1,20): error TS6307: File '/home/runner/work/Math/Math/src/i18n/he.ts' is not listed within the file list of project '/home/runner/work/Math/Math/tsconfig.node.json'. Projects must list all files or use an 'include' pattern.
+scripts/tts/phrases.ts(2,31): error TS6307: File '/home/runner/work/Math/Math/src/lang/hebrewNumbers.ts' is not listed within the file list of project '/home/runner/work/Math/Math/tsconfig.node.json'. Projects must list all files or use an 'include' pattern.
+scripts/tts/sample.ts(43,7): error TS2322: Type '({ name: string; spec: { engine: string; voice: string; prompt: string; }; sentences: readonly string[]; } | { name: string; spec: { engine: string; voice: string; prompt?: undefined; }; sentences: readonly string[]; })[]' is not assignable to type 'Variant[]'.
+  Type '{ name: string; spec: { engine: string; voice: string; prompt: string; }; sentences: readonly string[]; } | { name: string; spec: { engine: string; voice: string; prompt?: undefined; }; sentences: readonly string[]; }' is not assignable to type 'Variant'.
+    Type '{ name: string; spec: { engine: string; voice: string; prompt: string; }; sentences: readonly string[]; }' is not assignable to type 'Variant'.
+      The types of 'spec.engine' are incompatible between these types.
+        Type 'string' is not assignable to type 'Engine'.
+src/lang/hebrewNumbers.ts(1,29): error TS6307: File '/home/runner/work/Math/Math/src/lang/gender.ts' is not listed within the file list of project '/home/runner/work/Math/Math/tsconfig.node.json'. Projects must list all files or use an 'include' pattern.
+BUILD FAILED
+
+## e2e
+
+> heshbon@0.1.0 test:e2e
+> playwright test
+
+
+Error: Process from config.webServer was not able to start. Exit code: 1
+::error ::Error: Process from config.webServer was not able to start. Exit code: 1
+
+
+::notice title=🎭 Playwright Run Summary::
+E2E FAILED
