@@ -31,7 +31,8 @@ const L = (n: number) => `level.decimalOps.${n}`;
 function pointSlip(answer: number): (v: number) => MistakeKind | null {
   return (v) => {
     for (const k of [10, 100, 1000]) {
-      if (Math.abs(round(v * k, 6) - answer) < 1e-9 || Math.abs(round(v / k, 6) - answer) < 1e-9) return 'placeValue';
+      if (Math.abs(round(v * k, 6) - answer) < 1e-9 || Math.abs(round(v / k, 6) - answer) < 1e-9)
+        return 'placeValue';
     }
     return null;
   };
@@ -53,7 +54,9 @@ function byPower(level: 1 | 2, rng: Rng): Exercise {
     a: x,
     op: times ? '×' : '÷',
     b: k,
-    hints: times ? hints('ex.dop.power.hint1', 'ex.dop.power.hint2') : hints('ex.dop.powerDiv.hint1', 'ex.dop.powerDiv.hint2'),
+    hints: times
+      ? hints('ex.dop.power.hint1', 'ex.dop.power.hint2')
+      : hints('ex.dop.powerDiv.hint1', 'ex.dop.powerDiv.hint2'),
     example: times ? { a: 3.45, b: k } : { a: 34.5, b: k },
     input: numpad(6, true),
     diagnose: pointSlip(answer),
@@ -63,33 +66,83 @@ function byPower(level: 1 | 2, rng: Rng): Exercise {
 function timesWhole(rng: Rng): Exercise {
   const x = round(randInt(rng, 11, 99) / 10, 1);
   const k = randInt(rng, 2, 9);
-  return arith({ topicId: ID, level: 3, a: x, op: '×', b: k, hints: hints('ex.dop.timesWhole.hint1', 'ex.dop.timesWhole.hint2'), example: { a: 2.5, b: 4 }, input: numpad(4, true), diagnose: pointSlip(round(x * k, 2)) });
+  return arith({
+    topicId: ID,
+    level: 3,
+    a: x,
+    op: '×',
+    b: k,
+    hints: hints('ex.dop.timesWhole.hint1', 'ex.dop.timesWhole.hint2'),
+    example: { a: 2.5, b: 4 },
+    input: numpad(4, true),
+    diagnose: pointSlip(round(x * k, 2)),
+  });
 }
 
 function timesWhole2(rng: Rng): Exercise {
   const x = round(randInt(rng, 101, 999) / 100, 2);
   const k = randInt(rng, 2, 9);
-  return arith({ topicId: ID, level: 4, a: x, op: '×', b: k, hints: hints('ex.dop.timesWhole.hint1', 'ex.dop.timesWhole.hint2'), example: { a: 1.25, b: 4 }, input: numpad(5, true), diagnose: pointSlip(round(x * k, 2)) });
+  return arith({
+    topicId: ID,
+    level: 4,
+    a: x,
+    op: '×',
+    b: k,
+    hints: hints('ex.dop.timesWhole.hint1', 'ex.dop.timesWhole.hint2'),
+    example: { a: 1.25, b: 4 },
+    input: numpad(5, true),
+    diagnose: pointSlip(round(x * k, 2)),
+  });
 }
 
 function timesDecimal(rng: Rng): Exercise {
   const a = round(randInt(rng, 2, 9) / 10, 1);
   const b = round(randInt(rng, 11, 99) / 10, 1);
-  return arith({ topicId: ID, level: 5, a: b, op: '×', b: a, hints: hints('ex.dop.timesDec.hint1', 'ex.dop.timesDec.hint2'), example: { a: 1.5, b: 0.4 }, input: numpad(4, true), diagnose: pointSlip(round(a * b, 2)) });
+  return arith({
+    topicId: ID,
+    level: 5,
+    a: b,
+    op: '×',
+    b: a,
+    hints: hints('ex.dop.timesDec.hint1', 'ex.dop.timesDec.hint2'),
+    example: { a: 1.5, b: 0.4 },
+    input: numpad(4, true),
+    diagnose: pointSlip(round(a * b, 2)),
+  });
 }
 
 function divWhole(rng: Rng): Exercise {
   const k = randInt(rng, 2, 9);
   const q = round(randInt(rng, 11, 99) / 10, 1);
   const a = round(q * k, 1);
-  return arith({ topicId: ID, level: 6, a, op: '÷', b: k, hints: hints('ex.dop.divWhole.hint1', 'ex.dop.divWhole.hint2'), example: { a: 7.5, b: 3 }, input: numpad(4, true), diagnose: pointSlip(q) });
+  return arith({
+    topicId: ID,
+    level: 6,
+    a,
+    op: '÷',
+    b: k,
+    hints: hints('ex.dop.divWhole.hint1', 'ex.dop.divWhole.hint2'),
+    example: { a: 7.5, b: 3 },
+    input: numpad(4, true),
+    diagnose: pointSlip(q),
+  });
 }
 
 function divHalf(rng: Rng): Exercise {
   const b = pick(rng, [0.5, 0.25, 0.1]);
   const a = randInt(rng, 2, 20);
   const answer = round(a / b, 2);
-  return arith({ topicId: ID, level: 7, a, op: '÷', b, hints: hints('ex.dop.divHalf.hint1', 'ex.dop.divHalf.hint2'), example: { a: 3, b: 0.5 }, input: numpad(3), diagnose: (v) => (v === round(a * b, 2) ? 'wrongOperation' : null) });
+  return arith({
+    topicId: ID,
+    level: 7,
+    a,
+    op: '÷',
+    b,
+    hints: hints('ex.dop.divHalf.hint1', 'ex.dop.divHalf.hint2'),
+    example: { a: 3, b: 0.5 },
+    input: numpad(3),
+    diagnose: (v) => (v === round(a * b, 2) ? 'wrongOperation' : null),
+  });
 }
 
 /** 0.25 = 1/4, 0.5 = 1/2, 0.2 = 1/5: the familiar ones, as a denominator. */
@@ -113,7 +166,9 @@ function familiar(rng: Rng): Exercise {
     hints: [
       hint(say('ex.dop.familiar.hint1')),
       hint(say('ex.dop.familiar.hint2')),
-      x === 0.5 ? exampleHint('0.25 = 1/4', sayText('{x} זה רבע.', { x: 0.25 })) : exampleHint('0.5 = 1/2', sayText('{x} זה חצי.', { x: 0.5 })),
+      x === 0.5
+        ? exampleHint('0.25 = 1/4', sayText('{x} זה רבע.', { x: 0.25 }))
+        : exampleHint('0.5 = 1/2', sayText('{x} זה חצי.', { x: 0.5 })),
     ],
     solution: sayText('{x} זה אחד חלקי {d}.', { x, d }),
   });
@@ -136,7 +191,9 @@ function roundTenth(rng: Rng): Exercise {
     hints: [
       hint(say('ex.dop.round.hint1')),
       hint(say('ex.dec.round.hint2')),
-      x === 3.47 ? exampleHint('2.81 → 2.8', sayText('{x} מעוגל לעשיריות הוא {r}.', { x: 2.81, r: 2.8 })) : exampleHint('3.47 → 3.5', sayText('{x} מעוגל לעשיריות הוא {r}.', { x: 3.47, r: 3.5 })),
+      x === 3.47
+        ? exampleHint('2.81 → 2.8', sayText('{x} מעוגל לעשיריות הוא {r}.', { x: 2.81, r: 2.8 }))
+        : exampleHint('3.47 → 3.5', sayText('{x} מעוגל לעשיריות הוא {r}.', { x: 3.47, r: 3.5 })),
     ],
     solution: sayText('{x} מעוגל לעשיריות הוא {r}.', { x, r: answer }),
     diagnose: (v) => (v === Math.round(x) ? 'placeValue' : null),
@@ -149,7 +206,11 @@ function story(rng: Rng): Exercise {
   const k = randInt(rng, 3, 9);
   const who = CHARACTERS[k % CHARACTERS.length] as Character;
   const answer = round(price * k, 2);
-  const spoken = say('wp.dop.shop.story', { name: who.name, k: { n: k, noun: NOTEBOOK }, price }, who.gender);
+  const spoken = say(
+    'wp.dop.shop.story',
+    { name: who.name, k: { n: k, noun: NOTEBOOK }, price },
+    who.gender,
+  );
   return exercise({
     factId: `dopwp:${k}x${price}`,
     topicId: ID,
@@ -162,7 +223,10 @@ function story(rng: Rng): Exercise {
     input: numpad(4, true),
     hints: [
       hint(say('wp.dop.shop.hint1')),
-      { ...hint(say('hint.equation')), example: { display: `${k} × ${price} = ?`, spoken: say('hint.equation').text } },
+      {
+        ...hint(say('hint.equation')),
+        example: { display: `${k} × ${price} = ?`, spoken: say('hint.equation').text },
+      },
       exampleHint('4 × 2.5 = 10', sayText('{a} כפול {b} זה {c}.', { a: 4, b: 2.5, c: 10 })),
     ],
     solution: sayText('{a} כפול {b} זה {c}.', { a: k, b: price, c: answer }),
@@ -174,7 +238,14 @@ const NOTEBOOK = { singular: 'מחברת', plural: 'מחברות', gender: 'f' a
 
 function storyBank(): string[] {
   const out: string[] = [];
-  for (const who of CHARACTERS) out.push(...say('wp.dop.shop.story', { name: who.name, k: { n: 3, noun: NOTEBOOK }, price: 2.5 }, who.gender).parts);
+  for (const who of CHARACTERS)
+    out.push(
+      ...say(
+        'wp.dop.shop.story',
+        { name: who.name, k: { n: 3, noun: NOTEBOOK }, price: 2.5 },
+        who.gender,
+      ).parts,
+    );
   return out;
 }
 
