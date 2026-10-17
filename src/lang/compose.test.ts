@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { compose } from './compose';
+import { compose, decimalParts } from './compose';
 
 const apple = { singular: 'תפוח', plural: 'תפוחים', gender: 'm' as const };
 
@@ -36,5 +36,20 @@ describe('compose', () => {
 
   it('leaves unknown placeholders alone', () => {
     expect(compose('שלום {x}', {}).text).toBe('שלום {x}');
+  });
+});
+
+describe('decimals', () => {
+  it('reads the part after the point as a number, leading zeros as אפס', () => {
+    expect(decimalParts(3.45)).toEqual(['שלוש', 'נקודה', 'ארבעים וחמש']);
+    expect(decimalParts(0.05)).toEqual(['אפס', 'נקודה', 'אפס', 'חמש']);
+    expect(decimalParts(12.5)).toEqual(['שתים עשרה', 'נקודה', 'חמש']);
+    expect(decimalParts(0.1 + 0.2)).toEqual(['אפס', 'נקודה', 'שלוש']);
+  });
+
+  it('a decimal slot in a sentence', () => {
+    const s = compose('כמה זה {a} ועוד {b}?', { a: 1.5, b: 2.25 });
+    expect(s.text).toBe('כמה זה אחת נקודה חמש ועוד שתיים נקודה עשרים וחמש?');
+    expect(s.parts).toEqual(['כמה זה', 'אחת', 'נקודה', 'חמש', 'ועוד', 'שתיים', 'נקודה', 'עשרים וחמש']);
   });
 });

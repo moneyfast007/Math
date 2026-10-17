@@ -2,8 +2,10 @@ import type { Grade } from '@/ui/ageBand';
 import type { ProfileProgress } from '@/state/schema';
 import { addSub100 } from './topics/addSub100';
 import { addSub20 } from './topics/addSub20';
+import { bigNumbers } from './topics/bigNumbers';
 import { count10 } from './topics/count10';
 import { fractions1 } from './topics/fractions1';
+import { longMulDiv } from './topics/longMulDiv';
 import { multIntro } from './topics/multIntro';
 import { multTable } from './topics/multTable';
 import { numbers100 } from './topics/numbers100';
@@ -20,6 +22,8 @@ export const TOPICS: readonly Topic[] = [
   multTable,
   numbers10000,
   fractions1,
+  bigNumbers,
+  longMulDiv,
 ];
 
 export function topicById(id: string): Topic | undefined {

@@ -79,6 +79,7 @@ export function numberPhrases(): Phrase[] {
   out.push({ id: 'num.word.elef', text: 'אלף' });
   out.push({ id: 'num.word.million', text: 'מיליון' });
   out.push({ id: 'num.word.twoMillion', text: 'שני מיליון' });
+  out.push({ id: 'num.word.point', text: 'נקודה' });
   // Groups after thousands or millions carry the ו ("ארבעת אלפים ושלוש מאות"); see numberParts.
   for (const g of ['f', 'm'] as const) {
     for (const text of vavForms(g)) out.push({ id: `num.vav.${g}.${text}`, text });

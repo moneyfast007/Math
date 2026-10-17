@@ -14,7 +14,6 @@ import {
   type Said,
 } from '../build';
 import { NOUNS, type CountableNoun } from '../nouns';
-import { pick } from '../rng';
 import type { Exercise, Rng, Visual } from '../types';
 
 /**
@@ -29,13 +28,19 @@ const L = (n: number) => `level.count10.${n}`;
 
 type Pair = { a: number; b: number };
 
-function nounPair(rng: Rng): [CountableNoun, CountableNoun] {
-  const first = pick(rng, NOUNS);
-  const second = pick(
-    rng,
-    NOUNS.filter((n) => n.id !== first.id),
-  );
-  return [first, second];
+/**
+ * The object of a closed-level exercise comes from the fact, not from chance,
+ * so every sentence that can be said is in the audio bank (it enumerates the
+ * facts). Different facts still show different objects.
+ */
+function nounFor(seed: number): CountableNoun {
+  return NOUNS[Math.abs(seed) % NOUNS.length] as CountableNoun;
+}
+
+function nounPair(a: number, b: number): [CountableNoun, CountableNoun] {
+  const first = nounFor(a * 3 + b);
+  const rest = NOUNS.filter((n) => n.id !== first.id);
+  return [first, rest[(a * 5 + b * 7) % rest.length] as CountableNoun];
 }
 
 function k(key: string): TranslationKey {
@@ -44,7 +49,7 @@ function k(key: string): TranslationKey {
 
 /** Counting: "how many X?" */
 function count(level: number, n: number, rng: Rng): Exercise {
-  const noun = pick(rng, NOUNS);
+  const noun = nounFor(n + level);
   const prompt = t('ex.count.prompt', { params: { plural: noun.plural } });
   const solved: Said = { text: `${countNoun(n, noun)}.`, parts: [`${countNoun(n, noun)}.`] };
   const k2 = n === 3 ? 4 : 3;
@@ -80,8 +85,8 @@ function count(level: number, n: number, rng: Rng): Exercise {
 }
 
 /** Which group has more: two nouns, answer is the noun with more. */
-function more(level: number, p: Pair, rng: Rng, fewer: boolean): Exercise {
-  const [x, y] = nounPair(rng);
+function more(level: number, p: Pair, fewer: boolean): Exercise {
+  const [x, y] = nounPair(p.a, p.b);
   const key = fewer ? 'ex.fewer' : 'ex.more';
   const prompt = t(k(`${key}.prompt`), { params: { x: x.plural, y: y.plural } });
   const winner = (fewer ? p.a < p.b : p.a > p.b) ? 0 : 1;
@@ -121,7 +126,7 @@ function more(level: number, p: Pair, rng: Rng, fewer: boolean): Exercise {
 
 /** One more / one less. */
 function oneStep(level: number, n: number, rng: Rng, more1: boolean): Exercise {
-  const noun = pick(rng, NOUNS);
+  const noun = nounFor(n * 2 + (more1 ? 1 : 0));
   const key = more1 ? 'ex.oneMore' : 'ex.oneLess';
   const answer = more1 ? n + 1 : n - 1;
   const prompt = t(k(`${key}.prompt`), { params: { plural: noun.plural } });
@@ -156,7 +161,7 @@ function oneStep(level: number, n: number, rng: Rng, more1: boolean): Exercise {
 
 /** Making five or ten: how many are missing from the frame? */
 function complete(level: number, n: number, rng: Rng, target: 5 | 10): Exercise {
-  const noun = pick(rng, NOUNS);
+  const noun = nounFor(n + target);
   const answer = target - n;
   const prompt = t('ex.makeN.prompt', { params: { target, plural: noun.plural } });
   const spoken = say('ex.makeN.spoken', {
@@ -219,8 +224,8 @@ function neighbour(level: number, n: number, rng: Rng, after: boolean): Exercise
 }
 
 /** Which number is bigger: two numerals. */
-function bigger(level: number, p: Pair, rng: Rng): Exercise {
-  const noun = pick(rng, NOUNS);
+function bigger(level: number, p: Pair): Exercise {
+  const noun = nounFor(p.a + p.b);
   const prompt = t('ex.bigger.prompt');
   const spoken = say('ex.bigger.spoken', { a: p.a, b: p.b });
   const answer = p.a > p.b ? 0 : 1;
@@ -273,12 +278,12 @@ export const count10 = defineTopic({
     closed(
       L(3),
       () => pairs(6, (a, b) => a !== b),
-      (p, rng) => more(3, p, rng, false),
+      (p) => more(3, p, false),
     ),
     closed(
       L(4),
       () => pairs(8, (a, b) => a !== b && Math.abs(a - b) <= 4),
-      (p, rng) => more(4, p, rng, true),
+      (p) => more(4, p, true),
     ),
     closed(
       L(5),
@@ -311,7 +316,7 @@ export const count10 = defineTopic({
     closed(
       L(10),
       () => pairs(10, (a, b) => a !== b),
-      (p, rng) => bigger(10, p, rng),
+      (p) => bigger(10, p),
     ),
   ],
 });

@@ -42,7 +42,27 @@ function resolve(slot: Slot): Resolved {
     if (n <= 2) return { words, clips: [], tail: words };
     return { words, clips: numberParts(n, gender), tail: slot.noun.plural };
   }
+  if (!Number.isInteger(n)) {
+    const clips = decimalParts(n);
+    return { words: clips.join(' '), clips, tail: '' };
+  }
   return { words: numberToWords(n, gender), clips: numberParts(n, gender), tail: '' };
+}
+
+/**
+ * A decimal read the way Israeli schools read it: the whole part, "נקודה", then
+ * the digits after the point as a number, each leading zero read as "אפס".
+ *   3.45 → שלוש נקודה ארבעים וחמש,  0.05 → אפס נקודה אפס חמש,  12.5 → שתים עשרה נקודה חמש
+ */
+export function decimalParts(x: number): string[] {
+  if (x < 0) throw new RangeError('decimalParts: negative numbers are not supported');
+  const [whole = '0', frac = ''] = String(Math.round(x * 1000) / 1000).split('.');
+  const parts = [...numberParts(Number(whole)), 'נקודה'];
+  const zeros = /^0*/.exec(frac)?.[0].length ?? 0;
+  for (let i = 0; i < zeros; i++) parts.push('אפס');
+  const rest = frac.slice(zeros);
+  if (rest) parts.push(...numberParts(Number(rest)));
+  return parts;
 }
 
 const ONLY_PUNCTUATION = /^[\s.,:;!?()"'־-]*$/;
