@@ -272,6 +272,8 @@ export interface TopicDef {
   grades: readonly number[];
   startLevel: (grade: number) => number;
   levels: readonly LevelDef[];
+  /** Extra phrases for the audio bank (story pieces the sampling may not reach). */
+  extraBank?: () => string[];
 }
 
 /** How many exercises per level the bank samples from open levels to collect their pieces. */
@@ -350,6 +352,7 @@ export function defineTopic(def: TopicDef): Topic & { enumerate: (level: number)
       }
     }
     for (const p of storyPieces()) out.add(p);
+    for (const p of def.extraBank?.() ?? []) out.add(p);
     return [...out];
   };
 

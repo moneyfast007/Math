@@ -4,12 +4,15 @@ import { addSub100 } from './topics/addSub100';
 import { addSub20 } from './topics/addSub20';
 import { bigNumbers } from './topics/bigNumbers';
 import { count10 } from './topics/count10';
+import { decimals } from './topics/decimals';
+import { fractionOps } from './topics/fractionOps';
 import { fractions1 } from './topics/fractions1';
 import { longMulDiv } from './topics/longMulDiv';
 import { multIntro } from './topics/multIntro';
 import { multTable } from './topics/multTable';
 import { numbers100 } from './topics/numbers100';
 import { numbers10000 } from './topics/numbers10000';
+import { perimeterArea } from './topics/perimeterArea';
 import type { Topic } from './types';
 
 /** All topics (worlds), in curriculum order (Ministry of Education, 2006/2024). */
@@ -24,6 +27,9 @@ export const TOPICS: readonly Topic[] = [
   fractions1,
   bigNumbers,
   longMulDiv,
+  fractionOps,
+  decimals,
+  perimeterArea,
 ];
 
 export function topicById(id: string): Topic | undefined {
