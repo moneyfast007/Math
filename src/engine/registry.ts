@@ -3,12 +3,24 @@ import type { ProfileProgress } from '@/state/schema';
 import { addSub100 } from './topics/addSub100';
 import { addSub20 } from './topics/addSub20';
 import { count10 } from './topics/count10';
+import { fractions1 } from './topics/fractions1';
 import { multIntro } from './topics/multIntro';
+import { multTable } from './topics/multTable';
 import { numbers100 } from './topics/numbers100';
+import { numbers10000 } from './topics/numbers10000';
 import type { Topic } from './types';
 
 /** All topics (worlds), in curriculum order (Ministry of Education, 2006/2024). */
-export const TOPICS: readonly Topic[] = [count10, addSub20, numbers100, addSub100, multIntro];
+export const TOPICS: readonly Topic[] = [
+  count10,
+  addSub20,
+  numbers100,
+  addSub100,
+  multIntro,
+  multTable,
+  numbers10000,
+  fractions1,
+];
 
 export function topicById(id: string): Topic | undefined {
   return TOPICS.find((t) => t.id === id);

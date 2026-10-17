@@ -522,6 +522,8 @@ export const WORD_NOUNS: readonly WordNoun[] = [
   { singular: 'שקל', plural: 'שקלים', gender: 'm' },
 ];
 
+export const SHEKELS: readonly WordNoun[] = [{ singular: 'שקל', plural: 'שקלים', gender: 'm' }];
+
 export interface WordProblemOptions {
   topicId: string;
   level: number;
@@ -536,6 +538,8 @@ export interface WordProblemOptions {
   input: Exercise['input'];
   /** The division problem asks for the remainder rather than the quotient. */
   askRemainder?: boolean;
+  /** Nouns to choose from (default: all). Big amounts read better as shekels. */
+  nouns?: readonly WordNoun[];
 }
 
 /**
@@ -550,7 +554,7 @@ export function wordProblem(o: WordProblemOptions): Exercise {
     o.rng,
     CHARACTERS.filter((c) => c.name !== who.name),
   );
-  const noun = pick(o.rng, WORD_NOUNS);
+  const noun = pick(o.rng, o.nouns ?? WORD_NOUNS);
   const storyKey = `${o.key}.story` as TranslationKey;
   // {a}/{b}: with the noun; {af}/{am}/{bf}/{bm}: plain, in that gender (for "ילדים", "קופסאות").
   const slots = (a: number, b: number): Record<string, Slot> => ({
