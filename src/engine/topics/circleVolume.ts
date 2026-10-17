@@ -33,7 +33,8 @@ const LITRE: Noun = { singular: 'ליטר', plural: 'ליטרים', gender: 'm' 
 interface Spec {
   level: number;
   id: string;
-  key: TranslationKey;
+  /** Prefix of the sentence keys: `${key}.prompt`, `.spoken`, `.solution`. */
+  key: string;
   slots: Record<string, Slot>;
   answer: number;
   unit: Noun;
