@@ -1450,12 +1450,24 @@ ol.steps {
   border: 3px solid transparent;
 }
 
-.profile-card--c0 { background: #fde3d2; }
-.profile-card--c1 { background: #d8efec; }
-.profile-card--c2 { background: #e2e3f8; }
-.profile-card--c3 { background: #fbeccf; }
-.profile-card--c4 { background: #e6f2dc; }
-.profile-card--c5 { background: #f6e1ec; }
+.profile-card--c0 {
+  background: #fde3d2;
+}
+.profile-card--c1 {
+  background: #d8efec;
+}
+.profile-card--c2 {
+  background: #e2e3f8;
+}
+.profile-card--c3 {
+  background: #fbeccf;
+}
+.profile-card--c4 {
+  background: #e6f2dc;
+}
+.profile-card--c5 {
+  background: #f6e1ec;
+}
 
 .home .profile-card .avatar--lg {
   font-size: 104px;
@@ -1515,22 +1527,45 @@ ol.steps {
 }
 
 @keyframes plusi-in {
-  from { transform: scale(0.85); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
+  from {
+    transform: scale(0.85);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 @keyframes plusi-hop {
-  0% { transform: translateY(0) scale(1); }
-  35% { transform: translateY(-22px) scale(1.06); }
-  60% { transform: translateY(0) scale(0.97); }
-  80% { transform: translateY(-6px) scale(1.01); }
-  100% { transform: translateY(0) scale(1); }
+  0% {
+    transform: translateY(0) scale(1);
+  }
+  35% {
+    transform: translateY(-22px) scale(1.06);
+  }
+  60% {
+    transform: translateY(0) scale(0.97);
+  }
+  80% {
+    transform: translateY(-6px) scale(1.01);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+  }
 }
 
 @keyframes plusi-tilt {
-  0%, 100% { transform: rotate(0); }
-  40% { transform: rotate(-8deg); }
-  70% { transform: rotate(4deg); }
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+  40% {
+    transform: rotate(-8deg);
+  }
+  70% {
+    transform: rotate(4deg);
+  }
 }
 
 /* The feedback becomes a speech bubble pointing at Plusi (who stands at the start, on the right). */
@@ -1577,28 +1612,73 @@ ol.steps {
   animation: confetti 900ms var(--ease) forwards;
 }
 
-.confetti__bit:nth-child(3n) { background: #e8793a; }
-.confetti__bit:nth-child(3n + 1) { background: #2f8f83; border-radius: 50%; }
-.confetti__bit:nth-child(3n + 2) { background: #e2a33b; }
+.confetti__bit:nth-child(3n) {
+  background: #e8793a;
+}
+.confetti__bit:nth-child(3n + 1) {
+  background: #2f8f83;
+  border-radius: 50%;
+}
+.confetti__bit:nth-child(3n + 2) {
+  background: #e2a33b;
+}
 
-.confetti__bit--0 { --dx: -70px; --dy: -60px; }
-.confetti__bit--1 { --dx: -30px; --dy: -90px; }
-.confetti__bit--2 { --dx: 20px; --dy: -95px; }
-.confetti__bit--3 { --dx: 65px; --dy: -70px; }
-.confetti__bit--4 { --dx: 90px; --dy: -25px; }
-.confetti__bit--5 { --dx: -90px; --dy: -20px; }
-.confetti__bit--6 { --dx: -55px; --dy: 30px; }
-.confetti__bit--7 { --dx: 55px; --dy: 35px; }
-.confetti__bit--8 { --dx: 5px; --dy: -120px; }
-.confetti__bit--9 { --dx: 100px; --dy: -95px; }
+.confetti__bit--0 {
+  --dx: -70px;
+  --dy: -60px;
+}
+.confetti__bit--1 {
+  --dx: -30px;
+  --dy: -90px;
+}
+.confetti__bit--2 {
+  --dx: 20px;
+  --dy: -95px;
+}
+.confetti__bit--3 {
+  --dx: 65px;
+  --dy: -70px;
+}
+.confetti__bit--4 {
+  --dx: 90px;
+  --dy: -25px;
+}
+.confetti__bit--5 {
+  --dx: -90px;
+  --dy: -20px;
+}
+.confetti__bit--6 {
+  --dx: -55px;
+  --dy: 30px;
+}
+.confetti__bit--7 {
+  --dx: 55px;
+  --dy: 35px;
+}
+.confetti__bit--8 {
+  --dx: 5px;
+  --dy: -120px;
+}
+.confetti__bit--9 {
+  --dx: 100px;
+  --dy: -95px;
+}
 
 @keyframes confetti {
-  0% { transform: translate(0, 0) scale(0.6) rotate(0); opacity: 1; }
-  100% { transform: translate(var(--dx), var(--dy)) scale(1) rotate(200deg); opacity: 0; }
+  0% {
+    transform: translate(0, 0) scale(0.6) rotate(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--dx), var(--dy)) scale(1) rotate(200deg);
+    opacity: 0;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .confetti { display: none; }
+  .confetti {
+    display: none;
+  }
 }
 
 /* The typed answer when there is no equation to hold it. */
@@ -1635,9 +1715,15 @@ ol.steps {
   border-radius: 36px;
 }
 
-:root[data-age='young'] .choices-big .choice-big:nth-child(3n + 1) { background: #fde3d2; }
-:root[data-age='young'] .choices-big .choice-big:nth-child(3n + 2) { background: #d8efec; }
-:root[data-age='young'] .choices-big .choice-big:nth-child(3n + 3) { background: #e2e3f8; }
+:root[data-age='young'] .choices-big .choice-big:nth-child(3n + 1) {
+  background: #fde3d2;
+}
+:root[data-age='young'] .choices-big .choice-big:nth-child(3n + 2) {
+  background: #d8efec;
+}
+:root[data-age='young'] .choices-big .choice-big:nth-child(3n + 3) {
+  background: #e2e3f8;
+}
 
 /* Done dots in the progress bar are little stars' worth of colour: the band accent. */
 .progress-dots .dot--done {

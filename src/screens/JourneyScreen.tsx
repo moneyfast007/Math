@@ -84,55 +84,54 @@ function Journey({ profile }: { profile: Profile }) {
 
       <div className="journey__body">
         <div className="journey__mapcol">
-      {!young ? (
-        <div className="journey__world">
-          <h2 className="journey__world-name">
-            {t('journey.world', {
-              params: { index: world.index, name: t(world.topic.labelKey as TranslationKey) },
-            })}
-          </h2>
-          <span className="muted">
-            {world.completed
-              ? t('journey.worldDone')
-              : t('journey.stationOf', {
-                  params: { n: Math.min(world.done + 1, world.total), total: world.total },
+          {!young ? (
+            <div className="journey__world">
+              <h2 className="journey__world-name">
+                {t('journey.world', {
+                  params: { index: world.index, name: t(world.topic.labelKey as TranslationKey) },
                 })}
-          </span>
+              </h2>
+              <span className="muted">
+                {world.completed
+                  ? t('journey.worldDone')
+                  : t('journey.stationOf', {
+                      params: { n: Math.min(world.done + 1, world.total), total: world.total },
+                    })}
+              </span>
+            </div>
+          ) : null}
+
+          <WorldMap
+            world={world}
+            young={young}
+            onPick={
+              profile.settings.allowLevelChange
+                ? (s) => {
+                    setTopicLevel(profile.id, world.topic.id, s.level);
+                    navigate({ name: 'practice' });
+                  }
+                : undefined
+            }
+          />
         </div>
-      ) : null}
 
-      <WorldMap
-        world={world}
-        young={young}
-        onPick={
-          profile.settings.allowLevelChange
-            ? (s) => {
-                setTopicLevel(profile.id, world.topic.id, s.level);
-                navigate({ name: 'practice' });
-              }
-            : undefined
-        }
-      />
-
-        </div>
-
-      <section className="station card journey__next" aria-labelledby="station-title">
-        <div className="journey__next-row">
-          <div className="journey__next-text">
-            <span className="station__eyebrow">{t('child.nextStation')}</span>
-            <h2 id="station-title">{stopName}</h2>
+        <section className="station card journey__next" aria-labelledby="station-title">
+          <div className="journey__next-row">
+            <div className="journey__next-text">
+              <span className="station__eyebrow">{t('child.nextStation')}</span>
+              <h2 id="station-title">{stopName}</h2>
+            </div>
+            <SpeakerButton text={spokenLabel(stopName)} />
           </div>
-          <SpeakerButton text={spokenLabel(stopName)} />
-        </div>
-        <button type="button" className="btn btn--hero journey__start" onClick={start}>
-          {startLabel}
-        </button>
-        {profile.settings.allowLevelChange && stop.kind === 'level' ? (
-          <button type="button" className="btn btn--ghost" onClick={() => setPicking(true)}>
-            {t('child.otherLevel')}
+          <button type="button" className="btn btn--hero journey__start" onClick={start}>
+            {startLabel}
           </button>
-        ) : null}
-      </section>
+          {profile.settings.allowLevelChange && stop.kind === 'level' ? (
+            <button type="button" className="btn btn--ghost" onClick={() => setPicking(true)}>
+              {t('child.otherLevel')}
+            </button>
+          ) : null}
+        </section>
       </div>
 
       {picking ? (

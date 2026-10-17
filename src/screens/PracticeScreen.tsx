@@ -269,14 +269,24 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
         ) : null}
         {e.input.type === 'numpad' && !hasSlot ? (
           // No equation to hold the slot (stories, dictation): the typed answer shows here.
-          <div className={finished ? 'answer-box answer-box--done' : 'answer-box'} dir="ltr" aria-live="polite">
+          <div
+            className={finished ? 'answer-box answer-box--done' : 'answer-box'}
+            dir="ltr"
+            aria-live="polite"
+          >
             {finished ? answerLabel(e) : value || '?'}
           </div>
         ) : null}
       </section>
 
       <div className="coach">
-        <Plusi key={`${s.done}:${s.phase}`} mood={plusiMood(s)} size={band === 'young' ? 112 : 88} decorative className="coach__plusi" />
+        <Plusi
+          key={`${s.done}:${s.phase}`}
+          mood={plusiMood(s)}
+          size={band === 'young' ? 112 : 88}
+          decorative
+          className="coach__plusi"
+        />
         {s.phase === 'correct' ? <Confetti /> : null}
         <Feedback state={s} tc={tc} slow={slow} />
       </div>
