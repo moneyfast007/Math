@@ -10,6 +10,8 @@ export default defineConfig({
     globals: false,
     // The topic property tests sample every level of every world; coverage makes them slower.
     testTimeout: 60_000,
+    // Separate processes: with coverage on, worker threads time out reporting to the busy main thread.
+    pool: 'forks',
     setupFiles: ['./tests/setup.ts'],
     include: ['src/**/*.test.{ts,tsx}', 'scripts/**/*.test.ts'],
     exclude: ['tests/e2e/**', 'node_modules/**'],
