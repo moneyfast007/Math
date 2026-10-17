@@ -101,24 +101,23 @@ describe('differentExample', () => {
   });
 });
 
-describe('the audio bank covers what a child can hear', () => {
-  it.each(TOPICS.map((t) => [t.id, t] as const))('%s', (_id, topic) => {
+describe.each(TOPICS.map((t) => [t.id, t] as const))('the audio bank covers what a child can hear: %s', (_id, topic) => {
+  // One test per level, so no single test keeps the worker busy for long.
+  it.each(topic.levels.map((l) => l.level))('level %i', (level) => {
     const bank = new Set(topic.spokenBank());
     const missing = new Set<string>();
-    const rng = seededRng(2026);
-    for (const { level } of topic.levels) {
-      for (let i = 0; i < 120; i++) {
-        const e = topic.generate(level, rng, i % 2 ? 'f' : 'm');
-        const sayings: [string, string[] | undefined][] = [
-          [e.spokenText, e.spokenParts],
-          [e.solutionSpoken, e.solutionParts],
-          ...e.hints.map((h): [string, string[] | undefined] => [h.spoken, h.spokenParts]),
-        ];
-        for (const [text, parts] of sayings) {
-          // Recorded whole, or every clip of it is (numbers come from the shared number bank).
-          if (bank.has(text)) continue;
-          for (const p of parts ?? [text]) if (!bank.has(p) && !isNumberClip(p)) missing.add(p);
-        }
+    const rng = seededRng(2026 + level);
+    for (let i = 0; i < 120; i++) {
+      const e = topic.generate(level, rng, i % 2 ? 'f' : 'm');
+      const sayings: [string, string[] | undefined][] = [
+        [e.spokenText, e.spokenParts],
+        [e.solutionSpoken, e.solutionParts],
+        ...e.hints.map((h): [string, string[] | undefined] => [h.spoken, h.spokenParts]),
+      ];
+      for (const [text, parts] of sayings) {
+        // Recorded whole, or every clip of it is (numbers come from the shared number bank).
+        if (bank.has(text)) continue;
+        for (const p of parts ?? [text]) if (!bank.has(p) && !isNumberClip(p)) missing.add(p);
       }
     }
     expect([...missing].slice(0, 10)).toEqual([]);

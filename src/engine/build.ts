@@ -328,40 +328,25 @@ export function defineTopic(def: TopicDef): Topic & { enumerate: (level: number)
     ]);
   };
 
+  let bankCache: string[] | null = null;
   const spokenBank = (): string[] => {
+    // Computed once: every exercise of closed levels and a fixed sample of open ones.
+    if (bankCache) return bankCache;
     const out = new Set<string>();
     // Word problems used by this topic register their stories while being sampled below.
     for (const { level } of levels) {
       const l = levelDef(level);
-      const list = enumerate(level);
-      // Open levels also contribute a larger sample of their pieces (finite, small).
-      const sampled =
-        'gen' in l
-          ? [
-              ...list,
-              ...Array.from({ length: BANK_SAMPLES * 2 }, (_, i) =>
-                l.gen(seededRng(level * 104729 + i), i % 2 ? 'f' : 'm'),
-              ),
-            ]
-          : list;
-      for (const e of sampled) {
-        const texts = [e.spokenText, e.solutionSpoken, ...e.hints.map((h) => h.spoken)];
-        const parts = [
-          e.spokenParts ?? [],
-          e.solutionParts ?? [],
-          ...e.hints.map((h) => h.spokenParts ?? []),
-        ];
-        if ('gen' in l) {
-          for (const p of parts.flat()) out.add(p);
-        } else {
-          for (const x of texts) out.add(x);
-          for (const p of parts.flat()) out.add(p);
-        }
+      for (const e of enumerate(level)) {
+        const parts = [e.spokenParts ?? [], e.solutionParts ?? [], ...e.hints.map((h) => h.spokenParts ?? [])];
+        // Closed levels record whole sentences; open levels only the clips sentences are assembled from.
+        if (!('gen' in l)) for (const x of [e.spokenText, e.solutionSpoken, ...e.hints.map((h) => h.spoken)]) out.add(x);
+        for (const p of parts.flat()) out.add(p);
       }
     }
     for (const p of storyPieces()) out.add(p);
     for (const p of def.extraBank?.() ?? []) out.add(p);
-    return [...out];
+    bankCache = [...out];
+    return bankCache;
   };
 
   return {
