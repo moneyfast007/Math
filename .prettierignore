@@ -5,3 +5,6 @@ playwright-report
 test-results
 public/audio
 package-lock.json
+# Workflow files are pushed by the bootstrap workflow, which may not edit workflows.
+.github/workflows/
+public/audio/
