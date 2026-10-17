@@ -1,6 +1,8 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { navigate } from '@/app/router';
-import { nextStation } from '@/engine/registry';
+import { activeWorld, nextStop } from '@/engine/journey';
+import { pick } from '@/engine/rng';
+import { currentLevel } from '@/engine/registry';
 import {
   completedExercise,
   reduce,
@@ -10,29 +12,35 @@ import {
 } from '@/engine/session';
 import type { Exercise, Topic } from '@/engine/types';
 import { makeT, t } from '@/i18n';
+import type { RoundOutcome } from '@/state/progress';
 import type { Profile } from '@/state/schema';
 import { appStore, useActiveProfile, useApp } from '@/state/store';
 import { ageBandForGrade, applyAgeBand } from '@/ui/ageBand';
 import { Dialog } from '@/ui/Dialog';
 import { MathExpr } from '@/ui/MathExpr';
 import { NumberPad } from '@/ui/NumberPad';
+import { Plusi } from '@/ui/Plusi';
 import { SpeakerButton } from '@/ui/SpeakerButton';
 import { VisualView } from '@/ui/Visuals';
 
 /** How long a correct answer stays on screen before the next exercise. */
 const CORRECT_PAUSE_MS = 1400;
 
-export function PracticeScreen() {
+/** 'level': the next station. 'review': the world's final station, exercises from every level. */
+export type PracticeMode = 'level' | 'review';
+
+export function PracticeScreen({ mode }: { mode: PracticeMode }) {
   const profile = useActiveProfile();
   useEffect(() => {
     if (!profile) navigate({ name: 'home' }, { replace: true });
   }, [profile]);
   if (!profile) return null;
-  return <Practice key={profile.id} profile={profile} />;
+  return <Practice key={`${profile.id}:${mode}`} profile={profile} mode={mode} />;
 }
 
-function Practice({ profile }: { profile: Profile }) {
+function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
   const recordAttempt = useApp((s) => s.recordAttempt);
+  const completeRound = useApp((s) => s.completeRound);
   const setTopicLevel = useApp((s) => s.setTopicLevel);
   const band = ageBandForGrade(profile.grade);
   const tc = makeT(profile.gender);
@@ -40,25 +48,41 @@ function Practice({ profile }: { profile: Profile }) {
 
   // The station is fixed for the round, even as progress updates.
   const station = useMemo(
-    () => nextStation(profile.grade, appProgress(profile.id)),
+    () => {
+      const progress = appProgress(profile.id);
+      const world = activeWorld(profile.grade, progress);
+      const topic = world?.topic;
+      if (!topic) throw new Error('No topic for this grade');
+      const stop = nextStop(world);
+      const stored = currentLevel(topic, profile.grade, progress);
+      return {
+        topic,
+        level: mode === 'level' && stop.kind === 'level' ? stop.level : stored,
+        stored,
+      };
+    },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [],
   );
   const topic: Topic = station.topic;
+  const review = mode === 'review';
+  const levels = topic.levels.map((l) => l.level);
   const generate = (level: number, avoid?: string): Exercise =>
-    topic.generate(level, rng, profile.gender, avoid);
+    topic.generate(review ? pick(rng, levels) : level, rng, profile.gender, avoid);
 
   const newRound = (level: number): SessionState =>
     startSession({
       topicId: topic.id,
       level,
-      minLevel: topic.levels[0]?.level ?? 1,
-      maxLevel: topic.levels.at(-1)?.level ?? 10,
+      // The review never suggests a level change: every exercise is from a different one.
+      minLevel: review ? level : (topic.levels[0]?.level ?? 1),
+      maxLevel: review ? level : (topic.levels.at(-1)?.level ?? 10),
       band,
       exercise: generate(level),
     });
 
   const [s, setS] = useState<SessionState>(() => newRound(station.level));
+  const [outcome, setOutcome] = useState<RoundOutcome | null>(null);
   const [value, setValue] = useState('');
   const [tried, setTried] = useState<number[]>([]);
   const [slow, setSlow] = useState(false);
@@ -75,13 +99,25 @@ function Practice({ profile }: { profile: Profile }) {
       const outcome = after.history.at(-1);
       recordAttempt(profile.id, {
         topicId: topic.id,
-        level: before.level,
+        // A review round is scored, but never moves the level the child is at.
+        level: review ? station.stored : before.level,
         correct: outcome === 'first',
         at: Date.now(),
         ...(outcome !== 'first' && after.firstMistake ? { mistake: after.firstMistake } : {}),
       });
     }
     if (action.type === 'changeLevel') setTopicLevel(profile.id, topic.id, after.level);
+    if (after.phase === 'finished' && before.phase !== 'finished') {
+      setOutcome(
+        completeRound(profile.id, {
+          topicId: topic.id,
+          station: review ? 'review' : after.level,
+          firstTry: after.firstTryCount,
+          length: after.length,
+          at: Date.now(),
+        }),
+      );
+    }
     if (action.type === 'next' || action.type === 'changeLevel') {
       setValue('');
       setTried([]);
@@ -122,33 +158,48 @@ function Practice({ profile }: { profile: Profile }) {
   };
 
   if (s.phase === 'finished') {
+    const result = outcome ? resultLine(outcome, tc, profile.id, profile.grade) : null;
+    const spoken = outcome?.passed ? tc('practice.done.passedSpoken') : t('practice.done.notPassed');
     return (
       <main className="screen practice" data-screen="practice-done">
         <section className="stack done" style={{ alignItems: 'center', textAlign: 'center' }}>
+          <Plusi mood={outcome?.passed ? 'cheering' : 'happy'} size={band === 'young' ? 160 : 128} decorative />
           <h1>{t('practice.done.title', { params: { name: profile.name } })}</h1>
           <p className="done__body">{t('practice.done.body', { params: { count: s.done } })}</p>
+          {result ? (
+            <div className={outcome?.passed ? 'feedback feedback--correct' : 'feedback feedback--almost'} role="status">
+              <SpeakerButton text={spoken} slow={slow} />
+              <span>{result}</span>
+            </div>
+          ) : null}
           <div className="row" style={{ justifyContent: 'center' }}>
+            {outcome?.worldCompleted ? (
+              <button type="button" className="btn" onClick={() => navigate({ name: 'album' })}>
+                {t('practice.done.toAlbum')}
+              </button>
+            ) : null}
             <button
               type="button"
-              className="btn"
+              className={outcome?.worldCompleted ? 'btn btn--secondary' : 'btn'}
+              onClick={() => navigate({ name: 'play' })}
+            >
+              {t('practice.done.toJourney')}
+            </button>
+            <button
+              type="button"
+              className="btn btn--secondary"
               onClick={() => {
-                const level = stateRef.current.level;
+                const level = outcome?.advancedTo ?? stateRef.current.level;
                 setNotice(null);
                 setValue('');
                 setTried([]);
+                setOutcome(null);
                 const fresh = newRound(level);
                 stateRef.current = fresh;
                 setS(fresh);
               }}
             >
               {t('practice.done.again')}
-            </button>
-            <button
-              type="button"
-              className="btn btn--secondary"
-              onClick={() => navigate({ name: 'play' })}
-            >
-              {t('practice.done.home')}
             </button>
           </div>
         </section>
@@ -185,6 +236,11 @@ function Practice({ profile }: { profile: Profile }) {
       {notice ? (
         <p className="notice notice--ok" role="status">
           {notice}
+        </p>
+      ) : null}
+      {review && s.done === 0 && s.phase === 'answering' ? (
+        <p className="notice" role="status">
+          {t('practice.review.body')}
         </p>
       ) : null}
 
@@ -292,6 +348,17 @@ function Practice({ profile }: { profile: Profile }) {
 /** Reads progress once, outside React, for the station choice at round start. */
 function appProgress(profileId: string) {
   return appStore.getState().data.progress[profileId];
+}
+
+/** What the round meant for the journey, in one sentence. */
+function resultLine(o: RoundOutcome, tc: TC, profileId: string, grade: Profile['grade']): string {
+  if (o.worldCompleted) return t('practice.done.worldDone');
+  if (!o.passed) return t('practice.done.notPassed');
+  if (o.advancedTo !== null) return `${tc('practice.done.passed')} ${t('practice.done.nextOpened')}`;
+  // Passed the last level: is the review open now?
+  const world = activeWorld(grade, appProgress(profileId));
+  if (world?.review === 'current' && o.newlyCompleted) return `${tc('practice.done.passed')} ${t('practice.done.reviewOpened')}`;
+  return tc('practice.done.passed');
 }
 
 function splitAtSlot(display: string): [string, string] {

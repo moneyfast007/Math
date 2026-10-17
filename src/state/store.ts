@@ -1,10 +1,17 @@
 import { useStore } from 'zustand';
 import { createStore, type StoreApi } from 'zustand/vanilla';
 import { createPinRecord, verifyPin as checkPin } from './pin';
-import { recordAttempt as addAttempt, type Attempt } from './progress';
+import {
+  completeRound as finishRound,
+  recordAttempt as addAttempt,
+  type Attempt,
+  type RoundOutcome,
+  type RoundResult,
+} from './progress';
 import {
   emptyAppData,
   emptyProgress,
+  emptyTopicStats,
   MAX_LEVEL,
   MAX_NAME_LENGTH,
   MAX_PROFILES,
@@ -58,6 +65,8 @@ export interface AppState {
   replaceData: (data: AppData) => void;
   markBackedUp: () => void;
   recordAttempt: (profileId: string, attempt: Attempt) => void;
+  /** A round finished: stations, streak and the next level are updated together. */
+  completeRound: (profileId: string, result: RoundResult) => RoundOutcome | null;
   setTopicLevel: (profileId: string, topicId: string, level: number) => void;
 }
 
@@ -201,27 +210,26 @@ export function createAppStore(storage: StorageAdapter, clock: () => number = Da
         commit({ ...data, progress: { ...data.progress, [profileId]: progress } });
       },
 
+      completeRound: (profileId, result) => {
+        const { data } = get();
+        if (!data.profiles.some((p) => p.id === profileId)) return null;
+        const outcome = finishRound(data.progress[profileId] ?? emptyProgress(), result);
+        commit({ ...data, progress: { ...data.progress, [profileId]: outcome.progress } });
+        return outcome;
+      },
+
       setTopicLevel: (profileId, topicId, level) => {
         const { data } = get();
         if (!data.profiles.some((p) => p.id === profileId)) return;
         const progress = data.progress[profileId] ?? emptyProgress();
         const current = progress.topics[topicId];
         const clamped = Math.min(MAX_LEVEL, Math.max(MIN_LEVEL, Math.round(level)));
-        const stats = current
-          ? { ...current, level: clamped }
-          : {
-              level: clamped,
-              attempts: 0,
-              correct: 0,
-              lastPracticedAt: 0,
-              recent: [],
-              mistakes: {},
-            };
+        const stats = current ? { ...current, level: clamped } : emptyTopicStats(clamped);
         commit({
           ...data,
           progress: {
             ...data.progress,
-            [profileId]: { topics: { ...progress.topics, [topicId]: stats } },
+            [profileId]: { ...progress, topics: { ...progress.topics, [topicId]: stats } },
           },
         });
       },

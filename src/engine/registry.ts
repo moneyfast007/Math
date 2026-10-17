@@ -16,23 +16,6 @@ export function topicsForGrade(grade: Grade): Topic[] {
   return inGrade.length > 0 ? inGrade : [...TOPICS];
 }
 
-export interface Station {
-  topic: Topic;
-  level: number;
-}
-
-/**
- * "The next station": what the child should practice now. One big button on
- * her home screen starts it, so a five-year-old never faces a menu.
- *
- * Today: the first topic of her grade, at her saved level (or her grade's
- * starting level). Phase 4 turns this into the journey through worlds.
- */
-export function nextStation(grade: Grade, progress: ProfileProgress | undefined): Station {
-  const topic = topicsForGrade(grade)[0] ?? addSub20;
-  return { topic, level: currentLevel(topic, grade, progress) };
-}
-
 export function currentLevel(
   topic: Topic,
   grade: Grade,

@@ -1,6 +1,7 @@
-import { ChildHomeScreen } from '@/screens/ChildHomeScreen';
+import { AlbumScreen } from '@/screens/AlbumScreen';
 import { HomeScreen } from '@/screens/HomeScreen';
 import { InstallGuideScreen } from '@/screens/InstallGuideScreen';
+import { JourneyScreen } from '@/screens/JourneyScreen';
 import { ParentScreen } from '@/screens/ParentScreen';
 import { PlaygroundScreen } from '@/screens/PlaygroundScreen';
 import { PracticeScreen } from '@/screens/PracticeScreen';
@@ -18,9 +19,13 @@ export function App() {
     case 'home':
       return <HomeScreen />;
     case 'play':
-      return <ChildHomeScreen />;
+      return <JourneyScreen />;
     case 'practice':
-      return <PracticeScreen />;
+      return <PracticeScreen mode="level" />;
+    case 'review':
+      return <PracticeScreen mode="review" />;
+    case 'album':
+      return <AlbumScreen />;
     case 'parents':
       return <ParentScreen />;
     case 'install':

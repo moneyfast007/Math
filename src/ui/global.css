@@ -954,3 +954,329 @@ ol.steps {
 .done__body {
   font-size: var(--text-lg);
 }
+
+/* ---------- Phase 4: Plusi, the journey, the album ---------- */
+
+.plusi {
+  color: var(--color-accent);
+  display: block;
+}
+
+.icon-btn {
+  display: inline-grid;
+  place-items: center;
+  width: var(--tap-min);
+  height: var(--tap-min);
+  border-radius: 50%;
+  background: var(--color-surface);
+  border: 1.5px solid var(--color-border);
+  color: var(--color-text);
+}
+
+.icon-btn svg {
+  width: 50%;
+  height: 50%;
+}
+
+.journey {
+  gap: var(--space-3);
+}
+
+.journey__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.journey__who {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.journey__who .avatar--lg {
+  font-size: 56px;
+}
+
+.journey__hello {
+  font-size: var(--text-lg);
+  margin: 0;
+}
+
+.journey__tools {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.journey__world {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+  padding: 0 var(--space-1);
+}
+
+.journey__world-name {
+  font-size: var(--text-md);
+  margin: 0;
+}
+
+/* Streak: a small flame and a count. Gray when there is no streak today. */
+.streak {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  min-height: var(--tap-min);
+  padding: 0 var(--space-2);
+  border-radius: var(--radius-pill);
+  background: var(--color-surface);
+  border: 1.5px solid var(--color-border);
+  color: var(--color-text-muted);
+  font-weight: 800;
+  font-size: var(--text-sm);
+}
+
+.streak--on {
+  color: var(--color-almost);
+}
+
+.streak--on .streak__count {
+  color: var(--color-text);
+}
+
+.streak__icon {
+  width: 22px;
+  height: 22px;
+}
+
+/* The map: a path with stations placed in percent of its box. */
+.map {
+  position: relative;
+  width: 100%;
+  max-width: 680px;
+  margin: 0 auto;
+  --node: calc(var(--tap-min) - 4px);
+  --node-current: calc(var(--tap-min) + 28px);
+}
+
+.map__path {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.map__path path {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+
+.map__path-done {
+  stroke: var(--color-accent);
+  stroke-width: 8px;
+}
+
+.map__path-rest {
+  stroke: var(--color-border);
+  stroke-width: 8px;
+  stroke-dasharray: 2 18;
+}
+
+.node {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  display: inline-grid;
+  place-items: center;
+  width: var(--node);
+  height: var(--node);
+  border-radius: 50%;
+  font-weight: 800;
+  font-size: var(--text-md);
+  font-family: var(--font-math);
+  padding: 0;
+  border: 0;
+}
+
+.node--done {
+  background: var(--color-accent);
+  color: var(--color-text-on-accent);
+}
+
+.node--done svg {
+  width: 50%;
+  height: 50%;
+}
+
+.node--current {
+  width: var(--node-current);
+  height: var(--node-current);
+  background: var(--color-surface);
+  color: var(--color-accent);
+  border: 5px solid var(--color-accent);
+  box-shadow: 0 0 0 10px var(--color-accent-soft);
+  font-size: var(--text-lg);
+  animation: node-breathe 2.4s var(--ease) infinite;
+}
+
+@keyframes node-breathe {
+  0%,
+  100% {
+    box-shadow: 0 0 0 8px var(--color-accent-soft);
+  }
+  50% {
+    box-shadow: 0 0 0 16px var(--color-accent-soft);
+  }
+}
+
+.node--locked {
+  background: var(--color-surface);
+  color: var(--color-text-muted);
+  border: 3px dashed var(--color-border);
+}
+
+.node--review {
+  width: calc(var(--node) + 20px);
+  height: calc(var(--node) + 20px);
+  border-radius: var(--radius-md);
+  background: var(--color-almost-soft);
+  color: var(--color-almost);
+  border: 3px dashed var(--color-almost);
+}
+
+.node--review svg {
+  width: 55%;
+  height: 55%;
+}
+
+.node--review-done {
+  border-style: solid;
+  background: var(--color-almost);
+  color: var(--color-text-on-accent);
+}
+
+.node--review-current {
+  border-style: solid;
+  box-shadow: 0 0 0 10px var(--color-almost-soft);
+  animation: review-breathe 2.4s var(--ease) infinite;
+}
+
+@keyframes review-breathe {
+  0%,
+  100% {
+    box-shadow: 0 0 0 8px var(--color-almost-soft);
+  }
+  50% {
+    box-shadow: 0 0 0 16px var(--color-almost-soft);
+  }
+}
+
+.node__caption {
+  position: absolute;
+  top: 100%;
+  margin-top: 6px;
+  font-size: var(--text-sm);
+  font-family: var(--font-sans);
+  font-weight: 700;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+
+.map__plusi {
+  position: absolute;
+  width: 14%;
+  max-width: 120px;
+  /* Beside the station, above and to the start side of it. */
+  transform: translate(-50%, -50%) translate(-85%, -75%);
+  pointer-events: none;
+}
+
+.journey__next {
+  margin-top: auto;
+}
+
+.journey__next-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  width: 100%;
+  text-align: start;
+}
+
+.journey__next-text h2 {
+  margin: 0;
+}
+
+.journey__start {
+  width: 100%;
+}
+
+/* Album */
+.album__status {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+}
+
+.album__line {
+  flex: 1;
+  font-weight: 600;
+  font-size: var(--text-md);
+}
+
+.album__grid {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: var(--space-3);
+}
+
+.sticker-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-alt);
+  border: 2px dashed var(--color-border);
+  text-align: center;
+}
+
+.sticker-card--earned {
+  background: var(--color-surface);
+  border-style: solid;
+  border-color: transparent;
+  box-shadow: var(--shadow-sm);
+}
+
+.sticker-card__slot {
+  display: grid;
+  place-items: center;
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background: var(--color-surface);
+  color: var(--color-border);
+  font-size: var(--text-xl);
+  font-weight: 800;
+  font-family: var(--font-math);
+}
+
+.sticker-card__name {
+  font-weight: 700;
+}
+
+.sticker-card:not(.sticker-card--earned) .sticker-card__name {
+  color: var(--color-text-muted);
+}

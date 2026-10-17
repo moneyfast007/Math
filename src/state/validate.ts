@@ -7,10 +7,13 @@ import {
   MIN_LEVEL,
   RECENT_WINDOW,
   SCHEMA_VERSION,
+  SUPPORTED_SCHEMA_VERSIONS,
+  emptyStreak,
   type AppData,
   type PinRecord,
   type Profile,
   type ProfileProgress,
+  type Streak,
   type TopicStats,
 } from './schema';
 
@@ -20,6 +23,9 @@ import {
  * Nothing from outside is trusted: a hand-edited backup, a file from another
  * app, or a half-written IndexedDB entry must be rejected with a reason a
  * parent can understand, never half-imported.
+ *
+ * Older schema versions are migrated while parsing: fields added later get
+ * their defaults, so a backup from version 1 still imports (tested).
  */
 
 export type ParseResult = { ok: true; data: AppData } | { ok: false; error: string };
@@ -91,6 +97,14 @@ function parseTopicStats(value: unknown, where: string): TopicStats {
   for (const [kind, count] of Object.entries(mistakesRaw)) {
     mistakes[kind] = intInRange(count, 0, Number.MAX_SAFE_INTEGER, `${where}, טעויות`);
   }
+  // Added in schema 2; absent in version 1 data.
+  const completedRaw = s['completedLevels'] ?? [];
+  if (!Array.isArray(completedRaw)) fail(`${where}: תחנות לא חוקיות`);
+  const completedLevels = [
+    ...new Set(completedRaw.map((l) => intInRange(l, MIN_LEVEL, MAX_LEVEL, `${where}, תחנה`))),
+  ].sort((a, b) => a - b);
+  const reviewPassed = s['reviewPassed'] ?? false;
+  if (typeof reviewPassed !== 'boolean') fail(`${where}: סיכום לא חוקי`);
   return {
     level: intInRange(s['level'], MIN_LEVEL, MAX_LEVEL, `${where}, רמה`),
     attempts,
@@ -98,6 +112,21 @@ function parseTopicStats(value: unknown, where: string): TopicStats {
     lastPracticedAt: finiteNumber(s['lastPracticedAt'], `${where}, תאריך`),
     recent: (recentRaw as boolean[]).slice(-RECENT_WINDOW),
     mistakes,
+    completedLevels,
+    reviewPassed,
+  };
+}
+
+function parseStreak(value: unknown): Streak {
+  if (value === undefined) return emptyStreak(); // schema 1
+  const s = record(value, 'רצף');
+  const lastDay = s['lastDay'];
+  if (lastDay !== null && (typeof lastDay !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(lastDay))) {
+    fail('רצף: תאריך לא חוקי');
+  }
+  return {
+    count: intInRange(s['count'], 0, Number.MAX_SAFE_INTEGER, 'רצף'),
+    lastDay: lastDay as string | null,
   };
 }
 
@@ -110,12 +139,13 @@ function parseProgress(
   for (const [profileId, raw] of Object.entries(all)) {
     // Progress of a profile that no longer exists is dropped, not an error.
     if (!profileIds.has(profileId)) continue;
-    const topicsRaw = record(record(raw, 'התקדמות')['topics'], 'התקדמות');
+    const p = record(raw, 'התקדמות');
+    const topicsRaw = record(p['topics'], 'התקדמות');
     const topics: Record<string, TopicStats> = {};
     for (const [topicId, stats] of Object.entries(topicsRaw)) {
       topics[topicId] = parseTopicStats(stats, `התקדמות בנושא ${topicId}`);
     }
-    out[profileId] = { topics };
+    out[profileId] = { topics, streak: parseStreak(p['streak']) };
   }
   return out;
 }
@@ -131,8 +161,9 @@ function parsePin(value: unknown): PinRecord | null {
 
 function parseData(value: unknown): AppData {
   const d = record(value, 'נתונים');
-  if (d['schemaVersion'] !== SCHEMA_VERSION) {
-    fail(`גרסת נתונים לא נתמכת (${String(d['schemaVersion'])})`);
+  const version = d['schemaVersion'];
+  if (typeof version !== 'number' || !SUPPORTED_SCHEMA_VERSIONS.includes(version)) {
+    fail(`גרסת נתונים לא נתמכת (${String(version)})`);
   }
   const profilesRaw = d['profiles'];
   if (!Array.isArray(profilesRaw)) fail('רשימת הפרופילים חסרה');

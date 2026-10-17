@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { MAX_PROFILES, type AppData, type ProfileInput } from './schema';
+import { emptyProgress, MAX_PROFILES, type AppData, type ProfileInput } from './schema';
 import { createMemoryStorage, type StorageAdapter } from './storage';
 import { createAppStore, PARENT_UNLOCK_MS } from './store';
 import { makeData, makeProfile } from './testData';
@@ -41,7 +41,7 @@ describe('app store', () => {
     const relaunched = createAppStore(storage);
     await relaunched.getState().hydrate();
     expect(relaunched.getState().data.profiles.map((x) => x.name)).toEqual(['נועה']);
-    expect(relaunched.getState().data.progress[p.id]).toEqual({ topics: {} });
+    expect(relaunched.getState().data.progress[p.id]).toEqual(emptyProgress());
   });
 
   it('rejects an empty name and enforces the profile limit', async () => {
@@ -149,7 +149,7 @@ describe('app store', () => {
     store.getState().addProfile(input);
     const imported: AppData = makeData({
       profiles: [makeProfile({ id: 'x', name: 'מאיה' })],
-      progress: { x: { topics: {} } },
+      progress: { x: emptyProgress() },
     });
     store.getState().replaceData(imported);
     expect(store.getState().data.profiles.map((p) => p.name)).toEqual(['מאיה']);

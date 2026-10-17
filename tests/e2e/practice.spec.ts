@@ -70,9 +70,16 @@ test.describe('practice', () => {
 
     await expect(page.getByRole('heading', { name: 'כל הכבוד, נועה!' })).toBeVisible();
     await expect(page.getByText('פתרת 10 תרגילים.')).toBeVisible();
+    // Every answer right: the station is passed and the journey moves on.
+    await expect(page.getByRole('status')).toContainText('עברת את התחנה! התחנה הבאה נפתחה!');
+
+    // Back on the map: station 8 is done, 9 is next.
+    await page.getByRole('button', { name: 'למסע' }).click();
+    await expect(page.getByRole('img', { name: 'תחנה 8, הושלמה' })).toBeVisible();
+    await expect(page.getByRole('button', { name: 'תחנה 9, התחנה הבאה' })).toBeVisible();
+    await expect(page.getByText('תחנה 9 מתוך 11')).toBeVisible();
 
     // The parent sees it.
-    await page.getByRole('button', { name: 'חזרה' }).click();
     await page.getByRole('button', { name: 'מי משחק?' }).click();
     await page.goto('/parents');
     const gate = page.getByRole('dialog', { name: 'כניסת הורים' });
@@ -142,16 +149,61 @@ test.describe('practice', () => {
   test('a child can pick another level when the profile allows it', async ({ page }) => {
     await setupChild(page, 'נועה', 'כיתה ב׳');
     await page.getByRole('button', { name: 'סיום' }).click();
-    await expect(page.getByText('שלב 8: חיבור וחיסור עד 20')).toBeVisible();
+    const next = page.getByRole('heading', { level: 2, name: 'חיבור וחיסור עד 20' });
+    await expect(next).toBeVisible();
     await page.getByRole('button', { name: 'שלב אחר' }).click();
     await page
       .getByRole('dialog', { name: 'באיזה שלב לתרגל?' })
       .getByRole('listitem')
       .filter({ hasText: 'מספר חסר' })
       .click();
-    await expect(page.getByText('שלב 10: מספר חסר')).toBeVisible();
+    await expect(page.getByRole('heading', { level: 2, name: 'מספר חסר' })).toBeVisible();
+    await expect(page.getByRole('button', { name: 'תחנה 10, התחנה הבאה' })).toBeVisible();
     await page.getByRole('button', { name: 'יאללה, מתחילים!' }).click();
     await expect(page.locator('.exercise [data-math]')).toContainText('?');
     await expect(page.getByRole('heading', { name: 'איזה מספר חסר?' })).toBeVisible();
+  });
+});
+
+test.describe('journey', () => {
+  test('the map shows every station, the review, Plusi, the streak and the album', async ({ page }) => {
+    await setupChild(page, 'נועה', 'כיתה ב׳');
+    await page.getByRole('button', { name: 'סיום' }).click();
+    await expect(page).toHaveURL(/\/play$/);
+
+    const map = page.getByRole('region', { name: 'מפת המסע' });
+    await expect(map.locator('.node')).toHaveCount(11);
+    await expect(map.locator('.node--done')).toHaveCount(7);
+    await expect(map.getByRole('img', { name: 'סיום העולם, עדיין סגור' })).toBeVisible();
+    await expect(map.locator('.plusi')).toBeVisible();
+    await expect(page.getByText('עולם 1 · חיבור וחיסור עד 20')).toBeVisible();
+    await expect(page.getByText('תחנה 8 מתוך 11')).toBeVisible();
+    await expect(page.getByRole('img', { name: 'בלי רצף עדיין' })).toBeVisible();
+
+    // A done station is a shortcut back to that level.
+    await map.getByRole('button', { name: 'תחנה 3, הושלמה' }).click();
+    await expect(page).toHaveURL(/\/practice$/);
+    // Level 3: adding with pictures.
+    await expect(page.locator('.exercise .obj').first()).toBeVisible();
+    await expect(page.getByRole('heading', { level: 1 })).toContainText('ביחד');
+
+    await page.getByRole('button', { name: 'סיום' }).click();
+    await page.getByRole('button', { name: 'האלבום' }).click();
+    await expect(page).toHaveURL(/\/album$/);
+    await expect(page.getByRole('heading', { name: 'האלבום של נועה' })).toBeVisible();
+    await expect(page.getByText('עוד אין מדבקות. העולם הראשון מחכה!')).toBeVisible();
+    await expect(page.getByRole('img', { name: 'מדבקה סגורה: בלון' })).toBeVisible();
+    await page.getByRole('button', { name: 'חזרה למסע' }).click();
+    await expect(page).toHaveURL(/\/play$/);
+  });
+
+  test('gan: a bigger map with no numbers on the stations', async ({ page }) => {
+    await setupChild(page, 'מאיה', 'גן חובה');
+    await page.getByRole('button', { name: 'סיום' }).click();
+    const map = page.getByRole('region', { name: 'מפת המסע' });
+    await expect(map.locator('.node--current')).toHaveText('');
+    await expect(page.getByText('עולם 1', { exact: false })).toHaveCount(0);
+    const box = await map.locator('.node--current').boundingBox();
+    expect(box?.width ?? 0).toBeGreaterThanOrEqual(72);
   });
 });

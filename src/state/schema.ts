@@ -12,7 +12,9 @@ import type { Grade } from '@/ui/ageBand';
  * Changing this shape means bumping SCHEMA_VERSION and adding a migration in
  * validate.ts; old backups must keep importing.
  */
-export const SCHEMA_VERSION = 1;
+export const SCHEMA_VERSION = 2;
+/** Versions `parseAppData` still accepts and migrates forward. */
+export const SUPPORTED_SCHEMA_VERSIONS: readonly number[] = [1, 2];
 
 export const MAX_PROFILES = 6;
 export const MAX_NAME_LENGTH = 20;
@@ -57,10 +59,26 @@ export interface TopicStats {
   recent: boolean[];
   /** Mistake kind → count. */
   mistakes: Record<string, number>;
+  /** Levels ("stations") whose round was passed, ascending, no duplicates (phase 4). */
+  completedLevels: number[];
+  /** The topic's final station, a mixed review of all levels, was passed (phase 4). */
+  reviewPassed: boolean;
+}
+
+/**
+ * Days practiced in a row. A day counts once a round is finished. Saturdays
+ * never break the streak (they are skipped, not counted), so a child who
+ * practices Sunday to Friday keeps her streak.
+ */
+export interface Streak {
+  count: number;
+  /** Local calendar day of the last finished round, "YYYY-MM-DD", or null. */
+  lastDay: string | null;
 }
 
 export interface ProfileProgress {
   topics: Record<string, TopicStats>;
+  streak: Streak;
 }
 
 export interface PinRecord {
@@ -98,5 +116,22 @@ export function emptyAppData(now: number): AppData {
 }
 
 export function emptyProgress(): ProfileProgress {
-  return { topics: {} };
+  return { topics: {}, streak: emptyStreak() };
+}
+
+export function emptyStreak(): Streak {
+  return { count: 0, lastDay: null };
+}
+
+export function emptyTopicStats(level: number): TopicStats {
+  return {
+    level,
+    attempts: 0,
+    correct: 0,
+    lastPracticedAt: 0,
+    recent: [],
+    mistakes: {},
+    completedLevels: [],
+    reviewPassed: false,
+  };
 }
