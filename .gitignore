@@ -1,0 +1,27 @@
+# dependencies
+node_modules/
+
+# build output
+dist/
+dev-dist/
+
+# test artifacts
+coverage/
+test-results/
+playwright-report/
+blob-report/
+
+# TTS: the comparison sample is for listening only, not for the app
+scripts/tts/out-sample/
+
+# secrets, never committed
+.env
+.env.*
+*.json.key
+service-account*.json
+
+# editors / OS
+.DS_Store
+.vscode/
+.idea/
+*.log

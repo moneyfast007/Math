@@ -1,0 +1,108 @@
+/*
+ * Design tokens.
+ *
+ * The visual system is warm and calm: cream background, one accent per age band,
+ * generous spacing, no pure red (mistakes are never marked in red), no harsh
+ * black. Everything scales from these variables; components never hard-code
+ * sizes or colors.
+ *
+ * Age bands (from the UX research in phase 0):
+ *   young  (gan)          tap ≥ 72px, almost no text, biggest type
+ *   middle (grades 1–3)   tap ≥ 56px, one short sentence
+ *   older  (grades 4–6)   tap ≥ 48px, up to three sentences
+ *
+ * The band is set with `data-age` on <html>; the defaults below are "middle".
+ */
+
+:root {
+  /* Surfaces */
+  --color-bg: #fff8ee;
+  --color-surface: #ffffff;
+  --color-surface-alt: #fff1dc;
+  --color-border: #ead9c2;
+
+  /* Text */
+  --color-text: #3a2f2a;
+  --color-text-muted: #7a6a60;
+  --color-text-on-accent: #ffffff;
+
+  /* Accent (per band; see below) */
+  --color-accent: #2f8f83;
+  --color-accent-strong: #236f66;
+  --color-accent-soft: #d8efec;
+
+  /* Semantic: success is warm green, "almost" is amber. There is no error red. */
+  --color-success: #4f9d5d;
+  --color-success-soft: #dff1e2;
+  --color-almost: #e2a33b;
+  --color-almost-soft: #fbeccf;
+  --color-focus: #2e63c9;
+
+  /* Shape */
+  --radius-sm: 12px;
+  --radius-md: 20px;
+  --radius-lg: 28px;
+  --radius-pill: 999px;
+  --shadow-sm: 0 1px 2px rgb(58 47 42 / 8%), 0 2px 8px rgb(58 47 42 / 6%);
+  --shadow-md: 0 4px 16px rgb(58 47 42 / 12%);
+
+  /* Typography. System fonts only: no font is fetched from anywhere. */
+  --font-sans:
+    system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans Hebrew', 'Arial Hebrew', Arial,
+    sans-serif;
+  --font-math:
+    ui-rounded, 'SF Pro Rounded', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+
+  /* Sizing, band-dependent */
+  --tap-min: 56px;
+  --space-1: 6px;
+  --space-2: 12px;
+  --space-3: 18px;
+  --space-4: 28px;
+  --space-5: 44px;
+  --text-sm: 17px;
+  --text-md: 22px;
+  --text-lg: 30px;
+  --text-xl: 44px;
+  --text-math: 56px;
+  --line: 1.45;
+
+  /* Motion. Short and soft; respects reduced motion (global.css). */
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --dur-fast: 140ms;
+  --dur-med: 260ms;
+}
+
+:root[data-age='young'] {
+  --color-accent: #e8793a;
+  --color-accent-strong: #c45f24;
+  --color-accent-soft: #fde3d2;
+  --tap-min: 72px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 36px;
+  --text-sm: 20px;
+  --text-md: 26px;
+  --text-lg: 36px;
+  --text-xl: 52px;
+  --text-math: 72px;
+}
+
+:root[data-age='middle'] {
+  --color-accent: #2f8f83;
+  --color-accent-strong: #236f66;
+  --color-accent-soft: #d8efec;
+  --tap-min: 56px;
+}
+
+:root[data-age='older'] {
+  --color-accent: #5b63d6;
+  --color-accent-strong: #434ab3;
+  --color-accent-soft: #e2e3f8;
+  --tap-min: 48px;
+  --text-sm: 16px;
+  --text-md: 20px;
+  --text-lg: 28px;
+  --text-xl: 40px;
+  --text-math: 48px;
+}

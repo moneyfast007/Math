@@ -1,0 +1,2 @@
+# Single-page app: every route is served by index.html; the app routes client-side.
+/*    /index.html   200
