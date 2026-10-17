@@ -238,7 +238,7 @@ export const fractionMulDiv = defineTopic({
     closed(L(1), () => DENS.flatMap((d) => range(2, d - 1).map((k) => ({ k, d }))), (x) => wholeTimes(1, x.k, 1, x.d)),
     closed(L(2), () => PROPER.filter((x) => x.n > 1).flatMap((x) => range(2, 5).filter((k) => k * x.n <= 40).map((k) => ({ k, ...x }))), (x) => wholeTimes(2, x.k, x.n, x.d)),
     closed(L(3), () => DENS.flatMap((d) => range(2, 12).map((part) => ({ d, part }))), (x) => findWhole(3, 1, x.d, x.part)),
-    closed(L(4), () => PROPER.filter((x) => x.n > 1 && x.d <= 6).flatMap((x) => range(2, 6).map((k) => ({ ...x, part: x.n * k })))), (x) => findWhole(4, x.n, x.d, x.part)),
+    closed(L(4), () => PROPER.filter((x) => x.n > 1 && x.d <= 6).flatMap((x) => range(2, 6).map((k) => ({ ...x, part: x.n * k }))), (x) => findWhole(4, x.n, x.d, x.part)),
     closed(L(5), () => UNIT_PAIRS, (x) => fracTimes(5, x.a, x.b)),
     closed(L(6), () => PAIRS, (x) => fracTimes(6, x.a, x.b)),
     closed(L(7), () => PROPER.flatMap((x) => [2, 3, 4].filter((k) => x.n % k === 0 && x.n / k >= 1).map((k) => ({ ...x, k }))), (x) => fracDivWhole(x.n, x.d, x.k)),

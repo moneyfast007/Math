@@ -131,7 +131,6 @@ function divWhole(rng: Rng): Exercise {
 function divHalf(rng: Rng): Exercise {
   const b = pick(rng, [0.5, 0.25, 0.1]);
   const a = randInt(rng, 2, 20);
-  const answer = round(a / b, 2);
   return arith({
     topicId: ID,
     level: 7,
