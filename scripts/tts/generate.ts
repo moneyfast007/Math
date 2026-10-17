@@ -86,6 +86,12 @@ async function main(): Promise<void> {
   }
 
   const phrases = allPhrases();
+  // The voice must never receive a digit: it guesses the gender and the reading.
+  const withDigits = phrases.filter((p) => /\d/.test(p.text));
+  if (withDigits.length > 0) {
+    for (const p of withDigits.slice(0, 20)) console.error(`  ${p.id}: ${p.text}`);
+    throw new Error(`${withDigits.length} phrases contain digits; fix them before generating.`);
+  }
   const work = phrases
     .map((p) => ({ phrase: p, id: clipIdNode(p.text), spec: voiceFor(p.text) }))
     .filter(
