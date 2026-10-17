@@ -75,7 +75,7 @@ test.describe('practice', () => {
 
     // Back on the map: station 8 is done, 9 is next.
     await page.getByRole('button', { name: 'למסע' }).click();
-    await expect(page.getByRole('img', { name: 'תחנה 8, הושלמה' })).toBeVisible();
+    await expect(page.getByRole('button', { name: 'תחנה 8, הושלמה' })).toBeVisible();
     await expect(page.getByRole('button', { name: 'תחנה 9, התחנה הבאה' })).toBeVisible();
     await expect(page.getByText('תחנה 9 מתוך 11')).toBeVisible();
 
@@ -149,7 +149,7 @@ test.describe('practice', () => {
   test('a child can pick another level when the profile allows it', async ({ page }) => {
     await setupChild(page, 'נועה', 'כיתה ב׳');
     await page.getByRole('button', { name: 'סיום' }).click();
-    const next = page.getByRole('heading', { level: 2, name: 'חיבור וחיסור עד 20' });
+    const next = page.getByRole('heading', { level: 2, name: 'חיבור וחיסור עד 20', exact: true });
     await expect(next).toBeVisible();
     await page.getByRole('button', { name: 'שלב אחר' }).click();
     await page
@@ -157,7 +157,7 @@ test.describe('practice', () => {
       .getByRole('listitem')
       .filter({ hasText: 'מספר חסר' })
       .click();
-    await expect(page.getByRole('heading', { level: 2, name: 'מספר חסר' })).toBeVisible();
+    await expect(page.getByRole('heading', { level: 2, name: 'מספר חסר', exact: true })).toBeVisible();
     await expect(page.getByRole('button', { name: 'תחנה 10, התחנה הבאה' })).toBeVisible();
     await page.getByRole('button', { name: 'יאללה, מתחילים!' }).click();
     await expect(page.locator('.exercise [data-math]')).toContainText('?');
