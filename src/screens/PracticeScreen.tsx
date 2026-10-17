@@ -332,7 +332,6 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
           ))}
         </section>
       ) : null}
-
     </main>
   );
 }

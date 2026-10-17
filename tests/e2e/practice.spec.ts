@@ -125,7 +125,9 @@ test.describe('practice', () => {
     for (let i = 0; i < 3; i++) await submit(page, answer2 + 5);
     await expect(page.locator('.feedback--reveal')).toBeVisible();
     await page.getByRole('button', { name: 'הבא' }).click();
-    await expect(page.getByRole('status').filter({ hasText: 'נתרגל רגע שלב קל יותר.' })).toBeVisible();
+    await expect(
+      page.getByRole('status').filter({ hasText: 'נתרגל רגע שלב קל יותר.' }),
+    ).toBeVisible();
     await expect(page.getByRole('dialog')).toHaveCount(0);
   });
 
