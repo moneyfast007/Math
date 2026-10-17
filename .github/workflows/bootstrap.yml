@@ -42,6 +42,9 @@ jobs:
         run: |
           npx playwright install --with-deps webkit chromium >/dev/null 2>&1 || true
           { echo; echo "## e2e"; npm run test:e2e 2>&1 || echo "E2E FAILED"; } >> .ci/report.txt
+          # Screens for a visual review (not a test; committed as images).
+          rm -rf .ci/screens && mkdir -p .ci/screens
+          SCREENSHOTS=1 npx playwright test tests/e2e/screenshots.spec.ts --project=ipad --retries=0 > .ci/screens/log.txt 2>&1 || echo "SCREENSHOTS FAILED" >> .ci/report.txt
           tail -c 3000 .ci/report.txt
       - name: Commit
         env:
@@ -54,6 +57,7 @@ jobs:
             git status --short | head -50
             git add -A
             git add -f .ci/report.txt
+            git add -f .ci/screens || true
             if git diff --cached --quiet; then echo "nothing to commit"; exit 0; fi
             git commit -m "chore: bootstrap report"
             # Another workflow (the audio build) may have pushed meanwhile: rebase and retry.
