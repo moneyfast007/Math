@@ -97,7 +97,9 @@ async function main(): Promise<void> {
       .map((text, i) => ({ text, i }))
       .filter((x): x is { text: string; i: number } => x.text !== null);
     try {
-      await mapLimit(items, 3, async ({ text, i }) => {
+      // Gemini TTS starts with a low per-minute quota on new projects: one request at a time.
+      const concurrency = v.spec.engine === 'chirp3-hd' ? 3 : 1;
+      await mapLimit(items, concurrency, async ({ text, i }) => {
         const n = String(i + 1).padStart(2, '0');
         await writeFile(path.join(dir, `${n}.mp3`), await synthesize(text, v.spec));
         console.log(`  ${n} ${text}`);

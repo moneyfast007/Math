@@ -97,7 +97,7 @@ export async function synthesize(text: string, spec: VoiceSpec): Promise<Buffer>
   const body = buildBody(text, spec);
   const project = await projectId();
   let lastError: unknown;
-  for (let attempt = 1; attempt <= 4; attempt++) {
+  for (let attempt = 1; attempt <= 8; attempt++) {
     const token = await accessToken();
     const res = await fetch(TTS_ENDPOINT, {
       method: 'POST',
@@ -117,7 +117,9 @@ export async function synthesize(text: string, spec: VoiceSpec): Promise<Buffer>
     lastError = new Error(`TTS ${res.status} for "${text}": ${detail.slice(0, 300)}`);
     // 429 / 5xx: back off and retry. 4xx otherwise: give up immediately.
     if (res.status !== 429 && res.status < 500) throw lastError;
-    await new Promise((r) => setTimeout(r, 500 * 2 ** attempt));
+    // A per-minute quota (429) needs a real pause; other transient errors a short one.
+    const waitMs = res.status === 429 ? 20_000 : 500 * 2 ** Math.min(attempt, 5);
+    await new Promise((r) => setTimeout(r, waitMs));
   }
   throw lastError;
 }
