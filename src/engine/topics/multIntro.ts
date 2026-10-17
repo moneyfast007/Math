@@ -147,8 +147,9 @@ function missingFactor(rng: Rng): Exercise {
 
 function word(rng: Rng): Exercise {
   if (rng() < 0.5) {
-    const a = randInt(rng, 2, 6);
-    const b = pick(rng, [2, 3, 4, 5, 10]);
+    // Word-problem numbers are at least 3 (see wordProblem).
+    const a = randInt(rng, 3, 6);
+    const b = pick(rng, [3, 4, 5, 10]);
     return wordProblem({
       topicId: ID,
       level: 10,
@@ -161,7 +162,7 @@ function word(rng: Rng): Exercise {
       input: numpad(2),
     });
   }
-  const b = pick(rng, [2, 3, 4, 5]);
+  const b = pick(rng, [3, 4, 5]);
   const q = randInt(rng, 2, 8);
   return wordProblem({
     topicId: ID,

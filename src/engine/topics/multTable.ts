@@ -219,7 +219,7 @@ function word(rng: Rng): Exercise {
       input: numpad(2),
     });
   }
-  const b = randInt(rng, 2, 9);
+  const b = randInt(rng, 3, 9);
   const q = randInt(rng, 2, 9);
   if (kind === 'rem') {
     const a = b * q + randInt(rng, 1, b - 1);

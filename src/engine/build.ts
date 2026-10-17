@@ -320,6 +320,7 @@ export function defineTopic(def: TopicDef): Topic & { enumerate: (level: number)
 
   const spokenBank = (): string[] => {
     const out = new Set<string>();
+    // Word problems used by this topic register their stories while being sampled below.
     for (const { level } of levels) {
       const l = levelDef(level);
       const list = enumerate(level);
@@ -348,6 +349,7 @@ export function defineTopic(def: TopicDef): Topic & { enumerate: (level: number)
         }
       }
     }
+    for (const p of storyPieces()) out.add(p);
     return [...out];
   };
 
@@ -547,28 +549,60 @@ export interface WordProblemOptions {
  * the prompt; the equation appears only as the second hint, which is how the
  * curriculum wants word problems approached (understand, then write).
  */
-export function wordProblem(o: WordProblemOptions): Exercise {
-  const ex = differentExample(o.a, o.op, o.b, o.example);
-  const who = pick(o.rng, CHARACTERS);
-  const other = pick(
-    o.rng,
-    CHARACTERS.filter((c) => c.name !== who.name),
-  );
-  const noun = pick(o.rng, o.nouns ?? WORD_NOUNS);
-  const storyKey = `${o.key}.story` as TranslationKey;
-  // {a}/{b}: with the noun; {af}/{am}/{bf}/{bm}: plain, in that gender (for "ילדים", "קופסאות").
-  const slots = (a: number, b: number): Record<string, Slot> => ({
+const CHILD: WordNoun = { singular: 'ילד', plural: 'ילדים', gender: 'm' };
+const BOX: WordNoun = { singular: 'קופסה', plural: 'קופסאות', gender: 'f' };
+
+/** The second character follows from the first, so the bank can list every story. */
+function otherOf(who: Character): Character {
+  const i = CHARACTERS.indexOf(who);
+  return CHARACTERS[(i + 1) % CHARACTERS.length] as Character;
+}
+
+/**
+ * The slots of a story. {a}/{b}: counted with the noun; {kidsB}: "שלושה ילדים";
+ * {boxesA}: "ארבע קופסאות". Every counted number is at least 3 (checked), so the
+ * construct forms of one and two ("שני ילדים") never need a recording of their own.
+ */
+function storySlots(who: Character, noun: WordNoun, a: number, b: number): Record<string, Slot> {
+  return {
     name: who.name,
-    other: other.name,
+    other: otherOf(who).name,
     a: { n: a, noun },
     b: { n: b, noun },
-    af: { n: a, gender: 'f' },
-    am: { n: a, gender: 'm' },
-    bf: { n: b, gender: 'f' },
-    bm: { n: b, gender: 'm' },
+    kidsB: { n: b, noun: CHILD },
+    boxesA: { n: a, noun: BOX },
     plural: noun.plural,
     singular: noun.singular,
-  });
+  };
+}
+
+/** Word-problem templates in use, with their nouns, so the bank can list every piece. */
+const STORIES = new Map<string, readonly WordNoun[]>();
+
+/** Every literal piece of every story in use, for every character and noun. */
+export function storyPieces(): string[] {
+  const out = new Set<string>();
+  for (const [key, nouns] of STORIES) {
+    for (const who of CHARACTERS) {
+      for (const noun of nouns) {
+        const story = compose(t(`${key}.story` as TranslationKey, { gender: who.gender }), storySlots(who, noun, 3, 3));
+        for (const p of story.parts) out.add(p);
+        out.add(say(`${key}.hint1` as TranslationKey, {}, who.gender).text);
+      }
+    }
+  }
+  return [...out];
+}
+
+export function wordProblem(o: WordProblemOptions): Exercise {
+  if (o.a < 3 || o.b < 3) throw new RangeError(`word problem numbers must be at least 3 (${o.key}: ${o.a}, ${o.b})`);
+  const nouns = o.nouns ?? WORD_NOUNS;
+  STORIES.set(o.key, nouns);
+  const ex = differentExample(o.a, o.op, o.b, o.example);
+  const who = pick(o.rng, CHARACTERS);
+  const noun = pick(o.rng, nouns);
+  const storyKey = `${o.key}.story` as TranslationKey;
+  const slots = (a: number, b: number) => storySlots(who, noun, a, b);
   const story = compose(t(storyKey, { gender: who.gender }), slots(o.a, o.b));
   const c = o.askRemainder
     ? o.a % o.b

@@ -223,10 +223,10 @@ function order(rng: Rng): Exercise {
     hints: [
       hint(say(kind === '(a+b)c' ? 'hint.order.brackets' : 'hint.order.first')),
       hint(say('hint.order.rule')),
-      exampleHint(
-        '2 + 3 × 4 = 14',
-        compose('{a} ועוד {b} כפול {c} זה {r}, כי קודם כופלים.', { a: 2, b: 3, c: 4, r: 14 }),
-      ),
+      // Never the exercise itself.
+      display === '2 + 3 × 4 = ?'
+        ? exampleHint('5 + 2 × 3 = 11', compose('{a} ועוד {b} כפול {c} זה {r}, כי קודם כופלים.', { a: 5, b: 2, c: 3, r: 11 }))
+        : exampleHint('2 + 3 × 4 = 14', compose('{a} ועוד {b} כפול {c} זה {r}, כי קודם כופלים.', { a: 2, b: 3, c: 4, r: 14 })),
     ],
     solution: compose('התשובה היא {r}.', { r: answer }),
     diagnose: (v) => (v === wrong ? 'wrongOperation' : null),

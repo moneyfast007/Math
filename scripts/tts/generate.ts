@@ -23,9 +23,10 @@ import { vocalizeForTts } from './pronunciation';
  *   npm run tts:build -- --dry-run     # list what would be generated and the cost
  *
  * Two voices, chosen after five listening rounds (Oct 2026):
- *   - Any phrase containing a number word is read by WaveNet A, Google's classic
- *     Hebrew voice. It was the only engine that read every number correctly.
- *   - Everything else (encouragement, feedback, hints without numbers) is read
+ *   - Exercise content and any phrase containing a number word is read by
+ *     WaveNet A, Google's classic Hebrew voice. It was the only engine that read
+ *     every number correctly, and sentences assembled from clips stay one voice.
+ *   - Standalone UI phrases without numbers (encouragement, feedback) are read
  *     by Chirp 3 HD "Leda", which sounds warmer. A phrase's voice is recorded
  *     in the manifest, so changing the routing regenerates only what moved.
  *
@@ -63,8 +64,15 @@ const { values } = parseArgs({
 const NUMBER_WORD =
   /(^|[\s,.:;!?()-])ו?ל?מ?ב?(אפס|אחת|אחד|שתיים|שניים|שתי|שני|שתים|שנים|שלוש|שלושה|שלושת|ארבע|ארבעה|ארבעת|חמש|חמישה|חמשת|שש|שישה|ששת|שבע|שבעה|שבעת|שמונה|שמונת|תשע|תשעה|תשעת|עשר|עשרה|עשרת|עשרים|שלושים|ארבעים|חמישים|שישים|שבעים|שמונים|תשעים|מאה|מאתיים|מאות|אלף|אלפיים|אלפים|מיליון|חצי|שליש|רבע|שלישים|רבעים|חמישיות|נקודה)(?=$|[\s,.:;!?()-])/;
 
-export function voiceFor(text: string): VoiceSpec {
-  return NUMBER_WORD.test(text) ? NUMBERS_VOICE : WARM_VOICE;
+/**
+ * Exercise content (whole sentences, the clips sentences are assembled from,
+ * numbers) is read by WaveNet A, so an assembled sentence is one voice and not
+ * two voices taking turns. The warm voice reads only standalone UI phrases
+ * (encouragement, feedback) that contain no number words.
+ */
+export function voiceFor(phrase: Phrase): VoiceSpec {
+  if (!phrase.id.startsWith('ui.') || phrase.id.includes('.piece')) return NUMBERS_VOICE;
+  return NUMBER_WORD.test(phrase.text) ? NUMBERS_VOICE : WARM_VOICE;
 }
 
 function voiceKey(v: VoiceSpec): string {
@@ -93,7 +101,7 @@ async function main(): Promise<void> {
     throw new Error(`${withDigits.length} phrases contain digits; fix them before generating.`);
   }
   const work = phrases
-    .map((p) => ({ phrase: p, id: clipIdNode(p.text), spec: voiceFor(p.text) }))
+    .map((p) => ({ phrase: p, id: clipIdNode(p.text), spec: voiceFor(p) }))
     .filter(
       ({ id, spec }) =>
         !existsSync(path.join(OUT_DIR, `${id}.mp3`)) ||
