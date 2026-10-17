@@ -3,7 +3,11 @@ import { emptyProgress, emptyTopicStats, type ProfileProgress } from '@/state/sc
 import { activeWorld, nextStop, stickersEarned, worldFor, worldsFor } from './journey';
 import { addSub20 } from './topics/addSub20';
 
-function progressAt(level: number, completed: number[] = [], reviewPassed = false): ProfileProgress {
+function progressAt(
+  level: number,
+  completed: number[] = [],
+  reviewPassed = false,
+): ProfileProgress {
   const p = emptyProgress();
   p.topics[addSub20.id] = { ...emptyTopicStats(level), completedLevels: completed, reviewPassed };
   return p;

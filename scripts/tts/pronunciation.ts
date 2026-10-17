@@ -121,12 +121,14 @@ export function vocalizeForTts(text: string): string {
   for (let i = 0; i + 1 < tokens.length; i++) {
     const unit = tokens[i] ?? '';
     const next = tokens[i + 1] ?? '';
-    if (/^עשרה[^\u05d0-\u05ea]*$/.test(next) && unit in TEEN_UNITS) tokens[i] = TEEN_UNITS[unit] ?? unit;
+    if (/^עשרה[^\u05d0-\u05ea]*$/.test(next) && unit in TEEN_UNITS)
+      tokens[i] = TEEN_UNITS[unit] ?? unit;
   }
   return tokens
     .map((token) => {
       const { pre, word, post } = parts(token.replace(/[\u0591-\u05c7]/g, ''));
-      const already = token !== pre + word + post ? token.replace(/[^\u05d0-\u05ea\u0591-\u05c7]+$/, '') : null;
+      const already =
+        token !== pre + word + post ? token.replace(/[^\u05d0-\u05ea\u0591-\u05c7]+$/, '') : null;
       const vocalized = already ?? vocalizeWord(word, previous);
       const prefix = pre && vocalized !== word ? conjunction(vocalized) : pre;
       // A sentence boundary resets the context.

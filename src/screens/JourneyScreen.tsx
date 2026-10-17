@@ -38,9 +38,13 @@ function Journey({ profile }: { profile: Profile }) {
   const world = activeWorld(profile.grade, progress);
   if (!world) return null;
   const stop = nextStop(world);
-  const level = world.stations.find((s) => s.state === 'current')?.level ?? world.stations.at(-1)?.level ?? 1;
-  const stopStation = stop.kind === 'level' ? world.stations.find((s) => s.level === stop.level) : undefined;
-  const stopName = stopStation ? t(stopStation.labelKey as TranslationKey) : t('journey.review.name');
+  const level =
+    world.stations.find((s) => s.state === 'current')?.level ?? world.stations.at(-1)?.level ?? 1;
+  const stopStation =
+    stop.kind === 'level' ? world.stations.find((s) => s.level === stop.level) : undefined;
+  const stopName = stopStation
+    ? t(stopStation.labelKey as TranslationKey)
+    : t('journey.review.name');
   const startLabel = stop.kind === 'review' ? t('journey.start.review') : t('child.start');
   const streak = currentStreak(progress?.streak ?? { count: 0, lastDay: null }, Date.now());
 
@@ -66,7 +70,11 @@ function Journey({ profile }: { profile: Profile }) {
           >
             <AlbumIcon />
           </button>
-          <button type="button" className="btn btn--ghost btn--small" onClick={() => navigate({ name: 'home' })}>
+          <button
+            type="button"
+            className="btn btn--ghost btn--small"
+            onClick={() => navigate({ name: 'home' })}
+          >
             {tc('child.switch')}
           </button>
         </div>
@@ -75,12 +83,16 @@ function Journey({ profile }: { profile: Profile }) {
       {!young ? (
         <div className="journey__world">
           <h2 className="journey__world-name">
-            {t('journey.world', { params: { index: world.index, name: t(world.topic.labelKey as TranslationKey) } })}
+            {t('journey.world', {
+              params: { index: world.index, name: t(world.topic.labelKey as TranslationKey) },
+            })}
           </h2>
           <span className="muted">
             {world.completed
               ? t('journey.worldDone')
-              : t('journey.stationOf', { params: { n: Math.min(world.done + 1, world.total), total: world.total } })}
+              : t('journey.stationOf', {
+                  params: { n: Math.min(world.done + 1, world.total), total: world.total },
+                })}
           </span>
         </div>
       ) : null}
@@ -143,7 +155,8 @@ function Journey({ profile }: { profile: Profile }) {
 }
 
 function StreakChip({ count, young }: { count: number; young: boolean }) {
-  const label = count === 0 ? t('journey.streak.none') : t('journey.streak.short', { params: { count } });
+  const label =
+    count === 0 ? t('journey.streak.none') : t('journey.streak.short', { params: { count } });
   return (
     <div className={count > 0 ? 'streak streak--on' : 'streak'} role="img" aria-label={label}>
       <svg viewBox="0 0 24 24" aria-hidden="true" className="streak__icon">
@@ -151,7 +164,11 @@ function StreakChip({ count, young }: { count: number; young: boolean }) {
           d="M12 2.5c.6 3.6 3.5 5 3.5 8.3a3.5 3.5 0 0 1-7 0c0-1 .4-1.8 1-2.5.1 1.2.8 2 1.7 2 .2-2.9-2.2-3.8-2.2-7 0 0 2.5 1 3-0.8z"
           fill="currentColor"
         />
-        <path d="M6 14.5a6 6 0 1 0 12 0c0-2.3-1.2-3.7-2.5-5.3a4.5 4.5 0 0 1-7 0C7.2 10.8 6 12.2 6 14.5z" fill="currentColor" opacity="0.35" />
+        <path
+          d="M6 14.5a6 6 0 1 0 12 0c0-2.3-1.2-3.7-2.5-5.3a4.5 4.5 0 0 1-7 0C7.2 10.8 6 12.2 6 14.5z"
+          fill="currentColor"
+          opacity="0.35"
+        />
       </svg>
       {!young || count > 0 ? <span className="streak__count">{count}</span> : null}
     </div>
@@ -160,7 +177,15 @@ function StreakChip({ count, young }: { count: number; young: boolean }) {
 
 function AlbumIcon() {
   return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+    <svg
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
       <rect x="3" y="4" width="18" height="16" rx="3" />
       <path d="M3 10h18M9 4v16" />
     </svg>
@@ -223,8 +248,17 @@ function WorldMap({
   const reviewPoint = points[all - 1] as Point;
 
   return (
-    <section className="map" aria-label={t('journey.map')} style={{ aspectRatio: `100 / ${height}` }}>
-      <svg className="map__path" viewBox={`0 0 100 ${height}`} preserveAspectRatio="none" aria-hidden="true">
+    <section
+      className="map"
+      aria-label={t('journey.map')}
+      style={{ aspectRatio: `100 / ${height}` }}
+    >
+      <svg
+        className="map__path"
+        viewBox={`0 0 100 ${height}`}
+        preserveAspectRatio="none"
+        aria-hidden="true"
+      >
         <path d={donePath} className="map__path-done" />
         <path d={restPath} className="map__path-rest" />
       </svg>
@@ -235,9 +269,20 @@ function WorldMap({
         const cls = `node node--${s.state}`;
         const style = { left: `${p.x}%`, top: `${(p.y / height) * 100}%` };
         const content =
-          s.state === 'done' ? <CheckIcon /> : <span className="node__num">{young ? '' : s.level}</span>;
+          s.state === 'done' ? (
+            <CheckIcon />
+          ) : (
+            <span className="node__num">{young ? '' : s.level}</span>
+          );
         return onPick && s.state !== 'locked' ? (
-          <button key={s.level} type="button" className={cls} style={style} aria-label={label} onClick={() => onPick(s)}>
+          <button
+            key={s.level}
+            type="button"
+            className={cls}
+            style={style}
+            aria-label={label}
+            onClick={() => onPick(s)}
+          >
             {content}
           </button>
         ) : (
@@ -258,7 +303,10 @@ function WorldMap({
       </div>
 
       {plusiAt ? (
-        <div className="map__plusi" style={{ left: `${plusiAt.x}%`, top: `${(plusiAt.y / height) * 100}%` }}>
+        <div
+          className="map__plusi"
+          style={{ left: `${plusiAt.x}%`, top: `${(plusiAt.y / height) * 100}%` }}
+        >
           <Plusi mood={world.completed ? 'cheering' : 'happy'} size="100%" decorative />
           <span className="visually-hidden">{t('journey.plusiWaiting')}</span>
         </div>
@@ -269,7 +317,15 @@ function WorldMap({
 
 function CheckIcon() {
   return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+    <svg
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="3"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
       <path d="M5 12l5 5 9-10" />
     </svg>
   );

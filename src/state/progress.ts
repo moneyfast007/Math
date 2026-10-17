@@ -74,13 +74,19 @@ export interface RoundOutcome {
  */
 export function completeRound(progress: ProfileProgress, r: RoundResult): RoundOutcome {
   const streak = advanceStreak(progress.streak, r.at);
-  const prev = progress.topics[r.topicId] ?? emptyTopicStats(typeof r.station === 'number' ? r.station : MAX_LEVEL);
+  const prev =
+    progress.topics[r.topicId] ??
+    emptyTopicStats(typeof r.station === 'number' ? r.station : MAX_LEVEL);
   const rate = r.length > 0 ? r.firstTry / r.length : 0;
 
   if (r.station === 'review') {
     const passed = rate >= REVIEW_PASS_RATE;
     const newlyCompleted = passed && !prev.reviewPassed;
-    const stats: TopicStats = { ...prev, reviewPassed: prev.reviewPassed || passed, lastPracticedAt: r.at };
+    const stats: TopicStats = {
+      ...prev,
+      reviewPassed: prev.reviewPassed || passed,
+      lastPracticedAt: r.at,
+    };
     return {
       progress: { ...progress, streak, topics: { ...progress.topics, [r.topicId]: stats } },
       passed,
@@ -96,7 +102,8 @@ export function completeRound(progress: ProfileProgress, r: RoundResult): RoundO
     ? [...prev.completedLevels, r.station].sort((a, b) => a - b)
     : prev.completedLevels;
   // Move on only from the level she is at now; a revisit of an old station stays put.
-  const advancedTo = passed && prev.level === r.station && r.station < MAX_LEVEL ? r.station + 1 : null;
+  const advancedTo =
+    passed && prev.level === r.station && r.station < MAX_LEVEL ? r.station + 1 : null;
   const stats: TopicStats = {
     ...prev,
     level: advancedTo ?? prev.level,

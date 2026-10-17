@@ -95,7 +95,13 @@ function Face({ mood }: { mood: PlusiMood }) {
           <circle cx="71" cy="55" r="6.5" fill="#ffffff" />
           <circle cx="50.5" cy="56" r="3.2" fill={FACE} />
           <circle cx="72.5" cy="56" r="3.2" fill={FACE} />
-          <path d="M51 68q9 8 18 0" stroke={FACE} strokeWidth="3.5" strokeLinecap="round" fill="none" />
+          <path
+            d="M51 68q9 8 18 0"
+            stroke={FACE}
+            strokeWidth="3.5"
+            strokeLinecap="round"
+            fill="none"
+          />
         </>
       );
     case 'thinking':
@@ -124,8 +130,20 @@ function Face({ mood }: { mood: PlusiMood }) {
     case 'calm':
       return (
         <>
-          <path d="M44 56h10M66 56h10" stroke={FACE} strokeWidth="3.5" strokeLinecap="round" fill="none" />
-          <path d="M53 68q7 5 14 0" stroke={FACE} strokeWidth="3.5" strokeLinecap="round" fill="none" />
+          <path
+            d="M44 56h10M66 56h10"
+            stroke={FACE}
+            strokeWidth="3.5"
+            strokeLinecap="round"
+            fill="none"
+          />
+          <path
+            d="M53 68q7 5 14 0"
+            stroke={FACE}
+            strokeWidth="3.5"
+            strokeLinecap="round"
+            fill="none"
+          />
         </>
       );
   }

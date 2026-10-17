@@ -46,7 +46,11 @@ export function onlySaturdaysBetween(fromKey: string, toKey: string): boolean {
 export function advanceStreak(streak: Streak, at: number): Streak {
   const today = dayKey(at);
   if (streak.lastDay === today) return streak;
-  if (streak.lastDay !== null && streak.lastDay < today && onlySaturdaysBetween(streak.lastDay, today)) {
+  if (
+    streak.lastDay !== null &&
+    streak.lastDay < today &&
+    onlySaturdaysBetween(streak.lastDay, today)
+  ) {
     return { count: streak.count + 1, lastDay: today };
   }
   // First ever day, a gap, or a clock that went backwards: start over.

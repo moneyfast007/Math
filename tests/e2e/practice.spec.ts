@@ -166,7 +166,9 @@ test.describe('practice', () => {
 });
 
 test.describe('journey', () => {
-  test('the map shows every station, the review, Plusi, the streak and the album', async ({ page }) => {
+  test('the map shows every station, the review, Plusi, the streak and the album', async ({
+    page,
+  }) => {
     await setupChild(page, 'נועה', 'כיתה ב׳');
     await page.getByRole('button', { name: 'סיום' }).click();
     await expect(page).toHaveURL(/\/play$/);

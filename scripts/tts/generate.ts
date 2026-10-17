@@ -80,7 +80,9 @@ async function main(): Promise<void> {
   await ensureDir(OUT_DIR);
   const manifest = await readJson<Manifest>(MANIFEST, { version: 2, clips: {} });
   if ((manifest as { version: number }).version !== 2) {
-    throw new Error('public/audio/manifest.json is from an older layout; delete public/audio first.');
+    throw new Error(
+      'public/audio/manifest.json is from an older layout; delete public/audio first.',
+    );
   }
 
   const phrases = allPhrases();
@@ -88,7 +90,8 @@ async function main(): Promise<void> {
     .map((p) => ({ phrase: p, id: clipIdNode(p.text), spec: voiceFor(p.text) }))
     .filter(
       ({ id, spec }) =>
-        !existsSync(path.join(OUT_DIR, `${id}.mp3`)) || manifest.clips[id]?.voice !== voiceKey(spec),
+        !existsSync(path.join(OUT_DIR, `${id}.mp3`)) ||
+        manifest.clips[id]?.voice !== voiceKey(spec),
     );
 
   const byVoice = new Map<string, Phrase[]>();
@@ -99,10 +102,16 @@ async function main(): Promise<void> {
   console.log(`${phrases.length} phrases in the bank, ${work.length} to generate.`);
   for (const [key, list] of byVoice) {
     const engine = key.startsWith('wavenet') ? 'wavenet' : 'chirp3-hd';
-    console.log(`  ${key}: ${list.length} clips, ${estimateCost(list.map((p) => p.text), engine)}`);
+    console.log(
+      `  ${key}: ${list.length} clips, ${estimateCost(
+        list.map((p) => p.text),
+        engine,
+      )}`,
+    );
   }
   if (values['dry-run'] || work.length === 0) {
-    for (const w of work.slice(0, 20)) console.log(`  [${voiceKey(w.spec)}] ${w.phrase.id}: ${w.phrase.text}`);
+    for (const w of work.slice(0, 20))
+      console.log(`  [${voiceKey(w.spec)}] ${w.phrase.id}: ${w.phrase.text}`);
     if (work.length > 20) console.log(`  … and ${work.length - 20} more`);
     return;
   }
@@ -131,7 +140,9 @@ async function main(): Promise<void> {
   ]);
 
   await writeJson(MANIFEST, manifest);
-  console.log(`Done. ${Object.keys(manifest.clips).length} clips in ${path.relative(ROOT, OUT_DIR)}.`);
+  console.log(
+    `Done. ${Object.keys(manifest.clips).length} clips in ${path.relative(ROOT, OUT_DIR)}.`,
+  );
 }
 
 main().catch((err: unknown) => {

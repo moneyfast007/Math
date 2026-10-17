@@ -51,7 +51,8 @@ export function worldFor(
   const stations: WorldStation[] = topic.levels.map((l) => ({
     level: l.level,
     labelKey: l.labelKey,
-    state: completed.has(l.level) || l.level < level ? 'done' : l.level === level ? 'current' : 'locked',
+    state:
+      completed.has(l.level) || l.level < level ? 'done' : l.level === level ? 'current' : 'locked',
   }));
   const lastDone = stations.length > 0 && stations.every((s) => s.state === 'done');
   const review: StationState = stats?.reviewPassed ? 'done' : lastDone ? 'current' : 'locked';
@@ -73,7 +74,10 @@ export function worldsFor(grade: Grade, progress: ProfileProgress | undefined): 
 }
 
 /** The world she is in: the first one not completed, else the last. */
-export function activeWorld(grade: Grade, progress: ProfileProgress | undefined): World | undefined {
+export function activeWorld(
+  grade: Grade,
+  progress: ProfileProgress | undefined,
+): World | undefined {
   const worlds = worldsFor(grade, progress);
   return worlds.find((w) => !w.completed) ?? worlds.at(-1);
 }

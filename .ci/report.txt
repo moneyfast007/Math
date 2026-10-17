@@ -3,12 +3,33 @@
 > heshbon@0.1.0 typecheck
 > tsc -b
 
+src/state/validate.test.ts(134,15): error TS2739: Type '{ level: number; attempts: number; correct: number; lastPracticedAt: number; recent: never[]; mistakes: {}; }' is missing the following properties from type 'TopicStats': completedLevels, reviewPassed
+TYPECHECK FAILED
 
 ## lint
 
 > heshbon@0.1.0 lint
 > eslint .
 
+
+/home/runner/work/Math/Math/scripts/tts/pronunciation.ts
+  131:63  error  Unexpected combined character in character class  no-misleading-character-class
+
+/home/runner/work/Math/Math/src/screens/JourneyScreen.tsx
+  203:17  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+  222:17  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+
+/home/runner/work/Math/Math/src/state/validate.ts
+  129:14  error  This assertion is unnecessary since it does not change the type of the expression  @typescript-eslint/no-unnecessary-type-assertion
+
+/home/runner/work/Math/Math/src/ui/Sticker.tsx
+  11:17  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+  15:17  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+
+✖ 6 problems (2 errors, 4 warnings)
+  1 error and 0 warnings potentially fixable with the `--fix` option.
+
+LINT FAILED
 
 ## unit tests
 
@@ -18,55 +39,110 @@
 
 [1m[46m RUN [49m[22m [36mv3.2.7 [39m[90m/home/runner/work/Math/Math[39m
 
- [32m✓[39m src/state/store.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 26[2mms[22m[39m
- [32m✓[39m src/engine/topics/addSub20.test.ts [2m([22m[2m14 tests[22m[2m)[22m[33m 644[2mms[22m[39m
- [32m✓[39m src/engine/session.test.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 18[2mms[22m[39m
- [32m✓[39m src/lang/hebrewNumbers.test.ts [2m([22m[2m77 tests[22m[2m)[22m[33m 1841[2mms[22m[39m
-   [33m[2m✓[22m[39m numberToWords, properties[2m > [22mis injective on 0–99,999: different numbers never produce the same words [33m 1789[2mms[22m[39m
- [32m✓[39m src/state/validate.test.ts [2m([22m[2m17 tests[22m[2m)[22m[32m 10[2mms[22m[39m
- [32m✓[39m src/ui/components.test.tsx [2m([22m[2m7 tests[22m[2m)[22m[33m 344[2mms[22m[39m
- [32m✓[39m src/state/progress.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 13[2mms[22m[39m
- [32m✓[39m src/audio/speaker.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 16[2mms[22m[39m
- [32m✓[39m src/parent/gate.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[33m 644[2mms[22m[39m
- [32m✓[39m src/i18n/i18n.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 28[2mms[22m[39m
- [32m✓[39m scripts/tts/pronunciation.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 5[2mms[22m[39m
- [32m✓[39m src/lang/spoken.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 5[2mms[22m[39m
- [32m✓[39m src/audio/hash.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 8[2mms[22m[39m
- [32m✓[39m src/state/pin.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 21[2mms[22m[39m
- [32m✓[39m src/ui/MathExpr.test.tsx [2m([22m[2m3 tests[22m[2m)[22m[32m 50[2mms[22m[39m
- [32m✓[39m src/state/backup.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 7[2mms[22m[39m
- [32m✓[39m src/app/router.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 4[2mms[22m[39m
- [32m✓[39m src/ui/ageBand.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m src/state/validate.test.ts [2m([22m[2m19 tests[22m[2m)[22m[32m 18[2mms[22m[39m
+ [32m✓[39m src/state/store.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 35[2mms[22m[39m
+ [32m✓[39m src/state/progress.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 13[2mms[22m[39m
+ [32m✓[39m src/lang/hebrewNumbers.test.ts [2m([22m[2m77 tests[22m[2m)[22m[33m 1947[2mms[22m[39m
+   [33m[2m✓[22m[39m numberToWords, properties[2m > [22mis injective on 0–99,999: different numbers never produce the same words [33m 1892[2mms[22m[39m
+ [32m✓[39m src/engine/topics/addSub20.test.ts [2m([22m[2m14 tests[22m[2m)[22m[33m 689[2mms[22m[39m
+ [32m✓[39m src/engine/session.test.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 23[2mms[22m[39m
+ [32m✓[39m src/ui/components.test.tsx [2m([22m[2m7 tests[22m[2m)[22m[33m 327[2mms[22m[39m
+ [32m✓[39m src/engine/journey.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+ [32m✓[39m src/parent/gate.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[33m 543[2mms[22m[39m
+ [32m✓[39m src/state/streak.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+ [32m✓[39m src/audio/speaker.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 30[2mms[22m[39m
+ [31m❯[39m scripts/tts/pronunciation.test.ts [2m([22m[2m7 tests[22m[2m | [22m[31m3 failed[39m[2m)[22m[32m 20[2mms[22m[39m
+[31m   [31m×[31m vocalizeForTts[2m > [22mreads the feminine teens as esre[39m[32m 12[2mms[22m[39m
+[31m     → expected 'אַחַת עֶשְׂרֵה בובות' to be 'אחת עֶשְׂרֵה בובות' // Object.is equality[39m
+   [32m✓[39m vocalizeForTts[2m > [22mreads masculine ten as asara and feminine ten as eser[32m 1[2mms[22m[39m
+   [32m✓[39m vocalizeForTts[2m > [22mleaves the masculine teens plain (they read correctly as they are)[32m 0[2mms[22m[39m
+[31m   [31m×[31m vocalizeForTts[2m > [22mleaves number words that read well plain untouched[39m[32m 2[2mms[22m[39m
+[31m     → expected 'אַרְבַּע מאות שלושים וּשְׁתַּיִם' to be 'ארבע מאות שלושים ושתיים' // Object.is equality[39m
+[31m   [31m×[31m vocalizeForTts[2m > [22mvocalizes the listed words and gives a ו prefix its vowel[39m[32m 1[2mms[22m[39m
+[31m     → expected 'עֶשְׂרִים ושש' to be 'עשרים ושש' // Object.is equality[39m
+   [32m✓[39m vocalizeForTts[2m > [22mdoes not split words that only start with ו[32m 0[2mms[22m[39m
+   [32m✓[39m vocalizeForTts[2m > [22mdoes not carry context across a sentence boundary[32m 0[2mms[22m[39m
+ [32m✓[39m src/lang/spoken.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m src/i18n/i18n.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 30[2mms[22m[39m
+ [32m✓[39m src/screens/JourneyScreen.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[32m 121[2mms[22m[39m
+ [32m✓[39m src/state/pin.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 22[2mms[22m[39m
+ [32m✓[39m src/audio/hash.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 11[2mms[22m[39m
+ [32m✓[39m src/ui/MathExpr.test.tsx [2m([22m[2m3 tests[22m[2m)[22m[32m 52[2mms[22m[39m
+ [32m✓[39m src/state/backup.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m src/app/router.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m src/ui/ageBand.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 5[2mms[22m[39m
 
-[2m Test Files [22m [1m[32m18 passed[39m[22m[90m (18)[39m
-[2m      Tests [22m [1m[32m187 passed[39m[22m[90m (187)[39m
-[2m   Start at [22m 15:41:11
-[2m   Duration [22m 8.44s[2m (transform 583ms, setup 3.76s, collect 1.23s, tests 3.69s, environment 10.08s, prepare 2.11s)[22m
+[31m⎯⎯⎯⎯⎯⎯⎯[39m[1m[41m Failed Tests 3 [49m[22m[31m⎯⎯⎯⎯⎯⎯⎯[39m
 
+[41m[1m FAIL [22m[49m scripts/tts/pronunciation.test.ts[2m > [22mvocalizeForTts[2m > [22mreads the feminine teens as esre
+[31m[1mAssertionError[22m: expected 'אַחַת עֶשְׂרֵה בובות' to be 'אחת עֶשְׂרֵה בובות' // Object.is equality[39m
+
+Expected: [32m"א[7mח[27mת עֶשְׂרֵה בובות"[39m
+Received: [31m"א[7mַחַ[27mת עֶשְׂרֵה בובות"[39m
+
+[36m [2m❯[22m scripts/tts/pronunciation.test.ts:[2m6:46[22m[39m
+    [90m  4| [39m[34mdescribe[39m([32m'vocalizeForTts'[39m[33m,[39m () [33m=>[39m {
+    [90m  5| [39m  [34mit[39m([32m'reads the feminine teens as esre'[39m[33m,[39m () [33m=>[39m {
+    [90m  6| [39m    expect(vocalizeForTts('אחת עשרה בובות')).toBe('אחת עֶשְׂרֵה בובות'…
+    [90m   | [39m                                             [31m^[39m
+    [90m  7| [39m    expect(vocalizeForTts('שבע עשרה גולות ועוד שלוש עשרה גולות.')).toB…
+    [90m  8| [39m      [32m'שבע עֶשְׂרֵה גֻּלּוֹת ועוד שלוש עֶשְׂרֵה גֻּלּוֹת.'[39m[33m,[39m
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯[22m[39m
+
+[41m[1m FAIL [22m[49m scripts/tts/pronunciation.test.ts[2m > [22mvocalizeForTts[2m > [22mleaves number words that read well plain untouched
+[31m[1mAssertionError[22m: expected 'אַרְבַּע מאות שלושים וּשְׁתַּיִם' to be 'ארבע מאות שלושים ושתיים' // Object.is equality[39m
+
+Expected: [32m"א[7mרב[27mע מאות שלושים ו[7mשתיי[27mם"[39m
+Received: [31m"א[7mַרְבַּ[27mע מאות שלושים ו[7mּשְׁתַּיִ[27mם"[39m
+
+[36m [2m❯[22m scripts/tts/pronunciation.test.ts:[2m23:55[22m[39m
+    [90m 21| [39m  [34mit[39m([32m'leaves number words that read well plain untouched'[39m[33m,[39m () [33m=>[39m {
+    [90m 22| [39m    expect(vocalizeForTts('כמה זה שבע כפול שמונה?')).toBe('כמה זה שבע …
+    [90m 23| [39m    expect(vocalizeForTts('ארבע מאות שלושים ושתיים')).toBe('ארבע מאות …
+    [90m   | [39m                                                      [31m^[39m
+    [90m 24| [39m    [34mexpect[39m([34mvocalizeForTts[39m([32m'שלושה רבעים'[39m))[33m.[39m[34mtoBe[39m([32m'שלושה רבעים'[39m)[33m;[39m
+    [90m 25| [39m  })[33m;[39m
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯[22m[39m
+
+[41m[1m FAIL [22m[49m scripts/tts/pronunciation.test.ts[2m > [22mvocalizeForTts[2m > [22mvocalizes the listed words and gives a ו prefix its vowel
+[31m[1mAssertionError[22m: expected 'עֶשְׂרִים ושש' to be 'עשרים ושש' // Object.is equality[39m
+
+Expected: [32m"ע[7mשר[27mים ושש"[39m
+Received: [31m"ע[7mֶשְׂרִ[27mים ושש"[39m
+
+[36m [2m❯[22m scripts/tts/pronunciation.test.ts:[2m30:41[22m[39m
+    [90m 28| [39m    expect(vocalizeForTts('שלושת אלפים וחמש')).toBe('שלושת אֲלָפִים וח…
+    [90m 29| [39m    expect(vocalizeForTts('כמה זה שש ועוד שבע?')).toBe('כמה זה שש ועוד…
+    [90m 30| [39m    [34mexpect[39m([34mvocalizeForTts[39m([32m'עשרים ושש'[39m))[33m.[39m[34mtoBe[39m([32m'עשרים ושש'[39m)[33m;[39m
+    [90m   | [39m                                        [31m^[39m
+    [90m 31| [39m    [34mexpect[39m([34mvocalizeForTts[39m([32m'הם מתחלקים לשש קבוצות שוות.'[39m))[33m.[39m[34mtoBe[39m(
+    [90m 32| [39m      [32m'הם מתחלקים לְשֵׁשׁ קבוצות שָׁווֹת.'[39m[33m,[39m
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯[22m[39m
+
+
+[2m Test Files [22m [1m[31m1 failed[39m[22m[2m | [22m[1m[32m20 passed[39m[22m[90m (21)[39m
+[2m      Tests [22m [1m[31m3 failed[39m[22m[2m | [22m[1m[32m212 passed[39m[22m[90m (215)[39m
+[2m   Start at [22m 19:28:02
+[2m   Duration [22m 9.87s[2m (transform 710ms, setup 4.55s, collect 1.42s, tests 3.92s, environment 12.10s, prepare 2.48s)[22m
+
+
+::error file=/home/runner/work/Math/Math/scripts/tts/pronunciation.test.ts,title=scripts/tts/pronunciation.test.ts > vocalizeForTts > reads the feminine teens as esre,line=6,column=46::AssertionError: expected 'אַחַת עֶשְׂרֵה בובות' to be 'אחת עֶשְׂרֵה בובות' // Object.is equality%0A%0AExpected: "אחת עֶשְׂרֵה בובות"%0AReceived: "אַחַת עֶשְׂרֵה בובות"%0A%0A ❯ scripts/tts/pronunciation.test.ts:6:46%0A%0A
+
+::error file=/home/runner/work/Math/Math/scripts/tts/pronunciation.test.ts,title=scripts/tts/pronunciation.test.ts > vocalizeForTts > leaves number words that read well plain untouched,line=23,column=55::AssertionError: expected 'אַרְבַּע מאות שלושים וּשְׁתַּיִם' to be 'ארבע מאות שלושים ושתיים' // Object.is equality%0A%0AExpected: "ארבע מאות שלושים ושתיים"%0AReceived: "אַרְבַּע מאות שלושים וּשְׁתַּיִם"%0A%0A ❯ scripts/tts/pronunciation.test.ts:23:55%0A%0A
+
+::error file=/home/runner/work/Math/Math/scripts/tts/pronunciation.test.ts,title=scripts/tts/pronunciation.test.ts > vocalizeForTts > vocalizes the listed words and gives a ו prefix its vowel,line=30,column=41::AssertionError: expected 'עֶשְׂרִים ושש' to be 'עשרים ושש' // Object.is equality%0A%0AExpected: "עשרים ושש"%0AReceived: "עֶשְׂרִים ושש"%0A%0A ❯ scripts/tts/pronunciation.test.ts:30:41%0A%0A
+TESTS FAILED
 
 ## build
 
 > heshbon@0.1.0 build
 > tsc -b && vite build
 
-[36mvite v7.3.7 [32mbuilding client environment for production...[36m[39m
-transforming...
-[32m✓[39m 76 modules transformed.
-rendering chunks...
-computing gzip size...
-[2mdist/[22m[32mmanifest.webmanifest                        [39m[1m[2m  0.53 kB[22m[1m[22m
-[2mdist/[22m[32mindex.html                                  [39m[1m[2m  1.26 kB[22m[1m[22m[2m │ gzip:  0.60 kB[22m
-[2mdist/[22m[2massets/[22m[35mindex-BwyLQAfT.css                   [39m[1m[2m 14.93 kB[22m[1m[22m[2m │ gzip:  3.55 kB[22m
-[2mdist/[22m[2massets/[22m[36mworkbox-window.prod.es5-BBnX5xw4.js  [39m[1m[2m  5.75 kB[22m[1m[22m[2m │ gzip:  2.36 kB[22m
-[2mdist/[22m[2massets/[22m[36mindex-F4NUyIwI.js                    [39m[1m[2m296.99 kB[22m[1m[22m[2m │ gzip: 92.82 kB[22m
-[32m✓ built in 1.31s[39m
-
-[36mPWA v1.3.0[39m
-mode      [35mgenerateSW[39m
-precache  [32m14 entries[39m [2m(321.53 KiB)[22m
-files generated
-  [2mdist/sw.js[22m
-  [2mdist/workbox-35e397ac.js[22m
+src/state/validate.test.ts(134,15): error TS2739: Type '{ level: number; attempts: number; correct: number; lastPracticedAt: number; recent: never[]; mistakes: {}; }' is missing the following properties from type 'TopicStats': completedLevels, reviewPassed
+BUILD FAILED
 
 ## e2e
 
@@ -74,7 +150,9 @@ files generated
 > playwright test
 
 
-Running 66 tests using 2 workers
-··································································
-  66 passed (2.3m)
-::notice title=🎭 Playwright Run Summary::  66 passed (2.3m)
+Error: Process from config.webServer was not able to start. Exit code: 1
+::error ::Error: Process from config.webServer was not able to start. Exit code: 1
+
+
+::notice title=🎭 Playwright Run Summary::
+E2E FAILED

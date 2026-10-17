@@ -159,15 +159,26 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
 
   if (s.phase === 'finished') {
     const result = outcome ? resultLine(outcome, tc, profile.id, profile.grade) : null;
-    const spoken = outcome?.passed ? tc('practice.done.passedSpoken') : t('practice.done.notPassed');
+    const spoken = outcome?.passed
+      ? tc('practice.done.passedSpoken')
+      : t('practice.done.notPassed');
     return (
       <main className="screen practice" data-screen="practice-done">
         <section className="stack done" style={{ alignItems: 'center', textAlign: 'center' }}>
-          <Plusi mood={outcome?.passed ? 'cheering' : 'happy'} size={band === 'young' ? 160 : 128} decorative />
+          <Plusi
+            mood={outcome?.passed ? 'cheering' : 'happy'}
+            size={band === 'young' ? 160 : 128}
+            decorative
+          />
           <h1>{t('practice.done.title', { params: { name: profile.name } })}</h1>
           <p className="done__body">{t('practice.done.body', { params: { count: s.done } })}</p>
           {result ? (
-            <div className={outcome?.passed ? 'feedback feedback--correct' : 'feedback feedback--almost'} role="status">
+            <div
+              className={
+                outcome?.passed ? 'feedback feedback--correct' : 'feedback feedback--almost'
+              }
+              role="status"
+            >
               <SpeakerButton text={spoken} slow={slow} />
               <span>{result}</span>
             </div>
@@ -354,10 +365,12 @@ function appProgress(profileId: string) {
 function resultLine(o: RoundOutcome, tc: TC, profileId: string, grade: Profile['grade']): string {
   if (o.worldCompleted) return t('practice.done.worldDone');
   if (!o.passed) return t('practice.done.notPassed');
-  if (o.advancedTo !== null) return `${tc('practice.done.passed')} ${t('practice.done.nextOpened')}`;
+  if (o.advancedTo !== null)
+    return `${tc('practice.done.passed')} ${t('practice.done.nextOpened')}`;
   // Passed the last level: is the review open now?
   const world = activeWorld(grade, appProgress(profileId));
-  if (world?.review === 'current' && o.newlyCompleted) return `${tc('practice.done.passed')} ${t('practice.done.reviewOpened')}`;
+  if (world?.review === 'current' && o.newlyCompleted)
+    return `${tc('practice.done.passed')} ${t('practice.done.reviewOpened')}`;
   return tc('practice.done.passed');
 }
 

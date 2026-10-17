@@ -10,7 +10,13 @@ import {
   type VoiceSpec,
 } from './lib';
 import { FULL_NIKUD, vocalizeForTts } from './pronunciation';
-import { BANK_CHECK, NIKUD_PAIRS, PROBE, SENTENCES as SAMPLE_SENTENCES, WORDS } from './sample-sentences';
+import {
+  BANK_CHECK,
+  NIKUD_PAIRS,
+  PROBE,
+  SENTENCES as SAMPLE_SENTENCES,
+  WORDS,
+} from './sample-sentences';
 
 /**
  * Voice comparison batch. Produces, for each variant, one MP3 per test sentence
@@ -75,10 +81,14 @@ const chirp: VoiceSpec = { engine: 'chirp3-hd', voice: values.voice };
 
 const ALL_VARIANTS: Variant[] = [
   { name: 'gemini-flash', spec: gemini, texts: [...SENTENCES] },
-  ...(values.set !== 'sample' ? [] : [{ name: 'gemini-flash-nikud', spec: gemini, texts: nikudAligned() }]),
+  ...(values.set !== 'sample'
+    ? []
+    : [{ name: 'gemini-flash-nikud', spec: gemini, texts: nikudAligned() }]),
   { name: 'chirp3-hd', spec: chirp, texts: [...SENTENCES] },
   { name: 'chirp3-hd-fixed', spec: chirp, texts: SENTENCES.map(vocalizeForTts) },
-  ...(values.set !== 'sample' ? [] : [{ name: 'chirp3-hd-nikud', spec: chirp, texts: nikudAligned() }]),
+  ...(values.set !== 'sample'
+    ? []
+    : [{ name: 'chirp3-hd-nikud', spec: chirp, texts: nikudAligned() }]),
 ];
 
 const only = values.only?.split(',').map((x) => x.trim());

@@ -36,7 +36,11 @@ export function AlbumScreen() {
           <h1>{t('album.title', { params: { name: profile.name } })}</h1>
           <p className="muted">{t('album.intro')}</p>
         </div>
-        <button type="button" className="btn btn--secondary" onClick={() => navigate({ name: 'play' })}>
+        <button
+          type="button"
+          className="btn btn--secondary"
+          onClick={() => navigate({ name: 'play' })}
+        >
           {t('album.back')}
         </button>
       </header>
@@ -52,11 +56,18 @@ export function AlbumScreen() {
           const id = stickerForWorld(w.index);
           const name = t(w.topic.labelKey as TranslationKey);
           return (
-            <li key={w.topic.id} className={w.completed ? 'sticker-card sticker-card--earned' : 'sticker-card'}>
+            <li
+              key={w.topic.id}
+              className={w.completed ? 'sticker-card sticker-card--earned' : 'sticker-card'}
+            >
               {w.completed ? (
                 <Sticker id={id} />
               ) : (
-                <div className="sticker-card__slot" role="img" aria-label={t('album.sticker.locked', { params: { name: stickerLabel(id) } })}>
+                <div
+                  className="sticker-card__slot"
+                  role="img"
+                  aria-label={t('album.sticker.locked', { params: { name: stickerLabel(id) } })}
+                >
                   {w.index}
                 </div>
               )}
