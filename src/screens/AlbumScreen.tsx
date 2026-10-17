@@ -33,7 +33,10 @@ export function AlbumScreen() {
   // Read aloud with the numbers as words, assembled from clips (the screen keeps digits).
   const spoken =
     earned > 0 && earned < total
-      ? compose(t('album.count'), { earned: { n: earned, gender: 'f' }, total: { n: total, gender: 'f' } })
+      ? compose(t('album.count'), {
+          earned: { n: earned, gender: 'f' },
+          total: { n: total, gender: 'f' },
+        })
       : { text: line, parts: [line] };
 
   return (

@@ -50,7 +50,8 @@ export function uiPhrases(): Phrase[] {
   const out: Phrase[] = [];
   for (const [key, value] of Object.entries(he)) {
     if (!isSpoken(key)) continue;
-    const forms = typeof value === 'string' ? { f: value } : value.m === value.f ? { f: value.f } : value;
+    const forms =
+      typeof value === 'string' ? { f: value } : value.m === value.f ? { f: value.f } : value;
     for (const [g, raw] of Object.entries(forms)) {
       const id = typeof value === 'string' ? `ui.${key}` : `ui.${key}.${g}`;
       if (raw.includes('{')) {

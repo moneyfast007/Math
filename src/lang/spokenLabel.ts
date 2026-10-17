@@ -11,7 +11,10 @@ import { numberToWords } from './hebrewNumbers';
  * Abstract numbers are read in the feminine, as in the exercises.
  */
 export function spokenLabel(text: string): string {
-  return text.replace(/([בלמו])?-?(\d{1,3}(?:,\d{3})+|\d+)/g, (_m, prefix: string | undefined, num: string) => {
-    return `${prefix ?? ''}${numberToWords(Number(num.replace(/,/g, '')))}`;
-  });
+  return text.replace(
+    /([בלמו])?-?(\d{1,3}(?:,\d{3})+|\d+)/g,
+    (_m, prefix: string | undefined, num: string) => {
+      return `${prefix ?? ''}${numberToWords(Number(num.replace(/,/g, '')))}`;
+    },
+  );
 }
