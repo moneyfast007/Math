@@ -55,6 +55,8 @@ test.describe('foundations', () => {
 
   test('tap targets meet the minimum for the current age band', async ({ page }) => {
     await page.goto('/playground');
+    // The app renders after stored data loads; wait for the screen before measuring.
+    await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
     const minPx = await page.evaluate(() =>
       parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--tap-min')),
     );
