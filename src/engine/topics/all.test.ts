@@ -80,3 +80,22 @@ describe.each(TOPICS.map((t) => [t.id, t] as const))('topic %s', (_id, topic) =>
     for (const s of bank) expect(s).not.toMatch(/\d/);
   });
 });
+
+describe('differentExample', () => {
+  it('keeps a suggested example that already differs', async () => {
+    const { differentExample } = await import('../build');
+    expect(differentExample(3, '+', 5, { a: 4, b: 2 })).toEqual({ a: 4, b: 2 });
+  });
+
+  it('nudges a matching example, keeping it valid', async () => {
+    const { differentExample } = await import('../build');
+    expect(differentExample(3, '×', 5, { a: 3, b: 5 })).not.toEqual({ a: 3, b: 5 });
+    expect(differentExample(5, '×', 3, { a: 3, b: 5 })).not.toEqual({ a: 3, b: 5 }); // 3 × 5 is the same fact
+    const d = differentExample(12, '÷', 3, { a: 12, b: 3 });
+    expect(d.a % d.b).toBe(0);
+    expect(d).not.toEqual({ a: 12, b: 3 });
+    const s = differentExample(50, '-', 20, { a: 50, b: 20 });
+    expect(s.a - s.b).toBeGreaterThanOrEqual(0);
+    expect(s).not.toEqual({ a: 50, b: 20 });
+  });
+});

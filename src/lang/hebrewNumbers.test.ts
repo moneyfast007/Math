@@ -91,7 +91,7 @@ describe('numberToWords, properties', () => {
 
   it('never contains a digit', () => {
     fc.assert(
-      fc.property(anyInt, fc.constantFrom('f', 'm'), (n, g) => {
+      fc.property(anyInt, fc.constantFrom<Gender>('f', 'm'), (n, g) => {
         expect(numberToWords(n, g)).not.toMatch(/\d/);
       }),
     );
@@ -187,8 +187,8 @@ describe('numberParts', () => {
 
   it('joins back to exactly the words, for every number and gender', () => {
     fc.assert(
-      fc.property(fc.integer({ min: 0, max: 999_999_999 }), fc.constantFrom('f', 'm'), (n, g) => {
-        expect(numberParts(n, g as Gender).join(' ')).toBe(numberToWords(n, g as Gender));
+      fc.property(fc.integer({ min: 0, max: 999_999_999 }), fc.constantFrom<Gender>('f', 'm'), (n, g) => {
+        expect(numberParts(n, g).join(' ')).toBe(numberToWords(n, g));
       }),
     );
   });

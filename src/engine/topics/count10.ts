@@ -1,5 +1,4 @@
 import { t, type TranslationKey } from '@/i18n';
-import type { Gender } from '@/lang/gender';
 import { countNoun, numberToWords } from '@/lang/hebrewNumbers';
 import {
   choicesAround,
@@ -44,7 +43,7 @@ function k(key: string): TranslationKey {
 }
 
 /** Counting: "how many X?" */
-function count(level: number, n: number, rng: Rng, _gender: Gender): Exercise {
+function count(level: number, n: number, rng: Rng): Exercise {
   const noun = pick(rng, NOUNS);
   const prompt = t('ex.count.prompt', { params: { plural: noun.plural } });
   const solved: Said = { text: `${countNoun(n, noun)}.`, parts: [`${countNoun(n, noun)}.`] };
@@ -264,12 +263,12 @@ export const count10 = defineTopic({
     closed(
       L(1),
       () => range(1, 5),
-      (n, rng, g) => count(1, n, rng, g),
+      (n, rng) => count(1, n, rng),
     ),
     closed(
       L(2),
       () => range(3, 10),
-      (n, rng, g) => count(2, n, rng, g),
+      (n, rng) => count(2, n, rng),
     ),
     closed(
       L(3),

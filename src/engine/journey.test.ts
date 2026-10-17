@@ -28,10 +28,10 @@ describe('worldFor', () => {
     expect(nextStop(w)).toEqual({ kind: 'level', level: 8 });
   });
 
-  it('a kindergartener starts at the first station', () => {
-    const w = worldFor(addSub20, 1, 0, undefined);
-    expect(w.stations[0]?.state).toBe('current');
-    expect(w.done).toBe(0);
+  it('a kindergartener arrives at add-sub-20 past the counting stations (world 1 taught them)', () => {
+    const w = worldFor(addSub20, 2, 0, undefined);
+    expect(w.stations[2]?.state).toBe('current');
+    expect(w.done).toBe(2);
   });
 
   it('passed stations above the current level stay done after a level-down', () => {
@@ -65,11 +65,21 @@ describe('worldFor', () => {
 
 describe('worlds', () => {
   it('lists the grade’s topics in order and picks the first unfinished one', () => {
-    const worlds = worldsFor(2, undefined);
-    expect(worlds.map((w) => w.index)).toEqual([1]);
-    expect(activeWorld(2, undefined)?.topic.id).toBe(addSub20.id);
+    const worlds = worldsFor(1, undefined);
+    expect(worlds.map((w) => w.index)).toEqual([1, 2]);
+    expect(worlds[0]?.topic.id).toBe(addSub20.id);
+    expect(activeWorld(1, undefined)?.topic.id).toBe(addSub20.id);
     expect(stickersEarned(worlds)).toBe(0);
-    expect(stickersEarned(worldsFor(2, progressAt(10, [10], true)))).toBe(1);
+    const done = progressAt(10, [10], true);
+    expect(stickersEarned(worldsFor(1, done))).toBe(1);
+    expect(activeWorld(1, done)?.topic.id).toBe('numbers-100');
+  });
+
+  it('every grade has at least one world, in curriculum order', () => {
+    for (const grade of [0, 1, 2, 3, 4, 5, 6] as const) {
+      expect(worldsFor(grade, undefined).length, `grade ${grade}`).toBeGreaterThan(0);
+    }
+    expect(worldsFor(0, undefined).map((w) => w.topic.id)).toEqual(['count-10', 'add-sub-20']);
   });
 
   it('an older child without topics of her own gets the whole list', () => {

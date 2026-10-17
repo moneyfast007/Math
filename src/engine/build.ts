@@ -217,7 +217,8 @@ export function exercise(p: ExerciseParts): Exercise {
     hints: p.hints,
     solutionSpoken: p.solution.text,
     solutionParts: p.solution.parts,
-    diagnose: p.diagnose ?? (() => null),
+    // A right answer is never a mistake, whatever a topic's own diagnosis says.
+    diagnose: (value) => (value === p.answer ? null : (p.diagnose?.(value) ?? null)),
   };
 }
 
@@ -258,7 +259,7 @@ export type LevelDef =
   | { labelKey: string; gen: (rng: Rng, gender: Gender) => Exercise };
 
 export function closed<F>(labelKey: string, facts: () => readonly F[], build: Build<F>): LevelDef {
-  return { labelKey, facts, build: build as Build<never> };
+  return { labelKey, facts, build: build as unknown as Build<never> };
 }
 
 export function open(labelKey: string, gen: (rng: Rng, gender: Gender) => Exercise): LevelDef {
@@ -423,7 +424,8 @@ export function arith(o: ArithOptions): Exercise {
     missing === 'b' ? '?' : o.b,
     missing === 'c' ? '?' : c,
   );
-  const exC = result(o.example.a, o.op, o.example.b);
+  const example = differentExample(o.a, o.op, o.b, o.example);
+  const exC = result(example.a, o.op, example.b);
   const facts: ArithFacts = { a: o.a, op: o.op, b: o.b, answer, missing };
   return exercise({
     factId: `${OPERATION[o.op]}${missing === 'c' ? '' : `:${missing}`}:${o.a}${o.op}${o.b}`,
@@ -440,13 +442,42 @@ export function arith(o: ArithOptions): Exercise {
       o.hints[0],
       o.hints[1],
       exampleHint(
-        displayEquation(o.example.a, o.op, o.example.b, exC),
-        spokenEquationSolved(o.example.a, o.op, o.example.b, exC),
+        displayEquation(example.a, o.op, example.b, exC),
+        spokenEquationSolved(example.a, o.op, example.b, exC),
       ),
     ],
     solution: spokenEquationSolved(o.a, o.op, o.b, c),
     diagnose: (value) => o.diagnose?.(value) ?? diagnoseArith(value, facts),
   });
+}
+
+/**
+ * The worked example must never be the exercise itself (it would give the
+ * answer away). When the suggested example happens to match, nudge it while
+ * keeping it valid: still non-negative for subtraction, still exact for division
+ * (and with the same remainder, for remainder problems).
+ */
+export function differentExample(
+  a: number,
+  op: Op,
+  b: number,
+  ex: { a: number; b: number },
+): { a: number; b: number } {
+  const commutes = op === '+' || op === '×';
+  const same = (x: { a: number; b: number }) =>
+    (x.a === a && x.b === b) || (commutes && x.a === b && x.b === a);
+  if (!same(ex)) return ex;
+  const candidates =
+    op === '÷'
+      ? [
+          { a: ex.a + ex.b, b: ex.b },
+          { a: ex.a + 2 * ex.b, b: ex.b },
+        ]
+      : [
+          { a: ex.a + 1, b: ex.b },
+          { a: ex.a + 2, b: ex.b + 1 },
+        ];
+  return candidates.find((x) => !same(x)) ?? { a: ex.a + 3, b: ex.b };
 }
 
 /** A different pair of the same shape, for the worked example: shifted, kept in range. */
@@ -513,6 +544,7 @@ export interface WordProblemOptions {
  * curriculum wants word problems approached (understand, then write).
  */
 export function wordProblem(o: WordProblemOptions): Exercise {
+  const ex = differentExample(o.a, o.op, o.b, o.example);
   const who = pick(o.rng, CHARACTERS);
   const other = pick(
     o.rng,
@@ -540,10 +572,10 @@ export function wordProblem(o: WordProblemOptions): Exercise {
       ? Math.floor(o.a / o.b)
       : result(o.a, o.op, o.b);
   const exC = o.askRemainder
-    ? o.example.a % o.example.b
+    ? ex.a % ex.b
     : o.op === '÷'
-      ? Math.floor(o.example.a / o.example.b)
-      : result(o.example.a, o.op, o.example.b);
+      ? Math.floor(ex.a / ex.b)
+      : result(ex.a, o.op, ex.b);
   const eq = (a: number, b: number, r: number | string) =>
     o.askRemainder ? `${a} ÷ ${b} = ${Math.floor(a / b)} (${r})` : displayEquation(a, o.op, b, r);
   const solved = o.askRemainder
@@ -551,12 +583,12 @@ export function wordProblem(o: WordProblemOptions): Exercise {
     : spokenEquationSolved(o.a, o.op, o.b, c);
   const exSolved = o.askRemainder
     ? sayText('{a} חלקי {b} זה {q}, ונשאר {r}.', {
-        a: o.example.a,
-        b: o.example.b,
-        q: Math.floor(o.example.a / o.example.b),
+        a: ex.a,
+        b: ex.b,
+        q: Math.floor(ex.a / ex.b),
         r: exC,
       })
-    : spokenEquationSolved(o.example.a, o.op, o.example.b, exC);
+    : spokenEquationSolved(ex.a, o.op, ex.b, exC);
   const facts: ArithFacts = { a: o.a, op: o.op, b: o.b, answer: c };
   return exercise({
     factId: `wp:${o.key}:${o.a}${o.op}${o.b}${o.askRemainder ? 'r' : ''}`,
@@ -574,7 +606,7 @@ export function wordProblem(o: WordProblemOptions): Exercise {
         ...hint(say('hint.equation')),
         example: { display: eq(o.a, o.b, '?'), spoken: say('hint.equation').text },
       },
-      exampleHint(eq(o.example.a, o.example.b, exC), exSolved),
+      exampleHint(eq(ex.a, ex.b, exC), exSolved),
     ],
     solution: solved,
     diagnose: (value) => {

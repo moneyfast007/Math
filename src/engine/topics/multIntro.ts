@@ -103,7 +103,7 @@ function table(level: number, a: number, b: number): Exercise {
     b,
     hints: arrayHints(a, b),
     example: a === 3 ? { a: 4, b } : { a: 3, b },
-    input: numpad(2),
+    input: numpad(3),
   });
 }
 
