@@ -51,6 +51,7 @@ test.describe('practice', () => {
   test('a full round: every answer right, level suggestions declined, progress recorded', async ({
     page,
   }) => {
+    test.slow(); // ten exercises plus the parent screen: a long test on a phone profile
     const errors: string[] = [];
     page.on('pageerror', (e) => errors.push(e.message));
     await setupChild(page, 'נועה', 'כיתה ב׳');
