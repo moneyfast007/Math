@@ -3,33 +3,12 @@
 > heshbon@0.1.0 typecheck
 > tsc -b
 
-src/engine/topics/addSub20.ts(355,46): error TS2322: Type '{ a: number; c: number; b?: undefined; } | { c: number; b: number; a?: undefined; }' is not assignable to type 'Readonly<Record<string, string | number>> | undefined'.
-  Type '{ a: number; c: number; b?: undefined; }' is not assignable to type 'Readonly<Record<string, string | number>>'.
-    Property 'b' is incompatible with index signature.
-      Type 'undefined' is not assignable to type 'string | number'.
-src/engine/topics/addSub20.ts(356,55): error TS2322: Type '{ a: string; c: string; b?: undefined; } | { c: string; b: string; a?: undefined; }' is not assignable to type 'Readonly<Record<string, string | number>> | undefined'.
-  Type '{ a: string; c: string; b?: undefined; }' is not assignable to type 'Readonly<Record<string, string | number>>'.
-    Property 'b' is incompatible with index signature.
-      Type 'undefined' is not assignable to type 'string | number'.
-TYPECHECK FAILED
 
 ## lint
 
 > heshbon@0.1.0 lint
 > eslint .
 
-
-/home/runner/work/Math/Math/src/audio/speaker.test.ts
-  53:12  error  A method that is not declared with `this: void` may cause unintentional scoping of `this` when separated from its object.
-Consider using an arrow function or explicitly `.bind()`ing the method to avoid calling the method with an unintended `this` value. 
-If a function does not access `this`, it can be annotated with `this: void`  @typescript-eslint/unbound-method
-
-/home/runner/work/Math/Math/src/screens/PracticeScreen.tsx
-  356:11  error  Switch is not exhaustive. Cases not matched: "other" | "placeValue" | "remainder" | null  @typescript-eslint/switch-exhaustiveness-check
-
-✖ 2 problems (2 errors, 0 warnings)
-
-LINT FAILED
 
 ## unit tests
 
@@ -39,30 +18,30 @@ LINT FAILED
 
 [1m[46m RUN [49m[22m [36mv3.2.7 [39m[90m/home/runner/work/Math/Math[39m
 
- [32m✓[39m src/state/store.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 31[2mms[22m[39m
- [32m✓[39m src/engine/topics/addSub20.test.ts [2m([22m[2m14 tests[22m[2m)[22m[33m 512[2mms[22m[39m
- [32m✓[39m src/engine/session.test.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 21[2mms[22m[39m
- [32m✓[39m src/lang/hebrewNumbers.test.ts [2m([22m[2m77 tests[22m[2m)[22m[33m 2039[2mms[22m[39m
-   [33m[2m✓[22m[39m numberToWords, properties[2m > [22mis injective on 0–99,999: different numbers never produce the same words [33m 1977[2mms[22m[39m
- [32m✓[39m src/state/validate.test.ts [2m([22m[2m17 tests[22m[2m)[22m[32m 8[2mms[22m[39m
- [32m✓[39m src/ui/components.test.tsx [2m([22m[2m7 tests[22m[2m)[22m[33m 418[2mms[22m[39m
- [32m✓[39m src/state/progress.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 8[2mms[22m[39m
- [32m✓[39m src/parent/gate.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[33m 545[2mms[22m[39m
+ [32m✓[39m src/state/store.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 26[2mms[22m[39m
+ [32m✓[39m src/engine/topics/addSub20.test.ts [2m([22m[2m14 tests[22m[2m)[22m[33m 644[2mms[22m[39m
+ [32m✓[39m src/engine/session.test.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 18[2mms[22m[39m
+ [32m✓[39m src/lang/hebrewNumbers.test.ts [2m([22m[2m77 tests[22m[2m)[22m[33m 1841[2mms[22m[39m
+   [33m[2m✓[22m[39m numberToWords, properties[2m > [22mis injective on 0–99,999: different numbers never produce the same words [33m 1789[2mms[22m[39m
+ [32m✓[39m src/state/validate.test.ts [2m([22m[2m17 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+ [32m✓[39m src/ui/components.test.tsx [2m([22m[2m7 tests[22m[2m)[22m[33m 344[2mms[22m[39m
+ [32m✓[39m src/state/progress.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 13[2mms[22m[39m
  [32m✓[39m src/audio/speaker.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 16[2mms[22m[39m
- [32m✓[39m src/i18n/i18n.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 27[2mms[22m[39m
- [32m✓[39m scripts/tts/pronunciation.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m src/parent/gate.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[33m 644[2mms[22m[39m
+ [32m✓[39m src/i18n/i18n.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 28[2mms[22m[39m
+ [32m✓[39m scripts/tts/pronunciation.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 5[2mms[22m[39m
  [32m✓[39m src/lang/spoken.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 5[2mms[22m[39m
- [32m✓[39m src/audio/hash.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 11[2mms[22m[39m
- [32m✓[39m src/state/pin.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 13[2mms[22m[39m
- [32m✓[39m src/ui/MathExpr.test.tsx [2m([22m[2m3 tests[22m[2m)[22m[32m 51[2mms[22m[39m
+ [32m✓[39m src/audio/hash.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+ [32m✓[39m src/state/pin.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 21[2mms[22m[39m
+ [32m✓[39m src/ui/MathExpr.test.tsx [2m([22m[2m3 tests[22m[2m)[22m[32m 50[2mms[22m[39m
  [32m✓[39m src/state/backup.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 7[2mms[22m[39m
- [32m✓[39m src/app/router.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 6[2mms[22m[39m
- [32m✓[39m src/ui/ageBand.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m src/app/router.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+ [32m✓[39m src/ui/ageBand.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 6[2mms[22m[39m
 
 [2m Test Files [22m [1m[32m18 passed[39m[22m[90m (18)[39m
 [2m      Tests [22m [1m[32m187 passed[39m[22m[90m (187)[39m
-[2m   Start at [22m 15:38:38
-[2m   Duration [22m 8.91s[2m (transform 627ms, setup 4.06s, collect 1.44s, tests 3.73s, environment 10.43s, prepare 2.18s)[22m
+[2m   Start at [22m 15:41:11
+[2m   Duration [22m 8.44s[2m (transform 583ms, setup 3.76s, collect 1.23s, tests 3.69s, environment 10.08s, prepare 2.11s)[22m
 
 
 ## build
@@ -70,15 +49,24 @@ LINT FAILED
 > heshbon@0.1.0 build
 > tsc -b && vite build
 
-src/engine/topics/addSub20.ts(355,46): error TS2322: Type '{ a: number; c: number; b?: undefined; } | { c: number; b: number; a?: undefined; }' is not assignable to type 'Readonly<Record<string, string | number>> | undefined'.
-  Type '{ a: number; c: number; b?: undefined; }' is not assignable to type 'Readonly<Record<string, string | number>>'.
-    Property 'b' is incompatible with index signature.
-      Type 'undefined' is not assignable to type 'string | number'.
-src/engine/topics/addSub20.ts(356,55): error TS2322: Type '{ a: string; c: string; b?: undefined; } | { c: string; b: string; a?: undefined; }' is not assignable to type 'Readonly<Record<string, string | number>> | undefined'.
-  Type '{ a: string; c: string; b?: undefined; }' is not assignable to type 'Readonly<Record<string, string | number>>'.
-    Property 'b' is incompatible with index signature.
-      Type 'undefined' is not assignable to type 'string | number'.
-BUILD FAILED
+[36mvite v7.3.7 [32mbuilding client environment for production...[36m[39m
+transforming...
+[32m✓[39m 76 modules transformed.
+rendering chunks...
+computing gzip size...
+[2mdist/[22m[32mmanifest.webmanifest                        [39m[1m[2m  0.53 kB[22m[1m[22m
+[2mdist/[22m[32mindex.html                                  [39m[1m[2m  1.26 kB[22m[1m[22m[2m │ gzip:  0.60 kB[22m
+[2mdist/[22m[2massets/[22m[35mindex-BwyLQAfT.css                   [39m[1m[2m 14.93 kB[22m[1m[22m[2m │ gzip:  3.55 kB[22m
+[2mdist/[22m[2massets/[22m[36mworkbox-window.prod.es5-BBnX5xw4.js  [39m[1m[2m  5.75 kB[22m[1m[22m[2m │ gzip:  2.36 kB[22m
+[2mdist/[22m[2massets/[22m[36mindex-F4NUyIwI.js                    [39m[1m[2m296.99 kB[22m[1m[22m[2m │ gzip: 92.82 kB[22m
+[32m✓ built in 1.31s[39m
+
+[36mPWA v1.3.0[39m
+mode      [35mgenerateSW[39m
+precache  [32m14 entries[39m [2m(321.53 KiB)[22m
+files generated
+  [2mdist/sw.js[22m
+  [2mdist/workbox-35e397ac.js[22m
 
 ## e2e
 
@@ -86,9 +74,7 @@ BUILD FAILED
 > playwright test
 
 
-Error: Process from config.webServer was not able to start. Exit code: 1
-::error ::Error: Process from config.webServer was not able to start. Exit code: 1
-
-
-::notice title=🎭 Playwright Run Summary::
-E2E FAILED
+Running 66 tests using 2 workers
+··································································
+  66 passed (2.3m)
+::notice title=🎭 Playwright Run Summary::  66 passed (2.3m)

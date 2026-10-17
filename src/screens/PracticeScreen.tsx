@@ -355,7 +355,9 @@ function Feedback({ state: s, tc, slow }: { state: SessionState; tc: TC; slow: b
 function explanation(s: SessionState, tc: TC): string {
   const m = s.lastMistake;
   if (m === 'wrongOperation') {
-    return tc(s.exercise.operation === 'sub' ? 'explain.wrongOperation.sub' : 'explain.wrongOperation.add');
+    return tc(
+      s.exercise.operation === 'sub' ? 'explain.wrongOperation.sub' : 'explain.wrongOperation.add',
+    );
   }
   if (m === 'offByOne') return tc('explain.offByOne');
   if (m === 'digitReversal') return tc('explain.digitReversal');
