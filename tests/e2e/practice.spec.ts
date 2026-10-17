@@ -157,7 +157,9 @@ test.describe('practice', () => {
       .getByRole('listitem')
       .filter({ hasText: 'מספר חסר' })
       .click();
-    await expect(page.getByRole('heading', { level: 2, name: 'מספר חסר', exact: true })).toBeVisible();
+    await expect(
+      page.getByRole('heading', { level: 2, name: 'מספר חסר', exact: true }),
+    ).toBeVisible();
     await expect(page.getByRole('button', { name: 'תחנה 10, התחנה הבאה' })).toBeVisible();
     await page.getByRole('button', { name: 'יאללה, מתחילים!' }).click();
     await expect(page.locator('.exercise [data-math]')).toContainText('?');

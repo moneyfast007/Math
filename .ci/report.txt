@@ -18,33 +18,33 @@
 
 [1m[46m RUN [49m[22m [36mv3.2.7 [39m[90m/home/runner/work/Math/Math[39m
 
- [32m✓[39m src/state/validate.test.ts [2m([22m[2m19 tests[22m[2m)[22m[32m 16[2mms[22m[39m
- [32m✓[39m src/state/store.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 33[2mms[22m[39m
- [32m✓[39m src/state/progress.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 8[2mms[22m[39m
- [32m✓[39m src/lang/hebrewNumbers.test.ts [2m([22m[2m77 tests[22m[2m)[22m[33m 1330[2mms[22m[39m
-   [33m[2m✓[22m[39m numberToWords, properties[2m > [22mis injective on 0–99,999: different numbers never produce the same words [33m 1288[2mms[22m[39m
- [32m✓[39m src/engine/topics/addSub20.test.ts [2m([22m[2m14 tests[22m[2m)[22m[33m 373[2mms[22m[39m
- [32m✓[39m src/engine/session.test.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 14[2mms[22m[39m
- [32m✓[39m src/ui/components.test.tsx [2m([22m[2m7 tests[22m[2m)[22m[32m 289[2mms[22m[39m
- [32m✓[39m src/engine/journey.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 9[2mms[22m[39m
- [32m✓[39m src/parent/gate.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[33m 403[2mms[22m[39m
- [32m✓[39m src/state/streak.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 4[2mms[22m[39m
- [32m✓[39m scripts/tts/pronunciation.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 5[2mms[22m[39m
- [32m✓[39m src/audio/speaker.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 10[2mms[22m[39m
- [32m✓[39m src/screens/JourneyScreen.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[32m 119[2mms[22m[39m
- [32m✓[39m src/i18n/i18n.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 21[2mms[22m[39m
- [32m✓[39m src/lang/spoken.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 4[2mms[22m[39m
- [32m✓[39m src/audio/hash.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 14[2mms[22m[39m
- [32m✓[39m src/state/pin.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 8[2mms[22m[39m
- [32m✓[39m src/ui/MathExpr.test.tsx [2m([22m[2m3 tests[22m[2m)[22m[32m 38[2mms[22m[39m
- [32m✓[39m src/state/backup.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 4[2mms[22m[39m
- [32m✓[39m src/app/router.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+ [32m✓[39m src/state/validate.test.ts [2m([22m[2m19 tests[22m[2m)[22m[32m 22[2mms[22m[39m
+ [32m✓[39m src/state/store.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 40[2mms[22m[39m
+ [32m✓[39m src/state/progress.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 13[2mms[22m[39m
+ [32m✓[39m src/lang/hebrewNumbers.test.ts [2m([22m[2m77 tests[22m[2m)[22m[33m 1807[2mms[22m[39m
+   [33m[2m✓[22m[39m numberToWords, properties[2m > [22mis injective on 0–99,999: different numbers never produce the same words [33m 1757[2mms[22m[39m
+ [32m✓[39m src/engine/topics/addSub20.test.ts [2m([22m[2m14 tests[22m[2m)[22m[33m 814[2mms[22m[39m
+ [32m✓[39m src/engine/session.test.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 21[2mms[22m[39m
+ [32m✓[39m src/ui/components.test.tsx [2m([22m[2m7 tests[22m[2m)[22m[33m 385[2mms[22m[39m
+ [32m✓[39m src/engine/journey.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 11[2mms[22m[39m
+ [32m✓[39m src/parent/gate.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[33m 501[2mms[22m[39m
+ [32m✓[39m src/state/streak.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+ [32m✓[39m scripts/tts/pronunciation.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 17[2mms[22m[39m
+ [32m✓[39m src/audio/speaker.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 15[2mms[22m[39m
+ [32m✓[39m src/screens/JourneyScreen.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[32m 138[2mms[22m[39m
+ [32m✓[39m src/i18n/i18n.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 47[2mms[22m[39m
+ [32m✓[39m src/lang/spoken.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m src/audio/hash.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 24[2mms[22m[39m
+ [32m✓[39m src/state/pin.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 14[2mms[22m[39m
+ [32m✓[39m src/ui/MathExpr.test.tsx [2m([22m[2m3 tests[22m[2m)[22m[32m 37[2mms[22m[39m
+ [32m✓[39m src/state/backup.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m src/app/router.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 7[2mms[22m[39m
  [32m✓[39m src/ui/ageBand.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 5[2mms[22m[39m
 
 [2m Test Files [22m [1m[32m21 passed[39m[22m[90m (21)[39m
 [2m      Tests [22m [1m[32m215 passed[39m[22m[90m (215)[39m
-[2m   Start at [22m 19:32:50
-[2m   Duration [22m 7.20s[2m (transform 547ms, setup 3.46s, collect 1.12s, tests 2.72s, environment 8.52s, prepare 1.88s)[22m
+[2m   Start at [22m 19:38:33
+[2m   Duration [22m 10.23s[2m (transform 689ms, setup 4.83s, collect 1.56s, tests 3.94s, environment 12.19s, prepare 2.51s)[22m
 
 
 ## build
@@ -62,7 +62,7 @@ computing gzip size...
 [2mdist/[22m[2massets/[22m[35mindex-twc0GCyv.css                   [39m[1m[2m 19.67 kB[22m[1m[22m[2m │ gzip:  4.39 kB[22m
 [2mdist/[22m[2massets/[22m[36mworkbox-window.prod.es5-BBnX5xw4.js  [39m[1m[2m  5.75 kB[22m[1m[22m[2m │ gzip:  2.36 kB[22m
 [2mdist/[22m[2massets/[22m[36mindex-CS9razrF.js                    [39m[1m[2m315.40 kB[22m[1m[22m[2m │ gzip: 98.20 kB[22m
-[32m✓ built in 2.49s[39m
+[32m✓ built in 1.95s[39m
 
 [36mPWA v1.3.0[39m
 mode      [35mgenerateSW[39m
@@ -78,250 +78,60 @@ files generated
 
 
 Running 72 tests using 2 workers
-···········××F
-::error file=tests/e2e/practice.spec.ts,title=[ipad] › tests/e2e/practice.spec.ts:149:3 › practice › a child can pick another level when the profile allows it,line=153,col=24::  1) [ipad] › tests/e2e/practice.spec.ts:149:3 › practice › a child can pick another level when the profile allows it %0A    Error: expect(locator).toBeVisible() failed%0A%0A    Locator: getByRole('heading', { name: 'חיבור וחיסור עד 20', level: 2 })%0A    Expected: visible%0A    Error: strict mode violation: getByRole('heading', { name: 'חיבור וחיסור עד 20', level: 2 }) resolved to 2 elements:%0A        1) <h2 class="journey__world-name">עולם 1 · חיבור וחיסור עד 20</h2> aka getByRole('heading', { name: 'עולם 1 · חיבור וחיסור עד' })%0A        2) <h2 id="station-title">חיבור וחיסור עד 20</h2> aka getByRole('heading', { name: 'חיבור וחיסור עד 20', exact: true })%0A%0A    Call log:%0A      - Expect "toBeVisible" getByRole('heading', { name: 'חיבור וחיסור עד 20', level: 2 }) with timeout 5000ms%0A      - waiting for getByRole('heading', { name: 'חיבור וחיסור עד 20', level: 2 })%0A%0A%0A      151 |     await page.getByRole('button', { name: 'סיום' }).click();%0A      152 |     const next = page.getByRole('heading', { level: 2, name: 'חיבור וחיסור עד 20' });%0A    > 153 |     await expect(next).toBeVisible();%0A          |                        ^%0A      154 |     await page.getByRole('button', { name: 'שלב אחר' }).click();%0A      155 |     await page%0A      156 |       .getByRole('dialog', { name: 'באיזה שלב לתרגל?' })%0A        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:153:24
-::error file=tests/e2e/practice.spec.ts,title=[ipad] › tests/e2e/practice.spec.ts:149:3 › practice › a child can pick another level when the profile allows it,line=153,col=24::  1) [ipad] › tests/e2e/practice.spec.ts:149:3 › practice › a child can pick another level when the profile allows it %0A%0A    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────%0A    Error: expect(locator).toBeVisible() failed%0A%0A    Locator: getByRole('heading', { name: 'חיבור וחיסור עד 20', level: 2 })%0A    Expected: visible%0A    Error: strict mode violation: getByRole('heading', { name: 'חיבור וחיסור עד 20', level: 2 }) resolved to 2 elements:%0A        1) <h2 class="journey__world-name">עולם 1 · חיבור וחיסור עד 20</h2> aka getByRole('heading', { name: 'עולם 1 · חיבור וחיסור עד' })%0A        2) <h2 id="station-title">חיבור וחיסור עד 20</h2> aka getByRole('heading', { name: 'חיבור וחיסור עד 20', exact: true })%0A%0A    Call log:%0A      - Expect "toBeVisible" getByRole('heading', { name: 'חיבור וחיסור עד 20', level: 2 }) with timeout 5000ms%0A      - waiting for getByRole('heading', { name: 'חיבור וחיסור עד 20', level: 2 })%0A%0A%0A      151 |     await page.getByRole('button', { name: 'סיום' }).click();%0A      152 |     const next = page.getByRole('heading', { level: 2, name: 'חיבור וחיסור עד 20' });%0A    > 153 |     await expect(next).toBeVisible();%0A          |                        ^%0A      154 |     await page.getByRole('button', { name: 'שלב אחר' }).click();%0A      155 |     await page%0A      156 |       .getByRole('dialog', { name: 'באיזה שלב לתרגל?' })%0A        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:153:24
-::error file=tests/e2e/practice.spec.ts,title=[ipad] › tests/e2e/practice.spec.ts:149:3 › practice › a child can pick another level when the profile allows it,line=153,col=24::  1) [ipad] › tests/e2e/practice.spec.ts:149:3 › practice › a child can pick another level when the profile allows it %0A%0A    Retry #2 ───────────────────────────────────────────────────────────────────────────────────────%0A    Error: expect(locator).toBeVisible() failed%0A%0A    Locator: getByRole('heading', { name: 'חיבור וחיסור עד 20', level: 2 })%0A    Expected: visible%0A    Error: strict mode violation: getByRole('heading', { name: 'חיבור וחיסור עד 20', level: 2 }) resolved to 2 elements:%0A        1) <h2 class="journey__world-name">עולם 1 · חיבור וחיסור עד 20</h2> aka getByRole('heading', { name: 'עולם 1 · חיבור וחיסור עד' })%0A        2) <h2 id="station-title">חיבור וחיסור עד 20</h2> aka getByRole('heading', { name: 'חיבור וחיסור עד 20', exact: true })%0A%0A    Call log:%0A      - Expect "toBeVisible" getByRole('heading', { name: 'חיבור וחיסור עד 20', level: 2 }) with timeout 5000ms%0A      - waiting for getByRole('heading', { name: 'חיבור וחיסור עד 20', level: 2 })%0A%0A%0A      151 |     await page.getByRole('button', { name: 'סיום' }).click();%0A      152 |     const next = page.getByRole('heading', { level: 2, name: 'חיבור וחיסור עד 20' });%0A    > 153 |     await expect(next).toBeVisible();%0A          |                        ^%0A      154 |     await page.getByRole('button', { name: 'שלב אחר' }).click();%0A      155 |     await page%0A      156 |       .getByRole('dialog', { name: 'באיזה שלב לתרגל?' })%0A        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:153:24
-×·········×··········F
-::error file=tests/e2e/practice.spec.ts,title=[ipad] › tests/e2e/practice.spec.ts:51:3 › practice › a full round: every answer right, level suggestions declined, progress recorded,line=78,col=69::  2) [ipad] › tests/e2e/practice.spec.ts:51:3 › practice › a full round: every answer right, level suggestions declined, progress recorded %0A    Error: expect(locator).toBeVisible() failed%0A%0A    Locator: getByRole('img', { name: 'תחנה 8, הושלמה' })%0A    Expected: visible%0A    Timeout: 5000ms%0A    Error: element(s) not found%0A%0A    Call log:%0A      - Expect "toBeVisible" getByRole('img', { name: 'תחנה 8, הושלמה' }) with timeout 5000ms%0A      - waiting for getByRole('img', { name: 'תחנה 8, הושלמה' })%0A%0A%0A      76 |     // Back on the map: station 8 is done, 9 is next.%0A      77 |     await page.getByRole('button', { name: 'למסע' }).click();%0A    > 78 |     await expect(page.getByRole('img', { name: 'תחנה 8, הושלמה' })).toBeVisible();%0A         |                                                                     ^%0A      79 |     await expect(page.getByRole('button', { name: 'תחנה 9, התחנה הבאה' })).toBeVisible();%0A      80 |     await expect(page.getByText('תחנה 9 מתוך 11')).toBeVisible();%0A      81 |%0A        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:78:69
-::error file=tests/e2e/practice.spec.ts,title=[ipad] › tests/e2e/practice.spec.ts:51:3 › practice › a full round: every answer right, level suggestions declined, progress recorded,line=78,col=69::  2) [ipad] › tests/e2e/practice.spec.ts:51:3 › practice › a full round: every answer right, level suggestions declined, progress recorded %0A%0A    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────%0A    Error: expect(locator).toBeVisible() failed%0A%0A    Locator: getByRole('img', { name: 'תחנה 8, הושלמה' })%0A    Expected: visible%0A    Timeout: 5000ms%0A    Error: element(s) not found%0A%0A    Call log:%0A      - Expect "toBeVisible" getByRole('img', { name: 'תחנה 8, הושלמה' }) with timeout 5000ms%0A      - waiting for getByRole('img', { name: 'תחנה 8, הושלמה' })%0A%0A%0A      76 |     // Back on the map: station 8 is done, 9 is next.%0A      77 |     await page.getByRole('button', { name: 'למסע' }).click();%0A    > 78 |     await expect(page.getByRole('img', { name: 'תחנה 8, הושלמה' })).toBeVisible();%0A         |                                                                     ^%0A      79 |     await expect(page.getByRole('button', { name: 'תחנה 9, התחנה הבאה' })).toBeVisible();%0A      80 |     await expect(page.getByText('תחנה 9 מתוך 11')).toBeVisible();%0A      81 |%0A        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:78:69
-::error file=tests/e2e/practice.spec.ts,title=[ipad] › tests/e2e/practice.spec.ts:51:3 › practice › a full round: every answer right, level suggestions declined, progress recorded,line=78,col=69::  2) [ipad] › tests/e2e/practice.spec.ts:51:3 › practice › a full round: every answer right, level suggestions declined, progress recorded %0A%0A    Retry #2 ───────────────────────────────────────────────────────────────────────────────────────%0A    Error: expect(locator).toBeVisible() failed%0A%0A    Locator: getByRole('img', { name: 'תחנה 8, הושלמה' })%0A    Expected: visible%0A    Timeout: 5000ms%0A    Error: element(s) not found%0A%0A    Call log:%0A      - Expect "toBeVisible" getByRole('img', { name: 'תחנה 8, הושלמה' }) with timeout 5000ms%0A      - waiting for getByRole('img', { name: 'תחנה 8, הושלמה' })%0A%0A%0A      76 |     // Back on the map: station 8 is done, 9 is next.%0A      77 |     await page.getByRole('button', { name: 'למסע' }).click();%0A    > 78 |     await expect(page.getByRole('img', { name: 'תחנה 8, הושלמה' })).toBeVisible();%0A         |                                                                     ^%0A      79 |     await expect(page.getByRole('button', { name: 'תחנה 9, התחנה הבאה' })).toBeVisible();%0A      80 |     await expect(page.getByText('תחנה 9 מתוך 11')).toBeVisible();%0A      81 |%0A        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:78:69
-·×··××F
-::error file=tests/e2e/practice.spec.ts,title=[iphone] › tests/e2e/practice.spec.ts:149:3 › practice › a child can pick another level when the profile allows it,line=153,col=24::  3) [iphone] › tests/e2e/practice.spec.ts:149:3 › practice › a child can pick another level when the profile allows it %0A    Error: expect(locator).toBeVisible() failed%0A%0A    Locator: getByRole('heading', { name: 'חיבור וחיסור עד 20', level: 2 })%0A    Expected: visible%0A    Error: strict mode violation: getByRole('heading', { name: 'חיבור וחיסור עד 20', level: 2 }) resolved to 2 elements:%0A        1) <h2 class="journey__world-name">עולם 1 · חיבור וחיסור עד 20</h2> aka getByRole('heading', { name: 'עולם 1 · חיבור וחיסור עד' })%0A        2) <h2 id="station-title">חיבור וחיסור עד 20</h2> aka getByRole('heading', { name: 'חיבור וחיסור עד 20', exact: true })%0A%0A    Call log:%0A      - Expect "toBeVisible" getByRole('heading', { name: 'חיבור וחיסור עד 20', level: 2 }) with timeout 5000ms%0A      - waiting for getByRole('heading', { name: 'חיבור וחיסור עד 20', level: 2 })%0A%0A%0A      151 |     await page.getByRole('button', { name: 'סיום' }).click();%0A      152 |     const next = page.getByRole('heading', { level: 2, name: 'חיבור וחיסור עד 20' });%0A    > 153 |     await expect(next).toBeVisible();%0A          |                        ^%0A      154 |     await page.getByRole('button', { name: 'שלב אחר' }).click();%0A      155 |     await page%0A      156 |       .getByRole('dialog', { name: 'באיזה שלב לתרגל?' })%0A        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:153:24
-::error file=tests/e2e/practice.spec.ts,title=[iphone] › tests/e2e/practice.spec.ts:149:3 › practice › a child can pick another level when the profile allows it,line=153,col=24::  3) [iphone] › tests/e2e/practice.spec.ts:149:3 › practice › a child can pick another level when the profile allows it %0A%0A    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────%0A    Error: expect(locator).toBeVisible() failed%0A%0A    Locator: getByRole('heading', { name: 'חיבור וחיסור עד 20', level: 2 })%0A    Expected: visible%0A    Error: strict mode violation: getByRole('heading', { name: 'חיבור וחיסור עד 20', level: 2 }) resolved to 2 elements:%0A        1) <h2 class="journey__world-name">עולם 1 · חיבור וחיסור עד 20</h2> aka getByRole('heading', { name: 'עולם 1 · חיבור וחיסור עד' })%0A        2) <h2 id="station-title">חיבור וחיסור עד 20</h2> aka getByRole('heading', { name: 'חיבור וחיסור עד 20', exact: true })%0A%0A    Call log:%0A      - Expect "toBeVisible" getByRole('heading', { name: 'חיבור וחיסור עד 20', level: 2 }) with timeout 5000ms%0A      - waiting for getByRole('heading', { name: 'חיבור וחיסור עד 20', level: 2 })%0A%0A%0A      151 |     await page.getByRole('button', { name: 'סיום' }).click();%0A      152 |     const next = page.getByRole('heading', { level: 2, name: 'חיבור וחיסור עד 20' });%0A    > 153 |     await expect(next).toBeVisible();%0A          |                        ^%0A      154 |     await page.getByRole('button', { name: 'שלב אחר' }).click();%0A      155 |     await page%0A      156 |       .getByRole('dialog', { name: 'באיזה שלב לתרגל?' })%0A        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:153:24
-::error file=tests/e2e/practice.spec.ts,title=[iphone] › tests/e2e/practice.spec.ts:149:3 › practice › a child can pick another level when the profile allows it,line=153,col=24::  3) [iphone] › tests/e2e/practice.spec.ts:149:3 › practice › a child can pick another level when the profile allows it %0A%0A    Retry #2 ───────────────────────────────────────────────────────────────────────────────────────%0A    Error: expect(locator).toBeVisible() failed%0A%0A    Locator: getByRole('heading', { name: 'חיבור וחיסור עד 20', level: 2 })%0A    Expected: visible%0A    Error: strict mode violation: getByRole('heading', { name: 'חיבור וחיסור עד 20', level: 2 }) resolved to 2 elements:%0A        1) <h2 class="journey__world-name">עולם 1 · חיבור וחיסור עד 20</h2> aka getByRole('heading', { name: 'עולם 1 · חיבור וחיסור עד' })%0A        2) <h2 id="station-title">חיבור וחיסור עד 20</h2> aka getByRole('heading', { name: 'חיבור וחיסור עד 20', exact: true })%0A%0A    Call log:%0A      - Expect "toBeVisible" getByRole('heading', { name: 'חיבור וחיסור עד 20', level: 2 }) with timeout 5000ms%0A      - waiting for getByRole('heading', { name: 'חיבור וחיסור עד 20', level: 2 })%0A%0A%0A      151 |     await page.getByRole('button', { name: 'סיום' }).click();%0A      152 |     const next = page.getByRole('heading', { level: 2, name: 'חיבור וחיסור עד 20' });%0A    > 153 |     await expect(next).toBeVisible();%0A          |                        ^%0A      154 |     await page.getByRole('button', { name: 'שלב אחר' }).click();%0A      155 |     await page%0A      156 |       .getByRole('dialog', { name: 'באיזה שלב לתרגל?' })%0A        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:153:24
-···×················T
-::error file=tests/e2e/practice.spec.ts,title=[iphone] › tests/e2e/practice.spec.ts:51:3 › practice › a full round: every answer right, level suggestions declined, progress recorded,line=78,col=69::  4) [iphone] › tests/e2e/practice.spec.ts:51:3 › practice › a full round: every answer right, level suggestions declined, progress recorded %0A    Error: expect(locator).toBeVisible() failed%0A%0A    Locator: getByRole('img', { name: 'תחנה 8, הושלמה' })%0A    Expected: visible%0A    Timeout: 5000ms%0A    Error: element(s) not found%0A%0A    Call log:%0A      - Expect "toBeVisible" getByRole('img', { name: 'תחנה 8, הושלמה' }) with timeout 5000ms%0A      - waiting for getByRole('img', { name: 'תחנה 8, הושלמה' })%0A%0A%0A      76 |     // Back on the map: station 8 is done, 9 is next.%0A      77 |     await page.getByRole('button', { name: 'למסע' }).click();%0A    > 78 |     await expect(page.getByRole('img', { name: 'תחנה 8, הושלמה' })).toBeVisible();%0A         |                                                                     ^%0A      79 |     await expect(page.getByRole('button', { name: 'תחנה 9, התחנה הבאה' })).toBeVisible();%0A      80 |     await expect(page.getByText('תחנה 9 מתוך 11')).toBeVisible();%0A      81 |%0A        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:78:69
-::error file=tests/e2e/practice.spec.ts,title=[iphone] › tests/e2e/practice.spec.ts:51:3 › practice › a full round: every answer right, level suggestions declined, progress recorded,line=78,col=69::  4) [iphone] › tests/e2e/practice.spec.ts:51:3 › practice › a full round: every answer right, level suggestions declined, progress recorded %0A%0A    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────%0A    Error: expect(locator).toBeVisible() failed%0A%0A    Locator: getByRole('img', { name: 'תחנה 8, הושלמה' })%0A    Expected: visible%0A    Timeout: 5000ms%0A    Error: element(s) not found%0A%0A    Call log:%0A      - Expect "toBeVisible" getByRole('img', { name: 'תחנה 8, הושלמה' }) with timeout 5000ms%0A      - waiting for getByRole('img', { name: 'תחנה 8, הושלמה' })%0A%0A%0A      76 |     // Back on the map: station 8 is done, 9 is next.%0A      77 |     await page.getByRole('button', { name: 'למסע' }).click();%0A    > 78 |     await expect(page.getByRole('img', { name: 'תחנה 8, הושלמה' })).toBeVisible();%0A         |                                                                     ^%0A      79 |     await expect(page.getByRole('button', { name: 'תחנה 9, התחנה הבאה' })).toBeVisible();%0A      80 |     await expect(page.getByText('תחנה 9 מתוך 11')).toBeVisible();%0A      81 |%0A        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:78:69
-::error file=tests/e2e/practice.spec.ts,title=[iphone] › tests/e2e/practice.spec.ts:51:3 › practice › a full round: every answer right, level suggestions declined, progress recorded::  4) [iphone] › tests/e2e/practice.spec.ts:51:3 › practice › a full round: every answer right, level suggestions declined, progress recorded %0A%0A    Retry #2 ───────────────────────────────────────────────────────────────────────────────────────%0A    Test timeout of 30000ms exceeded.
-::error file=tests/e2e/practice.spec.ts,title=[iphone] › tests/e2e/practice.spec.ts:51:3 › practice › a full round: every answer right, level suggestions declined, progress recorded,line=78,col=69::  4) [iphone] › tests/e2e/practice.spec.ts:51:3 › practice › a full round: every answer right, level suggestions declined, progress recorded %0A%0A    Retry #2 ───────────────────────────────────────────────────────────────────────────────────────%0A    Error: expect(locator).toBeVisible() failed%0A%0A    Locator: getByRole('img', { name: 'תחנה 8, הושלמה' })%0A    Expected: visible%0A    Error: element(s) not found%0A%0A    Call log:%0A      - Expect "toBeVisible" getByRole('img', { name: 'תחנה 8, הושלמה' }) with timeout 5000ms%0A      - waiting for getByRole('img', { name: 'תחנה 8, הושלמה' })%0A      - Test timeout of 30000ms exceeded.%0A%0A%0A      76 |     // Back on the map: station 8 is done, 9 is next.%0A      77 |     await page.getByRole('button', { name: 'למסע' }).click();%0A    > 78 |     await expect(page.getByRole('img', { name: 'תחנה 8, הושלמה' })).toBeVisible();%0A         |                                                                     ^%0A      79 |     await expect(page.getByRole('button', { name: 'תחנה 9, התחנה הבאה' })).toBeVisible();%0A      80 |     await expect(page.getByText('תחנה 9 מתוך 11')).toBeVisible();%0A      81 |%0A        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:78:69
-···××F
-::error file=tests/e2e/practice.spec.ts,title=[desktop-chromium] › tests/e2e/practice.spec.ts:149:3 › practice › a child can pick another level when the profile allows it,line=153,col=24::  5) [desktop-chromium] › tests/e2e/practice.spec.ts:149:3 › practice › a child can pick another level when the profile allows it %0A    Error: expect(locator).toBeVisible() failed%0A%0A    Locator: getByRole('heading', { name: 'חיבור וחיסור עד 20', level: 2 })%0A    Expected: visible%0A    Error: strict mode violation: getByRole('heading', { name: 'חיבור וחיסור עד 20', level: 2 }) resolved to 2 elements:%0A        1) <h2 class="journey__world-name">עולם 1 · חיבור וחיסור עד 20</h2> aka getByRole('heading', { name: 'עולם 1 · חיבור וחיסור עד' })%0A        2) <h2 id="station-title">חיבור וחיסור עד 20</h2> aka getByRole('heading', { name: 'חיבור וחיסור עד 20', exact: true })%0A%0A    Call log:%0A      - Expect "toBeVisible" getByRole('heading', { name: 'חיבור וחיסור עד 20', level: 2 }) with timeout 5000ms%0A      - waiting for getByRole('heading', { name: 'חיבור וחיסור עד 20', level: 2 })%0A%0A%0A      151 |     await page.getByRole('button', { name: 'סיום' }).click();%0A      152 |     const next = page.getByRole('heading', { level: 2, name: 'חיבור וחיסור עד 20' });%0A    > 153 |     await expect(next).toBeVisible();%0A          |                        ^%0A      154 |     await page.getByRole('button', { name: 'שלב אחר' }).click();%0A      155 |     await page%0A      156 |       .getByRole('dialog', { name: 'באיזה שלב לתרגל?' })%0A        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:153:24
-::error file=tests/e2e/practice.spec.ts,title=[desktop-chromium] › tests/e2e/practice.spec.ts:149:3 › practice › a child can pick another level when the profile allows it,line=153,col=24::  5) [desktop-chromium] › tests/e2e/practice.spec.ts:149:3 › practice › a child can pick another level when the profile allows it %0A%0A    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────%0A    Error: expect(locator).toBeVisible() failed%0A%0A    Locator: getByRole('heading', { name: 'חיבור וחיסור עד 20', level: 2 })%0A    Expected: visible%0A    Error: strict mode violation: getByRole('heading', { name: 'חיבור וחיסור עד 20', level: 2 }) resolved to 2 elements:%0A        1) <h2 class="journey__world-name">עולם 1 · חיבור וחיסור עד 20</h2> aka getByRole('heading', { name: 'עולם 1 · חיבור וחיסור עד' })%0A        2) <h2 id="station-title">חיבור וחיסור עד 20</h2> aka getByRole('heading', { name: 'חיבור וחיסור עד 20', exact: true })%0A%0A    Call log:%0A      - Expect "toBeVisible" getByRole('heading', { name: 'חיבור וחיסור עד 20', level: 2 }) with timeout 5000ms%0A      - waiting for getByRole('heading', { name: 'חיבור וחיסור עד 20', level: 2 })%0A%0A%0A      151 |     await page.getByRole('button', { name: 'סיום' }).click();%0A      152 |     const next = page.getByRole('heading', { level: 2, name: 'חיבור וחיסור עד 20' });%0A    > 153 |     await expect(next).toBeVisible();%0A          |                        ^%0A      154 |     await page.getByRole('button', { name: 'שלב אחר' }).click();%0A      155 |     await page%0A      156 |       .getByRole('dialog', { name: 'באיזה שלב לתרגל?' })%0A        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:153:24
-::error file=tests/e2e/practice.spec.ts,title=[desktop-chromium] › tests/e2e/practice.spec.ts:149:3 › practice › a child can pick another level when the profile allows it,line=153,col=24::  5) [desktop-chromium] › tests/e2e/practice.spec.ts:149:3 › practice › a child can pick another level when the profile allows it %0A%0A    Retry #2 ───────────────────────────────────────────────────────────────────────────────────────%0A    Error: expect(locator).toBeVisible() failed%0A%0A    Locator: getByRole('heading', { name: 'חיבור וחיסור עד 20', level: 2 })%0A    Expected: visible%0A    Error: strict mode violation: getByRole('heading', { name: 'חיבור וחיסור עד 20', level: 2 }) resolved to 2 elements:%0A        1) <h2 class="journey__world-name">עולם 1 · חיבור וחיסור עד 20</h2> aka getByRole('heading', { name: 'עולם 1 · חיבור וחיסור עד' })%0A        2) <h2 id="station-title">חיבור וחיסור עד 20</h2> aka getByRole('heading', { name: 'חיבור וחיסור עד 20', exact: true })%0A%0A    Call log:%0A      - Expect "toBeVisible" getByRole('heading', { name: 'חיבור וחיסור עד 20', level: 2 }) with timeout 5000ms%0A      - waiting for getByRole('heading', { name: 'חיבור וחיסור עד 20', level: 2 })%0A%0A%0A      151 |     await page.getByRole('button', { name: 'סיום' }).click();%0A      152 |     const next = page.getByRole('heading', { level: 2, name: 'חיבור וחיסור עד 20' });%0A    > 153 |     await expect(next).toBeVisible();%0A          |                        ^%0A      154 |     await page.getByRole('button', { name: 'שלב אחר' }).click();%0A      155 |     await page%0A      156 |       .getByRole('dialog', { name: 'באיזה שלב לתרגל?' })%0A        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:153:24
-·······×··
-··×F
-::error file=tests/e2e/practice.spec.ts,title=[desktop-chromium] › tests/e2e/practice.spec.ts:51:3 › practice › a full round: every answer right, level suggestions declined, progress recorded,line=78,col=69::  6) [desktop-chromium] › tests/e2e/practice.spec.ts:51:3 › practice › a full round: every answer right, level suggestions declined, progress recorded %0A    Error: expect(locator).toBeVisible() failed%0A%0A    Locator: getByRole('img', { name: 'תחנה 8, הושלמה' })%0A    Expected: visible%0A    Timeout: 5000ms%0A    Error: element(s) not found%0A%0A    Call log:%0A      - Expect "toBeVisible" getByRole('img', { name: 'תחנה 8, הושלמה' }) with timeout 5000ms%0A      - waiting for getByRole('img', { name: 'תחנה 8, הושלמה' })%0A%0A%0A      76 |     // Back on the map: station 8 is done, 9 is next.%0A      77 |     await page.getByRole('button', { name: 'למסע' }).click();%0A    > 78 |     await expect(page.getByRole('img', { name: 'תחנה 8, הושלמה' })).toBeVisible();%0A         |                                                                     ^%0A      79 |     await expect(page.getByRole('button', { name: 'תחנה 9, התחנה הבאה' })).toBeVisible();%0A      80 |     await expect(page.getByText('תחנה 9 מתוך 11')).toBeVisible();%0A      81 |%0A        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:78:69
-::error file=tests/e2e/practice.spec.ts,title=[desktop-chromium] › tests/e2e/practice.spec.ts:51:3 › practice › a full round: every answer right, level suggestions declined, progress recorded,line=78,col=69::  6) [desktop-chromium] › tests/e2e/practice.spec.ts:51:3 › practice › a full round: every answer right, level suggestions declined, progress recorded %0A%0A    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────%0A    Error: expect(locator).toBeVisible() failed%0A%0A    Locator: getByRole('img', { name: 'תחנה 8, הושלמה' })%0A    Expected: visible%0A    Timeout: 5000ms%0A    Error: element(s) not found%0A%0A    Call log:%0A      - Expect "toBeVisible" getByRole('img', { name: 'תחנה 8, הושלמה' }) with timeout 5000ms%0A      - waiting for getByRole('img', { name: 'תחנה 8, הושלמה' })%0A%0A%0A      76 |     // Back on the map: station 8 is done, 9 is next.%0A      77 |     await page.getByRole('button', { name: 'למסע' }).click();%0A    > 78 |     await expect(page.getByRole('img', { name: 'תחנה 8, הושלמה' })).toBeVisible();%0A         |                                                                     ^%0A      79 |     await expect(page.getByRole('button', { name: 'תחנה 9, התחנה הבאה' })).toBeVisible();%0A      80 |     await expect(page.getByText('תחנה 9 מתוך 11')).toBeVisible();%0A      81 |%0A        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:78:69
-::error file=tests/e2e/practice.spec.ts,title=[desktop-chromium] › tests/e2e/practice.spec.ts:51:3 › practice › a full round: every answer right, level suggestions declined, progress recorded,line=78,col=69::  6) [desktop-chromium] › tests/e2e/practice.spec.ts:51:3 › practice › a full round: every answer right, level suggestions declined, progress recorded %0A%0A    Retry #2 ───────────────────────────────────────────────────────────────────────────────────────%0A    Error: expect(locator).toBeVisible() failed%0A%0A    Locator: getByRole('img', { name: 'תחנה 8, הושלמה' })%0A    Expected: visible%0A    Timeout: 5000ms%0A    Error: element(s) not found%0A%0A    Call log:%0A      - Expect "toBeVisible" getByRole('img', { name: 'תחנה 8, הושלמה' }) with timeout 5000ms%0A      - waiting for getByRole('img', { name: 'תחנה 8, הושלמה' })%0A%0A%0A      76 |     // Back on the map: station 8 is done, 9 is next.%0A      77 |     await page.getByRole('button', { name: 'למסע' }).click();%0A    > 78 |     await expect(page.getByRole('img', { name: 'תחנה 8, הושלמה' })).toBeVisible();%0A         |                                                                     ^%0A      79 |     await expect(page.getByRole('button', { name: 'תחנה 9, התחנה הבאה' })).toBeVisible();%0A      80 |     await expect(page.getByText('תחנה 9 מתוך 11')).toBeVisible();%0A      81 |%0A        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:78:69
+·····································×······×············±
+::error file=tests/e2e/practice.spec.ts,title=[iphone] › tests/e2e/practice.spec.ts:51:3 › practice › a full round: every answer right, level suggestions declined, progress recorded::  1) [iphone] › tests/e2e/practice.spec.ts:51:3 › practice › a full round: every answer right, level suggestions declined, progress recorded %0A    Test timeout of 30000ms exceeded.
+::error file=tests/e2e/practice.spec.ts,title=[iphone] › tests/e2e/practice.spec.ts:51:3 › practice › a full round: every answer right, level suggestions declined, progress recorded,line=92,col=23::  1) [iphone] › tests/e2e/practice.spec.ts:51:3 › practice › a full round: every answer right, level suggestions declined, progress recorded %0A    Error: expect(locator).toContainText(expected) failed%0A%0A    Locator: getByRole('article', { name: 'נועה' })%0A    Expected substring: "10 תרגילים"%0A    Error: Test timeout of 30000ms exceeded.%0A%0A    Call log:%0A      - Expect "toContainText" getByRole('article', { name: 'נועה' }) with timeout 5000ms%0A      - waiting for getByRole('article', { name: 'נועה' })%0A      - Test timeout of 30000ms exceeded.%0A%0A%0A      90 |     const row = page.getByRole('article', { name: 'נועה' });%0A      91 |     await expect(row).toContainText('תרגלה נושא אחד');%0A    > 92 |     await expect(row).toContainText('10 תרגילים');%0A         |                       ^%0A      93 |     await expect(row).toContainText('הצלחה: 100%');%0A      94 |     expect(errors).toEqual([]);%0A      95 |   });%0A        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:92:23
+::error file=tests/e2e/practice.spec.ts,title=[iphone] › tests/e2e/practice.spec.ts:51:3 › practice › a full round: every answer right, level suggestions declined, progress recorded::  1) [iphone] › tests/e2e/practice.spec.ts:51:3 › practice › a full round: every answer right, level suggestions declined, progress recorded %0A%0A    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────%0A    Test timeout of 30000ms exceeded.
+::error file=tests/e2e/practice.spec.ts,title=[iphone] › tests/e2e/practice.spec.ts:51:3 › practice › a full round: every answer right, level suggestions declined, progress recorded,line=77,col=54::  1) [iphone] › tests/e2e/practice.spec.ts:51:3 › practice › a full round: every answer right, level suggestions declined, progress recorded %0A%0A    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────%0A    Error: locator.click: Test timeout of 30000ms exceeded.%0A    Call log:%0A      - waiting for getByRole('button', { name: 'למסע' })%0A        - locator resolved to <button class="btn" type="button">למסע</button>%0A      - attempting click action%0A        - waiting for element to be visible, enabled and stable%0A%0A%0A      75 |%0A      76 |     // Back on the map: station 8 is done, 9 is next.%0A    > 77 |     await page.getByRole('button', { name: 'למסע' }).click();%0A         |                                                      ^%0A      78 |     await expect(page.getByRole('button', { name: 'תחנה 8, הושלמה' })).toBeVisible();%0A      79 |     await expect(page.getByRole('button', { name: 'תחנה 9, התחנה הבאה' })).toBeVisible();%0A      80 |     await expect(page.getByText('תחנה 9 מתוך 11')).toBeVisible();%0A        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:77:54
+················
 
+  1) [iphone] › tests/e2e/practice.spec.ts:51:3 › practice › a full round: every answer right, level suggestions declined, progress recorded 
 
-  1) [ipad] › tests/e2e/practice.spec.ts:51:3 › practice › a full round: every answer right, level suggestions declined, progress recorded 
+    Test timeout of 30000ms exceeded.
 
-    Error: expect(locator).toBeVisible() failed
+    Error: expect(locator).toContainText(expected) failed
 
-    Locator: getByRole('img', { name: 'תחנה 8, הושלמה' })
-    Expected: visible
-    Timeout: 5000ms
-    Error: element(s) not found
+    Locator: getByRole('article', { name: 'נועה' })
+    Expected substring: "10 תרגילים"
+    Error: Test timeout of 30000ms exceeded.
 
     Call log:
-      - Expect "toBeVisible" getByRole('img', { name: 'תחנה 8, הושלמה' }) with timeout 5000ms
-      - waiting for getByRole('img', { name: 'תחנה 8, הושלמה' })
+      - Expect "toContainText" getByRole('article', { name: 'נועה' }) with timeout 5000ms
+      - waiting for getByRole('article', { name: 'נועה' })
+      - Test timeout of 30000ms exceeded.
 
 
-      76 |     // Back on the map: station 8 is done, 9 is next.
-      77 |     await page.getByRole('button', { name: 'למסע' }).click();
-    > 78 |     await expect(page.getByRole('img', { name: 'תחנה 8, הושלמה' })).toBeVisible();
-         |                                                                     ^
-      79 |     await expect(page.getByRole('button', { name: 'תחנה 9, התחנה הבאה' })).toBeVisible();
-      80 |     await expect(page.getByText('תחנה 9 מתוך 11')).toBeVisible();
-      81 |
-        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:78:69
-
-    Error Context: test-results/practice-practice-a-full-r-39750--declined-progress-recorded-ipad/error-context.md
-
-    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
-
-    Error: expect(locator).toBeVisible() failed
-
-    Locator: getByRole('img', { name: 'תחנה 8, הושלמה' })
-    Expected: visible
-    Timeout: 5000ms
-    Error: element(s) not found
-
-    Call log:
-      - Expect "toBeVisible" getByRole('img', { name: 'תחנה 8, הושלמה' }) with timeout 5000ms
-      - waiting for getByRole('img', { name: 'תחנה 8, הושלמה' })
-
-
-      76 |     // Back on the map: station 8 is done, 9 is next.
-      77 |     await page.getByRole('button', { name: 'למסע' }).click();
-    > 78 |     await expect(page.getByRole('img', { name: 'תחנה 8, הושלמה' })).toBeVisible();
-         |                                                                     ^
-      79 |     await expect(page.getByRole('button', { name: 'תחנה 9, התחנה הבאה' })).toBeVisible();
-      80 |     await expect(page.getByText('תחנה 9 מתוך 11')).toBeVisible();
-      81 |
-        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:78:69
-
-    Error Context: test-results/practice-practice-a-full-r-39750--declined-progress-recorded-ipad-retry1/error-context.md
-
-    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
-    test-results/practice-practice-a-full-r-39750--declined-progress-recorded-ipad-retry1/trace.zip
-    Usage:
-
-        npx playwright show-trace test-results/practice-practice-a-full-r-39750--declined-progress-recorded-ipad-retry1/trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Retry #2 ───────────────────────────────────────────────────────────────────────────────────────
-
-    Error: expect(locator).toBeVisible() failed
-
-    Locator: getByRole('img', { name: 'תחנה 8, הושלמה' })
-    Expected: visible
-    Timeout: 5000ms
-    Error: element(s) not found
-
-    Call log:
-      - Expect "toBeVisible" getByRole('img', { name: 'תחנה 8, הושלמה' }) with timeout 5000ms
-      - waiting for getByRole('img', { name: 'תחנה 8, הושלמה' })
-
-
-      76 |     // Back on the map: station 8 is done, 9 is next.
-      77 |     await page.getByRole('button', { name: 'למסע' }).click();
-    > 78 |     await expect(page.getByRole('img', { name: 'תחנה 8, הושלמה' })).toBeVisible();
-         |                                                                     ^
-      79 |     await expect(page.getByRole('button', { name: 'תחנה 9, התחנה הבאה' })).toBeVisible();
-      80 |     await expect(page.getByText('תחנה 9 מתוך 11')).toBeVisible();
-      81 |
-        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:78:69
-
-    Error Context: test-results/practice-practice-a-full-r-39750--declined-progress-recorded-ipad-retry2/error-context.md
-
-  2) [ipad] › tests/e2e/practice.spec.ts:149:3 › practice › a child can pick another level when the profile allows it 
-
-    Error: expect(locator).toBeVisible() failed
-
-    Locator: getByRole('heading', { name: 'חיבור וחיסור עד 20', level: 2 })
-    Expected: visible
-    Error: strict mode violation: getByRole('heading', { name: 'חיבור וחיסור עד 20', level: 2 }) resolved to 2 elements:
-        1) <h2 class="journey__world-name">עולם 1 · חיבור וחיסור עד 20</h2> aka getByRole('heading', { name: 'עולם 1 · חיבור וחיסור עד' })
-        2) <h2 id="station-title">חיבור וחיסור עד 20</h2> aka getByRole('heading', { name: 'חיבור וחיסור עד 20', exact: true })
-
-    Call log:
-      - Expect "toBeVisible" getByRole('heading', { name: 'חיבור וחיסור עד 20', level: 2 }) with timeout 5000ms
-      - waiting for getByRole('heading', { name: 'חיבור וחיסור עד 20', level: 2 })
-
-
-      151 |     await page.getByRole('button', { name: 'סיום' }).click();
-      152 |     const next = page.getByRole('heading', { level: 2, name: 'חיבור וחיסור עד 20' });
-    > 153 |     await expect(next).toBeVisible();
-          |                        ^
-      154 |     await page.getByRole('button', { name: 'שלב אחר' }).click();
-      155 |     await page
-      156 |       .getByRole('dialog', { name: 'באיזה שלב לתרגל?' })
-        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:153:24
-
-    Error Context: test-results/practice-practice-a-child--7d891--when-the-profile-allows-it-ipad/error-context.md
-
-    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
-
-    Error: expect(locator).toBeVisible() failed
-
-    Locator: getByRole('heading', { name: 'חיבור וחיסור עד 20', level: 2 })
-    Expected: visible
-    Error: strict mode violation: getByRole('heading', { name: 'חיבור וחיסור עד 20', level: 2 }) resolved to 2 elements:
-        1) <h2 class="journey__world-name">עולם 1 · חיבור וחיסור עד 20</h2> aka getByRole('heading', { name: 'עולם 1 · חיבור וחיסור עד' })
-        2) <h2 id="station-title">חיבור וחיסור עד 20</h2> aka getByRole('heading', { name: 'חיבור וחיסור עד 20', exact: true })
-
-    Call log:
-      - Expect "toBeVisible" getByRole('heading', { name: 'חיבור וחיסור עד 20', level: 2 }) with timeout 5000ms
-      - waiting for getByRole('heading', { name: 'חיבור וחיסור עד 20', level: 2 })
-
-
-      151 |     await page.getByRole('button', { name: 'סיום' }).click();
-      152 |     const next = page.getByRole('heading', { level: 2, name: 'חיבור וחיסור עד 20' });
-    > 153 |     await expect(next).toBeVisible();
-          |                        ^
-      154 |     await page.getByRole('button', { name: 'שלב אחר' }).click();
-      155 |     await page
-      156 |       .getByRole('dialog', { name: 'באיזה שלב לתרגל?' })
-        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:153:24
-
-    Error Context: test-results/practice-practice-a-child--7d891--when-the-profile-allows-it-ipad-retry1/error-context.md
-
-    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
-    test-results/practice-practice-a-child--7d891--when-the-profile-allows-it-ipad-retry1/trace.zip
-    Usage:
-
-        npx playwright show-trace test-results/practice-practice-a-child--7d891--when-the-profile-allows-it-ipad-retry1/trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Retry #2 ───────────────────────────────────────────────────────────────────────────────────────
-
-    Error: expect(locator).toBeVisible() failed
-
-    Locator: getByRole('heading', { name: 'חיבור וחיסור עד 20', level: 2 })
-    Expected: visible
-    Error: strict mode violation: getByRole('heading', { name: 'חיבור וחיסור עד 20', level: 2 }) resolved to 2 elements:
-        1) <h2 class="journey__world-name">עולם 1 · חיבור וחיסור עד 20</h2> aka getByRole('heading', { name: 'עולם 1 · חיבור וחיסור עד' })
-        2) <h2 id="station-title">חיבור וחיסור עד 20</h2> aka getByRole('heading', { name: 'חיבור וחיסור עד 20', exact: true })
-
-    Call log:
-      - Expect "toBeVisible" getByRole('heading', { name: 'חיבור וחיסור עד 20', level: 2 }) with timeout 5000ms
-      - waiting for getByRole('heading', { name: 'חיבור וחיסור עד 20', level: 2 })
-
-
-      151 |     await page.getByRole('button', { name: 'סיום' }).click();
-      152 |     const next = page.getByRole('heading', { level: 2, name: 'חיבור וחיסור עד 20' });
-    > 153 |     await expect(next).toBeVisible();
-          |                        ^
-      154 |     await page.getByRole('button', { name: 'שלב אחר' }).click();
-      155 |     await page
-      156 |       .getByRole('dialog', { name: 'באיזה שלב לתרגל?' })
-        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:153:24
-
-    Error Context: test-results/practice-practice-a-child--7d891--when-the-profile-allows-it-ipad-retry2/error-context.md
-
-  3) [iphone] › tests/e2e/practice.spec.ts:51:3 › practice › a full round: every answer right, level suggestions declined, progress recorded 
-
-    Error: expect(locator).toBeVisible() failed
-
-    Locator: getByRole('img', { name: 'תחנה 8, הושלמה' })
-    Expected: visible
-    Timeout: 5000ms
-    Error: element(s) not found
-
-    Call log:
-      - Expect "toBeVisible" getByRole('img', { name: 'תחנה 8, הושלמה' }) with timeout 5000ms
-      - waiting for getByRole('img', { name: 'תחנה 8, הושלמה' })
-
-
-      76 |     // Back on the map: station 8 is done, 9 is next.
-      77 |     await page.getByRole('button', { name: 'למסע' }).click();
-    > 78 |     await expect(page.getByRole('img', { name: 'תחנה 8, הושלמה' })).toBeVisible();
-         |                                                                     ^
-      79 |     await expect(page.getByRole('button', { name: 'תחנה 9, התחנה הבאה' })).toBeVisible();
-      80 |     await expect(page.getByText('תחנה 9 מתוך 11')).toBeVisible();
-      81 |
-        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:78:69
+      90 |     const row = page.getByRole('article', { name: 'נועה' });
+      91 |     await expect(row).toContainText('תרגלה נושא אחד');
+    > 92 |     await expect(row).toContainText('10 תרגילים');
+         |                       ^
+      93 |     await expect(row).toContainText('הצלחה: 100%');
+      94 |     expect(errors).toEqual([]);
+      95 |   });
+        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:92:23
 
     Error Context: test-results/practice-practice-a-full-r-39750--declined-progress-recorded-iphone/error-context.md
 
     Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
 
-    Error: expect(locator).toBeVisible() failed
+    Test timeout of 30000ms exceeded.
 
-    Locator: getByRole('img', { name: 'תחנה 8, הושלמה' })
-    Expected: visible
-    Timeout: 5000ms
-    Error: element(s) not found
-
+    Error: locator.click: Test timeout of 30000ms exceeded.
     Call log:
-      - Expect "toBeVisible" getByRole('img', { name: 'תחנה 8, הושלמה' }) with timeout 5000ms
-      - waiting for getByRole('img', { name: 'תחנה 8, הושלמה' })
+      - waiting for getByRole('button', { name: 'למסע' })
+        - locator resolved to <button class="btn" type="button">למסע</button>
+      - attempting click action
+        - waiting for element to be visible, enabled and stable
 
 
+      75 |
       76 |     // Back on the map: station 8 is done, 9 is next.
-      77 |     await page.getByRole('button', { name: 'למסע' }).click();
-    > 78 |     await expect(page.getByRole('img', { name: 'תחנה 8, הושלמה' })).toBeVisible();
-         |                                                                     ^
+    > 77 |     await page.getByRole('button', { name: 'למסע' }).click();
+         |                                                      ^
+      78 |     await expect(page.getByRole('button', { name: 'תחנה 8, הושלמה' })).toBeVisible();
       79 |     await expect(page.getByRole('button', { name: 'תחנה 9, התחנה הבאה' })).toBeVisible();
       80 |     await expect(page.getByText('תחנה 9 מתוך 11')).toBeVisible();
-      81 |
-        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:78:69
+        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:77:54
 
     Error Context: test-results/practice-practice-a-full-r-39750--declined-progress-recorded-iphone-retry1/error-context.md
 
@@ -333,295 +143,7 @@ Running 72 tests using 2 workers
 
     ────────────────────────────────────────────────────────────────────────────────────────────────
 
-    Retry #2 ───────────────────────────────────────────────────────────────────────────────────────
-
-    Test timeout of 30000ms exceeded.
-
-    Error: expect(locator).toBeVisible() failed
-
-    Locator: getByRole('img', { name: 'תחנה 8, הושלמה' })
-    Expected: visible
-    Error: element(s) not found
-
-    Call log:
-      - Expect "toBeVisible" getByRole('img', { name: 'תחנה 8, הושלמה' }) with timeout 5000ms
-      - waiting for getByRole('img', { name: 'תחנה 8, הושלמה' })
-      - Test timeout of 30000ms exceeded.
-
-
-      76 |     // Back on the map: station 8 is done, 9 is next.
-      77 |     await page.getByRole('button', { name: 'למסע' }).click();
-    > 78 |     await expect(page.getByRole('img', { name: 'תחנה 8, הושלמה' })).toBeVisible();
-         |                                                                     ^
-      79 |     await expect(page.getByRole('button', { name: 'תחנה 9, התחנה הבאה' })).toBeVisible();
-      80 |     await expect(page.getByText('תחנה 9 מתוך 11')).toBeVisible();
-      81 |
-        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:78:69
-
-    Error Context: test-results/practice-practice-a-full-r-39750--declined-progress-recorded-iphone-retry2/error-context.md
-
-  4) [iphone] › tests/e2e/practice.spec.ts:149:3 › practice › a child can pick another level when the profile allows it 
-
-    Error: expect(locator).toBeVisible() failed
-
-    Locator: getByRole('heading', { name: 'חיבור וחיסור עד 20', level: 2 })
-    Expected: visible
-    Error: strict mode violation: getByRole('heading', { name: 'חיבור וחיסור עד 20', level: 2 }) resolved to 2 elements:
-        1) <h2 class="journey__world-name">עולם 1 · חיבור וחיסור עד 20</h2> aka getByRole('heading', { name: 'עולם 1 · חיבור וחיסור עד' })
-        2) <h2 id="station-title">חיבור וחיסור עד 20</h2> aka getByRole('heading', { name: 'חיבור וחיסור עד 20', exact: true })
-
-    Call log:
-      - Expect "toBeVisible" getByRole('heading', { name: 'חיבור וחיסור עד 20', level: 2 }) with timeout 5000ms
-      - waiting for getByRole('heading', { name: 'חיבור וחיסור עד 20', level: 2 })
-
-
-      151 |     await page.getByRole('button', { name: 'סיום' }).click();
-      152 |     const next = page.getByRole('heading', { level: 2, name: 'חיבור וחיסור עד 20' });
-    > 153 |     await expect(next).toBeVisible();
-          |                        ^
-      154 |     await page.getByRole('button', { name: 'שלב אחר' }).click();
-      155 |     await page
-      156 |       .getByRole('dialog', { name: 'באיזה שלב לתרגל?' })
-        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:153:24
-
-    Error Context: test-results/practice-practice-a-child--7d891--when-the-profile-allows-it-iphone/error-context.md
-
-    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
-
-    Error: expect(locator).toBeVisible() failed
-
-    Locator: getByRole('heading', { name: 'חיבור וחיסור עד 20', level: 2 })
-    Expected: visible
-    Error: strict mode violation: getByRole('heading', { name: 'חיבור וחיסור עד 20', level: 2 }) resolved to 2 elements:
-        1) <h2 class="journey__world-name">עולם 1 · חיבור וחיסור עד 20</h2> aka getByRole('heading', { name: 'עולם 1 · חיבור וחיסור עד' })
-        2) <h2 id="station-title">חיבור וחיסור עד 20</h2> aka getByRole('heading', { name: 'חיבור וחיסור עד 20', exact: true })
-
-    Call log:
-      - Expect "toBeVisible" getByRole('heading', { name: 'חיבור וחיסור עד 20', level: 2 }) with timeout 5000ms
-      - waiting for getByRole('heading', { name: 'חיבור וחיסור עד 20', level: 2 })
-
-
-      151 |     await page.getByRole('button', { name: 'סיום' }).click();
-      152 |     const next = page.getByRole('heading', { level: 2, name: 'חיבור וחיסור עד 20' });
-    > 153 |     await expect(next).toBeVisible();
-          |                        ^
-      154 |     await page.getByRole('button', { name: 'שלב אחר' }).click();
-      155 |     await page
-      156 |       .getByRole('dialog', { name: 'באיזה שלב לתרגל?' })
-        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:153:24
-
-    Error Context: test-results/practice-practice-a-child--7d891--when-the-profile-allows-it-iphone-retry1/error-context.md
-
-    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
-    test-results/practice-practice-a-child--7d891--when-the-profile-allows-it-iphone-retry1/trace.zip
-    Usage:
-
-        npx playwright show-trace test-results/practice-practice-a-child--7d891--when-the-profile-allows-it-iphone-retry1/trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Retry #2 ───────────────────────────────────────────────────────────────────────────────────────
-
-    Error: expect(locator).toBeVisible() failed
-
-    Locator: getByRole('heading', { name: 'חיבור וחיסור עד 20', level: 2 })
-    Expected: visible
-    Error: strict mode violation: getByRole('heading', { name: 'חיבור וחיסור עד 20', level: 2 }) resolved to 2 elements:
-        1) <h2 class="journey__world-name">עולם 1 · חיבור וחיסור עד 20</h2> aka getByRole('heading', { name: 'עולם 1 · חיבור וחיסור עד' })
-        2) <h2 id="station-title">חיבור וחיסור עד 20</h2> aka getByRole('heading', { name: 'חיבור וחיסור עד 20', exact: true })
-
-    Call log:
-      - Expect "toBeVisible" getByRole('heading', { name: 'חיבור וחיסור עד 20', level: 2 }) with timeout 5000ms
-      - waiting for getByRole('heading', { name: 'חיבור וחיסור עד 20', level: 2 })
-
-
-      151 |     await page.getByRole('button', { name: 'סיום' }).click();
-      152 |     const next = page.getByRole('heading', { level: 2, name: 'חיבור וחיסור עד 20' });
-    > 153 |     await expect(next).toBeVisible();
-          |                        ^
-      154 |     await page.getByRole('button', { name: 'שלב אחר' }).click();
-      155 |     await page
-      156 |       .getByRole('dialog', { name: 'באיזה שלב לתרגל?' })
-        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:153:24
-
-    Error Context: test-results/practice-practice-a-child--7d891--when-the-profile-allows-it-iphone-retry2/error-context.md
-
-  5) [desktop-chromium] › tests/e2e/practice.spec.ts:51:3 › practice › a full round: every answer right, level suggestions declined, progress recorded 
-
-    Error: expect(locator).toBeVisible() failed
-
-    Locator: getByRole('img', { name: 'תחנה 8, הושלמה' })
-    Expected: visible
-    Timeout: 5000ms
-    Error: element(s) not found
-
-    Call log:
-      - Expect "toBeVisible" getByRole('img', { name: 'תחנה 8, הושלמה' }) with timeout 5000ms
-      - waiting for getByRole('img', { name: 'תחנה 8, הושלמה' })
-
-
-      76 |     // Back on the map: station 8 is done, 9 is next.
-      77 |     await page.getByRole('button', { name: 'למסע' }).click();
-    > 78 |     await expect(page.getByRole('img', { name: 'תחנה 8, הושלמה' })).toBeVisible();
-         |                                                                     ^
-      79 |     await expect(page.getByRole('button', { name: 'תחנה 9, התחנה הבאה' })).toBeVisible();
-      80 |     await expect(page.getByText('תחנה 9 מתוך 11')).toBeVisible();
-      81 |
-        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:78:69
-
-    Error Context: test-results/practice-practice-a-full-r-39750--declined-progress-recorded-desktop-chromium/error-context.md
-
-    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
-
-    Error: expect(locator).toBeVisible() failed
-
-    Locator: getByRole('img', { name: 'תחנה 8, הושלמה' })
-    Expected: visible
-    Timeout: 5000ms
-    Error: element(s) not found
-
-    Call log:
-      - Expect "toBeVisible" getByRole('img', { name: 'תחנה 8, הושלמה' }) with timeout 5000ms
-      - waiting for getByRole('img', { name: 'תחנה 8, הושלמה' })
-
-
-      76 |     // Back on the map: station 8 is done, 9 is next.
-      77 |     await page.getByRole('button', { name: 'למסע' }).click();
-    > 78 |     await expect(page.getByRole('img', { name: 'תחנה 8, הושלמה' })).toBeVisible();
-         |                                                                     ^
-      79 |     await expect(page.getByRole('button', { name: 'תחנה 9, התחנה הבאה' })).toBeVisible();
-      80 |     await expect(page.getByText('תחנה 9 מתוך 11')).toBeVisible();
-      81 |
-        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:78:69
-
-    Error Context: test-results/practice-practice-a-full-r-39750--declined-progress-recorded-desktop-chromium-retry1/error-context.md
-
-    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
-    test-results/practice-practice-a-full-r-39750--declined-progress-recorded-desktop-chromium-retry1/trace.zip
-    Usage:
-
-        npx playwright show-trace test-results/practice-practice-a-full-r-39750--declined-progress-recorded-desktop-chromium-retry1/trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Retry #2 ───────────────────────────────────────────────────────────────────────────────────────
-
-    Error: expect(locator).toBeVisible() failed
-
-    Locator: getByRole('img', { name: 'תחנה 8, הושלמה' })
-    Expected: visible
-    Timeout: 5000ms
-    Error: element(s) not found
-
-    Call log:
-      - Expect "toBeVisible" getByRole('img', { name: 'תחנה 8, הושלמה' }) with timeout 5000ms
-      - waiting for getByRole('img', { name: 'תחנה 8, הושלמה' })
-
-
-      76 |     // Back on the map: station 8 is done, 9 is next.
-      77 |     await page.getByRole('button', { name: 'למסע' }).click();
-    > 78 |     await expect(page.getByRole('img', { name: 'תחנה 8, הושלמה' })).toBeVisible();
-         |                                                                     ^
-      79 |     await expect(page.getByRole('button', { name: 'תחנה 9, התחנה הבאה' })).toBeVisible();
-      80 |     await expect(page.getByText('תחנה 9 מתוך 11')).toBeVisible();
-      81 |
-        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:78:69
-
-    Error Context: test-results/practice-practice-a-full-r-39750--declined-progress-recorded-desktop-chromium-retry2/error-context.md
-
-  6) [desktop-chromium] › tests/e2e/practice.spec.ts:149:3 › practice › a child can pick another level when the profile allows it 
-
-    Error: expect(locator).toBeVisible() failed
-
-    Locator: getByRole('heading', { name: 'חיבור וחיסור עד 20', level: 2 })
-    Expected: visible
-    Error: strict mode violation: getByRole('heading', { name: 'חיבור וחיסור עד 20', level: 2 }) resolved to 2 elements:
-        1) <h2 class="journey__world-name">עולם 1 · חיבור וחיסור עד 20</h2> aka getByRole('heading', { name: 'עולם 1 · חיבור וחיסור עד' })
-        2) <h2 id="station-title">חיבור וחיסור עד 20</h2> aka getByRole('heading', { name: 'חיבור וחיסור עד 20', exact: true })
-
-    Call log:
-      - Expect "toBeVisible" getByRole('heading', { name: 'חיבור וחיסור עד 20', level: 2 }) with timeout 5000ms
-      - waiting for getByRole('heading', { name: 'חיבור וחיסור עד 20', level: 2 })
-
-
-      151 |     await page.getByRole('button', { name: 'סיום' }).click();
-      152 |     const next = page.getByRole('heading', { level: 2, name: 'חיבור וחיסור עד 20' });
-    > 153 |     await expect(next).toBeVisible();
-          |                        ^
-      154 |     await page.getByRole('button', { name: 'שלב אחר' }).click();
-      155 |     await page
-      156 |       .getByRole('dialog', { name: 'באיזה שלב לתרגל?' })
-        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:153:24
-
-    Error Context: test-results/practice-practice-a-child--7d891--when-the-profile-allows-it-desktop-chromium/error-context.md
-
-    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
-
-    Error: expect(locator).toBeVisible() failed
-
-    Locator: getByRole('heading', { name: 'חיבור וחיסור עד 20', level: 2 })
-    Expected: visible
-    Error: strict mode violation: getByRole('heading', { name: 'חיבור וחיסור עד 20', level: 2 }) resolved to 2 elements:
-        1) <h2 class="journey__world-name">עולם 1 · חיבור וחיסור עד 20</h2> aka getByRole('heading', { name: 'עולם 1 · חיבור וחיסור עד' })
-        2) <h2 id="station-title">חיבור וחיסור עד 20</h2> aka getByRole('heading', { name: 'חיבור וחיסור עד 20', exact: true })
-
-    Call log:
-      - Expect "toBeVisible" getByRole('heading', { name: 'חיבור וחיסור עד 20', level: 2 }) with timeout 5000ms
-      - waiting for getByRole('heading', { name: 'חיבור וחיסור עד 20', level: 2 })
-
-
-      151 |     await page.getByRole('button', { name: 'סיום' }).click();
-      152 |     const next = page.getByRole('heading', { level: 2, name: 'חיבור וחיסור עד 20' });
-    > 153 |     await expect(next).toBeVisible();
-          |                        ^
-      154 |     await page.getByRole('button', { name: 'שלב אחר' }).click();
-      155 |     await page
-      156 |       .getByRole('dialog', { name: 'באיזה שלב לתרגל?' })
-        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:153:24
-
-    Error Context: test-results/practice-practice-a-child--7d891--when-the-profile-allows-it-desktop-chromium-retry1/error-context.md
-
-    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
-    test-results/practice-practice-a-child--7d891--when-the-profile-allows-it-desktop-chromium-retry1/trace.zip
-    Usage:
-
-        npx playwright show-trace test-results/practice-practice-a-child--7d891--when-the-profile-allows-it-desktop-chromium-retry1/trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Retry #2 ───────────────────────────────────────────────────────────────────────────────────────
-
-    Error: expect(locator).toBeVisible() failed
-
-    Locator: getByRole('heading', { name: 'חיבור וחיסור עד 20', level: 2 })
-    Expected: visible
-    Error: strict mode violation: getByRole('heading', { name: 'חיבור וחיסור עד 20', level: 2 }) resolved to 2 elements:
-        1) <h2 class="journey__world-name">עולם 1 · חיבור וחיסור עד 20</h2> aka getByRole('heading', { name: 'עולם 1 · חיבור וחיסור עד' })
-        2) <h2 id="station-title">חיבור וחיסור עד 20</h2> aka getByRole('heading', { name: 'חיבור וחיסור עד 20', exact: true })
-
-    Call log:
-      - Expect "toBeVisible" getByRole('heading', { name: 'חיבור וחיסור עד 20', level: 2 }) with timeout 5000ms
-      - waiting for getByRole('heading', { name: 'חיבור וחיסור עד 20', level: 2 })
-
-
-      151 |     await page.getByRole('button', { name: 'סיום' }).click();
-      152 |     const next = page.getByRole('heading', { level: 2, name: 'חיבור וחיסור עד 20' });
-    > 153 |     await expect(next).toBeVisible();
-          |                        ^
-      154 |     await page.getByRole('button', { name: 'שלב אחר' }).click();
-      155 |     await page
-      156 |       .getByRole('dialog', { name: 'באיזה שלב לתרגל?' })
-        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:153:24
-
-    Error Context: test-results/practice-practice-a-child--7d891--when-the-profile-allows-it-desktop-chromium-retry2/error-context.md
-
-  6 failed
-    [ipad] › tests/e2e/practice.spec.ts:51:3 › practice › a full round: every answer right, level suggestions declined, progress recorded 
-    [ipad] › tests/e2e/practice.spec.ts:149:3 › practice › a child can pick another level when the profile allows it 
+  1 flaky
     [iphone] › tests/e2e/practice.spec.ts:51:3 › practice › a full round: every answer right, level suggestions declined, progress recorded 
-    [iphone] › tests/e2e/practice.spec.ts:149:3 › practice › a child can pick another level when the profile allows it 
-    [desktop-chromium] › tests/e2e/practice.spec.ts:51:3 › practice › a full round: every answer right, level suggestions declined, progress recorded 
-    [desktop-chromium] › tests/e2e/practice.spec.ts:149:3 › practice › a child can pick another level when the profile allows it 
-  66 passed (3.7m)
-::notice title=🎭 Playwright Run Summary::  6 failed%0A    [ipad] › tests/e2e/practice.spec.ts:51:3 › practice › a full round: every answer right, level suggestions declined, progress recorded %0A    [ipad] › tests/e2e/practice.spec.ts:149:3 › practice › a child can pick another level when the profile allows it %0A    [iphone] › tests/e2e/practice.spec.ts:51:3 › practice › a full round: every answer right, level suggestions declined, progress recorded %0A    [iphone] › tests/e2e/practice.spec.ts:149:3 › practice › a child can pick another level when the profile allows it %0A    [desktop-chromium] › tests/e2e/practice.spec.ts:51:3 › practice › a full round: every answer right, level suggestions declined, progress recorded %0A    [desktop-chromium] › tests/e2e/practice.spec.ts:149:3 › practice › a child can pick another level when the profile allows it %0A  66 passed (3.7m)
-E2E FAILED
+  71 passed (3.0m)
+::notice title=🎭 Playwright Run Summary::  1 flaky%0A    [iphone] › tests/e2e/practice.spec.ts:51:3 › practice › a full round: every answer right, level suggestions declined, progress recorded %0A  71 passed (3.0m)
