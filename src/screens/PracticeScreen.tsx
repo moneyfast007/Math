@@ -353,20 +353,14 @@ function Feedback({ state: s, tc, slow }: { state: SessionState; tc: TC; slow: b
 }
 
 function explanation(s: SessionState, tc: TC): string {
-  switch (s.lastMistake) {
-    case 'wrongOperation':
-      return tc(
-        s.exercise.operation === 'sub'
-          ? 'explain.wrongOperation.sub'
-          : 'explain.wrongOperation.add',
-      );
-    case 'offByOne':
-      return tc('explain.offByOne');
-    case 'digitReversal':
-      return tc('explain.digitReversal');
-    default:
-      return tc('feedback.almost');
+  const m = s.lastMistake;
+  if (m === 'wrongOperation') {
+    return tc(s.exercise.operation === 'sub' ? 'explain.wrongOperation.sub' : 'explain.wrongOperation.add');
   }
+  if (m === 'offByOne') return tc('explain.offByOne');
+  if (m === 'digitReversal') return tc('explain.digitReversal');
+  // Other kinds have no specific advice yet: a gentle, general nudge.
+  return tc('feedback.almost');
 }
 
 function LevelDialog({

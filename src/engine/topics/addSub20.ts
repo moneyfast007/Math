@@ -343,7 +343,7 @@ function firstHints(f: Fact, noun: CountableNoun, level: number): [Hint, Hint] {
     }
     case 'missAdd':
     case 'missSub': {
-      const params =
+      const params: { text: Record<string, number>; spoken: Record<string, string> } =
         f.kind === 'missAdd'
           ? { text: { a: f.a, c: f.c }, spoken: { a: w(f.a), c: w(f.c) } }
           : { text: { c: f.c, b: f.b }, spoken: { c: w(f.c), b: w(f.b) } };

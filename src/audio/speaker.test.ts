@@ -5,11 +5,13 @@ import { Speaker } from './speaker';
 afterEach(() => vi.unstubAllGlobals());
 
 function fakeSpeech(voices: { lang: string }[]) {
-  return {
+  const speakMock = vi.fn();
+  const synth = {
     getVoices: () => voices,
-    speak: vi.fn(),
+    speak: speakMock,
     cancel: vi.fn(),
-  } as unknown as SpeechSynthesis & { speak: ReturnType<typeof vi.fn> };
+  } as unknown as SpeechSynthesis;
+  return Object.assign(synth, { speakMock });
 }
 
 describe('Speaker', () => {
@@ -50,7 +52,7 @@ describe('Speaker', () => {
     const speech = fakeSpeech([{ lang: 'en-US' }, { lang: 'he-IL' }]);
     const s = new Speaker(() => Promise.resolve({ clips: {} }), speech);
     await expect(s.speak('שלום', { slow: true })).resolves.toBe('device');
-    expect(speech.speak).toHaveBeenCalledOnce();
+    expect(speech.speakMock).toHaveBeenCalledOnce();
   });
 
   it('reports unavailable without throwing when nothing can speak', async () => {
