@@ -16068,6 +16068,162 @@
     "409ab0dca0e326c4": {
       "text": "כמה צריך להוריד מעשרים כדי להגיע לתשע עשרה?",
       "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "35bf248cd85e1832": {
+      "text": "מעבר עשרת",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "5ad06b349db3e089": {
+      "text": "חיבור וחיסור עד 20",
+      "voice": "chirp3-hd/Leda"
+    },
+    "32cf4aa888a64f39": {
+      "text": "סופרים עד 5",
+      "voice": "chirp3-hd/Leda"
+    },
+    "c5ce63675406237d": {
+      "text": "סופרים עד 10",
+      "voice": "chirp3-hd/Leda"
+    },
+    "49036c877fb8431c": {
+      "text": "חיבור עד 5 עם ציורים",
+      "voice": "chirp3-hd/Leda"
+    },
+    "b45bb008996c15a9": {
+      "text": "חיבור עד 10 עם ציורים",
+      "voice": "chirp3-hd/Leda"
+    },
+    "689d15859ad6d140": {
+      "text": "חיסור עד 10 עם ציורים",
+      "voice": "chirp3-hd/Leda"
+    },
+    "fd9fae16ef97bafe": {
+      "text": "חיבור עד 10",
+      "voice": "chirp3-hd/Leda"
+    },
+    "ed30669d6b4b2df6": {
+      "text": "חיסור עד 10",
+      "voice": "chirp3-hd/Leda"
+    },
+    "a44947e09362e797": {
+      "text": "מספר חסר",
+      "voice": "chirp3-hd/Leda"
+    },
+    "43a7669a1b50b29c": {
+      "text": "פלוסי שמח",
+      "voice": "chirp3-hd/Leda"
+    },
+    "cc1bdae5d09bf571": {
+      "text": "פלוסי חושב",
+      "voice": "chirp3-hd/Leda"
+    },
+    "0704526fcf270328": {
+      "text": "פלוסי חוגג",
+      "voice": "chirp3-hd/Leda"
+    },
+    "bb8452e6a9a34718": {
+      "text": "פלוסי רגוע",
+      "voice": "chirp3-hd/Leda"
+    },
+    "93e01da38dd2ad11": {
+      "text": "סיימת את העולם הזה!",
+      "voice": "chirp3-hd/Leda"
+    },
+    "942f3add55852a9c": {
+      "text": "סיום העולם",
+      "voice": "chirp3-hd/Leda"
+    },
+    "dd1c0f9a71cd073c": {
+      "text": "חזרה על כל העולם",
+      "voice": "chirp3-hd/Leda"
+    },
+    "f5a54daac34183a8": {
+      "text": "סיום העולם, הושלם",
+      "voice": "chirp3-hd/Leda"
+    },
+    "931c895cede2029d": {
+      "text": "סיום העולם, התחנה הבאה",
+      "voice": "chirp3-hd/Leda"
+    },
+    "e073609f66751888": {
+      "text": "סיום העולם, עדיין סגור",
+      "voice": "chirp3-hd/Leda"
+    },
+    "06b91680e2d4641b": {
+      "text": "פלוסי מחכה ליד התחנה הבאה",
+      "voice": "chirp3-hd/Leda"
+    },
+    "5fb47b356c0a976d": {
+      "text": "מפת המסע",
+      "voice": "chirp3-hd/Leda"
+    },
+    "e82fb7a3df789df3": {
+      "text": "האלבום",
+      "voice": "chirp3-hd/Leda"
+    },
+    "13c252df2b4918e9": {
+      "text": "יום ראשון ברצף. יאללה!",
+      "voice": "chirp3-hd/Leda"
+    },
+    "4db4692424c9cad0": {
+      "text": "בלי רצף עדיין",
+      "voice": "chirp3-hd/Leda"
+    },
+    "7ec95b63529bb4af": {
+      "text": "יאללה, חוזרים על הכול!",
+      "voice": "chirp3-hd/Leda"
+    },
+    "597e74a86a6c4287": {
+      "text": "כל עולם שמסיימים משאיר כאן מדבקה.",
+      "voice": "chirp3-hd/Leda"
+    },
+    "f7e208ac9c884a3b": {
+      "text": "עוד אין מדבקות. העולם הראשון מחכה!",
+      "voice": "chirp3-hd/Leda"
+    },
+    "de54160b1222cb60": {
+      "text": "אספת את כל המדבקות! כל הכבוד!",
+      "voice": "chirp3-hd/Leda"
+    },
+    "710c1c794250993a": {
+      "text": "חזרה למסע",
+      "voice": "chirp3-hd/Leda"
+    },
+    "2f468732ece21c9a": {
+      "text": "עברת את התחנה!",
+      "voice": "chirp3-hd/Leda"
+    },
+    "3bdd624dee9df0a6": {
+      "text": "כל הכבוד! עברת את התחנה!",
+      "voice": "chirp3-hd/Leda"
+    },
+    "1cfa98f78eaae2fb": {
+      "text": "תרגלנו יפה. נחזור לתחנה הזאת עוד פעם.",
+      "voice": "chirp3-hd/Leda"
+    },
+    "35f5f0fb5357e2e4": {
+      "text": "התחנה הבאה נפתחה!",
+      "voice": "chirp3-hd/Leda"
+    },
+    "cabc38f26d7243a4": {
+      "text": "כל התחנות הושלמו! עכשיו אפשר לסיים את העולם.",
+      "voice": "chirp3-hd/Leda"
+    },
+    "035bb73713a74613": {
+      "text": "סיימת את כל העולם! מדבקה חדשה מחכה באלבום.",
+      "voice": "chirp3-hd/Leda"
+    },
+    "46f844d3d31021e1": {
+      "text": "לאלבום",
+      "voice": "chirp3-hd/Leda"
+    },
+    "ddac9d3f4838382b": {
+      "text": "למסע",
+      "voice": "chirp3-hd/Leda"
+    },
+    "bb73c5c1599440a0": {
+      "text": "תרגילים מכל התחנות, מעורבבים.",
+      "voice": "chirp3-hd/Leda"
     }
   }
 }
