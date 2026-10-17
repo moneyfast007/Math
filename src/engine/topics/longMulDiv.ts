@@ -156,10 +156,7 @@ function remainderExercise(
     hints: [
       hint(say('hint.longDiv.steps')),
       hint(say('hint.longDiv.remainder', { b })),
-      exampleHint(
-        `${ex.a} ÷ ${ex.b} = ${ex.q} (${ex.r})`,
-        say('eq.remainder.solution', ex),
-      ),
+      exampleHint(`${ex.a} ÷ ${ex.b} = ${ex.q} (${ex.r})`, say('eq.remainder.solution', ex)),
     ],
     solution: solved,
     diagnose: (v) => (v === (askRemainder ? q : r) ? 'remainder' : null),
@@ -225,14 +222,8 @@ function order(rng: Rng): Exercise {
       hint(say('hint.order.rule')),
       // Never the exercise itself.
       display === '2 + 3 × 4 = ?'
-        ? exampleHint(
-            '5 + 2 × 3 = 11',
-            say('ex.ord.example', { a: 5, b: 2, c: 3, r: 11 }),
-          )
-        : exampleHint(
-            '2 + 3 × 4 = 14',
-            say('ex.ord.example', { a: 2, b: 3, c: 4, r: 14 }),
-          ),
+        ? exampleHint('5 + 2 × 3 = 11', say('ex.ord.example', { a: 5, b: 2, c: 3, r: 11 }))
+        : exampleHint('2 + 3 × 4 = 14', say('ex.ord.example', { a: 2, b: 3, c: 4, r: 14 })),
     ],
     solution: say('eq.answerIs', { r: answer }),
     diagnose: (v) => (v === wrong ? 'wrongOperation' : null),

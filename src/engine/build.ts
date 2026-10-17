@@ -58,7 +58,12 @@ export type Operation = 'add' | 'sub' | 'mul' | 'div';
 export const OPERATION: Record<Op, Operation> = { '+': 'add', '-': 'sub', '×': 'mul', '÷': 'div' };
 
 /** The spoken operator, from the dictionary. */
-const OP_KEY: Record<Op, TranslationKey> = { '+': 'op.add', '-': 'op.sub', '×': 'op.mul', '÷': 'op.div' };
+const OP_KEY: Record<Op, TranslationKey> = {
+  '+': 'op.add',
+  '-': 'op.sub',
+  '×': 'op.mul',
+  '÷': 'op.div',
+};
 const opWord = (op: Op): string => t(OP_KEY[op]);
 
 export function opChar(op: Op): string {
