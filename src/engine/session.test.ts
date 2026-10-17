@@ -2,7 +2,6 @@ import { describe, expect, it } from 'vitest';
 import { seededRng } from './rng';
 import {
   completedExercise,
-  LEVEL_UP_STREAK,
   MAX_TRIES,
   reduce,
   ROUND_LENGTH,
@@ -74,16 +73,14 @@ describe('practice session', () => {
     expect(reduce(done, { type: 'hint' }).hintsShown).toBe(3);
   });
 
-  it('suggests a harder level after a streak of first-try answers', () => {
+  it('never interrupts a child who is doing well: moving up is decided at the end of the round', () => {
     let s = start(6);
-    for (let i = 0; i < LEVEL_UP_STREAK; i++) {
+    for (let i = 0; i < 8; i++) {
       s = right(s);
-      if (i < LEVEL_UP_STREAK - 1) {
-        expect(s.suggestion).toBeNull();
-        s = next(s);
-      }
+      expect(s.suggestion).toBeNull();
+      s = next(s);
     }
-    expect(s.suggestion).toBe('up');
+    expect(s.firstTryCount).toBe(8);
   });
 
   it('suggests an easier level when the child keeps needing the answer', () => {
@@ -95,22 +92,25 @@ describe('practice session', () => {
     expect(s.suggestion).toBe('down');
   });
 
-  it('never suggests beyond the level range', () => {
-    let top = start(10);
-    for (let i = 0; i < LEVEL_UP_STREAK; i++) top = next(right(top));
-    expect(top.suggestion).toBeNull();
+  it('never suggests below the lowest level', () => {
+    let s = start(1);
+    for (let i = 0; i < 3; i++) {
+      for (let k = 0; k < MAX_TRIES; k++) s = wrong(s);
+      s = next(s);
+    }
+    expect(s.suggestion).toBeNull();
   });
 
   it('changing level advances with a fresh exercise and resets the counters', () => {
     let s = start(6);
-    for (let i = 0; i < LEVEL_UP_STREAK; i++) {
+    for (let i = 0; i < 3; i++) {
       s = right(s);
-      if (i < LEVEL_UP_STREAK - 1) s = next(s);
+      if (i < 2) s = next(s);
     }
-    const changed = reduce(s, { type: 'changeLevel', level: 7, exercise: gen(7) });
-    expect(changed.level).toBe(7);
-    expect(changed.exercise.level).toBe(7);
-    expect(changed.streak).toBe(0);
+    const changed = reduce(s, { type: 'changeLevel', level: 5, exercise: gen(5) });
+    expect(changed.level).toBe(5);
+    expect(changed.exercise.level).toBe(5);
+    expect(changed.history).toEqual([]);
     expect(changed.suggestion).toBeNull();
     expect(changed.done).toBe(s.done + 1);
   });

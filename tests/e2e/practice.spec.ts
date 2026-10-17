@@ -48,7 +48,7 @@ async function submit(page: Page, value: number) {
 }
 
 test.describe('practice', () => {
-  test('a full round: every answer right, level suggestions declined, progress recorded', async ({
+  test('a full round: every answer right, the station passed, progress recorded', async ({
     page,
   }) => {
     test.slow(); // ten exercises plus the parent screen: a long test on a phone profile
@@ -62,10 +62,8 @@ test.describe('practice', () => {
     for (let i = 0; i < 10; i++) {
       await submit(page, await currentAnswer(page));
       await expect(page.locator('.feedback--correct')).toContainText('נכון! כל הכבוד');
-      const dialog = page.getByRole('dialog', { name: 'מוכנה לאתגר?' });
-      if (await dialog.isVisible()) {
-        await dialog.getByRole('button', { name: 'עוד קצת כאן' }).click();
-      }
+      // Nothing interrupts a child who is doing well: no dialog, ever.
+      await expect(page.getByRole('dialog')).toHaveCount(0);
       if (i < 9) await expect(progress).toHaveAttribute('aria-valuenow', String(i + 1));
     }
 
@@ -121,6 +119,14 @@ test.describe('practice', () => {
     await expect(page.locator('.exercise .slot--done')).toHaveText(String(answer));
     await page.getByRole('button', { name: 'הבא' }).click();
     await expect(page.getByRole('progressbar')).toHaveAttribute('aria-valuenow', '1');
+
+    // A second revealed answer in a row: the round drops a level, saying so in one line.
+    const answer2 = await currentAnswer(page);
+    for (let i = 0; i < 3; i++) await submit(page, answer2 + 5);
+    await expect(page.locator('.feedback--reveal')).toBeVisible();
+    await page.getByRole('button', { name: 'הבא' }).click();
+    await expect(page.getByRole('status').filter({ hasText: 'נתרגל רגע שלב קל יותר.' })).toBeVisible();
+    await expect(page.getByRole('dialog')).toHaveCount(0);
   });
 
   test('gan: pictures to count and three big answer buttons', async ({ page }) => {

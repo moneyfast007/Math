@@ -16,7 +16,6 @@ import type { RoundOutcome } from '@/state/progress';
 import type { Profile } from '@/state/schema';
 import { appStore, useActiveProfile, useApp } from '@/state/store';
 import { ageBandForGrade, applyAgeBand } from '@/ui/ageBand';
-import { Dialog } from '@/ui/Dialog';
 import { MathExpr } from '@/ui/MathExpr';
 import { NumberPad } from '@/ui/NumberPad';
 import { Plusi } from '@/ui/Plusi';
@@ -129,27 +128,24 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
   const advance = () => {
     const cur = stateRef.current;
     if (cur.phase !== 'correct' && cur.phase !== 'revealed') return;
-    if (cur.suggestion && !profile.settings.allowLevelChange) {
-      // The parent decided levels change automatically; say so briefly.
-      const level = cur.level + (cur.suggestion === 'up' ? 1 : -1);
-      setNotice(
-        cur.suggestion === 'up' ? t('practice.levelChanged.up') : t('practice.levelChanged.down'),
-      );
+    if (cur.suggestion === 'down') {
+      // A child who is stuck drops a level right away; one line says so, no question.
+      const level = cur.level - 1;
+      setNotice(t('practice.levelChanged.down'));
       apply({ type: 'changeLevel', level, exercise: generate(level) });
       return;
     }
-    if (cur.suggestion) return; // the dialog asks
     setNotice(null);
     apply({ type: 'next', exercise: generate(cur.level, cur.exercise.factId) });
   };
 
   // A correct answer moves on by itself after a short celebration.
   useEffect(() => {
-    if (s.phase !== 'correct' || (s.suggestion && profile.settings.allowLevelChange)) return;
+    if (s.phase !== 'correct') return;
     const id = window.setTimeout(advance, CORRECT_PAUSE_MS);
     return () => window.clearTimeout(id);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [s.phase, s.done, s.suggestion]);
+  }, [s.phase, s.done]);
 
   const answer = (v: number) => {
     if (s.exercise.input.type === 'choices') setTried((x) => [...x, v]);
@@ -337,21 +333,6 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
         </section>
       ) : null}
 
-      {s.suggestion && finished && profile.settings.allowLevelChange ? (
-        <LevelDialog
-          direction={s.suggestion}
-          tc={tc}
-          slow={slow}
-          onAccept={() => {
-            const level = s.level + (s.suggestion === 'up' ? 1 : -1);
-            apply({ type: 'changeLevel', level, exercise: generate(level) });
-          }}
-          onDecline={() => {
-            apply({ type: 'dismissSuggestion' });
-            apply({ type: 'next', exercise: generate(stateRef.current.level, e.factId) });
-          }}
-        />
-      ) : null}
     </main>
   );
 }
@@ -443,42 +424,4 @@ function explanation(s: SessionState, tc: TC): string {
   if (m === 'digitReversal') return tc('explain.digitReversal');
   // Other kinds have no specific advice yet: a gentle, general nudge.
   return tc('feedback.almost');
-}
-
-function LevelDialog({
-  direction,
-  tc,
-  slow,
-  onAccept,
-  onDecline,
-}: {
-  direction: 'up' | 'down';
-  tc: TC;
-  slow: boolean;
-  onAccept: () => void;
-  onDecline: () => void;
-}) {
-  const up = direction === 'up';
-  const body = up ? t('practice.levelUp.body') : t('practice.levelDown.body');
-  return (
-    <Dialog
-      title={up ? tc('practice.levelUp.title') : t('practice.levelDown.title')}
-      onClose={onDecline}
-      actions={
-        <>
-          <button type="button" className="btn btn--secondary" onClick={onDecline}>
-            {up ? t('practice.levelUp.no') : t('practice.levelDown.no')}
-          </button>
-          <button type="button" className="btn" onClick={onAccept}>
-            {up ? t('practice.levelUp.yes') : t('practice.levelDown.yes')}
-          </button>
-        </>
-      }
-    >
-      <div className="row">
-        <SpeakerButton text={body} slow={slow} />
-        <p>{body}</p>
-      </div>
-    </Dialog>
-  );
 }

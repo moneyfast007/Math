@@ -12,14 +12,17 @@ import type { Exercise } from './types';
  * - Three tries per exercise. A wrong answer gets a gentle, specific
  *   explanation; after the third the answer is shown with the solution.
  * - Only a first-try answer counts as correct for progress.
- * - Four first-try answers in a row → suggest a harder level.
- *   Two of the last three needing the answer revealed, or three in a row
- *   needing more than one try → suggest an easier level.
+ * - Moving up happens only at the end of a round, from its result (phase 4,
+ *   state/progress.ts: a passed station opens the next one), so nothing here
+ *   interrupts a child who is doing well.
+ * - Two of the last three needing the answer revealed, or three in a row
+ *   needing more than one try → the round drops to an easier level right away;
+ *   the screen says so in one line. A child who is stuck should not sit
+ *   through six more hard exercises.
  */
 
 export const ROUND_LENGTH: Record<AgeBand, number> = { young: 6, middle: 10, older: 12 };
 export const MAX_TRIES = 3;
-export const LEVEL_UP_STREAK = 4;
 
 export type Phase = 'answering' | 'wrong' | 'correct' | 'revealed' | 'finished';
 export type Outcome = 'first' | 'later' | 'revealed';
@@ -43,12 +46,11 @@ export interface SessionState {
   lastMistake: MistakeKind | null;
   /** The first mistake on this exercise; what progress records. */
   firstMistake: MistakeKind | null;
-  /** Consecutive first-try answers at the current level. */
-  streak: number;
   /** Outcomes at the current level, oldest first. */
   history: Outcome[];
   firstTryCount: number;
-  suggestion: 'up' | 'down' | null;
+  /** The round should drop a level before the next exercise. */
+  suggestion: 'down' | null;
 }
 
 export type SessionAction =
@@ -82,15 +84,13 @@ export function startSession(o: StartOptions): SessionState {
     lastValue: null,
     lastMistake: null,
     firstMistake: null,
-    streak: 0,
     history: [],
     firstTryCount: 0,
     suggestion: null,
   };
 }
 
-function suggestionFor(s: SessionState, history: Outcome[], streak: number): 'up' | 'down' | null {
-  if (streak >= LEVEL_UP_STREAK && s.level < s.maxLevel) return 'up';
+function suggestionFor(s: SessionState, history: Outcome[]): 'down' | null {
   if (s.level > s.minLevel) {
     const last3 = history.slice(-3);
     const revealed = last3.filter((o) => o === 'revealed').length;
@@ -102,14 +102,12 @@ function suggestionFor(s: SessionState, history: Outcome[], streak: number): 'up
 
 function complete(s: SessionState, outcome: Outcome, phase: 'correct' | 'revealed'): SessionState {
   const history = [...s.history, outcome];
-  const streak = outcome === 'first' ? s.streak + 1 : 0;
   return {
     ...s,
     phase,
     history,
-    streak,
     firstTryCount: s.firstTryCount + (outcome === 'first' ? 1 : 0),
-    suggestion: suggestionFor(s, history, streak),
+    suggestion: suggestionFor(s, history),
   };
 }
 
@@ -159,13 +157,13 @@ export function reduce(s: SessionState, a: SessionAction): SessionState {
     case 'changeLevel': {
       const level = Math.min(s.maxLevel, Math.max(s.minLevel, a.level));
       const done = s.phase === 'correct' || s.phase === 'revealed' ? s.done + 1 : s.done;
-      const base = { ...s, level, streak: 0, history: [] };
+      const base = { ...s, level, history: [] };
       if (done >= s.length) return { ...base, done, phase: 'finished', suggestion: null };
       return { ...freshExercise(base, a.exercise), done };
     }
     case 'dismissSuggestion':
-      // Asking again right away would nag; the counters start over.
-      return { ...s, suggestion: null, streak: 0, history: [] };
+      // Not used by the screen any more (levels drop without asking); kept for the tests.
+      return { ...s, suggestion: null, history: [] };
   }
 }
 
