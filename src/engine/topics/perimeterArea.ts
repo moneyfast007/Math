@@ -44,9 +44,20 @@ function squares(w: number, h: number): Exercise {
     hints: [
       hint(say('ex.area.squares.hint1', { w: { n: w, noun: SQUARE } })),
       hint(say('ex.area.squares.hint2')),
-      exampleHint('3 × 4 = 12', say('ex.area.squares.solution', { h: 3, w: { n: 4, noun: SQUARE }, r: { n: 12, noun: SQUARE } })),
+      exampleHint(
+        '3 × 4 = 12',
+        say('ex.area.squares.solution', {
+          h: 3,
+          w: { n: 4, noun: SQUARE },
+          r: { n: 12, noun: SQUARE },
+        }),
+      ),
     ],
-    solution: say('ex.area.squares.solution', { h, w: { n: w, noun: SQUARE }, r: { n: answer, noun: SQUARE } }),
+    solution: say('ex.area.squares.solution', {
+      h,
+      w: { n: w, noun: SQUARE },
+      r: { n: answer, noun: SQUARE },
+    }),
   });
 }
 
@@ -56,7 +67,13 @@ function measure(level: number, s: Shape, perimeter: boolean): Exercise {
   const square = s.w === s.h;
   const answer = perimeter ? 2 * (s.w + s.h) : s.w * s.h;
   const key = `${square ? 'ex.square' : 'ex.rect'}.${perimeter ? 'perimeter' : 'area'}` as const;
-  const ex: Shape = square ? (s.w === 5 ? { w: 4, h: 4 } : { w: 5, h: 5 }) : s.w === 5 && s.h === 3 ? { w: 6, h: 2 } : { w: 5, h: 3 };
+  const ex: Shape = square
+    ? s.w === 5
+      ? { w: 4, h: 4 }
+      : { w: 5, h: 5 }
+    : s.w === 5 && s.h === 3
+      ? { w: 6, h: 2 }
+      : { w: 5, h: 3 };
   const exAns = perimeter ? 2 * (ex.w + ex.h) : ex.w * ex.h;
   const unit = perimeter ? CM : SQCM;
   return exercise({
@@ -72,11 +89,35 @@ function measure(level: number, s: Shape, perimeter: boolean): Exercise {
     input: numpad(3),
     hints: [
       hint(say(perimeter ? 'ex.perimeter.hint1' : 'ex.area.hint1')),
-      hint(say(perimeter ? (square ? 'ex.square.perimeter.hint2' : 'ex.rect.perimeter.hint2') : square ? 'ex.square.area.hint2' : 'ex.rect.area.hint2')),
-      exampleHint(perimeter ? `${ex.w} + ${ex.h} + ${ex.w} + ${ex.h} = ${exAns}` : `${ex.w} × ${ex.h} = ${exAns}`, say(`${key}.solution` as const, { r: { n: exAns, noun: unit } })),
+      hint(
+        say(
+          perimeter
+            ? square
+              ? 'ex.square.perimeter.hint2'
+              : 'ex.rect.perimeter.hint2'
+            : square
+              ? 'ex.square.area.hint2'
+              : 'ex.rect.area.hint2',
+        ),
+      ),
+      exampleHint(
+        perimeter
+          ? `${ex.w} + ${ex.h} + ${ex.w} + ${ex.h} = ${exAns}`
+          : `${ex.w} × ${ex.h} = ${exAns}`,
+        say(`${key}.solution` as const, { r: { n: exAns, noun: unit } }),
+      ),
     ],
     solution: say(`${key}.solution` as const, { r: { n: answer, noun: unit } }),
-    diagnose: (v) => (perimeter && v === s.w * s.h ? 'wrongOperation' : !perimeter && v === 2 * (s.w + s.h) ? 'wrongOperation' : !perimeter && v === s.w + s.h ? 'wrongOperation' : perimeter && v === s.w + s.h ? 'other' : null),
+    diagnose: (v) =>
+      perimeter && v === s.w * s.h
+        ? 'wrongOperation'
+        : !perimeter && v === 2 * (s.w + s.h)
+          ? 'wrongOperation'
+          : !perimeter && v === s.w + s.h
+            ? 'wrongOperation'
+            : perimeter && v === s.w + s.h
+              ? 'other'
+              : null,
   });
 }
 
@@ -92,7 +133,10 @@ function missingSide(level: 6 | 7, rng: Rng): Exercise {
     level,
     prompt: t(`${key}.prompt` as const),
     display: '',
-    spoken: say(`${key}.spoken` as const, { total: { n: total, noun: fromArea ? SQCM : CM }, w: { n: w, noun: CM } }),
+    spoken: say(`${key}.spoken` as const, {
+      total: { n: total, noun: fromArea ? SQCM : CM },
+      w: { n: w, noun: CM },
+    }),
     visual: { type: 'rect', width: w, height: h },
     answer: h,
     operation: fromArea ? 'div' : 'sub',
@@ -100,10 +144,18 @@ function missingSide(level: 6 | 7, rng: Rng): Exercise {
     hints: [
       hint(say(`${key}.hint1` as const)),
       hint(say(`${key}.hint2` as const)),
-      exampleHint(fromArea ? '24 ÷ 6 = 4' : '(20 − 6 − 6) ÷ 2 = 4', say(`${key}.solution` as const, { r: { n: 4, noun: CM } })),
+      exampleHint(
+        fromArea ? '24 ÷ 6 = 4' : '(20 − 6 − 6) ÷ 2 = 4',
+        say(`${key}.solution` as const, { r: { n: 4, noun: CM } }),
+      ),
     ],
     solution: say(`${key}.solution` as const, { r: { n: h, noun: CM } }),
-    diagnose: (v) => (fromArea && v === total - w ? 'wrongOperation' : !fromArea && v === total - w ? 'other' : null),
+    diagnose: (v) =>
+      fromArea && v === total - w
+        ? 'wrongOperation'
+        : !fromArea && v === total - w
+          ? 'other'
+          : null,
   });
 }
 
@@ -139,7 +191,13 @@ function convert(n: number, c: (typeof CONVERSIONS)[number]): Exercise {
     hints: [
       hint(say('ex.convert.hint1', { one: from.singular, k: { n: c.k, noun: to } })),
       hint(say('ex.convert.hint2', { k: c.k })),
-      exampleHint(`${exN} → ${exN * c.k}`, say('ex.convert.solution', { amount: { n: exN, noun: from }, r: { n: exN * c.k, noun: to } })),
+      exampleHint(
+        `${exN} → ${exN * c.k}`,
+        say('ex.convert.solution', {
+          amount: { n: exN, noun: from },
+          r: { n: exN * c.k, noun: to },
+        }),
+      ),
     ],
     solution: say('ex.convert.solution', { amount: { n, noun: from }, r: { n: answer, noun: to } }),
     diagnose: (v) => (v === n * (c.k / 10) || v === n * c.k * 10 ? 'placeValue' : null),
@@ -153,9 +211,15 @@ function story(rng: Rng): Exercise {
   const who = CHARACTERS[(w + h) % CHARACTERS.length] as Character;
   const key = fence ? ('wp.fence' as const) : ('wp.carpet' as const);
   const answer = fence ? 2 * (w + h) : w * h;
-  const unit: Noun = fence ? { singular: 'מטר', plural: 'מטרים', gender: 'm' } : { singular: 'מטר רבוע', plural: 'מטרים רבועים', gender: 'm' };
+  const unit: Noun = fence
+    ? { singular: 'מטר', plural: 'מטרים', gender: 'm' }
+    : { singular: 'מטר רבוע', plural: 'מטרים רבועים', gender: 'm' };
   const meter: Noun = { singular: 'מטר', plural: 'מטרים', gender: 'm' };
-  const spoken = say(`${key}.story` as const, { name: who.name, w: { n: w, noun: meter }, h: { n: h, noun: meter } }, who.gender);
+  const spoken = say(
+    `${key}.story` as const,
+    { name: who.name, w: { n: w, noun: meter }, h: { n: h, noun: meter } },
+    who.gender,
+  );
   return exercise({
     factId: `pwp:${key}:${w}x${h}`,
     topicId: ID,
@@ -170,10 +234,20 @@ function story(rng: Rng): Exercise {
     hints: [
       hint(say(`${key}.hint1` as const)),
       hint(say(fence ? 'ex.rect.perimeter.hint2' : 'ex.rect.area.hint2')),
-      exampleHint(fence ? '5 + 3 + 5 + 3 = 16' : '5 × 3 = 15', say(fence ? 'ex.rect.perimeter.solution' : 'ex.rect.area.solution', { r: { n: fence ? 16 : 15, noun: fence ? CM : SQCM } })),
+      exampleHint(
+        fence ? '5 + 3 + 5 + 3 = 16' : '5 × 3 = 15',
+        say(fence ? 'ex.rect.perimeter.solution' : 'ex.rect.area.solution', {
+          r: { n: fence ? 16 : 15, noun: fence ? CM : SQCM },
+        }),
+      ),
     ],
     solution: say(`${key}.solution` as const, { r: { n: answer, noun: unit } }),
-    diagnose: (v) => (fence && v === w * h ? 'wrongOperation' : !fence && v === 2 * (w + h) ? 'wrongOperation' : null),
+    diagnose: (v) =>
+      fence && v === w * h
+        ? 'wrongOperation'
+        : !fence && v === 2 * (w + h)
+          ? 'wrongOperation'
+          : null,
   });
 }
 
@@ -182,13 +256,23 @@ function storyBank(): string[] {
   const out: string[] = [];
   for (const key of ['wp.fence', 'wp.carpet'] as const) {
     for (const who of CHARACTERS) {
-      out.push(...say(`${key}.story` as const, { name: who.name, w: { n: 5, noun: meter }, h: { n: 3, noun: meter } }, who.gender).parts);
+      out.push(
+        ...say(
+          `${key}.story` as const,
+          { name: who.name, w: { n: 5, noun: meter }, h: { n: 3, noun: meter } },
+          who.gender,
+        ).parts,
+      );
     }
   }
   return out;
 }
 
-const RECTS: Shape[] = range(2, 12).flatMap((w) => range(2, 9).filter((h) => h < w).map((h) => ({ w, h })));
+const RECTS: Shape[] = range(2, 12).flatMap((w) =>
+  range(2, 9)
+    .filter((h) => h < w)
+    .map((h) => ({ w, h })),
+);
 const SQUARES: Shape[] = range(2, 12).map((n) => ({ w: n, h: n }));
 
 export const perimeterArea = defineTopic({
@@ -198,16 +282,48 @@ export const perimeterArea = defineTopic({
   startLevel: () => 1,
   extraBank: storyBank,
   levels: [
-    closed(L(1), () => range(2, 8).flatMap((w) => range(2, 6).map((h) => ({ w, h }))), (s) => squares(s.w, s.h)),
-    closed(L(2), () => RECTS, (s) => measure(2, s, true)),
-    closed(L(3), () => RECTS, (s) => measure(3, s, false)),
-    closed(L(4), () => SQUARES, (s) => measure(4, s, true)),
-    closed(L(5), () => SQUARES, (s) => measure(5, s, false)),
+    closed(
+      L(1),
+      () => range(2, 8).flatMap((w) => range(2, 6).map((h) => ({ w, h }))),
+      (s) => squares(s.w, s.h),
+    ),
+    closed(
+      L(2),
+      () => RECTS,
+      (s) => measure(2, s, true),
+    ),
+    closed(
+      L(3),
+      () => RECTS,
+      (s) => measure(3, s, false),
+    ),
+    closed(
+      L(4),
+      () => SQUARES,
+      (s) => measure(4, s, true),
+    ),
+    closed(
+      L(5),
+      () => SQUARES,
+      (s) => measure(5, s, false),
+    ),
     open(L(6), (rng) => missingSide(6, rng)),
     open(L(7), (rng) => missingSide(7, rng)),
-    closed(L(8), () => CONVERSIONS.flatMap((c) => range(2, 9).map((n) => ({ n, c }))), (x) => convert(x.n, x.c)),
+    closed(
+      L(8),
+      () => CONVERSIONS.flatMap((c) => range(2, 9).map((n) => ({ n, c }))),
+      (x) => convert(x.n, x.c),
+    ),
     // Perimeter or area, mixed: the classic confusion is answering the other one.
-    closed(L(9), () => [...RECTS, ...SQUARES].flatMap((sh) => [{ sh, p: true }, { sh, p: false }]), (x) => measure(9, x.sh, x.p)),
+    closed(
+      L(9),
+      () =>
+        [...RECTS, ...SQUARES].flatMap((sh) => [
+          { sh, p: true },
+          { sh, p: false },
+        ]),
+      (x) => measure(9, x.sh, x.p),
+    ),
     open(L(10), story),
   ],
 });

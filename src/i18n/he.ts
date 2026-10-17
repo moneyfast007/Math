@@ -689,11 +689,14 @@ export const he = {
   'ex.dec.toFrac.hundredths': 'זה כמה מאיות?',
   'ex.dec.tenths.hint1': 'הספרה הראשונה אחרי הנקודה היא העשיריות.',
   'ex.dec.hundredths.hint1': 'שתי הספרות אחרי הנקודה הן המאיות.',
-  'ex.dec.place.hint2': 'אחרי הנקודה: עשיריות, מאיות, אלפיות. כמו אחדות, עשרות ומאות, רק בכיוון השני.',
+  'ex.dec.place.hint2':
+    'אחרי הנקודה: עשיריות, מאיות, אלפיות. כמו אחדות, עשרות ומאות, רק בכיוון השני.',
   'ex.dec.fromFrac.prompt': 'כתבו כשבר עשרוני:',
   'ex.dec.fromFrac.spoken': 'איך כותבים {words} כשבר עשרוני?',
-  'ex.dec.compare.hint1': 'קודם משווים את השלמים. אם הם שווים, משווים את העשיריות, ואחר כך את המאיות.',
-  'ex.dec.compare.hint2': 'זהירות: מספר עם יותר ספרות אחרי הנקודה הוא לא בהכרח גדול יותר. אפשר להוסיף אפס בסוף כדי להשוות.',
+  'ex.dec.compare.hint1':
+    'קודם משווים את השלמים. אם הם שווים, משווים את העשיריות, ואחר כך את המאיות.',
+  'ex.dec.compare.hint2':
+    'זהירות: מספר עם יותר ספרות אחרי הנקודה הוא לא בהכרח גדול יותר. אפשר להוסיף אפס בסוף כדי להשוות.',
   'ex.dec.addSub.hint1': 'נכתוב את המספרים זה מתחת לזה, נקודה מתחת לנקודה.',
   'ex.dec.addSub.hint2': 'מחברים או מחסרים כמו במספרים שלמים, והנקודה נשארת במקום.',
   'ex.dec.round.prompt': 'מה {x} מעוגל למספר שלם?',
@@ -750,7 +753,8 @@ export const he = {
   'ex.missingSide.area.hint2': 'אפשר לחלק את השטח בצלע הידועה.',
   'ex.missingSide.area.solution': 'הצלע השנייה היא {r}.',
   'ex.missingSide.perimeter.prompt': 'מה אורך הצלע החסרה?',
-  'ex.missingSide.perimeter.spoken': 'היקף המלבן הוא {total}, וצלע אחת היא {w}. מה אורך הצלע השנייה?',
+  'ex.missingSide.perimeter.spoken':
+    'היקף המלבן הוא {total}, וצלע אחת היא {w}. מה אורך הצלע השנייה?',
   'ex.missingSide.perimeter.hint1': 'בהיקף יש כל צלע פעמיים. נוריד את הצלע הידועה פעמיים.',
   'ex.missingSide.perimeter.hint2': 'מה שנשאר הוא שתי הצלעות האחרות. נחלק בשתיים.',
   'ex.missingSide.perimeter.solution': 'הצלע השנייה היא {r}.',

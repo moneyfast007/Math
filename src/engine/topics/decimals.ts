@@ -33,8 +33,10 @@ const L = (n: number) => `level.decimals.${n}`;
 /** A decimal answer off by a factor of ten is a place-value slip. */
 function decimalDiagnose(answer: number): (v: number) => MistakeKind | null {
   return (v) => {
-    if (Math.abs(round(v * 10, 4) - answer) < 1e-9 || Math.abs(round(v / 10, 4) - answer) < 1e-9) return 'placeValue';
-    if (Math.abs(round(v * 100, 4) - answer) < 1e-9 || Math.abs(round(v / 100, 4) - answer) < 1e-9) return 'placeValue';
+    if (Math.abs(round(v * 10, 4) - answer) < 1e-9 || Math.abs(round(v / 10, 4) - answer) < 1e-9)
+      return 'placeValue';
+    if (Math.abs(round(v * 100, 4) - answer) < 1e-9 || Math.abs(round(v / 100, 4) - answer) < 1e-9)
+      return 'placeValue';
     return null;
   };
 }
@@ -50,7 +52,9 @@ function toFraction(level: 1 | 2, n: number): Exercise {
     level,
     prompt: t('ex.frac.expand.prompt'),
     display: `${x} = ?/${den}`,
-    spoken: sayText(`{x} ${t(level === 1 ? 'ex.dec.toFrac.tenths' : 'ex.dec.toFrac.hundredths')}`, { x }),
+    spoken: sayText(`{x} ${t(level === 1 ? 'ex.dec.toFrac.tenths' : 'ex.dec.toFrac.hundredths')}`, {
+      x,
+    }),
     // A bar of ten for tenths; a hundred cells would be too small to see, so no picture for hundredths.
     ...(level === 1 ? { visual: { type: 'fraction' as const, parts: 10, shaded: n } } : {}),
     answer: n,
@@ -58,7 +62,10 @@ function toFraction(level: 1 | 2, n: number): Exercise {
     hints: [
       hint(say(level === 1 ? 'ex.dec.tenths.hint1' : 'ex.dec.hundredths.hint1')),
       hint(say('ex.dec.place.hint2')),
-      exampleHint(`${round(ex / den, 2)} = ${f(ex, den)}`, sayText('{x} זה {words}.', { x: round(ex / den, 2), words: w(ex, den) })),
+      exampleHint(
+        `${round(ex / den, 2)} = ${f(ex, den)}`,
+        sayText('{x} זה {words}.', { x: round(ex / den, 2), words: w(ex, den) }),
+      ),
     ],
     solution: sayText('{x} זה {words}.', { x, words: w(n, den) }),
     diagnose: (v) => (level === 2 && v * 10 === n ? 'placeValue' : null),
@@ -68,7 +75,14 @@ function toFraction(level: 1 | 2, n: number): Exercise {
 /** 7/10 = ?, 35/100 = ? (decimal answer). */
 function fromFraction(n: number, den: 10 | 100): Exercise {
   const x = round(n / den, 2);
-  const ex = den === 10 ? (n === 3 ? { n: 7, den } : { n: 3, den }) : n === 25 ? { n: 75, den } : { n: 25, den };
+  const ex =
+    den === 10
+      ? n === 3
+        ? { n: 7, den }
+        : { n: 3, den }
+      : n === 25
+        ? { n: 75, den }
+        : { n: 25, den };
   return exercise({
     factId: `dfrom:${n}/${den}`,
     topicId: ID,
@@ -81,7 +95,10 @@ function fromFraction(n: number, den: 10 | 100): Exercise {
     hints: [
       hint(say(den === 10 ? 'ex.dec.tenths.hint1' : 'ex.dec.hundredths.hint1')),
       hint(say('ex.dec.place.hint2')),
-      exampleHint(`${f(ex.n, ex.den)} = ${round(ex.n / ex.den, 2)}`, sayText('{words} זה {x}.', { words: w(ex.n, ex.den), x: round(ex.n / ex.den, 2) })),
+      exampleHint(
+        `${f(ex.n, ex.den)} = ${round(ex.n / ex.den, 2)}`,
+        sayText('{words} זה {x}.', { words: w(ex.n, ex.den), x: round(ex.n / ex.den, 2) }),
+      ),
     ],
     solution: sayText('{words} זה {x}.', { words: w(n, den), x }),
     diagnose: decimalDiagnose(x),
@@ -101,7 +118,9 @@ function compareExercise(level: number, a: number, b: number): Exercise {
     hints: [
       hint(say('ex.dec.compare.hint1')),
       hint(say('ex.dec.compare.hint2')),
-      a === 0.5 && b === 0.45 ? exampleHint('0.6 > 0.58', say('ex.bigger.solution', { w: 0.6, l: 0.58 })) : exampleHint('0.5 > 0.45', say('ex.bigger.solution', { w: 0.5, l: 0.45 })),
+      a === 0.5 && b === 0.45
+        ? exampleHint('0.6 > 0.58', say('ex.bigger.solution', { w: 0.6, l: 0.58 }))
+        : exampleHint('0.5 > 0.45', say('ex.bigger.solution', { w: 0.5, l: 0.45 })),
     ],
     solution: say('ex.bigger.solution', { w: Math.max(a, b), l: Math.min(a, b) }),
   });
@@ -141,7 +160,13 @@ function addSub(level: 6 | 7 | 8, rng: Rng): Exercise {
     op,
     b,
     hints: [hint(say('ex.dec.addSub.hint1')), hint(say('ex.dec.addSub.hint2'))],
-    example: hundredths ? (op === '+' ? { a: 1.25, b: 2.5 } : { a: 3.4, b: 1.15 }) : op === '+' ? { a: 1.5, b: 2.7 } : { a: 4.2, b: 1.6 },
+    example: hundredths
+      ? op === '+'
+        ? { a: 1.25, b: 2.5 }
+        : { a: 3.4, b: 1.15 }
+      : op === '+'
+        ? { a: 1.5, b: 2.7 }
+        : { a: 4.2, b: 1.6 },
     input: numpad(4, true),
     diagnose: decimalDiagnose(answer),
   });
@@ -164,7 +189,10 @@ function roundToWhole(rng: Rng): Exercise {
     hints: [
       hint(say('ex.round.hint1', { n: x, lo, hi: lo + 1 })),
       hint(say('ex.dec.round.hint2')),
-      exampleHint(x === 3.7 ? '2.3 → 2' : '3.7 → 4', say('ex.dec.round.solution', x === 3.7 ? { x: 2.3, r: 2 } : { x: 3.7, r: 4 })),
+      exampleHint(
+        x === 3.7 ? '2.3 → 2' : '3.7 → 4',
+        say('ex.dec.round.solution', x === 3.7 ? { x: 2.3, r: 2 } : { x: 3.7, r: 4 }),
+      ),
     ],
     solution: say('ex.dec.round.solution', { x, r: answer }),
   });
@@ -196,10 +224,26 @@ function story(rng: Rng): Exercise {
     input: numpad(3, true),
     hints: [
       hint(say(`${key}.hint1` as 'wp.dec.flour.hint1')),
-      { ...hint(say('hint.equation')), example: { display: `${a} ${op === '+' ? '+' : '−'} ${b} = ?`, spoken: say('hint.equation').text } },
-      exampleHint(op === '+' ? '1.5 + 2.5 = 4' : '3.5 − 1.2 = 2.3', sayText(op === '+' ? '{a} ועוד {b} זה {c}.' : '{a} פחות {b} זה {c}.', op === '+' ? { a: 1.5, b: 2.5, c: 4 } : { a: 3.5, b: 1.2, c: 2.3 })),
+      {
+        ...hint(say('hint.equation')),
+        example: {
+          display: `${a} ${op === '+' ? '+' : '−'} ${b} = ?`,
+          spoken: say('hint.equation').text,
+        },
+      },
+      exampleHint(
+        op === '+' ? '1.5 + 2.5 = 4' : '3.5 − 1.2 = 2.3',
+        sayText(
+          op === '+' ? '{a} ועוד {b} זה {c}.' : '{a} פחות {b} זה {c}.',
+          op === '+' ? { a: 1.5, b: 2.5, c: 4 } : { a: 3.5, b: 1.2, c: 2.3 },
+        ),
+      ),
     ],
-    solution: sayText(op === '+' ? '{a} ועוד {b} זה {c}.' : '{a} פחות {b} זה {c}.', { a, b, c: answer }),
+    solution: sayText(op === '+' ? '{a} ועוד {b} זה {c}.' : '{a} פחות {b} זה {c}.', {
+      a,
+      b,
+      c: answer,
+    }),
     diagnose: decimalDiagnose(answer),
   });
 }
@@ -209,7 +253,13 @@ function storyBank(): string[] {
   const out: string[] = [];
   for (const { key } of UNITS) {
     for (const who of CHARACTERS) {
-      out.push(...say(`${key}.story` as 'wp.dec.flour.story', { name: who.name, a: 1.5, b: 2.5 }, who.gender).parts);
+      out.push(
+        ...say(
+          `${key}.story` as 'wp.dec.flour.story',
+          { name: who.name, a: 1.5, b: 2.5 },
+          who.gender,
+        ).parts,
+      );
       out.push(say(`${key}.hint1` as 'wp.dec.flour.hint1').text);
     }
   }
@@ -223,9 +273,26 @@ export const decimals = defineTopic({
   startLevel: () => 1,
   extraBank: storyBank,
   levels: [
-    closed(L(1), () => range(1, 9), (n) => toFraction(1, n)),
-    closed(L(2), () => range(1, 99).filter((n) => n % 10 !== 0), (n) => toFraction(2, n)),
-    closed(L(3), () => [...range(1, 9).map((n) => ({ n, den: 10 as const })), ...range(1, 99).filter((n) => n % 10 !== 0).map((n) => ({ n, den: 100 as const }))], (x) => fromFraction(x.n, x.den)),
+    closed(
+      L(1),
+      () => range(1, 9),
+      (n) => toFraction(1, n),
+    ),
+    closed(
+      L(2),
+      () => range(1, 99).filter((n) => n % 10 !== 0),
+      (n) => toFraction(2, n),
+    ),
+    closed(
+      L(3),
+      () => [
+        ...range(1, 9).map((n) => ({ n, den: 10 as const })),
+        ...range(1, 99)
+          .filter((n) => n % 10 !== 0)
+          .map((n) => ({ n, den: 100 as const })),
+      ],
+      (x) => fromFraction(x.n, x.den),
+    ),
     open(L(4), compareSame),
     open(L(5), compareTricky),
     open(L(6), (rng) => addSub(6, rng)),

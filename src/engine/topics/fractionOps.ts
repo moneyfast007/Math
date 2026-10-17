@@ -1,5 +1,10 @@
 import { t } from '@/i18n';
-import { displayFraction as f, displayMixed, fractionNoun, fractionWords as w } from '@/lang/fractions';
+import {
+  displayFraction as f,
+  displayMixed,
+  fractionNoun,
+  fractionWords as w,
+} from '@/lang/fractions';
 import { numberToWords } from '@/lang/hebrewNumbers';
 import {
   CHARACTERS,
@@ -28,10 +33,16 @@ const ID = 'fraction-ops';
 const L = (n: number) => `level.fractionOps.${n}`;
 const DENS = [2, 3, 4, 5, 6, 8, 9, 10];
 
-const bar = (num: number, den: number): Visual => ({ type: 'fraction', parts: den, shaded: Math.min(num, den) });
+const bar = (num: number, den: number): Visual => ({
+  type: 'fraction',
+  parts: den,
+  shaded: Math.min(num, den),
+});
 
 /** Pairs d < D with D a multiple of d, both with a Hebrew word. */
-const RELATED = DENS.flatMap((d) => DENS.filter((D) => D > d && D % d === 0).map((D) => ({ d, D })));
+const RELATED = DENS.flatMap((d) =>
+  DENS.filter((D) => D > d && D % d === 0).map((D) => ({ d, D })),
+);
 
 /** A mixed number in words: "שתיים ושלושה רבעים". */
 function mixedWords(whole: number, num: number, den: number): string {
@@ -57,7 +68,10 @@ function expand(n: number, d: number, D: number): Exercise {
     hints: [
       hint(say('ex.frac.expand.hint1', { k })),
       hint(say('ex.frac.expand.hint2'), { visual: bar(answer, D) }),
-      exampleHint(`${f(ex.n, ex.d)} = ${f(exAns, ex.D)}`, say('ex.frac.equal.solution', { a: w(ex.n, ex.d), b: w(exAns, ex.D) })),
+      exampleHint(
+        `${f(ex.n, ex.d)} = ${f(exAns, ex.D)}`,
+        say('ex.frac.equal.solution', { a: w(ex.n, ex.d), b: w(exAns, ex.D) }),
+      ),
     ],
     solution: say('ex.frac.equal.solution', { a: w(n, d), b: w(answer, D) }),
   });
@@ -80,7 +94,10 @@ function simplify(N: number, D: number, d: number): Exercise {
     hints: [
       hint(say('ex.frac.simplify.hint1', { k: D / d })),
       hint(say('ex.frac.expand.hint2'), { visual: bar(answer, d) }),
-      exampleHint(`${f(ex.N, ex.D)} = ${f(ex.N / (ex.D / ex.d), ex.d)}`, say('ex.frac.equal.solution', { a: w(ex.N, ex.D), b: w(ex.N / (ex.D / ex.d), ex.d) })),
+      exampleHint(
+        `${f(ex.N, ex.D)} = ${f(ex.N / (ex.D / ex.d), ex.d)}`,
+        say('ex.frac.equal.solution', { a: w(ex.N, ex.D), b: w(ex.N / (ex.D / ex.d), ex.d) }),
+      ),
     ],
     solution: say('ex.frac.equal.solution', { a: w(N, D), b: w(answer, d) }),
   });
@@ -142,8 +159,15 @@ function relatedSum(level: 4 | 5, a: number, d: number, b: number, D: number): E
     input: numpad(2),
     hints: [
       hint(say('ex.frac.related.hint1', { a: w(a, d), b: w(a * k, D) })),
-      hint(say(add ? 'ex.frac.same.hintAdd' : 'ex.frac.same.hintSub', { plural: fractionNoun(D).plural })),
-      exampleHint(`${f(e.a, e.d)} ${sym} ${f(e.b, e.D)} = ${f(e.r, e.D)}`, solved(e.a, e.d, e.b, e.D, e.r)),
+      hint(
+        say(add ? 'ex.frac.same.hintAdd' : 'ex.frac.same.hintSub', {
+          plural: fractionNoun(D).plural,
+        }),
+      ),
+      exampleHint(
+        `${f(e.a, e.d)} ${sym} ${f(e.b, e.D)} = ${f(e.r, e.D)}`,
+        solved(e.a, e.d, e.b, e.D, e.r),
+      ),
     ],
     solution: solved(a, d, b, D, answer),
     diagnose: (v) => (v === (add ? a + b : Math.abs(a - b)) ? 'other' : null),
@@ -164,14 +188,19 @@ function improper(level: 6 | 7, N: number, d: number): Exercise {
     level,
     prompt: t(askWhole ? 'ex.frac.improper.wholes' : 'ex.frac.improper.rest'),
     display: askWhole ? `${f(N, d)} = ? ${f(rest, d)}` : `${f(N, d)} = ${whole} ?/${d}`,
-    spoken: say(askWhole ? 'ex.frac.improper.spokenWholes' : 'ex.frac.improper.spokenRest', { a: w(N, d) }),
+    spoken: say(askWhole ? 'ex.frac.improper.spokenWholes' : 'ex.frac.improper.spokenRest', {
+      a: w(N, d),
+    }),
     visual: bar(d, d),
     answer: askWhole ? whole : rest,
     input: numpad(2),
     hints: [
       hint(say('ex.frac.improper.hint1', { all: { n: d, noun: fractionNoun(d) } })),
       hint(say('ex.frac.improper.hint2'), { visual: bar(d, d) }),
-      exampleHint(`${f(ex.N, ex.d)} = ${displayMixed(exW, exR, ex.d)}`, say('ex.frac.equal.solution', { a: w(ex.N, ex.d), b: mixedWords(exW, exR, ex.d) })),
+      exampleHint(
+        `${f(ex.N, ex.d)} = ${displayMixed(exW, exR, ex.d)}`,
+        say('ex.frac.equal.solution', { a: w(ex.N, ex.d), b: mixedWords(exW, exR, ex.d) }),
+      ),
     ],
     solution: say('ex.frac.equal.solution', { a: w(N, d), b: mixedWords(whole, rest, d) }),
   });
@@ -180,7 +209,8 @@ function improper(level: 6 | 7, N: number, d: number): Exercise {
 /** 2 1/3 = ?/3 */
 function mixedToImproper(whole: number, n: number, d: number): Exercise {
   const answer = whole * d + n;
-  const ex = whole === 1 && n === 3 && d === 4 ? { whole: 2, n: 1, d: 3 } : { whole: 1, n: 3, d: 4 };
+  const ex =
+    whole === 1 && n === 3 && d === 4 ? { whole: 2, n: 1, d: 3 } : { whole: 1, n: 3, d: 4 };
   const exA = ex.whole * ex.d + ex.n;
   return exercise({
     factId: `fmix:${whole} ${n}/${d}`,
@@ -188,14 +218,20 @@ function mixedToImproper(whole: number, n: number, d: number): Exercise {
     level: 8,
     prompt: t('ex.frac.expand.prompt'),
     display: `${displayMixed(whole, n, d)} = ?/${d}`,
-    spoken: say('ex.frac.expand.spoken', { a: mixedWords(whole, n, d), plural: fractionNoun(d).plural }),
+    spoken: say('ex.frac.expand.spoken', {
+      a: mixedWords(whole, n, d),
+      plural: fractionNoun(d).plural,
+    }),
     visual: bar(d, d),
     answer,
     input: numpad(2),
     hints: [
       hint(say('ex.frac.mixed.hint1', { all: { n: d, noun: fractionNoun(d) } })),
       hint(say('ex.frac.mixed.hint2')),
-      exampleHint(`${displayMixed(ex.whole, ex.n, ex.d)} = ${f(exA, ex.d)}`, say('ex.frac.equal.solution', { a: mixedWords(ex.whole, ex.n, ex.d), b: w(exA, ex.d) })),
+      exampleHint(
+        `${displayMixed(ex.whole, ex.n, ex.d)} = ${f(exA, ex.d)}`,
+        say('ex.frac.equal.solution', { a: mixedWords(ex.whole, ex.n, ex.d), b: w(exA, ex.d) }),
+      ),
     ],
     solution: say('ex.frac.equal.solution', { a: mixedWords(whole, n, d), b: w(answer, d) }),
     diagnose: (v) => (v === whole + n ? 'other' : null),
@@ -205,7 +241,8 @@ function mixedToImproper(whole: number, n: number, d: number): Exercise {
 /** 3/4 of 20 */
 function ofQuantity(n: number, d: number, total: number): Exercise {
   const answer = (total / d) * n;
-  const ex = n === 2 && d === 3 && total === 12 ? { n: 3, d: 4, total: 12 } : { n: 2, d: 3, total: 12 };
+  const ex =
+    n === 2 && d === 3 && total === 12 ? { n: 3, d: 4, total: 12 } : { n: 2, d: 3, total: 12 };
   const exA = (ex.total / ex.d) * ex.n;
   return exercise({
     factId: `fof2:${n}/${d}:${total}`,
@@ -221,7 +258,10 @@ function ofQuantity(n: number, d: number, total: number): Exercise {
     hints: [
       hint(say('ex.frac.of.hint1', { d, n })),
       hint(say('ex.frac.of.hint2', { d })),
-      exampleHint(`${f(ex.n, ex.d)} × ${ex.total} = ${exA}`, say('ex.frac.of.solution', { frac: w(ex.n, ex.d), whole: ex.total, r: exA })),
+      exampleHint(
+        `${f(ex.n, ex.d)} × ${ex.total} = ${exA}`,
+        say('ex.frac.of.solution', { frac: w(ex.n, ex.d), whole: ex.total, r: exA }),
+      ),
     ],
     solution: say('ex.frac.of.solution', { frac: w(n, d), whole: total, r: answer }),
     diagnose: (v) => (v === total / d ? 'other' : null),
@@ -235,7 +275,17 @@ function story(i: number, n: number, d: number, total: number): Exercise {
   const noun = WORD_NOUNS[(i * 5) % WORD_NOUNS.length] ?? WORD_NOUNS[0];
   if (!who || !other || !noun) throw new Error('characters and nouns are not empty');
   const answer = (total / d) * n;
-  const spoken = say('wp.fraction.story', { name: who.name, other: other.name, a: { n: total, noun }, frac: w(n, d), plural: noun.plural }, who.gender);
+  const spoken = say(
+    'wp.fraction.story',
+    {
+      name: who.name,
+      other: other.name,
+      a: { n: total, noun },
+      frac: w(n, d),
+      plural: noun.plural,
+    },
+    who.gender,
+  );
   return exercise({
     factId: `fwp:${i}:${n}/${d}:${total}`,
     topicId: ID,
@@ -248,7 +298,10 @@ function story(i: number, n: number, d: number, total: number): Exercise {
     input: numpad(3),
     hints: [
       hint(say('wp.fraction.hint1', { frac: w(n, d) })),
-      { ...hint(say('hint.equation')), example: { display: `${f(n, d)} × ${total} = ?`, spoken: say('hint.equation').text } },
+      {
+        ...hint(say('hint.equation')),
+        example: { display: `${f(n, d)} × ${total} = ?`, spoken: say('hint.equation').text },
+      },
       exampleHint('2/3 × 12 = 8', say('ex.frac.of.solution', { frac: w(2, 3), whole: 12, r: 8 })),
     ],
     solution: say('ex.frac.of.solution', { frac: w(n, d), whole: total, r: answer }),
@@ -274,15 +327,92 @@ export const fractionOps = defineTopic({
   grades: [4],
   startLevel: () => 1,
   levels: [
-    closed(L(1), () => EXPAND_FACTS, (x) => expand(x.n, x.d, x.D)),
-    closed(L(2), () => EXPAND_FACTS.map((x) => ({ N: x.n * (x.D / x.d), D: x.D, d: x.d })), (x) => simplify(x.N, x.D, x.d)),
-    closed(L(3), () => COMPARE_FACTS, (x) => compare(x.a, x.b)),
-    closed(L(4), () => RELATED.flatMap(({ d, D }) => range(1, d - 1).flatMap((a) => range(1, D - 1).filter((b) => a * (D / d) + b < D).map((b) => ({ a, d, b, D })))), (x) => relatedSum(4, x.a, x.d, x.b, x.D)),
-    closed(L(5), () => RELATED.flatMap(({ d, D }) => range(1, d - 1).flatMap((a) => range(1, D - 1).filter((b) => a * (D / d) - b > 0).map((b) => ({ a, d, b, D })))), (x) => relatedSum(5, x.a, x.d, x.b, x.D)),
-    closed(L(6), () => DENS.flatMap((d) => range(d + 1, 3 * d - 1).filter((N) => N % d !== 0).map((N) => ({ N, d }))), (x) => improper(6, x.N, x.d)),
-    closed(L(7), () => DENS.flatMap((d) => range(d + 1, 3 * d - 1).filter((N) => N % d !== 0).map((N) => ({ N, d }))), (x) => improper(7, x.N, x.d)),
-    closed(L(8), () => [1, 2, 3].flatMap((whole) => DENS.flatMap((d) => range(1, d - 1).map((n) => ({ whole, n, d })))), (x) => mixedToImproper(x.whole, x.n, x.d)),
-    closed(L(9), () => [2, 3, 4, 5, 8, 10].flatMap((d) => range(2, d - 1).flatMap((n) => range(2, 6).map((k) => ({ n, d, total: d * k })))).filter((x) => x.total <= 60), (x) => ofQuantity(x.n, x.d, x.total)),
-    closed(L(10), () => [2, 3, 4, 5].flatMap((d) => range(1, d - 1).flatMap((n) => range(3, 6).map((k, j) => ({ i: d * 7 + n * 3 + j, n, d, total: d * k })))), (x) => story(x.i, x.n, x.d, x.total)),
+    closed(
+      L(1),
+      () => EXPAND_FACTS,
+      (x) => expand(x.n, x.d, x.D),
+    ),
+    closed(
+      L(2),
+      () => EXPAND_FACTS.map((x) => ({ N: x.n * (x.D / x.d), D: x.D, d: x.d })),
+      (x) => simplify(x.N, x.D, x.d),
+    ),
+    closed(
+      L(3),
+      () => COMPARE_FACTS,
+      (x) => compare(x.a, x.b),
+    ),
+    closed(
+      L(4),
+      () =>
+        RELATED.flatMap(({ d, D }) =>
+          range(1, d - 1).flatMap((a) =>
+            range(1, D - 1)
+              .filter((b) => a * (D / d) + b < D)
+              .map((b) => ({ a, d, b, D })),
+          ),
+        ),
+      (x) => relatedSum(4, x.a, x.d, x.b, x.D),
+    ),
+    closed(
+      L(5),
+      () =>
+        RELATED.flatMap(({ d, D }) =>
+          range(1, d - 1).flatMap((a) =>
+            range(1, D - 1)
+              .filter((b) => a * (D / d) - b > 0)
+              .map((b) => ({ a, d, b, D })),
+          ),
+        ),
+      (x) => relatedSum(5, x.a, x.d, x.b, x.D),
+    ),
+    closed(
+      L(6),
+      () =>
+        DENS.flatMap((d) =>
+          range(d + 1, 3 * d - 1)
+            .filter((N) => N % d !== 0)
+            .map((N) => ({ N, d })),
+        ),
+      (x) => improper(6, x.N, x.d),
+    ),
+    closed(
+      L(7),
+      () =>
+        DENS.flatMap((d) =>
+          range(d + 1, 3 * d - 1)
+            .filter((N) => N % d !== 0)
+            .map((N) => ({ N, d })),
+        ),
+      (x) => improper(7, x.N, x.d),
+    ),
+    closed(
+      L(8),
+      () =>
+        [1, 2, 3].flatMap((whole) =>
+          DENS.flatMap((d) => range(1, d - 1).map((n) => ({ whole, n, d }))),
+        ),
+      (x) => mixedToImproper(x.whole, x.n, x.d),
+    ),
+    closed(
+      L(9),
+      () =>
+        [2, 3, 4, 5, 8, 10]
+          .flatMap((d) =>
+            range(2, d - 1).flatMap((n) => range(2, 6).map((k) => ({ n, d, total: d * k }))),
+          )
+          .filter((x) => x.total <= 60),
+      (x) => ofQuantity(x.n, x.d, x.total),
+    ),
+    closed(
+      L(10),
+      () =>
+        [2, 3, 4, 5].flatMap((d) =>
+          range(1, d - 1).flatMap((n) =>
+            range(3, 6).map((k, j) => ({ i: d * 7 + n * 3 + j, n, d, total: d * k })),
+          ),
+        ),
+      (x) => story(x.i, x.n, x.d, x.total),
+    ),
   ],
 });
