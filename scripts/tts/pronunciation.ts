@@ -7,10 +7,10 @@
  * Chirp 3 HD) showed that vocalizing only these words beats both plain text
  * and fully vocalized sentences, which change the overall delivery.
  *
- * Findings applied here:
- * - Number words (tens, hundreds, thousands, ambiguous units) always get nikud.
- * - The conjunction ו gets its own vowel (וּ before sheva and ב/ו/מ/פ, וְ otherwise);
- *   leaving it bare next to a vocalized word made the reading worse.
+ * Findings applied here (three listening rounds):
+ * - The feminine teens' "עשרה" and a lone "עשר"/"עשרה" need nikud.
+ * - Only a short list of other words helps (LEXICON); broad nikud hurts.
+ * - When a word with a ו prefix is vocalized, the ו gets its vowel too.
  * - Masculine teens ("אחד עשר") are read correctly as plain text and are left alone.
  *
  * This runs only on the way to the TTS service. The app keeps the plain text,
@@ -30,46 +30,23 @@ const MASCULINE_UNITS = new Set([
   'תשעה',
 ]);
 
-/** Words whose reading never depends on context. */
+/**
+ * Words whose reading never depends on context. Only words the listening
+ * rounds showed to help are here; vocalizing every number word made sentences
+ * that were already fine worse (round 3: "שֶׁבַע", "חָמֵשׁ", "שְׁלוֹשִׁים" all lost
+ * to plain text), and "ושתיים" reads best plain.
+ */
 const LEXICON: Readonly<Record<string, string>> = {
-  // Units that plain text leaves ambiguous
   שתים: 'שְׁתֵּים',
-  שתיים: 'שְׁתַּיִם',
   שנים: 'שְׁנֵים',
-  שניים: 'שְׁנַיִם',
-  חמש: 'חָמֵשׁ',
-  שש: 'שֵׁשׁ',
-  שבע: 'שֶׁבַע',
-  תשע: 'תֵּשַׁע',
-  שלושה: 'שְׁלוֹשָׁה',
-  ארבעה: 'אַרְבָּעָה',
-  חמישה: 'חֲמִשָּׁה',
-  שישה: 'שִׁשָּׁה',
-  שבעה: 'שִׁבְעָה',
-  תשעה: 'תִּשְׁעָה',
-  // Tens
-  עשרים: 'עֶשְׂרִים',
-  שלושים: 'שְׁלוֹשִׁים',
-  ארבעים: 'אַרְבָּעִים',
-  חמישים: 'חֲמִשִּׁים',
-  שישים: 'שִׁשִּׁים',
-  שבעים: 'שִׁבְעִים',
-  שמונים: 'שְׁמוֹנִים',
-  תשעים: 'תִּשְׁעִים',
-  // Hundreds and thousands
-  מאה: 'מֵאָה',
-  מאתיים: 'מָאתַיִם',
-  מאות: 'מֵאוֹת',
-  אלף: 'אֶלֶף',
-  אלפיים: 'אַלְפַּיִם',
   אלפים: 'אֲלָפִים',
-  // Other words the listening tests flagged
   לשש: 'לְשֵׁשׁ',
   לחלק: 'לְחַלֵּק',
   גולות: 'גֻּלּוֹת',
-  ננסה: 'נְנַסֶּה',
-  נספור: 'נִסְפֹּר',
   שוות: 'שָׁווֹת',
+  // Still being tested (round 4): these two appear often in today's exercises.
+  שש: 'שֵׁשׁ',
+  עשרים: 'עֶשְׂרִים',
 };
 
 const SHEVA = 'ְ';

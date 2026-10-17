@@ -20,6 +20,10 @@ on:
         description: 'Variants to generate, comma separated (empty = all). E.g. chirp3-hd,chirp3-hd-fixed,chirp3-hd-nikud'
         required: false
         default: ''
+      set:
+        description: 'Sentence set: sample (the original 40) or bank (round 4, from today''s exercises)'
+        required: false
+        default: 'sample'
 
 permissions:
   contents: write
@@ -49,7 +53,7 @@ jobs:
           set -o pipefail
           mkdir -p scripts/tts/out-sample
           ONLY="${{ inputs.only }}"
-          npm run tts:sample -- --voice "${{ inputs.voice }}" ${ONLY:+--only "$ONLY"} 2>&1 | tee scripts/tts/out-sample/log.txt
+          npm run tts:sample -- --voice "${{ inputs.voice }}" --set "${{ inputs.set }}" ${ONLY:+--only "$ONLY"} 2>&1 | tee scripts/tts/out-sample/log.txt
       - name: Publish to the tts-sample branch (also on failure, with the log)
         run: |
           rm -rf public/tts-sample

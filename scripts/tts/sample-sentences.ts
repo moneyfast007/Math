@@ -88,3 +88,23 @@ export const NIKUD_PAIRS: readonly { plain: string; vocalized: string }[] = [
 ];
 
 export const NIKUD_SENTENCES: readonly string[] = NIKUD_PAIRS.map((p) => p.vocalized);
+
+/**
+ * Round 4: sentences taken from today's exercise bank that contain the words
+ * still in question (שש, עשרים) or the patterns that matter most (teens,
+ * counting aloud). Compared plain vs targeted nikud.
+ */
+export const BANK_CHECK: readonly string[] = [
+  'כמה זה שש ועוד שבע?',
+  'שש עוגיות.',
+  'היו שש דבורים. לקחו שתי דבורים. כמה דבורים נשארו?',
+  'כמה זה אחת עשרה פחות שש?',
+  'תשע ועוד כמה זה שש עשרה?',
+  'עשרים פחות כמה זה ארבע עשרה?',
+  'למשל, עשר ועוד עשר זה עשרים.',
+  'למשל, כאן יש ארבעה כוכבים: אחת, שתיים, שלוש, ארבע.',
+  'כמה זה שתים עשרה פחות שבע?',
+  'שבע עשרה פחות כמה זה תשע?',
+  'שמונה ועוד חמש זה שלוש עשרה.',
+  'היו עשרה בלונים. לקחו שלושה בלונים. כמה בלונים נשארו?',
+];

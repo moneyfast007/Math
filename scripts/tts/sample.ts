@@ -10,7 +10,7 @@ import {
   type VoiceSpec,
 } from './lib';
 import { vocalizeForTts } from './pronunciation';
-import { NIKUD_PAIRS, SENTENCES } from './sample-sentences';
+import { BANK_CHECK, NIKUD_PAIRS, SENTENCES as SAMPLE_SENTENCES } from './sample-sentences';
 
 /**
  * Voice comparison batch. Produces, for each variant, one MP3 per test sentence
@@ -34,8 +34,12 @@ const { values } = parseArgs({
   options: {
     only: { type: 'string' },
     voice: { type: 'string', default: 'Leda' },
+    /** "bank": the round-4 sentences from today's exercises instead of the original 40. */
+    set: { type: 'string', default: 'sample' },
   },
 });
+
+const SENTENCES: readonly string[] = values.set === 'bank' ? BANK_CHECK : SAMPLE_SENTENCES;
 
 interface Variant {
   name: string;
@@ -60,10 +64,10 @@ const chirp: VoiceSpec = { engine: 'chirp3-hd', voice: values.voice };
 
 const ALL_VARIANTS: Variant[] = [
   { name: 'gemini-flash', spec: gemini, texts: [...SENTENCES] },
-  { name: 'gemini-flash-nikud', spec: gemini, texts: nikudAligned() },
+  ...(values.set === 'bank' ? [] : [{ name: 'gemini-flash-nikud', spec: gemini, texts: nikudAligned() }]),
   { name: 'chirp3-hd', spec: chirp, texts: [...SENTENCES] },
   { name: 'chirp3-hd-fixed', spec: chirp, texts: SENTENCES.map(vocalizeForTts) },
-  { name: 'chirp3-hd-nikud', spec: chirp, texts: nikudAligned() },
+  ...(values.set === 'bank' ? [] : [{ name: 'chirp3-hd-nikud', spec: chirp, texts: nikudAligned() }]),
 ];
 
 const only = values.only?.split(',').map((x) => x.trim());
