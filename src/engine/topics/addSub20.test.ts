@@ -8,7 +8,10 @@ const exercises = allExercises();
 describe('add-sub-20: every exercise it can produce', () => {
   it('produces exercises at every level', () => {
     for (const { level } of LEVELS) {
-      expect(exercises.some((e) => e.level === level), `level ${level}`).toBe(true);
+      expect(
+        exercises.some((e) => e.level === level),
+        `level ${level}`,
+      ).toBe(true);
     }
   });
 
@@ -40,11 +43,13 @@ describe('add-sub-20: every exercise it can produce', () => {
   it('never reveals the answer in a hint text or worked example', () => {
     for (const e of exercises) {
       for (const h of e.hints) {
-        if (h.example) expect(h.example.display, e.factId).not.toBe(e.display.replace('?', String(e.answer)));
+        if (h.example)
+          expect(h.example.display, e.factId).not.toBe(e.display.replace('?', String(e.answer)));
       }
       // Hint 3's example uses a different fact.
       const ex = e.hints[2].example?.display ?? '';
-      if (e.display) expect(ex.startsWith(e.display.split('=')[0]?.trim() ?? '§'), e.factId).toBe(false);
+      if (e.display)
+        expect(ex.startsWith(e.display.split('=')[0]?.trim() ?? '§'), e.factId).toBe(false);
     }
   });
 
@@ -66,7 +71,10 @@ describe('add-sub-20: every exercise it can produce', () => {
       expect(c, e.factId).toHaveLength(3);
       expect(new Set(c).size, e.factId).toBe(3);
       expect(c, e.factId).toContain(e.answer);
-      expect([...c].sort((a, b) => a - b), e.factId).toEqual(c);
+      expect(
+        [...c].sort((a, b) => a - b),
+        e.factId,
+      ).toEqual(c);
       for (const v of c) expect(v, e.factId).toBeGreaterThanOrEqual(0);
     }
   });

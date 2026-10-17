@@ -172,7 +172,13 @@ describe('app store', () => {
     store.getState().recordAttempt(p.id, { topicId: 'add-sub-20', level: 8, correct: true, at: 5 });
     store
       .getState()
-      .recordAttempt(p.id, { topicId: 'add-sub-20', level: 8, correct: false, mistake: 'offByOne', at: 6 });
+      .recordAttempt(p.id, {
+        topicId: 'add-sub-20',
+        level: 8,
+        correct: false,
+        mistake: 'offByOne',
+        at: 6,
+      });
     expect(store.getState().data.progress[p.id]?.topics['add-sub-20']).toMatchObject({
       level: 8,
       attempts: 2,

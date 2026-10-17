@@ -36,7 +36,11 @@ export function ChildHomeScreen() {
   return (
     <main className="screen" data-screen="play">
       <header className="screen__header">
-        <button type="button" className="btn btn--secondary" onClick={() => navigate({ name: 'home' })}>
+        <button
+          type="button"
+          className="btn btn--secondary"
+          onClick={() => navigate({ name: 'home' })}
+        >
           {tc('child.switch')}
         </button>
       </header>
@@ -51,7 +55,11 @@ export function ChildHomeScreen() {
         <h2 id="station-title">{t(station.topic.labelKey as TranslationKey)}</h2>
         <p className="muted">{t('child.levelLabel', { params: { level, name: levelName } })}</p>
         <div className="station__actions">
-          <button type="button" className="btn btn--hero" onClick={() => navigate({ name: 'practice' })}>
+          <button
+            type="button"
+            className="btn btn--hero"
+            onClick={() => navigate({ name: 'practice' })}
+          >
             {t('child.start')}
           </button>
           <SpeakerButton text={t('child.start')} />

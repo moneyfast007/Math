@@ -37,7 +37,9 @@ function pairs(
   bRange: number[],
   keep: (a: number, b: number) => boolean,
 ): [number, number][] {
-  return aRange.flatMap((a) => bRange.filter((b) => keep(a, b)).map((b) => [a, b] as [number, number]));
+  return aRange.flatMap((a) =>
+    bRange.filter((b) => keep(a, b)).map((b) => [a, b] as [number, number]),
+  );
 }
 
 /** The facts of each level. Order matters only for picking the worked example. */
@@ -48,7 +50,11 @@ function factsFor(level: number): Fact[] {
     case 2:
       return range(3, 10).map((n) => ({ kind: 'count', n }));
     case 3:
-      return pairs(range(1, 4), range(1, 4), (a, b) => a + b <= 5).map(([a, b]) => ({ kind: 'objAdd', a, b }));
+      return pairs(range(1, 4), range(1, 4), (a, b) => a + b <= 5).map(([a, b]) => ({
+        kind: 'objAdd',
+        a,
+        b,
+      }));
     case 4:
       return pairs(range(1, 9), range(1, 9), (a, b) => a + b >= 4 && a + b <= 10).map(([a, b]) => ({
         kind: 'objAdd',
@@ -56,25 +62,45 @@ function factsFor(level: number): Fact[] {
         b,
       }));
     case 5:
-      return pairs(range(2, 10), range(1, 9), (a, b) => b < a).map(([a, b]) => ({ kind: 'objSub', a, b }));
+      return pairs(range(2, 10), range(1, 9), (a, b) => b < a).map(([a, b]) => ({
+        kind: 'objSub',
+        a,
+        b,
+      }));
     case 6:
-      return pairs(range(1, 9), range(1, 9), (a, b) => a + b <= 10).map(([a, b]) => ({ kind: 'add', a, b }));
+      return pairs(range(1, 9), range(1, 9), (a, b) => a + b <= 10).map(([a, b]) => ({
+        kind: 'add',
+        a,
+        b,
+      }));
     case 7:
-      return pairs(range(2, 10), range(1, 10), (a, b) => b <= a).map(([a, b]) => ({ kind: 'sub', a, b }));
+      return pairs(range(2, 10), range(1, 10), (a, b) => b <= a).map(([a, b]) => ({
+        kind: 'sub',
+        a,
+        b,
+      }));
     case 8:
       // Up to 20 without crossing ten: 12 + 5, 17 − 4.
       return [
-        ...pairs(range(10, 18), range(1, 9), (a, b) => (a % 10) + b <= 9).map(
-          ([a, b]): Fact => ({ kind: 'add', a, b }),
-        ),
-        ...pairs(range(11, 19), range(1, 9), (a, b) => b <= a % 10).map(
-          ([a, b]): Fact => ({ kind: 'sub', a, b }),
-        ),
+        ...pairs(range(10, 18), range(1, 9), (a, b) => (a % 10) + b <= 9).map(([a, b]): Fact => ({
+          kind: 'add',
+          a,
+          b,
+        })),
+        ...pairs(range(11, 19), range(1, 9), (a, b) => b <= a % 10).map(([a, b]): Fact => ({
+          kind: 'sub',
+          a,
+          b,
+        })),
       ];
     case 9:
       // Crossing ten: 8 + 5, 14 − 6.
       return [
-        ...pairs(range(2, 9), range(2, 9), (a, b) => a + b >= 11).map(([a, b]): Fact => ({ kind: 'add', a, b })),
+        ...pairs(range(2, 9), range(2, 9), (a, b) => a + b >= 11).map(([a, b]): Fact => ({
+          kind: 'add',
+          a,
+          b,
+        })),
         ...pairs(range(11, 18), range(2, 9), (a, b) => b > a % 10 && a - b >= 2).map(
           ([a, b]): Fact => ({ kind: 'sub', a, b }),
         ),
@@ -157,7 +183,8 @@ function diagnoseArith(
   wrongOpValue: number | null,
 ): MistakeKind | null {
   if (value === answer) return null;
-  if (wrongOpValue !== null && value === wrongOpValue && wrongOpValue !== answer) return 'wrongOperation';
+  if (wrongOpValue !== null && value === wrongOpValue && wrongOpValue !== answer)
+    return 'wrongOperation';
   if (Math.abs(value - answer) === 1) return 'offByOne';
   if (reversedDigits(answer) === value) return 'digitReversal';
   return null;
@@ -268,7 +295,11 @@ function firstHints(f: Fact, noun: CountableNoun, level: number): [Hint, Hint] {
       const h2 = t('hint.count.2');
       return [
         { text, spoken: text },
-        { text: h2, spoken: h2, visual: { type: 'objects', kind: noun, groups: [f.n], arranged: true } },
+        {
+          text: h2,
+          spoken: h2,
+          visual: { type: 'objects', kind: noun, groups: [f.n], arranged: true },
+        },
       ];
     }
     case 'objAdd':
@@ -286,9 +317,12 @@ function firstHints(f: Fact, noun: CountableNoun, level: number): [Hint, Hint] {
     }
     case 'add':
     case 'sub': {
-      const crossing =
-        f.kind === 'add' ? f.a < 10 && f.a + f.b > 10 : f.a > 10 && f.a - f.b < 10;
-      const k = crossing ? (f.kind === 'add' ? 'hint.addCross.1' : 'hint.subCross.1') : `hint.${f.kind}.1`;
+      const crossing = f.kind === 'add' ? f.a < 10 && f.a + f.b > 10 : f.a > 10 && f.a - f.b < 10;
+      const k = crossing
+        ? f.kind === 'add'
+          ? 'hint.addCross.1'
+          : 'hint.subCross.1'
+        : `hint.${f.kind}.1`;
       const text = t(key(k));
       const nl = t('hint.numberLine');
       // Count on from the larger addend (3 + 8 → start at 8).
@@ -335,7 +369,9 @@ function firstHints(f: Fact, noun: CountableNoun, level: number): [Hint, Hint] {
 function countingExample(n: number): Hint {
   const k = n === 3 ? 4 : 3;
   const star = NOUNS.find((x) => x.id === 'star') as CountableNoun;
-  const text = t('hint.count.3', { params: { phrase: countNoun(k, star), sequence: countingSequence(k) } });
+  const text = t('hint.count.3', {
+    params: { phrase: countNoun(k, star), sequence: countingSequence(k) },
+  });
   return { text, spoken: text, example: { display: `${'⭐'.repeat(k)} = ${k}`, spoken: text } };
 }
 
@@ -396,7 +432,9 @@ export function allExercises(): Exercise[] {
   const fixed: Rng = () => 0;
   return LEVELS.flatMap(({ level }) =>
     factsFor(level).flatMap((f) =>
-      (usesNoun(f) ? NOUNS : [NOUNS[0] as CountableNoun]).map((noun) => build(f, level, noun, fixed)),
+      (usesNoun(f) ? NOUNS : [NOUNS[0] as CountableNoun]).map((noun) =>
+        build(f, level, noun, fixed),
+      ),
     ),
   );
 }

@@ -143,7 +143,9 @@ export function reduce(s: SessionState, a: SessionAction): SessionState {
         lastMistake: mistake,
         firstMistake: s.firstMistake ?? mistake ?? 'other',
       };
-      return tries >= MAX_TRIES ? complete(next, 'revealed', 'revealed') : { ...next, phase: 'wrong' };
+      return tries >= MAX_TRIES
+        ? complete(next, 'revealed', 'revealed')
+        : { ...next, phase: 'wrong' };
     }
     case 'hint':
       if (s.phase !== 'answering' && s.phase !== 'wrong') return s;

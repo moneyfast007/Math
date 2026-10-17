@@ -87,7 +87,9 @@ test.describe('practice', () => {
     expect(errors).toEqual([]);
   });
 
-  test('wrong answers get a gentle explanation, hints, and finally the answer', async ({ page }) => {
+  test('wrong answers get a gentle explanation, hints, and finally the answer', async ({
+    page,
+  }) => {
     await setupChild(page, 'נועה', 'כיתה ב׳');
     const answer = await currentAnswer(page);
     const wrong = answer + 5;
@@ -142,7 +144,11 @@ test.describe('practice', () => {
     await page.getByRole('button', { name: 'סיום' }).click();
     await expect(page.getByText('שלב 8: חיבור וחיסור עד 20')).toBeVisible();
     await page.getByRole('button', { name: 'שלב אחר' }).click();
-    await page.getByRole('dialog', { name: 'באיזה שלב לתרגל?' }).getByRole('listitem').filter({ hasText: 'מספר חסר' }).click();
+    await page
+      .getByRole('dialog', { name: 'באיזה שלב לתרגל?' })
+      .getByRole('listitem')
+      .filter({ hasText: 'מספר חסר' })
+      .click();
     await expect(page.getByText('שלב 10: מספר חסר')).toBeVisible();
     await page.getByRole('button', { name: 'יאללה, מתחילים!' }).click();
     await expect(page.locator('.exercise [data-math]')).toContainText('?');

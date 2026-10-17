@@ -24,7 +24,10 @@ function Objects({ v }: { v: Extract<Visual, { type: 'objects' }> }) {
           </span>
         ));
         return (
-          <div key={g} className={v.arranged ? 'objects__group objects__group--arranged' : 'objects__group'}>
+          <div
+            key={g}
+            className={v.arranged ? 'objects__group objects__group--arranged' : 'objects__group'}
+          >
             {v.arranged
               ? rowsOfFive(count).map((len, r) => (
                   <div key={r} className="objects__row">
@@ -53,12 +56,28 @@ function NumberLine({ v }: { v: Extract<Visual, { type: 'numberLine' }> }) {
 
   return (
     <div className="numberline" dir="ltr" data-visual="numberLine">
-      <svg viewBox={`0 0 ${width} 100`} role="img" aria-hidden="true" preserveAspectRatio="xMidYMid meet">
+      <svg
+        viewBox={`0 0 ${width} 100`}
+        role="img"
+        aria-hidden="true"
+        preserveAspectRatio="xMidYMid meet"
+      >
         <line x1={pad - 10} y1={baseY} x2={width - pad + 10} y2={baseY} className="nl-axis" />
         {Array.from({ length: n + 1 }, (_, i) => v.from + i).map((k) => (
           <g key={k}>
-            <line x1={x(k)} y1={baseY - 7} x2={x(k)} y2={baseY + 7} className={k === v.stopAt ? 'nl-tick nl-tick--stop' : 'nl-tick'} />
-            <text x={x(k)} y={baseY + 26} textAnchor="middle" className={k === v.stopAt ? 'nl-label nl-label--stop' : 'nl-label'}>
+            <line
+              x1={x(k)}
+              y1={baseY - 7}
+              x2={x(k)}
+              y2={baseY + 7}
+              className={k === v.stopAt ? 'nl-tick nl-tick--stop' : 'nl-tick'}
+            />
+            <text
+              x={x(k)}
+              y={baseY + 26}
+              textAnchor="middle"
+              className={k === v.stopAt ? 'nl-label nl-label--stop' : 'nl-label'}
+            >
               {k}
             </text>
           </g>
@@ -68,11 +87,17 @@ function NumberLine({ v }: { v: Extract<Visual, { type: 'numberLine' }> }) {
           const x2 = x(h.to);
           const mid = (x1 + x2) / 2;
           return (
-            <path key={i} d={`M ${x1} ${baseY - 4} Q ${mid} ${baseY - 40} ${x2} ${baseY - 4}`} className="nl-hop" />
+            <path
+              key={i}
+              d={`M ${x1} ${baseY - 4} Q ${mid} ${baseY - 40} ${x2} ${baseY - 4}`}
+              className="nl-hop"
+            />
           );
         })}
         <circle cx={x(v.start)} cy={baseY} r={8} className="nl-start" />
-        {v.target !== undefined ? <circle cx={x(v.target)} cy={baseY} r={8} className="nl-target" /> : null}
+        {v.target !== undefined ? (
+          <circle cx={x(v.target)} cy={baseY} r={8} className="nl-target" />
+        ) : null}
       </svg>
     </div>
   );

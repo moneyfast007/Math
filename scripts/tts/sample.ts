@@ -86,7 +86,10 @@ async function main(): Promise<void> {
 
   for (const v of variants) {
     console.log(
-      `\n${v.name}: ${v.texts.filter(Boolean).length} sentences, ${estimateCost(v.texts.filter((x): x is string => x !== null), v.spec.engine)}`,
+      `\n${v.name}: ${v.texts.filter(Boolean).length} sentences, ${estimateCost(
+        v.texts.filter((x): x is string => x !== null),
+        v.spec.engine,
+      )}`,
     );
     const dir = path.join(OUT, v.name);
     await ensureDir(dir);

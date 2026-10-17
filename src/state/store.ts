@@ -209,7 +209,14 @@ export function createAppStore(storage: StorageAdapter, clock: () => number = Da
         const clamped = Math.min(MAX_LEVEL, Math.max(MIN_LEVEL, Math.round(level)));
         const stats = current
           ? { ...current, level: clamped }
-          : { level: clamped, attempts: 0, correct: 0, lastPracticedAt: 0, recent: [], mistakes: {} };
+          : {
+              level: clamped,
+              attempts: 0,
+              correct: 0,
+              lastPracticedAt: 0,
+              recent: [],
+              mistakes: {},
+            };
         commit({
           ...data,
           progress: {

@@ -96,7 +96,9 @@ function Practice({ profile }: { profile: Profile }) {
     if (cur.suggestion && !profile.settings.allowLevelChange) {
       // The parent decided levels change automatically; say so briefly.
       const level = cur.level + (cur.suggestion === 'up' ? 1 : -1);
-      setNotice(cur.suggestion === 'up' ? t('practice.levelChanged.up') : t('practice.levelChanged.down'));
+      setNotice(
+        cur.suggestion === 'up' ? t('practice.levelChanged.up') : t('practice.levelChanged.down'),
+      );
       apply({ type: 'changeLevel', level, exercise: generate(level) });
       return;
     }
@@ -141,7 +143,11 @@ function Practice({ profile }: { profile: Profile }) {
             >
               {t('practice.done.again')}
             </button>
-            <button type="button" className="btn btn--secondary" onClick={() => navigate({ name: 'play' })}>
+            <button
+              type="button"
+              className="btn btn--secondary"
+              onClick={() => navigate({ name: 'play' })}
+            >
               {t('practice.done.home')}
             </button>
           </div>
@@ -158,7 +164,11 @@ function Practice({ profile }: { profile: Profile }) {
   return (
     <main className="screen practice" data-screen="practice">
       <header className="practice__bar">
-        <button type="button" className="btn btn--ghost btn--small" onClick={() => navigate({ name: 'play' })}>
+        <button
+          type="button"
+          className="btn btn--ghost btn--small"
+          onClick={() => navigate({ name: 'play' })}
+        >
           {t('practice.exit')}
         </button>
         <Progress done={s.done} total={s.length} />
@@ -198,7 +208,12 @@ function Practice({ profile }: { profile: Profile }) {
       {!finished ? (
         <section className="answer">
           {e.input.type === 'choices' ? (
-            <div className="choices-big" role="group" aria-label={t('practice.choicesLabel')} dir="ltr">
+            <div
+              className="choices-big"
+              role="group"
+              aria-label={t('practice.choicesLabel')}
+              dir="ltr"
+            >
               {e.input.choices.map((c) => (
                 <button
                   key={c}
@@ -295,7 +310,10 @@ function Progress({ done, total }: { done: number; total: number }) {
       aria-label={t('practice.progress', { params: { n: Math.min(done + 1, total), total } })}
     >
       {Array.from({ length: total }, (_, i) => (
-        <span key={i} className={i < done ? 'dot dot--done' : i === done ? 'dot dot--current' : 'dot'} />
+        <span
+          key={i}
+          className={i < done ? 'dot dot--done' : i === done ? 'dot dot--current' : 'dot'}
+        />
       ))}
     </div>
   );
@@ -337,7 +355,11 @@ function Feedback({ state: s, tc, slow }: { state: SessionState; tc: TC; slow: b
 function explanation(s: SessionState, tc: TC): string {
   switch (s.lastMistake) {
     case 'wrongOperation':
-      return tc(s.exercise.operation === 'sub' ? 'explain.wrongOperation.sub' : 'explain.wrongOperation.add');
+      return tc(
+        s.exercise.operation === 'sub'
+          ? 'explain.wrongOperation.sub'
+          : 'explain.wrongOperation.add',
+      );
     case 'offByOne':
       return tc('explain.offByOne');
     case 'digitReversal':

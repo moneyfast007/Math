@@ -15,7 +15,14 @@ const rng = seededRng(7);
 const gen = (level: number) => addSub20.generate(level, rng, 'f');
 
 function start(level = 6, band: 'young' | 'middle' | 'older' = 'middle'): SessionState {
-  return startSession({ topicId: 'add-sub-20', level, minLevel: 1, maxLevel: 10, band, exercise: gen(level) });
+  return startSession({
+    topicId: 'add-sub-20',
+    level,
+    minLevel: 1,
+    maxLevel: 10,
+    band,
+    exercise: gen(level),
+  });
 }
 
 const right = (s: SessionState) => reduce(s, { type: 'answer', value: s.exercise.answer });

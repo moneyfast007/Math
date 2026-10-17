@@ -54,7 +54,10 @@ describe('Speaker', () => {
   });
 
   it('reports unavailable without throwing when nothing can speak', async () => {
-    const s = new Speaker(() => Promise.reject(new Error('offline')), fakeSpeech([{ lang: 'en-US' }]));
+    const s = new Speaker(
+      () => Promise.reject(new Error('offline')),
+      fakeSpeech([{ lang: 'en-US' }]),
+    );
     await expect(s.speak('שלום')).resolves.toBe('unavailable');
     expect(s.speaking).toBeNull();
   });

@@ -19,7 +19,14 @@ export interface Phrase {
  * Only child-facing UI is spoken. Parent screens, install instructions and
  * labels are read by adults and are never voiced, so they are not generated.
  */
-const SPOKEN_PREFIXES = ['action.', 'feedback.', 'child.', 'audio.', 'explain.', 'practice.'] as const;
+const SPOKEN_PREFIXES = [
+  'action.',
+  'feedback.',
+  'child.',
+  'audio.',
+  'explain.',
+  'practice.',
+] as const;
 
 function isSpoken(key: string, text: string): boolean {
   // Phrases with {placeholders} are assembled at runtime from smaller clips.

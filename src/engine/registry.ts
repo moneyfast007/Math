@@ -33,7 +33,11 @@ export function nextStation(grade: Grade, progress: ProfileProgress | undefined)
   return { topic, level: currentLevel(topic, grade, progress) };
 }
 
-export function currentLevel(topic: Topic, grade: Grade, progress: ProfileProgress | undefined): number {
+export function currentLevel(
+  topic: Topic,
+  grade: Grade,
+  progress: ProfileProgress | undefined,
+): number {
   return progress?.topics[topic.id]?.level ?? topic.startLevel(grade);
 }
 
