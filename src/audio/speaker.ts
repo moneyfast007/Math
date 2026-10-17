@@ -20,7 +20,8 @@ type Listener = (state: SpeakerState) => void;
 const SLOW_RATE = 0.8;
 
 interface ManifestFile {
-  clips?: Record<string, string>;
+  /** clipId → details; only the keys matter here. */
+  clips?: Record<string, unknown>;
 }
 
 export class Speaker {
