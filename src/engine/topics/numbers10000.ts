@@ -139,7 +139,8 @@ function rounding(rng: Rng): Exercise {
     display: String(n),
     spoken,
     answer,
-    input: numpad(4),
+    // Rounding up can reach 10,000: five digits.
+    input: numpad(5),
     hints: [
       hint(say('ex.round.hint1', { n, lo: lower, hi: lower + to })),
       hint(say('ex.round.hint2', { half: lower + to / 2 })),
