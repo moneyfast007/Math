@@ -50,10 +50,14 @@ function build(rng: Rng): Exercise {
     hints: [
       hint(say('ex.build4.hint1')),
       hint(say('ex.build4.hint2'), { visual: { type: 'placeValue', n: exN } }),
-      exampleHint(`${eth}000 + ${eh}00 + ${ete}0 + ${eu} = ${exN}`, say('ex.build4.solution', { th: eth, h: eh, te: ete, u: eu, n: exN })),
+      exampleHint(
+        `${eth}000 + ${eh}00 + ${ete}0 + ${eu} = ${exN}`,
+        say('ex.build4.solution', { th: eth, h: eh, te: ete, u: eu, n: exN }),
+      ),
     ],
     solution: say('ex.build4.solution', { th, h, te, u, n }),
-    diagnose: (v) => (v === th + h + te + u ? 'placeValue' : String(v).length !== 4 ? 'placeValue' : null),
+    diagnose: (v) =>
+      v === th + h + te + u ? 'placeValue' : String(v).length !== 4 ? 'placeValue' : null,
   });
 }
 
@@ -78,7 +82,9 @@ function placeValue(rng: Rng): Exercise {
     input: numpad(4),
     hints: [
       hint(say('ex.placeValue.hint1', { d, place: t(placeKey) })),
-      hint(say('ex.placeValue.hint2'), { visual: { type: 'placeValue', n: n === 3452 ? 2715 : 3452 } }),
+      hint(say('ex.placeValue.hint2'), {
+        visual: { type: 'placeValue', n: n === 3452 ? 2715 : 3452 },
+      }),
       exampleHint('3452: 4 → 400', say('ex.placeValue.solution', { d: 4, n: 3452, v: 400 })),
     ],
     solution: say('ex.placeValue.solution', { d, n, v: answer }),
@@ -137,7 +143,10 @@ function rounding(rng: Rng): Exercise {
     hints: [
       hint(say('ex.round.hint1', { n, lo: lower, hi: lower + to })),
       hint(say('ex.round.hint2', { half: lower + to / 2 })),
-      exampleHint(`${exN} → ${Math.round(exN / to) * to}`, say(`ex.round.solution.${key}` as const, { n: exN, r: Math.round(exN / to) * to })),
+      exampleHint(
+        `${exN} → ${Math.round(exN / to) * to}`,
+        say(`ex.round.solution.${key}` as const, { n: exN, r: Math.round(exN / to) * to }),
+      ),
     ],
     solution: say(`ex.round.solution.${key}` as const, { n, r: answer }),
     diagnose: (v) => (v === lower || v === lower + to ? 'other' : null),
@@ -145,7 +154,10 @@ function rounding(rng: Rng): Exercise {
 }
 
 function columnHints(op: '+' | '-'): [Hint, Hint] {
-  return [hint(say(op === '+' ? 'hint.column.add' : 'hint.column.sub')), hint(say(op === '+' ? 'hint.column.carry' : 'hint.column.borrow'))];
+  return [
+    hint(say(op === '+' ? 'hint.column.add' : 'hint.column.sub')),
+    hint(say(op === '+' ? 'hint.column.carry' : 'hint.column.borrow')),
+  ];
 }
 
 function column(level: number, op: '+' | '-', lo: number, hi: number): (rng: Rng) => Exercise {
@@ -156,7 +168,16 @@ function column(level: number, op: '+' | '-', lo: number, hi: number): (rng: Rng
     if (op === '-' && a < b) [a, b] = [b, a];
     if (op === '-' && a === b) b = Math.max(lo, b - 7);
     const ex = op === '+' ? { a: 1234, b: 2345 } : { a: 5432, b: 1234 };
-    return arith({ topicId: ID, level, a, op, b, hints: columnHints(op), example: lo < 1000 ? (op === '+' ? { a: 234, b: 345 } : { a: 543, b: 234 }) : ex, input: numpad(4) });
+    return arith({
+      topicId: ID,
+      level,
+      a,
+      op,
+      b,
+      hints: columnHints(op),
+      example: lo < 1000 ? (op === '+' ? { a: 234, b: 345 } : { a: 543, b: 234 }) : ex,
+      input: numpad(4),
+    });
   };
 }
 
@@ -167,9 +188,20 @@ function estimate(rng: Rng): Exercise {
   const op = rng() < 0.6 ? '+' : '-';
   const [x, y] = op === '-' && a < b ? [b, a] : [a, b];
   // Estimation as taught: round each number to the hundred, then compute.
-  const answer = op === '+' ? Math.round(x / 100) * 100 + Math.round(y / 100) * 100 : Math.round(x / 100) * 100 - Math.round(y / 100) * 100;
-  const options = [answer - 200, answer - 100, answer, answer + 100, answer + 200].filter((v) => v >= 0);
-  const chosen = [answer, ...options.filter((v) => v !== answer).sort(() => rng() - 0.5).slice(0, 2)].sort((p, q) => p - q);
+  const answer =
+    op === '+'
+      ? Math.round(x / 100) * 100 + Math.round(y / 100) * 100
+      : Math.round(x / 100) * 100 - Math.round(y / 100) * 100;
+  const options = [answer - 200, answer - 100, answer, answer + 100, answer + 200].filter(
+    (v) => v >= 0,
+  );
+  const chosen = [
+    answer,
+    ...options
+      .filter((v) => v !== answer)
+      .sort(() => rng() - 0.5)
+      .slice(0, 2),
+  ].sort((p, q) => p - q);
   const labels = chosen.map((v) => String(v));
   const prompt = t('ex.estimate.prompt');
   const rx = Math.round(x / 100) * 100;
@@ -186,10 +218,19 @@ function estimate(rng: Rng): Exercise {
     input: labelledChoices(labels),
     hints: [
       hint(say('ex.estimate.hint1')),
-      hint(say('ex.estimate.hint2', { a: rx, b: ry }), { example: { display: `${rx} ${op === '-' ? '−' : '+'} ${ry}`, spoken: say('ex.estimate.hint2', { a: rx, b: ry }) } }),
+      hint(say('ex.estimate.hint2', { a: rx, b: ry }), {
+        example: {
+          display: `${rx} ${op === '-' ? '−' : '+'} ${ry}`,
+          spoken: say('ex.estimate.hint2', { a: rx, b: ry }),
+        },
+      }),
       exampleHint('398 + 203 ≈ 600', say('ex.estimate.solution', { a: 400, b: 200, r: 600 })),
     ],
-    solution: say(op === '+' ? 'ex.estimate.solution' : 'ex.estimate.solutionSub', { a: rx, b: ry, r: op === '+' ? rx + ry : rx - ry }),
+    solution: say(op === '+' ? 'ex.estimate.solution' : 'ex.estimate.solutionSub', {
+      a: rx,
+      b: ry,
+      r: op === '+' ? rx + ry : rx - ry,
+    }),
   });
 }
 
@@ -198,11 +239,33 @@ function word(rng: Rng): Exercise {
   if (add) {
     const a = randInt(rng, 120, 4500);
     const b = randInt(rng, 120, 4500);
-    return wordProblem({ topicId: ID, level: 10, key: 'wp.save', rng, a, op: '+', b, example: { a: 1250, b: 430 }, input: numpad(4), nouns: SHEKELS });
+    return wordProblem({
+      topicId: ID,
+      level: 10,
+      key: 'wp.save',
+      rng,
+      a,
+      op: '+',
+      b,
+      example: { a: 1250, b: 430 },
+      input: numpad(4),
+      nouns: SHEKELS,
+    });
   }
   const a = randInt(rng, 500, 9000);
   const b = randInt(rng, 100, a - 50);
-  return wordProblem({ topicId: ID, level: 10, key: pick(rng, ['wp.spend', 'wp.compare'] as const), rng, a, op: '-', b, example: { a: 2400, b: 850 }, input: numpad(4), nouns: SHEKELS });
+  return wordProblem({
+    topicId: ID,
+    level: 10,
+    key: pick(rng, ['wp.spend', 'wp.compare'] as const),
+    rng,
+    a,
+    op: '-',
+    b,
+    example: { a: 2400, b: 850 },
+    input: numpad(4),
+    nouns: SHEKELS,
+  });
 }
 
 export const numbers10000 = defineTopic({

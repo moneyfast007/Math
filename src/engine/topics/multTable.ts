@@ -25,7 +25,9 @@ const L = (n: number) => `level.multTable.${n}`;
 function mulHints(a: number, b: number): [Hint, Hint] {
   return [
     hint(say('hint.mul.groups', { a: { n: a, gender: 'f' }, b })),
-    hint(say('hint.mul.array'), { visual: { type: 'array', rows: Math.min(a, b), cols: Math.max(a, b) } }),
+    hint(say('hint.mul.array'), {
+      visual: { type: 'array', rows: Math.min(a, b), cols: Math.max(a, b) },
+    }),
   ];
 }
 
@@ -41,14 +43,32 @@ function mul(level: number, factors: readonly number[]): (rng: Rng) => Exercise 
     const f = pick(rng, factors);
     const o = randInt(rng, 2, 10);
     const [a, b] = rng() < 0.5 ? [f, o] : [o, f];
-    return arith({ topicId: ID, level, a, op: '×', b, hints: mulHints(a, b), example: { a: f, b: o === 4 ? 3 : 4 }, input: numpad(3) });
+    return arith({
+      topicId: ID,
+      level,
+      a,
+      op: '×',
+      b,
+      hints: mulHints(a, b),
+      example: { a: f, b: o === 4 ? 3 : 4 },
+      input: numpad(3),
+    });
   };
 }
 
 function div(level: number, rng: Rng): Exercise {
   const b = randInt(rng, 2, 10);
   const q = randInt(rng, 2, 10);
-  return arith({ topicId: ID, level, a: b * q, op: '÷', b, hints: divHints(b * q, b), example: { a: b * (q === 3 ? 4 : 3), b }, input: numpad(2) });
+  return arith({
+    topicId: ID,
+    level,
+    a: b * q,
+    op: '÷',
+    b,
+    hints: divHints(b * q, b),
+    example: { a: b * (q === 3 ? 4 : 3), b },
+    input: numpad(2),
+  });
 }
 
 function missingFactor(rng: Rng): Exercise {
@@ -62,7 +82,12 @@ function missingFactor(rng: Rng): Exercise {
     op: '×',
     b,
     missing: asA ? 'a' : 'b',
-    hints: [hint(say('hint.mul.missing', { c: a * b, b: asA ? b : a })), hint(say('hint.mul.array'), { visual: { type: 'array', rows: asA ? b : a, cols: asA ? a : b } })],
+    hints: [
+      hint(say('hint.mul.missing', { c: a * b, b: asA ? b : a })),
+      hint(say('hint.mul.array'), {
+        visual: { type: 'array', rows: asA ? b : a, cols: asA ? a : b },
+      }),
+    ],
     example: { a: 6, b: 7 },
     input: numpad(2),
   });
@@ -79,7 +104,10 @@ function missingInDivision(rng: Rng): Exercise {
     op: '÷',
     b,
     missing: asA ? 'a' : 'b',
-    hints: [hint(say(asA ? 'hint.div.missingStart' : 'hint.div.missingDivisor', { q, b, a: b * q })), hint(say('hint.mul.array'), { visual: { type: 'array', rows: b, cols: q } })],
+    hints: [
+      hint(say(asA ? 'hint.div.missingStart' : 'hint.div.missingDivisor', { q, b, a: b * q })),
+      hint(say('hint.mul.array'), { visual: { type: 'array', rows: b, cols: q } }),
+    ],
     example: { a: 24, b: 6 },
     input: numpad(3),
   });
@@ -99,7 +127,10 @@ function tens(rng: Rng): Exercise {
     hints: [
       hint(say('hint.mul.tens', { a, b: b / 10 })),
       hint(say('hint.mul.tensExample'), {
-        example: { display: a === 3 && b === 40 ? '2 × 3 = 6 → 2 × 30 = 60' : '3 × 4 = 12 → 3 × 40 = 120', spoken: say('hint.mul.tensExample') },
+        example: {
+          display: a === 3 && b === 40 ? '2 × 3 = 6 → 2 × 30 = 60' : '3 × 4 = 12 → 3 × 40 = 120',
+          spoken: say('hint.mul.tensExample'),
+        },
       }),
     ],
     example: { a: 3, b: 40 },
@@ -123,7 +154,10 @@ function twoDigitByOne(rng: Rng): Exercise {
       hint(say('hint.mul.split', { a, t: tensPart, u: units })),
       // Only the split, not the products: the child still does the work.
       hint(say('hint.mul.splitExample'), {
-        example: { display: `${a} × ${b} = (${tensPart} × ${b}) + (${units} × ${b})`, spoken: say('hint.mul.splitExample') },
+        example: {
+          display: `${a} × ${b} = (${tensPart} × ${b}) + (${units} × ${b})`,
+          spoken: say('hint.mul.splitExample'),
+        },
       }),
     ],
     example: { a: 23, b: 4 },
@@ -159,7 +193,12 @@ function remainder(rng: Rng): Exercise {
       exampleHint('17 ÷ 5 = 3 (2)', exSolved),
     ],
     solution: solved,
-    diagnose: (v) => (v === (askRemainder ? q : r) ? 'remainder' : v === answer + 1 || v === answer - 1 ? 'offByOne' : null),
+    diagnose: (v) =>
+      v === (askRemainder ? q : r)
+        ? 'remainder'
+        : v === answer + 1 || v === answer - 1
+          ? 'offByOne'
+          : null,
   });
 }
 
@@ -168,15 +207,46 @@ function word(rng: Rng): Exercise {
   if (kind === '×') {
     const a = randInt(rng, 3, 9);
     const b = randInt(rng, 3, 9);
-    return wordProblem({ topicId: ID, level: 10, key: 'wp.boxes', rng, a, op: '×', b, example: { a: 4, b: 6 }, input: numpad(2) });
+    return wordProblem({
+      topicId: ID,
+      level: 10,
+      key: 'wp.boxes',
+      rng,
+      a,
+      op: '×',
+      b,
+      example: { a: 4, b: 6 },
+      input: numpad(2),
+    });
   }
   const b = randInt(rng, 2, 9);
   const q = randInt(rng, 2, 9);
   if (kind === 'rem') {
     const a = b * q + randInt(rng, 1, b - 1);
-    return wordProblem({ topicId: ID, level: 10, key: 'wp.leftover', rng, a, op: '÷', b, example: { a: 17, b: 5 }, input: numpad(1), askRemainder: true });
+    return wordProblem({
+      topicId: ID,
+      level: 10,
+      key: 'wp.leftover',
+      rng,
+      a,
+      op: '÷',
+      b,
+      example: { a: 17, b: 5 },
+      input: numpad(1),
+      askRemainder: true,
+    });
   }
-  return wordProblem({ topicId: ID, level: 10, key: kind === 'share' ? 'wp.share' : 'wp.bags', rng, a: b * q, op: '÷', b, example: { a: 24, b: 6 }, input: numpad(2) });
+  return wordProblem({
+    topicId: ID,
+    level: 10,
+    key: kind === 'share' ? 'wp.share' : 'wp.bags',
+    rng,
+    a: b * q,
+    op: '÷',
+    b,
+    example: { a: 24, b: 6 },
+    input: numpad(2),
+  });
 }
 
 export const multTable = defineTopic({
