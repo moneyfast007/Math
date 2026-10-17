@@ -120,12 +120,17 @@ test.describe('practice', () => {
     await expect(page.locator('.exercise .slot--done')).toHaveText(String(answer));
     await page.getByRole('button', { name: 'הבא' }).click();
     await expect(page.getByRole('progressbar')).toHaveAttribute('aria-valuenow', '1');
+  });
 
-    // A second revealed answer in a row: the round drops a level, saying so in one line.
-    const answer2 = await currentAnswer(page);
-    for (let i = 0; i < 3; i++) await submit(page, answer2 + 5);
-    await expect(page.locator('.feedback--reveal')).toBeVisible();
-    await page.getByRole('button', { name: 'הבא' }).click();
+  test('a child who is stuck drops a level without being asked', async ({ page }) => {
+    // Grade 1 starts at station 6, so there is an easier level to drop to.
+    await setupChild(page, 'נועה', 'כיתה א׳');
+    for (let k = 0; k < 2; k++) {
+      const answer = await currentAnswer(page);
+      for (let i = 0; i < 3; i++) await submit(page, answer + 5);
+      await expect(page.locator('.feedback--reveal')).toBeVisible();
+      await page.getByRole('button', { name: 'הבא' }).click();
+    }
     await expect(
       page.getByRole('status').filter({ hasText: 'נתרגל רגע שלב קל יותר.' }),
     ).toBeVisible();
