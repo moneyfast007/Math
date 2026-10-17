@@ -231,6 +231,8 @@ function roundSums(rng: Rng): Exercise {
   let b = randInt(rng, 1, 60) * unit;
   if (op === '-' && a < b) [a, b] = [b, a];
   if (op === '-' && a === b) a += unit;
+  // Grade 4 works up to a million.
+  if (op === '+' && a + b >= 1_000_000) return roundSums(rng);
   return arith({
     topicId: ID,
     level: 9,
