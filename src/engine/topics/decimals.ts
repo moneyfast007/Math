@@ -64,10 +64,10 @@ function toFraction(level: 1 | 2, n: number): Exercise {
       hint(say('ex.dec.place.hint2')),
       exampleHint(
         `${round(ex / den, 2)} = ${f(ex, den)}`,
-        sayText('{x} זה {words}.', { x: round(ex / den, 2), words: w(ex, den) }),
+        say('eq.isWords', { x: round(ex / den, 2), words: w(ex, den) }),
       ),
     ],
-    solution: sayText('{x} זה {words}.', { x, words: w(n, den) }),
+    solution: say('eq.isWords', { x, words: w(n, den) }),
     diagnose: (v) => (level === 2 && v * 10 === n ? 'placeValue' : null),
   });
 }
@@ -97,10 +97,10 @@ function fromFraction(n: number, den: 10 | 100): Exercise {
       hint(say('ex.dec.place.hint2')),
       exampleHint(
         `${f(ex.n, ex.den)} = ${round(ex.n / ex.den, 2)}`,
-        sayText('{words} זה {x}.', { words: w(ex.n, ex.den), x: round(ex.n / ex.den, 2) }),
+        say('eq.wordsIs', { words: w(ex.n, ex.den), x: round(ex.n / ex.den, 2) }),
       ),
     ],
-    solution: sayText('{words} זה {x}.', { words: w(n, den), x }),
+    solution: say('eq.wordsIs', { words: w(n, den), x }),
     diagnose: decimalDiagnose(x),
   });
 }

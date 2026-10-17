@@ -74,7 +74,7 @@ function repeated(level: number, a: number, b: number): Exercise {
   const terms = Array.from({ length: a }, () => b);
   const display = `${terms.join(' + ')} = ?`;
   const slots = Object.fromEntries(terms.map((v, i) => [`t${i}`, v]));
-  const spoken = compose(`כמה זה ${terms.map((_, i) => `{t${i}}`).join(' ועוד ')}?`, slots);
+  const spoken = compose(`${t('eq.howMuch')} ${terms.map((_, i) => `{t${i}}`).join(` ${t('op.add')} `)}?`, slots);
   return exercise({
     factId: `repeated:${a}x${b}`,
     topicId: ID,

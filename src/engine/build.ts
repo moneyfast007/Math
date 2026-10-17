@@ -57,7 +57,9 @@ export type Operation = 'add' | 'sub' | 'mul' | 'div';
 
 export const OPERATION: Record<Op, Operation> = { '+': 'add', '-': 'sub', '×': 'mul', '÷': 'div' };
 
-const OP_WORD: Record<Op, string> = { '+': 'ועוד', '-': 'פחות', '×': 'כפול', '÷': 'חלקי' };
+/** The spoken operator, from the dictionary. */
+const OP_KEY: Record<Op, TranslationKey> = { '+': 'op.add', '-': 'op.sub', '×': 'op.mul', '÷': 'op.div' };
+const opWord = (op: Op): string => t(OP_KEY[op]);
 
 export function opChar(op: Op): string {
   return op === '-' ? '−' : op;
@@ -81,15 +83,15 @@ export function spokenEquationQuestion(
   c: number,
   missing: 'a' | 'b' | 'c',
 ): Said {
-  const w = OP_WORD[op];
-  if (missing === 'c') return sayText(`כמה זה {a} ${w} {b}?`, { a, b });
-  if (missing === 'b') return sayText(`{a} ${w} כמה זה {c}?`, { a, c });
-  return sayText(`כמה ${w} {b} זה {c}?`, { b, c });
+  const op2 = opWord(op);
+  if (missing === 'c') return say('eq.question', { a, op: op2, b });
+  if (missing === 'b') return say('eq.questionMissingB', { a, op: op2, c });
+  return say('eq.questionMissingA', { op: op2, b, c });
 }
 
 /** "שלוש ועוד חמש זה שמונה." */
 export function spokenEquationSolved(a: number, op: Op, b: number, c: number): Said {
-  return sayText(`{a} ${OP_WORD[op]} {b} זה {c}.`, { a, b, c });
+  return say('eq.solution', { a, op: opWord(op), b, c });
 }
 
 /* ---------- Answers and choices ---------- */
@@ -624,10 +626,10 @@ export function wordProblem(o: WordProblemOptions): Exercise {
   const eq = (a: number, b: number, r: number | string) =>
     o.askRemainder ? `${a} ÷ ${b} = ${Math.floor(a / b)} (${r})` : displayEquation(a, o.op, b, r);
   const solved = o.askRemainder
-    ? sayText('{a} חלקי {b} זה {q}, ונשאר {r}.', { a: o.a, b: o.b, q: Math.floor(o.a / o.b), r: c })
+    ? say('eq.remainder.solution', { a: o.a, b: o.b, q: Math.floor(o.a / o.b), r: c })
     : spokenEquationSolved(o.a, o.op, o.b, c);
   const exSolved = o.askRemainder
-    ? sayText('{a} חלקי {b} זה {q}, ונשאר {r}.', {
+    ? say('eq.remainder.solution', {
         a: ex.a,
         b: ex.b,
         q: Math.floor(ex.a / ex.b),

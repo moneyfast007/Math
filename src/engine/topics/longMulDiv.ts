@@ -126,7 +126,7 @@ function divRemainder(level: number, askRemainder: boolean): (rng: Rng) => Exerc
     const q = randInt(rng, 12, 120);
     const r = randInt(rng, 1, b - 1);
     const a = b * q + r;
-    const solved = sayText('{a} חלקי {b} זה {q}, ונשאר {r}.', { a, b, q, r });
+    const solved = say('eq.remainder.solution', { a, b, q, r });
     const ex = a === 127 && b === 5 ? { a: 131, b: 4, q: 32, r: 3 } : { a: 127, b: 5, q: 25, r: 2 };
     return remainderExercise(level, a, b, q, r, askRemainder, askRemainder ? r : q, solved, ex);
   };
@@ -158,7 +158,7 @@ function remainderExercise(
       hint(say('hint.longDiv.remainder', { b })),
       exampleHint(
         `${ex.a} ÷ ${ex.b} = ${ex.q} (${ex.r})`,
-        sayText('{a} חלקי {b} זה {q}, ונשאר {r}.', ex),
+        say('eq.remainder.solution', ex),
       ),
     ],
     solution: solved,
@@ -181,13 +181,13 @@ function order(rng: Rng): Exercise {
       display = `${a} + ${b} × ${c} = ?`;
       answer = a + b * c;
       wrong = (a + b) * c;
-      spoken = compose('כמה זה {a} ועוד {b} כפול {c}?', { a, b, c });
+      spoken = say('ex.ord.aPlusBC', { a, b, c });
       break;
     case '(a+b)c':
       display = `(${a} + ${b}) × ${c} = ?`;
       answer = (a + b) * c;
       wrong = a + b * c;
-      spoken = compose('כמה זה, פותחים סוגריים, {a} ועוד {b}, סוגרים סוגריים, כפול {c}?', {
+      spoken = say('ex.ord.bracketPlusTimes', {
         a,
         b,
         c,
@@ -199,7 +199,7 @@ function order(rng: Rng): Exercise {
       answer = prod - a;
       wrong = b * (c - a);
       if (answer < 0) return order(rng);
-      spoken = compose('כמה זה {b} כפול {c} פחות {a}?', { a, b, c });
+      spoken = say('ex.ord.bcMinusA', { a, b, c });
       break;
     }
     case 'a-b:c': {
@@ -207,7 +207,7 @@ function order(rng: Rng): Exercise {
       display = `${big} − ${b * c} ÷ ${c} = ?`;
       answer = big - b;
       wrong = Math.floor((big - b * c) / c);
-      spoken = compose('כמה זה {x} פחות {y} חלקי {c}?', { x: big, y: b * c, c });
+      spoken = say('ex.ord.xMinusYdivC', { x: big, y: b * c, c });
       break;
     }
   }
@@ -227,14 +227,14 @@ function order(rng: Rng): Exercise {
       display === '2 + 3 × 4 = ?'
         ? exampleHint(
             '5 + 2 × 3 = 11',
-            compose('{a} ועוד {b} כפול {c} זה {r}, כי קודם כופלים.', { a: 5, b: 2, c: 3, r: 11 }),
+            say('ex.ord.example', { a: 5, b: 2, c: 3, r: 11 }),
           )
         : exampleHint(
             '2 + 3 × 4 = 14',
-            compose('{a} ועוד {b} כפול {c} זה {r}, כי קודם כופלים.', { a: 2, b: 3, c: 4, r: 14 }),
+            say('ex.ord.example', { a: 2, b: 3, c: 4, r: 14 }),
           ),
     ],
-    solution: compose('התשובה היא {r}.', { r: answer }),
+    solution: say('eq.answerIs', { r: answer }),
     diagnose: (v) => (v === wrong ? 'wrongOperation' : null),
   });
 }

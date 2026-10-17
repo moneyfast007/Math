@@ -175,8 +175,8 @@ function remainder(rng: Rng): Exercise {
   const answer = askRemainder ? r : q;
   const prompt = t(askRemainder ? 'ex.remainder.promptR' : 'ex.remainder.promptQ');
   const spoken = say(askRemainder ? 'ex.remainder.spokenR' : 'ex.remainder.spokenQ', { a, b });
-  const solved = sayText('{a} חלקי {b} זה {q}, ונשאר {r}.', { a, b, q, r });
-  const exSolved = sayText('{a} חלקי {b} זה {q}, ונשאר {r}.', { a: 17, b: 5, q: 3, r: 2 });
+  const solved = say('eq.remainder.solution', { a, b, q, r });
+  const exSolved = say('eq.remainder.solution', { a: 17, b: 5, q: 3, r: 2 });
   return exercise({
     factId: `rem:${a}/${b}:${askRemainder ? 'r' : 'q'}`,
     topicId: ID,

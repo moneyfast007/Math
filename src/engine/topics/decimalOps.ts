@@ -159,17 +159,17 @@ function familiar(rng: Rng): Exercise {
     level: 8,
     prompt: t('ex.fmul.denominator.prompt'),
     display: `${x} = 1/?`,
-    spoken: sayText('{x} זה אחד חלקי כמה?', { x }),
+    spoken: say('ex.dop.familiar.spoken', { x }),
     answer: d,
     input: numpad(2),
     hints: [
       hint(say('ex.dop.familiar.hint1')),
       hint(say('ex.dop.familiar.hint2')),
       x === 0.5
-        ? exampleHint('0.25 = 1/4', sayText('{x} זה רבע.', { x: 0.25 }))
-        : exampleHint('0.5 = 1/2', sayText('{x} זה חצי.', { x: 0.5 })),
+        ? exampleHint('0.25 = 1/4', say('ex.dop.familiar.quarter', { x: 0.25 }))
+        : exampleHint('0.5 = 1/2', say('ex.dop.familiar.half', { x: 0.5 })),
     ],
-    solution: sayText('{x} זה אחד חלקי {d}.', { x, d }),
+    solution: say('ex.dop.familiar.solution', { x, d }),
   });
 }
 
@@ -184,17 +184,17 @@ function roundTenth(rng: Rng): Exercise {
     level: 9,
     prompt: t('ex.dop.round.prompt'),
     display: String(x),
-    spoken: sayText('מה {x} מעוגל לעשיריות?', { x }),
+    spoken: say('ex.dop.round.spoken', { x }),
     answer,
     input: numpad(4, true),
     hints: [
       hint(say('ex.dop.round.hint1')),
       hint(say('ex.dec.round.hint2')),
       x === 3.47
-        ? exampleHint('2.81 → 2.8', sayText('{x} מעוגל לעשיריות הוא {r}.', { x: 2.81, r: 2.8 }))
-        : exampleHint('3.47 → 3.5', sayText('{x} מעוגל לעשיריות הוא {r}.', { x: 3.47, r: 3.5 })),
+        ? exampleHint('2.81 → 2.8', say('ex.dop.round.solution', { x: 2.81, r: 2.8 }))
+        : exampleHint('3.47 → 3.5', say('ex.dop.round.solution', { x: 3.47, r: 3.5 })),
     ],
-    solution: sayText('{x} מעוגל לעשיריות הוא {r}.', { x, r: answer }),
+    solution: say('ex.dop.round.solution', { x, r: answer }),
     diagnose: (v) => (v === Math.round(x) ? 'placeValue' : null),
   });
 }
@@ -226,9 +226,9 @@ function story(rng: Rng): Exercise {
         ...hint(say('hint.equation')),
         example: { display: `${k} × ${price} = ?`, spoken: say('hint.equation').text },
       },
-      exampleHint('4 × 2.5 = 10', sayText('{a} כפול {b} זה {c}.', { a: 4, b: 2.5, c: 10 })),
+      exampleHint('4 × 2.5 = 10', say('eq.times.solution', { a: 4, b: 2.5, c: 10 })),
     ],
-    solution: sayText('{a} כפול {b} זה {c}.', { a: k, b: price, c: answer }),
+    solution: say('eq.times.solution', { a: k, b: price, c: answer }),
     diagnose: pointSlip(answer),
   });
 }
