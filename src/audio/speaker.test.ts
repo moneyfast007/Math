@@ -75,3 +75,70 @@ describe('Speaker', () => {
     expect(seen.at(-1)).toBeNull();
   });
 });
+
+describe('Speaker, assembled sentences', () => {
+  function fakeAudio() {
+    const created: { src: string; end: () => void }[] = [];
+    vi.stubGlobal(
+      'Audio',
+      class {
+        playbackRate = 1;
+        onended: (() => void) | null = null;
+        constructor(public src: string) {
+          created.push({ src, end: () => this.onended?.() });
+        }
+        play = () => Promise.resolve();
+        pause = vi.fn();
+      },
+    );
+    return created;
+  }
+
+  it('plays the clips one after another when the whole sentence is not recorded', async () => {
+    const parts = ['כמה זה', 'ארבעת אלפים', 'ועוד', 'שבע'];
+    const ids = await Promise.all(parts.map((p) => clipId(p)));
+    const clips = Object.fromEntries(ids.map((id, i) => [id, parts[i]]));
+    const created = fakeAudio();
+    const s = new Speaker(() => Promise.resolve({ clips }), fakeSpeech([]));
+    const text = 'כמה זה ארבעת אלפים ועוד שבע?';
+    await expect(s.speak(text, { parts })).resolves.toBe('clip');
+    expect(created.map((c) => c.src)).toEqual([`/audio/${ids[0]}.mp3`]);
+    created[0]?.end();
+    created[1]?.end();
+    created[2]?.end();
+    expect(created.map((c) => c.src)).toEqual(ids.map((id) => `/audio/${id}.mp3`));
+    expect(s.speaking).toBe(text);
+    created[3]?.end();
+    expect(s.speaking).toBeNull();
+  });
+
+  it('stopping in the middle ends the sequence', async () => {
+    const parts = ['א', 'ב', 'ג'];
+    const ids = await Promise.all(parts.map((p) => clipId(p)));
+    const clips = Object.fromEntries(ids.map((id, i) => [id, parts[i]]));
+    const created = fakeAudio();
+    const s = new Speaker(() => Promise.resolve({ clips }), fakeSpeech([]));
+    await s.speak('א ב ג', { parts });
+    s.stop();
+    created[0]?.end();
+    expect(created).toHaveLength(1);
+    expect(s.speaking).toBeNull();
+  });
+
+  it('uses the device voice when one of the clips is missing', async () => {
+    vi.stubGlobal(
+      'SpeechSynthesisUtterance',
+      class {
+        voice: unknown;
+        lang = '';
+        rate = 1;
+        onend: (() => void) | null = null;
+        constructor(public text: string) {}
+      },
+    );
+    const id = await clipId('כמה זה');
+    const speech = fakeSpeech([{ lang: 'he-IL' }]);
+    const s = new Speaker(() => Promise.resolve({ clips: { [id]: 'כמה זה' } }), speech);
+    await expect(s.speak('כמה זה שבע?', { parts: ['כמה זה', 'שבע'] })).resolves.toBe('device');
+  });
+});

@@ -450,7 +450,8 @@ export function spokenBank(): string[] {
 }
 
 export function startLevel(grade: number): number {
-  if (grade <= 0) return 1;
+  // Gan hova arrives from world 1 (counting), so the counting levels are skipped.
+  if (grade <= 0) return 3;
   if (grade === 1) return 6;
   if (grade === 2) return 8;
   return 9;
@@ -459,7 +460,7 @@ export function startLevel(grade: number): number {
 export const addSub20: Topic = {
   id: TOPIC_ID,
   labelKey: 'topic.addSub20',
-  grades: [0, 1, 2],
+  grades: [0, 1],
   levels: LEVELS,
   startLevel,
   generate,

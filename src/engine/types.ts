@@ -20,12 +20,28 @@ export interface ObjectKind {
 }
 
 export type Visual =
+  /** A fraction: `shaded` of `parts` cells of a bar (or a circle). */
+  | { type: 'fraction'; parts: number; shaded: number; shape?: 'bar' | 'circle' }
+  /** Dots in rows × cols, for multiplication; `squares` draws cells (area). */
+  | { type: 'array'; rows: number; cols: number; squares?: boolean }
+  /** A rectangle with labelled sides, for perimeter and area. */
+  | { type: 'rect'; width: number; height: number; unit?: string }
+  /** A number broken into thousands, hundreds, tens and units. */
+  | { type: 'placeValue'; n: number }
   /**
    * Objects to count, in one or two groups. `removed` objects (from the end of
    * the first group) are drawn crossed out. `arranged` lays them out in rows of
    * five, like a ten-frame, which makes counting easier (a hint).
    */
-  | { type: 'objects'; kind: ObjectKind; groups: number[]; removed?: number; arranged?: boolean }
+  | {
+      type: 'objects';
+      kind: ObjectKind;
+      /** A different kind per group (which has more?). */
+      kinds?: ObjectKind[];
+      groups: number[];
+      removed?: number;
+      arranged?: boolean;
+    }
   /**
    * A number line from `from` to `to`, marked at `start`, with `hops` steps of 1
    * (negative: backwards). `stopAt` marks a waypoint (10 when crossing ten);
@@ -39,6 +55,8 @@ export type Visual =
       hops: number;
       stopAt?: number;
       target?: number;
+      /** Tick spacing (default 1); a hop is one tick. */
+      step?: number;
     };
 
 export interface Hint {
@@ -46,6 +64,8 @@ export interface Hint {
   text: string;
   /** Read aloud. Words only. */
   spoken: string;
+  /** The clips to play when the sentence itself is not recorded (see lang/compose.ts). */
+  spokenParts?: string[];
   visual?: Visual;
   /** A similar, solved exercise (hint 3). */
   example?: { display: string; spoken: string };
@@ -62,16 +82,25 @@ export interface Exercise {
   display: string;
   /** Full sentence read aloud. */
   spokenText: string;
+  /** The clips to play when the sentence itself is not recorded (see lang/compose.ts). */
+  spokenParts?: string[];
   visual?: Visual;
   answer: number;
   /** The operation, when there is one; selects the explanation for a wrong-operation mistake. */
-  operation?: 'add' | 'sub';
-  /** How the child answers. Young children pick from big buttons. */
-  input: { type: 'choices'; choices: number[] } | { type: 'numpad'; maxDigits: number };
+  operation?: 'add' | 'sub' | 'mul' | 'div';
+  /**
+   * How the child answers. Young children pick from big buttons. `labels`
+   * shows something other than the number on each button (a fraction, a sign);
+   * `decimal` adds a decimal point to the pad.
+   */
+  input:
+    | { type: 'choices'; choices: number[]; labels?: string[] }
+    | { type: 'numpad'; maxDigits: number; decimal?: boolean };
   /** Exactly three, increasingly concrete: simpler wording, a picture, a solved example. */
   hints: [Hint, Hint, Hint];
   /** The sentence read when the answer is revealed after the last try, e.g. "שלוש ועוד חמש זה שמונה." */
   solutionSpoken: string;
+  solutionParts?: string[];
   /** Classifies a wrong answer, or null when there is nothing specific to say. */
   diagnose: (value: number) => MistakeKind | null;
 }
@@ -94,6 +123,10 @@ export interface Topic {
   /** Where a child of this grade starts. */
   startLevel: (grade: number) => number;
   generate: (level: number, rng: Rng, gender: Gender, avoidFactId?: string) => Exercise;
-  /** Every sentence this topic can ever speak, for pre-generating audio. */
+  /**
+   * Everything this topic can ever say, for pre-generating audio: whole
+   * sentences when the topic is finite, otherwise the literal pieces of its
+   * templates (numbers are recorded separately).
+   */
   spokenBank: () => string[];
 }

@@ -177,3 +177,47 @@ export function countNoun(n: number, noun: Noun): string {
   if (n === 2) return `${noun.gender === 'f' ? 'שתי' : 'שני'} ${noun.plural}`;
   return `${numberToWords(n, noun.gender)} ${noun.plural}`;
 }
+
+/**
+ * The same words as `numberToWords`, split into the clips the audio bank holds:
+ * numbers under a thousand are one clip each (both genders), and bigger
+ * numbers are assembled from them plus "אלף" / "מיליון". The invariant
+ * `numberParts(n, g).join(' ') === numberToWords(n, g)` is property-tested.
+ *
+ * A single trailing group after thousands or millions carries the ו
+ * ("ארבעת אלפים ושלוש מאות"), so those forms are clips of their own.
+ */
+export function numberParts(n: number, gender: Gender = 'f'): string[] {
+  assertValidInteger(n);
+  if (n < 1000) return [numberToWords(n, gender)];
+  const millions = Math.floor(n / 1_000_000);
+  const thousands = Math.floor((n % 1_000_000) / 1000);
+  const rest = n % 1000;
+  const parts: string[] = [];
+  if (millions > 0) {
+    if (millions === 1) parts.push('מיליון');
+    else if (millions === 2) parts.push('שני מיליון');
+    else parts.push(numberToWords(millions, 'm'), 'מיליון');
+  }
+  if (thousands > 0) {
+    // After millions, a thousands group that ends the number carries the ו.
+    const vav = millions > 0 && rest === 0 ? 'ו' : '';
+    if (thousands <= 10) parts.push(`${vav}${THOUSANDS_CONSTRUCT[thousands] as string}`);
+    else parts.push(`${vav}${numberToWords(thousands, 'm')}`, 'אלף');
+  }
+  if (rest > 0) {
+    const words = numberToWords(rest, gender);
+    parts.push(groupsUnderThousand(rest, gender).length === 1 ? `ו${words}` : words);
+  }
+  return parts;
+}
+
+/** The ו-prefixed forms `numberParts` emits for numbers up to a million, for the audio bank. */
+export function vavForms(gender: Gender): string[] {
+  const out: string[] = [];
+  for (let n = 1; n <= 999; n++) {
+    if (groupsUnderThousand(n, gender).length === 1) out.push(`ו${numberToWords(n, gender)}`);
+  }
+  if (gender === 'm') for (let k = 1; k <= 10; k++) out.push(`ו${THOUSANDS_CONSTRUCT[k] as string}`);
+  return out;
+}

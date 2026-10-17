@@ -6,8 +6,10 @@ import { clipId } from './hash';
  * Order of preference:
  *   1. A pre-generated clip from our own server: /audio/<hash>.mp3, listed in
  *      /audio/manifest.json. Works offline once cached by the service worker.
- *   2. The device's own Hebrew voice (Web Speech), when a clip is missing.
- *   3. Nothing: the caller shows a friendly message. Never an error.
+ *   2. The sentence assembled from smaller clips (`parts`: template pieces and
+ *      number words), when the whole sentence is not recorded.
+ *   3. The device's own Hebrew voice (Web Speech), when clips are missing.
+ *   4. Nothing: the caller shows a friendly message. Never an error.
  *
  * One speaker for the whole app: starting a new text stops the previous one.
  */
@@ -26,6 +28,8 @@ interface ManifestFile {
 
 export class Speaker {
   private audio: HTMLAudioElement | null = null;
+  /** Bumped by every speak/stop; a running sequence stops when it no longer matches. */
+  private generation = 0;
   private manifest: Promise<Set<string>> | null = null;
   private listeners = new Set<Listener>();
   private state: SpeakerState = { speaking: null };
@@ -58,6 +62,7 @@ export class Speaker {
   }
 
   stop(): void {
+    this.generation++;
     if (this.audio) {
       this.audio.pause();
       this.audio = null;
@@ -66,31 +71,66 @@ export class Speaker {
     this.set(null);
   }
 
-  async speak(text: string, { slow = false }: { slow?: boolean } = {}): Promise<SpeakResult> {
+  async speak(
+    text: string,
+    { slow = false, parts }: { slow?: boolean; parts?: readonly string[] } = {},
+  ): Promise<SpeakResult> {
     this.stop();
+    const generation = this.generation;
     this.set(text);
+    const clips = await this.clips();
     const id = await clipId(text);
-    if ((await this.clips()).has(id)) {
+    if (generation !== this.generation) return 'clip';
+    if (clips.has(id)) {
       try {
         await this.playClip(`/audio/${id}.mp3`, slow, text);
         return 'clip';
       } catch {
-        // Missing from the cache while offline, or blocked: try the device voice.
+        // Missing from the cache while offline, or blocked: try the other routes.
       }
     }
+    if (parts && parts.length > 0) {
+      const ids = await Promise.all(parts.map((p) => clipId(p)));
+      if (generation === this.generation && ids.every((i) => clips.has(i))) {
+        try {
+          await this.playClip(`/audio/${ids[0] ?? ''}.mp3`, slow, text, () =>
+            this.playRest(ids.slice(1), slow, text, generation),
+          );
+          return 'clip';
+        } catch {
+          // Same as above.
+        }
+      }
+    }
+    if (generation !== this.generation) return 'clip';
     if (this.speakWithDevice(text, slow)) return 'device';
     this.set(null);
     return 'unavailable';
   }
 
-  private playClip(src: string, slow: boolean, text: string): Promise<void> {
+  /** Plays the remaining clips of a sequence one after another, unless stopped meanwhile. */
+  private playRest(ids: string[], slow: boolean, text: string, generation: number): void {
+    const next = ids[0];
+    if (next === undefined || generation !== this.generation) {
+      if (this.state.speaking === text && generation === this.generation) this.set(null);
+      return;
+    }
+    this.playClip(`/audio/${next}.mp3`, slow, text, () =>
+      this.playRest(ids.slice(1), slow, text, generation),
+    ).catch(() => {
+      if (this.state.speaking === text) this.set(null);
+    });
+  }
+
+  private playClip(src: string, slow: boolean, text: string, then?: () => void): Promise<void> {
     const audio = new Audio(src);
     audio.playbackRate = slow ? SLOW_RATE : 1;
     // Keep the voice's pitch when slowed (Safari supports the standard property).
     (audio as HTMLAudioElement & { preservesPitch?: boolean }).preservesPitch = true;
     this.audio = audio;
     audio.onended = () => {
-      if (this.state.speaking === text) this.set(null);
+      if (then) then();
+      else if (this.state.speaking === text) this.set(null);
     };
     return audio.play();
   }

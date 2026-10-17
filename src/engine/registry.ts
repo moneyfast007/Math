@@ -1,10 +1,14 @@
 import type { Grade } from '@/ui/ageBand';
 import type { ProfileProgress } from '@/state/schema';
+import { addSub100 } from './topics/addSub100';
 import { addSub20 } from './topics/addSub20';
+import { count10 } from './topics/count10';
+import { multIntro } from './topics/multIntro';
+import { numbers100 } from './topics/numbers100';
 import type { Topic } from './types';
 
-/** All topics, in curriculum order. Phase 5 adds the rest of gan–grade 6. */
-export const TOPICS: readonly Topic[] = [addSub20];
+/** All topics (worlds), in curriculum order (Ministry of Education, 2006/2024). */
+export const TOPICS: readonly Topic[] = [count10, addSub20, numbers100, addSub100, multIntro];
 
 export function topicById(id: string): Topic | undefined {
   return TOPICS.find((t) => t.id === id);

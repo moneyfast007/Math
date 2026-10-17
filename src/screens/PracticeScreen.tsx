@@ -216,7 +216,8 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
 
   const e = s.exercise;
   const finished = s.phase === 'correct' || s.phase === 'revealed';
-  const slotValue = finished ? String(e.answer) : e.input.type === 'numpad' && value ? value : '?';
+  const slotValue = finished ? answerLabel(e) : e.input.type === 'numpad' && value ? value : '?';
+  const hasSlot = e.display.includes('?');
   const [before, after] = e.display ? splitAtSlot(e.display) : ['', ''];
 
   return (
@@ -253,14 +254,14 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
 
       <section className="exercise card" aria-live="polite">
         <div className="exercise__prompt">
-          <SpeakerButton text={e.spokenText} slow={slow} size="lg" />
+          <SpeakerButton text={e.spokenText} parts={e.spokenParts} slow={slow} size="lg" />
           <h1 className="exercise__title">{e.prompt}</h1>
         </div>
         {e.visual ? <VisualView visual={e.visual} /> : null}
         {e.display ? (
           <MathExpr block label={e.spokenText}>
             {before}
-            <span className={finished ? 'slot slot--done' : 'slot'}>{slotValue}</span>
+            {hasSlot ? <span className={finished ? 'slot slot--done' : 'slot'}>{slotValue}</span> : null}
             {after}
           </MathExpr>
         ) : null}
@@ -277,17 +278,20 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
               aria-label={t('practice.choicesLabel')}
               dir="ltr"
             >
-              {e.input.choices.map((c) => (
-                <button
-                  key={c}
-                  type="button"
-                  className="choice-big"
-                  disabled={tried.includes(c)}
-                  onClick={() => answer(c)}
-                >
-                  {c}
-                </button>
-              ))}
+              {e.input.choices.map((c, i) => {
+                const label = e.input.type === 'choices' ? e.input.labels?.[i] : undefined;
+                return (
+                  <button
+                    key={c}
+                    type="button"
+                    className={label ? 'choice-big choice-big--label' : 'choice-big'}
+                    disabled={tried.includes(c)}
+                    onClick={() => answer(c)}
+                  >
+                    {label ?? c}
+                  </button>
+                );
+              })}
             </div>
           ) : (
             <NumberPad
@@ -295,6 +299,7 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
               value={value}
               onChange={setValue}
               maxLength={e.input.maxDigits}
+              decimal={e.input.decimal ?? false}
               onSubmit={() => answer(Number(value))}
             />
           )}
@@ -322,7 +327,7 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
           {e.hints.slice(0, s.hintsShown).map((h, i) => (
             <article key={i} className="hint card">
               <div className="hint__head">
-                <SpeakerButton text={h.spoken} slow={slow} />
+                <SpeakerButton text={h.spoken} parts={h.spokenParts} slow={slow} />
                 <strong>{t('practice.hintTitle', { params: { n: i + 1 } })}</strong>
               </div>
               <p>{h.text}</p>
@@ -352,6 +357,15 @@ function resultLine(o: RoundOutcome, tc: TC, profileId: string, grade: Profile['
   if (world?.review === 'current' && o.newlyCompleted)
     return `${tc('practice.done.passed')} ${t('practice.done.reviewOpened')}`;
   return tc('practice.done.passed');
+}
+
+/** The answer as shown: the choice's label when the buttons carry labels. */
+function answerLabel(e: Exercise): string {
+  if (e.input.type === 'choices' && e.input.labels) {
+    const i = e.input.choices.indexOf(e.answer);
+    return e.input.labels[i] ?? String(e.answer);
+  }
+  return String(e.answer);
 }
 
 function splitAtSlot(display: string): [string, string] {
@@ -395,8 +409,8 @@ function Feedback({ state: s, tc, slow }: { state: SessionState; tc: TC; slow: b
   if (s.phase === 'revealed') {
     return (
       <div className="feedback feedback--reveal" role="status">
-        <SpeakerButton text={e.solutionSpoken} slow={slow} />
-        <span>{t('explain.reveal', { params: { answer: e.answer } })}</span>
+        <SpeakerButton text={e.solutionSpoken} parts={e.solutionParts} slow={slow} />
+        <span>{t('explain.reveal', { params: { answer: answerLabel(e) } })}</span>
       </div>
     );
   }
@@ -415,12 +429,12 @@ function Feedback({ state: s, tc, slow }: { state: SessionState; tc: TC; slow: b
 function explanation(s: SessionState, tc: TC): string {
   const m = s.lastMistake;
   if (m === 'wrongOperation') {
-    return tc(
-      s.exercise.operation === 'sub' ? 'explain.wrongOperation.sub' : 'explain.wrongOperation.add',
-    );
+    const op = s.exercise.operation ?? 'add';
+    return tc(`explain.wrongOperation.${op}`);
   }
-  if (m === 'offByOne') return tc('explain.offByOne');
-  if (m === 'digitReversal') return tc('explain.digitReversal');
+  if (m === 'offByOne' || m === 'digitReversal' || m === 'placeValue' || m === 'carry' || m === 'offByTen' || m === 'remainder') {
+    return tc(`explain.${m}`);
+  }
   // Other kinds have no specific advice yet: a gentle, general nudge.
   return tc('feedback.almost');
 }

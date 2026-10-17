@@ -72,11 +72,11 @@ test.describe('practice', () => {
     // Every answer right: the station is passed and the journey moves on.
     await expect(page.getByRole('status')).toContainText('עברת את התחנה! התחנה הבאה נפתחה!');
 
-    // Back on the map: station 8 is done, 9 is next.
+    // Back on the map: station 1 is done, 2 is next.
     await page.getByRole('button', { name: 'למסע' }).click();
-    await expect(page.getByRole('button', { name: 'תחנה 8, הושלמה' })).toBeVisible();
-    await expect(page.getByRole('button', { name: 'תחנה 9, התחנה הבאה' })).toBeVisible();
-    await expect(page.getByText('תחנה 9 מתוך 11')).toBeVisible();
+    await expect(page.getByRole('button', { name: 'תחנה 1, הושלמה' })).toBeVisible();
+    await expect(page.getByRole('button', { name: 'תחנה 2, התחנה הבאה' })).toBeVisible();
+    await expect(page.getByText('תחנה 2 מתוך 11')).toBeVisible();
 
     // The parent sees it.
     await page.getByRole('button', { name: 'מי משחק?' }).click();
@@ -206,6 +206,7 @@ test.describe('journey', () => {
     await expect(page.getByRole('heading', { name: 'האלבום של נועה' })).toBeVisible();
     await expect(page.getByText('עוד אין מדבקות. העולם הראשון מחכה!')).toBeVisible();
     await expect(page.getByRole('img', { name: 'מדבקה סגורה: בלון' })).toBeVisible();
+    await expect(page.getByRole('img', { name: 'מדבקה סגורה: סירה' })).toBeVisible();
     await page.getByRole('button', { name: 'חזרה למסע' }).click();
     await expect(page).toHaveURL(/\/play$/);
   });

@@ -47,7 +47,14 @@ export type ProfileInput = Pick<Profile, 'name' | 'avatar' | 'grade' | 'gender' 
  * strings so a backup from a newer version with a new kind still imports.
  */
 export type MistakeKind =
-  'wrongOperation' | 'offByOne' | 'digitReversal' | 'placeValue' | 'remainder' | 'other';
+  | 'wrongOperation'
+  | 'offByOne'
+  | 'digitReversal'
+  | 'placeValue'
+  | 'remainder'
+  | 'carry'
+  | 'offByTen'
+  | 'other';
 
 export interface TopicStats {
   /** Current difficulty level within the topic. */

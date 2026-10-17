@@ -141,7 +141,7 @@ describe('add-sub-20: generation and diagnosis', () => {
   });
 
   it('starts each grade at a sensible level', () => {
-    expect(startLevel(0)).toBe(1);
+    expect(startLevel(0)).toBe(3);
     expect(startLevel(1)).toBe(6);
     expect(startLevel(2)).toBe(8);
     expect(startLevel(4)).toBe(9);

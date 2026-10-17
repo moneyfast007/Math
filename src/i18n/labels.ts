@@ -1,5 +1,6 @@
 import type { AvatarId } from '@/profiles/avatars';
 import type { Grade } from '@/ui/ageBand';
+import { topicById } from '@/engine/registry';
 import { he } from './he';
 import { t, type TranslationKey } from './index';
 
@@ -23,14 +24,10 @@ export function mistakeLabel(kind: string): string {
   return t(isKey(key) ? key : 'mistake.other');
 }
 
-const TOPIC_KEYS: Readonly<Record<string, TranslationKey>> = {
-  'add-sub-20': 'topic.addSub20',
-};
-
-/** Topic ids come from the curriculum (phase 3); an unknown id is shown as-is. */
+/** Topic ids come from the curriculum; an unknown id (a newer backup) is shown as-is. */
 export function topicLabel(topicId: string): string {
-  const key = TOPIC_KEYS[topicId];
-  return key ? t(key) : topicId;
+  const key = topicById(topicId)?.labelKey;
+  return key && isKey(key) ? t(key) : topicId;
 }
 
 const dateFormat = new Intl.DateTimeFormat('he-IL', {

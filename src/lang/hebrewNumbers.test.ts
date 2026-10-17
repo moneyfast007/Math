@@ -1,6 +1,7 @@
 import fc from 'fast-check';
 import { describe, expect, it } from 'vitest';
-import { countNoun, MAX_NUMBER, numberToWords } from './hebrewNumbers';
+import type { Gender } from './gender';
+import { countNoun, MAX_NUMBER, numberParts, numberToWords, vavForms } from './hebrewNumbers';
 
 describe('numberToWords, feminine (default)', () => {
   it.each<[number, string]>([
@@ -164,5 +165,40 @@ describe('countNoun', () => {
         else expect(phrase.endsWith(ball.plural)).toBe(true);
       }),
     );
+  });
+});
+
+describe('numberParts', () => {
+  it('is one clip under a thousand', () => {
+    expect(numberParts(352)).toEqual(['שלוש מאות חמישים ושתיים']);
+    expect(numberParts(7, 'm')).toEqual(['שבעה']);
+  });
+
+  it('assembles thousands and millions from clips, with the ו on a single last group', () => {
+    expect(numberParts(4352)).toEqual(['ארבעת אלפים', 'שלוש מאות חמישים ושתיים']);
+    expect(numberParts(4300)).toEqual(['ארבעת אלפים', 'ושלוש מאות']);
+    expect(numberParts(4005)).toEqual(['ארבעת אלפים', 'וחמש']);
+    expect(numberParts(23_000)).toEqual(['עשרים ושלושה', 'אלף']);
+    expect(numberParts(23_017, 'm')).toEqual(['עשרים ושלושה', 'אלף', 'ושבעה עשר']);
+    expect(numberParts(1_000_000)).toEqual(['מיליון']);
+    expect(numberParts(1_004_000)).toEqual(['מיליון', 'וארבעת אלפים']);
+    expect(numberParts(2_500_000)).toEqual(['שני מיליון', 'וחמש מאות', 'אלף']);
+  });
+
+  it('joins back to exactly the words, for every number and gender', () => {
+    fc.assert(
+      fc.property(fc.integer({ min: 0, max: 999_999_999 }), fc.constantFrom('f', 'm'), (n, g) => {
+        expect(numberParts(n, g as Gender).join(' ')).toBe(numberToWords(n, g as Gender));
+      }),
+    );
+  });
+
+  it('lists the ו forms the bank needs', () => {
+    const f = vavForms('f');
+    expect(f).toContain('ושלוש');
+    expect(f).toContain('ושלוש מאות');
+    expect(f).toContain('ואחת עשרה');
+    expect(f).not.toContain('ושלוש מאות חמישים');
+    expect(vavForms('m')).toContain('ועשרת אלפים');
   });
 });
