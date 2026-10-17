@@ -5,12 +5,13 @@ import { useEffect, useState } from 'react';
  * no deep links worth a routing library. Routes are plain paths; the hosting
  * serves index.html for any unknown path (wrangler.json: single-page-application).
  */
-export type RouteName = 'home' | 'play' | 'parents' | 'install' | 'playground';
+export type RouteName = 'home' | 'play' | 'practice' | 'parents' | 'install' | 'playground';
 export type Route = { name: RouteName };
 
 const PATHS: Record<RouteName, string> = {
   home: '/',
   play: '/play',
+  practice: '/practice',
   parents: '/parents',
   install: '/install',
   playground: '/playground',

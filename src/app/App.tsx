@@ -3,6 +3,7 @@ import { HomeScreen } from '@/screens/HomeScreen';
 import { InstallGuideScreen } from '@/screens/InstallGuideScreen';
 import { ParentScreen } from '@/screens/ParentScreen';
 import { PlaygroundScreen } from '@/screens/PlaygroundScreen';
+import { PracticeScreen } from '@/screens/PracticeScreen';
 import { useApp } from '@/state/store';
 import { useRoute } from './router';
 
@@ -18,6 +19,8 @@ export function App() {
       return <HomeScreen />;
     case 'play':
       return <ChildHomeScreen />;
+    case 'practice':
+      return <PracticeScreen />;
     case 'parents':
       return <ParentScreen />;
     case 'install':

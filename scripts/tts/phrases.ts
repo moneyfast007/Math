@@ -1,4 +1,5 @@
 import { he } from '../../src/i18n/he';
+import { allSpokenTexts } from '../../src/engine/registry';
 import { numberToWords } from '../../src/lang/hebrewNumbers';
 
 /**
@@ -18,7 +19,7 @@ export interface Phrase {
  * Only child-facing UI is spoken. Parent screens, install instructions and
  * labels are read by adults and are never voiced, so they are not generated.
  */
-const SPOKEN_PREFIXES = ['action.', 'feedback.', 'child.', 'audio.'] as const;
+const SPOKEN_PREFIXES = ['action.', 'feedback.', 'child.', 'audio.', 'explain.', 'practice.'] as const;
 
 function isSpoken(key: string, text: string): boolean {
   // Phrases with {placeholders} are assembled at runtime from smaller clips.
@@ -55,8 +56,13 @@ export function numberPhrases(): Phrase[] {
   return out;
 }
 
+/** Every sentence the exercise engine can say: questions, hints, solutions. */
+export function exercisePhrases(): Phrase[] {
+  return allSpokenTexts().map((text, i) => ({ id: `ex.${i}`, text }));
+}
+
 export function allPhrases(): Phrase[] {
-  const all = [...uiPhrases(), ...numberPhrases()];
+  const all = [...uiPhrases(), ...numberPhrases(), ...exercisePhrases()];
   // De-duplicate by text: two ids may legitimately share a text (e.g. "שמונה" f/m).
   const seen = new Set<string>();
   return all.filter((p) => {

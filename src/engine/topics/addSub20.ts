@@ -349,10 +349,12 @@ function inputFor(level: number, answer: number, rng: Rng): Exercise['input'] {
 }
 
 function build(f: Fact, level: number, noun: CountableNoun, rng: Rng): Exercise {
-  const facts = factsFor(level);
-  const index = facts.findIndex((x) => factId(x) === factId(f));
-  // The worked example is the next fact in the level: same kind of exercise, different numbers.
-  const sample = facts[(index + 1) % facts.length] as Fact;
+  // The worked example: same kind of exercise, clearly different numbers (a third of
+  // the way around the level's list, so it is not just "one more than" this one).
+  const sameKind = factsFor(level).filter((x) => x.kind === f.kind);
+  const index = sameKind.findIndex((x) => factId(x) === factId(f));
+  const step = Math.max(1, Math.floor(sameKind.length / 3));
+  const sample = sameKind[(index + step) % sameKind.length] as Fact;
   const core = buildCore(f, noun);
   const answer = answerOf(f);
   const [h1, h2] = firstHints(f, noun, level);

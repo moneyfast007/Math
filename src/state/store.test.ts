@@ -159,4 +159,31 @@ describe('app store', () => {
     await flush();
     expect((storage.peek() as AppData).meta.lastBackupAt).toBe(5_000);
   });
+
+  it('records attempts and sets topic levels for a profile', async () => {
+    const { store } = setup();
+    await store.getState().hydrate();
+    const p = store.getState().addProfile(input);
+    store.getState().setTopicLevel(p.id, 'add-sub-20', 8);
+    expect(store.getState().data.progress[p.id]?.topics['add-sub-20']).toMatchObject({
+      level: 8,
+      attempts: 0,
+    });
+    store.getState().recordAttempt(p.id, { topicId: 'add-sub-20', level: 8, correct: true, at: 5 });
+    store
+      .getState()
+      .recordAttempt(p.id, { topicId: 'add-sub-20', level: 8, correct: false, mistake: 'offByOne', at: 6 });
+    expect(store.getState().data.progress[p.id]?.topics['add-sub-20']).toMatchObject({
+      level: 8,
+      attempts: 2,
+      correct: 1,
+      recent: [true, false],
+      mistakes: { offByOne: 1 },
+    });
+    store.getState().setTopicLevel(p.id, 'add-sub-20', 99);
+    expect(store.getState().data.progress[p.id]?.topics['add-sub-20']?.level).toBe(10);
+    // Unknown profiles are ignored.
+    store.getState().recordAttempt('ghost', { topicId: 't', level: 1, correct: true, at: 1 });
+    expect(store.getState().data.progress['ghost']).toBeUndefined();
+  });
 });

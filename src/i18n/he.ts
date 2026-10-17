@@ -214,6 +214,35 @@ export const he = {
   },
   'explain.reveal': 'התשובה היא {answer}.',
 
+  // Child home: the next station
+  'child.nextStation': 'התחנה הבאה',
+  'child.start': 'יאללה, מתחילים!',
+  'child.levelLabel': 'שלב {level}: {name}',
+  'child.otherLevel': 'שלב אחר',
+  'child.pickLevel': 'באיזה שלב לתרגל?',
+
+  // Practice round
+  'practice.exit': 'סיום',
+  'practice.progress': 'תרגיל {n} מתוך {total}',
+  'practice.answerLabel': 'התשובה',
+  'practice.choicesLabel': 'בחירת תשובה',
+  'practice.hintTitle': 'רמז {n}',
+  'practice.next': 'הבא',
+  'practice.levelUp.title': { f: 'מוכנה לאתגר?', m: 'מוכן לאתגר?' },
+  'practice.levelUp.body': 'הצלחת ארבעה תרגילים ברצף! רוצה לנסות שלב קשה יותר?',
+  'practice.levelUp.yes': 'כן, לשלב הבא',
+  'practice.levelUp.no': 'עוד קצת כאן',
+  'practice.levelDown.title': 'ננסה משהו קצת אחר?',
+  'practice.levelDown.body': 'נתרגל רגע שלב קל יותר, ואחר כך נחזור.',
+  'practice.levelDown.yes': 'כן, ננסה',
+  'practice.levelDown.no': 'נשארים כאן',
+  'practice.levelChanged.up': 'עברנו לשלב הבא!',
+  'practice.levelChanged.down': 'נתרגל רגע שלב קל יותר.',
+  'practice.done.title': 'כל הכבוד, {name}!',
+  'practice.done.body': 'פתרת {count} תרגילים.',
+  'practice.done.again': 'עוד סבב',
+  'practice.done.home': 'חזרה',
+
   // Feedback (never a red X, never a failure sound)
   'feedback.correct': { f: 'נכון! כל הכבוד', m: 'נכון! כל הכבוד' },
   'feedback.almost': { f: 'כמעט. בואי ננסה ביחד', m: 'כמעט. בוא ננסה ביחד' },

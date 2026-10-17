@@ -1,11 +1,14 @@
 import { useStore } from 'zustand';
 import { createStore, type StoreApi } from 'zustand/vanilla';
 import { createPinRecord, verifyPin as checkPin } from './pin';
+import { recordAttempt as addAttempt, type Attempt } from './progress';
 import {
   emptyAppData,
   emptyProgress,
+  MAX_LEVEL,
   MAX_NAME_LENGTH,
   MAX_PROFILES,
+  MIN_LEVEL,
   type AppData,
   type Profile,
   type ProfileInput,
@@ -54,6 +57,8 @@ export interface AppState {
   verifyPin: (pin: string) => Promise<boolean>;
   replaceData: (data: AppData) => void;
   markBackedUp: () => void;
+  recordAttempt: (profileId: string, attempt: Attempt) => void;
+  setTopicLevel: (profileId: string, topicId: string, level: number) => void;
 }
 
 export type AppStore = StoreApi<AppState>;
@@ -187,6 +192,31 @@ export function createAppStore(storage: StorageAdapter, clock: () => number = Da
       markBackedUp: () => {
         const { data } = get();
         commit({ ...data, meta: { ...data.meta, lastBackupAt: clock() } });
+      },
+
+      recordAttempt: (profileId, attempt) => {
+        const { data } = get();
+        if (!data.profiles.some((p) => p.id === profileId)) return;
+        const progress = addAttempt(data.progress[profileId] ?? emptyProgress(), attempt);
+        commit({ ...data, progress: { ...data.progress, [profileId]: progress } });
+      },
+
+      setTopicLevel: (profileId, topicId, level) => {
+        const { data } = get();
+        if (!data.profiles.some((p) => p.id === profileId)) return;
+        const progress = data.progress[profileId] ?? emptyProgress();
+        const current = progress.topics[topicId];
+        const clamped = Math.min(MAX_LEVEL, Math.max(MIN_LEVEL, Math.round(level)));
+        const stats = current
+          ? { ...current, level: clamped }
+          : { level: clamped, attempts: 0, correct: 0, lastPracticedAt: 0, recent: [], mistakes: {} };
+        commit({
+          ...data,
+          progress: {
+            ...data.progress,
+            [profileId]: { topics: { ...progress.topics, [topicId]: stats } },
+          },
+        });
       },
     };
   });

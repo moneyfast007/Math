@@ -20,10 +20,26 @@ export interface ObjectKind {
 }
 
 export type Visual =
-  /** Objects to count, in one or two groups. `removed` objects are drawn crossed out. */
-  | { type: 'objects'; kind: ObjectKind; groups: number[]; removed?: number; numbered?: boolean }
-  /** A number line from `from` to `to`, starting at `start`, with `hops` steps of 1 (negative: backwards). */
-  | { type: 'numberLine'; from: number; to: number; start: number; hops: number; stopAt?: number };
+  /**
+   * Objects to count, in one or two groups. `removed` objects (from the end of
+   * the first group) are drawn crossed out. `arranged` lays them out in rows of
+   * five, like a ten-frame, which makes counting easier (a hint).
+   */
+  | { type: 'objects'; kind: ObjectKind; groups: number[]; removed?: number; arranged?: boolean }
+  /**
+   * A number line from `from` to `to`, marked at `start`, with `hops` steps of 1
+   * (negative: backwards). `stopAt` marks a waypoint (10 when crossing ten);
+   * `target` marks a second point when the number of hops is the question.
+   */
+  | {
+      type: 'numberLine';
+      from: number;
+      to: number;
+      start: number;
+      hops: number;
+      stopAt?: number;
+      target?: number;
+    };
 
 export interface Hint {
   /** Shown text (may contain digits, never the answer). */
@@ -48,6 +64,8 @@ export interface Exercise {
   spokenText: string;
   visual?: Visual;
   answer: number;
+  /** The operation, when there is one; selects the explanation for a wrong-operation mistake. */
+  operation?: 'add' | 'sub';
   /** How the child answers. Young children pick from big buttons. */
   input: { type: 'choices'; choices: number[] } | { type: 'numpad'; maxDigits: number };
   /** Exactly three, increasingly concrete: simpler wording, a picture, a solved example. */

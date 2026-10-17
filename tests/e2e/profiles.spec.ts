@@ -81,16 +81,16 @@ test.describe('profiles', () => {
     // A boy among the profiles: the question switches to the masculine.
     await expect(page.getByRole('heading', { name: 'מי משחק היום?' })).toBeVisible();
 
-    const cases: [string, string, string][] = [
-      ['נועה', 'middle', 'מוכנה לשחק?'],
-      ['מאיה', 'young', 'מוכנה לשחק?'],
-      ['איתי', 'older', 'מוכן לשחק?'],
+    const cases: [string, string][] = [
+      ['נועה', 'middle'],
+      ['מאיה', 'young'],
+      ['איתי', 'older'],
     ];
-    for (const [name, band, ready] of cases) {
+    for (const [name, band] of cases) {
       await page.getByRole('button', { name }).click();
       await expect(page).toHaveURL(/\/play$/);
       await expect(page.getByRole('heading', { name: `שלום ${name}!` })).toBeVisible();
-      await expect(page.getByText(ready)).toBeVisible();
+      await expect(page.getByRole('button', { name: 'יאללה, מתחילים!' })).toBeVisible();
       await expect(page.locator('html')).toHaveAttribute('data-age', band);
       await page.getByRole('button', { name: 'מי משחק?' }).click();
       await expect(page).toHaveURL(/\/$/);

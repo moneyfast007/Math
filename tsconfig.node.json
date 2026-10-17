@@ -30,6 +30,8 @@
     "src/i18n",
     "src/audio",
     "src/profiles",
-    "src/ui/ageBand.ts"
+    "src/ui/ageBand.ts",
+    "src/engine",
+    "src/state/schema.ts"
   ]
 }
