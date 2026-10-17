@@ -1,7 +1,6 @@
 import { stickerLabel, type StickerId } from './stickers';
 
 /** The drawing of one sticker (see stickers.ts for which world gets which). */
-import { t } from '@/i18n';
 
 export function Sticker({ id, size = 110 }: { id: StickerId; size?: number | string }) {
   return (

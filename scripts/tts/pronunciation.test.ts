@@ -4,8 +4,9 @@ import { vocalizeForTts } from './pronunciation';
 describe('vocalizeForTts', () => {
   it('reads the feminine teens as esre', () => {
     expect(vocalizeForTts('אחת עשרה בובות')).toBe('אַחַת עֶשְׂרֵה בובות');
+    // The unit is vocalized together with עשרה (shlosh esre), as the native speaker spelled it.
     expect(vocalizeForTts('שבע עשרה גולות ועוד שלוש עשרה גולות.')).toBe(
-      'שבע עֶשְׂרֵה גֻּלּוֹת ועוד שלוש עֶשְׂרֵה גֻּלּוֹת.',
+      'שְׁבַע עֶשְׂרֵה גֻּלּוֹת ועוד שְׁלוֹשׁ עֶשְׂרֵה גֻּלּוֹת.',
     );
   });
 
