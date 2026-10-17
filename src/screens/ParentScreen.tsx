@@ -1,13 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { navigate } from '@/app/router';
 import { makeT, t } from '@/i18n';
-import {
-  formatDate,
-  formatPercent,
-  gradeLabel,
-  mistakeLabel,
-  topicLabel,
-} from '@/i18n/labels';
+import { formatDate, formatPercent, gradeLabel, mistakeLabel, topicLabel } from '@/i18n/labels';
 import { ParentGate } from '@/parent/ParentGate';
 import { ProfileForm } from '@/parent/ProfileForm';
 import { isStandalone } from '@/pwa/standalone';
@@ -94,7 +88,9 @@ function ChildrenSection() {
           {t('parent.addChild')}
         </button>
         {full ? (
-          <span className="muted">{t('parent.limitReached', { params: { max: MAX_PROFILES } })}</span>
+          <span className="muted">
+            {t('parent.limitReached', { params: { max: MAX_PROFILES } })}
+          </span>
         ) : null}
       </div>
 
@@ -157,7 +153,9 @@ function ChildRow({ profile, onEdit }: { profile: Profile; onEdit: () => void })
             </span>
             {summary.lastPracticedAt !== null ? (
               <span className="muted">
-                {t('parent.lastPracticed', { params: { date: formatDate(summary.lastPracticedAt) } })}
+                {t('parent.lastPracticed', {
+                  params: { date: formatDate(summary.lastPracticedAt) },
+                })}
               </span>
             ) : null}
             {summary.struggling.length > 0 ? (

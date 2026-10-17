@@ -57,7 +57,11 @@ describe('app store', () => {
     await store.getState().hydrate();
     const p = store.getState().addProfile(input);
     store.getState().updateProfile(p.id, { ...input, name: 'נועה ל.', grade: 3 });
-    expect(store.getState().data.profiles[0]).toMatchObject({ name: 'נועה ל.', grade: 3, id: p.id });
+    expect(store.getState().data.profiles[0]).toMatchObject({
+      name: 'נועה ל.',
+      grade: 3,
+      id: p.id,
+    });
 
     store.getState().selectProfile(p.id);
     store.getState().removeProfile(p.id);

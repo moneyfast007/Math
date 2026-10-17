@@ -101,7 +101,10 @@ function parseTopicStats(value: unknown, where: string): TopicStats {
   };
 }
 
-function parseProgress(value: unknown, profileIds: ReadonlySet<string>): Record<string, ProfileProgress> {
+function parseProgress(
+  value: unknown,
+  profileIds: ReadonlySet<string>,
+): Record<string, ProfileProgress> {
   const all = record(value, 'התקדמות');
   const out: Record<string, ProfileProgress> = {};
   for (const [profileId, raw] of Object.entries(all)) {

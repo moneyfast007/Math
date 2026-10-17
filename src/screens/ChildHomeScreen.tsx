@@ -23,7 +23,11 @@ export function ChildHomeScreen() {
   return (
     <main className="screen" data-screen="play">
       <header className="screen__header">
-        <button type="button" className="btn btn--secondary" onClick={() => navigate({ name: 'home' })}>
+        <button
+          type="button"
+          className="btn btn--secondary"
+          onClick={() => navigate({ name: 'home' })}
+        >
           {tc('child.switch')}
         </button>
       </header>

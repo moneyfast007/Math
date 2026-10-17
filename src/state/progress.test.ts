@@ -61,7 +61,11 @@ describe('summarizeProgress', () => {
 
   it('flags struggling and strong topics from recent results', () => {
     let p = practice([false, false, true, false, false, true], 'hard');
-    p = practice(Array.from({ length: 10 }, () => true), 'easy', p);
+    p = practice(
+      Array.from({ length: 10 }, () => true),
+      'easy',
+      p,
+    );
     p = practice([false, false], 'tooFew', p); // not enough data to judge
     const s = summarizeProgress(p);
     expect(s.topicsPracticed).toBe(3);

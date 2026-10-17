@@ -50,10 +50,7 @@ describe('parseAppData', () => {
     ['unknown avatar', makeData({ profiles: [{ ...makeProfile(), avatar: 'dragon' as 'fox' }] })],
     ['grade out of range', makeData({ profiles: [{ ...makeProfile(), grade: 7 as 6 }] })],
     ['bad gender', makeData({ profiles: [{ ...makeProfile(), gender: 'x' as 'f' }] })],
-    [
-      'duplicate ids',
-      makeData({ profiles: [makeProfile(), makeProfile({ name: 'אחרת' })] }),
-    ],
+    ['duplicate ids', makeData({ profiles: [makeProfile(), makeProfile({ name: 'אחרת' })] })],
     [
       'too many profiles',
       makeData({
@@ -67,7 +64,14 @@ describe('parseAppData', () => {
         progress: {
           p1: {
             topics: {
-              t: { level: 1, attempts: 2, correct: 3, lastPracticedAt: 0, recent: [], mistakes: {} },
+              t: {
+                level: 1,
+                attempts: 2,
+                correct: 3,
+                lastPracticedAt: 0,
+                recent: [],
+                mistakes: {},
+              },
             },
           },
         },

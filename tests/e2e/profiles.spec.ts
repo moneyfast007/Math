@@ -14,7 +14,12 @@ async function startSetup(page: Page) {
 
 async function addChild(
   page: Page,
-  { name, grade, gender = 'בלשון נקבה', avatar = 'שועל' }: { name: string; grade: string; gender?: string; avatar?: string },
+  {
+    name,
+    grade,
+    gender = 'בלשון נקבה',
+    avatar = 'שועל',
+  }: { name: string; grade: string; gender?: string; avatar?: string },
 ) {
   await page.getByRole('button', { name: 'הוספת ילד או ילדה' }).click();
   const dialog = page.getByRole('dialog', { name: 'פרופיל חדש' });
@@ -51,7 +56,9 @@ async function answerGate(page: Page) {
 }
 
 test.describe('profiles', () => {
-  test('first run: create a profile, it appears on home and survives a reload', async ({ page }) => {
+  test('first run: create a profile, it appears on home and survives a reload', async ({
+    page,
+  }) => {
     await startSetup(page);
     await addChild(page, { name: 'נועה', grade: 'כיתה ב׳' });
     await expect(page.getByRole('article', { name: 'נועה' })).toBeVisible();
@@ -103,7 +110,9 @@ test.describe('parent gate', () => {
     await exitParents(page);
   });
 
-  test('a tap does nothing; a long press and the right answer open the parent area', async ({ page }) => {
+  test('a tap does nothing; a long press and the right answer open the parent area', async ({
+    page,
+  }) => {
     await page.getByRole('button', { name: 'הורים' }).click();
     await page.waitForTimeout(500);
     await expect(page.getByRole('dialog')).toBeHidden();
@@ -154,7 +163,10 @@ test.describe('backup', () => {
   test.beforeEach(async ({ page }) => {
     // Force the download path (no share sheet) so the test can capture the file.
     await page.addInitScript(() => {
-      Object.defineProperty(Navigator.prototype, 'canShare', { value: undefined, configurable: true });
+      Object.defineProperty(Navigator.prototype, 'canShare', {
+        value: undefined,
+        configurable: true,
+      });
     });
   });
 

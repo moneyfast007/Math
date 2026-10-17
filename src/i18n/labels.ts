@@ -33,7 +33,11 @@ export function topicLabel(topicId: string): string {
   return key ? t(key) : topicId;
 }
 
-const dateFormat = new Intl.DateTimeFormat('he-IL', { day: 'numeric', month: 'long', year: 'numeric' });
+const dateFormat = new Intl.DateTimeFormat('he-IL', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+});
 
 export function formatDate(ms: number): string {
   return dateFormat.format(new Date(ms));

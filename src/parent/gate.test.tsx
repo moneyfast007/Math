@@ -7,16 +7,20 @@ import { ParentGate } from './ParentGate';
 describe('makeGateQuestion', () => {
   it('is a two-digit non-round number times 6–9, with the right answer', () => {
     fc.assert(
-      fc.property(fc.double({ min: 0, max: 0.999999, noNaN: true }), fc.double({ min: 0, max: 0.999999, noNaN: true }), (r1, r2) => {
-        const seq = [r1, r2];
-        const q = makeGateQuestion(() => seq.shift() ?? 0);
-        expect(q.a).toBeGreaterThanOrEqual(13);
-        expect(q.a).toBeLessThanOrEqual(99);
-        expect(q.a % 10).not.toBe(0);
-        expect(q.b).toBeGreaterThanOrEqual(6);
-        expect(q.b).toBeLessThanOrEqual(9);
-        expect(q.answer).toBe(q.a * q.b);
-      }),
+      fc.property(
+        fc.double({ min: 0, max: 0.999999, noNaN: true }),
+        fc.double({ min: 0, max: 0.999999, noNaN: true }),
+        (r1, r2) => {
+          const seq = [r1, r2];
+          const q = makeGateQuestion(() => seq.shift() ?? 0);
+          expect(q.a).toBeGreaterThanOrEqual(13);
+          expect(q.a).toBeLessThanOrEqual(99);
+          expect(q.a % 10).not.toBe(0);
+          expect(q.b).toBeGreaterThanOrEqual(6);
+          expect(q.b).toBeLessThanOrEqual(9);
+          expect(q.answer).toBe(q.a * q.b);
+        },
+      ),
     );
   });
 });
@@ -32,7 +36,13 @@ describe('<ParentGate> with the arithmetic question', () => {
   it('unlocks on the right answer', () => {
     const onUnlock = vi.fn();
     render(
-      <ParentGate hasPin={false} verifyPin={vi.fn()} onUnlock={onUnlock} onCancel={vi.fn()} rng={rng} />,
+      <ParentGate
+        hasPin={false}
+        verifyPin={vi.fn()}
+        onUnlock={onUnlock}
+        onCancel={vi.fn()}
+        rng={rng}
+      />,
     );
     expect(screen.getByText('13 × 6 = ?')).toBeInTheDocument();
     typeDigits('78');
@@ -45,7 +55,13 @@ describe('<ParentGate> with the arithmetic question', () => {
   it('shows a gentle message and stays locked on a wrong answer', async () => {
     const onUnlock = vi.fn();
     render(
-      <ParentGate hasPin={false} verifyPin={vi.fn()} onUnlock={onUnlock} onCancel={vi.fn()} rng={rng} />,
+      <ParentGate
+        hasPin={false}
+        verifyPin={vi.fn()}
+        onUnlock={onUnlock}
+        onCancel={vi.fn()}
+        rng={rng}
+      />,
     );
     typeDigits('77');
     fireEvent.click(screen.getByRole('button', { name: 'אישור' }));
@@ -59,7 +75,13 @@ describe('<ParentGate> with the arithmetic question', () => {
   it('cancels with the close button', () => {
     const onCancel = vi.fn();
     render(
-      <ParentGate hasPin={false} verifyPin={vi.fn()} onUnlock={vi.fn()} onCancel={onCancel} rng={rng} />,
+      <ParentGate
+        hasPin={false}
+        verifyPin={vi.fn()}
+        onUnlock={vi.fn()}
+        onCancel={onCancel}
+        rng={rng}
+      />,
     );
     fireEvent.click(screen.getByRole('button', { name: 'סגירה' }));
     expect(onCancel).toHaveBeenCalledOnce();
