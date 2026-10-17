@@ -882,7 +882,8 @@ export const he = {
   'ex.pct.dec.solution': '{x} זה {p}.',
   'ex.pct.of.prompt': 'כמה זה?',
   'ex.pct.of.spoken': 'כמה זה {p} מ{base}?',
-  'ex.pct.of.hint1familiar': 'חמישים אחוזים זה חצי, עשרים וחמישה אחוזים זה רבע, ועשרה אחוזים זה עשירית.',
+  'ex.pct.of.hint1familiar':
+    'חמישים אחוזים זה חצי, עשרים וחמישה אחוזים זה רבע, ועשרה אחוזים זה עשירית.',
   'ex.pct.of.hint1tens': 'קודם נמצא עשרה אחוזים, ואז נכפיל.',
   'ex.pct.of.hint2': 'עשרה אחוזים מ{base} זה {base} חלקי עשר.',
   'ex.pct.of.solution': '{p} מ{base} זה {r}.',
@@ -918,10 +919,13 @@ export const he = {
   'ex.ord.abMinusCD': 'כמה זה {a} כפול {b} פחות {c} חלקי {d}?',
   'ex.ord.abMinusCD.solution': '{a} כפול {b} פחות {c} חלקי {d} זה {r}.',
   'ex.ord.bracketPlusTimes': 'כמה זה, פותחים סוגריים, {a} ועוד {b}, סוגרים סוגריים, כפול {c}?',
-  'ex.ord.bracketPlusTimes.solution': 'פותחים סוגריים, {a} ועוד {b}, סוגרים סוגריים, כפול {c} זה {r}.',
+  'ex.ord.bracketPlusTimes.solution':
+    'פותחים סוגריים, {a} ועוד {b}, סוגרים סוגריים, כפול {c} זה {r}.',
   'ex.ord.timesBracketMinus': 'כמה זה {a} כפול, פותחים סוגריים, {b} פחות {c}, סוגרים סוגריים?',
-  'ex.ord.timesBracketMinus.solution': '{a} כפול, פותחים סוגריים, {b} פחות {c}, סוגרים סוגריים, זה {r}.',
-  'ex.ord.twoBrackets': 'כמה זה, פותחים סוגריים, {a} ועוד {b}, סוגרים סוגריים, כפול, פותחים סוגריים, {c} פחות {d}, סוגרים סוגריים?',
+  'ex.ord.timesBracketMinus.solution':
+    '{a} כפול, פותחים סוגריים, {b} פחות {c}, סוגרים סוגריים, זה {r}.',
+  'ex.ord.twoBrackets':
+    'כמה זה, פותחים סוגריים, {a} ועוד {b}, סוגרים סוגריים, כפול, פותחים סוגריים, {c} פחות {d}, סוגרים סוגריים?',
   'ex.ord.twoBrackets.solution': 'שני הסוגריים, ואחר כך הכפל: התשובה היא {r}.',
   'ex.ord.minusPlus': 'כמה זה {a} פחות {b} ועוד {c}?',
   'ex.ord.minusPlus.solution': '{a} פחות {b} ועוד {c} זה {r}.',
@@ -932,7 +936,8 @@ export const he = {
   'ex.ord.dist.hint1': 'נפרק את {n} ל{t} ועוד עוד משהו.',
   'ex.ord.dist.hint2': 'כופלים כל חלק לחוד ומחברים: זה חוק הפילוג.',
   'ex.ord.dist.solution': '{n} זה {t} ועוד {u}.',
-  'ex.ord.inside.spoken': 'פותחים סוגריים, כמה ועוד {b}, סוגרים סוגריים, כפול {c} זה {r}. מה המספר החסר?',
+  'ex.ord.inside.spoken':
+    'פותחים סוגריים, כמה ועוד {b}, סוגרים סוגריים, כפול {c} זה {r}. מה המספר החסר?',
   'ex.ord.inside.hint1': 'קודם נמצא מה בתוך הסוגריים: איזה מספר כפול {c} זה {r}?',
   'ex.ord.inside.hint2': 'עכשיו: איזה מספר ועוד {b} נותן את מה שמצאנו?',
   'ex.ord.inside.solution': 'המספר החסר הוא {x}.',
