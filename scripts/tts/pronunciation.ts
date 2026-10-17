@@ -44,9 +44,7 @@ const LEXICON: Readonly<Record<string, string>> = {
   לחלק: 'לְחַלֵּק',
   גולות: 'גֻּלּוֹת',
   שוות: 'שָׁווֹת',
-  // Still being tested (round 4): these two appear often in today's exercises.
-  שש: 'שֵׁשׁ',
-  עשרים: 'עֶשְׂרִים',
+  // Round 4: vocalizing שש and עשרים made things worse; they stay plain.
 };
 
 const SHEVA = 'ְ';

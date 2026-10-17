@@ -24,6 +24,14 @@ on:
         description: 'Sentence set: sample (the original 40) or bank (round 4, from today''s exercises)'
         required: false
         default: 'sample'
+      voices:
+        description: 'Comma-separated voices for a plain-text Chirp comparison (overrides "only")'
+        required: false
+        default: ''
+      takes:
+        description: 'With voices: takes per sentence per voice'
+        required: false
+        default: '1'
 
 permissions:
   contents: write
@@ -53,7 +61,8 @@ jobs:
           set -o pipefail
           mkdir -p scripts/tts/out-sample
           ONLY="${{ inputs.only }}"
-          npm run tts:sample -- --voice "${{ inputs.voice }}" --set "${{ inputs.set }}" ${ONLY:+--only "$ONLY"} 2>&1 | tee scripts/tts/out-sample/log.txt
+          VOICES="${{ inputs.voices }}"
+          npm run tts:sample -- --voice "${{ inputs.voice }}" --set "${{ inputs.set }}" ${ONLY:+--only "$ONLY"} ${VOICES:+--voices "$VOICES" --takes "${{ inputs.takes }}"} 2>&1 | tee scripts/tts/out-sample/log.txt
       - name: Publish to the tts-sample branch (also on failure, with the log)
         run: |
           rm -rf public/tts-sample

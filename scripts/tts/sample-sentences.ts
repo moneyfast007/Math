@@ -108,3 +108,11 @@ export const BANK_CHECK: readonly string[] = [
   'שמונה ועוד חמש זה שלוש עשרה.',
   'היו עשרה בלונים. לקחו שלושה בלונים. כמה בלונים נשארו?',
 ];
+
+/** Round 5 probe: the hardest bank sentences, used to test voices and repeatability. */
+export const PROBE: readonly string[] = [
+  'למשל, כאן יש ארבעה כוכבים: אחת, שתיים, שלוש, ארבע.',
+  'שמונה ועוד חמש זה שלוש עשרה.',
+  'היו עשרה בלונים. לקחו שלושה בלונים. כמה בלונים נשארו?',
+  'למשל, עשר ועוד עשר זה עשרים.',
+];

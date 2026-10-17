@@ -26,8 +26,8 @@ describe('vocalizeForTts', () => {
 
   it('vocalizes the listed words and gives a ו prefix its vowel', () => {
     expect(vocalizeForTts('שלושת אלפים וחמש')).toBe('שלושת אֲלָפִים וחמש');
-    expect(vocalizeForTts('כמה זה שש ועוד שבע?')).toBe('כמה זה שֵׁשׁ ועוד שבע?');
-    expect(vocalizeForTts('עשרים ושש')).toBe('עֶשְׂרִים וְשֵׁשׁ');
+    expect(vocalizeForTts('כמה זה שש ועוד שבע?')).toBe('כמה זה שש ועוד שבע?');
+    expect(vocalizeForTts('עשרים ושש')).toBe('עשרים ושש');
     expect(vocalizeForTts('הם מתחלקים לשש קבוצות שוות.')).toBe('הם מתחלקים לְשֵׁשׁ קבוצות שָׁווֹת.');
     expect(vocalizeForTts('כמה זה שתים עשרה לחלק לשלוש?')).toBe(
       'כמה זה שְׁתֵּים עֶשְׂרֵה לְחַלֵּק לשלוש?',

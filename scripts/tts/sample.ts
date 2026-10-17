@@ -10,7 +10,7 @@ import {
   type VoiceSpec,
 } from './lib';
 import { vocalizeForTts } from './pronunciation';
-import { BANK_CHECK, NIKUD_PAIRS, SENTENCES as SAMPLE_SENTENCES } from './sample-sentences';
+import { BANK_CHECK, NIKUD_PAIRS, PROBE, SENTENCES as SAMPLE_SENTENCES } from './sample-sentences';
 
 /**
  * Voice comparison batch. Produces, for each variant, one MP3 per test sentence
@@ -36,10 +36,15 @@ const { values } = parseArgs({
     voice: { type: 'string', default: 'Leda' },
     /** "bank": the round-4 sentences from today's exercises instead of the original 40. */
     set: { type: 'string', default: 'sample' },
+    /** Comma-separated voice names: plain-text Chirp 3 HD in each voice (overrides --only). */
+    voices: { type: 'string' },
+    /** With --voices: how many times to synthesize each sentence per voice (repeatability check). */
+    takes: { type: 'string', default: '1' },
   },
 });
 
-const SENTENCES: readonly string[] = values.set === 'bank' ? BANK_CHECK : SAMPLE_SENTENCES;
+const SENTENCES: readonly string[] =
+  values.set === 'bank' ? BANK_CHECK : values.set === 'probe' ? PROBE : SAMPLE_SENTENCES;
 
 interface Variant {
   name: string;
@@ -71,7 +76,20 @@ const ALL_VARIANTS: Variant[] = [
 ];
 
 const only = values.only?.split(',').map((x) => x.trim());
-const variants = ALL_VARIANTS.filter((v) => !only || only.includes(v.name));
+const takes = Math.max(1, Number(values.takes) || 1);
+const variants: Variant[] = values.voices
+  ? values.voices
+      .split(',')
+      .map((v) => v.trim())
+      .filter(Boolean)
+      .flatMap((voice) =>
+        Array.from({ length: takes }, (_, k) => ({
+          name: takes > 1 ? `${voice}-t${k + 1}` : voice,
+          spec: { engine: 'chirp3-hd' as const, voice },
+          texts: [...SENTENCES],
+        })),
+      )
+  : ALL_VARIANTS.filter((v) => !only || only.includes(v.name));
 
 const HTML_ESCAPES: Record<string, string> = {
   '&': '&amp;',
