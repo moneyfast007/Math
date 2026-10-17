@@ -337,9 +337,15 @@ export function defineTopic(def: TopicDef): Topic & { enumerate: (level: number)
     for (const { level } of levels) {
       const l = levelDef(level);
       for (const e of enumerate(level)) {
-        const parts = [e.spokenParts ?? [], e.solutionParts ?? [], ...e.hints.map((h) => h.spokenParts ?? [])];
+        const parts = [
+          e.spokenParts ?? [],
+          e.solutionParts ?? [],
+          ...e.hints.map((h) => h.spokenParts ?? []),
+        ];
         // Closed levels record whole sentences; open levels only the clips sentences are assembled from.
-        if (!('gen' in l)) for (const x of [e.spokenText, e.solutionSpoken, ...e.hints.map((h) => h.spoken)]) out.add(x);
+        if (!('gen' in l))
+          for (const x of [e.spokenText, e.solutionSpoken, ...e.hints.map((h) => h.spoken)])
+            out.add(x);
         for (const p of parts.flat()) out.add(p);
       }
     }
