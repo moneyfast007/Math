@@ -40,7 +40,7 @@ interface Variant {
   sentences: readonly string[];
 }
 
-const variants: Variant[] = [
+const ALL_VARIANTS: Variant[] = [
   {
     name: 'gemini-flash',
     spec: { engine: 'gemini-flash', voice: values.voice, prompt: DEFAULT_PROMPT },
@@ -56,7 +56,9 @@ const variants: Variant[] = [
     spec: { engine: 'chirp3-hd', voice: values.voice },
     sentences: SENTENCES,
   },
-].filter((v) => !values.only || v.name === values.only);
+];
+
+const variants = ALL_VARIANTS.filter((v) => !values.only || v.name === values.only);
 
 const HTML_ESCAPES: Record<string, string> = {
   '&': '&amp;',
