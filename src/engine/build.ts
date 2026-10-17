@@ -585,7 +585,10 @@ export function storyPieces(): string[] {
   for (const [key, nouns] of STORIES) {
     for (const who of CHARACTERS) {
       for (const noun of nouns) {
-        const story = compose(t(`${key}.story` as TranslationKey, { gender: who.gender }), storySlots(who, noun, 3, 3));
+        const story = compose(
+          t(`${key}.story` as TranslationKey, { gender: who.gender }),
+          storySlots(who, noun, 3, 3),
+        );
         for (const p of story.parts) out.add(p);
         out.add(say(`${key}.hint1` as TranslationKey, {}, who.gender).text);
       }
@@ -595,7 +598,8 @@ export function storyPieces(): string[] {
 }
 
 export function wordProblem(o: WordProblemOptions): Exercise {
-  if (o.a < 3 || o.b < 3) throw new RangeError(`word problem numbers must be at least 3 (${o.key}: ${o.a}, ${o.b})`);
+  if (o.a < 3 || o.b < 3)
+    throw new RangeError(`word problem numbers must be at least 3 (${o.key}: ${o.a}, ${o.b})`);
   const nouns = o.nouns ?? WORD_NOUNS;
   STORIES.set(o.key, nouns);
   const ex = differentExample(o.a, o.op, o.b, o.example);
