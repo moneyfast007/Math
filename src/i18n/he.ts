@@ -12,8 +12,8 @@
  */
 export const he = {
   // App
-  'app.name': 'חשבון',
-  'app.tagline': 'תרגול חשבון, מגן חובה ועד כיתה ו׳',
+  'app.name': 'פלוסי',
+  'app.tagline': 'תרגול מתמטיקה, מגן חובה ועד כיתה ו׳',
 
   // Home
   // Gendered by the profiles on the device: feminine only if every profile is feminine.
@@ -160,6 +160,59 @@ export const he = {
 
   // Topics
   'topic.addSub20': 'חיבור וחיסור עד 20',
+
+  // Levels of "add-sub-20"
+  'level.addSub20.1': 'סופרים עד 5',
+  'level.addSub20.2': 'סופרים עד 10',
+  'level.addSub20.3': 'חיבור עד 5 עם ציורים',
+  'level.addSub20.4': 'חיבור עד 10 עם ציורים',
+  'level.addSub20.5': 'חיסור עד 10 עם ציורים',
+  'level.addSub20.6': 'חיבור עד 10',
+  'level.addSub20.7': 'חיסור עד 10',
+  'level.addSub20.8': 'חיבור וחיסור עד 20',
+  'level.addSub20.9': 'מעבר עשרת',
+  'level.addSub20.10': 'מספר חסר',
+
+  // Exercise prompts (shown) and spoken templates. {a}, {b}: number-and-noun phrases.
+  'ex.count.prompt': 'כמה {plural} יש?',
+  'ex.objAdd.prompt': 'כמה {plural} יש ביחד?',
+  'ex.objSub.prompt': 'כמה {plural} נשארו?',
+  'ex.arith.prompt': 'כמה זה?',
+  'ex.missing.prompt': 'איזה מספר חסר?',
+  'spoken.objAdd': '{a} ועוד {b}. כמה {plural} יש ביחד?',
+  'spoken.objSub': 'היו {a}. לקחו {b}. כמה {plural} נשארו?',
+  'spoken.missAdd': '{a} ועוד כמה זה {c}?',
+  'spoken.missSub': '{c} פחות כמה זה {b}?',
+  'spoken.example': 'למשל, {sentence}',
+
+  // Hints. Written in the first person plural ("נספור"), so they need no gender.
+  'hint.count.1': 'נספור לאט, ונגע בכל אחד פעם אחת.',
+  'hint.count.2': 'סידרנו אותם בשורות של חמש. ככה קל יותר לספור.',
+  'hint.count.3': 'למשל, כאן יש {phrase}: {sequence}.',
+  'hint.objAdd.1': 'נספור את כל ה{plural} ביחד, מהראשון ועד האחרון.',
+  'hint.objSub.1': 'נספור רק את ה{plural} שנשארו, בלי אלה שלקחו.',
+  'hint.objects.2': 'סידרנו את הציורים בשורות של חמש. ככה קל יותר לספור.',
+  'hint.add.1': 'נתחיל מהמספר הגדול, ונספור קדימה.',
+  'hint.sub.1': 'נתחיל מהמספר הגדול, ונספור אחורה.',
+  'hint.addCross.1': 'נשלים קודם לעשר, ואחר כך נוסיף את מה שנשאר.',
+  'hint.subCross.1': 'נרד קודם לעשר, ואחר כך נוריד את מה שנשאר.',
+  'hint.missAdd.1': 'כמה צריך להוסיף ל-{a} כדי להגיע ל-{c}?',
+  'hint.missAdd.1.spoken': 'כמה צריך להוסיף ל{a} כדי להגיע ל{c}?',
+  'hint.missSub.1': 'כמה צריך להוריד מ-{c} כדי להגיע ל-{b}?',
+  'hint.missSub.1.spoken': 'כמה צריך להוריד מ{c} כדי להגיע ל{b}?',
+  'hint.numberLine': 'נקפוץ על ישר המספרים. כל קפיצה היא אחד.',
+  'hint.numberLineGap': 'על ישר המספרים: כמה קפיצות יש מהנקודה הראשונה עד השנייה?',
+  'hint.example': 'הנה תרגיל דומה, פתור:',
+
+  // Explanations after a wrong answer (gendered: they address the child)
+  'explain.wrongOperation.add': { f: 'שימי לב לסימן: כאן מחברים.', m: 'שים לב לסימן: כאן מחברים.' },
+  'explain.wrongOperation.sub': { f: 'שימי לב לסימן: כאן מחסרים.', m: 'שים לב לסימן: כאן מחסרים.' },
+  'explain.offByOne': { f: 'ממש קרוב! נסי לספור שוב לאט.', m: 'ממש קרוב! נסה לספור שוב לאט.' },
+  'explain.digitReversal': {
+    f: 'הספרות נכונות, אבל בדקי את הסדר שלהן.',
+    m: 'הספרות נכונות, אבל בדוק את הסדר שלהן.',
+  },
+  'explain.reveal': 'התשובה היא {answer}.',
 
   // Feedback (never a red X, never a failure sound)
   'feedback.correct': { f: 'נכון! כל הכבוד', m: 'נכון! כל הכבוד' },

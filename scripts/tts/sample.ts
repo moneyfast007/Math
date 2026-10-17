@@ -9,20 +9,23 @@ import {
   synthesize,
   type VoiceSpec,
 } from './lib';
-import { NIKUD_PAIRS, NIKUD_SENTENCES, SENTENCES } from './sample-sentences';
+import { vocalizeForTts } from './pronunciation';
+import { NIKUD_PAIRS, SENTENCES } from './sample-sentences';
 
 /**
  * Voice comparison batch. Produces, for each variant, one MP3 per test sentence
  * plus an index.html to listen side by side. Nothing here ships with the app.
  *
  *   npm run tts:sample                          # all variants
- *   npm run tts:sample -- --only gemini-flash   # one variant
+ *   npm run tts:sample -- --only chirp3-hd,chirp3-hd-fixed   # some variants
  *   npm run tts:sample -- --voice Kore          # try another voice name
  *
  * Variants:
  *   gemini-flash         Gemini 2.5 Flash TTS, plain text
  *   gemini-flash-nikud   same model, fully vocalized text (subset)
  *   chirp3-hd            Chirp 3 HD, plain text
+ *   chirp3-hd-fixed      Chirp 3 HD, nikud only on ambiguous words (pronunciation.ts)
+ *   chirp3-hd-nikud      Chirp 3 HD, fully vocalized text (subset)
  */
 
 const OUT = path.resolve(import.meta.dirname, 'out-sample');
@@ -37,28 +40,34 @@ const { values } = parseArgs({
 interface Variant {
   name: string;
   spec: VoiceSpec;
-  sentences: readonly string[];
+  /** Text sent to the engine, aligned to SENTENCES; null where the variant has no version. */
+  texts: (string | null)[];
 }
 
+/** The fully vocalized subset, aligned to SENTENCES. */
+function nikudAligned(): (string | null)[] {
+  const out: (string | null)[] = SENTENCES.map(() => null);
+  for (const { plain, vocalized } of NIKUD_PAIRS) {
+    const i = SENTENCES.indexOf(plain);
+    if (i < 0) throw new Error(`Vocalized sentence has no plain match: ${vocalized}`);
+    out[i] = vocalized;
+  }
+  return out;
+}
+
+const gemini: VoiceSpec = { engine: 'gemini-flash', voice: values.voice, prompt: DEFAULT_PROMPT };
+const chirp: VoiceSpec = { engine: 'chirp3-hd', voice: values.voice };
+
 const ALL_VARIANTS: Variant[] = [
-  {
-    name: 'gemini-flash',
-    spec: { engine: 'gemini-flash', voice: values.voice, prompt: DEFAULT_PROMPT },
-    sentences: SENTENCES,
-  },
-  {
-    name: 'gemini-flash-nikud',
-    spec: { engine: 'gemini-flash', voice: values.voice, prompt: DEFAULT_PROMPT },
-    sentences: NIKUD_SENTENCES,
-  },
-  {
-    name: 'chirp3-hd',
-    spec: { engine: 'chirp3-hd', voice: values.voice },
-    sentences: SENTENCES,
-  },
+  { name: 'gemini-flash', spec: gemini, texts: [...SENTENCES] },
+  { name: 'gemini-flash-nikud', spec: gemini, texts: nikudAligned() },
+  { name: 'chirp3-hd', spec: chirp, texts: [...SENTENCES] },
+  { name: 'chirp3-hd-fixed', spec: chirp, texts: SENTENCES.map(vocalizeForTts) },
+  { name: 'chirp3-hd-nikud', spec: chirp, texts: nikudAligned() },
 ];
 
-const variants = ALL_VARIANTS.filter((v) => !values.only || v.name === values.only);
+const only = values.only?.split(',').map((x) => x.trim());
+const variants = ALL_VARIANTS.filter((v) => !only || only.includes(v.name));
 
 const HTML_ESCAPES: Record<string, string> = {
   '&': '&amp;',
@@ -71,29 +80,17 @@ function escapeHtml(s: string): string {
   return s.replace(/[&<>"]/g, (c) => HTML_ESCAPES[c] ?? c);
 }
 
-/** Each variant's sentences, aligned to SENTENCES (null where a variant has no version). */
-function aligned(v: Variant): (string | null)[] {
-  if (v.sentences === SENTENCES) return [...SENTENCES];
-  const out: (string | null)[] = SENTENCES.map(() => null);
-  for (const { plain, vocalized } of NIKUD_PAIRS) {
-    const i = SENTENCES.indexOf(plain);
-    if (i < 0) throw new Error(`Vocalized sentence has no plain match: ${vocalized}`);
-    out[i] = vocalized;
-  }
-  return out;
-}
-
 async function main(): Promise<void> {
   await ensureDir(OUT);
   const failures = new Map<string, string>();
 
   for (const v of variants) {
     console.log(
-      `\n${v.name}: ${v.sentences.length} sentences, ${estimateCost(v.sentences, v.spec.engine)}`,
+      `\n${v.name}: ${v.texts.filter(Boolean).length} sentences, ${estimateCost(v.texts.filter((x): x is string => x !== null), v.spec.engine)}`,
     );
     const dir = path.join(OUT, v.name);
     await ensureDir(dir);
-    const items = aligned(v)
+    const items = v.texts
       .map((text, i) => ({ text, i }))
       .filter((x): x is { text: string; i: number } => x.text !== null);
     try {
@@ -113,7 +110,7 @@ async function main(): Promise<void> {
   }
 
   // Listening page: one row per sentence, one column per variant.
-  const columns = variants.map((v) => ({ name: v.name, texts: aligned(v) }));
+  const columns = variants.map((v) => ({ name: v.name, texts: v.texts }));
   const rows = SENTENCES.map((text, i) => {
     const n = String(i + 1).padStart(2, '0');
     const cells = columns

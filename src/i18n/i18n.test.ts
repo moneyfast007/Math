@@ -4,7 +4,7 @@ import { makeT, t } from './index';
 
 describe('t()', () => {
   it('returns plain phrases as-is', () => {
-    expect(t('app.name')).toBe('חשבון');
+    expect(t('app.name')).toBe('פלוסי');
   });
 
   it('picks the gendered form, feminine by default', () => {
@@ -20,7 +20,7 @@ describe('t()', () => {
   it('interpolates params and leaves unknown placeholders alone', () => {
     // No key in the dictionary uses params yet; exercise the mechanism directly.
     const text = t('app.name', { params: { x: 1 } });
-    expect(text).toBe('חשבון');
+    expect(text).toBe('פלוסי');
   });
 });
 

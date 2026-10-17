@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.1.0",
   "type": "module",
-  "description": "אתר ללימוד חשבון לילדים, מגן חובה ועד כיתה ו׳",
+  "description": "פלוסי: תרגול מתמטיקה לילדים, מגן חובה ועד כיתה ו׳",
   "engines": {
     "node": ">=20"
   },

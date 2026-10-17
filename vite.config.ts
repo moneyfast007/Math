@@ -33,9 +33,9 @@ export default defineConfig({
         ],
       },
       manifest: {
-        name: 'חשבון',
-        short_name: 'חשבון',
-        description: 'תרגול חשבון לילדים, מגן חובה ועד כיתה ו׳',
+        name: 'פלוסי',
+        short_name: 'פלוסי',
+        description: 'תרגול מתמטיקה לילדים, מגן חובה ועד כיתה ו׳',
         lang: 'he',
         dir: 'rtl',
         start_url: '/',

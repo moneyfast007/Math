@@ -15,6 +15,7 @@ import {
   type VoiceSpec,
 } from './lib';
 import { allPhrases } from './phrases';
+import { vocalizeForTts } from './pronunciation';
 
 /**
  * Generates the app's audio bank into public/audio/.
@@ -94,7 +95,8 @@ async function main(): Promise<void> {
   let done = 0;
   await mapLimit(missing, Number(values.concurrency), async (p) => {
     const id = clipIdNode(p.text);
-    const mp3 = await synthesize(p.text, spec);
+    // Ambiguous words get nikud on the way to the engine; the file is still named by the plain text.
+    const mp3 = await synthesize(vocalizeForTts(p.text), spec);
     await writeFile(path.join(OUT_DIR, `${id}.mp3`), mp3);
     manifest.clips[id] = p.text;
     done++;

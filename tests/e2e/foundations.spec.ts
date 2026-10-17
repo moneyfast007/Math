@@ -5,7 +5,7 @@ test.describe('foundations', () => {
     await page.goto('/');
     await expect(page.locator('html')).toHaveAttribute('dir', 'rtl');
     await expect(page.locator('html')).toHaveAttribute('lang', 'he');
-    await expect(page.getByRole('heading', { level: 1 })).toHaveText('חשבון');
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText('פלוסי');
   });
 
   test('arithmetic renders left-to-right inside the RTL page', async ({ page }) => {
@@ -95,7 +95,7 @@ test.describe('foundations', () => {
     const manifest = await request.get('/manifest.webmanifest');
     expect(manifest.ok()).toBeTruthy();
     const json = (await manifest.json()) as { name: string; dir: string; lang: string };
-    expect(json.name).toBe('חשבון');
+    expect(json.name).toBe('פלוסי');
     expect(json.dir).toBe('rtl');
     expect(json.lang).toBe('he');
 

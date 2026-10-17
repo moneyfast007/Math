@@ -16,6 +16,10 @@ on:
         description: 'Voice name (shared by Gemini and Chirp 3 HD), e.g. Leda, Kore, Aoede, Achernar'
         required: true
         default: 'Leda'
+      only:
+        description: 'Variants to generate, comma separated (empty = all). E.g. chirp3-hd,chirp3-hd-fixed,chirp3-hd-nikud'
+        required: false
+        default: ''
 
 permissions:
   contents: write
@@ -44,7 +48,8 @@ jobs:
         run: |
           set -o pipefail
           mkdir -p scripts/tts/out-sample
-          npm run tts:sample -- --voice "${{ inputs.voice }}" 2>&1 | tee scripts/tts/out-sample/log.txt
+          ONLY="${{ inputs.only }}"
+          npm run tts:sample -- --voice "${{ inputs.voice }}" ${ONLY:+--only "$ONLY"} 2>&1 | tee scripts/tts/out-sample/log.txt
       - name: Publish to the tts-sample branch (also on failure, with the log)
         run: |
           rm -rf public/tts-sample
