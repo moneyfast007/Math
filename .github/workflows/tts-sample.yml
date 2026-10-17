@@ -1,0 +1,55 @@
+# Voice comparison sample. Manual only (Actions → "TTS sample" → Run workflow).
+#
+# Generates the test sentences with each voice variant and publishes them to the
+# `tts-sample` branch under /tts-sample/. Cloudflare builds that branch as a
+# preview, so the listening page opens on an iPad at <preview-url>/tts-sample/.
+# Nothing here touches main or the production site.
+#
+# Needs repository secrets GCP_SA_KEY (service account JSON, roles: Agent
+# Platform user + Service Usage Consumer) and GOOGLE_CLOUD_PROJECT.
+name: TTS sample
+
+on:
+  workflow_dispatch:
+    inputs:
+      voice:
+        description: 'Voice name (shared by Gemini and Chirp 3 HD), e.g. Leda, Kore, Aoede, Achernar'
+        required: true
+        default: 'Leda'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: tts-sample
+  cancel-in-progress: false
+
+jobs:
+  sample:
+    runs-on: ubuntu-latest
+    env:
+      GOOGLE_CLOUD_PROJECT: ${{ secrets.GOOGLE_CLOUD_PROJECT }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm ci
+      - uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+      - name: Generate samples
+        run: npm run tts:sample -- --voice "${{ inputs.voice }}"
+      - name: Publish to the tts-sample branch
+        run: |
+          rm -rf public/tts-sample
+          mkdir -p public/tts-sample
+          cp -r scripts/tts/out-sample/. public/tts-sample/
+          # Never publish credentials: the auth action writes a key file into the workspace.
+          rm -f gha-creds-*.json
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -B tts-sample
+          git add public/tts-sample
+          git commit -m "TTS sample: voice ${{ inputs.voice }}"
+          git push --force origin tts-sample

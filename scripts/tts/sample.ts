@@ -71,53 +71,86 @@ function escapeHtml(s: string): string {
   return s.replace(/[&<>"]/g, (c) => HTML_ESCAPES[c] ?? c);
 }
 
+/** Removes Hebrew vowel points and cantillation marks. */
+function stripNikud(text: string): string {
+  return text.replace(/[\u0591-\u05C7]/g, '');
+}
+
+/** Each variant's sentences, aligned to SENTENCES (null where a variant has no version). */
+function aligned(v: Variant): (string | null)[] {
+  if (v.sentences === SENTENCES) return [...SENTENCES];
+  const out: (string | null)[] = SENTENCES.map(() => null);
+  for (const text of v.sentences) {
+    const i = SENTENCES.indexOf(stripNikud(text));
+    if (i < 0) throw new Error(`Vocalized sentence has no plain match: ${text}`);
+    out[i] = text;
+  }
+  return out;
+}
+
 async function main(): Promise<void> {
   await ensureDir(OUT);
+  const failures = new Map<string, string>();
+
   for (const v of variants) {
     console.log(
       `\n${v.name}: ${v.sentences.length} sentences, ${estimateCost(v.sentences, v.spec.engine)}`,
     );
     const dir = path.join(OUT, v.name);
     await ensureDir(dir);
-    await mapLimit(v.sentences, 3, async (text, i) => {
-      const file = path.join(dir, `${String(i + 1).padStart(2, '0')}.mp3`);
-      const mp3 = await synthesize(text, v.spec);
-      await writeFile(file, mp3);
-      console.log(`  ${String(i + 1).padStart(2, '0')} ${text}`);
-    });
+    const items = aligned(v)
+      .map((text, i) => ({ text, i }))
+      .filter((x): x is { text: string; i: number } => x.text !== null);
+    try {
+      await mapLimit(items, 3, async ({ text, i }) => {
+        const n = String(i + 1).padStart(2, '0');
+        await writeFile(path.join(dir, `${n}.mp3`), await synthesize(text, v.spec));
+        console.log(`  ${n} ${text}`);
+      });
+    } catch (err) {
+      // One engine failing (e.g. Hebrew not enabled for it) must not hide the others.
+      const message = err instanceof Error ? err.message : String(err);
+      failures.set(v.name, message);
+      console.error(`  ${v.name} FAILED: ${message}`);
+    }
   }
 
   // Listening page: one row per sentence, one column per variant.
-  const names = variants.map((v) => v.name);
+  const columns = variants.map((v) => ({ name: v.name, texts: aligned(v) }));
   const rows = SENTENCES.map((text, i) => {
     const n = String(i + 1).padStart(2, '0');
-    const cells = names
-      .map((name) => {
-        const v = variants.find((x) => x.name === name) as Variant;
-        if (i >= v.sentences.length) return '<td class="na">—</td>';
+    const cells = columns
+      .map(({ name, texts }) => {
+        if (failures.has(name) || texts[i] === null) return '<td class="na">—</td>';
         return `<td><audio controls preload="none" src="${name}/${n}.mp3"></audio></td>`;
       })
       .join('');
     return `<tr><td class="n">${n}</td><td class="t">${escapeHtml(text)}</td>${cells}</tr>`;
   }).join('\n');
 
+  const failureNotes = [...failures.entries()]
+    .map(([name, msg]) => `<p class="err"><b>${escapeHtml(name)}</b> נכשל: ${escapeHtml(msg)}</p>`)
+    .join('');
+
   const html = `<!doctype html><html lang="he" dir="rtl"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>השוואת קולות</title>
 <style>
-body{font-family:system-ui;padding:24px;background:#fff8ee;color:#3a2f2a}
-table{border-collapse:collapse;width:100%}td,th{padding:8px 10px;border-bottom:1px solid #ead9c2;vertical-align:middle}
-th{text-align:start;font-weight:700}.n{color:#7a6a60;width:3em}.t{max-width:40em}.na{color:#bbb;text-align:center}
-audio{width:260px}
+body{font-family:system-ui;padding:16px;background:#fff8ee;color:#3a2f2a;margin:0}
+table{border-collapse:collapse;width:100%}td,th{padding:8px;border-bottom:1px solid #ead9c2;vertical-align:middle}
+th{text-align:start;font-weight:700;position:sticky;top:0;background:#fff8ee}.n{color:#7a6a60;width:2em}
+.t{min-width:12em}.na{color:#bbb;text-align:center}.err{background:#fbeccf;padding:8px 12px;border-radius:12px}
+audio{width:200px}
 </style>
 <h1>השוואת קולות: ${escapeHtml(values.voice)}</h1>
-<p>${names.map(escapeHtml).join(' · ')}</p>
-<table><thead><tr><th></th><th>משפט</th>${names.map((n) => `<th>${escapeHtml(n)}</th>`).join('')}</tr></thead>
+<p>עמודות: ${columns.map((c) => escapeHtml(c.name)).join(' · ')}. בעמודה המנוקדת יש רק חלק מהמשפטים.</p>
+${failureNotes}
+<table><thead><tr><th></th><th>משפט</th>${columns.map((c) => `<th>${escapeHtml(c.name)}</th>`).join('')}</tr></thead>
 <tbody>${rows}</tbody></table>
-<h2>הגרסה המנוקדת</h2>
-<ol>${NIKUD_SENTENCES.map((s) => `<li>${escapeHtml(s)}</li>`).join('')}</ol>
 </html>`;
   await writeFile(path.join(OUT, 'index.html'), html, 'utf8');
   console.log(`\nOpen ${path.join(OUT, 'index.html')} to listen.`);
+  if (failures.size === variants.length) throw new Error('Every variant failed');
 }
 
 main().catch((err: unknown) => {
