@@ -9,6 +9,7 @@ on:
 
 permissions:
   contents: write
+  issues: write
 
 jobs:
   bootstrap:
@@ -36,11 +37,24 @@ jobs:
           { echo; echo "## e2e"; npm run test:e2e 2>&1 || echo "E2E FAILED"; } >> .ci/report.txt
           tail -c 3000 .ci/report.txt
       - name: Commit
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A
-          git add -f .ci/report.txt
-          if git diff --cached --quiet; then echo "nothing to commit"; exit 0; fi
-          git commit -m "chore: bootstrap report"
-          git push
+          set -x
+          {
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git status --short | head -50
+            git add -A
+            git add -f .ci/report.txt
+            if git diff --cached --quiet; then echo "nothing to commit"; exit 0; fi
+            git commit -m "chore: bootstrap report"
+            git push
+          } 2>&1 | tee commit.log
+          status=${PIPESTATUS[0]}
+          if [ "$status" != "0" ]; then
+            # Action logs are not readable from everywhere; an issue is.
+            { echo '```'; tail -c 6000 commit.log; echo '```'; } > body.md
+            gh issue create --title "bootstrap: commit step failed (run ${{ github.run_id }})" --body-file body.md || true
+            exit "$status"
+          fi
