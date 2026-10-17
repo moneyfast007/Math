@@ -187,9 +187,13 @@ describe('numberParts', () => {
 
   it('joins back to exactly the words, for every number and gender', () => {
     fc.assert(
-      fc.property(fc.integer({ min: 0, max: 999_999_999 }), fc.constantFrom<Gender>('f', 'm'), (n, g) => {
-        expect(numberParts(n, g).join(' ')).toBe(numberToWords(n, g));
-      }),
+      fc.property(
+        fc.integer({ min: 0, max: 999_999_999 }),
+        fc.constantFrom<Gender>('f', 'm'),
+        (n, g) => {
+          expect(numberParts(n, g).join(' ')).toBe(numberToWords(n, g));
+        },
+      ),
     );
   });
 

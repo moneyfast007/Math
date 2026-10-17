@@ -245,7 +245,10 @@ function skip(level: number, step: 2 | 5 | 10, start: number, count: number, rng
       // A different step from the exercise, so the example never gives the answer away.
       exampleHint(
         step === 5 ? '10, 20, 30, 40' : '5, 10, 15, 20',
-        say('ex.skip.solution', step === 5 ? { last: 30, step: 10, next: 40 } : { last: 15, step: 5, next: 20 }),
+        say(
+          'ex.skip.solution',
+          step === 5 ? { last: 30, step: 10, next: 40 } : { last: 15, step: 5, next: 20 },
+        ),
       ),
     ],
     solution: say('ex.skip.solution', { last: seq.at(-1) ?? start, step, next: answer }),

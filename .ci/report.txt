@@ -3,33 +3,12 @@
 > heshbon@0.1.0 typecheck
 > tsc -b
 
-src/engine/topics/numbers100.ts(57,42): error TS6133: 'rng' is declared but its value is never read.
-src/engine/topics/numbers100.ts(57,42): error TS6133: 'rng' is declared but its value is never read.
-TYPECHECK FAILED
 
 ## lint
 
 > heshbon@0.1.0 lint
 > eslint .
 
-
-/home/runner/work/Math/Math/src/engine/build.ts
-  261:36  error  This assertion is unnecessary since the receiver accepts the original type of the expression  @typescript-eslint/no-unnecessary-type-assertion
-
-/home/runner/work/Math/Math/src/engine/topics/count10.ts
-  47:52  error  '_gender' is defined but never used  @typescript-eslint/no-unused-vars
-
-/home/runner/work/Math/Math/src/engine/topics/numbers100.ts
-  57:42  error  'rng' is defined but never used  @typescript-eslint/no-unused-vars
-
-/home/runner/work/Math/Math/src/lang/hebrewNumbers.test.ts
-  191:31  error  This assertion is unnecessary since it does not change the type of the expression  @typescript-eslint/no-unnecessary-type-assertion
-  191:77  error  This assertion is unnecessary since it does not change the type of the expression  @typescript-eslint/no-unnecessary-type-assertion
-
-✖ 5 problems (5 errors, 0 warnings)
-  3 errors and 0 warnings potentially fixable with the `--fix` option.
-
-LINT FAILED
 
 ## unit tests
 
@@ -39,283 +18,68 @@ LINT FAILED
 
 [1m[46m RUN [49m[22m [36mv3.2.7 [39m[90m/home/runner/work/Math/Math[39m
 
- [32m✓[39m src/state/validate.test.ts [2m([22m[2m19 tests[22m[2m)[22m[32m 19[2mms[22m[39m
- [32m✓[39m src/state/store.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 42[2mms[22m[39m
- [32m✓[39m src/state/progress.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 11[2mms[22m[39m
- [32m✓[39m src/lang/hebrewNumbers.test.ts [2m([22m[2m81 tests[22m[2m)[22m[33m 2010[2mms[22m[39m
-   [33m[2m✓[22m[39m numberToWords, properties[2m > [22mis injective on 0–99,999: different numbers never produce the same words [33m 1939[2mms[22m[39m
- [32m✓[39m src/engine/topics/addSub20.test.ts [2m([22m[2m14 tests[22m[2m)[22m[33m 632[2mms[22m[39m
- [32m✓[39m src/audio/speaker.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 32[2mms[22m[39m
- [32m✓[39m src/engine/session.test.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 20[2mms[22m[39m
- [32m✓[39m src/ui/components.test.tsx [2m([22m[2m7 tests[22m[2m)[22m[33m 395[2mms[22m[39m
- [31m❯[39m src/engine/journey.test.ts [2m([22m[2m7 tests[22m[2m | [22m[31m2 failed[39m[2m)[22m[32m 23[2mms[22m[39m
-   [32m✓[39m worldFor[2m > [22ma new grade-2 child starts at her grade level with earlier stations done[32m 4[2mms[22m[39m
-[31m   [31m×[31m worldFor[2m > [22ma kindergartener starts at the first station[39m[32m 11[2mms[22m[39m
-[31m     → expected 'done' to be 'current' // Object.is equality[39m
-   [32m✓[39m worldFor[2m > [22mpassed stations above the current level stay done after a level-down[32m 1[2mms[22m[39m
-   [32m✓[39m worldFor[2m > [22mopens the review when every level is done, and completes the world when it is passed[32m 1[2mms[22m[39m
-   [32m✓[39m worldFor[2m > [22mthe review passed early (imported data) does not complete a world with open stations[32m 1[2mms[22m[39m
-[31m   [31m×[31m worlds[2m > [22mlists the grade’s topics in order and picks the first unfinished one[39m[32m 5[2mms[22m[39m
-[31m     → expected [ 1, 2 ] to deeply equal [ 1 ][39m
-   [32m✓[39m worlds[2m > [22man older child without topics of her own gets the whole list[32m 0[2mms[22m[39m
- [32m✓[39m src/parent/gate.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[33m 492[2mms[22m[39m
+ [32m✓[39m src/state/validate.test.ts [2m([22m[2m19 tests[22m[2m)[22m[32m 11[2mms[22m[39m
+ [32m✓[39m src/state/store.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 24[2mms[22m[39m
+ [32m✓[39m src/state/progress.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+ [32m✓[39m src/lang/hebrewNumbers.test.ts [2m([22m[2m81 tests[22m[2m)[22m[33m 1387[2mms[22m[39m
+   [33m[2m✓[22m[39m numberToWords, properties[2m > [22mis injective on 0–99,999: different numbers never produce the same words [33m 1348[2mms[22m[39m
+ [32m✓[39m src/engine/topics/addSub20.test.ts [2m([22m[2m14 tests[22m[2m)[22m[33m 464[2mms[22m[39m
+ [32m✓[39m src/audio/speaker.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 14[2mms[22m[39m
+ [32m✓[39m src/engine/session.test.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 13[2mms[22m[39m
+ [32m✓[39m src/engine/journey.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m src/ui/components.test.tsx [2m([22m[2m7 tests[22m[2m)[22m[33m 312[2mms[22m[39m
+ [32m✓[39m src/parent/gate.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[33m 351[2mms[22m[39m
  [32m✓[39m src/state/streak.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 6[2mms[22m[39m
- [32m✓[39m scripts/tts/pronunciation.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 10[2mms[22m[39m
- [32m✓[39m src/lang/compose.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 5[2mms[22m[39m
- [32m✓[39m src/screens/JourneyScreen.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[32m 147[2mms[22m[39m
- [32m✓[39m src/lang/spoken.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 5[2mms[22m[39m
- [32m✓[39m src/i18n/i18n.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 74[2mms[22m[39m
- [32m✓[39m src/audio/hash.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 11[2mms[22m[39m
- [32m✓[39m src/state/pin.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 9[2mms[22m[39m
- [32m✓[39m src/ui/MathExpr.test.tsx [2m([22m[2m3 tests[22m[2m)[22m[32m 48[2mms[22m[39m
- [32m✓[39m src/state/backup.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+ [32m✓[39m scripts/tts/pronunciation.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+ [32m✓[39m src/lang/compose.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m src/screens/JourneyScreen.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[32m 95[2mms[22m[39m
+ [32m✓[39m src/i18n/i18n.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 39[2mms[22m[39m
+ [32m✓[39m src/lang/spoken.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+ [32m✓[39m src/audio/hash.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 12[2mms[22m[39m
+ [32m✓[39m src/state/pin.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+ [32m✓[39m src/state/backup.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+ [32m✓[39m src/ui/MathExpr.test.tsx [2m([22m[2m3 tests[22m[2m)[22m[32m 29[2mms[22m[39m
  [32m✓[39m src/app/router.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 7[2mms[22m[39m
- [32m✓[39m src/ui/ageBand.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 8[2mms[22m[39m
- [31m❯[39m src/engine/topics/all.test.ts [2m([22m[2m65 tests[22m[2m | [22m[31m7 failed[39m[2m)[22m[33m 12777[2mms[22m[39m
-   [32m✓[39m topic count-10[2m > [22mhas ten levels with labels[32m 4[2mms[22m[39m
-   [32m✓[39m topic count-10[2m > [22mlevel 1 produces valid exercises[32m 151[2mms[22m[39m
-   [32m✓[39m topic count-10[2m > [22mlevel 2 produces valid exercises[32m 136[2mms[22m[39m
-   [32m✓[39m topic count-10[2m > [22mlevel 3 produces valid exercises[32m 268[2mms[22m[39m
-   [32m✓[39m topic count-10[2m > [22mlevel 4 produces valid exercises[32m 293[2mms[22m[39m
-   [32m✓[39m topic count-10[2m > [22mlevel 5 produces valid exercises[32m 152[2mms[22m[39m
-   [32m✓[39m topic count-10[2m > [22mlevel 6 produces valid exercises[32m 162[2mms[22m[39m
-   [32m✓[39m topic count-10[2m > [22mlevel 7 produces valid exercises[32m 163[2mms[22m[39m
-   [32m✓[39m topic count-10[2m > [22mlevel 8 produces valid exercises[32m 164[2mms[22m[39m
-   [32m✓[39m topic count-10[2m > [22mlevel 9 produces valid exercises[32m 206[2mms[22m[39m
-   [33m[2m✓[22m[39m topic count-10[2m > [22mlevel 10 produces valid exercises [33m 442[2mms[22m[39m
-   [32m✓[39m topic count-10[2m > [22mavoids an immediate repeat[32m 58[2mms[22m[39m
-   [32m✓[39m topic count-10[2m > [22mhas a finite spoken bank without digits[32m 12[2mms[22m[39m
-   [32m✓[39m topic add-sub-20[2m > [22mhas ten levels with labels[32m 0[2mms[22m[39m
-   [32m✓[39m topic add-sub-20[2m > [22mlevel 1 produces valid exercises[32m 55[2mms[22m[39m
-   [32m✓[39m topic add-sub-20[2m > [22mlevel 2 produces valid exercises[32m 55[2mms[22m[39m
-   [32m✓[39m topic add-sub-20[2m > [22mlevel 3 produces valid exercises[32m 82[2mms[22m[39m
-   [32m✓[39m topic add-sub-20[2m > [22mlevel 4 produces valid exercises[32m 85[2mms[22m[39m
-   [32m✓[39m topic add-sub-20[2m > [22mlevel 5 produces valid exercises[32m 67[2mms[22m[39m
-   [32m✓[39m topic add-sub-20[2m > [22mlevel 6 produces valid exercises[32m 84[2mms[22m[39m
-   [32m✓[39m topic add-sub-20[2m > [22mlevel 7 produces valid exercises[32m 65[2mms[22m[39m
-   [32m✓[39m topic add-sub-20[2m > [22mlevel 8 produces valid exercises[32m 85[2mms[22m[39m
-   [32m✓[39m topic add-sub-20[2m > [22mlevel 9 produces valid exercises[32m 78[2mms[22m[39m
-   [32m✓[39m topic add-sub-20[2m > [22mlevel 10 produces valid exercises[32m 90[2mms[22m[39m
-   [32m✓[39m topic add-sub-20[2m > [22mavoids an immediate repeat[32m 22[2mms[22m[39m
-   [32m✓[39m topic add-sub-20[2m > [22mhas a finite spoken bank without digits[32m 153[2mms[22m[39m
-   [32m✓[39m topic numbers-100[2m > [22mhas ten levels with labels[32m 1[2mms[22m[39m
-   [32m✓[39m topic numbers-100[2m > [22mlevel 1 produces valid exercises[32m 118[2mms[22m[39m
-[31m   [31m×[31m topic numbers-100[2m > [22mlevel 2 produces valid exercises[39m[33m 307[2mms[22m[39m
-[31m     → build:11: expected 'digitReversal' to be null[39m
-[31m   [31m×[31m topic numbers-100[2m > [22mlevel 3 produces valid exercises[39m[33m 561[2mms[22m[39m
-[31m     → tensOf:11: expected 'placeValue' to be null[39m
-   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 4 produces valid exercises [33m 2325[2mms[22m[39m
-   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 5 produces valid exercises [33m 730[2mms[22m[39m
-   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 6 produces valid exercises [33m 741[2mms[22m[39m
-   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 7 produces valid exercises [33m 375[2mms[22m[39m
-[31m   [31m×[31m topic numbers-100[2m > [22mlevel 8 produces valid exercises[39m[32m 269[2mms[22m[39m
-[31m     → sub:50-20: expected '50 − 20 = 30' not to be '50 − 20 = 30' // Object.is equality[39m
-[31m   [31m×[31m topic numbers-100[2m > [22mlevel 9 produces valid exercises[39m[33m 404[2mms[22m[39m
-[31m     → add:50+3: expected '50 + 3 = 53' not to be '50 + 3 = 53' // Object.is equality[39m
-[31m   [31m×[31m topic numbers-100[2m > [22mlevel 10 produces valid exercises[39m[32m 58[2mms[22m[39m
-[31m     → skip5:5:3: expected '5, 10, 15, 20' not to be '5, 10, 15, 20' // Object.is equality[39m
-   [33m[2m✓[22m[39m topic numbers-100[2m > [22mavoids an immediate repeat [33m 321[2mms[22m[39m
-   [32m✓[39m topic numbers-100[2m > [22mhas a finite spoken bank without digits[32m 86[2mms[22m[39m
-   [32m✓[39m topic add-sub-100[2m > [22mhas ten levels with labels[32m 0[2mms[22m[39m
-   [32m✓[39m topic add-sub-100[2m > [22mlevel 1 produces valid exercises[32m 186[2mms[22m[39m
-   [32m✓[39m topic add-sub-100[2m > [22mlevel 2 produces valid exercises[32m 182[2mms[22m[39m
-   [32m✓[39m topic add-sub-100[2m > [22mlevel 3 produces valid exercises[32m 182[2mms[22m[39m
-   [32m✓[39m topic add-sub-100[2m > [22mlevel 4 produces valid exercises[32m 183[2mms[22m[39m
-   [32m✓[39m topic add-sub-100[2m > [22mlevel 5 produces valid exercises[32m 184[2mms[22m[39m
-   [32m✓[39m topic add-sub-100[2m > [22mlevel 6 produces valid exercises[32m 190[2mms[22m[39m
-   [32m✓[39m topic add-sub-100[2m > [22mlevel 7 produces valid exercises[32m 184[2mms[22m[39m
-   [32m✓[39m topic add-sub-100[2m > [22mlevel 8 produces valid exercises[32m 184[2mms[22m[39m
-   [32m✓[39m topic add-sub-100[2m > [22mlevel 9 produces valid exercises[32m 183[2mms[22m[39m
-   [32m✓[39m topic add-sub-100[2m > [22mlevel 10 produces valid exercises[32m 193[2mms[22m[39m
-   [32m✓[39m topic add-sub-100[2m > [22mavoids an immediate repeat[32m 7[2mms[22m[39m
-   [32m✓[39m topic add-sub-100[2m > [22mhas a finite spoken bank without digits[32m 260[2mms[22m[39m
-   [32m✓[39m topic mult-intro[2m > [22mhas ten levels with labels[32m 0[2mms[22m[39m
-   [32m✓[39m topic mult-intro[2m > [22mlevel 1 produces valid exercises[32m 103[2mms[22m[39m
-   [32m✓[39m topic mult-intro[2m > [22mlevel 2 produces valid exercises[32m 128[2mms[22m[39m
-   [32m✓[39m topic mult-intro[2m > [22mlevel 3 produces valid exercises[32m 118[2mms[22m[39m
-[31m   [31m×[31m topic mult-intro[2m > [22mlevel 4 produces valid exercises[39m[32m 79[2mms[22m[39m
-[31m     → mul:10×10: expected 3 to be less than or equal to 2[39m
-   [32m✓[39m topic mult-intro[2m > [22mlevel 5 produces valid exercises[32m 102[2mms[22m[39m
-   [32m✓[39m topic mult-intro[2m > [22mlevel 6 produces valid exercises[32m 102[2mms[22m[39m
-   [32m✓[39m topic mult-intro[2m > [22mlevel 7 produces valid exercises[32m 103[2mms[22m[39m
-   [32m✓[39m topic mult-intro[2m > [22mlevel 8 produces valid exercises[32m 171[2mms[22m[39m
-[31m   [31m×[31m topic mult-intro[2m > [22mlevel 9 produces valid exercises[39m[32m 27[2mms[22m[39m
-[31m     → mul:a:3×5: expected '3 × 5 = 15' not to be '3 × 5 = 15' // Object.is equality[39m
-   [32m✓[39m topic mult-intro[2m > [22mlevel 10 produces valid exercises[32m 181[2mms[22m[39m
-   [32m✓[39m topic mult-intro[2m > [22mavoids an immediate repeat[32m 53[2mms[22m[39m
-   [32m✓[39m topic mult-intro[2m > [22mhas a finite spoken bank without digits[32m 56[2mms[22m[39m
+ [32m✓[39m src/ui/ageBand.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+ [32m✓[39m src/engine/topics/all.test.ts [2m([22m[2m67 tests[22m[2m)[22m[33m 10004[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 2 produces valid exercises [33m 337[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 3 produces valid exercises [33m 591[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 4 produces valid exercises [33m 1695[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 5 produces valid exercises [33m 505[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 6 produces valid exercises [33m 504[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 7 produces valid exercises [33m 310[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 8 produces valid exercises [33m 348[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 9 produces valid exercises [33m 546[2mms[22m[39m
 
-[31m⎯⎯⎯⎯⎯⎯⎯[39m[1m[41m Failed Tests 9 [49m[22m[31m⎯⎯⎯⎯⎯⎯⎯[39m
+[2m Test Files [22m [1m[32m23 passed[39m[22m[90m (23)[39m
+[2m      Tests [22m [1m[32m295 passed[39m[22m[90m (295)[39m
+[2m   Start at [22m 20:17:18
+[2m   Duration [22m 13.31s[2m (transform 666ms, setup 3.66s, collect 1.34s, tests 12.81s, environment 9.49s, prepare 1.91s)[22m
 
-[41m[1m FAIL [22m[49m src/engine/journey.test.ts[2m > [22mworldFor[2m > [22ma kindergartener starts at the first station
-[31m[1mAssertionError[22m: expected 'done' to be 'current' // Object.is equality[39m
-
-Expected: [32m"current"[39m
-Received: [31m"done"[39m
-
-[36m [2m❯[22m src/engine/journey.test.ts:[2m33:34[22m[39m
-    [90m 31| [39m  [34mit[39m([32m'a kindergartener starts at the first station'[39m[33m,[39m () [33m=>[39m {
-    [90m 32| [39m    [35mconst[39m w [33m=[39m [34mworldFor[39m(addSub20[33m,[39m [34m1[39m[33m,[39m [34m0[39m[33m,[39m undefined)[33m;[39m
-    [90m 33| [39m    [34mexpect[39m(w[33m.[39mstations[[34m0[39m][33m?.[39mstate)[33m.[39m[34mtoBe[39m([32m'current'[39m)[33m;[39m
-    [90m   | [39m                                 [31m^[39m
-    [90m 34| [39m    [34mexpect[39m(w[33m.[39mdone)[33m.[39m[34mtoBe[39m([34m0[39m)[33m;[39m
-    [90m 35| [39m  })[33m;[39m
-
-[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/9]⎯[22m[39m
-
-[41m[1m FAIL [22m[49m src/engine/journey.test.ts[2m > [22mworlds[2m > [22mlists the grade’s topics in order and picks the first unfinished one
-[31m[1mAssertionError[22m: expected [ 1, 2 ] to deeply equal [ 1 ][39m
-
-[32m- Expected[39m
-[31m+ Received[39m
-
-[2m  [[22m
-[2m    1,[22m
-[31m+   2,[39m
-[2m  ][22m
-
-[36m [2m❯[22m src/engine/journey.test.ts:[2m69:40[22m[39m
-    [90m 67| [39m  it('lists the grade’s topics in order and picks the first unfinished…
-    [90m 68| [39m    [35mconst[39m worlds [33m=[39m [34mworldsFor[39m([34m2[39m[33m,[39m undefined)[33m;[39m
-    [90m 69| [39m    [34mexpect[39m(worlds[33m.[39m[34mmap[39m((w) [33m=>[39m w[33m.[39mindex))[33m.[39m[34mtoEqual[39m([[34m1[39m])[33m;[39m
-    [90m   | [39m                                       [31m^[39m
-    [90m 70| [39m    [34mexpect[39m([34mactiveWorld[39m([34m2[39m[33m,[39m undefined)[33m?.[39mtopic[33m.[39mid)[33m.[39m[34mtoBe[39m(addSub20[33m.[39mid)[33m;[39m
-    [90m 71| [39m    [34mexpect[39m([34mstickersEarned[39m(worlds))[33m.[39m[34mtoBe[39m([34m0[39m)[33m;[39m
-
-[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/9]⎯[22m[39m
-
-[41m[1m FAIL [22m[49m src/engine/topics/all.test.ts[2m > [22mtopic numbers-100[2m > [22mlevel 2 produces valid exercises
-[31m[1mAssertionError[22m: build:11: expected 'digitReversal' to be null[39m
-
-[32m- Expected:[39m 
-null
-
-[31m+ Received:[39m 
-"digitReversal"
-
-[36m [2m❯[22m src/engine/topics/all.test.ts:[2m58:46[22m[39m
-    [90m 56| [39m      }
-    [90m 57| [39m      [90m// A right answer is never diagnosed as a mistake.[39m
-    [90m 58| [39m      [34mexpect[39m(e[33m.[39m[34mdiagnose[39m(e[33m.[39manswer)[33m,[39m e[33m.[39mfactId)[33m.[39m[34mtoBeNull[39m()[33m;[39m
-    [90m   | [39m                                             [31m^[39m
-    [90m 59| [39m      [90m// The worked example is not the exercise itself.[39m
-    [90m 60| [39m      [35mconst[39m example [33m=[39m e[33m.[39mhints[[34m2[39m][33m.[39mexample[33m;[39m
-
-[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/9]⎯[22m[39m
-
-[41m[1m FAIL [22m[49m src/engine/topics/all.test.ts[2m > [22mtopic numbers-100[2m > [22mlevel 3 produces valid exercises
-[31m[1mAssertionError[22m: tensOf:11: expected 'placeValue' to be null[39m
-
-[32m- Expected:[39m 
-null
-
-[31m+ Received:[39m 
-"placeValue"
-
-[36m [2m❯[22m src/engine/topics/all.test.ts:[2m58:46[22m[39m
-    [90m 56| [39m      }
-    [90m 57| [39m      [90m// A right answer is never diagnosed as a mistake.[39m
-    [90m 58| [39m      [34mexpect[39m(e[33m.[39m[34mdiagnose[39m(e[33m.[39manswer)[33m,[39m e[33m.[39mfactId)[33m.[39m[34mtoBeNull[39m()[33m;[39m
-    [90m   | [39m                                             [31m^[39m
-    [90m 59| [39m      [90m// The worked example is not the exercise itself.[39m
-    [90m 60| [39m      [35mconst[39m example [33m=[39m e[33m.[39mhints[[34m2[39m][33m.[39mexample[33m;[39m
-
-[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/9]⎯[22m[39m
-
-[41m[1m FAIL [22m[49m src/engine/topics/all.test.ts[2m > [22mtopic numbers-100[2m > [22mlevel 8 produces valid exercises
-[31m[1mAssertionError[22m: sub:50-20: expected '50 − 20 = 30' not to be '50 − 20 = 30' // Object.is equality[39m
-[36m [2m❯[22m src/engine/topics/all.test.ts:[2m62:47[22m[39m
-    [90m 60| [39m      [35mconst[39m example [33m=[39m e[33m.[39mhints[[34m2[39m][33m.[39mexample[33m;[39m
-    [90m 61| [39m      [35mif[39m (example [33m&&[39m e[33m.[39mdisplay)
-    [90m 62| [39m        expect(example.display, e.factId).not.toBe(e.display.replace('…
-    [90m   | [39m                                              [31m^[39m
-    [90m 63| [39m    }
-    [90m 64| [39m  })[33m;[39m
-
-[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/9]⎯[22m[39m
-
-[41m[1m FAIL [22m[49m src/engine/topics/all.test.ts[2m > [22mtopic numbers-100[2m > [22mlevel 9 produces valid exercises
-[31m[1mAssertionError[22m: add:50+3: expected '50 + 3 = 53' not to be '50 + 3 = 53' // Object.is equality[39m
-[36m [2m❯[22m src/engine/topics/all.test.ts:[2m62:47[22m[39m
-    [90m 60| [39m      [35mconst[39m example [33m=[39m e[33m.[39mhints[[34m2[39m][33m.[39mexample[33m;[39m
-    [90m 61| [39m      [35mif[39m (example [33m&&[39m e[33m.[39mdisplay)
-    [90m 62| [39m        expect(example.display, e.factId).not.toBe(e.display.replace('…
-    [90m   | [39m                                              [31m^[39m
-    [90m 63| [39m    }
-    [90m 64| [39m  })[33m;[39m
-
-[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/9]⎯[22m[39m
-
-[41m[1m FAIL [22m[49m src/engine/topics/all.test.ts[2m > [22mtopic numbers-100[2m > [22mlevel 10 produces valid exercises
-[31m[1mAssertionError[22m: skip5:5:3: expected '5, 10, 15, 20' not to be '5, 10, 15, 20' // Object.is equality[39m
-[36m [2m❯[22m src/engine/topics/all.test.ts:[2m62:47[22m[39m
-    [90m 60| [39m      [35mconst[39m example [33m=[39m e[33m.[39mhints[[34m2[39m][33m.[39mexample[33m;[39m
-    [90m 61| [39m      [35mif[39m (example [33m&&[39m e[33m.[39mdisplay)
-    [90m 62| [39m        expect(example.display, e.factId).not.toBe(e.display.replace('…
-    [90m   | [39m                                              [31m^[39m
-    [90m 63| [39m    }
-    [90m 64| [39m  })[33m;[39m
-
-[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/9]⎯[22m[39m
-
-[41m[1m FAIL [22m[49m src/engine/topics/all.test.ts[2m > [22mtopic mult-intro[2m > [22mlevel 4 produces valid exercises
-[31m[1mAssertionError[22m: mul:10×10: expected 3 to be less than or equal to 2[39m
-[36m [2m❯[22m src/engine/topics/all.test.ts:[2m53:63[22m[39m
-    [90m 51| [39m        if (e.input.labels) expect(e.input.labels).toHaveLength(e.inpu…
-    [90m 52| [39m      } [35melse[39m {
-    [90m 53| [39m        expect(String(Math.floor(e.answer)).length, e.factId).toBeLess…
-    [90m   | [39m                                                              [31m^[39m
-    [90m 54| [39m          e[33m.[39minput[33m.[39mmaxDigits[33m,[39m
-    [90m 55| [39m        )[33m;[39m
-
-[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/9]⎯[22m[39m
-
-[41m[1m FAIL [22m[49m src/engine/topics/all.test.ts[2m > [22mtopic mult-intro[2m > [22mlevel 9 produces valid exercises
-[31m[1mAssertionError[22m: mul:a:3×5: expected '3 × 5 = 15' not to be '3 × 5 = 15' // Object.is equality[39m
-[36m [2m❯[22m src/engine/topics/all.test.ts:[2m62:47[22m[39m
-    [90m 60| [39m      [35mconst[39m example [33m=[39m e[33m.[39mhints[[34m2[39m][33m.[39mexample[33m;[39m
-    [90m 61| [39m      [35mif[39m (example [33m&&[39m e[33m.[39mdisplay)
-    [90m 62| [39m        expect(example.display, e.factId).not.toBe(e.display.replace('…
-    [90m   | [39m                                              [31m^[39m
-    [90m 63| [39m    }
-    [90m 64| [39m  })[33m;[39m
-
-[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/9]⎯[22m[39m
-
-
-[2m Test Files [22m [1m[31m2 failed[39m[22m[2m | [22m[1m[32m21 passed[39m[22m[90m (23)[39m
-[2m      Tests [22m [1m[31m9 failed[39m[22m[2m | [22m[1m[32m283 passed[39m[22m[90m (292)[39m
-[2m   Start at [22m 20:13:17
-[2m   Duration [22m 17.54s[2m (transform 784ms, setup 5.00s, collect 1.57s, tests 16.79s, environment 12.72s, prepare 2.75s)[22m
-
-
-::error file=/home/runner/work/Math/Math/src/engine/journey.test.ts,title=src/engine/journey.test.ts > worldFor > a kindergartener starts at the first station,line=33,column=34::AssertionError: expected 'done' to be 'current' // Object.is equality%0A%0AExpected: "current"%0AReceived: "done"%0A%0A ❯ src/engine/journey.test.ts:33:34%0A%0A
-
-::error file=/home/runner/work/Math/Math/src/engine/journey.test.ts,title=src/engine/journey.test.ts > worlds > lists the grade’s topics in order and picks the first unfinished one,line=69,column=40::AssertionError: expected [ 1, 2 ] to deeply equal [ 1 ]%0A%0A- Expected%0A+ Received%0A%0A  [%0A    1,%0A+   2,%0A  ]%0A%0A ❯ src/engine/journey.test.ts:69:40%0A%0A
-
-::error file=/home/runner/work/Math/Math/src/engine/topics/all.test.ts,title=src/engine/topics/all.test.ts > topic numbers-100 > level 2 produces valid exercises,line=58,column=46::AssertionError: build:11: expected 'digitReversal' to be null%0A%0A- Expected: %0Anull%0A%0A+ Received: %0A"digitReversal"%0A%0A ❯ src/engine/topics/all.test.ts:58:46%0A%0A
-
-::error file=/home/runner/work/Math/Math/src/engine/topics/all.test.ts,title=src/engine/topics/all.test.ts > topic numbers-100 > level 3 produces valid exercises,line=58,column=46::AssertionError: tensOf:11: expected 'placeValue' to be null%0A%0A- Expected: %0Anull%0A%0A+ Received: %0A"placeValue"%0A%0A ❯ src/engine/topics/all.test.ts:58:46%0A%0A
-
-::error file=/home/runner/work/Math/Math/src/engine/topics/all.test.ts,title=src/engine/topics/all.test.ts > topic numbers-100 > level 8 produces valid exercises,line=62,column=47::AssertionError: sub:50-20: expected '50 − 20 = 30' not to be '50 − 20 = 30' // Object.is equality%0A ❯ src/engine/topics/all.test.ts:62:47%0A%0A
-
-::error file=/home/runner/work/Math/Math/src/engine/topics/all.test.ts,title=src/engine/topics/all.test.ts > topic numbers-100 > level 9 produces valid exercises,line=62,column=47::AssertionError: add:50+3: expected '50 + 3 = 53' not to be '50 + 3 = 53' // Object.is equality%0A ❯ src/engine/topics/all.test.ts:62:47%0A%0A
-
-::error file=/home/runner/work/Math/Math/src/engine/topics/all.test.ts,title=src/engine/topics/all.test.ts > topic numbers-100 > level 10 produces valid exercises,line=62,column=47::AssertionError: skip5:5:3: expected '5, 10, 15, 20' not to be '5, 10, 15, 20' // Object.is equality%0A ❯ src/engine/topics/all.test.ts:62:47%0A%0A
-
-::error file=/home/runner/work/Math/Math/src/engine/topics/all.test.ts,title=src/engine/topics/all.test.ts > topic mult-intro > level 4 produces valid exercises,line=53,column=63::AssertionError: mul:10×10: expected 3 to be less than or equal to 2%0A ❯ src/engine/topics/all.test.ts:53:63%0A%0A
-
-::error file=/home/runner/work/Math/Math/src/engine/topics/all.test.ts,title=src/engine/topics/all.test.ts > topic mult-intro > level 9 produces valid exercises,line=62,column=47::AssertionError: mul:a:3×5: expected '3 × 5 = 15' not to be '3 × 5 = 15' // Object.is equality%0A ❯ src/engine/topics/all.test.ts:62:47%0A%0A
-TESTS FAILED
 
 ## build
 
 > heshbon@0.1.0 build
 > tsc -b && vite build
 
-src/engine/topics/numbers100.ts(57,42): error TS6133: 'rng' is declared but its value is never read.
-src/engine/topics/numbers100.ts(57,42): error TS6133: 'rng' is declared but its value is never read.
-BUILD FAILED
+[36mvite v7.3.7 [32mbuilding client environment for production...[36m[39m
+transforming...
+[32m✓[39m 89 modules transformed.
+rendering chunks...
+computing gzip size...
+[2mdist/[22m[32mmanifest.webmanifest                        [39m[1m[2m  0.53 kB[22m[1m[22m
+[2mdist/[22m[32mindex.html                                  [39m[1m[2m  1.26 kB[22m[1m[22m[2m │ gzip:   0.60 kB[22m
+[2mdist/[22m[2massets/[22m[35mindex-CwSEelGF.css                   [39m[1m[2m 21.42 kB[22m[1m[22m[2m │ gzip:   4.69 kB[22m
+[2mdist/[22m[2massets/[22m[36mworkbox-window.prod.es5-BBnX5xw4.js  [39m[1m[2m  5.75 kB[22m[1m[22m[2m │ gzip:   2.36 kB[22m
+[2mdist/[22m[2massets/[22m[36mindex-CY8T4B78.js                    [39m[1m[2m356.38 kB[22m[1m[22m[2m │ gzip: 109.57 kB[22m
+[32m✓ built in 3.48s[39m
+
+[36mPWA v1.3.0[39m
+mode      [35mgenerateSW[39m
+precache  [32m14 entries[39m [2m(439.04 KiB)[22m
+files generated
+  [2mdist/sw.js[22m
+  [2mdist/workbox-35e397ac.js[22m
 
 ## e2e
 
@@ -323,9 +87,839 @@ BUILD FAILED
 > playwright test
 
 
-Error: Process from config.webServer was not able to start. Exit code: 1
-::error ::Error: Process from config.webServer was not able to start. Exit code: 1
+Running 72 tests using 2 workers
+········××·F
+::error file=tests/e2e/practice.spec.ts,title=[ipad] › tests/e2e/practice.spec.ts:96:3 › practice › wrong answers get a gentle explanation, hints, and finally the answer,line=114,col=53::  1) [ipad] › tests/e2e/practice.spec.ts:96:3 › practice › wrong answers get a gentle explanation, hints, and finally the answer %0A    Error: expect(locator).toHaveCount(expected) failed%0A%0A    Locator:  locator('.hint [data-math]')%0A    Expected: 1%0A    Received: 2%0A    Timeout:  5000ms%0A%0A    Call log:%0A      - Expect "toHaveCount" locator('.hint [data-math]') with timeout 5000ms%0A      - waiting for locator('.hint [data-math]')%0A        14 × locator resolved to 2 elements%0A           - unexpected value "2"%0A%0A%0A      112 |     }%0A      113 |     await expect(hintButton).toBeDisabled();%0A    > 114 |     await expect(page.locator('.hint [data-math]')).toHaveCount(1); // the worked example%0A          |                                                     ^%0A      115 |%0A      116 |     await submit(page, wrong);%0A      117 |     await submit(page, wrong);%0A        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:114:53
+::error file=tests/e2e/practice.spec.ts,title=[ipad] › tests/e2e/practice.spec.ts:96:3 › practice › wrong answers get a gentle explanation, hints, and finally the answer,line=114,col=53::  1) [ipad] › tests/e2e/practice.spec.ts:96:3 › practice › wrong answers get a gentle explanation, hints, and finally the answer %0A%0A    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────%0A    Error: expect(locator).toHaveCount(expected) failed%0A%0A    Locator:  locator('.hint [data-math]')%0A    Expected: 1%0A    Received: 2%0A    Timeout:  5000ms%0A%0A    Call log:%0A      - Expect "toHaveCount" locator('.hint [data-math]') with timeout 5000ms%0A      - waiting for locator('.hint [data-math]')%0A        14 × locator resolved to 2 elements%0A           - unexpected value "2"%0A%0A%0A      112 |     }%0A      113 |     await expect(hintButton).toBeDisabled();%0A    > 114 |     await expect(page.locator('.hint [data-math]')).toHaveCount(1); // the worked example%0A          |                                                     ^%0A      115 |%0A      116 |     await submit(page, wrong);%0A      117 |     await submit(page, wrong);%0A        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:114:53
+::error file=tests/e2e/practice.spec.ts,title=[ipad] › tests/e2e/practice.spec.ts:96:3 › practice › wrong answers get a gentle explanation, hints, and finally the answer,line=114,col=53::  1) [ipad] › tests/e2e/practice.spec.ts:96:3 › practice › wrong answers get a gentle explanation, hints, and finally the answer %0A%0A    Retry #2 ───────────────────────────────────────────────────────────────────────────────────────%0A    Error: expect(locator).toHaveCount(expected) failed%0A%0A    Locator:  locator('.hint [data-math]')%0A    Expected: 1%0A    Received: 2%0A    Timeout:  5000ms%0A%0A    Call log:%0A      - Expect "toHaveCount" locator('.hint [data-math]') with timeout 5000ms%0A      - waiting for locator('.hint [data-math]')%0A        14 × locator resolved to 2 elements%0A           - unexpected value "2"%0A%0A%0A      112 |     }%0A      113 |     await expect(hintButton).toBeDisabled();%0A    > 114 |     await expect(page.locator('.hint [data-math]')).toHaveCount(1); // the worked example%0A          |                                                     ^%0A      115 |%0A      116 |     await submit(page, wrong);%0A      117 |     await submit(page, wrong);%0A        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:114:53
+··××××F
+::error file=tests/e2e/practice.spec.ts,title=[ipad] › tests/e2e/practice.spec.ts:158:3 › practice › a child can pick another level when the profile allows it,line=162,col=24::  2) [ipad] › tests/e2e/practice.spec.ts:158:3 › practice › a child can pick another level when the profile allows it %0A    Error: expect(locator).toBeVisible() failed%0A%0A    Locator: getByRole('heading', { name: 'חיבור וחיסור עד 20', exact: true, level: 2 })%0A    Expected: visible%0A    Timeout: 5000ms%0A    Error: element(s) not found%0A%0A    Call log:%0A      - Expect "toBeVisible" getByRole('heading', { name: 'חיבור וחיסור עד 20', exact: true, level: 2 }) with timeout 5000ms%0A      - waiting for getByRole('heading', { name: 'חיבור וחיסור עד 20', exact: true, level: 2 })%0A%0A%0A      160 |     await page.getByRole('button', { name: 'סיום' }).click();%0A      161 |     const next = page.getByRole('heading', { level: 2, name: 'חיבור וחיסור עד 20', exact: true });%0A    > 162 |     await expect(next).toBeVisible();%0A          |                        ^%0A      163 |     await page.getByRole('button', { name: 'שלב אחר' }).click();%0A      164 |     await page%0A      165 |       .getByRole('dialog', { name: 'באיזה שלב לתרגל?' })%0A        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:162:24
+::error file=tests/e2e/practice.spec.ts,title=[ipad] › tests/e2e/practice.spec.ts:158:3 › practice › a child can pick another level when the profile allows it,line=162,col=24::  2) [ipad] › tests/e2e/practice.spec.ts:158:3 › practice › a child can pick another level when the profile allows it %0A%0A    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────%0A    Error: expect(locator).toBeVisible() failed%0A%0A    Locator: getByRole('heading', { name: 'חיבור וחיסור עד 20', exact: true, level: 2 })%0A    Expected: visible%0A    Timeout: 5000ms%0A    Error: element(s) not found%0A%0A    Call log:%0A      - Expect "toBeVisible" getByRole('heading', { name: 'חיבור וחיסור עד 20', exact: true, level: 2 }) with timeout 5000ms%0A      - waiting for getByRole('heading', { name: 'חיבור וחיסור עד 20', exact: true, level: 2 })%0A%0A%0A      160 |     await page.getByRole('button', { name: 'סיום' }).click();%0A      161 |     const next = page.getByRole('heading', { level: 2, name: 'חיבור וחיסור עד 20', exact: true });%0A    > 162 |     await expect(next).toBeVisible();%0A          |                        ^%0A      163 |     await page.getByRole('button', { name: 'שלב אחר' }).click();%0A      164 |     await page%0A      165 |       .getByRole('dialog', { name: 'באיזה שלב לתרגל?' })%0A        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:162:24
+::error file=tests/e2e/practice.spec.ts,title=[ipad] › tests/e2e/practice.spec.ts:158:3 › practice › a child can pick another level when the profile allows it,line=162,col=24::  2) [ipad] › tests/e2e/practice.spec.ts:158:3 › practice › a child can pick another level when the profile allows it %0A%0A    Retry #2 ───────────────────────────────────────────────────────────────────────────────────────%0A    Error: expect(locator).toBeVisible() failed%0A%0A    Locator: getByRole('heading', { name: 'חיבור וחיסור עד 20', exact: true, level: 2 })%0A    Expected: visible%0A    Timeout: 5000ms%0A    Error: element(s) not found%0A%0A    Call log:%0A      - Expect "toBeVisible" getByRole('heading', { name: 'חיבור וחיסור עד 20', exact: true, level: 2 }) with timeout 5000ms%0A      - waiting for getByRole('heading', { name: 'חיבור וחיסור עד 20', exact: true, level: 2 })%0A%0A%0A      160 |     await page.getByRole('button', { name: 'סיום' }).click();%0A      161 |     const next = page.getByRole('heading', { level: 2, name: 'חיבור וחיסור עד 20', exact: true });%0A    > 162 |     await expect(next).toBeVisible();%0A          |                        ^%0A      163 |     await page.getByRole('button', { name: 'שלב אחר' }).click();%0A      164 |     await page%0A      165 |       .getByRole('dialog', { name: 'באיזה שלב לתרגל?' })%0A        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:162:24
+F
+::error file=tests/e2e/practice.spec.ts,title=[ipad] › tests/e2e/practice.spec.ts:180:3 › journey › the map shows every station, the review, Plusi, the streak and the album,line=189,col=46::  3) [ipad] › tests/e2e/practice.spec.ts:180:3 › journey › the map shows every station, the review, Plusi, the streak and the album %0A    Error: expect(locator).toHaveCount(expected) failed%0A%0A    Locator:  getByRole('region', { name: 'מפת המסע' }).locator('.node--done')%0A    Expected: 7%0A    Received: 0%0A    Timeout:  5000ms%0A%0A    Call log:%0A      - Expect "toHaveCount" getByRole('region', { name: 'מפת המסע' }).locator('.node--done') with timeout 5000ms%0A      - waiting for getByRole('region', { name: 'מפת המסע' }).locator('.node--done')%0A        14 × locator resolved to 0 elements%0A           - unexpected value "0"%0A%0A%0A      187 |     const map = page.getByRole('region', { name: 'מפת המסע' });%0A      188 |     await expect(map.locator('.node')).toHaveCount(11);%0A    > 189 |     await expect(map.locator('.node--done')).toHaveCount(7);%0A          |                                              ^%0A      190 |     await expect(map.getByRole('img', { name: 'סיום העולם, עדיין סגור' })).toBeVisible();%0A      191 |     await expect(map.locator('.plusi')).toBeVisible();%0A      192 |     await expect(page.getByText('עולם 1 · חיבור וחיסור עד 20')).toBeVisible();%0A        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:189:46
+::error file=tests/e2e/practice.spec.ts,title=[ipad] › tests/e2e/practice.spec.ts:180:3 › journey › the map shows every station, the review, Plusi, the streak and the album,line=189,col=46::  3) [ipad] › tests/e2e/practice.spec.ts:180:3 › journey › the map shows every station, the review, Plusi, the streak and the album %0A%0A    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────%0A    Error: expect(locator).toHaveCount(expected) failed%0A%0A    Locator:  getByRole('region', { name: 'מפת המסע' }).locator('.node--done')%0A    Expected: 7%0A    Received: 0%0A    Timeout:  5000ms%0A%0A    Call log:%0A      - Expect "toHaveCount" getByRole('region', { name: 'מפת המסע' }).locator('.node--done') with timeout 5000ms%0A      - waiting for getByRole('region', { name: 'מפת המסע' }).locator('.node--done')%0A        14 × locator resolved to 0 elements%0A           - unexpected value "0"%0A%0A%0A      187 |     const map = page.getByRole('region', { name: 'מפת המסע' });%0A      188 |     await expect(map.locator('.node')).toHaveCount(11);%0A    > 189 |     await expect(map.locator('.node--done')).toHaveCount(7);%0A          |                                              ^%0A      190 |     await expect(map.getByRole('img', { name: 'סיום העולם, עדיין סגור' })).toBeVisible();%0A      191 |     await expect(map.locator('.plusi')).toBeVisible();%0A      192 |     await expect(page.getByText('עולם 1 · חיבור וחיסור עד 20')).toBeVisible();%0A        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:189:46
+::error file=tests/e2e/practice.spec.ts,title=[ipad] › tests/e2e/practice.spec.ts:180:3 › journey › the map shows every station, the review, Plusi, the streak and the album,line=189,col=46::  3) [ipad] › tests/e2e/practice.spec.ts:180:3 › journey › the map shows every station, the review, Plusi, the streak and the album %0A%0A    Retry #2 ───────────────────────────────────────────────────────────────────────────────────────%0A    Error: expect(locator).toHaveCount(expected) failed%0A%0A    Locator:  getByRole('region', { name: 'מפת המסע' }).locator('.node--done')%0A    Expected: 7%0A    Received: 0%0A    Timeout:  5000ms%0A%0A    Call log:%0A      - Expect "toHaveCount" getByRole('region', { name: 'מפת המסע' }).locator('.node--done') with timeout 5000ms%0A      - waiting for getByRole('region', { name: 'מפת המסע' }).locator('.node--done')%0A        14 × locator resolved to 0 elements%0A           - unexpected value "0"%0A%0A%0A      187 |     const map = page.getByRole('region', { name: 'מפת המסע' });%0A      188 |     await expect(map.locator('.node')).toHaveCount(11);%0A    > 189 |     await expect(map.locator('.node--done')).toHaveCount(7);%0A          |                                              ^%0A      190 |     await expect(map.getByRole('img', { name: 'סיום העולם, עדיין סגור' })).toBeVisible();%0A      191 |     await expect(map.locator('.plusi')).toBeVisible();%0A      192 |     await expect(page.getByText('עולם 1 · חיבור וחיסור עד 20')).toBeVisible();%0A        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:189:46
+··················××·F
+::error file=tests/e2e/practice.spec.ts,title=[iphone] › tests/e2e/practice.spec.ts:96:3 › practice › wrong answers get a gentle explanation, hints, and finally the answer,line=114,col=53::  4) [iphone] › tests/e2e/practice.spec.ts:96:3 › practice › wrong answers get a gentle explanation, hints, and finally the answer %0A    Error: expect(locator).toHaveCount(expected) failed%0A%0A    Locator:  locator('.hint [data-math]')%0A    Expected: 1%0A    Received: 2%0A    Timeout:  5000ms%0A%0A    Call log:%0A      - Expect "toHaveCount" locator('.hint [data-math]') with timeout 5000ms%0A      - waiting for locator('.hint [data-math]')%0A        14 × locator resolved to 2 elements%0A           - unexpected value "2"%0A%0A%0A      112 |     }%0A      113 |     await expect(hintButton).toBeDisabled();%0A    > 114 |     await expect(page.locator('.hint [data-math]')).toHaveCount(1); // the worked example%0A          |                                                     ^%0A      115 |%0A      116 |     await submit(page, wrong);%0A      117 |     await submit(page, wrong);%0A        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:114:53
+::error file=tests/e2e/practice.spec.ts,title=[iphone] › tests/e2e/practice.spec.ts:96:3 › practice › wrong answers get a gentle explanation, hints, and finally the answer,line=114,col=53::  4) [iphone] › tests/e2e/practice.spec.ts:96:3 › practice › wrong answers get a gentle explanation, hints, and finally the answer %0A%0A    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────%0A    Error: expect(locator).toHaveCount(expected) failed%0A%0A    Locator:  locator('.hint [data-math]')%0A    Expected: 1%0A    Received: 2%0A    Timeout:  5000ms%0A%0A    Call log:%0A      - Expect "toHaveCount" locator('.hint [data-math]') with timeout 5000ms%0A      - waiting for locator('.hint [data-math]')%0A        14 × locator resolved to 2 elements%0A           - unexpected value "2"%0A%0A%0A      112 |     }%0A      113 |     await expect(hintButton).toBeDisabled();%0A    > 114 |     await expect(page.locator('.hint [data-math]')).toHaveCount(1); // the worked example%0A          |                                                     ^%0A      115 |%0A      116 |     await submit(page, wrong);%0A      117 |     await submit(page, wrong);%0A        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:114:53
+::error file=tests/e2e/practice.spec.ts,title=[iphone] › tests/e2e/practice.spec.ts:96:3 › practice › wrong answers get a gentle explanation, hints, and finally the answer,line=114,col=53::  4) [iphone] › tests/e2e/practice.spec.ts:96:3 › practice › wrong answers get a gentle explanation, hints, and finally the answer %0A%0A    Retry #2 ───────────────────────────────────────────────────────────────────────────────────────%0A    Error: expect(locator).toHaveCount(expected) failed%0A%0A    Locator:  locator('.hint [data-math]')%0A    Expected: 1%0A    Received: 2%0A    Timeout:  5000ms%0A%0A    Call log:%0A      - Expect "toHaveCount" locator('.hint [data-math]') with timeout 5000ms%0A      - waiting for locator('.hint [data-math]')%0A        14 × locator resolved to 2 elements%0A           - unexpected value "2"%0A%0A%0A      112 |     }%0A      113 |     await expect(hintButton).toBeDisabled();%0A    > 114 |     await expect(page.locator('.hint [data-math]')).toHaveCount(1); // the worked example%0A          |                                                     ^%0A      115 |%0A      116 |     await submit(page, wrong);%0A      117 |     await submit(page, wrong);%0A        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:114:53
+··××××F
+::error file=tests/e2e/practice.spec.ts,title=[iphone] › tests/e2e/practice.spec.ts:158:3 › practice › a child can pick another level when the profile allows it,line=162,col=24::  5) [iphone] › tests/e2e/practice.spec.ts:158:3 › practice › a child can pick another level when the profile allows it %0A    Error: expect(locator).toBeVisible() failed%0A%0A    Locator: getByRole('heading', { name: 'חיבור וחיסור עד 20', exact: true, level: 2 })%0A    Expected: visible%0A    Timeout: 5000ms%0A    Error: element(s) not found%0A%0A    Call log:%0A      - Expect "toBeVisible" getByRole('heading', { name: 'חיבור וחיסור עד 20', exact: true, level: 2 }) with timeout 5000ms%0A      - waiting for getByRole('heading', { name: 'חיבור וחיסור עד 20', exact: true, level: 2 })%0A%0A%0A      160 |     await page.getByRole('button', { name: 'סיום' }).click();%0A      161 |     const next = page.getByRole('heading', { level: 2, name: 'חיבור וחיסור עד 20', exact: true });%0A    > 162 |     await expect(next).toBeVisible();%0A          |                        ^%0A      163 |     await page.getByRole('button', { name: 'שלב אחר' }).click();%0A      164 |     await page%0A      165 |       .getByRole('dialog', { name: 'באיזה שלב לתרגל?' })%0A        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:162:24
+::error file=tests/e2e/practice.spec.ts,title=[iphone] › tests/e2e/practice.spec.ts:158:3 › practice › a child can pick another level when the profile allows it,line=162,col=24::  5) [iphone] › tests/e2e/practice.spec.ts:158:3 › practice › a child can pick another level when the profile allows it %0A%0A    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────%0A    Error: expect(locator).toBeVisible() failed%0A%0A    Locator: getByRole('heading', { name: 'חיבור וחיסור עד 20', exact: true, level: 2 })%0A    Expected: visible%0A    Timeout: 5000ms%0A    Error: element(s) not found%0A%0A    Call log:%0A      - Expect "toBeVisible" getByRole('heading', { name: 'חיבור וחיסור עד 20', exact: true, level: 2 }) with timeout 5000ms%0A      - waiting for getByRole('heading', { name: 'חיבור וחיסור עד 20', exact: true, level: 2 })%0A%0A%0A      160 |     await page.getByRole('button', { name: 'סיום' }).click();%0A      161 |     const next = page.getByRole('heading', { level: 2, name: 'חיבור וחיסור עד 20', exact: true });%0A    > 162 |     await expect(next).toBeVisible();%0A          |                        ^%0A      163 |     await page.getByRole('button', { name: 'שלב אחר' }).click();%0A      164 |     await page%0A      165 |       .getByRole('dialog', { name: 'באיזה שלב לתרגל?' })%0A        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:162:24
+::error file=tests/e2e/practice.spec.ts,title=[iphone] › tests/e2e/practice.spec.ts:158:3 › practice › a child can pick another level when the profile allows it,line=162,col=24::  5) [iphone] › tests/e2e/practice.spec.ts:158:3 › practice › a child can pick another level when the profile allows it %0A%0A    Retry #2 ───────────────────────────────────────────────────────────────────────────────────────%0A    Error: expect(locator).toBeVisible() failed%0A%0A    Locator: getByRole('heading', { name: 'חיבור וחיסור עד 20', exact: true, level: 2 })%0A    Expected: visible%0A    Timeout: 5000ms%0A    Error: element(s) not found%0A%0A    Call log:%0A      - Expect "toBeVisible" getByRole('heading', { name: 'חיבור וחיסור עד 20', exact: true, level: 2 }) with timeout 5000ms%0A      - waiting for getByRole('heading', { name: 'חיבור וחיסור עד 20', exact: true, level: 2 })%0A%0A%0A      160 |     await page.getByRole('button', { name: 'סיום' }).click();%0A      161 |     const next = page.getByRole('heading', { level: 2, name: 'חיבור וחיסור עד 20', exact: true });%0A    > 162 |     await expect(next).toBeVisible();%0A          |                        ^%0A      163 |     await page.getByRole('button', { name: 'שלב אחר' }).click();%0A      164 |     await page%0A      165 |       .getByRole('dialog', { name: 'באיזה שלב לתרגל?' })%0A        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:162:24
+F
+::error file=tests/e2e/practice.spec.ts,title=[iphone] › tests/e2e/practice.spec.ts:180:3 › journey › the map shows every station, the review, Plusi, the streak and the album,line=189,col=46::  6) [iphone] › tests/e2e/practice.spec.ts:180:3 › journey › the map shows every station, the review, Plusi, the streak and the album %0A    Error: expect(locator).toHaveCount(expected) failed%0A%0A    Locator:  getByRole('region', { name: 'מפת המסע' }).locator('.node--done')%0A    Expected: 7%0A    Received: 0%0A    Timeout:  5000ms%0A%0A    Call log:%0A      - Expect "toHaveCount" getByRole('region', { name: 'מפת המסע' }).locator('.node--done') with timeout 5000ms%0A      - waiting for getByRole('region', { name: 'מפת המסע' }).locator('.node--done')%0A        14 × locator resolved to 0 elements%0A           - unexpected value "0"%0A%0A%0A      187 |     const map = page.getByRole('region', { name: 'מפת המסע' });%0A      188 |     await expect(map.locator('.node')).toHaveCount(11);%0A    > 189 |     await expect(map.locator('.node--done')).toHaveCount(7);%0A          |                                              ^%0A      190 |     await expect(map.getByRole('img', { name: 'סיום העולם, עדיין סגור' })).toBeVisible();%0A      191 |     await expect(map.locator('.plusi')).toBeVisible();%0A      192 |     await expect(page.getByText('עולם 1 · חיבור וחיסור עד 20')).toBeVisible();%0A        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:189:46
+::error file=tests/e2e/practice.spec.ts,title=[iphone] › tests/e2e/practice.spec.ts:180:3 › journey › the map shows every station, the review, Plusi, the streak and the album,line=189,col=46::  6) [iphone] › tests/e2e/practice.spec.ts:180:3 › journey › the map shows every station, the review, Plusi, the streak and the album %0A%0A    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────%0A    Error: expect(locator).toHaveCount(expected) failed%0A%0A    Locator:  getByRole('region', { name: 'מפת המסע' }).locator('.node--done')%0A    Expected: 7%0A    Received: 0%0A    Timeout:  5000ms%0A%0A    Call log:%0A      - Expect "toHaveCount" getByRole('region', { name: 'מפת המסע' }).locator('.node--done') with timeout 5000ms%0A      - waiting for getByRole('region', { name: 'מפת המסע' }).locator('.node--done')%0A        14 × locator resolved to 0 elements%0A           - unexpected value "0"%0A%0A%0A      187 |     const map = page.getByRole('region', { name: 'מפת המסע' });%0A      188 |     await expect(map.locator('.node')).toHaveCount(11);%0A    > 189 |     await expect(map.locator('.node--done')).toHaveCount(7);%0A          |                                              ^%0A      190 |     await expect(map.getByRole('img', { name: 'סיום העולם, עדיין סגור' })).toBeVisible();%0A      191 |     await expect(map.locator('.plusi')).toBeVisible();%0A      192 |     await expect(page.getByText('עולם 1 · חיבור וחיסור עד 20')).toBeVisible();%0A        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:189:46
+::error file=tests/e2e/practice.spec.ts,title=[iphone] › tests/e2e/practice.spec.ts:180:3 › journey › the map shows every station, the review, Plusi, the streak and the album,line=189,col=46::  6) [iphone] › tests/e2e/practice.spec.ts:180:3 › journey › the map shows every station, the review, Plusi, the streak and the album %0A%0A    Retry #2 ───────────────────────────────────────────────────────────────────────────────────────%0A    Error: expect(locator).toHaveCount(expected) failed%0A%0A    Locator:  getByRole('region', { name: 'מפת המסע' }).locator('.node--done')%0A    Expected: 7%0A    Received: 0%0A    Timeout:  5000ms%0A%0A    Call log:%0A      - Expect "toHaveCount" getByRole('region', { name: 'מפת המסע' }).locator('.node--done') with timeout 5000ms%0A      - waiting for getByRole('region', { name: 'מפת המסע' }).locator('.node--done')%0A        14 × locator resolved to 0 elements%0A           - unexpected value "0"%0A%0A%0A      187 |     const map = page.getByRole('region', { name: 'מפת המסע' });%0A      188 |     await expect(map.locator('.node')).toHaveCount(11);%0A    > 189 |     await expect(map.locator('.node--done')).toHaveCount(7);%0A          |                                              ^%0A      190 |     await expect(map.getByRole('img', { name: 'סיום העולם, עדיין סגור' })).toBeVisible();%0A      191 |     await expect(map.locator('.plusi')).toBeVisible();%0A      192 |     await expect(page.getByText('עולם 1 · חיבור וחיסור עד 20')).toBeVisible();%0A        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:189:46
+··················××F
+::error file=tests/e2e/practice.spec.ts,title=[desktop-chromium] › tests/e2e/practice.spec.ts:96:3 › practice › wrong answers get a gentle explanation, hints, and finally the answer,line=114,col=53::  7) [desktop-chromium] › tests/e2e/practice.spec.ts:96:3 › practice › wrong answers get a gentle explanation, hints, and finally the answer %0A    Error: expect(locator).toHaveCount(expected) failed%0A%0A    Locator:  locator('.hint [data-math]')%0A    Expected: 1%0A    Received: 2%0A    Timeout:  5000ms%0A%0A    Call log:%0A      - Expect "toHaveCount" locator('.hint [data-math]') with timeout 5000ms%0A      - waiting for locator('.hint [data-math]')%0A        14 × locator resolved to 2 elements%0A           - unexpected value "2"%0A%0A%0A      112 |     }%0A      113 |     await expect(hintButton).toBeDisabled();%0A    > 114 |     await expect(page.locator('.hint [data-math]')).toHaveCount(1); // the worked example%0A          |                                                     ^%0A      115 |%0A      116 |     await submit(page, wrong);%0A      117 |     await submit(page, wrong);%0A        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:114:53
+::error file=tests/e2e/practice.spec.ts,title=[desktop-chromium] › tests/e2e/practice.spec.ts:96:3 › practice › wrong answers get a gentle explanation, hints, and finally the answer,line=114,col=53::  7) [desktop-chromium] › tests/e2e/practice.spec.ts:96:3 › practice › wrong answers get a gentle explanation, hints, and finally the answer %0A%0A    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────%0A    Error: expect(locator).toHaveCount(expected) failed%0A%0A    Locator:  locator('.hint [data-math]')%0A    Expected: 1%0A    Received: 2%0A    Timeout:  5000ms%0A%0A    Call log:%0A      - Expect "toHaveCount" locator('.hint [data-math]') with timeout 5000ms%0A      - waiting for locator('.hint [data-math]')%0A        14 × locator resolved to 2 elements%0A           - unexpected value "2"%0A%0A%0A      112 |     }%0A      113 |     await expect(hintButton).toBeDisabled();%0A    > 114 |     await expect(page.locator('.hint [data-math]')).toHaveCount(1); // the worked example%0A          |                                                     ^%0A      115 |%0A      116 |     await submit(page, wrong);%0A      117 |     await submit(page, wrong);%0A        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:114:53
+::error file=tests/e2e/practice.spec.ts,title=[desktop-chromium] › tests/e2e/practice.spec.ts:96:3 › practice › wrong answers get a gentle explanation, hints, and finally the answer,line=114,col=53::  7) [desktop-chromium] › tests/e2e/practice.spec.ts:96:3 › practice › wrong answers get a gentle explanation, hints, and finally the answer %0A%0A    Retry #2 ───────────────────────────────────────────────────────────────────────────────────────%0A    Error: expect(locator).toHaveCount(expected) failed%0A%0A    Locator:  locator('.hint [data-math]')%0A    Expected: 1%0A    Received: 2%0A    Timeout:  5000ms%0A%0A    Call log:%0A      - Expect "toHaveCount" locator('.hint [data-math]') with timeout 5000ms%0A      - waiting for locator('.hint [data-math]')%0A        14 × locator resolved to 2 elements%0A           - unexpected value "2"%0A%0A%0A      112 |     }%0A      113 |     await expect(hintButton).toBeDisabled();%0A    > 114 |     await expect(page.locator('.hint [data-math]')).toHaveCount(1); // the worked example%0A          |                                                     ^%0A      115 |%0A      116 |     await submit(page, wrong);%0A      117 |     await submit(page, wrong);%0A        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:114:53
+···××××F
+::error file=tests/e2e/practice.spec.ts,title=[desktop-chromium] › tests/e2e/practice.spec.ts:158:3 › practice › a child can pick another level when the profile allows it,line=162,col=24::  8) [desktop-chromium] › tests/e2e/practice.spec.ts:158:3 › practice › a child can pick another level when the profile allows it %0A    Error: expect(locator).toBeVisible() failed%0A%0A    Locator: getByRole('heading', { name: 'חיבור וחיסור עד 20', exact: true, level: 2 })%0A    Expected: visible%0A    Timeout: 5000ms%0A    Error: element(s) not found%0A%0A    Call log:%0A      - Expect "toBeVisible" getByRole('heading', { name: 'חיבור וחיסור עד 20', exact: true, level: 2 }) with timeout 5000ms%0A      - waiting for getByRole('heading', { name: 'חיבור וחיסור עד 20', exact: true, level: 2 })%0A%0A%0A      160 |     await page.getByRole('button', { name: 'סיום' }).click();%0A      161 |     const next = page.getByRole('heading', { level: 2, name: 'חיבור וחיסור עד 20', exact: true });%0A    > 162 |     await expect(next).toBeVisible();%0A          |                        ^%0A      163 |     await page.getByRole('button', { name: 'שלב אחר' }).click();%0A      164 |     await page%0A      165 |       .getByRole('dialog', { name: 'באיזה שלב לתרגל?' })%0A        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:162:24
+::error file=tests/e2e/practice.spec.ts,title=[desktop-chromium] › tests/e2e/practice.spec.ts:158:3 › practice › a child can pick another level when the profile allows it,line=162,col=24::  8) [desktop-chromium] › tests/e2e/practice.spec.ts:158:3 › practice › a child can pick another level when the profile allows it %0A%0A    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────%0A    Error: expect(locator).toBeVisible() failed%0A%0A    Locator: getByRole('heading', { name: 'חיבור וחיסור עד 20', exact: true, level: 2 })%0A    Expected: visible%0A    Timeout: 5000ms%0A    Error: element(s) not found%0A%0A    Call log:%0A      - Expect "toBeVisible" getByRole('heading', { name: 'חיבור וחיסור עד 20', exact: true, level: 2 }) with timeout 5000ms%0A      - waiting for getByRole('heading', { name: 'חיבור וחיסור עד 20', exact: true, level: 2 })%0A%0A%0A      160 |     await page.getByRole('button', { name: 'סיום' }).click();%0A      161 |     const next = page.getByRole('heading', { level: 2, name: 'חיבור וחיסור עד 20', exact: true });%0A    > 162 |     await expect(next).toBeVisible();%0A          |                        ^%0A      163 |     await page.getByRole('button', { name: 'שלב אחר' }).click();%0A      164 |     await page%0A      165 |       .getByRole('dialog', { name: 'באיזה שלב לתרגל?' })%0A        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:162:24
+::error file=tests/e2e/practice.spec.ts,title=[desktop-chromium] › tests/e2e/practice.spec.ts:158:3 › practice › a child can pick another level when the profile allows it,line=162,col=24::  8) [desktop-chromium] › tests/e2e/practice.spec.ts:158:3 › practice › a child can pick another level when the profile allows it %0A%0A    Retry #2 ───────────────────────────────────────────────────────────────────────────────────────%0A    Error: expect(locator).toBeVisible() failed%0A%0A    Locator: getByRole('heading', { name: 'חיבור וחיסור עד 20', exact: true, level: 2 })%0A    Expected: visible%0A    Timeout: 5000ms%0A    Error: element(s) not found%0A%0A    Call log:%0A      - Expect "toBeVisible" getByRole('heading', { name: 'חיבור וחיסור עד 20', exact: true, level: 2 }) with timeout 5000ms%0A      - waiting for getByRole('heading', { name: 'חיבור וחיסור עד 20', exact: true, level: 2 })%0A%0A%0A      160 |     await page.getByRole('button', { name: 'סיום' }).click();%0A      161 |     const next = page.getByRole('heading', { level: 2, name: 'חיבור וחיסור עד 20', exact: true });%0A    > 162 |     await expect(next).toBeVisible();%0A          |                        ^%0A      163 |     await page.getByRole('button', { name: 'שלב אחר' }).click();%0A      164 |     await page%0A      165 |       .getByRole('dialog', { name: 'באיזה שלב לתרגל?' })%0A        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:162:24
+·
+·F
+::error file=tests/e2e/practice.spec.ts,title=[desktop-chromium] › tests/e2e/practice.spec.ts:180:3 › journey › the map shows every station, the review, Plusi, the streak and the album,line=189,col=46::  9) [desktop-chromium] › tests/e2e/practice.spec.ts:180:3 › journey › the map shows every station, the review, Plusi, the streak and the album %0A    Error: expect(locator).toHaveCount(expected) failed%0A%0A    Locator:  getByRole('region', { name: 'מפת המסע' }).locator('.node--done')%0A    Expected: 7%0A    Received: 0%0A    Timeout:  5000ms%0A%0A    Call log:%0A      - Expect "toHaveCount" getByRole('region', { name: 'מפת המסע' }).locator('.node--done') with timeout 5000ms%0A      - waiting for getByRole('region', { name: 'מפת המסע' }).locator('.node--done')%0A        14 × locator resolved to 0 elements%0A           - unexpected value "0"%0A%0A%0A      187 |     const map = page.getByRole('region', { name: 'מפת המסע' });%0A      188 |     await expect(map.locator('.node')).toHaveCount(11);%0A    > 189 |     await expect(map.locator('.node--done')).toHaveCount(7);%0A          |                                              ^%0A      190 |     await expect(map.getByRole('img', { name: 'סיום העולם, עדיין סגור' })).toBeVisible();%0A      191 |     await expect(map.locator('.plusi')).toBeVisible();%0A      192 |     await expect(page.getByText('עולם 1 · חיבור וחיסור עד 20')).toBeVisible();%0A        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:189:46
+::error file=tests/e2e/practice.spec.ts,title=[desktop-chromium] › tests/e2e/practice.spec.ts:180:3 › journey › the map shows every station, the review, Plusi, the streak and the album,line=189,col=46::  9) [desktop-chromium] › tests/e2e/practice.spec.ts:180:3 › journey › the map shows every station, the review, Plusi, the streak and the album %0A%0A    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────%0A    Error: expect(locator).toHaveCount(expected) failed%0A%0A    Locator:  getByRole('region', { name: 'מפת המסע' }).locator('.node--done')%0A    Expected: 7%0A    Received: 0%0A    Timeout:  5000ms%0A%0A    Call log:%0A      - Expect "toHaveCount" getByRole('region', { name: 'מפת המסע' }).locator('.node--done') with timeout 5000ms%0A      - waiting for getByRole('region', { name: 'מפת המסע' }).locator('.node--done')%0A        14 × locator resolved to 0 elements%0A           - unexpected value "0"%0A%0A%0A      187 |     const map = page.getByRole('region', { name: 'מפת המסע' });%0A      188 |     await expect(map.locator('.node')).toHaveCount(11);%0A    > 189 |     await expect(map.locator('.node--done')).toHaveCount(7);%0A          |                                              ^%0A      190 |     await expect(map.getByRole('img', { name: 'סיום העולם, עדיין סגור' })).toBeVisible();%0A      191 |     await expect(map.locator('.plusi')).toBeVisible();%0A      192 |     await expect(page.getByText('עולם 1 · חיבור וחיסור עד 20')).toBeVisible();%0A        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:189:46
+::error file=tests/e2e/practice.spec.ts,title=[desktop-chromium] › tests/e2e/practice.spec.ts:180:3 › journey › the map shows every station, the review, Plusi, the streak and the album,line=189,col=46::  9) [desktop-chromium] › tests/e2e/practice.spec.ts:180:3 › journey › the map shows every station, the review, Plusi, the streak and the album %0A%0A    Retry #2 ───────────────────────────────────────────────────────────────────────────────────────%0A    Error: expect(locator).toHaveCount(expected) failed%0A%0A    Locator:  getByRole('region', { name: 'מפת המסע' }).locator('.node--done')%0A    Expected: 7%0A    Received: 0%0A    Timeout:  5000ms%0A%0A    Call log:%0A      - Expect "toHaveCount" getByRole('region', { name: 'מפת המסע' }).locator('.node--done') with timeout 5000ms%0A      - waiting for getByRole('region', { name: 'מפת המסע' }).locator('.node--done')%0A        14 × locator resolved to 0 elements%0A           - unexpected value "0"%0A%0A%0A      187 |     const map = page.getByRole('region', { name: 'מפת המסע' });%0A      188 |     await expect(map.locator('.node')).toHaveCount(11);%0A    > 189 |     await expect(map.locator('.node--done')).toHaveCount(7);%0A          |                                              ^%0A      190 |     await expect(map.getByRole('img', { name: 'סיום העולם, עדיין סגור' })).toBeVisible();%0A      191 |     await expect(map.locator('.plusi')).toBeVisible();%0A      192 |     await expect(page.getByText('עולם 1 · חיבור וחיסור עד 20')).toBeVisible();%0A        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:189:46
+········
+
+  1) [ipad] › tests/e2e/practice.spec.ts:96:3 › practice › wrong answers get a gentle explanation, hints, and finally the answer 
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  locator('.hint [data-math]')
+    Expected: 1
+    Received: 2
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveCount" locator('.hint [data-math]') with timeout 5000ms
+      - waiting for locator('.hint [data-math]')
+        14 × locator resolved to 2 elements
+           - unexpected value "2"
 
 
-::notice title=🎭 Playwright Run Summary::
+      112 |     }
+      113 |     await expect(hintButton).toBeDisabled();
+    > 114 |     await expect(page.locator('.hint [data-math]')).toHaveCount(1); // the worked example
+          |                                                     ^
+      115 |
+      116 |     await submit(page, wrong);
+      117 |     await submit(page, wrong);
+        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:114:53
+
+    Error Context: test-results/practice-practice-wrong-an-28129-ints-and-finally-the-answer-ipad/error-context.md
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  locator('.hint [data-math]')
+    Expected: 1
+    Received: 2
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveCount" locator('.hint [data-math]') with timeout 5000ms
+      - waiting for locator('.hint [data-math]')
+        14 × locator resolved to 2 elements
+           - unexpected value "2"
+
+
+      112 |     }
+      113 |     await expect(hintButton).toBeDisabled();
+    > 114 |     await expect(page.locator('.hint [data-math]')).toHaveCount(1); // the worked example
+          |                                                     ^
+      115 |
+      116 |     await submit(page, wrong);
+      117 |     await submit(page, wrong);
+        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:114:53
+
+    Error Context: test-results/practice-practice-wrong-an-28129-ints-and-finally-the-answer-ipad-retry1/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/practice-practice-wrong-an-28129-ints-and-finally-the-answer-ipad-retry1/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/practice-practice-wrong-an-28129-ints-and-finally-the-answer-ipad-retry1/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #2 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  locator('.hint [data-math]')
+    Expected: 1
+    Received: 2
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveCount" locator('.hint [data-math]') with timeout 5000ms
+      - waiting for locator('.hint [data-math]')
+        14 × locator resolved to 2 elements
+           - unexpected value "2"
+
+
+      112 |     }
+      113 |     await expect(hintButton).toBeDisabled();
+    > 114 |     await expect(page.locator('.hint [data-math]')).toHaveCount(1); // the worked example
+          |                                                     ^
+      115 |
+      116 |     await submit(page, wrong);
+      117 |     await submit(page, wrong);
+        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:114:53
+
+    Error Context: test-results/practice-practice-wrong-an-28129-ints-and-finally-the-answer-ipad-retry2/error-context.md
+
+  2) [ipad] › tests/e2e/practice.spec.ts:158:3 › practice › a child can pick another level when the profile allows it 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('heading', { name: 'חיבור וחיסור עד 20', exact: true, level: 2 })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('heading', { name: 'חיבור וחיסור עד 20', exact: true, level: 2 }) with timeout 5000ms
+      - waiting for getByRole('heading', { name: 'חיבור וחיסור עד 20', exact: true, level: 2 })
+
+
+      160 |     await page.getByRole('button', { name: 'סיום' }).click();
+      161 |     const next = page.getByRole('heading', { level: 2, name: 'חיבור וחיסור עד 20', exact: true });
+    > 162 |     await expect(next).toBeVisible();
+          |                        ^
+      163 |     await page.getByRole('button', { name: 'שלב אחר' }).click();
+      164 |     await page
+      165 |       .getByRole('dialog', { name: 'באיזה שלב לתרגל?' })
+        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:162:24
+
+    Error Context: test-results/practice-practice-a-child--7d891--when-the-profile-allows-it-ipad/error-context.md
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('heading', { name: 'חיבור וחיסור עד 20', exact: true, level: 2 })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('heading', { name: 'חיבור וחיסור עד 20', exact: true, level: 2 }) with timeout 5000ms
+      - waiting for getByRole('heading', { name: 'חיבור וחיסור עד 20', exact: true, level: 2 })
+
+
+      160 |     await page.getByRole('button', { name: 'סיום' }).click();
+      161 |     const next = page.getByRole('heading', { level: 2, name: 'חיבור וחיסור עד 20', exact: true });
+    > 162 |     await expect(next).toBeVisible();
+          |                        ^
+      163 |     await page.getByRole('button', { name: 'שלב אחר' }).click();
+      164 |     await page
+      165 |       .getByRole('dialog', { name: 'באיזה שלב לתרגל?' })
+        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:162:24
+
+    Error Context: test-results/practice-practice-a-child--7d891--when-the-profile-allows-it-ipad-retry1/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/practice-practice-a-child--7d891--when-the-profile-allows-it-ipad-retry1/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/practice-practice-a-child--7d891--when-the-profile-allows-it-ipad-retry1/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #2 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('heading', { name: 'חיבור וחיסור עד 20', exact: true, level: 2 })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('heading', { name: 'חיבור וחיסור עד 20', exact: true, level: 2 }) with timeout 5000ms
+      - waiting for getByRole('heading', { name: 'חיבור וחיסור עד 20', exact: true, level: 2 })
+
+
+      160 |     await page.getByRole('button', { name: 'סיום' }).click();
+      161 |     const next = page.getByRole('heading', { level: 2, name: 'חיבור וחיסור עד 20', exact: true });
+    > 162 |     await expect(next).toBeVisible();
+          |                        ^
+      163 |     await page.getByRole('button', { name: 'שלב אחר' }).click();
+      164 |     await page
+      165 |       .getByRole('dialog', { name: 'באיזה שלב לתרגל?' })
+        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:162:24
+
+    Error Context: test-results/practice-practice-a-child--7d891--when-the-profile-allows-it-ipad-retry2/error-context.md
+
+  3) [ipad] › tests/e2e/practice.spec.ts:180:3 › journey › the map shows every station, the review, Plusi, the streak and the album 
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  getByRole('region', { name: 'מפת המסע' }).locator('.node--done')
+    Expected: 7
+    Received: 0
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveCount" getByRole('region', { name: 'מפת המסע' }).locator('.node--done') with timeout 5000ms
+      - waiting for getByRole('region', { name: 'מפת המסע' }).locator('.node--done')
+        14 × locator resolved to 0 elements
+           - unexpected value "0"
+
+
+      187 |     const map = page.getByRole('region', { name: 'מפת המסע' });
+      188 |     await expect(map.locator('.node')).toHaveCount(11);
+    > 189 |     await expect(map.locator('.node--done')).toHaveCount(7);
+          |                                              ^
+      190 |     await expect(map.getByRole('img', { name: 'סיום העולם, עדיין סגור' })).toBeVisible();
+      191 |     await expect(map.locator('.plusi')).toBeVisible();
+      192 |     await expect(page.getByText('עולם 1 · חיבור וחיסור עד 20')).toBeVisible();
+        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:189:46
+
+    Error Context: test-results/practice-journey-the-map-s-7fbc9-si-the-streak-and-the-album-ipad/error-context.md
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  getByRole('region', { name: 'מפת המסע' }).locator('.node--done')
+    Expected: 7
+    Received: 0
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveCount" getByRole('region', { name: 'מפת המסע' }).locator('.node--done') with timeout 5000ms
+      - waiting for getByRole('region', { name: 'מפת המסע' }).locator('.node--done')
+        14 × locator resolved to 0 elements
+           - unexpected value "0"
+
+
+      187 |     const map = page.getByRole('region', { name: 'מפת המסע' });
+      188 |     await expect(map.locator('.node')).toHaveCount(11);
+    > 189 |     await expect(map.locator('.node--done')).toHaveCount(7);
+          |                                              ^
+      190 |     await expect(map.getByRole('img', { name: 'סיום העולם, עדיין סגור' })).toBeVisible();
+      191 |     await expect(map.locator('.plusi')).toBeVisible();
+      192 |     await expect(page.getByText('עולם 1 · חיבור וחיסור עד 20')).toBeVisible();
+        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:189:46
+
+    Error Context: test-results/practice-journey-the-map-s-7fbc9-si-the-streak-and-the-album-ipad-retry1/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/practice-journey-the-map-s-7fbc9-si-the-streak-and-the-album-ipad-retry1/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/practice-journey-the-map-s-7fbc9-si-the-streak-and-the-album-ipad-retry1/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #2 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  getByRole('region', { name: 'מפת המסע' }).locator('.node--done')
+    Expected: 7
+    Received: 0
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveCount" getByRole('region', { name: 'מפת המסע' }).locator('.node--done') with timeout 5000ms
+      - waiting for getByRole('region', { name: 'מפת המסע' }).locator('.node--done')
+        14 × locator resolved to 0 elements
+           - unexpected value "0"
+
+
+      187 |     const map = page.getByRole('region', { name: 'מפת המסע' });
+      188 |     await expect(map.locator('.node')).toHaveCount(11);
+    > 189 |     await expect(map.locator('.node--done')).toHaveCount(7);
+          |                                              ^
+      190 |     await expect(map.getByRole('img', { name: 'סיום העולם, עדיין סגור' })).toBeVisible();
+      191 |     await expect(map.locator('.plusi')).toBeVisible();
+      192 |     await expect(page.getByText('עולם 1 · חיבור וחיסור עד 20')).toBeVisible();
+        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:189:46
+
+    Error Context: test-results/practice-journey-the-map-s-7fbc9-si-the-streak-and-the-album-ipad-retry2/error-context.md
+
+  4) [iphone] › tests/e2e/practice.spec.ts:96:3 › practice › wrong answers get a gentle explanation, hints, and finally the answer 
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  locator('.hint [data-math]')
+    Expected: 1
+    Received: 2
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveCount" locator('.hint [data-math]') with timeout 5000ms
+      - waiting for locator('.hint [data-math]')
+        14 × locator resolved to 2 elements
+           - unexpected value "2"
+
+
+      112 |     }
+      113 |     await expect(hintButton).toBeDisabled();
+    > 114 |     await expect(page.locator('.hint [data-math]')).toHaveCount(1); // the worked example
+          |                                                     ^
+      115 |
+      116 |     await submit(page, wrong);
+      117 |     await submit(page, wrong);
+        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:114:53
+
+    Error Context: test-results/practice-practice-wrong-an-28129-ints-and-finally-the-answer-iphone/error-context.md
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  locator('.hint [data-math]')
+    Expected: 1
+    Received: 2
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveCount" locator('.hint [data-math]') with timeout 5000ms
+      - waiting for locator('.hint [data-math]')
+        14 × locator resolved to 2 elements
+           - unexpected value "2"
+
+
+      112 |     }
+      113 |     await expect(hintButton).toBeDisabled();
+    > 114 |     await expect(page.locator('.hint [data-math]')).toHaveCount(1); // the worked example
+          |                                                     ^
+      115 |
+      116 |     await submit(page, wrong);
+      117 |     await submit(page, wrong);
+        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:114:53
+
+    Error Context: test-results/practice-practice-wrong-an-28129-ints-and-finally-the-answer-iphone-retry1/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/practice-practice-wrong-an-28129-ints-and-finally-the-answer-iphone-retry1/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/practice-practice-wrong-an-28129-ints-and-finally-the-answer-iphone-retry1/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #2 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  locator('.hint [data-math]')
+    Expected: 1
+    Received: 2
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveCount" locator('.hint [data-math]') with timeout 5000ms
+      - waiting for locator('.hint [data-math]')
+        14 × locator resolved to 2 elements
+           - unexpected value "2"
+
+
+      112 |     }
+      113 |     await expect(hintButton).toBeDisabled();
+    > 114 |     await expect(page.locator('.hint [data-math]')).toHaveCount(1); // the worked example
+          |                                                     ^
+      115 |
+      116 |     await submit(page, wrong);
+      117 |     await submit(page, wrong);
+        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:114:53
+
+    Error Context: test-results/practice-practice-wrong-an-28129-ints-and-finally-the-answer-iphone-retry2/error-context.md
+
+  5) [iphone] › tests/e2e/practice.spec.ts:158:3 › practice › a child can pick another level when the profile allows it 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('heading', { name: 'חיבור וחיסור עד 20', exact: true, level: 2 })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('heading', { name: 'חיבור וחיסור עד 20', exact: true, level: 2 }) with timeout 5000ms
+      - waiting for getByRole('heading', { name: 'חיבור וחיסור עד 20', exact: true, level: 2 })
+
+
+      160 |     await page.getByRole('button', { name: 'סיום' }).click();
+      161 |     const next = page.getByRole('heading', { level: 2, name: 'חיבור וחיסור עד 20', exact: true });
+    > 162 |     await expect(next).toBeVisible();
+          |                        ^
+      163 |     await page.getByRole('button', { name: 'שלב אחר' }).click();
+      164 |     await page
+      165 |       .getByRole('dialog', { name: 'באיזה שלב לתרגל?' })
+        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:162:24
+
+    Error Context: test-results/practice-practice-a-child--7d891--when-the-profile-allows-it-iphone/error-context.md
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('heading', { name: 'חיבור וחיסור עד 20', exact: true, level: 2 })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('heading', { name: 'חיבור וחיסור עד 20', exact: true, level: 2 }) with timeout 5000ms
+      - waiting for getByRole('heading', { name: 'חיבור וחיסור עד 20', exact: true, level: 2 })
+
+
+      160 |     await page.getByRole('button', { name: 'סיום' }).click();
+      161 |     const next = page.getByRole('heading', { level: 2, name: 'חיבור וחיסור עד 20', exact: true });
+    > 162 |     await expect(next).toBeVisible();
+          |                        ^
+      163 |     await page.getByRole('button', { name: 'שלב אחר' }).click();
+      164 |     await page
+      165 |       .getByRole('dialog', { name: 'באיזה שלב לתרגל?' })
+        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:162:24
+
+    Error Context: test-results/practice-practice-a-child--7d891--when-the-profile-allows-it-iphone-retry1/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/practice-practice-a-child--7d891--when-the-profile-allows-it-iphone-retry1/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/practice-practice-a-child--7d891--when-the-profile-allows-it-iphone-retry1/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #2 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('heading', { name: 'חיבור וחיסור עד 20', exact: true, level: 2 })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('heading', { name: 'חיבור וחיסור עד 20', exact: true, level: 2 }) with timeout 5000ms
+      - waiting for getByRole('heading', { name: 'חיבור וחיסור עד 20', exact: true, level: 2 })
+
+
+      160 |     await page.getByRole('button', { name: 'סיום' }).click();
+      161 |     const next = page.getByRole('heading', { level: 2, name: 'חיבור וחיסור עד 20', exact: true });
+    > 162 |     await expect(next).toBeVisible();
+          |                        ^
+      163 |     await page.getByRole('button', { name: 'שלב אחר' }).click();
+      164 |     await page
+      165 |       .getByRole('dialog', { name: 'באיזה שלב לתרגל?' })
+        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:162:24
+
+    Error Context: test-results/practice-practice-a-child--7d891--when-the-profile-allows-it-iphone-retry2/error-context.md
+
+  6) [iphone] › tests/e2e/practice.spec.ts:180:3 › journey › the map shows every station, the review, Plusi, the streak and the album 
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  getByRole('region', { name: 'מפת המסע' }).locator('.node--done')
+    Expected: 7
+    Received: 0
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveCount" getByRole('region', { name: 'מפת המסע' }).locator('.node--done') with timeout 5000ms
+      - waiting for getByRole('region', { name: 'מפת המסע' }).locator('.node--done')
+        14 × locator resolved to 0 elements
+           - unexpected value "0"
+
+
+      187 |     const map = page.getByRole('region', { name: 'מפת המסע' });
+      188 |     await expect(map.locator('.node')).toHaveCount(11);
+    > 189 |     await expect(map.locator('.node--done')).toHaveCount(7);
+          |                                              ^
+      190 |     await expect(map.getByRole('img', { name: 'סיום העולם, עדיין סגור' })).toBeVisible();
+      191 |     await expect(map.locator('.plusi')).toBeVisible();
+      192 |     await expect(page.getByText('עולם 1 · חיבור וחיסור עד 20')).toBeVisible();
+        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:189:46
+
+    Error Context: test-results/practice-journey-the-map-s-7fbc9-si-the-streak-and-the-album-iphone/error-context.md
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  getByRole('region', { name: 'מפת המסע' }).locator('.node--done')
+    Expected: 7
+    Received: 0
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveCount" getByRole('region', { name: 'מפת המסע' }).locator('.node--done') with timeout 5000ms
+      - waiting for getByRole('region', { name: 'מפת המסע' }).locator('.node--done')
+        14 × locator resolved to 0 elements
+           - unexpected value "0"
+
+
+      187 |     const map = page.getByRole('region', { name: 'מפת המסע' });
+      188 |     await expect(map.locator('.node')).toHaveCount(11);
+    > 189 |     await expect(map.locator('.node--done')).toHaveCount(7);
+          |                                              ^
+      190 |     await expect(map.getByRole('img', { name: 'סיום העולם, עדיין סגור' })).toBeVisible();
+      191 |     await expect(map.locator('.plusi')).toBeVisible();
+      192 |     await expect(page.getByText('עולם 1 · חיבור וחיסור עד 20')).toBeVisible();
+        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:189:46
+
+    Error Context: test-results/practice-journey-the-map-s-7fbc9-si-the-streak-and-the-album-iphone-retry1/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/practice-journey-the-map-s-7fbc9-si-the-streak-and-the-album-iphone-retry1/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/practice-journey-the-map-s-7fbc9-si-the-streak-and-the-album-iphone-retry1/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #2 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  getByRole('region', { name: 'מפת המסע' }).locator('.node--done')
+    Expected: 7
+    Received: 0
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveCount" getByRole('region', { name: 'מפת המסע' }).locator('.node--done') with timeout 5000ms
+      - waiting for getByRole('region', { name: 'מפת המסע' }).locator('.node--done')
+        14 × locator resolved to 0 elements
+           - unexpected value "0"
+
+
+      187 |     const map = page.getByRole('region', { name: 'מפת המסע' });
+      188 |     await expect(map.locator('.node')).toHaveCount(11);
+    > 189 |     await expect(map.locator('.node--done')).toHaveCount(7);
+          |                                              ^
+      190 |     await expect(map.getByRole('img', { name: 'סיום העולם, עדיין סגור' })).toBeVisible();
+      191 |     await expect(map.locator('.plusi')).toBeVisible();
+      192 |     await expect(page.getByText('עולם 1 · חיבור וחיסור עד 20')).toBeVisible();
+        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:189:46
+
+    Error Context: test-results/practice-journey-the-map-s-7fbc9-si-the-streak-and-the-album-iphone-retry2/error-context.md
+
+  7) [desktop-chromium] › tests/e2e/practice.spec.ts:96:3 › practice › wrong answers get a gentle explanation, hints, and finally the answer 
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  locator('.hint [data-math]')
+    Expected: 1
+    Received: 2
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveCount" locator('.hint [data-math]') with timeout 5000ms
+      - waiting for locator('.hint [data-math]')
+        14 × locator resolved to 2 elements
+           - unexpected value "2"
+
+
+      112 |     }
+      113 |     await expect(hintButton).toBeDisabled();
+    > 114 |     await expect(page.locator('.hint [data-math]')).toHaveCount(1); // the worked example
+          |                                                     ^
+      115 |
+      116 |     await submit(page, wrong);
+      117 |     await submit(page, wrong);
+        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:114:53
+
+    Error Context: test-results/practice-practice-wrong-an-28129-ints-and-finally-the-answer-desktop-chromium/error-context.md
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  locator('.hint [data-math]')
+    Expected: 1
+    Received: 2
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveCount" locator('.hint [data-math]') with timeout 5000ms
+      - waiting for locator('.hint [data-math]')
+        14 × locator resolved to 2 elements
+           - unexpected value "2"
+
+
+      112 |     }
+      113 |     await expect(hintButton).toBeDisabled();
+    > 114 |     await expect(page.locator('.hint [data-math]')).toHaveCount(1); // the worked example
+          |                                                     ^
+      115 |
+      116 |     await submit(page, wrong);
+      117 |     await submit(page, wrong);
+        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:114:53
+
+    Error Context: test-results/practice-practice-wrong-an-28129-ints-and-finally-the-answer-desktop-chromium-retry1/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/practice-practice-wrong-an-28129-ints-and-finally-the-answer-desktop-chromium-retry1/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/practice-practice-wrong-an-28129-ints-and-finally-the-answer-desktop-chromium-retry1/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #2 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  locator('.hint [data-math]')
+    Expected: 1
+    Received: 2
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveCount" locator('.hint [data-math]') with timeout 5000ms
+      - waiting for locator('.hint [data-math]')
+        14 × locator resolved to 2 elements
+           - unexpected value "2"
+
+
+      112 |     }
+      113 |     await expect(hintButton).toBeDisabled();
+    > 114 |     await expect(page.locator('.hint [data-math]')).toHaveCount(1); // the worked example
+          |                                                     ^
+      115 |
+      116 |     await submit(page, wrong);
+      117 |     await submit(page, wrong);
+        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:114:53
+
+    Error Context: test-results/practice-practice-wrong-an-28129-ints-and-finally-the-answer-desktop-chromium-retry2/error-context.md
+
+  8) [desktop-chromium] › tests/e2e/practice.spec.ts:158:3 › practice › a child can pick another level when the profile allows it 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('heading', { name: 'חיבור וחיסור עד 20', exact: true, level: 2 })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('heading', { name: 'חיבור וחיסור עד 20', exact: true, level: 2 }) with timeout 5000ms
+      - waiting for getByRole('heading', { name: 'חיבור וחיסור עד 20', exact: true, level: 2 })
+
+
+      160 |     await page.getByRole('button', { name: 'סיום' }).click();
+      161 |     const next = page.getByRole('heading', { level: 2, name: 'חיבור וחיסור עד 20', exact: true });
+    > 162 |     await expect(next).toBeVisible();
+          |                        ^
+      163 |     await page.getByRole('button', { name: 'שלב אחר' }).click();
+      164 |     await page
+      165 |       .getByRole('dialog', { name: 'באיזה שלב לתרגל?' })
+        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:162:24
+
+    Error Context: test-results/practice-practice-a-child--7d891--when-the-profile-allows-it-desktop-chromium/error-context.md
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('heading', { name: 'חיבור וחיסור עד 20', exact: true, level: 2 })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('heading', { name: 'חיבור וחיסור עד 20', exact: true, level: 2 }) with timeout 5000ms
+      - waiting for getByRole('heading', { name: 'חיבור וחיסור עד 20', exact: true, level: 2 })
+
+
+      160 |     await page.getByRole('button', { name: 'סיום' }).click();
+      161 |     const next = page.getByRole('heading', { level: 2, name: 'חיבור וחיסור עד 20', exact: true });
+    > 162 |     await expect(next).toBeVisible();
+          |                        ^
+      163 |     await page.getByRole('button', { name: 'שלב אחר' }).click();
+      164 |     await page
+      165 |       .getByRole('dialog', { name: 'באיזה שלב לתרגל?' })
+        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:162:24
+
+    Error Context: test-results/practice-practice-a-child--7d891--when-the-profile-allows-it-desktop-chromium-retry1/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/practice-practice-a-child--7d891--when-the-profile-allows-it-desktop-chromium-retry1/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/practice-practice-a-child--7d891--when-the-profile-allows-it-desktop-chromium-retry1/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #2 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('heading', { name: 'חיבור וחיסור עד 20', exact: true, level: 2 })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('heading', { name: 'חיבור וחיסור עד 20', exact: true, level: 2 }) with timeout 5000ms
+      - waiting for getByRole('heading', { name: 'חיבור וחיסור עד 20', exact: true, level: 2 })
+
+
+      160 |     await page.getByRole('button', { name: 'סיום' }).click();
+      161 |     const next = page.getByRole('heading', { level: 2, name: 'חיבור וחיסור עד 20', exact: true });
+    > 162 |     await expect(next).toBeVisible();
+          |                        ^
+      163 |     await page.getByRole('button', { name: 'שלב אחר' }).click();
+      164 |     await page
+      165 |       .getByRole('dialog', { name: 'באיזה שלב לתרגל?' })
+        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:162:24
+
+    Error Context: test-results/practice-practice-a-child--7d891--when-the-profile-allows-it-desktop-chromium-retry2/error-context.md
+
+  9) [desktop-chromium] › tests/e2e/practice.spec.ts:180:3 › journey › the map shows every station, the review, Plusi, the streak and the album 
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  getByRole('region', { name: 'מפת המסע' }).locator('.node--done')
+    Expected: 7
+    Received: 0
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveCount" getByRole('region', { name: 'מפת המסע' }).locator('.node--done') with timeout 5000ms
+      - waiting for getByRole('region', { name: 'מפת המסע' }).locator('.node--done')
+        14 × locator resolved to 0 elements
+           - unexpected value "0"
+
+
+      187 |     const map = page.getByRole('region', { name: 'מפת המסע' });
+      188 |     await expect(map.locator('.node')).toHaveCount(11);
+    > 189 |     await expect(map.locator('.node--done')).toHaveCount(7);
+          |                                              ^
+      190 |     await expect(map.getByRole('img', { name: 'סיום העולם, עדיין סגור' })).toBeVisible();
+      191 |     await expect(map.locator('.plusi')).toBeVisible();
+      192 |     await expect(page.getByText('עולם 1 · חיבור וחיסור עד 20')).toBeVisible();
+        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:189:46
+
+    Error Context: test-results/practice-journey-the-map-s-7fbc9-si-the-streak-and-the-album-desktop-chromium/error-context.md
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  getByRole('region', { name: 'מפת המסע' }).locator('.node--done')
+    Expected: 7
+    Received: 0
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveCount" getByRole('region', { name: 'מפת המסע' }).locator('.node--done') with timeout 5000ms
+      - waiting for getByRole('region', { name: 'מפת המסע' }).locator('.node--done')
+        14 × locator resolved to 0 elements
+           - unexpected value "0"
+
+
+      187 |     const map = page.getByRole('region', { name: 'מפת המסע' });
+      188 |     await expect(map.locator('.node')).toHaveCount(11);
+    > 189 |     await expect(map.locator('.node--done')).toHaveCount(7);
+          |                                              ^
+      190 |     await expect(map.getByRole('img', { name: 'סיום העולם, עדיין סגור' })).toBeVisible();
+      191 |     await expect(map.locator('.plusi')).toBeVisible();
+      192 |     await expect(page.getByText('עולם 1 · חיבור וחיסור עד 20')).toBeVisible();
+        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:189:46
+
+    Error Context: test-results/practice-journey-the-map-s-7fbc9-si-the-streak-and-the-album-desktop-chromium-retry1/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/practice-journey-the-map-s-7fbc9-si-the-streak-and-the-album-desktop-chromium-retry1/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/practice-journey-the-map-s-7fbc9-si-the-streak-and-the-album-desktop-chromium-retry1/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #2 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  getByRole('region', { name: 'מפת המסע' }).locator('.node--done')
+    Expected: 7
+    Received: 0
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveCount" getByRole('region', { name: 'מפת המסע' }).locator('.node--done') with timeout 5000ms
+      - waiting for getByRole('region', { name: 'מפת המסע' }).locator('.node--done')
+        14 × locator resolved to 0 elements
+           - unexpected value "0"
+
+
+      187 |     const map = page.getByRole('region', { name: 'מפת המסע' });
+      188 |     await expect(map.locator('.node')).toHaveCount(11);
+    > 189 |     await expect(map.locator('.node--done')).toHaveCount(7);
+          |                                              ^
+      190 |     await expect(map.getByRole('img', { name: 'סיום העולם, עדיין סגור' })).toBeVisible();
+      191 |     await expect(map.locator('.plusi')).toBeVisible();
+      192 |     await expect(page.getByText('עולם 1 · חיבור וחיסור עד 20')).toBeVisible();
+        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:189:46
+
+    Error Context: test-results/practice-journey-the-map-s-7fbc9-si-the-streak-and-the-album-desktop-chromium-retry2/error-context.md
+
+  9 failed
+    [ipad] › tests/e2e/practice.spec.ts:96:3 › practice › wrong answers get a gentle explanation, hints, and finally the answer 
+    [ipad] › tests/e2e/practice.spec.ts:158:3 › practice › a child can pick another level when the profile allows it 
+    [ipad] › tests/e2e/practice.spec.ts:180:3 › journey › the map shows every station, the review, Plusi, the streak and the album 
+    [iphone] › tests/e2e/practice.spec.ts:96:3 › practice › wrong answers get a gentle explanation, hints, and finally the answer 
+    [iphone] › tests/e2e/practice.spec.ts:158:3 › practice › a child can pick another level when the profile allows it 
+    [iphone] › tests/e2e/practice.spec.ts:180:3 › journey › the map shows every station, the review, Plusi, the streak and the album 
+    [desktop-chromium] › tests/e2e/practice.spec.ts:96:3 › practice › wrong answers get a gentle explanation, hints, and finally the answer 
+    [desktop-chromium] › tests/e2e/practice.spec.ts:158:3 › practice › a child can pick another level when the profile allows it 
+    [desktop-chromium] › tests/e2e/practice.spec.ts:180:3 › journey › the map shows every station, the review, Plusi, the streak and the album 
+  63 passed (3.8m)
+::notice title=🎭 Playwright Run Summary::  9 failed%0A    [ipad] › tests/e2e/practice.spec.ts:96:3 › practice › wrong answers get a gentle explanation, hints, and finally the answer %0A    [ipad] › tests/e2e/practice.spec.ts:158:3 › practice › a child can pick another level when the profile allows it %0A    [ipad] › tests/e2e/practice.spec.ts:180:3 › journey › the map shows every station, the review, Plusi, the streak and the album %0A    [iphone] › tests/e2e/practice.spec.ts:96:3 › practice › wrong answers get a gentle explanation, hints, and finally the answer %0A    [iphone] › tests/e2e/practice.spec.ts:158:3 › practice › a child can pick another level when the profile allows it %0A    [iphone] › tests/e2e/practice.spec.ts:180:3 › journey › the map shows every station, the review, Plusi, the streak and the album %0A    [desktop-chromium] › tests/e2e/practice.spec.ts:96:3 › practice › wrong answers get a gentle explanation, hints, and finally the answer %0A    [desktop-chromium] › tests/e2e/practice.spec.ts:158:3 › practice › a child can pick another level when the profile allows it %0A    [desktop-chromium] › tests/e2e/practice.spec.ts:180:3 › journey › the map shows every station, the review, Plusi, the streak and the album %0A  63 passed (3.8m)
 E2E FAILED
