@@ -230,3 +230,13 @@ test.describe('journey', () => {
     expect(box?.width ?? 0).toBeGreaterThanOrEqual(72);
   });
 });
+
+test('an exercise without an equation shows the typed answer (grade 4 dictation)', async ({ page }) => {
+  await setupChild(page, 'מאיה', 'כיתה ד׳');
+  const box = page.locator('.exercise .answer-box');
+  await expect(box).toHaveText('?');
+  const pad = page.getByRole('group', { name: 'התשובה' });
+  await pad.getByRole('button', { name: '4', exact: true }).click();
+  await pad.getByRole('button', { name: '2', exact: true }).click();
+  await expect(box).toHaveText('42');
+});

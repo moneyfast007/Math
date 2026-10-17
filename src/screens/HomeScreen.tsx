@@ -74,7 +74,7 @@ export function HomeScreen() {
         <h1 className="home__title">{t('home.whoIsPlaying', { gender: addressAs })}</h1>
       </header>
 
-      <ul className="profiles" role="list" style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+      <ul className="profiles" role="list" style={{ listStyle: 'none', padding: 0 }}>
         {profiles.map((p, i) => (
           <li key={p.id}>
             <button
