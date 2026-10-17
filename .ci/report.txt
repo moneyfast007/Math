@@ -18,45 +18,43 @@
 
 [1m[46m RUN [49m[22m [36mv3.2.7 [39m[90m/home/runner/work/Math/Math[39m
 
- [32m✓[39m src/state/validate.test.ts [2m([22m[2m19 tests[22m[2m)[22m[32m 22[2mms[22m[39m
- [32m✓[39m src/state/store.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 34[2mms[22m[39m
- [32m✓[39m src/state/progress.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 12[2mms[22m[39m
- [32m✓[39m src/lang/hebrewNumbers.test.ts [2m([22m[2m81 tests[22m[2m)[22m[33m 1767[2mms[22m[39m
-   [33m[2m✓[22m[39m numberToWords, properties[2m > [22mis injective on 0–99,999: different numbers never produce the same words [33m 1706[2mms[22m[39m
- [32m✓[39m src/audio/speaker.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 22[2mms[22m[39m
- [32m✓[39m src/engine/topics/addSub20.test.ts [2m([22m[2m14 tests[22m[2m)[22m[33m 694[2mms[22m[39m
- [32m✓[39m src/engine/session.test.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 33[2mms[22m[39m
- [32m✓[39m src/engine/journey.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 17[2mms[22m[39m
- [32m✓[39m src/ui/components.test.tsx [2m([22m[2m7 tests[22m[2m)[22m[33m 381[2mms[22m[39m
- [32m✓[39m src/parent/gate.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[33m 477[2mms[22m[39m
- [32m✓[39m src/state/streak.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 15[2mms[22m[39m
- [32m✓[39m scripts/tts/pronunciation.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 7[2mms[22m[39m
- [32m✓[39m src/lang/compose.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 8[2mms[22m[39m
- [32m✓[39m src/screens/JourneyScreen.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[32m 135[2mms[22m[39m
+ [32m✓[39m src/state/validate.test.ts [2m([22m[2m19 tests[22m[2m)[22m[32m 13[2mms[22m[39m
+ [32m✓[39m src/state/store.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 29[2mms[22m[39m
+ [32m✓[39m src/state/progress.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 13[2mms[22m[39m
+ [32m✓[39m src/lang/hebrewNumbers.test.ts [2m([22m[2m81 tests[22m[2m)[22m[33m 1982[2mms[22m[39m
+   [33m[2m✓[22m[39m numberToWords, properties[2m > [22mis injective on 0–99,999: different numbers never produce the same words [33m 1921[2mms[22m[39m
+ [32m✓[39m src/audio/speaker.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 18[2mms[22m[39m
+ [32m✓[39m src/engine/topics/addSub20.test.ts [2m([22m[2m14 tests[22m[2m)[22m[33m 767[2mms[22m[39m
+ [32m✓[39m src/engine/session.test.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 23[2mms[22m[39m
+ [32m✓[39m src/engine/journey.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 13[2mms[22m[39m
+ [32m✓[39m src/ui/components.test.tsx [2m([22m[2m7 tests[22m[2m)[22m[33m 407[2mms[22m[39m
+ [32m✓[39m src/parent/gate.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[33m 521[2mms[22m[39m
+ [32m✓[39m src/state/streak.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+ [32m✓[39m scripts/tts/pronunciation.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+ [32m✓[39m src/lang/compose.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+ [32m✓[39m src/screens/JourneyScreen.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[32m 144[2mms[22m[39m
+ [32m✓[39m src/i18n/i18n.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 39[2mms[22m[39m
  [32m✓[39m src/lang/spoken.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 6[2mms[22m[39m
- [32m✓[39m src/i18n/i18n.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 43[2mms[22m[39m
- [32m✓[39m src/audio/hash.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 6[2mms[22m[39m
- [32m✓[39m src/state/pin.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 17[2mms[22m[39m
- [32m✓[39m src/ui/MathExpr.test.tsx [2m([22m[2m3 tests[22m[2m)[22m[32m 56[2mms[22m[39m
- [32m✓[39m src/state/backup.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 8[2mms[22m[39m
- [32m✓[39m src/app/router.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 6[2mms[22m[39m
- [32m✓[39m src/ui/ageBand.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 7[2mms[22m[39m
- [32m✓[39m src/engine/topics/all.test.ts [2m([22m[2m67 tests[22m[2m)[22m[33m 13682[2mms[22m[39m
-   [33m[2m✓[22m[39m topic count-10[2m > [22mlevel 10 produces valid exercises [33m 480[2mms[22m[39m
-   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 2 produces valid exercises [33m 584[2mms[22m[39m
-   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 3 produces valid exercises [33m 905[2mms[22m[39m
-   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 4 produces valid exercises [33m 2056[2mms[22m[39m
-   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 5 produces valid exercises [33m 731[2mms[22m[39m
-   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 6 produces valid exercises [33m 677[2mms[22m[39m
-   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 7 produces valid exercises [33m 440[2mms[22m[39m
-   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 8 produces valid exercises [33m 411[2mms[22m[39m
-   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 9 produces valid exercises [33m 574[2mms[22m[39m
-   [33m[2m✓[22m[39m topic numbers-100[2m > [22mavoids an immediate repeat [33m 321[2mms[22m[39m
+ [32m✓[39m src/state/pin.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 15[2mms[22m[39m
+ [32m✓[39m src/audio/hash.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+ [32m✓[39m src/ui/MathExpr.test.tsx [2m([22m[2m3 tests[22m[2m)[22m[32m 61[2mms[22m[39m
+ [32m✓[39m src/state/backup.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m src/app/router.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+ [32m✓[39m src/ui/ageBand.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m src/engine/topics/all.test.ts [2m([22m[2m67 tests[22m[2m)[22m[33m 13643[2mms[22m[39m
+   [33m[2m✓[22m[39m topic count-10[2m > [22mlevel 10 produces valid exercises [33m 391[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 2 produces valid exercises [33m 375[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 3 produces valid exercises [33m 881[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 4 produces valid exercises [33m 2589[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 5 produces valid exercises [33m 767[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 6 produces valid exercises [33m 609[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 9 produces valid exercises [33m 582[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mavoids an immediate repeat [33m 320[2mms[22m[39m
 
 [2m Test Files [22m [1m[32m23 passed[39m[22m[90m (23)[39m
 [2m      Tests [22m [1m[32m295 passed[39m[22m[90m (295)[39m
-[2m   Start at [22m 20:23:50
-[2m   Duration [22m 17.80s[2m (transform 862ms, setup 4.89s, collect 1.70s, tests 17.45s, environment 12.46s, prepare 2.54s)[22m
+[2m   Start at [22m 20:29:41
+[2m   Duration [22m 18.24s[2m (transform 781ms, setup 4.57s, collect 1.61s, tests 17.74s, environment 12.61s, prepare 2.73s)[22m
 
 
 ## build
@@ -74,7 +72,7 @@ computing gzip size...
 [2mdist/[22m[2massets/[22m[35mindex-CwSEelGF.css                   [39m[1m[2m 21.42 kB[22m[1m[22m[2m │ gzip:   4.69 kB[22m
 [2mdist/[22m[2massets/[22m[36mworkbox-window.prod.es5-BBnX5xw4.js  [39m[1m[2m  5.75 kB[22m[1m[22m[2m │ gzip:   2.36 kB[22m
 [2mdist/[22m[2massets/[22m[36mindex-CY8T4B78.js                    [39m[1m[2m356.38 kB[22m[1m[22m[2m │ gzip: 109.57 kB[22m
-[32m✓ built in 1.92s[39m
+[32m✓ built in 2.00s[39m
 
 [36mPWA v1.3.0[39m
 mode      [35mgenerateSW[39m
@@ -89,274 +87,7 @@ files generated
 > playwright test
 
 
-Running 72 tests using 2 workers
-········××···F
-::error file=tests/e2e/practice.spec.ts,title=[ipad] › tests/e2e/practice.spec.ts:96:3 › practice › wrong answers get a gentle explanation, hints, and finally the answer,line=131,col=7::  1) [ipad] › tests/e2e/practice.spec.ts:96:3 › practice › wrong answers get a gentle explanation, hints, and finally the answer %0A    Error: expect(locator).toBeVisible() failed%0A%0A    Locator: getByRole('status').filter({ hasText: 'נתרגל רגע שלב קל יותר.' })%0A    Expected: visible%0A    Timeout: 5000ms%0A    Error: element(s) not found%0A%0A    Call log:%0A      - Expect "toBeVisible" getByRole('status').filter({ hasText: 'נתרגל רגע שלב קל יותר.' }) with timeout 5000ms%0A      - waiting for getByRole('status').filter({ hasText: 'נתרגל רגע שלב קל יותר.' })%0A%0A%0A      129 |     await expect(%0A      130 |       page.getByRole('status').filter({ hasText: 'נתרגל רגע שלב קל יותר.' }),%0A    > 131 |     ).toBeVisible();%0A          |       ^%0A      132 |     await expect(page.getByRole('dialog')).toHaveCount(0);%0A      133 |   });%0A      134 |%0A        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:131:7
-::error file=tests/e2e/practice.spec.ts,title=[ipad] › tests/e2e/practice.spec.ts:96:3 › practice › wrong answers get a gentle explanation, hints, and finally the answer,line=131,col=7::  1) [ipad] › tests/e2e/practice.spec.ts:96:3 › practice › wrong answers get a gentle explanation, hints, and finally the answer %0A%0A    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────%0A    Error: expect(locator).toBeVisible() failed%0A%0A    Locator: getByRole('status').filter({ hasText: 'נתרגל רגע שלב קל יותר.' })%0A    Expected: visible%0A    Timeout: 5000ms%0A    Error: element(s) not found%0A%0A    Call log:%0A      - Expect "toBeVisible" getByRole('status').filter({ hasText: 'נתרגל רגע שלב קל יותר.' }) with timeout 5000ms%0A      - waiting for getByRole('status').filter({ hasText: 'נתרגל רגע שלב קל יותר.' })%0A%0A%0A      129 |     await expect(%0A      130 |       page.getByRole('status').filter({ hasText: 'נתרגל רגע שלב קל יותר.' }),%0A    > 131 |     ).toBeVisible();%0A          |       ^%0A      132 |     await expect(page.getByRole('dialog')).toHaveCount(0);%0A      133 |   });%0A      134 |%0A        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:131:7
-::error file=tests/e2e/practice.spec.ts,title=[ipad] › tests/e2e/practice.spec.ts:96:3 › practice › wrong answers get a gentle explanation, hints, and finally the answer,line=131,col=7::  1) [ipad] › tests/e2e/practice.spec.ts:96:3 › practice › wrong answers get a gentle explanation, hints, and finally the answer %0A%0A    Retry #2 ───────────────────────────────────────────────────────────────────────────────────────%0A    Error: expect(locator).toBeVisible() failed%0A%0A    Locator: getByRole('status').filter({ hasText: 'נתרגל רגע שלב קל יותר.' })%0A    Expected: visible%0A    Timeout: 5000ms%0A    Error: element(s) not found%0A%0A    Call log:%0A      - Expect "toBeVisible" getByRole('status').filter({ hasText: 'נתרגל רגע שלב קל יותר.' }) with timeout 5000ms%0A      - waiting for getByRole('status').filter({ hasText: 'נתרגל רגע שלב קל יותר.' })%0A%0A%0A      129 |     await expect(%0A      130 |       page.getByRole('status').filter({ hasText: 'נתרגל רגע שלב קל יותר.' }),%0A    > 131 |     ).toBeVisible();%0A          |       ^%0A      132 |     await expect(page.getByRole('dialog')).toHaveCount(0);%0A      133 |   });%0A      134 |%0A        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:131:7
-····················×·×····F
-::error file=tests/e2e/practice.spec.ts,title=[iphone] › tests/e2e/practice.spec.ts:96:3 › practice › wrong answers get a gentle explanation, hints, and finally the answer,line=131,col=7::  2) [iphone] › tests/e2e/practice.spec.ts:96:3 › practice › wrong answers get a gentle explanation, hints, and finally the answer %0A    Error: expect(locator).toBeVisible() failed%0A%0A    Locator: getByRole('status').filter({ hasText: 'נתרגל רגע שלב קל יותר.' })%0A    Expected: visible%0A    Timeout: 5000ms%0A    Error: element(s) not found%0A%0A    Call log:%0A      - Expect "toBeVisible" getByRole('status').filter({ hasText: 'נתרגל רגע שלב קל יותר.' }) with timeout 5000ms%0A      - waiting for getByRole('status').filter({ hasText: 'נתרגל רגע שלב קל יותר.' })%0A%0A%0A      129 |     await expect(%0A      130 |       page.getByRole('status').filter({ hasText: 'נתרגל רגע שלב קל יותר.' }),%0A    > 131 |     ).toBeVisible();%0A          |       ^%0A      132 |     await expect(page.getByRole('dialog')).toHaveCount(0);%0A      133 |   });%0A      134 |%0A        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:131:7
-::error file=tests/e2e/practice.spec.ts,title=[iphone] › tests/e2e/practice.spec.ts:96:3 › practice › wrong answers get a gentle explanation, hints, and finally the answer,line=131,col=7::  2) [iphone] › tests/e2e/practice.spec.ts:96:3 › practice › wrong answers get a gentle explanation, hints, and finally the answer %0A%0A    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────%0A    Error: expect(locator).toBeVisible() failed%0A%0A    Locator: getByRole('status').filter({ hasText: 'נתרגל רגע שלב קל יותר.' })%0A    Expected: visible%0A    Timeout: 5000ms%0A    Error: element(s) not found%0A%0A    Call log:%0A      - Expect "toBeVisible" getByRole('status').filter({ hasText: 'נתרגל רגע שלב קל יותר.' }) with timeout 5000ms%0A      - waiting for getByRole('status').filter({ hasText: 'נתרגל רגע שלב קל יותר.' })%0A%0A%0A      129 |     await expect(%0A      130 |       page.getByRole('status').filter({ hasText: 'נתרגל רגע שלב קל יותר.' }),%0A    > 131 |     ).toBeVisible();%0A          |       ^%0A      132 |     await expect(page.getByRole('dialog')).toHaveCount(0);%0A      133 |   });%0A      134 |%0A        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:131:7
-::error file=tests/e2e/practice.spec.ts,title=[iphone] › tests/e2e/practice.spec.ts:96:3 › practice › wrong answers get a gentle explanation, hints, and finally the answer,line=131,col=7::  2) [iphone] › tests/e2e/practice.spec.ts:96:3 › practice › wrong answers get a gentle explanation, hints, and finally the answer %0A%0A    Retry #2 ───────────────────────────────────────────────────────────────────────────────────────%0A    Error: expect(locator).toBeVisible() failed%0A%0A    Locator: getByRole('status').filter({ hasText: 'נתרגל רגע שלב קל יותר.' })%0A    Expected: visible%0A    Timeout: 5000ms%0A    Error: element(s) not found%0A%0A    Call log:%0A      - Expect "toBeVisible" getByRole('status').filter({ hasText: 'נתרגל רגע שלב קל יותר.' }) with timeout 5000ms%0A      - waiting for getByRole('status').filter({ hasText: 'נתרגל רגע שלב קל יותר.' })%0A%0A%0A      129 |     await expect(%0A      130 |       page.getByRole('status').filter({ hasText: 'נתרגל רגע שלב קל יותר.' }),%0A    > 131 |     ).toBeVisible();%0A          |       ^%0A      132 |     await expect(page.getByRole('dialog')).toHaveCount(0);%0A      133 |   });%0A      134 |%0A        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:131:7
-··················××·F
-::error file=tests/e2e/practice.spec.ts,title=[desktop-chromium] › tests/e2e/practice.spec.ts:96:3 › practice › wrong answers get a gentle explanation, hints, and finally the answer,line=131,col=7::  3) [desktop-chromium] › tests/e2e/practice.spec.ts:96:3 › practice › wrong answers get a gentle explanation, hints, and finally the answer %0A    Error: expect(locator).toBeVisible() failed%0A%0A    Locator: getByRole('status').filter({ hasText: 'נתרגל רגע שלב קל יותר.' })%0A    Expected: visible%0A    Timeout: 5000ms%0A    Error: element(s) not found%0A%0A    Call log:%0A      - Expect "toBeVisible" getByRole('status').filter({ hasText: 'נתרגל רגע שלב קל יותר.' }) with timeout 5000ms%0A      - waiting for getByRole('status').filter({ hasText: 'נתרגל רגע שלב קל יותר.' })%0A%0A%0A      129 |     await expect(%0A      130 |       page.getByRole('status').filter({ hasText: 'נתרגל רגע שלב קל יותר.' }),%0A    > 131 |     ).toBeVisible();%0A          |       ^%0A      132 |     await expect(page.getByRole('dialog')).toHaveCount(0);%0A      133 |   });%0A      134 |%0A        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:131:7
-::error file=tests/e2e/practice.spec.ts,title=[desktop-chromium] › tests/e2e/practice.spec.ts:96:3 › practice › wrong answers get a gentle explanation, hints, and finally the answer,line=131,col=7::  3) [desktop-chromium] › tests/e2e/practice.spec.ts:96:3 › practice › wrong answers get a gentle explanation, hints, and finally the answer %0A%0A    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────%0A    Error: expect(locator).toBeVisible() failed%0A%0A    Locator: getByRole('status').filter({ hasText: 'נתרגל רגע שלב קל יותר.' })%0A    Expected: visible%0A    Timeout: 5000ms%0A    Error: element(s) not found%0A%0A    Call log:%0A      - Expect "toBeVisible" getByRole('status').filter({ hasText: 'נתרגל רגע שלב קל יותר.' }) with timeout 5000ms%0A      - waiting for getByRole('status').filter({ hasText: 'נתרגל רגע שלב קל יותר.' })%0A%0A%0A      129 |     await expect(%0A      130 |       page.getByRole('status').filter({ hasText: 'נתרגל רגע שלב קל יותר.' }),%0A    > 131 |     ).toBeVisible();%0A          |       ^%0A      132 |     await expect(page.getByRole('dialog')).toHaveCount(0);%0A      133 |   });%0A      134 |%0A        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:131:7
-::error file=tests/e2e/practice.spec.ts,title=[desktop-chromium] › tests/e2e/practice.spec.ts:96:3 › practice › wrong answers get a gentle explanation, hints, and finally the answer,line=131,col=7::  3) [desktop-chromium] › tests/e2e/practice.spec.ts:96:3 › practice › wrong answers get a gentle explanation, hints, and finally the answer %0A%0A    Retry #2 ───────────────────────────────────────────────────────────────────────────────────────%0A    Error: expect(locator).toBeVisible() failed%0A%0A    Locator: getByRole('status').filter({ hasText: 'נתרגל רגע שלב קל יותר.' })%0A    Expected: visible%0A    Timeout: 5000ms%0A    Error: element(s) not found%0A%0A    Call log:%0A      - Expect "toBeVisible" getByRole('status').filter({ hasText: 'נתרגל רגע שלב קל יותר.' }) with timeout 5000ms%0A      - waiting for getByRole('status').filter({ hasText: 'נתרגל רגע שלב קל יותר.' })%0A%0A%0A      129 |     await expect(%0A      130 |       page.getByRole('status').filter({ hasText: 'נתרגל רגע שלב קל יותר.' }),%0A    > 131 |     ).toBeVisible();%0A          |       ^%0A      132 |     await expect(page.getByRole('dialog')).toHaveCount(0);%0A      133 |   });%0A      134 |%0A        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:131:7
-··············
-
-  1) [ipad] › tests/e2e/practice.spec.ts:96:3 › practice › wrong answers get a gentle explanation, hints, and finally the answer 
-
-    Error: expect(locator).toBeVisible() failed
-
-    Locator: getByRole('status').filter({ hasText: 'נתרגל רגע שלב קל יותר.' })
-    Expected: visible
-    Timeout: 5000ms
-    Error: element(s) not found
-
-    Call log:
-      - Expect "toBeVisible" getByRole('status').filter({ hasText: 'נתרגל רגע שלב קל יותר.' }) with timeout 5000ms
-      - waiting for getByRole('status').filter({ hasText: 'נתרגל רגע שלב קל יותר.' })
-
-
-      129 |     await expect(
-      130 |       page.getByRole('status').filter({ hasText: 'נתרגל רגע שלב קל יותר.' }),
-    > 131 |     ).toBeVisible();
-          |       ^
-      132 |     await expect(page.getByRole('dialog')).toHaveCount(0);
-      133 |   });
-      134 |
-        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:131:7
-
-    Error Context: test-results/practice-practice-wrong-an-28129-ints-and-finally-the-answer-ipad/error-context.md
-
-    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
-
-    Error: expect(locator).toBeVisible() failed
-
-    Locator: getByRole('status').filter({ hasText: 'נתרגל רגע שלב קל יותר.' })
-    Expected: visible
-    Timeout: 5000ms
-    Error: element(s) not found
-
-    Call log:
-      - Expect "toBeVisible" getByRole('status').filter({ hasText: 'נתרגל רגע שלב קל יותר.' }) with timeout 5000ms
-      - waiting for getByRole('status').filter({ hasText: 'נתרגל רגע שלב קל יותר.' })
-
-
-      129 |     await expect(
-      130 |       page.getByRole('status').filter({ hasText: 'נתרגל רגע שלב קל יותר.' }),
-    > 131 |     ).toBeVisible();
-          |       ^
-      132 |     await expect(page.getByRole('dialog')).toHaveCount(0);
-      133 |   });
-      134 |
-        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:131:7
-
-    Error Context: test-results/practice-practice-wrong-an-28129-ints-and-finally-the-answer-ipad-retry1/error-context.md
-
-    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
-    test-results/practice-practice-wrong-an-28129-ints-and-finally-the-answer-ipad-retry1/trace.zip
-    Usage:
-
-        npx playwright show-trace test-results/practice-practice-wrong-an-28129-ints-and-finally-the-answer-ipad-retry1/trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Retry #2 ───────────────────────────────────────────────────────────────────────────────────────
-
-    Error: expect(locator).toBeVisible() failed
-
-    Locator: getByRole('status').filter({ hasText: 'נתרגל רגע שלב קל יותר.' })
-    Expected: visible
-    Timeout: 5000ms
-    Error: element(s) not found
-
-    Call log:
-      - Expect "toBeVisible" getByRole('status').filter({ hasText: 'נתרגל רגע שלב קל יותר.' }) with timeout 5000ms
-      - waiting for getByRole('status').filter({ hasText: 'נתרגל רגע שלב קל יותר.' })
-
-
-      129 |     await expect(
-      130 |       page.getByRole('status').filter({ hasText: 'נתרגל רגע שלב קל יותר.' }),
-    > 131 |     ).toBeVisible();
-          |       ^
-      132 |     await expect(page.getByRole('dialog')).toHaveCount(0);
-      133 |   });
-      134 |
-        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:131:7
-
-    Error Context: test-results/practice-practice-wrong-an-28129-ints-and-finally-the-answer-ipad-retry2/error-context.md
-
-  2) [iphone] › tests/e2e/practice.spec.ts:96:3 › practice › wrong answers get a gentle explanation, hints, and finally the answer 
-
-    Error: expect(locator).toBeVisible() failed
-
-    Locator: getByRole('status').filter({ hasText: 'נתרגל רגע שלב קל יותר.' })
-    Expected: visible
-    Timeout: 5000ms
-    Error: element(s) not found
-
-    Call log:
-      - Expect "toBeVisible" getByRole('status').filter({ hasText: 'נתרגל רגע שלב קל יותר.' }) with timeout 5000ms
-      - waiting for getByRole('status').filter({ hasText: 'נתרגל רגע שלב קל יותר.' })
-
-
-      129 |     await expect(
-      130 |       page.getByRole('status').filter({ hasText: 'נתרגל רגע שלב קל יותר.' }),
-    > 131 |     ).toBeVisible();
-          |       ^
-      132 |     await expect(page.getByRole('dialog')).toHaveCount(0);
-      133 |   });
-      134 |
-        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:131:7
-
-    Error Context: test-results/practice-practice-wrong-an-28129-ints-and-finally-the-answer-iphone/error-context.md
-
-    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
-
-    Error: expect(locator).toBeVisible() failed
-
-    Locator: getByRole('status').filter({ hasText: 'נתרגל רגע שלב קל יותר.' })
-    Expected: visible
-    Timeout: 5000ms
-    Error: element(s) not found
-
-    Call log:
-      - Expect "toBeVisible" getByRole('status').filter({ hasText: 'נתרגל רגע שלב קל יותר.' }) with timeout 5000ms
-      - waiting for getByRole('status').filter({ hasText: 'נתרגל רגע שלב קל יותר.' })
-
-
-      129 |     await expect(
-      130 |       page.getByRole('status').filter({ hasText: 'נתרגל רגע שלב קל יותר.' }),
-    > 131 |     ).toBeVisible();
-          |       ^
-      132 |     await expect(page.getByRole('dialog')).toHaveCount(0);
-      133 |   });
-      134 |
-        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:131:7
-
-    Error Context: test-results/practice-practice-wrong-an-28129-ints-and-finally-the-answer-iphone-retry1/error-context.md
-
-    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
-    test-results/practice-practice-wrong-an-28129-ints-and-finally-the-answer-iphone-retry1/trace.zip
-    Usage:
-
-        npx playwright show-trace test-results/practice-practice-wrong-an-28129-ints-and-finally-the-answer-iphone-retry1/trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Retry #2 ───────────────────────────────────────────────────────────────────────────────────────
-
-    Error: expect(locator).toBeVisible() failed
-
-    Locator: getByRole('status').filter({ hasText: 'נתרגל רגע שלב קל יותר.' })
-    Expected: visible
-    Timeout: 5000ms
-    Error: element(s) not found
-
-    Call log:
-      - Expect "toBeVisible" getByRole('status').filter({ hasText: 'נתרגל רגע שלב קל יותר.' }) with timeout 5000ms
-      - waiting for getByRole('status').filter({ hasText: 'נתרגל רגע שלב קל יותר.' })
-
-
-      129 |     await expect(
-      130 |       page.getByRole('status').filter({ hasText: 'נתרגל רגע שלב קל יותר.' }),
-    > 131 |     ).toBeVisible();
-          |       ^
-      132 |     await expect(page.getByRole('dialog')).toHaveCount(0);
-      133 |   });
-      134 |
-        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:131:7
-
-    Error Context: test-results/practice-practice-wrong-an-28129-ints-and-finally-the-answer-iphone-retry2/error-context.md
-
-  3) [desktop-chromium] › tests/e2e/practice.spec.ts:96:3 › practice › wrong answers get a gentle explanation, hints, and finally the answer 
-
-    Error: expect(locator).toBeVisible() failed
-
-    Locator: getByRole('status').filter({ hasText: 'נתרגל רגע שלב קל יותר.' })
-    Expected: visible
-    Timeout: 5000ms
-    Error: element(s) not found
-
-    Call log:
-      - Expect "toBeVisible" getByRole('status').filter({ hasText: 'נתרגל רגע שלב קל יותר.' }) with timeout 5000ms
-      - waiting for getByRole('status').filter({ hasText: 'נתרגל רגע שלב קל יותר.' })
-
-
-      129 |     await expect(
-      130 |       page.getByRole('status').filter({ hasText: 'נתרגל רגע שלב קל יותר.' }),
-    > 131 |     ).toBeVisible();
-          |       ^
-      132 |     await expect(page.getByRole('dialog')).toHaveCount(0);
-      133 |   });
-      134 |
-        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:131:7
-
-    Error Context: test-results/practice-practice-wrong-an-28129-ints-and-finally-the-answer-desktop-chromium/error-context.md
-
-    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
-
-    Error: expect(locator).toBeVisible() failed
-
-    Locator: getByRole('status').filter({ hasText: 'נתרגל רגע שלב קל יותר.' })
-    Expected: visible
-    Timeout: 5000ms
-    Error: element(s) not found
-
-    Call log:
-      - Expect "toBeVisible" getByRole('status').filter({ hasText: 'נתרגל רגע שלב קל יותר.' }) with timeout 5000ms
-      - waiting for getByRole('status').filter({ hasText: 'נתרגל רגע שלב קל יותר.' })
-
-
-      129 |     await expect(
-      130 |       page.getByRole('status').filter({ hasText: 'נתרגל רגע שלב קל יותר.' }),
-    > 131 |     ).toBeVisible();
-          |       ^
-      132 |     await expect(page.getByRole('dialog')).toHaveCount(0);
-      133 |   });
-      134 |
-        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:131:7
-
-    Error Context: test-results/practice-practice-wrong-an-28129-ints-and-finally-the-answer-desktop-chromium-retry1/error-context.md
-
-    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
-    test-results/practice-practice-wrong-an-28129-ints-and-finally-the-answer-desktop-chromium-retry1/trace.zip
-    Usage:
-
-        npx playwright show-trace test-results/practice-practice-wrong-an-28129-ints-and-finally-the-answer-desktop-chromium-retry1/trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Retry #2 ───────────────────────────────────────────────────────────────────────────────────────
-
-    Error: expect(locator).toBeVisible() failed
-
-    Locator: getByRole('status').filter({ hasText: 'נתרגל רגע שלב קל יותר.' })
-    Expected: visible
-    Timeout: 5000ms
-    Error: element(s) not found
-
-    Call log:
-      - Expect "toBeVisible" getByRole('status').filter({ hasText: 'נתרגל רגע שלב קל יותר.' }) with timeout 5000ms
-      - waiting for getByRole('status').filter({ hasText: 'נתרגל רגע שלב קל יותר.' })
-
-
-      129 |     await expect(
-      130 |       page.getByRole('status').filter({ hasText: 'נתרגל רגע שלב קל יותר.' }),
-    > 131 |     ).toBeVisible();
-          |       ^
-      132 |     await expect(page.getByRole('dialog')).toHaveCount(0);
-      133 |   });
-      134 |
-        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:131:7
-
-    Error Context: test-results/practice-practice-wrong-an-28129-ints-and-finally-the-answer-desktop-chromium-retry2/error-context.md
-
-  3 failed
-    [ipad] › tests/e2e/practice.spec.ts:96:3 › practice › wrong answers get a gentle explanation, hints, and finally the answer 
-    [iphone] › tests/e2e/practice.spec.ts:96:3 › practice › wrong answers get a gentle explanation, hints, and finally the answer 
-    [desktop-chromium] › tests/e2e/practice.spec.ts:96:3 › practice › wrong answers get a gentle explanation, hints, and finally the answer 
-  69 passed (3.4m)
-::notice title=🎭 Playwright Run Summary::  3 failed%0A    [ipad] › tests/e2e/practice.spec.ts:96:3 › practice › wrong answers get a gentle explanation, hints, and finally the answer %0A    [iphone] › tests/e2e/practice.spec.ts:96:3 › practice › wrong answers get a gentle explanation, hints, and finally the answer %0A    [desktop-chromium] › tests/e2e/practice.spec.ts:96:3 › practice › wrong answers get a gentle explanation, hints, and finally the answer %0A  69 passed (3.4m)
-E2E FAILED
+Running 75 tests using 2 workers
+···········································································
+  75 passed (2.7m)
+::notice title=🎭 Playwright Run Summary::  75 passed (2.7m)
