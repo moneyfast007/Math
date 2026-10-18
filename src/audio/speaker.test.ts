@@ -15,7 +15,7 @@ function fakeSpeech(voices: { lang: string }[]) {
 }
 
 describe('Speaker', () => {
-  it('plays the pre-generated clip when the manifest lists it', async () => {
+  it('plays the pre-generated clip when the grade index lists it', async () => {
     const text = 'כמה זה שלוש ועוד חמש?';
     const id = await clipId(text);
     const play = vi.fn(() => Promise.resolve());
@@ -32,7 +32,7 @@ describe('Speaker', () => {
         pause = vi.fn();
       },
     );
-    const s = new Speaker(() => Promise.resolve({ clips: { [id]: text } }), fakeSpeech([]));
+    const s = new Speaker(() => Promise.resolve({ ids: id }), fakeSpeech([]));
     await expect(s.speak(text)).resolves.toBe('clip');
     expect(created).toEqual([`/audio/${id}.mp3`]);
     expect(s.speaking).toBe(text);
@@ -50,7 +50,7 @@ describe('Speaker', () => {
       },
     );
     const speech = fakeSpeech([{ lang: 'en-US' }, { lang: 'he-IL' }]);
-    const s = new Speaker(() => Promise.resolve({ clips: {} }), speech);
+    const s = new Speaker(() => Promise.resolve({ ids: '' }), speech);
     await expect(s.speak('שלום', { slow: true })).resolves.toBe('device');
     expect(speech.speakMock).toHaveBeenCalledOnce();
   });
@@ -99,7 +99,7 @@ describe('Speaker, assembled sentences', () => {
     const ids = await Promise.all(parts.map((p) => clipId(p)));
     const clips = Object.fromEntries(ids.map((id, i) => [id, parts[i]]));
     const created = fakeAudio();
-    const s = new Speaker(() => Promise.resolve({ clips }), fakeSpeech([]));
+    const s = new Speaker(() => Promise.resolve({ ids: Object.keys(clips).join('') }), fakeSpeech([]));
     const text = 'כמה זה ארבעת אלפים ועוד שבע?';
     await expect(s.speak(text, { parts })).resolves.toBe('clip');
     expect(created.map((c) => c.src)).toEqual([`/audio/${ids[0]}.mp3`]);
@@ -117,7 +117,7 @@ describe('Speaker, assembled sentences', () => {
     const ids = await Promise.all(parts.map((p) => clipId(p)));
     const clips = Object.fromEntries(ids.map((id, i) => [id, parts[i]]));
     const created = fakeAudio();
-    const s = new Speaker(() => Promise.resolve({ clips }), fakeSpeech([]));
+    const s = new Speaker(() => Promise.resolve({ ids: Object.keys(clips).join('') }), fakeSpeech([]));
     await s.speak('א ב ג', { parts });
     s.stop();
     created[0]?.end();
@@ -138,7 +138,26 @@ describe('Speaker, assembled sentences', () => {
     );
     const id = await clipId('כמה זה');
     const speech = fakeSpeech([{ lang: 'he-IL' }]);
-    const s = new Speaker(() => Promise.resolve({ clips: { [id]: 'כמה זה' } }), speech);
+    const s = new Speaker(() => Promise.resolve({ ids: id }), speech);
     await expect(s.speak('כמה זה שבע?', { parts: ['כמה זה', 'שבע'] })).resolves.toBe('device');
+  });
+
+  it('reads the index of the chosen grade, once, and tries again after a failure', async () => {
+    const asked: string[] = [];
+    let fail = true;
+    const s = new Speaker((name) => {
+      asked.push(name);
+      if (fail) return Promise.reject(new Error('offline'));
+      return Promise.resolve({ ids: 'a'.repeat(16) + 'b'.repeat(16) });
+    }, fakeSpeech([]));
+    expect(await s.clipsFor()).toEqual(new Set());
+    s.setGrade(2);
+    fail = false;
+    expect(await s.clipsFor()).toEqual(new Set(['a'.repeat(16), 'b'.repeat(16)]));
+    await s.clipsFor();
+    s.setGrade(null);
+    await s.clipsFor();
+    // shared failed (asked again later), g2 fetched once.
+    expect(asked).toEqual(['shared', 'g2', 'shared']);
   });
 });

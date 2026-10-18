@@ -1,5 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
 import { navigate } from '@/app/router';
+import {
+  countCached,
+  downloadClips,
+  gradeAudio,
+  offlineSupported,
+  type GradeAudio,
+} from '@/audio/offline';
 import { makeT, t } from '@/i18n';
 import { formatDate, formatPercent, gradeLabel, mistakeLabel, topicLabel } from '@/i18n/labels';
 import { ParentGate } from '@/parent/ParentGate';
@@ -9,6 +16,7 @@ import { backupFileName, deliverFile, readBackupFile, serializeBackup } from '@/
 import { PIN_LENGTH } from '@/state/pin';
 import { summarizeProgress } from '@/state/progress';
 import { MAX_PROFILES, type AppData, type Profile } from '@/state/schema';
+import type { Grade } from '@/ui/ageBand';
 import { useApp } from '@/state/store';
 import { applyAgeBand } from '@/ui/ageBand';
 import { Avatar } from '@/ui/Avatar';
@@ -63,6 +71,7 @@ function ParentArea() {
       <BackupSection />
       <SecuritySection />
       <DeviceSection />
+      <OfflineSection />
     </main>
   );
 }
@@ -399,5 +408,98 @@ function DeviceSection() {
         </button>
       </div>
     </section>
+  );
+}
+
+/* ---------- Recordings for use without internet ---------- */
+
+function OfflineSection() {
+  const profiles = useApp((s) => s.data.profiles);
+  const grades = [...new Set(profiles.map((p) => p.grade))].sort((a, b) => a - b);
+  if (grades.length === 0) return null;
+  return (
+    <section className="card stack" aria-labelledby="offline">
+      <h2 id="offline">{t('parent.offline.title')}</h2>
+      <p className="muted">{t('parent.offline.intro')}</p>
+      {offlineSupported() ? (
+        grades.map((g) => <OfflineGrade key={g} grade={g} />)
+      ) : (
+        <p className="notice">{t('parent.offline.unsupported')}</p>
+      )}
+    </section>
+  );
+}
+
+type OfflineState =
+  | { phase: 'loading' }
+  | { phase: 'ready'; audio: GradeAudio; have: number }
+  | { phase: 'downloading'; audio: GradeAudio; done: number }
+  | { phase: 'error' };
+
+function OfflineGrade({ grade }: { grade: Grade }) {
+  const [state, setState] = useState<OfflineState>({ phase: 'loading' });
+  const [failed, setFailed] = useState(false);
+  const abort = useRef<AbortController | null>(null);
+
+  useEffect(() => {
+    let live = true;
+    gradeAudio(grade)
+      .then(async (audio) => {
+        const have = await countCached(audio.ids);
+        if (live) setState({ phase: 'ready', audio, have });
+      })
+      .catch(() => live && setState({ phase: 'error' }));
+    return () => {
+      live = false;
+      abort.current?.abort();
+    };
+  }, [grade]);
+
+  const start = (audio: GradeAudio) => {
+    const controller = new AbortController();
+    abort.current = controller;
+    setFailed(false);
+    setState({ phase: 'downloading', audio, done: 0 });
+    void downloadClips(
+      audio.ids,
+      (done) => setState({ phase: 'downloading', audio, done }),
+      controller.signal,
+    ).then(async ({ failed: f }) => {
+      setFailed(f > 0);
+      setState({ phase: 'ready', audio, have: await countCached(audio.ids) });
+    });
+  };
+
+  const mb = (bytes: number) => Math.max(1, Math.round(bytes / 1_000_000));
+  const title = (audio: GradeAudio) =>
+    t('parent.offline.grade', { params: { grade: gradeLabel(grade), mb: mb(audio.bytes) } });
+
+  if (state.phase === 'loading') return <p className="muted">{t('parent.offline.loading')}</p>;
+  if (state.phase === 'error') return <p className="muted">{t('parent.offline.unavailable')}</p>;
+  const total = state.audio.ids.length;
+  const count = state.phase === 'ready' ? state.have : state.done;
+  const complete = state.phase === 'ready' && count >= total;
+  return (
+    <div className="offline-grade" aria-label={gradeLabel(grade)}>
+      <strong>{title(state.audio)}</strong>
+      <progress className="offline-grade__bar" max={total} value={count} />
+      <span className="muted">
+        {complete
+          ? t('parent.offline.done')
+          : state.phase === 'downloading'
+            ? t('parent.offline.progress', { params: { done: count, total } })
+            : t('parent.offline.status', { params: { have: count, total } })}
+      </span>
+      {failed ? <span className="notice">{t('parent.offline.failed')}</span> : null}
+      {state.phase === 'downloading' ? (
+        <button type="button" className="btn btn--secondary" onClick={() => abort.current?.abort()}>
+          {t('parent.offline.stop')}
+        </button>
+      ) : complete ? null : (
+        <button type="button" className="btn" onClick={() => start(state.audio)}>
+          {count > 0 ? t('parent.offline.resume') : t('parent.offline.download')}
+        </button>
+      )}
+    </div>
   );
 }

@@ -5,7 +5,8 @@ import { clipId } from './hash';
  *
  * Order of preference:
  *   1. A pre-generated clip from our own server: /audio/<hash>.mp3, listed in
- *      /audio/manifest.json. Works offline once cached by the service worker.
+ *      the child's grade index (/audio/index/g<grade>.json, a few tens of
+ *      kilobytes). Works offline once cached by the service worker.
  *   2. The sentence assembled from smaller clips (`parts`: template pieces and
  *      number words), when the whole sentence is not recorded.
  *   3. The device's own Hebrew voice (Web Speech), when clips are missing.
@@ -21,21 +22,35 @@ type Listener = (state: SpeakerState) => void;
 
 const SLOW_RATE = 0.8;
 
-interface ManifestFile {
-  /** clipId → details; only the keys matter here. */
-  clips?: Record<string, unknown>;
+/** The clips a child can hear: shared.json, or g<grade>.json (see scripts/tts/index.ts). */
+export interface ClipIndex {
+  /** 16-hex clip ids, concatenated. */
+  ids?: string;
+  /** Total size of those clips, for the offline download. */
+  bytes?: number;
+}
+
+export type IndexName = 'shared' | `g${number}`;
+
+/** Splits the concatenated ids into a set. */
+export function parseIndex(index: ClipIndex): Set<string> {
+  const ids = index.ids ?? '';
+  const out = new Set<string>();
+  for (let i = 0; i + 16 <= ids.length; i += 16) out.add(ids.slice(i, i + 16));
+  return out;
 }
 
 export class Speaker {
   private audio: HTMLAudioElement | null = null;
   /** Bumped by every speak/stop; a running sequence stops when it no longer matches. */
   private generation = 0;
-  private manifest: Promise<Set<string>> | null = null;
+  private indexes = new Map<IndexName, Promise<Set<string>>>();
+  private indexName: IndexName = 'shared';
   private listeners = new Set<Listener>();
   private state: SpeakerState = { speaking: null };
 
   constructor(
-    private readonly fetchManifest: () => Promise<ManifestFile> = defaultFetchManifest,
+    private readonly fetchIndex: (name: IndexName) => Promise<ClipIndex> = defaultFetchIndex,
     private readonly speech: SpeechSynthesis | undefined = globalThis.speechSynthesis,
   ) {}
 
@@ -54,11 +69,28 @@ export class Speaker {
     for (const l of this.listeners) l(this.state);
   }
 
+  /** Which clips to look for: the chosen child's grade, or only the shared ones. */
+  setGrade(grade: number | null): void {
+    this.indexName = grade === null ? 'shared' : `g${grade}`;
+  }
+
+  /** The ids of the clips in an index (fetched once, a few tens of kilobytes). */
+  clipsFor(name: IndexName = this.indexName): Promise<Set<string>> {
+    let index = this.indexes.get(name);
+    if (!index) {
+      index = this.fetchIndex(name)
+        .then(parseIndex)
+        .catch(() => {
+          this.indexes.delete(name); // try again next time (offline at first use)
+          return new Set<string>();
+        });
+      this.indexes.set(name, index);
+    }
+    return index;
+  }
+
   private clips(): Promise<Set<string>> {
-    this.manifest ??= this.fetchManifest()
-      .then((m) => new Set(Object.keys(m.clips ?? {})))
-      .catch(() => new Set<string>());
-    return this.manifest;
+    return this.clipsFor();
   }
 
   stop(): void {
@@ -152,10 +184,10 @@ export class Speaker {
   }
 }
 
-async function defaultFetchManifest(): Promise<ManifestFile> {
-  const res = await fetch('/audio/manifest.json');
-  if (!res.ok) return {};
-  return (await res.json()) as ManifestFile;
+export async function defaultFetchIndex(name: IndexName): Promise<ClipIndex> {
+  const res = await fetch(`/audio/index/${name}.json`);
+  if (!res.ok) throw new Error(`audio index ${name}: ${res.status}`);
+  return (await res.json()) as ClipIndex;
 }
 
 export const speaker = new Speaker();

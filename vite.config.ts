@@ -22,11 +22,23 @@ export default defineConfig({
         navigateFallback: '/index.html',
         runtimeCaching: [
           {
+            // The per-grade clip lists change with every new world: the network first.
+            urlPattern: ({ url }) => url.pathname.startsWith('/audio/index/'),
+            handler: 'NetworkFirst',
+            options: {
+              cacheName: 'audio-index-v1',
+              networkTimeoutSeconds: 4,
+              cacheableResponse: { statuses: [0, 200] },
+            },
+          },
+          {
+            // A clip never changes (its name is the hash of its text): the cache first.
             urlPattern: ({ url }) => url.pathname.startsWith('/audio/'),
             handler: 'CacheFirst',
             options: {
               cacheName: 'audio-v1',
-              expiration: { maxEntries: 6000, maxAgeSeconds: 60 * 60 * 24 * 365 },
+              // Room for two grades downloaded for offline use on one device.
+              expiration: { maxEntries: 30000, maxAgeSeconds: 60 * 60 * 24 * 365 },
               cacheableResponse: { statuses: [0, 200] },
             },
           },

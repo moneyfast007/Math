@@ -1169,6 +1169,22 @@ export const he = {
   'journey.review.locked': 'סיום העולם, עדיין סגור',
   'journey.plusiWaiting': 'פלוסי מחכה ליד התחנה הבאה',
   'journey.map': 'מפת המסע',
+  // Phase 6: recordings for use without internet (parents)
+  'parent.offline.title': 'שימוש בלי אינטרנט',
+  'parent.offline.intro':
+    'אפשר לשמור במכשיר את כל ההקלטות של כיתה, כדי שההקראה תעבוד גם בלי אינטרנט (ברכב, בחופשה). מומלץ להוריד ב־Wi-Fi.',
+  'parent.offline.grade': '{grade}: בערך {mb} מגה־בייט',
+  'parent.offline.status': '{have} מתוך {total} הקלטות שמורות במכשיר',
+  'parent.offline.progress': 'מוריד… {done} מתוך {total}',
+  'parent.offline.done': 'כל ההקלטות של הכיתה שמורות במכשיר.',
+  'parent.offline.download': 'להוריד',
+  'parent.offline.resume': 'להמשיך להוריד',
+  'parent.offline.stop': 'לעצור',
+  'parent.offline.failed': 'חלק מההקלטות לא ירדו. אפשר לנסות שוב.',
+  'parent.offline.unsupported': 'הדפדפן הזה לא מאפשר לשמור הקלטות במכשיר.',
+  'parent.offline.unavailable': 'אי אפשר לבדוק עכשיו. צריך חיבור לאינטרנט.',
+  'parent.offline.loading': 'בודק…',
+
   // Phase 6: world "צורות ודפוסים" (gan)
   'topic.shapes': 'צורות ודפוסים',
   'level.shapes.1': 'עיגול, ריבוע, משולש',

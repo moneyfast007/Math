@@ -14,6 +14,9 @@ blob-report/
 # TTS: the comparison sample is for listening only, not for the app
 scripts/tts/out-sample/
 
+# generated before each build (scripts/tts/index.ts)
+public/audio/index/
+
 # secrets, never committed
 .env
 .env.*
