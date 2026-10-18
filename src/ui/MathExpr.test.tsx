@@ -16,8 +16,18 @@ describe('<MathExpr>', () => {
     expect(screen.getByLabelText('כמה זה שלוש ועוד חמש?')).toBeInTheDocument();
   });
 
-  it('renders as a block when asked', () => {
-    render(<MathExpr block>7 − 2 = ?</MathExpr>);
-    expect(screen.getByText('7 − 2 = ?')).toHaveClass('math--block');
+  it('renders as a block when asked, with one place to break before "="', () => {
+    const { container } = render(<MathExpr block>7 − 2 = ?</MathExpr>);
+    const el = container.querySelector('[data-math]');
+    expect(el).toHaveClass('math--block');
+    expect(el).toHaveTextContent(/^7 − 2 = \?$/);
+    expect(el?.querySelectorAll('.math__break')).toHaveLength(1);
+    // Fits as it is when there is room (jsdom has no layout: no shrinking, no second line).
+    expect(el).not.toHaveAttribute('data-wrap');
+  });
+
+  it('an inline expression never breaks', () => {
+    const { container } = render(<MathExpr>7 − 2 = 5</MathExpr>);
+    expect(container.querySelectorAll('.math__break')).toHaveLength(0);
   });
 });

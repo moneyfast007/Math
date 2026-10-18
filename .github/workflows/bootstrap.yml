@@ -45,7 +45,7 @@ jobs:
           { echo; echo "## e2e"; npm run test:e2e 2>&1 || echo "E2E FAILED"; } >> .ci/report.txt
           # Screens for a visual review (not a test; committed as images).
           rm -rf .ci/screens && mkdir -p .ci/screens
-          SCREENSHOTS=1 npx playwright test tests/e2e/screenshots tests/e2e/sync --project=ipad --retries=0 > .ci/screens/log.txt 2>&1 || echo "SCREENSHOTS FAILED" >> .ci/report.txt
+          SCREENSHOTS=1 npx playwright test tests/e2e/screenshots tests/e2e/sync tests/e2e/mobile --project=ipad --retries=0 > .ci/screens/log.txt 2>&1 || echo "SCREENSHOTS FAILED" >> .ci/report.txt
           tail -c 3000 .ci/report.txt
       - name: Commit
         env:

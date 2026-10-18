@@ -33,6 +33,8 @@ body {
 
 #root {
   min-height: 100dvh;
+  /* Nothing may push the page sideways on a phone (it would drag under a child's finger). */
+  overflow-x: clip;
   display: flex;
   flex-direction: column;
 }
@@ -92,9 +94,23 @@ button {
 
 .math--block {
   display: block;
-  font-size: var(--text-math);
+  /* --fit: set by <MathExpr> so a long expression fits the width it has. */
+  font-size: calc(var(--text-math) * var(--fit, 1));
   line-height: 1.2;
   text-align: center;
+}
+
+.math__line {
+  display: inline-block;
+}
+
+/* Where a long expression breaks onto a second line ("= answer"); only when it must. */
+.math__break {
+  display: none;
+}
+
+.math--block[data-wrap] .math__break {
+  display: block;
 }
 
 /* Large, forgiving primary button */
