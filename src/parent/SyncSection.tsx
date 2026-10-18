@@ -55,6 +55,7 @@ export function SyncSection() {
   const linked = useSync((s) => s.linked);
   const removed = useSync((s) => s.removed);
   const [snapshots, setSnapshots] = useState<Snapshot[]>([]);
+  const [joined, setJoined] = useState<JoinResult | null>(null);
 
   useEffect(() => {
     let live = true;
@@ -79,7 +80,8 @@ export function SyncSection() {
           </button>
         </div>
       ) : null}
-      {linked ? <Linked /> : <NotLinked />}
+      {linked ? <Linked /> : <NotLinked onJoined={setJoined} />}
+      {joined ? <JoinedDialog result={joined} onClose={() => setJoined(null)} /> : null}
       {snapshots.length > 0 ? <Snapshots snapshots={snapshots} /> : null}
     </section>
   );
@@ -87,11 +89,11 @@ export function SyncSection() {
 
 /* ---------- Not linked yet ---------- */
 
-function NotLinked() {
+// The "joined" message lives in SyncSection: this part unmounts as soon as the device is linked.
+function NotLinked({ onJoined }: { onJoined: (result: JoinResult) => void }) {
   const [busy, setBusy] = useState(false);
   const [problem, setProblem] = useState<SyncProblem | null>(null);
   const [joining, setJoining] = useState(false);
-  const [joined, setJoined] = useState<JoinResult | null>(null);
 
   const create = async () => {
     setBusy(true);
@@ -131,11 +133,10 @@ function NotLinked() {
           onClose={() => setJoining(false)}
           onJoined={(result) => {
             setJoining(false);
-            setJoined(result);
+            onJoined(result);
           }}
         />
       ) : null}
-      {joined ? <JoinedDialog result={joined} onClose={() => setJoined(null)} /> : null}
     </>
   );
 }

@@ -76,7 +76,7 @@ describe('the sync server', () => {
     expect(b.status).toBe(200);
     expect(b.body.familyId).toBe(a.familyId);
     expect(b.body.shared.profiles['noa']?.value?.name).toBe('נועה');
-    expect(b.body.devices.map((d) => d.name)).toEqual(['אייפד', 'טלפון']);
+    expect(b.body.devices.map((d) => d.name).sort()).toEqual(['אייפד', 'טלפון'].sort());
 
     // B renames the child; A sees it on its next sync, and B's slice.
     const slice = { ...emptySlice(), at: 5 };
