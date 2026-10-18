@@ -66988,6 +66988,3462 @@
     "96e0a046560f6ebb": {
       "text": "כל הכבוד! חזרת על העולם הזה.",
       "voice": "chirp3-hd/Leda"
+    },
+    "e64f3b3ece33525e": {
+      "text": "רבע לפני: ״רבע ל...״",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "3af769d2ae3a82ff": {
+      "text": "רבע אחרי: ״ורבע״",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "4dd10469cceebe6a": {
+      "text": "כמעט. ספרת כמה מטבעות יש. בדקי כמה כל אחד שווה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "bc4259adfed611e9": {
+      "text": "כמעט. ספרת כמה מטבעות יש. בדוק כמה כל אחד שווה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "fe8499c92e776caa": {
+      "text": "כמעט. המחוג הקצר מראה את השעה, והמחוג הארוך את הדקות.",
+      "voice": "chirp3-hd/Leda"
+    },
+    "2f9e3a7a27000e9a": {
+      "text": "עודף מעשר ומעשרים",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e14a3a7c88812709": {
+      "text": "מטבעות ושטרות עד מאה",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "194bb2aa6f6e3a06": {
+      "text": "עודף מחמישים וממאה",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "3eec3098b1c480ee": {
+      "text": "כמה זה שווה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d0b980f309ea59d1": {
+      "text": "שעון",
+      "voice": "chirp3-hd/Leda"
+    },
+    "89a0f403837d6263": {
+      "text": "המספר שכתוב על המטבע או על השטר אומר כמה הוא שווה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "83d2f69c36c551ed": {
+      "text": "זה שווה שקל אחד.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f9e4979071fd09b2": {
+      "text": "הנה כל המטבעות, מהקטן לגדול.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f0e8195fdab5c1c2": {
+      "text": "למשל, זה שווה חמישה שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "1adbcf0048ea51e4": {
+      "text": "שעות שלמות",
+      "voice": "chirp3-hd/Leda"
+    },
+    "8d4763b9c1221dde": {
+      "text": "זה שווה",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f07ae6ebcda4bb84": {
+      "text": "זה שווה שני שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "546106de15b2d844": {
+      "text": "איזה מטבע שווה שקל אחד?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "02ae43c96dc40564": {
+      "text": "איזה מטבע שווה שני שקלים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "dc64110782e183c4": {
+      "text": "זה שווה חמישה שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c97f716edd3c8afc": {
+      "text": "שעות שלמות: איזה שעון?",
+      "voice": "chirp3-hd/Leda"
+    },
+    "a9f494fef9a3df2d": {
+      "text": "למשל, זה שווה עשרה שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b1d27a291b518b0e": {
+      "text": "איזה מטבע שווה חמישה שקלים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "485e7acdf3659c6d": {
+      "text": "איזה מטבע שווה",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "fd6dce6264cda27a": {
+      "text": "שקלים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "3b5e46b029af6e7f": {
+      "text": "זה שווה עשרים שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "4aaba2ace354d143": {
+      "text": "חצאי שעה",
+      "voice": "chirp3-hd/Leda"
+    },
+    "a73df6393987e98a": {
+      "text": "זה שווה עשרה שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e5fffa1f1bad6c87": {
+      "text": "איזה מטבע שווה עשרה שקלים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "11148fe8f86e5538": {
+      "text": "איזה שטר שווה עשרים שקלים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "cfa56ca628ab8c57": {
+      "text": "איזה שטר שווה",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "93b47d1768ce4f02": {
+      "text": "איזה שטר שווה חמישים שקלים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "28fcee69b5878a8e": {
+      "text": "זה שווה חמישים שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "7f5be1043998ae07": {
+      "text": "זה שווה מאה שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ef110c00cc0c3b72": {
+      "text": "שעון דיגיטלי ושעון מחוגים",
+      "voice": "chirp3-hd/Leda"
+    },
+    "cff4aadecc6c6f3d": {
+      "text": "כמה כסף יש כאן?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "04b717b81ccf98a8": {
+      "text": "יש כאן שלושה שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ddebdfc93587d76d": {
+      "text": "איזה שטר שווה מאה שקלים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "85d63826477db7a3": {
+      "text": "למשל, יש כאן ארבעה שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "07ab5d3f88907622": {
+      "text": "מחברים את מה שכל מטבע שווה:",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "9ebf239cbe394f87": {
+      "text": "רבעי שעה: איזה שעון?",
+      "voice": "chirp3-hd/Leda"
+    },
+    "0e92394525a36ccd": {
+      "text": "מתחילים מהמטבע הגדול, וממשיכים לספור ממנו.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "7af18c1ed900711e": {
+      "text": "יש כאן",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "3e27bfcd1c13dfeb": {
+      "text": "יש כאן ארבעה שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "1924f1765d4a1d30": {
+      "text": "למשל, יש כאן חמישה שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "8f74f9039cff3241": {
+      "text": "למשל, יש כאן שלושה שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "797839c163d3853d": {
+      "text": "עוד שעה, לפני שעה",
+      "voice": "chirp3-hd/Leda"
+    },
+    "36884e1ba083d11b": {
+      "text": "יש כאן שישה שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a2272bbeba55bb87": {
+      "text": "יש כאן חמישה שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "863fe6793ee1fc60": {
+      "text": "יש כאן שבעה שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ab32d9d29374f4d5": {
+      "text": "יש כאן שמונה שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a08ac46e303cb81a": {
+      "text": "למשל, יש כאן שבעה שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "443fba340acdcddf": {
+      "text": "כמה זמן עבר?",
+      "voice": "chirp3-hd/Leda"
+    },
+    "9d5744e12b6b2aef": {
+      "text": "למשל, יש כאן שישה שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ce464b80e1085c68": {
+      "text": "למשל, יש כאן תשעה שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "31f7d4d801f061e1": {
+      "text": "בעיות זמן",
+      "voice": "chirp3-hd/Leda"
+    },
+    "6d79b1d86e379096": {
+      "text": "יש כאן תשעה שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "8f1af70058438a13": {
+      "text": "יש כאן עשרה שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d0888346fa861b06": {
+      "text": "כסף",
+      "voice": "chirp3-hd/Leda"
+    },
+    "d229367abcad2926": {
+      "text": "יש כאן אחד עשר שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "895f827c80608422": {
+      "text": "יש כאן שנים עשר שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "2d640fbef9d2928e": {
+      "text": "למשל, יש כאן שמונה שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "9111f5795ab89e0d": {
+      "text": "מכירים את המטבעות",
+      "voice": "chirp3-hd/Leda"
+    },
+    "9d166615d4402ffd": {
+      "text": "למשל, יש כאן שנים עשר שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "66d2044b1ad99941": {
+      "text": "למשל, יש כאן תשעה עשר שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d1b1d1d7530a1b14": {
+      "text": "יש כאן חמישה עשר שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "62a9478889a8178c": {
+      "text": "יש כאן שלושה עשר שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "23f8a8c495beef94": {
+      "text": "יש כאן ארבעה עשר שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a2f32d4dd848e863": {
+      "text": "סופרים מטבעות קטנים",
+      "voice": "chirp3-hd/Leda"
+    },
+    "ee8c193c67378d75": {
+      "text": "יש כאן שישה עשר שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "7f78f8c1e574fbce": {
+      "text": "יש כאן שבעה עשר שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "0cd04c26d83b9998": {
+      "text": "יש כאן תשעה עשר שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "bc97424bbbb66de1": {
+      "text": "סופרים מטבעות גדולים",
+      "voice": "chirp3-hd/Leda"
+    },
+    "94b55898e87be4df": {
+      "text": "למשל, יש כאן ארבעה עשר שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b9ed741a057a29a2": {
+      "text": "יש כאן עשרים ואחד שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f3af2f826639f743": {
+      "text": "יש כאן עשרים שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "7a7d5486a8c09314": {
+      "text": "יש מספיק כסף?",
+      "voice": "chirp3-hd/Leda"
+    },
+    "8ce213410af674d0": {
+      "text": "יש כאן עשרים ושניים שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e10244869aac780e": {
+      "text": "יש כאן עשרים ושלושה שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ab2c1d5544b127a0": {
+      "text": "יש כאן עשרים וארבעה שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c2f73378df31ec35": {
+      "text": "יש כאן עשרים וחמישה שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "5d69aea6befebaa2": {
+      "text": "באיזה ארנק יש יותר?",
+      "voice": "chirp3-hd/Leda"
+    },
+    "342c8b0eafe619b5": {
+      "text": "יש כאן עשרים ושישה שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "061617e77666855a": {
+      "text": "יש כאן עשרים ושבעה שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "353d73ee6890f3c9": {
+      "text": "למשל, יש כאן עשרים ותשעה שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e931ced213e2b7a6": {
+      "text": "משלמים בדיוק",
+      "voice": "chirp3-hd/Leda"
+    },
+    "45da674a2698423f": {
+      "text": "יש כאן עשרים ושמונה שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "3981df065cda3e3e": {
+      "text": "יש כאן שמונה עשר שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "081da5fca0b5dd00": {
+      "text": "יש כאן עשרים ותשעה שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "65bc19a035a56f08": {
+      "text": "בעיות קנייה",
+      "voice": "chirp3-hd/Leda"
+    },
+    "d14c6c8856c4a490": {
+      "text": "למשל, יש כאן עשרים וארבעה שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "1fde8df6665e1487": {
+      "text": "יש כאן שלושים שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "50a043314c8dfb8a": {
+      "text": "יש כאן שלושים ושניים שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c73b69a084730b43": {
+      "text": "יש כאן שלושים ואחד שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "759e8ed015c96bc8": {
+      "text": "יש כאן שלושים ושלושה שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "407da5e1f62e70fe": {
+      "text": "יש כאן שלושים וארבעה שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "0268e77949570c99": {
+      "text": "יש כאן שלושים וחמישה שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "1d8179dd8c6eaa8d": {
+      "text": "יש כאן שלושים ושישה שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "20c1c669d585bc6a": {
+      "text": "יש כאן שלושים ושמונה שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "7e7702e183b61f81": {
+      "text": "יש כאן שלושים ושבעה שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e27b610a5b67d29b": {
+      "text": "יש כאן ארבעים שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "2e4134badf834e30": {
+      "text": "יש כאן ארבעים ושניים שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "24435f75f887afee": {
+      "text": "למשל, יש כאן עשרים ושניים שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c6b998bda50067b8": {
+      "text": "יש כאן ארבעים ואחד שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f091783b51e961b7": {
+      "text": "למשל, יש כאן עשרים ואחד שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a3c6288a649ebd59": {
+      "text": "למשל, יש כאן עשרים ושישה שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b73c3602c405d2b4": {
+      "text": "למשל, יש כאן שלושים ושלושה שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "731bdb3bf1b56298": {
+      "text": "למשל, יש כאן עשרים ושמונה שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a24f84a264868f59": {
+      "text": "למשל, יש כאן עשרים ושלושה שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e704bb114abb1ba0": {
+      "text": "יש כאן ארבעים ושלושה שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "9c1378146af7d0ae": {
+      "text": "יש כאן ארבעים וחמישה שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d57a6386f7ec568c": {
+      "text": "למשל, יש כאן שלושים ושמונה שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "62b343a32bea733d": {
+      "text": "למשל, יש כאן ארבעים ושלושה שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "39f118c85f3b32d5": {
+      "text": "יש כאן ארבעים ושבעה שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f1a262c1cb4f6bf1": {
+      "text": "יש כאן ארבעים ושמונה שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "cc408edf5921500e": {
+      "text": "יש כאן ארבעים ושישה שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f09fea537f4a09c3": {
+      "text": "למשל, יש כאן חמישים ושמונה שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c8520f0166b54246": {
+      "text": "יש כאן חמישים שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a05dbfa570bc8a0e": {
+      "text": "יש כאן חמישים ואחד שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "810351d2d1963c32": {
+      "text": "יש כאן חמישים ושלושה שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "2d7c53b9c06fcef1": {
+      "text": "יש כאן חמישים ושניים שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "47a458049c24d259": {
+      "text": "יש כאן חמישים וחמישה שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "4147464c995a28b4": {
+      "text": "יש כאן חמישים ושמונה שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "8c9dae2ab76bbe1d": {
+      "text": "יש כאן חמישים ושישה שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "328a25b5dc129f5b": {
+      "text": "יש כאן חמישים ושבעה שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "6bdc67d6a2dc2bfd": {
+      "text": "למשל, יש כאן ארבעים ושמונה שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "8fe36ab3dc71e232": {
+      "text": "יש כאן שישים שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c7ba174cc3d3106c": {
+      "text": "יש כאן שישים ואחד שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "3afa28d6f7faa814": {
+      "text": "יש כאן שישים ושניים שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "2747cb31b2b2d5b1": {
+      "text": "יש כאן שישים וחמישה שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "50b8366a7434ca78": {
+      "text": "יש כאן שישים ושלושה שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "41de7fbb249faeae": {
+      "text": "יש כאן שישים ושבעה שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "3715c440668342c1": {
+      "text": "יש כאן שישים ושישה שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "099fa9379e26e64e": {
+      "text": "יש כאן שישים ושמונה שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "1bf97fdc7ee89654": {
+      "text": "יש כאן שבעים שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d758913807e7befb": {
+      "text": "יש כאן שבעים ואחד שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "34e31ecb345a329e": {
+      "text": "יש כאן שבעים ושניים שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "887062fa41534b7b": {
+      "text": "יש כאן שבעים וחמישה שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "edac391f0e952447": {
+      "text": "יש כאן שבעים ושלושה שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "1ab315bf83ad9d8e": {
+      "text": "יש כאן שבעים ושבעה שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "66a12e62b35bda36": {
+      "text": "יש כאן שבעים ושמונה שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "2d9192f6a1b314b8": {
+      "text": "יש כאן שבעים ושישה שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "7b6d7436b5cb031f": {
+      "text": "יש כאן שמונים שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f63938e614e2b7bd": {
+      "text": "יש כאן שמונים ואחד שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "40970d3b635df6c6": {
+      "text": "יש כאן שמונים ושניים שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b5bc60784b3655f1": {
+      "text": "יש כאן שמונים ושלושה שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "499dad89a8b108d9": {
+      "text": "יש כאן שמונים וחמישה שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "8fe34339c312c99e": {
+      "text": "יש כאן שמונים ושבעה שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d93cb54d8b153016": {
+      "text": "יש כאן שמונים ושמונה שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c029f6d54b6cb0b3": {
+      "text": "יש כאן שמונים ושישה שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "38ee839616166b11": {
+      "text": "יש כאן תשעים שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "18a58d07d9652468": {
+      "text": "יש כאן תשעים ואחד שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "03c462028f44adb1": {
+      "text": "יש כאן תשעים ושניים שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c86c90bd7d4413a7": {
+      "text": "יש כאן תשעים ושלושה שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "fb56d72150d636bb": {
+      "text": "יש כאן תשעים ושישה שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "16c661c05350247e": {
+      "text": "יש כאן תשעים וחמישה שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a553cbb8d9b24fcf": {
+      "text": "יש כאן תשעים ושבעה שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "3767a436a4a06b00": {
+      "text": "יש כאן תשעים ושמונה שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "4e5b026ec5f1e4ca": {
+      "text": "יש כאן מאה שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "edc07f1dc9727b14": {
+      "text": "יובל רוצה לקנות כדור שעולה",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "0c81ecc5d8ea0c01": {
+      "text": "שקלים, והמחיר הוא",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c7cdd83290522c16": {
+      "text": "שקלים. יש מספיק כסף!",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "9a4cac738804a655": {
+      "text": "שקלים. יש לו את הכסף שבתמונה. יש לו מספיק כסף?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "7dbf1509d8db53de": {
+      "text": "סבתא רוצה לקנות בובה שעולה",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f441fad2fc8a6819": {
+      "text": "סופרים כמה כסף יש לו, ובודקים אם זה לפחות המחיר.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "07abea5c1f3d3223": {
+      "text": "שקלים. יש מספיק כסף.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "1346ed29b1cdf985": {
+      "text": "שקלים. יש לה את הכסף שבתמונה. יש לה מספיק כסף?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "68eea59bc9f934dd": {
+      "text": "דנה רוצה לקנות ספר שעולה",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "aa482fd814c437fa": {
+      "text": "סופרים כמה כסף יש לה, ובודקים אם זה לפחות המחיר.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "7cbcc2c0e04c6f0d": {
+      "text": "מאיה רוצה לקנות בובה שעולה",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "923f0a8ff1a895c1": {
+      "text": "שקלים. אין מספיק כסף.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "059fa11ce2f31a0d": {
+      "text": "דנה רוצה לקנות מחברת שעולה",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "947148f1d1aabd21": {
+      "text": "דנה רוצה לקנות משחק שעולה",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "4624982820a8fc23": {
+      "text": "מאיה רוצה לקנות ספר שעולה",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "2b45661670e121f8": {
+      "text": "סבתא רוצה לקנות כדור שעולה",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "7676d8049976c063": {
+      "text": "סבא רוצה לקנות ספר שעולה",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "43d035a062d15e34": {
+      "text": "סבא רוצה לקנות משחק שעולה",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e26e74acd75318f6": {
+      "text": "סבא רוצה לקנות כדור שעולה",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "4a20cf175b9257e3": {
+      "text": "סבתא רוצה לקנות ספר שעולה",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "de2e8003a527ce3d": {
+      "text": "מאיה רוצה לקנות משחק שעולה",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "9f5e07903cf49b81": {
+      "text": "יובל רוצה לקנות מחברת שעולה",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "6d7ee1dc9837eb85": {
+      "text": "סבתא רוצה לקנות מחברת שעולה",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ea0995b73414c0f3": {
+      "text": "יובל רוצה לקנות משחק שעולה",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "2762d83e76e6c9f8": {
+      "text": "סבא רוצה לקנות בובה שעולה",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "6d15683f08c488e4": {
+      "text": "נועם רוצה לקנות בובה שעולה",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a01b31a8c86d38b2": {
+      "text": "נועם רוצה לקנות כדור שעולה",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a8df06e30d6c3de1": {
+      "text": "סבא רוצה לקנות מחברת שעולה",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "1da2defb6c33e523": {
+      "text": "נועם רוצה לקנות ספר שעולה",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "693906c8eafb3bfb": {
+      "text": "מאיה רוצה לקנות כדור שעולה",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "3d4106fc058fc5db": {
+      "text": "סבתא רוצה לקנות משחק שעולה",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "877e88646cad2076": {
+      "text": "יובל רוצה לקנות בובה שעולה",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "951a5746e154b037": {
+      "text": "נועם רוצה לקנות מחברת שעולה",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "0c366cab910b336e": {
+      "text": "דנה רוצה לקנות בובה שעולה",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b46c1a4b1502fabb": {
+      "text": "מאיה רוצה לקנות מחברת שעולה",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "197c953b09f69c3a": {
+      "text": "דנה רוצה לקנות כדור שעולה",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "79120043e1fbb5a9": {
+      "text": "יובל רוצה לקנות ספר שעולה",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "29d09c11a9263326": {
+      "text": "נועם רוצה לקנות משחק שעולה",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "246da4317fefc619": {
+      "text": "באיזה ארנק יש יותר כסף?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "6218f8c04b26a129": {
+      "text": "יותר כסף יש בארנק שיש בו",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "61b1ae98baa2b77e": {
+      "text": "סופרים כמה כסף יש בכל ארנק: לא כמה מטבעות יש, אלא כמה הם שווים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "2ef6787ecb164718": {
+      "text": "מטבע אחד גדול יכול להיות שווה יותר מהרבה מטבעות קטנים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "104d93ef6cab87e1": {
+      "text": "שקלים. בארנק השני יש",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "bb07f4615a50fc7d": {
+      "text": "בארנק אחד יש",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "471c2164c69360d7": {
+      "text": "שקלים, ובשני יש",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "063c554a58e4a943": {
+      "text": "שקלים. בראשון יש יותר.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "7aed969251703a7c": {
+      "text": "המטבעות האלה שווים בדיוק",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "fd4cd061166c3b5e": {
+      "text": "איך משלמים בדיוק",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "6adc00eae8e11eb0": {
+      "text": "סופרים את הכסף בכל תמונה, ומחפשים את התמונה שבה יש בדיוק",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "6706095bcf4f08ba": {
+      "text": "יובל קנה משחק שעולה",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "2d58d2f98ec063c2": {
+      "text": "העודף הוא מה שנשאר מהכסף ששילם, אחרי שמורידים את המחיר.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "aa202d3723ca30a0": {
+      "text": "שקלים, ושילם במטבע של עשרה שקלים. כמה עודף הוא יקבל?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c365c16add7dd4c7": {
+      "text": "נועם קנה מחברת שעולה",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "811c0f813e8e849f": {
+      "text": "סופרים על ישר המספרים מהמחיר ועד הכסף ששולם.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e3fe4d9edb02009e": {
+      "text": "נועם קנה משחק שעולה",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "042666648349ad95": {
+      "text": "נועם קנה כדור שעולה",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "69cf4b18089a327f": {
+      "text": "מאיה קנתה בובה שעולה",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "38a70ebf0e9a46a2": {
+      "text": "שקלים, ושילם בשטר של עשרים שקלים. כמה עודף הוא יקבל?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "3a2ed89b653db9f1": {
+      "text": "שקלים, ושילמה במטבע של עשרה שקלים. כמה עודף היא תקבל?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c93c7a265cb53fbc": {
+      "text": "העודף הוא מה שנשאר מהכסף ששילמה, אחרי שמורידים את המחיר.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f3856eab29ab7f87": {
+      "text": "מאיה קנתה כדור שעולה",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "81ddd323d69ee384": {
+      "text": "סבא קנה משחק שעולה",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "00f36a40b24824db": {
+      "text": "דנה קנתה ספר שעולה",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "91605cdc4d9d571f": {
+      "text": "מאיה קנתה מחברת שעולה",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "1579c068baaddcf1": {
+      "text": "סבתא קנתה ספר שעולה",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "7a579a5b51d0487d": {
+      "text": "יובל קנה כדור שעולה",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "668510ce8fb9218f": {
+      "text": "שקלים, ושילמה בשטר של עשרים שקלים. כמה עודף היא תקבל?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "87df1512ccfaebb1": {
+      "text": "סבא קנה כדור שעולה",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "1dce23b7a24931e3": {
+      "text": "סבא קנה בובה שעולה",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c8ff0f24e9009970": {
+      "text": "דנה קנתה בובה שעולה",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "5ebd662dff9e0f59": {
+      "text": "נועם קנה ספר שעולה",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ed5297e19c1aa2a8": {
+      "text": "יובל קנה מחברת שעולה",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f5dffeeceb8348d1": {
+      "text": "סבא קנה מחברת שעולה",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "4c1268490434a69f": {
+      "text": "סבא קנה ספר שעולה",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "839a54e358696128": {
+      "text": "סבתא קנתה כדור שעולה",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "929f6cbb2301ebd2": {
+      "text": "יובל קנה ספר שעולה",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b2086c6fb111db00": {
+      "text": "דנה קנתה כדור שעולה",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "12158e1d2e9b2b6d": {
+      "text": "מאיה קנתה ספר שעולה",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "855b1a234c0e66d6": {
+      "text": "נועם קנה בובה שעולה",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "8901d0916319383b": {
+      "text": "דנה קנתה מחברת שעולה",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c0e00c9a0c1a8f9b": {
+      "text": "מאיה קנתה משחק שעולה",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "af82bd31c69d042e": {
+      "text": "דנה קנתה משחק שעולה",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e0ebe8244cbaf105": {
+      "text": "סבתא קנתה בובה שעולה",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a77c6ad95be176ca": {
+      "text": "סבתא קנתה מחברת שעולה",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "32fe882485904484": {
+      "text": "סבתא קנתה משחק שעולה",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "94e7299719232d06": {
+      "text": "משלימים קודם לעשרת הבאה, ואחר כך עד",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "4f2b87be1c3b82a9": {
+      "text": "יובל קנה בובה שעולה",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "0e097b0074a32f0d": {
+      "text": "שקלים, ושילמה בשטר של מאה שקלים. כמה עודף היא תקבל?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "6d72048f6eb3fc65": {
+      "text": "שקלים, ושילם בשטר של חמישים שקלים. כמה עודף הוא יקבל?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "bfe45e9c2c336e50": {
+      "text": "שקלים, ושילם בשטר של מאה שקלים. כמה עודף הוא יקבל?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "5639b5bf0ddde38c": {
+      "text": "שקלים ומחברת שעולה",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d014682c7b843428": {
+      "text": "שקלים, ושילמה בשטר של חמישים שקלים. כמה עודף היא תקבל?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "af137c1d6d449fe4": {
+      "text": "הכל ביחד עולה",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "6e39ee86d2f4a49c": {
+      "text": "שקלים, והעודף הוא",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "8fe74d10199e04cf": {
+      "text": "שקלים וכדור שעולה",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "220daf03d4940bd0": {
+      "text": "קודם מחברים את שני המחירים, ואחר כך מחשבים את העודף.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ced5cc817c75813b": {
+      "text": "מחברים את שני המחירים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a69ac2eb6f1121c8": {
+      "text": "שקלים. כמה היא שילמה בסך הכל?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ac315ddcbf59ecb1": {
+      "text": "שקלים ובובה שעולה",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "52aadea456361b01": {
+      "text": "שקלים ומשחק שעולה",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "9eac0f03ef8510cc": {
+      "text": "מה השעה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "31b2bc142135ede9": {
+      "text": "שקלים וספר שעולה",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "54a88c5778aca00e": {
+      "text": "השעה אחת.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "43df389310a7eaca": {
+      "text": "שקלים. כמה הוא שילם בסך הכל?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "bfcb9c85be84a4a3": {
+      "text": "על איזה מספר מצביע המחוג הקצר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "9515168e251fac3c": {
+      "text": "למשל, השעון הזה מראה שמונה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "92deff50385d19ab": {
+      "text": "המחוג הקצר מראה את השעה. כשהמחוג הארוך על שתים עשרה, זו שעה שלמה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "1a679023f3a6cf58": {
+      "text": "השעון הזה מראה שמונה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e64dbd2144484ea6": {
+      "text": "השעה שתיים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d6779853d088f020": {
+      "text": "השעה שלוש.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "479692418db027a8": {
+      "text": "השעה חמש.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "8f72ad8f011f55c4": {
+      "text": "השעה ארבע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "3351907e3ee33cad": {
+      "text": "השעה שש.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "1b5a22cd26fdd9c5": {
+      "text": "למשל, השעון הזה מראה ארבע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "27aa03bd493016e8": {
+      "text": "השעה שמונה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "603b0eb26d019830": {
+      "text": "השעה שבע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "3e56e29346c9b505": {
+      "text": "השעון הזה מראה ארבע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "539777ea8802a56f": {
+      "text": "השעה עשר.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ebe05a66a25fdd3a": {
+      "text": "השעה תשע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "5464cc8328c260bf": {
+      "text": "השעה אחת עשרה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "6d63bb627089c6c7": {
+      "text": "השעה שתים עשרה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "38bdeecc3d26cc84": {
+      "text": "איזה שעון מראה אחת?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ab4c58b19275abeb": {
+      "text": "איזה שעון מראה שתיים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a0186a711a315bd2": {
+      "text": "איזה שעון מראה שלוש?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "1310fcb9329fd1b5": {
+      "text": "איזה שעון מראה ארבע?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "430867c3d6a2c3ce": {
+      "text": "איזה שעון מראה חמש?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e663bd4026e2afa4": {
+      "text": "איזה שעון מראה שש?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "11d410b8029e51e7": {
+      "text": "איזה שעון מראה שבע?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "3f26c3134f352720": {
+      "text": "איזה שעון מראה שמונה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "95adf6c451f0f257": {
+      "text": "איזה שעון מראה תשע?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "32345e667a326945": {
+      "text": "איזה שעון מראה עשר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f006afb97bfdd7ec": {
+      "text": "איזה שעון מראה אחת עשרה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "3c1f359823e9048e": {
+      "text": "איזה שעון מראה שתים עשרה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "eea2065ebf11de7f": {
+      "text": "השעה אחת וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "1671bc840f0fa91b": {
+      "text": "כשהמחוג הארוך על שש, עברה חצי שעה: אומרים ״וחצי״.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "1b3c8b160ef79141": {
+      "text": "השעון הזה מראה שבע וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ae112c16a451de3b": {
+      "text": "למשל, השעון הזה מראה שבע וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "646b549a5276eebd": {
+      "text": "השעה שתיים וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "4bd43d8702bb8a3b": {
+      "text": "השעה ארבע וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "94279f8d236e462a": {
+      "text": "המחוג הקצר נמצא בין שני מספרים. השעה היא המספר שהוא כבר עבר.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "57a83ce27996af85": {
+      "text": "השעה שלוש וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "7467542e53b4e66b": {
+      "text": "השעה חמש וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "19aa8161e60f4d13": {
+      "text": "השעה שבע וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "6a1ef65dd1357ef8": {
+      "text": "השעה שש וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "7435e8b58add4769": {
+      "text": "השעון הזה מראה שתיים וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "505b33aa223748a4": {
+      "text": "למשל, השעון הזה מראה שתיים וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "449e6cea984f7357": {
+      "text": "השעה שמונה וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "26b56ad8a99cfe35": {
+      "text": "השעה תשע וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "8d3bdb1dfa3a6f32": {
+      "text": "השעה עשר וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "efdcc3178f4c7cb2": {
+      "text": "השעה אחת עשרה וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b4eb3564dd956316": {
+      "text": "בשעון הדיגיטלי, המספר שלפני הנקודתיים הוא השעה, והמספר שאחריהן הוא הדקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d2408c77c35ad597": {
+      "text": "איזה שעון מחוגים מראה את אותה שעה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d6572a3f27bbbea4": {
+      "text": "השעון הזה מראה תשע וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a654b7ef55e5bd99": {
+      "text": "למשל, השעון הזה מראה תשע וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "7f251aceca63f023": {
+      "text": "שלושים דקות הן חצי שעה: המחוג הארוך על שש. אפס דקות: המחוג הארוך על שתים עשרה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "2babbd7495d68b5b": {
+      "text": "איזה שעון דיגיטלי מראה את אותה שעה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "be8f5247b1fd55d4": {
+      "text": "למשל, השעון הזה מראה חמש.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "81dc053a1570a1fd": {
+      "text": "השעה אחת ורבע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f79fa483edbffe8d": {
+      "text": "השעון הזה מראה חמש.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "7938bb9102db2ba4": {
+      "text": "כשהמחוג הארוך על שלוש, עבר רבע שעה: אומרים ״ורבע״.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c26d3f701bfea17a": {
+      "text": "המחוג הקצר עבר קצת את השעה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "550f10d69cb9eb5f": {
+      "text": "השעה שתים עשרה וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "99708d4da0fbdc47": {
+      "text": "למשל, השעון הזה מראה ארבע ורבע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "9d7fdcbdda9669fd": {
+      "text": "השעון הזה מראה ארבע ורבע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "57ebe13b1a32712f": {
+      "text": "השעה שתיים ורבע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e4d662dc561e6e39": {
+      "text": "השעה שלוש ורבע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "8e01481ff4aa8a51": {
+      "text": "השעה ארבע ורבע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "9b41a3b49534434e": {
+      "text": "השעה חמש ורבע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "aa09bb9a47f0febe": {
+      "text": "למשל, השעון הזה מראה תשע ורבע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "24e3f7a065515428": {
+      "text": "השעון הזה מראה תשע ורבע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "4c4f81008f76b5ab": {
+      "text": "השעה שש ורבע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "db780ecd30db4123": {
+      "text": "השעה שבע ורבע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "4bb0c255f3fc82fa": {
+      "text": "השעה שמונה ורבע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "7f9df54ee45fe3b8": {
+      "text": "השעה עשר ורבע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d234ba66523aaee7": {
+      "text": "השעה תשע ורבע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "29fec50a126e1fe4": {
+      "text": "השעה רבע לשתיים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b84b1bc8795bfd60": {
+      "text": "השעה אחת עשרה ורבע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "5443553abacf8bc6": {
+      "text": "השעה שתים עשרה ורבע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "fa531d88c2525ae0": {
+      "text": "למשל, השעון הזה מראה רבע לשש.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e4f42c227184b138": {
+      "text": "כשהמחוג הארוך על תשע, חסר רבע שעה עד השעה הבאה: אומרים ״רבע ל...״.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "2d505feed0b4f600": {
+      "text": "המחוג הקצר כמעט הגיע לשעה הבאה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "8f98b6f69e9efbae": {
+      "text": "השעון הזה מראה רבע לשש.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "bd18988d67a5c65f": {
+      "text": "השעה רבע לשלוש.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "accf396f87db57a1": {
+      "text": "השעה רבע לארבע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "507c315e4b91789c": {
+      "text": "השעה רבע לחמש.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f717151622f7ccb8": {
+      "text": "השעה רבע לשש.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d3e602ec428f60f8": {
+      "text": "למשל, השעון הזה מראה רבע לאחת עשרה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "776cba80c23c4edf": {
+      "text": "השעון הזה מראה רבע לאחת עשרה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ccfb47a67030cb71": {
+      "text": "השעה רבע לשמונה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "6e51780e6a4c8df9": {
+      "text": "השעה רבע לשבע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "14315e7d7fd34c2a": {
+      "text": "השעה רבע לתשע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "05400e48a22cfbe4": {
+      "text": "השעה רבע לעשר.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "1c5d7ec9bc32a7db": {
+      "text": "השעה רבע לשתים עשרה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "3dbc8da1ea68e64e": {
+      "text": "השעה רבע לאחת.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "392a5118b966c968": {
+      "text": "השעה רבע לאחת עשרה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f82beb70c90879e4": {
+      "text": "איזה שעון מראה אחת ורבע?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "68362ed84a6e110f": {
+      "text": "למשל, השעון הזה מראה שש ורבע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "4de2e95456bfd1a0": {
+      "text": "השעון הזה מראה שש ורבע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "3760b2cb5167d5b3": {
+      "text": "״ורבע״: המחוג הארוך על שלוש. ״רבע ל...״: המחוג הארוך על תשע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a2fb28100aade090": {
+      "text": "איזה שעון מראה רבע לשתיים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "368bfb8e1c7e7dcd": {
+      "text": "איזה שעון מראה שתיים ורבע?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "6bc120620c3075a8": {
+      "text": "איזה שעון מראה רבע לשלוש?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f91a88548fc509b9": {
+      "text": "איזה שעון מראה שלוש ורבע?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "4cddb3921aed1e7c": {
+      "text": "איזה שעון מראה ארבע ורבע?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "93f7d674c54197b4": {
+      "text": "איזה שעון מראה רבע לארבע?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "eef038f54094bff3": {
+      "text": "איזה שעון מראה רבע לחמש?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a9202495e17cb36a": {
+      "text": "איזה שעון מראה חמש ורבע?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "3bff08d99e6af41c": {
+      "text": "איזה שעון מראה רבע לשש?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "403a9ed813c4d2bb": {
+      "text": "איזה שעון מראה שש ורבע?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "9968c2fc8135364c": {
+      "text": "השעון הזה מראה רבע לשתים עשרה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e0316556091e3113": {
+      "text": "איזה שעון מראה רבע לשבע?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "12b8a759f2ee68d0": {
+      "text": "איזה שעון מראה שבע ורבע?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "dd439b215f6327fa": {
+      "text": "איזה שעון מראה שמונה ורבע?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "6782c5aed5dd1d25": {
+      "text": "איזה שעון מראה רבע לשמונה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "fef1334477539610": {
+      "text": "איזה שעון מראה רבע לתשע?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ea5fa61bb2ef01e3": {
+      "text": "למשל, השעון הזה מראה רבע לשתים עשרה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "12b741c367cf5422": {
+      "text": "איזה שעון מראה תשע ורבע?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "3abba349cf5bb5a6": {
+      "text": "איזה שעון מראה עשר ורבע?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "9dbcf009e71f5471": {
+      "text": "איזה שעון מראה רבע לעשר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "30da30de789ddb6a": {
+      "text": "איזה שעון מראה רבע לשתים עשרה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "391f25f806342838": {
+      "text": "איזה שעון מראה שתים עשרה ורבע?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "400ed0f3a7def6c6": {
+      "text": "איזה שעון מראה אחת עשרה ורבע?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e833e7414740a6f2": {
+      "text": "איזה שעון מראה רבע לאחת עשרה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "8945c5f461342384": {
+      "text": "איזה שעון מראה רבע לאחת?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f1057ad8265283b4": {
+      "text": "מה תהיה השעה בעוד שעה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "58d50123637ee2c7": {
+      "text": "השעון מראה אחת. בעוד שעה תהיה השעה שתיים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "7213229a5058963f": {
+      "text": "בעוד שעה, המחוג הקצר זז מספר אחד קדימה, והמחוג הארוך חוזר לאותו מקום.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "1be35df02a418bb4": {
+      "text": "למשל, השעון מראה שתיים. בעוד שעה תהיה השעה שלוש.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c1601e8de149ccba": {
+      "text": "מה הייתה השעה לפני שעה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "8c2fbcf579c5aa4b": {
+      "text": "השעון מראה שתיים. בעוד שעה תהיה השעה שלוש.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "2230e95bd55fe528": {
+      "text": "על איזה מספר יהיה המחוג הקצר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "6a526032504d8dc8": {
+      "text": "השעון מראה אחת. לפני שעה הייתה השעה שתים עשרה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "239cdd640e75c4d0": {
+      "text": "למשל, השעון מראה שתיים. לפני שעה הייתה השעה אחת.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "47e3205f44918afb": {
+      "text": "השעון מראה שש וחצי. בעוד שעה תהיה השעה שבע וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "fb3585ab28463146": {
+      "text": "השעון מראה שתיים. לפני שעה הייתה השעה אחת.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ada24d43e0fd2193": {
+      "text": "לפני שעה, המחוג הקצר היה מספר אחד אחורה, והמחוג הארוך היה באותו מקום.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "16882bfdd13f38d6": {
+      "text": "למשל, השעון מראה שש וחצי. בעוד שעה תהיה השעה שבע וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ba99131f55cad690": {
+      "text": "למשל, השעון מראה שש וחצי. לפני שעה הייתה השעה חמש וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "946f56cdf4ae2b17": {
+      "text": "השעון מראה שלוש. בעוד שעה תהיה השעה ארבע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "00e74953aad763e5": {
+      "text": "השעון מראה שש וחצי. לפני שעה הייתה השעה חמש וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a4fe3fb9b97f0f2e": {
+      "text": "השעון מראה שלוש. לפני שעה הייתה השעה שתיים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "823cbc1603d00860": {
+      "text": "השעון מראה ארבע. לפני שעה הייתה השעה שלוש.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ef119a25c8a8a6d4": {
+      "text": "השעון מראה ארבע. בעוד שעה תהיה השעה חמש.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f2af320b05369c80": {
+      "text": "השעון מראה חמש. לפני שעה הייתה השעה ארבע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "4d584fdb431a1ae1": {
+      "text": "השעון מראה חמש. בעוד שעה תהיה השעה שש.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "00441c581818fdbc": {
+      "text": "השעון מראה שש. בעוד שעה תהיה השעה שבע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b5163a29c25aadf2": {
+      "text": "השעון מראה שבע. בעוד שעה תהיה השעה שמונה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e60c8cd59d3c0043": {
+      "text": "השעון מראה שבע. לפני שעה הייתה השעה שש.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "3ef7600560402d66": {
+      "text": "השעון מראה שש. לפני שעה הייתה השעה חמש.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "667656f9f4bd0323": {
+      "text": "השעון מראה שמונה. בעוד שעה תהיה השעה תשע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "bb6fa7674b2c5f8e": {
+      "text": "השעון מראה שמונה. לפני שעה הייתה השעה שבע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ab41967259063692": {
+      "text": "השעון מראה תשע. לפני שעה הייתה השעה שמונה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "bd3e8830a508acdf": {
+      "text": "השעון מראה תשע. בעוד שעה תהיה השעה עשר.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d44e286d480181b8": {
+      "text": "השעון מראה עשר. לפני שעה הייתה השעה תשע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "9a8c35f81917f7b4": {
+      "text": "השעון מראה אחת עשרה. בעוד שעה תהיה השעה שתים עשרה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e27259d7d1867af4": {
+      "text": "השעון מראה עשר. בעוד שעה תהיה השעה אחת עשרה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "44c2f7fa5eb63b0c": {
+      "text": "השעון מראה אחת עשרה. לפני שעה הייתה השעה עשר.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "6447d20dc0b55939": {
+      "text": "השעון מראה שתים עשרה. לפני שעה הייתה השעה אחת עשרה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "8233f458e117cbb0": {
+      "text": "השעון מראה אחת וחצי. בעוד שעה תהיה השעה שתיים וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e25e899e6e6b6f84": {
+      "text": "השעון מראה אחת וחצי. לפני שעה הייתה השעה שתים עשרה וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "66259791e75c7d62": {
+      "text": "השעון מראה שתיים וחצי. בעוד שעה תהיה השעה שלוש וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "9e66cc9c3e9f23b7": {
+      "text": "השעון מראה שתים עשרה. בעוד שעה תהיה השעה אחת.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f0b23d3609263ce9": {
+      "text": "השעון מראה שתיים וחצי. לפני שעה הייתה השעה אחת וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e59418518c139491": {
+      "text": "השעון מראה שלוש וחצי. לפני שעה הייתה השעה שתיים וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e93d2dfa71bd1f46": {
+      "text": "השעון מראה שלוש וחצי. בעוד שעה תהיה השעה ארבע וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "4bad91b2b9abd231": {
+      "text": "השעון מראה ארבע וחצי. בעוד שעה תהיה השעה חמש וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "bfe5da7f30ab174c": {
+      "text": "השעון מראה ארבע וחצי. לפני שעה הייתה השעה שלוש וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b5e683dd9462bd2e": {
+      "text": "השעון מראה חמש וחצי. לפני שעה הייתה השעה ארבע וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "23a6308ff2f506b3": {
+      "text": "השעון מראה חמש וחצי. בעוד שעה תהיה השעה שש וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "cb67d3ee4f499a56": {
+      "text": "השעון מראה שבע וחצי. בעוד שעה תהיה השעה שמונה וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c021b885e370fa9c": {
+      "text": "השעון מראה שמונה וחצי. בעוד שעה תהיה השעה תשע וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "4264f207b8204273": {
+      "text": "השעון מראה שמונה וחצי. לפני שעה הייתה השעה שבע וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d61ef0f7af6f1586": {
+      "text": "השעון מראה שבע וחצי. לפני שעה הייתה השעה שש וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ed19f0361e39dd47": {
+      "text": "השעון מראה תשע וחצי. בעוד שעה תהיה השעה עשר וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "8d90531d4f595b50": {
+      "text": "השעון מראה תשע וחצי. לפני שעה הייתה השעה שמונה וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "6818e1945767538a": {
+      "text": "השעון מראה עשר וחצי. בעוד שעה תהיה השעה אחת עשרה וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "1d56410496505aa1": {
+      "text": "השעון מראה אחת עשרה וחצי. בעוד שעה תהיה השעה שתים עשרה וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "900477dc2cfb0e05": {
+      "text": "השעון מראה עשר וחצי. לפני שעה הייתה השעה תשע וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "8356ab6921f89997": {
+      "text": "השעון מראה אחת עשרה וחצי. לפני שעה הייתה השעה עשר וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b6941e7f196a5a97": {
+      "text": "מהשעה אחת עד השעה אחת וחצי עברה חצי שעה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c17a53f2a899cc6b": {
+      "text": "השעון מראה שתים עשרה וחצי. לפני שעה הייתה השעה אחת עשרה וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "69fe40fbda06f98d": {
+      "text": "השעון מראה שתים עשרה וחצי. בעוד שעה תהיה השעה אחת וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d68a8d7d518a3f42": {
+      "text": "סופרים כמה שעות שלמות עברו, ומוסיפים חצי שעה אם צריך.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f8af14531ed262df": {
+      "text": "מאיזה מספר לאיזה מספר זז המחוג הקצר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d3fb22edfb9a14ef": {
+      "text": "למשל, מהשעה שלוש עד השעה חמש עברו שעתיים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "22abe028a1dd8115": {
+      "text": "מהשעה אחת עד השעה שתיים עברה שעה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a6102f0e950fe1d9": {
+      "text": "מהשעה אחת עד השעה שתיים וחצי עברה שעה וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "351fbc6b0ab43f6c": {
+      "text": "מהשעה שלוש עד השעה חמש עברו שעתיים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "784da913da3814cc": {
+      "text": "מהשעה אחת עד השעה שלוש עברו שעתיים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ebdef67bab6b3c59": {
+      "text": "מהשעה אחת עד השעה ארבע עברו שלוש שעות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "333c07db59c34390": {
+      "text": "מהשעה אחת עד השעה שלוש וחצי עברו שעתיים וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a3a7abea10a28ecb": {
+      "text": "מהשעה אחת וחצי עד השעה שתיים עברה חצי שעה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b0af9f7b0e80255b": {
+      "text": "מהשעה אחת וחצי עד השעה שתיים וחצי עברה שעה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ba93ca46693555dd": {
+      "text": "מהשעה אחת וחצי עד השעה שלוש וחצי עברו שעתיים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "807f9fca31626d45": {
+      "text": "מהשעה אחת וחצי עד השעה שלוש עברה שעה וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "56f52a4102911b64": {
+      "text": "מהשעה אחת וחצי עד השעה ארבע וחצי עברו שלוש שעות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "449db21b274f16aa": {
+      "text": "מהשעה אחת וחצי עד השעה ארבע עברו שעתיים וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "0784d14fe94f0ec9": {
+      "text": "מהשעה שתיים עד השעה שתיים וחצי עברה חצי שעה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "cc61031d42fb636e": {
+      "text": "מהשעה שתיים עד השעה שלוש וחצי עברה שעה וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "91cc33f3502bfb76": {
+      "text": "מהשעה שתיים עד השעה ארבע עברו שעתיים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "bee058e8b391a910": {
+      "text": "מהשעה שתיים עד השעה שלוש עברה שעה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "15b7e4f3927122e1": {
+      "text": "מהשעה שתיים עד השעה ארבע וחצי עברו שעתיים וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "74798ab8316904bc": {
+      "text": "מהשעה שתיים עד השעה חמש עברו שלוש שעות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c17f3ed1042e6de0": {
+      "text": "מהשעה שתיים וחצי עד השעה שלוש וחצי עברה שעה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "50a48541a7fa2e09": {
+      "text": "מהשעה שתיים וחצי עד השעה שלוש עברה חצי שעה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "8d1db82bd4f4155c": {
+      "text": "מהשעה שתיים וחצי עד השעה ארבע עברה שעה וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "19272c5ae21930d5": {
+      "text": "מהשעה שתיים וחצי עד השעה ארבע וחצי עברו שעתיים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "8fe50ad16a928461": {
+      "text": "מהשעה שתיים וחצי עד השעה חמש עברו שעתיים וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "9d7ab966df19923f": {
+      "text": "מהשעה שתיים וחצי עד השעה חמש וחצי עברו שלוש שעות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e633d0f011ca7a96": {
+      "text": "מהשעה שלוש עד השעה שלוש וחצי עברה חצי שעה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "8fe8fd241eeeb5d5": {
+      "text": "מהשעה שלוש עד השעה ארבע עברה שעה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "2ed78c3190b57607": {
+      "text": "למשל, מהשעה אחת וחצי עד השעה שלוש עברה שעה וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "cb9bf8d03e6ee599": {
+      "text": "מהשעה שלוש עד השעה חמש וחצי עברו שעתיים וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "19bfe095f2bf1755": {
+      "text": "מהשעה שלוש עד השעה ארבע וחצי עברה שעה וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "fb0f9a42186c1220": {
+      "text": "מהשעה שלוש עד השעה שש עברו שלוש שעות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b194ba1b3769ad7c": {
+      "text": "מהשעה שלוש וחצי עד השעה ארבע עברה חצי שעה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "47c811ec2c0351ad": {
+      "text": "מהשעה שלוש וחצי עד השעה חמש עברה שעה וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e3b91484e50c94d7": {
+      "text": "מהשעה שלוש וחצי עד השעה ארבע וחצי עברה שעה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b89c32e43c72adab": {
+      "text": "מהשעה שלוש וחצי עד השעה שש עברו שעתיים וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "0221e9f627f1c31f": {
+      "text": "מהשעה שלוש וחצי עד השעה שש וחצי עברו שלוש שעות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "793817b2295d95e0": {
+      "text": "מהשעה ארבע עד השעה ארבע וחצי עברה חצי שעה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ac8d160b168a0136": {
+      "text": "מהשעה ארבע עד השעה חמש עברה שעה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a5baa3023f5b1a20": {
+      "text": "מהשעה שלוש וחצי עד השעה חמש וחצי עברו שעתיים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "801946571ec9ed5d": {
+      "text": "מהשעה ארבע עד השעה חמש וחצי עברה שעה וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "bba88012ee896694": {
+      "text": "מהשעה ארבע עד השעה שש עברו שעתיים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "3509d24204df142f": {
+      "text": "מהשעה ארבע עד השעה שבע עברו שלוש שעות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "36644dec40d9864a": {
+      "text": "מהשעה ארבע עד השעה שש וחצי עברו שעתיים וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "243ca1729ec0a5e6": {
+      "text": "מהשעה ארבע וחצי עד השעה חמש עברה חצי שעה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e9deb1f78af8137a": {
+      "text": "מהשעה ארבע וחצי עד השעה חמש וחצי עברה שעה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "788b8295805f8b1a": {
+      "text": "מהשעה ארבע וחצי עד השעה שש עברה שעה וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "527ccee7eaf9f2d6": {
+      "text": "מהשעה ארבע וחצי עד השעה שש וחצי עברו שעתיים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d9772db757a6e568": {
+      "text": "מהשעה ארבע וחצי עד השעה שבע עברו שעתיים וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "20f442e2697fad85": {
+      "text": "מהשעה ארבע וחצי עד השעה שבע וחצי עברו שלוש שעות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "eb702721d4a130fb": {
+      "text": "מהשעה חמש עד השעה חמש וחצי עברה חצי שעה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f9f1fd0c11b7b24d": {
+      "text": "מהשעה חמש עד השעה שש עברה שעה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "906b027925ff087d": {
+      "text": "מהשעה חמש עד השעה שבע עברו שעתיים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f75338f96a8c2892": {
+      "text": "מהשעה חמש עד השעה שש וחצי עברה שעה וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e2d7cdbb0d7488d4": {
+      "text": "מהשעה חמש עד השעה שבע וחצי עברו שעתיים וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "76a6ea3a73c5e8f1": {
+      "text": "מהשעה חמש עד השעה שמונה עברו שלוש שעות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e8fd524988c88f45": {
+      "text": "מהשעה חמש וחצי עד השעה שש עברה חצי שעה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ea56b77fa4c07c01": {
+      "text": "מהשעה חמש וחצי עד השעה שש וחצי עברה שעה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e6ee0ce7b887e91b": {
+      "text": "מהשעה חמש וחצי עד השעה שבע עברה שעה וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "5aa13700cc60b91d": {
+      "text": "מהשעה חמש וחצי עד השעה שבע וחצי עברו שעתיים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "2ad3ea0d23377eb5": {
+      "text": "מהשעה חמש וחצי עד השעה שמונה וחצי עברו שלוש שעות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "3e4999bb3104e116": {
+      "text": "מהשעה חמש וחצי עד השעה שמונה עברו שעתיים וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "8b73c49ad870746e": {
+      "text": "מהשעה שש עד השעה שבע עברה שעה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "af09a556ec9f3606": {
+      "text": "מהשעה שש עד השעה שש וחצי עברה חצי שעה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "90bc416d5f4c6be4": {
+      "text": "מהשעה שש עד השעה שמונה עברו שעתיים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b1301eee713adb3e": {
+      "text": "מהשעה שש עד השעה שמונה וחצי עברו שעתיים וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e9de4b354b14c2f9": {
+      "text": "מהשעה שש עד השעה שבע וחצי עברה שעה וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "7ea24308aec22c3a": {
+      "text": "מהשעה שש עד השעה תשע עברו שלוש שעות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e60307ce32e52b82": {
+      "text": "מהשעה שש וחצי עד השעה שבע עברה חצי שעה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "7f9b5fa8bac034c9": {
+      "text": "מהשעה שש וחצי עד השעה שמונה עברה שעה וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "852a304be4515414": {
+      "text": "מהשעה שש וחצי עד השעה שמונה וחצי עברו שעתיים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a7929873e39b73ec": {
+      "text": "מהשעה שש וחצי עד השעה תשע וחצי עברו שלוש שעות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b0902ed0cbb35829": {
+      "text": "מהשעה שש וחצי עד השעה תשע עברו שעתיים וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "de19457255360413": {
+      "text": "מהשעה שבע עד השעה שבע וחצי עברה חצי שעה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d88f46368bed9be7": {
+      "text": "מהשעה שבע עד השעה שמונה עברה שעה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f891f02226fa80e7": {
+      "text": "מהשעה שבע עד השעה שמונה וחצי עברה שעה וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f849221707a73c6a": {
+      "text": "מהשעה שבע עד השעה עשר עברו שלוש שעות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "0e550e7eb3f162ae": {
+      "text": "מהשעה שבע עד השעה תשע עברו שעתיים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "7ed5e12174272f0a": {
+      "text": "מהשעה שבע עד השעה תשע וחצי עברו שעתיים וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "146969534f068182": {
+      "text": "מהשעה שבע וחצי עד השעה שמונה וחצי עברה שעה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "5575d1d6a92866f5": {
+      "text": "מהשעה שבע וחצי עד השעה שמונה עברה חצי שעה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "913687c145272449": {
+      "text": "מהשעה שש וחצי עד השעה שבע וחצי עברה שעה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "3b199f3696b6d66f": {
+      "text": "מהשעה שבע וחצי עד השעה תשע עברה שעה וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a9bb6f18d3bcf66a": {
+      "text": "מהשעה שבע וחצי עד השעה תשע וחצי עברו שעתיים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "6ea3c7bc433ce54f": {
+      "text": "מהשעה שבע וחצי עד השעה עשר עברו שעתיים וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "0b32489612bc6b5a": {
+      "text": "מהשעה שמונה עד השעה שמונה וחצי עברה חצי שעה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d25394ca2c52c3dc": {
+      "text": "מהשעה שבע וחצי עד השעה עשר וחצי עברו שלוש שעות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d02f67b3ba021067": {
+      "text": "מהשעה שמונה עד השעה תשע עברה שעה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "48d3653c31c4792c": {
+      "text": "מהשעה שמונה עד השעה עשר וחצי עברו שעתיים וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d4ed6f0b20328703": {
+      "text": "מהשעה שמונה עד השעה תשע וחצי עברה שעה וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "599bc2355c8e8d86": {
+      "text": "מהשעה שמונה עד השעה עשר עברו שעתיים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "83476a749fa24f15": {
+      "text": "מהשעה שמונה עד השעה אחת עשרה עברו שלוש שעות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d50b7ed4ec86abfc": {
+      "text": "מהשעה שמונה וחצי עד השעה תשע וחצי עברה שעה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "4b27a5f02434aa1f": {
+      "text": "מהשעה שמונה וחצי עד השעה תשע עברה חצי שעה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "4624a8f17681a3b2": {
+      "text": "מהשעה שמונה וחצי עד השעה עשר עברה שעה וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f70ffe599ef87dc0": {
+      "text": "מהשעה שמונה וחצי עד השעה אחת עשרה עברו שעתיים וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "9f3f906c3b6db83e": {
+      "text": "מהשעה שמונה וחצי עד השעה עשר וחצי עברו שעתיים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d76287ed8c7f14e0": {
+      "text": "מהשעה תשע עד השעה עשר עברה שעה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "7642910eb9a04faa": {
+      "text": "מהשעה תשע עד השעה תשע וחצי עברה חצי שעה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "3114514d9e51c2c0": {
+      "text": "מהשעה שמונה וחצי עד השעה אחת עשרה וחצי עברו שלוש שעות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c3ce506e9d2b7583": {
+      "text": "מהשעה תשע עד השעה עשר וחצי עברה שעה וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "4c5a6506088418a6": {
+      "text": "מהשעה תשע עד השעה שתים עשרה עברו שלוש שעות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "5c0c0b4b38069d93": {
+      "text": "מהשעה תשע עד השעה אחת עשרה עברו שעתיים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "24e5da177c2d55ff": {
+      "text": "מהשעה תשע עד השעה אחת עשרה וחצי עברו שעתיים וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "db3cd977a742377b": {
+      "text": "מהשעה תשע וחצי עד השעה עשר עברה חצי שעה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "09f1342b0f40fffd": {
+      "text": "מהשעה תשע וחצי עד השעה עשר וחצי עברה שעה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d25fa81874653ef9": {
+      "text": "מהשעה תשע וחצי עד השעה אחת עשרה וחצי עברו שעתיים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "095953a80b70bcc4": {
+      "text": "מהשעה תשע וחצי עד השעה אחת עשרה עברה שעה וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "6e75574457a50a7c": {
+      "text": "מהשעה תשע וחצי עד השעה שתים עשרה עברו שעתיים וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c247e7658e5b38af": {
+      "text": "מהשעה עשר עד השעה עשר וחצי עברה חצי שעה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ad437622a2fa74b1": {
+      "text": "מהשעה עשר עד השעה אחת עשרה עברה שעה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ba798f8f2cd7047e": {
+      "text": "מהשעה עשר עד השעה אחת עשרה וחצי עברה שעה וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f67d005419e7c58d": {
+      "text": "מהשעה עשר וחצי עד השעה אחת עשרה עברה חצי שעה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ca17f82507701043": {
+      "text": "מהשעה עשר וחצי עד השעה אחת עשרה וחצי עברה שעה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "173f83ddc32f0533": {
+      "text": "מהשעה עשר עד השעה שתים עשרה עברו שעתיים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "33d41b2f97a98806": {
+      "text": "מהשעה עשר וחצי עד השעה שתים עשרה עברה שעה וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "7b0a993997ba0451": {
+      "text": "מהשעה אחת עשרה עד השעה אחת עשרה וחצי עברה חצי שעה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a808796e6061c642": {
+      "text": "מהשעה אחת עשרה וחצי עד השעה שתים עשרה עברה חצי שעה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "68d74543a49ba6eb": {
+      "text": "מהשעה אחת עשרה עד השעה שתים עשרה עברה שעה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a002736a0ba80ff9": {
+      "text": "דנה סיימה בשעה שתיים וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "89b1c776ac80298f": {
+      "text": "חושבים על השעון, וסופרים שעות וחצאי שעה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "2ac2b3ddbcd3d18b": {
+      "text": "דנה התחילה לשחק בשעה שתיים, ושיחקה חצי שעה. באיזו שעה היא סיימה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "02d64e8e3f3ba223": {
+      "text": "מוסיפים לשעה שבה התחילו את הזמן ששיחקו.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b28200ddf30b1221": {
+      "text": "הטיול נמשך חצי שעה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "267fcd55298441c3": {
+      "text": "למשל, מהשעה ארבע עד השעה חמש עברה שעה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "48137a409c97204f": {
+      "text": "סופרים מהשעה שיצאו עד השעה שחזרו.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "625633b8ffbb679b": {
+      "text": "יובל סיים בשעה שתיים וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "671023fc4db1ceed": {
+      "text": "יובל התחיל לשחק בשעה שתיים, ושיחק חצי שעה. באיזו שעה הוא סיים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "7a3d41a42fb1ecc8": {
+      "text": "דנה יצאה לטיול בשעה שתיים, וחזרה בשעה שתיים וחצי. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ae3b3bf9d83327ff": {
+      "text": "דנה סיימה בשעה שלוש.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "2acf90793f3f4863": {
+      "text": "יובל יצא לטיול בשעה שתיים, וחזר בשעה שתיים וחצי. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "18728da96fa3aedc": {
+      "text": "דנה התחילה לשחק בשעה שתיים, ושיחקה שעה. באיזו שעה היא סיימה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "140490ae49fa5014": {
+      "text": "הטיול נמשך שעה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "47da2ffc3205d509": {
+      "text": "יובל סיים בשעה שלוש.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "5697664d5b037346": {
+      "text": "דנה יצאה לטיול בשעה שתיים, וחזרה בשעה שלוש. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "9d7607ce987263a0": {
+      "text": "יובל התחיל לשחק בשעה שתיים, ושיחק שעה. באיזו שעה הוא סיים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "38d114fc41cac92d": {
+      "text": "יובל יצא לטיול בשעה שתיים, וחזר בשעה שלוש. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "4f869a1161558ac8": {
+      "text": "דנה סיימה בשעה שלוש וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "49ca6d2eb42accbd": {
+      "text": "דנה התחילה לשחק בשעה שתיים, ושיחקה שעה וחצי. באיזו שעה היא סיימה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b3f34a90e6026efd": {
+      "text": "הטיול נמשך שעה וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "0fe23bd116640456": {
+      "text": "יובל סיים בשעה שלוש וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "edbeadd4c68c8ef4": {
+      "text": "דנה יצאה לטיול בשעה שתיים, וחזרה בשעה שלוש וחצי. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "7c202a0be6b3c6fc": {
+      "text": "יובל התחיל לשחק בשעה שתיים, ושיחק שעה וחצי. באיזו שעה הוא סיים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "2ad8a7ac19aaddf2": {
+      "text": "דנה סיימה בשעה ארבע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "94092a302e460f8d": {
+      "text": "יובל יצא לטיול בשעה שתיים, וחזר בשעה שלוש וחצי. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "521f5af56d6815eb": {
+      "text": "הטיול נמשך שעתיים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "97109fcfae9141b3": {
+      "text": "דנה התחילה לשחק בשעה שתיים, ושיחקה שעתיים. באיזו שעה היא סיימה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d67f1d5cec8fb63b": {
+      "text": "דנה יצאה לטיול בשעה שתיים, וחזרה בשעה ארבע. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a7d5733322040e7c": {
+      "text": "יובל התחיל לשחק בשעה שתיים, ושיחק שעתיים. באיזו שעה הוא סיים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "dbba37533bf4c356": {
+      "text": "יובל סיים בשעה ארבע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "06eb9afa15717a1b": {
+      "text": "יובל יצא לטיול בשעה שתיים, וחזר בשעה ארבע. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "fcb2cc99cb5d185a": {
+      "text": "דנה התחילה לשחק בשעה שתיים וחצי, ושיחקה חצי שעה. באיזו שעה היא סיימה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "78e48d61d2208e0a": {
+      "text": "דנה יצאה לטיול בשעה שתיים וחצי, וחזרה בשעה שלוש. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e633fb2c0bd0e1fc": {
+      "text": "יובל התחיל לשחק בשעה שתיים וחצי, ושיחק חצי שעה. באיזו שעה הוא סיים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f4dbb74f40f7ae67": {
+      "text": "דנה התחילה לשחק בשעה שתיים וחצי, ושיחקה שעה. באיזו שעה היא סיימה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "59373f8af2caa86a": {
+      "text": "יובל יצא לטיול בשעה שתיים וחצי, וחזר בשעה שלוש. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "6862c9ff06de3063": {
+      "text": "יובל התחיל לשחק בשעה שתיים וחצי, ושיחק שעה. באיזו שעה הוא סיים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ace7bcf8bf8b4f3b": {
+      "text": "דנה יצאה לטיול בשעה שתיים וחצי, וחזרה בשעה שלוש וחצי. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c0591f624e95a863": {
+      "text": "דנה התחילה לשחק בשעה שתיים וחצי, ושיחקה שעה וחצי. באיזו שעה היא סיימה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "fe9f9a8d25cac433": {
+      "text": "דנה יצאה לטיול בשעה שתיים וחצי, וחזרה בשעה ארבע. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f74f6f5585240469": {
+      "text": "יובל יצא לטיול בשעה שתיים וחצי, וחזר בשעה שלוש וחצי. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "7791e1265e02fd93": {
+      "text": "דנה סיימה בשעה ארבע וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "5f7718c19e84f237": {
+      "text": "יובל התחיל לשחק בשעה שתיים וחצי, ושיחק שעה וחצי. באיזו שעה הוא סיים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b0c499aafb71f018": {
+      "text": "יובל יצא לטיול בשעה שתיים וחצי, וחזר בשעה ארבע. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e9eed4c448bdda04": {
+      "text": "דנה התחילה לשחק בשעה שתיים וחצי, ושיחקה שעתיים. באיזו שעה היא סיימה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "63963b710cb959a7": {
+      "text": "יובל סיים בשעה ארבע וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "5485020cf266265c": {
+      "text": "יובל יצא לטיול בשעה שתיים וחצי, וחזר בשעה ארבע וחצי. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "127e85cb68d40a9b": {
+      "text": "יובל התחיל לשחק בשעה שתיים וחצי, ושיחק שעתיים. באיזו שעה הוא סיים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "4cc75790bd8fad5f": {
+      "text": "דנה יצאה לטיול בשעה שתיים וחצי, וחזרה בשעה ארבע וחצי. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c7f7ec0a0cdd8352": {
+      "text": "דנה התחילה לשחק בשעה שלוש, ושיחקה חצי שעה. באיזו שעה היא סיימה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "6b02ac73cc6228d3": {
+      "text": "דנה יצאה לטיול בשעה שלוש, וחזרה בשעה שלוש וחצי. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "1f3f23d9ae5fb699": {
+      "text": "יובל התחיל לשחק בשעה שלוש, ושיחק חצי שעה. באיזו שעה הוא סיים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "0242de7950b1cc4e": {
+      "text": "יובל יצא לטיול בשעה שלוש, וחזר בשעה שלוש וחצי. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "0613d9ef6e563b8d": {
+      "text": "דנה התחילה לשחק בשעה שלוש, ושיחקה שעה. באיזו שעה היא סיימה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b59f9fb975dd131a": {
+      "text": "יובל התחיל לשחק בשעה שלוש, ושיחק שעה. באיזו שעה הוא סיים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ca3376326c92214e": {
+      "text": "דנה יצאה לטיול בשעה שלוש, וחזרה בשעה ארבע. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b140c60f1d3ea124": {
+      "text": "יובל יצא לטיול בשעה שלוש, וחזר בשעה ארבע. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d6ddbe257ec4f125": {
+      "text": "דנה יצאה לטיול בשעה שלוש, וחזרה בשעה ארבע וחצי. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "32a4cac88269ca5f": {
+      "text": "דנה התחילה לשחק בשעה שלוש, ושיחקה שעה וחצי. באיזו שעה היא סיימה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "405de21af558f5c3": {
+      "text": "יובל יצא לטיול בשעה שלוש, וחזר בשעה ארבע וחצי. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "18eac014c0a69392": {
+      "text": "דנה סיימה בשעה חמש.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "fdeb6a49ed6f195b": {
+      "text": "יובל התחיל לשחק בשעה שלוש, ושיחק שעה וחצי. באיזו שעה הוא סיים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "849a6d1a12bb4dc0": {
+      "text": "יובל סיים בשעה חמש.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b47d1abe4b3b8535": {
+      "text": "דנה יצאה לטיול בשעה שלוש, וחזרה בשעה חמש. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "5539762aa5f43b22": {
+      "text": "יובל התחיל לשחק בשעה שלוש, ושיחק שעתיים. באיזו שעה הוא סיים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c570461c4d942dee": {
+      "text": "דנה התחילה לשחק בשעה שלוש, ושיחקה שעתיים. באיזו שעה היא סיימה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "fa8af91649a546f9": {
+      "text": "דנה יצאה לטיול בשעה שלוש וחצי, וחזרה בשעה ארבע. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c5b7f1ac2b7145b8": {
+      "text": "דנה התחילה לשחק בשעה שלוש וחצי, ושיחקה חצי שעה. באיזו שעה היא סיימה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "0e26126657057736": {
+      "text": "יובל יצא לטיול בשעה שלוש, וחזר בשעה חמש. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c48ba9ac52fd75e2": {
+      "text": "יובל התחיל לשחק בשעה שלוש וחצי, ושיחק חצי שעה. באיזו שעה הוא סיים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c1fea8ddb96d880d": {
+      "text": "דנה התחילה לשחק בשעה שלוש וחצי, ושיחקה שעה. באיזו שעה היא סיימה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "5d4c2602fd367afc": {
+      "text": "דנה יצאה לטיול בשעה שלוש וחצי, וחזרה בשעה ארבע וחצי. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b5c5bd9b6add6924": {
+      "text": "יובל יצא לטיול בשעה שלוש וחצי, וחזר בשעה ארבע. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b1f977e576d8046f": {
+      "text": "יובל יצא לטיול בשעה שלוש וחצי, וחזר בשעה ארבע וחצי. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "fdd72cbb0a4d62ad": {
+      "text": "יובל התחיל לשחק בשעה שלוש וחצי, ושיחק שעה. באיזו שעה הוא סיים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "bee9bfa5e818380b": {
+      "text": "דנה התחילה לשחק בשעה שלוש וחצי, ושיחקה שעה וחצי. באיזו שעה היא סיימה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c55b1773a2aeca68": {
+      "text": "דנה התחילה לשחק בשעה שלוש וחצי, ושיחקה שעתיים. באיזו שעה היא סיימה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "0a711f3c300830dd": {
+      "text": "יובל יצא לטיול בשעה שלוש וחצי, וחזר בשעה חמש. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "568ad2c66ad33354": {
+      "text": "דנה יצאה לטיול בשעה שלוש וחצי, וחזרה בשעה חמש. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "adaabaab8be873ce": {
+      "text": "יובל התחיל לשחק בשעה שלוש וחצי, ושיחק שעה וחצי. באיזו שעה הוא סיים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "4202d51e2825f0ff": {
+      "text": "דנה סיימה בשעה חמש וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b24545ab56b78dbc": {
+      "text": "יובל סיים בשעה חמש וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "2e3017d070cc87ff": {
+      "text": "יובל התחיל לשחק בשעה שלוש וחצי, ושיחק שעתיים. באיזו שעה הוא סיים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d9335213b66ce137": {
+      "text": "יובל יצא לטיול בשעה שלוש וחצי, וחזר בשעה חמש וחצי. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "4e350069e2f9e2b7": {
+      "text": "דנה יצאה לטיול בשעה שלוש וחצי, וחזרה בשעה חמש וחצי. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "56c0e79e3cafa37c": {
+      "text": "דנה התחילה לשחק בשעה ארבע, ושיחקה חצי שעה. באיזו שעה היא סיימה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e5fd3e6cb9174ddf": {
+      "text": "דנה יצאה לטיול בשעה ארבע, וחזרה בשעה ארבע וחצי. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e43fbd1c7db80953": {
+      "text": "למשל, מהשעה חמש עד השעה שש וחצי עברה שעה וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "886b64c224eb3d1e": {
+      "text": "יובל יצא לטיול בשעה ארבע, וחזר בשעה ארבע וחצי. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "adebe551b39c5a96": {
+      "text": "דנה התחילה לשחק בשעה ארבע, ושיחקה שעה. באיזו שעה היא סיימה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f717fe32b2dfd64c": {
+      "text": "יובל התחיל לשחק בשעה ארבע, ושיחק חצי שעה. באיזו שעה הוא סיים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "bf29ef0a12292caf": {
+      "text": "דנה יצאה לטיול בשעה ארבע, וחזרה בשעה חמש. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ca30561d73d076b0": {
+      "text": "דנה התחילה לשחק בשעה ארבע, ושיחקה שעה וחצי. באיזו שעה היא סיימה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "8e77d3f114661f30": {
+      "text": "יובל יצא לטיול בשעה ארבע, וחזר בשעה חמש. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "38e0c918528c1950": {
+      "text": "יובל התחיל לשחק בשעה ארבע, ושיחק שעה. באיזו שעה הוא סיים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a323f4ae8d1e56f1": {
+      "text": "דנה יצאה לטיול בשעה ארבע, וחזרה בשעה חמש וחצי. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "bd56bededcdf4fe4": {
+      "text": "דנה סיימה בשעה שש.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "942905d0fcd2708f": {
+      "text": "יובל יצא לטיול בשעה ארבע, וחזר בשעה חמש וחצי. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "5c129c51549b82bb": {
+      "text": "יובל התחיל לשחק בשעה ארבע, ושיחק שעה וחצי. באיזו שעה הוא סיים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "3cb4f309b04b35d9": {
+      "text": "דנה התחילה לשחק בשעה ארבע, ושיחקה שעתיים. באיזו שעה היא סיימה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "856484062a9e7af2": {
+      "text": "יובל התחיל לשחק בשעה ארבע, ושיחק שעתיים. באיזו שעה הוא סיים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b31c5ebbdb230660": {
+      "text": "דנה יצאה לטיול בשעה ארבע, וחזרה בשעה שש. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "bd5a515666990cf7": {
+      "text": "יובל סיים בשעה שש.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "76486d3d05060aa7": {
+      "text": "יובל יצא לטיול בשעה ארבע, וחזר בשעה שש. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "df4818aebb633a05": {
+      "text": "דנה יצאה לטיול בשעה ארבע וחצי, וחזרה בשעה חמש. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "8014bca24363acb1": {
+      "text": "דנה התחילה לשחק בשעה ארבע וחצי, ושיחקה חצי שעה. באיזו שעה היא סיימה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "52b4650afd7483ef": {
+      "text": "יובל התחיל לשחק בשעה ארבע וחצי, ושיחק חצי שעה. באיזו שעה הוא סיים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "5881083074f0ddc6": {
+      "text": "דנה התחילה לשחק בשעה ארבע וחצי, ושיחקה שעה. באיזו שעה היא סיימה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "74e43cea4e316087": {
+      "text": "יובל יצא לטיול בשעה ארבע וחצי, וחזר בשעה חמש. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d510bc7fceb02610": {
+      "text": "יובל התחיל לשחק בשעה ארבע וחצי, ושיחק שעה. באיזו שעה הוא סיים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "cf893363080ab77a": {
+      "text": "דנה יצאה לטיול בשעה ארבע וחצי, וחזרה בשעה חמש וחצי. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e1b5652c8497c975": {
+      "text": "דנה התחילה לשחק בשעה ארבע וחצי, ושיחקה שעה וחצי. באיזו שעה היא סיימה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ad5056d02e4a5416": {
+      "text": "יובל יצא לטיול בשעה ארבע וחצי, וחזר בשעה חמש וחצי. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ab8bd0986f834fcf": {
+      "text": "דנה יצאה לטיול בשעה ארבע וחצי, וחזרה בשעה שש. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b3e09f052edb4065": {
+      "text": "יובל התחיל לשחק בשעה ארבע וחצי, ושיחק שעה וחצי. באיזו שעה הוא סיים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "63d4730c4a316e3c": {
+      "text": "יובל יצא לטיול בשעה ארבע וחצי, וחזר בשעה שש. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "926b6bed310d3386": {
+      "text": "דנה סיימה בשעה שש וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e62041ff40a1d9d0": {
+      "text": "דנה התחילה לשחק בשעה ארבע וחצי, ושיחקה שעתיים. באיזו שעה היא סיימה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c025f50a3409e32e": {
+      "text": "יובל סיים בשעה שש וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "11e208905c4aa696": {
+      "text": "דנה יצאה לטיול בשעה ארבע וחצי, וחזרה בשעה שש וחצי. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b16068b397bd8f05": {
+      "text": "יובל התחיל לשחק בשעה ארבע וחצי, ושיחק שעתיים. באיזו שעה הוא סיים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c3efc02b612eaa67": {
+      "text": "יובל יצא לטיול בשעה ארבע וחצי, וחזר בשעה שש וחצי. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "fd0ab93a280f00c9": {
+      "text": "דנה התחילה לשחק בשעה חמש, ושיחקה חצי שעה. באיזו שעה היא סיימה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "75b67d628f3f4a39": {
+      "text": "דנה יצאה לטיול בשעה חמש, וחזרה בשעה חמש וחצי. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "30d1ff5728620ca6": {
+      "text": "יובל יצא לטיול בשעה חמש, וחזר בשעה חמש וחצי. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "42ebc2563cbbfef9": {
+      "text": "דנה התחילה לשחק בשעה חמש, ושיחקה שעה. באיזו שעה היא סיימה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "64418f49b1eec07f": {
+      "text": "יובל התחיל לשחק בשעה חמש, ושיחק חצי שעה. באיזו שעה הוא סיים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "41e9ef87ef7517d4": {
+      "text": "יובל התחיל לשחק בשעה חמש, ושיחק שעה. באיזו שעה הוא סיים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ebf06ad9b9d9ff0b": {
+      "text": "דנה יצאה לטיול בשעה חמש, וחזרה בשעה שש. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d778771cf41fa8a7": {
+      "text": "יובל יצא לטיול בשעה חמש, וחזר בשעה שש. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e9bcb6f29f996695": {
+      "text": "דנה התחילה לשחק בשעה חמש, ושיחקה שעה וחצי. באיזו שעה היא סיימה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "566fd059c31ac9f8": {
+      "text": "יובל התחיל לשחק בשעה חמש, ושיחק שעה וחצי. באיזו שעה הוא סיים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "1ed20aee1d6f9aa7": {
+      "text": "דנה יצאה לטיול בשעה חמש, וחזרה בשעה שש וחצי. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b4e4c85d84c6e16e": {
+      "text": "יובל יצא לטיול בשעה חמש, וחזר בשעה שש וחצי. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "8ef54133776ce5d3": {
+      "text": "דנה התחילה לשחק בשעה חמש, ושיחקה שעתיים. באיזו שעה היא סיימה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "20208d638b0cdd39": {
+      "text": "דנה סיימה בשעה שבע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "fc43e958fd314d7d": {
+      "text": "דנה יצאה לטיול בשעה חמש, וחזרה בשעה שבע. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "4141455d45a9d27d": {
+      "text": "יובל התחיל לשחק בשעה חמש, ושיחק שעתיים. באיזו שעה הוא סיים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "22806a6caa18a68d": {
+      "text": "יובל סיים בשעה שבע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "75bcb15cec7499b9": {
+      "text": "יובל יצא לטיול בשעה חמש, וחזר בשעה שבע. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b40a0617d21b6dc5": {
+      "text": "דנה יצאה לטיול בשעה חמש וחצי, וחזרה בשעה שש. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "275dc3c4c25bd761": {
+      "text": "דנה התחילה לשחק בשעה חמש וחצי, ושיחקה חצי שעה. באיזו שעה היא סיימה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "80edec4a60dae01d": {
+      "text": "יובל התחיל לשחק בשעה חמש וחצי, ושיחק חצי שעה. באיזו שעה הוא סיים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a18df77caea0d3b8": {
+      "text": "יובל יצא לטיול בשעה חמש וחצי, וחזר בשעה שש. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "2ca21eeddca86aea": {
+      "text": "דנה התחילה לשחק בשעה חמש וחצי, ושיחקה שעה. באיזו שעה היא סיימה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "1706152abbeabed9": {
+      "text": "דנה יצאה לטיול בשעה חמש וחצי, וחזרה בשעה שש וחצי. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "97ad1bb73673bd5c": {
+      "text": "יובל יצא לטיול בשעה חמש וחצי, וחזר בשעה שש וחצי. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "667b13b1911caf6a": {
+      "text": "יובל התחיל לשחק בשעה חמש וחצי, ושיחק שעה. באיזו שעה הוא סיים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "9c3e8793eba7930b": {
+      "text": "דנה התחילה לשחק בשעה חמש וחצי, ושיחקה שעה וחצי. באיזו שעה היא סיימה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "0a76d1e1b9136789": {
+      "text": "יובל התחיל לשחק בשעה חמש וחצי, ושיחק שעה וחצי. באיזו שעה הוא סיים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "8972d8e0506f146e": {
+      "text": "יובל יצא לטיול בשעה חמש וחצי, וחזר בשעה שבע. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "33fe4f27c1873a63": {
+      "text": "דנה יצאה לטיול בשעה חמש וחצי, וחזרה בשעה שבע. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "37836ed497f5052e": {
+      "text": "דנה התחילה לשחק בשעה חמש וחצי, ושיחקה שעתיים. באיזו שעה היא סיימה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c933960239d399d0": {
+      "text": "דנה סיימה בשעה שבע וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ce590f093476273f": {
+      "text": "דנה יצאה לטיול בשעה חמש וחצי, וחזרה בשעה שבע וחצי. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "de4ac92a9f4093aa": {
+      "text": "יובל סיים בשעה שבע וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "bd41531e1714c84f": {
+      "text": "יובל התחיל לשחק בשעה חמש וחצי, ושיחק שעתיים. באיזו שעה הוא סיים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "0fa04b405f3faa86": {
+      "text": "דנה התחילה לשחק בשעה שש, ושיחקה חצי שעה. באיזו שעה היא סיימה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "34922473aa344241": {
+      "text": "יובל התחיל לשחק בשעה שש, ושיחק חצי שעה. באיזו שעה הוא סיים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "162c7224218caca6": {
+      "text": "יובל יצא לטיול בשעה חמש וחצי, וחזר בשעה שבע וחצי. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "59c5b5bbc58f19c1": {
+      "text": "דנה יצאה לטיול בשעה שש, וחזרה בשעה שש וחצי. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "fc0c577dcf7f9a72": {
+      "text": "דנה התחילה לשחק בשעה שש, ושיחקה שעה. באיזו שעה היא סיימה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "950dfc0e4f469a4a": {
+      "text": "יובל יצא לטיול בשעה שש, וחזר בשעה שש וחצי. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "155c8f936af4d400": {
+      "text": "דנה יצאה לטיול בשעה שש, וחזרה בשעה שבע. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "6876bd979ebc8318": {
+      "text": "יובל התחיל לשחק בשעה שש, ושיחק שעה. באיזו שעה הוא סיים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "abe7b70e949ebf35": {
+      "text": "יובל יצא לטיול בשעה שש, וחזר בשעה שבע. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "3d4676f057ce16ea": {
+      "text": "דנה יצאה לטיול בשעה שש, וחזרה בשעה שבע וחצי. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "9859a47a549553b2": {
+      "text": "דנה התחילה לשחק בשעה שש, ושיחקה שעה וחצי. באיזו שעה היא סיימה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b50b69b761a339f4": {
+      "text": "יובל התחיל לשחק בשעה שש, ושיחק שעה וחצי. באיזו שעה הוא סיים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "2cda75963960742b": {
+      "text": "יובל יצא לטיול בשעה שש, וחזר בשעה שבע וחצי. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "737909cc21cfb02f": {
+      "text": "דנה סיימה בשעה שמונה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "3421f323330311dc": {
+      "text": "דנה התחילה לשחק בשעה שש, ושיחקה שעתיים. באיזו שעה היא סיימה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "5bc1a96bb3f8ea51": {
+      "text": "יובל סיים בשעה שמונה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "2e5ae85ce3b64cb4": {
+      "text": "דנה יצאה לטיול בשעה שש, וחזרה בשעה שמונה. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "139b84a2d665d973": {
+      "text": "יובל התחיל לשחק בשעה שש, ושיחק שעתיים. באיזו שעה הוא סיים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "2a7dfc379b323a5e": {
+      "text": "דנה יצאה לטיול בשעה שש וחצי, וחזרה בשעה שבע. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "07f8d734017b20f9": {
+      "text": "יובל יצא לטיול בשעה שש, וחזר בשעה שמונה. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "77ba0acca8598057": {
+      "text": "דנה התחילה לשחק בשעה שש וחצי, ושיחקה חצי שעה. באיזו שעה היא סיימה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ea6144cbbb44d7d9": {
+      "text": "יובל התחיל לשחק בשעה שש וחצי, ושיחק חצי שעה. באיזו שעה הוא סיים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "47438cb1aec15295": {
+      "text": "יובל יצא לטיול בשעה שש וחצי, וחזר בשעה שבע. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "1bbc5737c8e5cdc2": {
+      "text": "דנה התחילה לשחק בשעה שש וחצי, ושיחקה שעה. באיזו שעה היא סיימה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "07e42428077110ba": {
+      "text": "יובל התחיל לשחק בשעה שש וחצי, ושיחק שעה. באיזו שעה הוא סיים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "94c772cbea82fbcb": {
+      "text": "דנה יצאה לטיול בשעה שש וחצי, וחזרה בשעה שבע וחצי. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "4ef460b71855c6d5": {
+      "text": "יובל יצא לטיול בשעה שש וחצי, וחזר בשעה שבע וחצי. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "952665a65bb29334": {
+      "text": "דנה התחילה לשחק בשעה שש וחצי, ושיחקה שעה וחצי. באיזו שעה היא סיימה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "62d182f00594d2e0": {
+      "text": "דנה יצאה לטיול בשעה שש וחצי, וחזרה בשעה שמונה. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f932783183bc8878": {
+      "text": "יובל יצא לטיול בשעה שש וחצי, וחזר בשעה שמונה. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "3708afb128ee2edf": {
+      "text": "דנה התחילה לשחק בשעה שש וחצי, ושיחקה שעתיים. באיזו שעה היא סיימה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "16bccadbf80654b8": {
+      "text": "יובל התחיל לשחק בשעה שש וחצי, ושיחק שעה וחצי. באיזו שעה הוא סיים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "3260e18f4271440f": {
+      "text": "דנה סיימה בשעה שמונה וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d6c899598a30f23f": {
+      "text": "יובל סיים בשעה שמונה וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "6c171b3f5c6ec01f": {
+      "text": "דנה יצאה לטיול בשעה שש וחצי, וחזרה בשעה שמונה וחצי. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "671b13d55a1abf2e": {
+      "text": "יובל יצא לטיול בשעה שש וחצי, וחזר בשעה שמונה וחצי. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a2c13507684ceddc": {
+      "text": "יובל התחיל לשחק בשעה שש וחצי, ושיחק שעתיים. באיזו שעה הוא סיים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "68f97449225eb547": {
+      "text": "יובל התחיל לשחק בשעה שבע, ושיחק חצי שעה. באיזו שעה הוא סיים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "4a14707f5e71a01c": {
+      "text": "דנה התחילה לשחק בשעה שבע, ושיחקה חצי שעה. באיזו שעה היא סיימה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e2bf88a9a86bb142": {
+      "text": "דנה יצאה לטיול בשעה שבע, וחזרה בשעה שבע וחצי. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "0d21fbe47c34142e": {
+      "text": "יובל יצא לטיול בשעה שבע, וחזר בשעה שבע וחצי. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "28ef7c378d56afc5": {
+      "text": "דנה התחילה לשחק בשעה שבע, ושיחקה שעה. באיזו שעה היא סיימה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "98cf979afafdcd35": {
+      "text": "יובל התחיל לשחק בשעה שבע, ושיחק שעה. באיזו שעה הוא סיים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c6749d5b2469831f": {
+      "text": "דנה יצאה לטיול בשעה שבע, וחזרה בשעה שמונה. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "70fc722933c77812": {
+      "text": "יובל יצא לטיול בשעה שבע, וחזר בשעה שמונה. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ec4502c7cf3ade45": {
+      "text": "יובל התחיל לשחק בשעה שבע, ושיחק שעה וחצי. באיזו שעה הוא סיים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "7aeb73650c0f36b7": {
+      "text": "דנה התחילה לשחק בשעה שבע, ושיחקה שעה וחצי. באיזו שעה היא סיימה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c34d996d9609e4a3": {
+      "text": "דנה יצאה לטיול בשעה שבע, וחזרה בשעה שמונה וחצי. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "48199886dec967dc": {
+      "text": "יובל יצא לטיול בשעה שבע, וחזר בשעה שמונה וחצי. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ea8ab89fdbb05b88": {
+      "text": "דנה סיימה בשעה תשע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d4c31ee5d1c896ef": {
+      "text": "דנה התחילה לשחק בשעה שבע, ושיחקה שעתיים. באיזו שעה היא סיימה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f2fbb0c686849559": {
+      "text": "דנה יצאה לטיול בשעה שבע, וחזרה בשעה תשע. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "5eeae220035acb9e": {
+      "text": "יובל התחיל לשחק בשעה שבע, ושיחק שעתיים. באיזו שעה הוא סיים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "94bb6517c99a10f3": {
+      "text": "יובל סיים בשעה תשע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "625f15e9bcb150e5": {
+      "text": "דנה יצאה לטיול בשעה שבע וחצי, וחזרה בשעה שמונה. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f4cb4aca28acc1a6": {
+      "text": "דנה התחילה לשחק בשעה שבע וחצי, ושיחקה חצי שעה. באיזו שעה היא סיימה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "7703e1187d92c534": {
+      "text": "יובל יצא לטיול בשעה שבע, וחזר בשעה תשע. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "9a9c2bb654d19703": {
+      "text": "יובל התחיל לשחק בשעה שבע וחצי, ושיחק חצי שעה. באיזו שעה הוא סיים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f772d096389e5d09": {
+      "text": "יובל יצא לטיול בשעה שבע וחצי, וחזר בשעה שמונה. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d9629f400719ec26": {
+      "text": "דנה יצאה לטיול בשעה שבע וחצי, וחזרה בשעה שמונה וחצי. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "10f72f3e05268b61": {
+      "text": "דנה התחילה לשחק בשעה שבע וחצי, ושיחקה שעה. באיזו שעה היא סיימה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "65d11402892b1398": {
+      "text": "יובל התחיל לשחק בשעה שבע וחצי, ושיחק שעה. באיזו שעה הוא סיים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "fd5a00120ea552b9": {
+      "text": "יובל יצא לטיול בשעה שבע וחצי, וחזר בשעה שמונה וחצי. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "acf970b8d13f5fce": {
+      "text": "דנה התחילה לשחק בשעה שבע וחצי, ושיחקה שעה וחצי. באיזו שעה היא סיימה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "fcaabd0bf0368f7b": {
+      "text": "דנה יצאה לטיול בשעה שבע וחצי, וחזרה בשעה תשע. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "392b2b017329e9b9": {
+      "text": "דנה סיימה בשעה תשע וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "bd02ed66d05f9de5": {
+      "text": "יובל התחיל לשחק בשעה שבע וחצי, ושיחק שעה וחצי. באיזו שעה הוא סיים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ffedf0b2d27bb5db": {
+      "text": "יובל יצא לטיול בשעה שבע וחצי, וחזר בשעה תשע. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a295f5b73e47c308": {
+      "text": "דנה התחילה לשחק בשעה שבע וחצי, ושיחקה שעתיים. באיזו שעה היא סיימה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "9f0901dd1fce69c9": {
+      "text": "יובל סיים בשעה תשע וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "2881d571a530971d": {
+      "text": "יובל התחיל לשחק בשעה שבע וחצי, ושיחק שעתיים. באיזו שעה הוא סיים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "70bfa1451eb7314c": {
+      "text": "דנה יצאה לטיול בשעה שבע וחצי, וחזרה בשעה תשע וחצי. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "5752fc1501f1b3c4": {
+      "text": "יובל יצא לטיול בשעה שבע וחצי, וחזר בשעה תשע וחצי. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "611703276ce7ee85": {
+      "text": "דנה התחילה לשחק בשעה שמונה, ושיחקה חצי שעה. באיזו שעה היא סיימה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "88a048f8ccb897ba": {
+      "text": "יובל התחיל לשחק בשעה שמונה, ושיחק חצי שעה. באיזו שעה הוא סיים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "4d2b821527202dc2": {
+      "text": "דנה יצאה לטיול בשעה שמונה, וחזרה בשעה שמונה וחצי. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b9325af2bad336c5": {
+      "text": "יובל יצא לטיול בשעה שמונה, וחזר בשעה שמונה וחצי. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "9db84d6aa928b0ab": {
+      "text": "דנה התחילה לשחק בשעה שמונה, ושיחקה שעה. באיזו שעה היא סיימה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e63c9f9c39fdfb4f": {
+      "text": "דנה יצאה לטיול בשעה שמונה, וחזרה בשעה תשע. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "71166303245dac0a": {
+      "text": "יובל התחיל לשחק בשעה שמונה, ושיחק שעה. באיזו שעה הוא סיים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "1f0cf18e07a5ff35": {
+      "text": "יובל יצא לטיול בשעה שמונה, וחזר בשעה תשע. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "7f8cd52d1c830cc6": {
+      "text": "דנה התחילה לשחק בשעה שמונה, ושיחקה שעה וחצי. באיזו שעה היא סיימה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "dbe0ae29159d5d08": {
+      "text": "יובל התחיל לשחק בשעה שמונה, ושיחק שעה וחצי. באיזו שעה הוא סיים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "332fbebb15b59d43": {
+      "text": "דנה יצאה לטיול בשעה שמונה, וחזרה בשעה תשע וחצי. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "3f7ea7d550b3df91": {
+      "text": "יובל יצא לטיול בשעה שמונה, וחזר בשעה תשע וחצי. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "8a0c31d0ebcc2536": {
+      "text": "דנה סיימה בשעה עשר.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b40893ca82970c6b": {
+      "text": "דנה התחילה לשחק בשעה שמונה, ושיחקה שעתיים. באיזו שעה היא סיימה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "5f422e3e93d477a6": {
+      "text": "דנה יצאה לטיול בשעה שמונה, וחזרה בשעה עשר. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "3d213d319d068ec0": {
+      "text": "יובל סיים בשעה עשר.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "6923a58b70e5d354": {
+      "text": "יובל התחיל לשחק בשעה שמונה, ושיחק שעתיים. באיזו שעה הוא סיים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "576fd367b592b9ff": {
+      "text": "יובל יצא לטיול בשעה שמונה, וחזר בשעה עשר. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "83be3c2fdfa7a833": {
+      "text": "דנה יצאה לטיול בשעה שמונה וחצי, וחזרה בשעה תשע. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "7dc9503605a9ecba": {
+      "text": "דנה התחילה לשחק בשעה שמונה וחצי, ושיחקה חצי שעה. באיזו שעה היא סיימה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a9e0f134de8b9e66": {
+      "text": "יובל יצא לטיול בשעה שמונה וחצי, וחזר בשעה תשע. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "da0634a08f5220b9": {
+      "text": "יובל התחיל לשחק בשעה שמונה וחצי, ושיחק חצי שעה. באיזו שעה הוא סיים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "3a93b9d4535cad68": {
+      "text": "דנה התחילה לשחק בשעה שמונה וחצי, ושיחקה שעה. באיזו שעה היא סיימה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "9f4714f152e52f53": {
+      "text": "דנה יצאה לטיול בשעה שמונה וחצי, וחזרה בשעה תשע וחצי. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "86710aca918681b9": {
+      "text": "יובל יצא לטיול בשעה שמונה וחצי, וחזר בשעה תשע וחצי. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "0e165066a8863d15": {
+      "text": "יובל התחיל לשחק בשעה שמונה וחצי, ושיחק שעה. באיזו שעה הוא סיים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "bd4f6e111f6f5da0": {
+      "text": "דנה התחילה לשחק בשעה שמונה וחצי, ושיחקה שעה וחצי. באיזו שעה היא סיימה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "20264892ef496742": {
+      "text": "דנה יצאה לטיול בשעה שמונה וחצי, וחזרה בשעה עשר. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "5a817062ace7cfc3": {
+      "text": "יובל התחיל לשחק בשעה שמונה וחצי, ושיחק שעה וחצי. באיזו שעה הוא סיים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a38d3fdc03869b8b": {
+      "text": "דנה סיימה בשעה עשר וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "04b46a7c9dc66782": {
+      "text": "דנה התחילה לשחק בשעה שמונה וחצי, ושיחקה שעתיים. באיזו שעה היא סיימה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "42af80432900d80f": {
+      "text": "יובל יצא לטיול בשעה שמונה וחצי, וחזר בשעה עשר. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "744c88aa928c25e3": {
+      "text": "דנה יצאה לטיול בשעה שמונה וחצי, וחזרה בשעה עשר וחצי. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "af9d094f15f5b8e2": {
+      "text": "יובל סיים בשעה עשר וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c780e253e4040731": {
+      "text": "יובל התחיל לשחק בשעה שמונה וחצי, ושיחק שעתיים. באיזו שעה הוא סיים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "bc8f40d8ee631518": {
+      "text": "יובל יצא לטיול בשעה שמונה וחצי, וחזר בשעה עשר וחצי. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "48cbee58f3bc103a": {
+      "text": "דנה התחילה לשחק בשעה תשע, ושיחקה חצי שעה. באיזו שעה היא סיימה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "1cd4fb0cc226e057": {
+      "text": "דנה יצאה לטיול בשעה תשע, וחזרה בשעה תשע וחצי. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "9ee5b9b40d15bfe2": {
+      "text": "יובל התחיל לשחק בשעה תשע, ושיחק חצי שעה. באיזו שעה הוא סיים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "0f09527d5c046033": {
+      "text": "יובל יצא לטיול בשעה תשע, וחזר בשעה תשע וחצי. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "0c8927dc8085724e": {
+      "text": "דנה התחילה לשחק בשעה תשע, ושיחקה שעה. באיזו שעה היא סיימה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "0a1294405ed9fcb2": {
+      "text": "דנה יצאה לטיול בשעה תשע, וחזרה בשעה עשר. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c3c7a6bd26b471ad": {
+      "text": "יובל התחיל לשחק בשעה תשע, ושיחק שעה. באיזו שעה הוא סיים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ffd4e073c313736e": {
+      "text": "יובל יצא לטיול בשעה תשע, וחזר בשעה עשר. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "37753dc9974f565a": {
+      "text": "דנה התחילה לשחק בשעה תשע, ושיחקה שעה וחצי. באיזו שעה היא סיימה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "7645c26a49680647": {
+      "text": "דנה יצאה לטיול בשעה תשע, וחזרה בשעה עשר וחצי. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "67bbbc6f44a8f51f": {
+      "text": "יובל התחיל לשחק בשעה תשע, ושיחק שעה וחצי. באיזו שעה הוא סיים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "72407df34bad7bc2": {
+      "text": "יובל יצא לטיול בשעה תשע, וחזר בשעה עשר וחצי. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "8d51855acb6f487b": {
+      "text": "דנה סיימה בשעה אחת עשרה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "cd339a635044fee7": {
+      "text": "דנה התחילה לשחק בשעה תשע, ושיחקה שעתיים. באיזו שעה היא סיימה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "3bf22c7939e7846d": {
+      "text": "דנה יצאה לטיול בשעה תשע, וחזרה בשעה אחת עשרה. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "0be10f593d2adf53": {
+      "text": "יובל סיים בשעה אחת עשרה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "6f998f99b9bb0bb2": {
+      "text": "יובל התחיל לשחק בשעה תשע, ושיחק שעתיים. באיזו שעה הוא סיים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f6a84c4bba8894f7": {
+      "text": "דנה יצאה לטיול בשעה תשע וחצי, וחזרה בשעה עשר. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c101b8062a11c2f8": {
+      "text": "דנה התחילה לשחק בשעה תשע וחצי, ושיחקה חצי שעה. באיזו שעה היא סיימה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "6295a5b816a84331": {
+      "text": "יובל התחיל לשחק בשעה תשע וחצי, ושיחק חצי שעה. באיזו שעה הוא סיים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "3b7a11ff9116f6a6": {
+      "text": "יובל יצא לטיול בשעה תשע וחצי, וחזר בשעה עשר. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "cf4235ad66e66289": {
+      "text": "יובל יצא לטיול בשעה תשע, וחזר בשעה אחת עשרה. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "81234e9eb7281f31": {
+      "text": "דנה התחילה לשחק בשעה תשע וחצי, ושיחקה שעה. באיזו שעה היא סיימה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c0035e9485936d38": {
+      "text": "דנה יצאה לטיול בשעה תשע וחצי, וחזרה בשעה עשר וחצי. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c7aefb33e1d86c42": {
+      "text": "יובל התחיל לשחק בשעה תשע וחצי, ושיחק שעה. באיזו שעה הוא סיים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "880cd80e7c8530ac": {
+      "text": "יובל יצא לטיול בשעה תשע וחצי, וחזר בשעה עשר וחצי. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "840d602cd89977e6": {
+      "text": "דנה יצאה לטיול בשעה תשע וחצי, וחזרה בשעה אחת עשרה. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "566e929d17a73ad8": {
+      "text": "יובל התחיל לשחק בשעה תשע וחצי, ושיחק שעה וחצי. באיזו שעה הוא סיים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "cf9a88be7f22f200": {
+      "text": "דנה התחילה לשחק בשעה תשע וחצי, ושיחקה שעתיים. באיזו שעה היא סיימה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "578db7ce04725e54": {
+      "text": "יובל יצא לטיול בשעה תשע וחצי, וחזר בשעה אחת עשרה. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "6e1fb3cf1034036b": {
+      "text": "דנה התחילה לשחק בשעה תשע וחצי, ושיחקה שעה וחצי. באיזו שעה היא סיימה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "8c3ed14aa11b0054": {
+      "text": "דנה סיימה בשעה אחת עשרה וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "485a4d4d14afb114": {
+      "text": "יובל התחיל לשחק בשעה תשע וחצי, ושיחק שעתיים. באיזו שעה הוא סיים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "2f3da03ef8c7f6d7": {
+      "text": "דנה יצאה לטיול בשעה תשע וחצי, וחזרה בשעה אחת עשרה וחצי. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f1dbbd66ad128a15": {
+      "text": "יובל סיים בשעה אחת עשרה וחצי.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "0d508111139ddb0c": {
+      "text": "יובל יצא לטיול בשעה תשע וחצי, וחזר בשעה אחת עשרה וחצי. כמה זמן נמשך הטיול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
     }
   }
 }
