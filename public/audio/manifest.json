@@ -71460,6 +71460,2922 @@
     "60205d988bb7af51": {
       "text": "כל הכבוד! סיימת את החזרה של היום.",
       "voice": "chirp3-hd/Leda"
+    },
+    "c0d93a9ef22541ad": {
+      "text": "השעה אחת וחמישה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "16ee9cfd5fa43769": {
+      "text": "כל מספר בשעון שווה חמש דקות למחוג הארוך: על ארבע זה עשרים דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d7fe7f9f6aee9d85": {
+      "text": "זוויות וצורות",
+      "voice": "chirp3-hd/Leda"
+    },
+    "aa1d03dc7a8a79b7": {
+      "text": "המחוג הקצר מראה את השעה, והמחוג הארוך את הדקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "dad73e3307f4279a": {
+      "text": "מה השעה? כל חמש דקות",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "094c7dae58a33a39": {
+      "text": "השעון הזה מראה עשרים לתשע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "bb18b86ea4f249ca": {
+      "text": "למשל, השעון הזה מראה עשרים לתשע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "416d123be00f0b75": {
+      "text": "השעה אחת עשרים וחמש.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f4110f0c95426c41": {
+      "text": "השעה אחת ועשרים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c5d39389089e5fe1": {
+      "text": "השעה עשרים וחמש לשתיים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d96842ef9b81a6d0": {
+      "text": "זווית ישרה, חדה, קהה",
+      "voice": "chirp3-hd/Leda"
+    },
+    "934a88b833c6ae32": {
+      "text": "השעה אחת ועשרה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "aa1d5e1be50de5e3": {
+      "text": "השעה חמישה לשתיים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "08f6b00ab786c780": {
+      "text": "השעה עשרים לשתיים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "0b3cae341053c6d3": {
+      "text": "כמה זוויות ישרות?",
+      "voice": "chirp3-hd/Leda"
+    },
+    "9cec667c13175b60": {
+      "text": "השעה שתיים וחמישה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "8e06e1ef52b60dca": {
+      "text": "השעה שתיים ועשרה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c9b0dc5c95db6478": {
+      "text": "השעה שתיים ועשרים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "6abae104d105b32a": {
+      "text": "השעה שתיים עשרים וחמש.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e2a0009e2c48d749": {
+      "text": "השעה עשרים וחמש לשלוש.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "6d8b0fc6615c4441": {
+      "text": "השעה עשרים לשלוש.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "4859dff828242c3c": {
+      "text": "ישרים מקבילים ומאונכים",
+      "voice": "chirp3-hd/Leda"
+    },
+    "0e81a6cf23cdfeee": {
+      "text": "השעה חמישה לשלוש.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "1684a075ea8e46f8": {
+      "text": "השעה עשרה לשלוש.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "574741cdef9b1238": {
+      "text": "השעה שלוש וחמישה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "3816a824c6a05b77": {
+      "text": "השעה שלוש עשרים וחמש.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "aa829adcd46faea4": {
+      "text": "השעה שלוש ועשרה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "224ee9bbba8589f0": {
+      "text": "משולשים לפי הצלעות",
+      "voice": "chirp3-hd/Leda"
+    },
+    "100ae074e8ec1f60": {
+      "text": "השעה שלוש ועשרים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c0b602404dad16d2": {
+      "text": "השעה עשרים וחמש לארבע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "8375b3b6f28dbb56": {
+      "text": "השעה עשרים לארבע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "bbe29ffff7b4b445": {
+      "text": "השעה עשרה לארבע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "fffb3d40f664c48a": {
+      "text": "השעה חמישה לארבע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "33cb25d746bb6d97": {
+      "text": "השעה ארבע וחמישה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "3897c9f27a512961": {
+      "text": "משולשים לפי הזוויות",
+      "voice": "chirp3-hd/Leda"
+    },
+    "cdac18be34c680e0": {
+      "text": "השעה ארבע ועשרה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "6bc64a46e726f118": {
+      "text": "השעה ארבע ועשרים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "7a536eccf6ae39c9": {
+      "text": "השעה ארבע עשרים וחמש.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "fca9b54778145c23": {
+      "text": "השעה עשרים לחמש.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "39c157f494a55490": {
+      "text": "השעה עשרים וחמש לחמש.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a295ab5fc44a8c12": {
+      "text": "השעה חמש וחמישה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "9c0181e0a1672dc6": {
+      "text": "מרובעים",
+      "voice": "chirp3-hd/Leda"
+    },
+    "268b1dfc9f12b149": {
+      "text": "השעה עשרה לחמש.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "61d09cc424c2e438": {
+      "text": "השעה חמש ועשרה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ce5bfabedaad4062": {
+      "text": "השעה חמש ועשרים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "964cf4330aeb9481": {
+      "text": "סכום הזוויות במשולש",
+      "voice": "chirp3-hd/Leda"
+    },
+    "0c073615431a5d35": {
+      "text": "השעה עשרים וחמש לשש.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "51690353434e9ed5": {
+      "text": "השעה חמש עשרים וחמש.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c71a1cd391a50fa0": {
+      "text": "השעה עשרים לשש.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "47b7800c929e4177": {
+      "text": "השעה עשרה לשש.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b89e8195ab154f77": {
+      "text": "אלכסונים",
+      "voice": "chirp3-hd/Leda"
+    },
+    "485a11a7beec35ea": {
+      "text": "השעה חמישה לשש.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "bb1ca09829262e57": {
+      "text": "קווי סימטריה",
+      "voice": "chirp3-hd/Leda"
+    },
+    "ce71a0b2af9d6d42": {
+      "text": "השעה שש וחמישה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "0a70633bd1305a9c": {
+      "text": "השעה שש ועשרה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "1b176a7e0d5eda3a": {
+      "text": "השעה עשרה לשתיים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d3f052124faca6d8": {
+      "text": "השעה שש עשרים וחמש.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "197ebdb1719edb68": {
+      "text": "השעה עשרים וחמש לשבע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "24800e94764c095d": {
+      "text": "השעה שש ועשרים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "6825bcb151577ea4": {
+      "text": "נכון או לא נכון?",
+      "voice": "chirp3-hd/Leda"
+    },
+    "96facede6c1b7f56": {
+      "text": "השעה חמישה לחמש.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "7945006149594039": {
+      "text": "השעה חמישה לשבע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "23991402b0b2b0c3": {
+      "text": "השעה עשרה לשבע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "cde038e47908fa06": {
+      "text": "השעה עשרים לשבע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "7e691588d42abbb8": {
+      "text": "השעה שבע וחמישה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "9b37fa9f3dc868a4": {
+      "text": "השעה שבע ועשרה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "33312d9b2d2cd547": {
+      "text": "שטחים ונפחים",
+      "voice": "chirp3-hd/Leda"
+    },
+    "78133249d4432837": {
+      "text": "השעה שבע ועשרים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "266f42e3cf81da43": {
+      "text": "השעה שבע עשרים וחמש.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a9f3347a3fc1f22e": {
+      "text": "השעה עשרים וחמש לשמונה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b00d18f1822c41ce": {
+      "text": "השעה חמישה לשמונה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ae87fd4f949393be": {
+      "text": "השעה עשרה לשמונה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "0935099e861e1727": {
+      "text": "שטח מלבן וריבוע",
+      "voice": "chirp3-hd/Leda"
+    },
+    "fc250021914960bc": {
+      "text": "השעה שמונה וחמישה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "1fd1f77dace4200e": {
+      "text": "השעה עשרים לשמונה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "8e758614fcc97bc5": {
+      "text": "השעה שמונה ועשרים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ede5d218c52254d6": {
+      "text": "השעה שמונה עשרים וחמש.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d486e91182ded41b": {
+      "text": "השעה שמונה ועשרה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "92deb06fdebea9d9": {
+      "text": "שטח משולש ישר זווית",
+      "voice": "chirp3-hd/Leda"
+    },
+    "b67919cd21686d23": {
+      "text": "השעה עשרים וחמש לתשע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "874ec7c70400bcba": {
+      "text": "השעון הזה מראה שתיים ועשרה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "5eadb7b3b4cb5b9f": {
+      "text": "השעה עשרים לתשע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "464644928aa32c1f": {
+      "text": "למשל, השעון הזה מראה שתיים ועשרה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c388cda0d1f47c4b": {
+      "text": "השעה עשרה לתשע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "7bb171bd96da9669": {
+      "text": "השעה חמישה לתשע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b9c60b56e1f7c7a6": {
+      "text": "שטח משולש",
+      "voice": "chirp3-hd/Leda"
+    },
+    "57bb8a5c32517662": {
+      "text": "השעה תשע ועשרה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "57ac095b5544e0de": {
+      "text": "השעה תשע וחמישה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b0b9ca540d4090c8": {
+      "text": "השעה תשע ועשרים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "1762cb011dc54d43": {
+      "text": "השעה תשע עשרים וחמש.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "0d40f90d8871d2d2": {
+      "text": "השעה עשרים לעשר.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "666f6802b6322056": {
+      "text": "שטח מקבילית",
+      "voice": "chirp3-hd/Leda"
+    },
+    "d70e06d38d47b5be": {
+      "text": "השעה עשרים וחמש לעשר.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "0348968867570749": {
+      "text": "השעה חמישה לעשר.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a0b8aee1f8b0e678": {
+      "text": "השעה עשרה לעשר.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "1bb51072c84b7d0c": {
+      "text": "השעה עשר ועשרה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "3613765a8a8a99fb": {
+      "text": "שטח טרפז",
+      "voice": "chirp3-hd/Leda"
+    },
+    "c0612a1d84d66b27": {
+      "text": "השעה עשר וחמישה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "087b0863d23ff087": {
+      "text": "השעה עשר ועשרים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f53a99c961aa4cff": {
+      "text": "השעה עשר עשרים וחמש.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "73c99b1b0d15312f": {
+      "text": "השעה עשרים וחמש לאחת עשרה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "4b9c8887a2053510": {
+      "text": "השעה עשרים לאחת עשרה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "0c5bf994410ce525": {
+      "text": "השעה עשרה לאחת עשרה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e73ba15f8c65074d": {
+      "text": "השעה חמישה לאחת עשרה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ea741d677ab3c7cf": {
+      "text": "צורה מורכבת",
+      "voice": "chirp3-hd/Leda"
+    },
+    "380baa3356586779": {
+      "text": "השעה אחת עשרה ועשרה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "630caedaa633900a": {
+      "text": "השעה אחת עשרה וחמישה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f4a9cdcfb5412c6f": {
+      "text": "השעה אחת עשרה ועשרים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "7b833aae9ed6d041": {
+      "text": "השעה אחת עשרה עשרים וחמש.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b1b8778f701f87b0": {
+      "text": "נפח בקוביות",
+      "voice": "chirp3-hd/Leda"
+    },
+    "63c6892d7ae67a12": {
+      "text": "השעה עשרים לשתים עשרה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "0b587f1aabcf3895": {
+      "text": "השעה עשרים וחמש לשתים עשרה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e46d7ddae3ff3618": {
+      "text": "השעה חמישה לשתים עשרה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d1a2409edf03b7cf": {
+      "text": "השעה עשרה לשתים עשרה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "01f1a8eda76abbb8": {
+      "text": "השעה שתים עשרה וחמישה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b14db65ddecfc3e2": {
+      "text": "השעה שתים עשרה ועשרה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "5c7f3ed8174e0825": {
+      "text": "יחידות שטח ונפח",
+      "voice": "chirp3-hd/Leda"
+    },
+    "bd9bebe68d019aae": {
+      "text": "השעה שתים עשרה ועשרים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "743190e04cea5156": {
+      "text": "השעה שתים עשרה עשרים וחמש.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d49c18fcf480692c": {
+      "text": "השעה עשרים וחמש לאחת.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "8c240ccf24290a87": {
+      "text": "השעה עשרים לאחת.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "8c7cedc3f29be670": {
+      "text": "השעה חמישה לאחת.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "793746116639334f": {
+      "text": "השעה עשרה לאחת.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "1ca62ce3a30c238f": {
+      "text": "בעיות שטח ונפח",
+      "voice": "chirp3-hd/Leda"
+    },
+    "f345fd78c3b25cdb": {
+      "text": "השעה אחת ושלוש דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "21d027abff6853c9": {
+      "text": "השעה אחת ושתים עשרה דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e81b6a103875d107": {
+      "text": "השעה אחת ושבע דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "bfdf85b9c2c26238": {
+      "text": "השעה אחת ועשרים ושתיים דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "7c31ac50f9d622b3": {
+      "text": "שעון ומדידות",
+      "voice": "chirp3-hd/Leda"
+    },
+    "13efea90d16e4504": {
+      "text": "השעה אחת ועשרים ושבע דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f25356b80be6d7e7": {
+      "text": "סופרים בחמישיות עד המספר שלפני המחוג הארוך, ואז ממשיכים לספור את השנתות הקטנות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "393780796d3e572c": {
+      "text": "השעה אחת ושלושים ושלוש דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c98205b74fa6760f": {
+      "text": "השעה אחת וארבעים ושתיים דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "562b1cd0a5491ed3": {
+      "text": "השעה אחת ושלושים ושמונה דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "bad4e90b3aa1904a": {
+      "text": "מה השעה? כל דקה",
+      "voice": "chirp3-hd/Leda"
+    },
+    "087b31c80a54f130": {
+      "text": "השעה אחת וארבעים ושבע דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "21aa0053b321ce4d": {
+      "text": "השעה אחת וחמישים ושתיים דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e09e41332eee0e91": {
+      "text": "השעה אחת וחמישים ושמונה דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "94ee7eafe70a9625": {
+      "text": "כמה דקות עברו?",
+      "voice": "chirp3-hd/Leda"
+    },
+    "ef5b42d7c96047a5": {
+      "text": "השעה שתיים ושלוש דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "5c200e33338ca87d": {
+      "text": "השעה שתיים ושבע דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "8762a9cba8856356": {
+      "text": "השעה שתיים ושתים עשרה דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "397aa18843aeea58": {
+      "text": "השעה שתיים ושמונה עשרה דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b54d9906d66cfa22": {
+      "text": "שעות ודקות",
+      "voice": "chirp3-hd/Leda"
+    },
+    "82a19ec3128e4db1": {
+      "text": "השעה שתיים ועשרים ושתיים דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "99ccdb555cf032b2": {
+      "text": "השעה אחת ושמונה עשרה דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c85e6e80c027adac": {
+      "text": "השעה שתיים ושלושים ושלוש דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "84a255495965485c": {
+      "text": "השעה שתיים ועשרים ושבע דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "9546842f232d226c": {
+      "text": "השעה שתיים ושלושים ושמונה דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "4f5df55f41da3477": {
+      "text": "השעה שתיים וארבעים ושתיים דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "38516bc7b13fc5e3": {
+      "text": "השעה שתיים וחמישים ושתיים דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "bcdfc9a7ce20ffb5": {
+      "text": "מטרים וסנטימטרים",
+      "voice": "chirp3-hd/Leda"
+    },
+    "991e5bc9558fb0e7": {
+      "text": "השעה שתיים וארבעים ושבע דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "48402e88101bf0fb": {
+      "text": "השעה שתיים וחמישים ושמונה דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "63a31180010569a8": {
+      "text": "השעה שלוש ושלוש דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "48ca85cd3adf7779": {
+      "text": "השעה שלוש ושבע דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "477a44fd9842b83a": {
+      "text": "מודדים בסרגל",
+      "voice": "chirp3-hd/Leda"
+    },
+    "972b223b69841a2d": {
+      "text": "השעה שלוש ושתים עשרה דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "4117373940db66da": {
+      "text": "השעה שלוש ושמונה עשרה דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "1d9d52b76dc668d4": {
+      "text": "השעה שלוש ועשרים ושבע דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "af2d2442ca78553e": {
+      "text": "השעה שלוש ועשרים ושתיים דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d551d4edde8d0aa4": {
+      "text": "השעה שלוש ושלושים ושלוש דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e1ec3f46aaf0fcfa": {
+      "text": "השעה שלוש ושלושים ושמונה דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "451086043bebe9a4": {
+      "text": "השעה שלוש וארבעים ושתיים דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ee2e30dcaf4df62d": {
+      "text": "השעה שלוש וחמישים ושתיים דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "3c933c1cb350e7ed": {
+      "text": "קילוגרמים וגרמים",
+      "voice": "chirp3-hd/Leda"
+    },
+    "9d81bbdc5d7ad340": {
+      "text": "השעה שלוש וארבעים ושבע דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "95ee54640b70620c": {
+      "text": "השעה ארבע ושלוש דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "5e698a2e0f8213f7": {
+      "text": "השעה ארבע ושבע דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "5e53258bf0fe5385": {
+      "text": "השעה שלוש וחמישים ושמונה דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "0502e001f84c8092": {
+      "text": "השעה ארבע ושתים עשרה דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f0af2bc8ad29d958": {
+      "text": "מה ארוך יותר? מה כבד יותר?",
+      "voice": "chirp3-hd/Leda"
+    },
+    "71a3e7cfa41c03a8": {
+      "text": "השעה ארבע ועשרים ושתיים דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "270bd3d3f109db08": {
+      "text": "השעה ארבע ושמונה עשרה דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "0c5e56fcab100324": {
+      "text": "השעה ארבע ושלושים ושלוש דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "16eb6c773813d3da": {
+      "text": "השעה ארבע ועשרים ושבע דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "1447c5b347bfe41b": {
+      "text": "בעיות מדידה",
+      "voice": "chirp3-hd/Leda"
+    },
+    "07868bbf4bf11c70": {
+      "text": "השעה ארבע וארבעים ושתיים דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "4a566e88f29a16d4": {
+      "text": "השעה ארבע ושלושים ושמונה דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ed218c8e98ccaca5": {
+      "text": "השעה ארבע וארבעים ושבע דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "48aef18096ab5953": {
+      "text": "השעה ארבע וחמישים ושתיים דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "7ab7e316a102f076": {
+      "text": "השעה חמש ושלוש דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "7b6c3e4ad264ee99": {
+      "text": "השעה ארבע וחמישים ושמונה דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "90ce59b6857908c7": {
+      "text": "השעה חמש ושבע דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d2a09f4d56e8cf71": {
+      "text": "השעה חמש ושתים עשרה דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e2ddaed430f739ea": {
+      "text": "השעה חמש ושמונה עשרה דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "92ccb8563eaabd39": {
+      "text": "השעה חמש ועשרים ושתיים דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "5ff89e0c27d6bc47": {
+      "text": "השעה חמש ושלושים ושמונה דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "01285e5d16bfbf1b": {
+      "text": "השעה חמש ושלושים ושלוש דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "88504f50f2cf7f79": {
+      "text": "השעה חמש וארבעים ושתיים דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "226a4db9cdf2e7c7": {
+      "text": "השעה חמש ועשרים ושבע דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c945baa71bea0052": {
+      "text": "השעה חמש וארבעים ושבע דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "7995e05cc336427e": {
+      "text": "השעה שש ושלוש דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "81653e10fde96076": {
+      "text": "השעה שש ושבע דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "12550515428cb566": {
+      "text": "השעה חמש וחמישים ושתיים דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "886a6bc5993193c4": {
+      "text": "השעה חמש וחמישים ושמונה דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "24a8d96eff2d7991": {
+      "text": "השעה שש ושמונה עשרה דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "3741671ccc3e22d5": {
+      "text": "השעה שש ושתים עשרה דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "9d047bb83d854f41": {
+      "text": "השעה שש ועשרים ושתיים דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "7987a188f26c72ab": {
+      "text": "השעה שש ועשרים ושבע דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "0a2ce3ede6a20bf8": {
+      "text": "השעה שש ושלושים ושלוש דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "25776d7f07bdf315": {
+      "text": "השעה שש ושלושים ושמונה דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "1a11a22ffa169c89": {
+      "text": "השעה שש וארבעים ושתיים דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "8b9090096ccbf3af": {
+      "text": "השעה שש וחמישים ושתיים דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "76e1eefe31ee665b": {
+      "text": "השעה שש וארבעים ושבע דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "624193c15a337be7": {
+      "text": "השעה שש וחמישים ושמונה דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b9f74a1f1e3c941e": {
+      "text": "השעה שבע ושלוש דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "3a3f9336172e3e58": {
+      "text": "השעה שבע ושתים עשרה דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "856d7002e8da3e7c": {
+      "text": "השעה שבע ושבע דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f4c4cfe4011146fa": {
+      "text": "השעה שבע ושמונה עשרה דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "41438d4f22e83475": {
+      "text": "השעה שבע ועשרים ושתיים דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "9239048eff02793c": {
+      "text": "השעה שבע ושלושים ושלוש דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "9b891303df07f903": {
+      "text": "השעה שבע ועשרים ושבע דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "2f2e9e57bdbe227a": {
+      "text": "השעה שבע ושלושים ושמונה דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "702377c942fe4754": {
+      "text": "השעה שבע וארבעים ושבע דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e37c2208111cbf26": {
+      "text": "השעה שבע וחמישים ושתיים דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "0dd25c0656e33a0f": {
+      "text": "השעה שבע וארבעים ושתיים דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "08420b185640f25f": {
+      "text": "השעה שבע וחמישים ושמונה דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f5c3f13414a45cc8": {
+      "text": "השעה שמונה ושלוש דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "60fa07aad1a99a5d": {
+      "text": "השעה שמונה ושבע דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "db3b1616cb3f7d6a": {
+      "text": "השעה שמונה ושמונה עשרה דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d104ed09cf53bf82": {
+      "text": "השעה שמונה ושתים עשרה דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b449ed87a1e7b5db": {
+      "text": "השעה שמונה ועשרים ושתיים דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ae48c811838eaf0d": {
+      "text": "השעה שמונה ועשרים ושבע דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "65a2bf296b01ccd8": {
+      "text": "השעה שמונה ושלושים ושמונה דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "9726ad6d4879f400": {
+      "text": "השעה שמונה ושלושים ושלוש דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "92037b1b159f41fd": {
+      "text": "השעה שמונה וארבעים ושבע דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "6ee76b8214193bbf": {
+      "text": "השעה שמונה וארבעים ושתיים דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "230866a7d1ac4f7d": {
+      "text": "השעה שמונה וחמישים ושתיים דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e481a0f05f0b17c1": {
+      "text": "השעה תשע ושבע דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "fe541c53c26ff102": {
+      "text": "השעה תשע ושלוש דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ffba27b9b90378db": {
+      "text": "השעה שמונה וחמישים ושמונה דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "156557722d176011": {
+      "text": "השעה תשע ושתים עשרה דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "2c0880dc1a0ce5b7": {
+      "text": "השעה תשע ועשרים ושתיים דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "47a7d9909f4c7092": {
+      "text": "השעה תשע ושמונה עשרה דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ecccae7842481ee9": {
+      "text": "השעה תשע ועשרים ושבע דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "43f45a95c9196976": {
+      "text": "השעה תשע ושלושים ושמונה דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "dda8f6c3a3550fe3": {
+      "text": "השעה תשע ושלושים ושלוש דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "455c6d900cac36bd": {
+      "text": "השעה תשע וארבעים ושתיים דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "eb002da798d6cc4d": {
+      "text": "השעה תשע וארבעים ושבע דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b5603cccc4c1b726": {
+      "text": "השעה תשע וחמישים ושתיים דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "6e7ed8672b87f23d": {
+      "text": "השעה תשע וחמישים ושמונה דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "2ad1209133cea6bb": {
+      "text": "השעה עשר ושלוש דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "251dbc91fd86f404": {
+      "text": "השעה עשר ושבע דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b5cafbb499a559fe": {
+      "text": "השעה עשר ושתים עשרה דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b457c5644caa0657": {
+      "text": "השעה עשר ושמונה עשרה דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ada9a18dc6e28326": {
+      "text": "השעה עשר ועשרים ושתיים דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f26a1fcd28767e73": {
+      "text": "השעה עשר ועשרים ושבע דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "7ee1fb873aa5040e": {
+      "text": "השעה עשר ושלושים ושמונה דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "0882e3682da9636a": {
+      "text": "השעה עשר וארבעים ושתיים דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "fbed1d15d98c882b": {
+      "text": "השעה עשר ושלושים ושלוש דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "928c9381fafe1020": {
+      "text": "השעה עשר וארבעים ושבע דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "8b0c40d539175002": {
+      "text": "השעה עשר וחמישים ושתיים דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "2a8904e5843f18d0": {
+      "text": "השעה אחת עשרה ושלוש דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "63d553a6891fddcd": {
+      "text": "השעה עשר וחמישים ושמונה דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "5b2595f4ef204921": {
+      "text": "השעה אחת עשרה ושתים עשרה דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "0ecb741cb4cf8077": {
+      "text": "השעה אחת עשרה ושמונה עשרה דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "9c421c9ec4d5b29c": {
+      "text": "השעה אחת עשרה ועשרים ושתיים דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "76b4797a7c0e2c77": {
+      "text": "השעה אחת עשרה ושבע דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f100d87d02c6589b": {
+      "text": "השעה אחת עשרה ועשרים ושבע דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "af940e0055f4182b": {
+      "text": "השעה אחת עשרה ושלושים ושלוש דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "7b531b0d3e8f643d": {
+      "text": "השעה אחת עשרה וארבעים ושתיים דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e9366718c1d17c14": {
+      "text": "השעה אחת עשרה וארבעים ושבע דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "394a2d0465d9ed49": {
+      "text": "השעה אחת עשרה וחמישים ושתיים דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "75917e66d0538ad9": {
+      "text": "השעה אחת עשרה ושלושים ושמונה דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a1c9b9807371dd7f": {
+      "text": "השעה שתים עשרה ושלוש דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "eca699cf2f7a13c9": {
+      "text": "השעה שתים עשרה ושבע דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "3da28879c01c01d8": {
+      "text": "השעה אחת עשרה וחמישים ושמונה דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "872ca7566120234a": {
+      "text": "השעה שתים עשרה ועשרים ושתיים דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "24b181fde5c91173": {
+      "text": "השעה שתים עשרה ושמונה עשרה דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "eadbdae9cfc9278a": {
+      "text": "השעה שתים עשרה ועשרים ושבע דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "fa657d92ccea239e": {
+      "text": "השעה שתים עשרה ושלושים ושלוש דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "1ed9747b4751b3e3": {
+      "text": "השעה שתים עשרה ושתים עשרה דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f9bb3331a6526f37": {
+      "text": "השעה שתים עשרה ושלושים ושמונה דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "fd47ed3004f21bea": {
+      "text": "השעה שתים עשרה וארבעים ושבע דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "353a1f601d5a1862": {
+      "text": "השעה שתים עשרה וחמישים ושתיים דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "fd8bfd1bc7820e35": {
+      "text": "עברו",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ab9dbe60099dd4a3": {
+      "text": "השעה שתים עשרה וארבעים ושתיים דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c1c782fa39e4b832": {
+      "text": "דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a9c36efe9ae45a35": {
+      "text": "השעה שתים עשרה וחמישים ושמונה דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "1a34c38ae8098c0a": {
+      "text": "בודקים כמה המחוג הארוך זז מהשעון הראשון לשני.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b8bcde19672496c8": {
+      "text": "התשובה היא שישים דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a3ec8bd1b1b3bb68": {
+      "text": "כמה דקות יש בשעה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "6e3135c825cda6b3": {
+      "text": "כל מספר שהמחוג הארוך עובר הוא חמש דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "dd5ea5a6996e6507": {
+      "text": "חצי שעה היא שלושים דקות, ורבע שעה היא חמש עשרה דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ce2e6f5200fd5c13": {
+      "text": "מחברים: כל שעה שישים דקות, ועוד החלק של השעה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "0f57646d5776676a": {
+      "text": "בשעה אחת יש שישים דקות, לא מאה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "8d2d502d1a880436": {
+      "text": "כמה דקות יש בחצי שעה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "5419af373f2914f7": {
+      "text": "התשובה היא שלושים דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "5a32888af2fbadef": {
+      "text": "כמה דקות יש ברבע שעה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "727a92b35e501e89": {
+      "text": "התשובה היא חמש עשרה דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "30c26bc35f5807fc": {
+      "text": "התשובה היא תשעים דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "9097770cb7bcedae": {
+      "text": "כמה דקות יש בשעה וחצי?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "834dbf86858bb81f": {
+      "text": "התשובה היא מאה ועשרים דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "9ca4d4c094317022": {
+      "text": "כמה דקות יש בשעתיים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "223f069c6caea82a": {
+      "text": "כמה דקות יש בשלושה רבעי שעה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a13e49026b1a49f2": {
+      "text": "התשובה היא ארבעים וחמש דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "cbbae8bfe541065c": {
+      "text": "כמה דקות יש בשלוש שעות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "4a92b61cb341c046": {
+      "text": "התשובה היא מאה ושמונים דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "3ff6562413ca8dc7": {
+      "text": "כמה דקות יש בשעתיים וחצי?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "98d269bbdda48046": {
+      "text": "מטרים הם",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "48de1960fb0f619e": {
+      "text": "כמה מטרים הם",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "5eec477a5e637c4a": {
+      "text": "שני מטרים הם",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "31aca9ea262d1aff": {
+      "text": "בודקים כמה פעמים יחידה גדולה אחת נכנסת במספר.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f814603ef7ae6637": {
+      "text": "כמה סנטימטרים הם",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "42a515d7fe3ad40e": {
+      "text": "התשובה היא מאה וחמישים דקות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "570328b3f11c1b36": {
+      "text": "מטרים ועוד",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a14543d82ed4c49a": {
+      "text": "כמה סנטימטרים אורך העיפרון?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "40a4b5feedf94e40": {
+      "text": "מחליפים את היחידה הגדולה ביחידה הקטנה, ומחברים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "accb8b5b5327a89c": {
+      "text": "העיפרון נגמר בסימון",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "04e59e52df6bd1c2": {
+      "text": "ומתחיל בסימון",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "98f4b5f6a440fc07": {
+      "text": "מסתכלים איפה העיפרון מתחיל ואיפה הוא נגמר על הסרגל.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b55878a2da303a65": {
+      "text": ", אז האורך שלו",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "0d33e399ecec403e": {
+      "text": "העיפרון הזה מתחיל בשתיים ונגמר בשבע, אז האורך שלו חמישה סנטימטרים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "83e9a2c442598869": {
+      "text": "כמה גרמים הם",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e9575152f8c15a93": {
+      "text": "קילוגרמים ועוד",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "49267c0b0a803690": {
+      "text": "גרמים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "dfc53a3c108e4ecd": {
+      "text": "אם העיפרון לא מתחיל באפס, מורידים את המספר שבו הוא מתחיל.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ca9fdab456b6f1a8": {
+      "text": "גרמים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "8aa7ed9afa7ac6db": {
+      "text": "קילוגרמים הם",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "0d5f52cb0ce65584": {
+      "text": "בקילוגרם אחד יש אלף גרמים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "4a0f09793ef737bf": {
+      "text": "שני קילוגרמים הם",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "04385a495d60a980": {
+      "text": "קילוגרמים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f5d6c6f21c214c1f": {
+      "text": "מה ארוך יותר,",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "1bae1f85be859c1e": {
+      "text": "סנטימטרים או",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f174df0a11b3874e": {
+      "text": "כמה קילוגרמים הם",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "30424b8f82f94a51": {
+      "text": "סנטימטרים זה פחות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "bd7e28f0cd40ecaf": {
+      "text": "מטרים או",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b8762b39a10ba5da": {
+      "text": "מה כבד יותר,",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "508c09830f405432": {
+      "text": "קודם מעבירים את שתי הכמויות לאותה יחידה, ורק אז משווים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "84f59d5a4d9c0e43": {
+      "text": "שני מטרים הם מאתיים סנטימטרים, וזה יותר ממאה וחמישים סנטימטרים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e493921665d8e4ef": {
+      "text": "קילוגרמים או",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "cafe1fe6cd59c9db": {
+      "text": "גרמים זה פחות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "5b385cb569639270": {
+      "text": "גרמים או",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "80dbd432a0eb7a9c": {
+      "text": "קילוגרמים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "5c0c7ed56d9cd06c": {
+      "text": "סנטימטרים או שני מטרים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "123339f1e8d2324a": {
+      "text": "התשובה היא שני מטרים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "7921c99ef9fb0217": {
+      "text": "התשובה היא שני קילוגרמים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c8b030155dff1a88": {
+      "text": "גרמים או שני קילוגרמים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "0cf5a97e45a72a99": {
+      "text": "מה כבד יותר, שני קילוגרמים או",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b3b4bb108c4afd7f": {
+      "text": "גרמים. שני קילוגרמים זה פחות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "54072b90ad26f4d7": {
+      "text": "מה ארוך יותר, שני מטרים או",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "4f6c66bb00c4a76b": {
+      "text": "השיעור נגמר בשעה אחת ורבע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "3a2a894d8a58bc03": {
+      "text": "מוסיפים את הזמן לשעת ההתחלה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "0f6e0325d05750d6": {
+      "text": "השיעור התחיל בשעה אחת ונמשך חמש עשרה דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c7f76c8894a04b7e": {
+      "text": "סנטימטרים. שני מטרים זה פחות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c9342ebabe769a03": {
+      "text": "שישים דקות הן שעה שלמה: כשעוברים את השתים עשרה, השעה מתקדמת באחת.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "3047b4ae15cc1eed": {
+      "text": "הנה השעון בתחילת השיעור. מזיזים את המחוג הארוך קדימה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "79db6a8fa2e3a023": {
+      "text": "השיעור נגמר בשעה אחת ועשרים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "7d5aa5362caf2e1a": {
+      "text": "השיעור התחיל בשעה אחת ונמשך עשרים דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "5eb62285c46be60c": {
+      "text": "השיעור נגמר בשעה עשרים לשתיים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c3cfd3946ce123a5": {
+      "text": "השיעור התחיל בשעה אחת ונמשך ארבעים דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "08e315384ba83ec9": {
+      "text": "השיעור נגמר בשעה רבע לשתיים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "94ed1b5012679c29": {
+      "text": "השיעור התחיל בשעה אחת ונמשך ארבעים וחמש דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "aa170383fb21f480": {
+      "text": "השיעור נגמר בשעה עשרה לשתיים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "909c123efa7fd9a0": {
+      "text": "השיעור התחיל בשעה אחת ונמשך חמישים דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "9eb3ca79bc41a42a": {
+      "text": "השיעור התחיל בשעה אחת וחצי ונמשך חמש עשרה דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "18939b44a6878f4b": {
+      "text": "השיעור נגמר בשעה שתיים ועשרה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ae2d5ee3a24003b5": {
+      "text": "השיעור נגמר בשעה שתיים ורבע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d9b3e79a34bfa749": {
+      "text": "השיעור התחיל בשעה אחת וחצי ונמשך ארבעים דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "5a5431bf6b6cc0c5": {
+      "text": "השיעור התחיל בשעה אחת וחצי ונמשך ארבעים וחמש דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "31d7e50e11d70d4b": {
+      "text": "השיעור התחיל בשעה אחת וחצי ונמשך חמישים דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "590bc55b4fac88d7": {
+      "text": "השיעור התחיל בשעה אחת וחצי ונמשך עשרים דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "69c9da39e29d40e1": {
+      "text": "השיעור נגמר בשעה שתיים ועשרים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "473d79d3911efa6f": {
+      "text": "השיעור התחיל בשעה שתיים ונמשך חמש עשרה דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "3c55894ba869f21b": {
+      "text": "השיעור נגמר בשעה עשרים לשלוש.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f6371b00a85e77b4": {
+      "text": "השיעור התחיל בשעה שתיים ונמשך עשרים דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c35b38806ad222bd": {
+      "text": "השיעור התחיל בשעה שתיים ונמשך ארבעים דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "44656dc2836bc99b": {
+      "text": "השיעור התחיל בשעה שתיים ונמשך ארבעים וחמש דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "4ab90b50bb702349": {
+      "text": "השיעור נגמר בשעה רבע לשלוש.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d4fb8d68899d585c": {
+      "text": "השיעור התחיל בשעה שתיים ונמשך חמישים דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "76a8aab59779659e": {
+      "text": "השיעור נגמר בשעה עשרה לשלוש.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "998d70af666504f0": {
+      "text": "השיעור התחיל בשעה שתיים וחצי ונמשך חמש עשרה דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ffc2cc2610d897f1": {
+      "text": "השיעור התחיל בשעה שתיים וחצי ונמשך ארבעים דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "00a37119d0ac583a": {
+      "text": "השיעור נגמר בשעה שלוש ועשרה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f67c35f9e0ed938b": {
+      "text": "השיעור נגמר בשעה שלוש ורבע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "0ebdf81d64af164b": {
+      "text": "השיעור התחיל בשעה שתיים וחצי ונמשך עשרים דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a91ed0e98aba468c": {
+      "text": "השיעור התחיל בשעה שתיים וחצי ונמשך ארבעים וחמש דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "10c9166aecd59309": {
+      "text": "השיעור נגמר בשעה שלוש ועשרים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "8a82283856bfc2d6": {
+      "text": "השיעור התחיל בשעה שלוש ונמשך חמש עשרה דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "7255312292a6159e": {
+      "text": "השיעור התחיל בשעה שתיים וחצי ונמשך חמישים דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "4ef53c3137d0b18e": {
+      "text": "השיעור התחיל בשעה שלוש ונמשך עשרים דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "839cca135e59a91b": {
+      "text": "השיעור התחיל בשעה שלוש ונמשך ארבעים דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "0653caea4d00f4c2": {
+      "text": "השיעור נגמר בשעה עשרים לארבע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "2459e481baeade49": {
+      "text": "השיעור נגמר בשעה רבע לארבע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b46d24af41b5e010": {
+      "text": "השיעור התחיל בשעה שלוש ונמשך ארבעים וחמש דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "19394b589a283693": {
+      "text": "השיעור נגמר בשעה עשרה לארבע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d503223cab4c1661": {
+      "text": "השיעור התחיל בשעה שלוש ונמשך חמישים דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "176d8ba829287fa0": {
+      "text": "השיעור התחיל בשעה שלוש וחצי ונמשך עשרים דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c66017a99b6e29cb": {
+      "text": "השיעור התחיל בשעה שלוש וחצי ונמשך ארבעים דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "da585436c9493897": {
+      "text": "השיעור התחיל בשעה שלוש וחצי ונמשך חמש עשרה דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "9251e5365a44030f": {
+      "text": "השיעור התחיל בשעה שלוש וחצי ונמשך ארבעים וחמש דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "3aa20b7b77221211": {
+      "text": "השיעור נגמר בשעה ארבע ורבע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "9aea4ed3cfb66a48": {
+      "text": "השיעור נגמר בשעה ארבע ועשרה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "27abc421fa83257a": {
+      "text": "השיעור נגמר בשעה ארבע ועשרים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "184b236dbcc9e941": {
+      "text": "השיעור התחיל בשעה שלוש וחצי ונמשך חמישים דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "60109e475110eec0": {
+      "text": "השיעור התחיל בשעה ארבע ונמשך עשרים דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "bdea1c22881498c2": {
+      "text": "השיעור נגמר בשעה עשרים לחמש.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b2637a5fbdf84be3": {
+      "text": "השיעור התחיל בשעה ארבע ונמשך חמש עשרה דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "9876898271e5afa7": {
+      "text": "השיעור התחיל בשעה ארבע ונמשך ארבעים דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "7ae22a76715768bc": {
+      "text": "השיעור נגמר בשעה רבע לחמש.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f5000d32ab7a2570": {
+      "text": "השיעור התחיל בשעה ארבע ונמשך ארבעים וחמש דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "714fe132048df288": {
+      "text": "השיעור התחיל בשעה ארבע ונמשך חמישים דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ae8435c991941c64": {
+      "text": "השיעור התחיל בשעה ארבע וחצי ונמשך עשרים דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "57202fa11071b385": {
+      "text": "השיעור התחיל בשעה ארבע וחצי ונמשך חמש עשרה דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "0aeccb9b49dd4bc3": {
+      "text": "השיעור התחיל בשעה ארבע וחצי ונמשך ארבעים דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "dce37f5225da0a33": {
+      "text": "השיעור נגמר בשעה חמש ועשרה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "4c0332c4ccf13fb8": {
+      "text": "השיעור התחיל בשעה ארבע וחצי ונמשך ארבעים וחמש דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "be2ce3f9aafbda0d": {
+      "text": "השיעור נגמר בשעה חמש ורבע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "8cf680d5dab4bb77": {
+      "text": "השיעור התחיל בשעה ארבע וחצי ונמשך חמישים דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "558f96c50a460b6d": {
+      "text": "השיעור נגמר בשעה חמש ועשרים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f279029afc62b0a1": {
+      "text": "השיעור נגמר בשעה עשרה לחמש.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e3d257e82024df2d": {
+      "text": "השיעור התחיל בשעה חמש ונמשך עשרים דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "768f0652106d174e": {
+      "text": "השיעור התחיל בשעה חמש ונמשך חמש עשרה דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "6f94f558759a55c5": {
+      "text": "השיעור נגמר בשעה עשרים לשש.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ceb7f1b2af9014f3": {
+      "text": "השיעור נגמר בשעה רבע לשש.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "3e9fe029cfec82a3": {
+      "text": "השיעור התחיל בשעה חמש ונמשך ארבעים דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "aff7d70089d6b80f": {
+      "text": "השיעור התחיל בשעה חמש ונמשך ארבעים וחמש דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "6d0b12202f1fd82a": {
+      "text": "השיעור נגמר בשעה עשרה לשש.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ed8d774da82450eb": {
+      "text": "השיעור התחיל בשעה חמש ונמשך חמישים דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "8bf2bd5aca0234cd": {
+      "text": "השיעור התחיל בשעה חמש וחצי ונמשך חמש עשרה דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "2d8006e1988d6b55": {
+      "text": "השיעור התחיל בשעה חמש וחצי ונמשך ארבעים דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "132c887d5aa4a74e": {
+      "text": "השיעור התחיל בשעה חמש וחצי ונמשך עשרים דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "771cdd5074a08eb5": {
+      "text": "השיעור נגמר בשעה שש ועשרה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "6692b41a5ec96d78": {
+      "text": "השיעור נגמר בשעה שש ורבע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "6658a11c89748ef3": {
+      "text": "השיעור נגמר בשעה שש ועשרים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e31cda08f8a06cb8": {
+      "text": "השיעור התחיל בשעה חמש וחצי ונמשך ארבעים וחמש דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "5a5189c0a9d660dc": {
+      "text": "השיעור התחיל בשעה חמש וחצי ונמשך חמישים דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "70d97b14c095d22b": {
+      "text": "השיעור התחיל בשעה שש ונמשך חמש עשרה דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e87f9af80cddde47": {
+      "text": "השיעור התחיל בשעה שש ונמשך עשרים דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "0878f55ee6292eda": {
+      "text": "השיעור נגמר בשעה עשרים לשבע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ae1820aca037a615": {
+      "text": "השיעור התחיל בשעה שש ונמשך ארבעים דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ebe3a56d3ef6fd51": {
+      "text": "השיעור התחיל בשעה שש ונמשך ארבעים וחמש דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b4949f5651eab1d3": {
+      "text": "השיעור נגמר בשעה רבע לשבע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "05553e7b4ad37d2c": {
+      "text": "השיעור נגמר בשעה עשרה לשבע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "df5aa192e1eec3ec": {
+      "text": "השיעור התחיל בשעה שש ונמשך חמישים דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "9c1d0578527c15d6": {
+      "text": "השיעור התחיל בשעה שש וחצי ונמשך עשרים דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "5c0e8a5db550e102": {
+      "text": "השיעור התחיל בשעה שש וחצי ונמשך חמש עשרה דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b10f965870d0d754": {
+      "text": "השיעור התחיל בשעה שש וחצי ונמשך ארבעים דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "89c696176eebb566": {
+      "text": "השיעור נגמר בשעה שבע ועשרה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "6254aac97b31b422": {
+      "text": "השיעור נגמר בשעה שבע ועשרים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "3ac9fbd309b263ae": {
+      "text": "השיעור נגמר בשעה שבע ורבע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f1b38ee8b060b334": {
+      "text": "השיעור התחיל בשעה שש וחצי ונמשך חמישים דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "6cc5e6b5ce8f03d8": {
+      "text": "השיעור התחיל בשעה שבע ונמשך עשרים דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "470f4ba14a4b88b3": {
+      "text": "השיעור התחיל בשעה שש וחצי ונמשך ארבעים וחמש דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e1ffd542aab37435": {
+      "text": "השיעור התחיל בשעה שבע ונמשך ארבעים דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "0a6b5dd37978bd1c": {
+      "text": "השיעור נגמר בשעה עשרים לשמונה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "394874b67c316566": {
+      "text": "השיעור התחיל בשעה שבע ונמשך ארבעים וחמש דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "87795285b4421a39": {
+      "text": "השיעור נגמר בשעה רבע לשמונה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ea78d25316615134": {
+      "text": "השיעור התחיל בשעה שבע ונמשך חמש עשרה דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ed4fb493014531f4": {
+      "text": "השיעור התחיל בשעה שבע ונמשך חמישים דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "2264ba096898d2ee": {
+      "text": "השיעור נגמר בשעה עשרה לשמונה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "fbd763aa60dba560": {
+      "text": "השיעור התחיל בשעה שבע וחצי ונמשך עשרים דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ba989b269c804d24": {
+      "text": "השיעור נגמר בשעה שמונה ועשרה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f1e63d2329bbc1ef": {
+      "text": "השיעור התחיל בשעה שבע וחצי ונמשך חמש עשרה דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e8055babeeddd2b6": {
+      "text": "השיעור התחיל בשעה שבע וחצי ונמשך ארבעים דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "5053a7f4b930c6d5": {
+      "text": "השיעור נגמר בשעה שמונה ורבע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "017424d75aa26f76": {
+      "text": "השיעור התחיל בשעה שבע וחצי ונמשך חמישים דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "46902c6a0d105cfa": {
+      "text": "השיעור נגמר בשעה שמונה ועשרים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c2c35805ea361539": {
+      "text": "השיעור התחיל בשעה שמונה ונמשך חמש עשרה דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "9e358037d412fb50": {
+      "text": "השיעור התחיל בשעה שבע וחצי ונמשך ארבעים וחמש דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "594466c1320dcd07": {
+      "text": "השיעור התחיל בשעה שמונה ונמשך ארבעים דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "8a09ecc903747cdc": {
+      "text": "השיעור נגמר בשעה עשרים לתשע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "7e93b3b92f1f6196": {
+      "text": "השיעור התחיל בשעה שמונה ונמשך עשרים דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "40f80cec3ae971ec": {
+      "text": "השיעור נגמר בשעה רבע לתשע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "4249f06562434e32": {
+      "text": "השיעור נגמר בשעה עשרה לתשע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "6bc0c63ecbd90dc3": {
+      "text": "השיעור התחיל בשעה שמונה ונמשך חמישים דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "92365a8d50ba2947": {
+      "text": "השיעור התחיל בשעה שמונה ונמשך ארבעים וחמש דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "9fc9e715e047f2ac": {
+      "text": "השיעור התחיל בשעה שמונה וחצי ונמשך חמש עשרה דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e2d0d0c85fb61db3": {
+      "text": "השיעור נגמר בשעה תשע ועשרה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c911f8e48d3719a5": {
+      "text": "השיעור התחיל בשעה שמונה וחצי ונמשך עשרים דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "cecacdfbb3d0b90d": {
+      "text": "השיעור התחיל בשעה שמונה וחצי ונמשך ארבעים וחמש דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "98a6791a293ae34d": {
+      "text": "השיעור נגמר בשעה תשע ורבע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "94d6f067399ea05b": {
+      "text": "השיעור התחיל בשעה שמונה וחצי ונמשך ארבעים דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "363636e18af0e149": {
+      "text": "השיעור נגמר בשעה תשע ועשרים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "86c0961757a15da3": {
+      "text": "השיעור התחיל בשעה שמונה וחצי ונמשך חמישים דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ccc609852e9043e6": {
+      "text": "השיעור נגמר בשעה עשרים לעשר.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "4a201d748755f58c": {
+      "text": "השיעור התחיל בשעה תשע ונמשך ארבעים דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "22c9165e4bd5a0ec": {
+      "text": "השיעור התחיל בשעה תשע ונמשך חמש עשרה דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "68591221f76d6c1e": {
+      "text": "השיעור התחיל בשעה תשע ונמשך עשרים דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c6fc9eb594346325": {
+      "text": "השיעור נגמר בשעה עשרה לעשר.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "438ca4908c17263b": {
+      "text": "השיעור נגמר בשעה רבע לעשר.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e896d9d127f1796a": {
+      "text": "השיעור התחיל בשעה תשע ונמשך חמישים דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c30d337e788fede9": {
+      "text": "השיעור התחיל בשעה תשע ונמשך ארבעים וחמש דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "1c45965b8ebe45ed": {
+      "text": "השיעור התחיל בשעה תשע וחצי ונמשך חמש עשרה דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "5f5c9eabbdcfd469": {
+      "text": "השיעור התחיל בשעה תשע וחצי ונמשך ארבעים דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "5e5833195f08a87d": {
+      "text": "השיעור נגמר בשעה עשר ועשרה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a4d402b7eeb09d76": {
+      "text": "השיעור נגמר בשעה עשר ורבע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "62ddf051848a70d3": {
+      "text": "השיעור התחיל בשעה תשע וחצי ונמשך ארבעים וחמש דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "8f0e1233b6b2edf3": {
+      "text": "השיעור התחיל בשעה תשע וחצי ונמשך חמישים דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "33511937188731a2": {
+      "text": "השיעור התחיל בשעה תשע וחצי ונמשך עשרים דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "3ab8c1134c52293f": {
+      "text": "השיעור נגמר בשעה עשר ועשרים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e77011c99e4f8aba": {
+      "text": "השיעור התחיל בשעה עשר ונמשך עשרים דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e0eef9e979906288": {
+      "text": "השיעור התחיל בשעה עשר ונמשך חמש עשרה דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "24a131aa2bf9dca8": {
+      "text": "השיעור התחיל בשעה עשר ונמשך ארבעים דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "3835ea3c4b6f24a8": {
+      "text": "השיעור נגמר בשעה עשרים לאחת עשרה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b355f80aea90518a": {
+      "text": "השיעור נגמר בשעה רבע לאחת עשרה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "369342f58eb8b68c": {
+      "text": "השיעור התחיל בשעה עשר ונמשך חמישים דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "1ba145f1e187fda7": {
+      "text": "השיעור התחיל בשעה עשר ונמשך ארבעים וחמש דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "6aaa0c16c786092f": {
+      "text": "השיעור נגמר בשעה עשרה לאחת עשרה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "6fe99f4210abecd7": {
+      "text": "השיעור התחיל בשעה עשר וחצי ונמשך חמש עשרה דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "1daf7f599e2f475c": {
+      "text": "השיעור נגמר בשעה אחת עשרה ועשרה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a65a5cd1db90e62e": {
+      "text": "השיעור התחיל בשעה עשר וחצי ונמשך עשרים דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "4cf5c463f71d8831": {
+      "text": "השיעור התחיל בשעה עשר וחצי ונמשך ארבעים דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "dbd0751e9bf18b81": {
+      "text": "השיעור נגמר בשעה אחת עשרה ורבע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "4b6b1efb49100192": {
+      "text": "השיעור התחיל בשעה עשר וחצי ונמשך ארבעים וחמש דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "8fe9b25746b28787": {
+      "text": "השיעור התחיל בשעה עשר וחצי ונמשך חמישים דקות. באיזו שעה הוא נגמר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b574e15a5ccda1da": {
+      "text": "בשק יש",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f3171685bb0a52b5": {
+      "text": "השיעור נגמר בשעה אחת עשרה ועשרים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "5429354ae405459b": {
+      "text": "גרמים. כמה גרמים של קמח נשארו בשק?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "0d027b8cdc8d4126": {
+      "text": "קודם מעבירים את הקילוגרמים לגרמים, ואז מחסירים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d36a40df55068eb2": {
+      "text": "קילוגרמים קמח. לקחו ממנו",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b63914b3a837b86a": {
+      "text": "מסרט באורך",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "7efea422c28daf1c": {
+      "text": "מטרים גזרו",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "3d05a4d75c0d1907": {
+      "text": "שני קילוגרמים הם אלפיים גרמים. אלפיים פחות חמש מאות זה אלף וחמש מאות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "20914e848994a3da": {
+      "text": "קודם מעבירים את המטרים לסנטימטרים, ואז מחסירים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "625a19a8a4b2d448": {
+      "text": "איזו זווית זאת?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "8f14d178ddb23168": {
+      "text": "סנטימטרים. כמה סנטימטרים נשארו?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "629866f28893ba3e": {
+      "text": "זאת זווית חדה: היא קטנה מזווית ישרה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "2d538864c60672af": {
+      "text": "שני מטרים הם מאתיים סנטימטרים. מאתיים פחות חמישים זה מאה וחמישים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "86ec5a60d69f2d43": {
+      "text": "משווים לפינה של דף: זווית ישרה היא בדיוק כמו הפינה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c870e2ca8c170ea2": {
+      "text": "למשל, זאת זווית ישרה: בדיוק כמו פינה של דף.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e9bddf40af900acc": {
+      "text": "זווית חדה סגורה יותר מזווית ישרה, וזווית קהה פתוחה יותר ממנה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c1af42ab27f206d3": {
+      "text": "זאת זווית ישרה: בדיוק כמו פינה של דף.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "fa8775e8d5a7ff18": {
+      "text": "למשל, זאת זווית חדה: היא קטנה מזווית ישרה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "4a24858b86f3a8fa": {
+      "text": "כמה זוויות ישרות יש בצורה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "fb743406fe721772": {
+      "text": "זאת זווית קהה: היא גדולה מזווית ישרה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "df631f0ea510df5c": {
+      "text": "בודקים כל פינה של הצורה, אחת אחרי השנייה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ca57e4c0019c628a": {
+      "text": "יש בצורה ארבע זוויות ישרות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c405a3c868f9739d": {
+      "text": "יש בצורה",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ad474874fee05089": {
+      "text": "זוויות ישרות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "2442ee66677cc156": {
+      "text": "למשל, למלבן יש ארבע זוויות ישרות, אחת בכל פינה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "92ea66fce3901587": {
+      "text": "זווית ישרה נראית בדיוק כמו פינה של דף. פינה שפונה פנימה לא נחשבת.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b62a1ce7ac06ce54": {
+      "text": "למלבן יש ארבע זוויות ישרות, אחת בכל פינה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "1b5742209d10515c": {
+      "text": "יש בצורה שתי זוויות ישרות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ba6e7b676d148b62": {
+      "text": "יש בצורה זווית ישרה אחת.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "511d5556c96f2ded": {
+      "text": "אין בצורה הזאת זוויות ישרות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ea84fcdd1f828899": {
+      "text": "יש בצורה חמש זוויות ישרות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "7ca8ceebb2d0d131": {
+      "text": "אילו ישרים אלה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b25792b79594f25c": {
+      "text": "הישרים מקבילים: הם לא נפגשים אף פעם.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a75824d1a266cb63": {
+      "text": "ישרים מקבילים לא נפגשים אף פעם, גם אם ממשיכים אותם.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c2aac611904822a9": {
+      "text": "ישרים מאונכים נפגשים בזווית ישרה, כמו פינה של דף.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "87d3be1df1c67320": {
+      "text": "למשל, הישרים מאונכים: הם נפגשים בזווית ישרה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "2df4b7f46f776d9b": {
+      "text": "למשל, הישרים מקבילים: הם לא נפגשים אף פעם.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "db503cdbf10eb586": {
+      "text": "הישרים מאונכים: הם נפגשים בזווית ישרה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "bd748bf97c7841df": {
+      "text": "איזה משולש זה, לפי הצלעות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c38f7035468bf78d": {
+      "text": "הישרים נחתכים, אבל לא בזווית ישרה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a6c70f3c124a9935": {
+      "text": "זה משולש שווה צלעות: כל שלוש הצלעות שוות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "3e4c92816dc2db5c": {
+      "text": "משווים את האורכים של שלוש הצלעות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "77c58006234db280": {
+      "text": "למשל, זה משולש שווה שוקיים: שתי צלעות שוות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "2ef65ee462e1c4a2": {
+      "text": "למשל, זה משולש שווה צלעות: כל שלוש הצלעות שוות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "61756e1531fc5472": {
+      "text": "זה משולש שווה שוקיים: שתי צלעות שוות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "214ffae271358842": {
+      "text": "שלוש צלעות שוות: שווה צלעות. שתי צלעות שוות: שווה שוקיים. כולן שונות: שונה צלעות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c0f167ea8fbf10ab": {
+      "text": "זה משולש שונה צלעות: כל הצלעות באורכים שונים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "fe5126e2d461682a": {
+      "text": "איזה משולש זה, לפי הזוויות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "03177ad738fd2d89": {
+      "text": "מחפשים את הזווית הגדולה ביותר במשולש.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "5633cbb0b867b0e4": {
+      "text": "זה משולש חד זווית: כל הזוויות שלו קטנות מתשעים מעלות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "505661718b8ce129": {
+      "text": "למשל, זה משולש ישר זווית: יש בו זווית של תשעים מעלות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ced10f57f81feb12": {
+      "text": "זה משולש ישר זווית: יש בו זווית של תשעים מעלות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "04307b59af92c4c4": {
+      "text": "למשל, זה משולש קהה זווית: יש בו זווית גדולה מתשעים מעלות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "5a0da3478a8802c7": {
+      "text": "איזה מרובע זה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "58731b1ac0f0912f": {
+      "text": "זה משולש קהה זווית: יש בו זווית גדולה מתשעים מעלות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "0f86e87d398736ca": {
+      "text": "לריבוע ארבע צלעות שוות וארבע זוויות ישרות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "35adef447a73d631": {
+      "text": "למשל, למלבן ארבע זוויות ישרות, והצלעות שמול זו את זו שוות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a62705dc15491072": {
+      "text": "זווית של תשעים מעלות: ישר זווית. יותר מתשעים: קהה זווית. כל הזוויות פחות מתשעים: חד זווית.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a26d25970b230f2c": {
+      "text": "למלבן ארבע זוויות ישרות, והצלעות שמול זו את זו שוות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b9931e2a824ab992": {
+      "text": "מסתכלים על הצלעות: אילו שוות? אילו מקבילות? ויש זוויות ישרות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "017f5af9bc2cae64": {
+      "text": "זה מעוין.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "157767941669dc1d": {
+      "text": "למשל, לריבוע ארבע צלעות שוות וארבע זוויות ישרות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "96c93c49aa7dab3c": {
+      "text": "למעוין ארבע צלעות שוות, אבל הזוויות שלו לא ישרות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f07b6c2fcb8a6972": {
+      "text": "זה טרפז.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "1fdce39465e40fa6": {
+      "text": "במקבילית שני זוגות של צלעות מקבילות, בלי זוויות ישרות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "4770c202b742b724": {
+      "text": "זה מקבילית.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "67c44933b74176c3": {
+      "text": "בטרפז רק זוג אחד של צלעות מקבילות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "abcad4d6fda4832e": {
+      "text": "במשולש יש זווית של",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "53dbecd4af74de8f": {
+      "text": "מאה ושמונים פחות",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e50f12f5a1d6edf8": {
+      "text": "מעלות. כמה מעלות יש בזווית השלישית?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e79cd8307d8be888": {
+      "text": "מעלות וזווית של",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a6dbcc81ce9c19b7": {
+      "text": "מעלות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "65a79c749144ce73": {
+      "text": "מורידים ממאה ושמונים את שתי הזוויות שידועות:",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "acf73d1e9651ad85": {
+      "text": "סכום הזוויות בכל משולש הוא מאה ושמונים מעלות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "3243a21722f9eadf": {
+      "text": "כמה אלכסונים יש למשולש?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ddb9fb2686f4c9f5": {
+      "text": "למשולש אין אלכסונים: כל הקודקודים שלו שכנים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "43cd9f4571f3d385": {
+      "text": "אלכסון מחבר שני קודקודים שלא נמצאים אחד ליד השני.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "31aed6798dbd609c": {
+      "text": "הנה כל האלכסונים של הריבוע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "68d63499b7687f95": {
+      "text": "למשל, הנה כל האלכסונים של הריבוע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "8a91ddf73f39033b": {
+      "text": "כמה אלכסונים יש לריבוע?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d20fe7d23129a1a2": {
+      "text": "מכל קודקוד יוצאים אלכסונים לכל הקודקודים שאינם שכנים שלו. כל אלכסון סופרים פעם אחת.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f1ce76e61838ce4b": {
+      "text": "הנה כל האלכסונים של המחומש.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f6d85dd8a06699cc": {
+      "text": "למשל, הנה כל האלכסונים של המחומש.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "4984196e1b2b8922": {
+      "text": "כמה אלכסונים יש למלבן?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "555a3b380832d7bb": {
+      "text": "לריבוע יש שני אלכסונים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a8e1a8a3072d9714": {
+      "text": "למלבן יש שני אלכסונים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "48929781b3f692c4": {
+      "text": "כמה אלכסונים יש לטרפז?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "00b19ca59c72e5ba": {
+      "text": "כמה אלכסונים יש למחומש?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "be136c278479f7ef": {
+      "text": "לטרפז יש שני אלכסונים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "67819b2af82a7302": {
+      "text": "למחומש יש חמישה אלכסונים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "aaeb822e4748223c": {
+      "text": "למחומש יש",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "0d3b4ef5c19252d8": {
+      "text": "כמה אלכסונים יש למשושה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "6b90b5efd06ba383": {
+      "text": "אלכסונים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "fb05095804b49812": {
+      "text": "למשושה יש תשעה אלכסונים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c3be2814114e8189": {
+      "text": "למשושה יש",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "41f7a23925a37e9c": {
+      "text": "כמה קווי סימטריה יש לריבוע?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e36fad2a974016b5": {
+      "text": "לריבוע יש ארבעה קווי סימטריה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "efd4d99074a6cbb5": {
+      "text": "קו סימטריה מחלק את הצורה לשני חצאים שהם תמונת ראי זה של זה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "4156283a0a90ec23": {
+      "text": "קווי סימטריה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ac84b6c7478e8da5": {
+      "text": "למשל, למשולש שווה שוקיים יש קו סימטריה אחד, מהקודקוד העליון אל אמצע הבסיס.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d62571517abb380b": {
+      "text": "מדמיינים שמקפלים את הצורה לאורך הקו: האם שני החצאים מתלכדים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "9421d3ea2f13c6ab": {
+      "text": "למשולש שווה שוקיים יש קו סימטריה אחד, מהקודקוד העליון אל אמצע הבסיס.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f0d3ceed042663fb": {
+      "text": "כמה קווי סימטריה יש למלבן?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "34cf3c4a15421db3": {
+      "text": "למלבן יש שני קווי סימטריה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "fbb79c7749e98093": {
+      "text": "למשולש שווה צלעות יש שלושה קווי סימטריה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "1015a181f3bd68d5": {
+      "text": "כמה קווי סימטריה יש למשולש שווה צלעות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ca130d0367eb193f": {
+      "text": "למשולש שווה צלעות יש",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e158673241c648d0": {
+      "text": "כמה קווי סימטריה יש למשולש שווה שוקיים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "838f46a3b9d2ddd1": {
+      "text": "למשולש שווה שוקיים יש קו סימטריה אחד.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "18814c664575bef4": {
+      "text": "כמה קווי סימטריה יש למעוין?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "4aa92faf056edb06": {
+      "text": "כמה קווי סימטריה יש למקבילית?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e7b5b7cdd484a9c4": {
+      "text": "למעוין יש שני קווי סימטריה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "0548a02a10a49916": {
+      "text": "למשולש שונה צלעות אין קווי סימטריה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "6eb3a2e7a7255647": {
+      "text": "למקבילית אין קווי סימטריה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "810eaa54dc1caf35": {
+      "text": "כמה קווי סימטריה יש למשולש שונה צלעות?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "205f81a070f125d3": {
+      "text": "נכון!",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "619fc1a36b1aa412": {
+      "text": "חושבים על דוגמה של הצורה, ובודקים את המשפט עליה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "210cf0bd5f7e5cbd": {
+      "text": "נכון או לא נכון? לכל ריבוע יש ארבע זוויות ישרות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "9ef4b7b9db52264d": {
+      "text": "מציירים בראש את הצורה, וסופרים צלעות, פינות וזוויות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "20ac5872e39d3ad5": {
+      "text": "מספיקה דוגמה אחת שלא מתאימה כדי שהמשפט לא יהיה נכון.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "642bf9c89aeb45c0": {
+      "text": "נכון או לא נכון? כל מלבן הוא גם ריבוע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "73505a700007e6a7": {
+      "text": "לא נכון: במלבן הצלעות לא חייבות להיות שוות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "77df3709fa2555fd": {
+      "text": "נכון או לא נכון? במעוין כל הצלעות שוות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "70c221890ab9aa24": {
+      "text": "נכון או לא נכון? כל ריבוע הוא גם מלבן.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a3b391258939207e": {
+      "text": "נכון או לא נכון? במשולש יכולות להיות שתי זוויות ישרות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "79cb742598461bb9": {
+      "text": "לא נכון: שתי זוויות ישרות הן כבר מאה ושמונים מעלות, ולא נשאר מקום לזווית שלישית.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f58b656a380589bc": {
+      "text": "לא נכון: לטרפז יש רק זוג אחד של צלעות מקבילות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e77ba11f8cdd47c2": {
+      "text": "נכון או לא נכון? סכום הזוויות במשולש הוא מאה ושמונים מעלות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c6d084bbca14b82c": {
+      "text": "נכון או לא נכון? במקבילית יש שני זוגות של צלעות מקבילות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "bcdb29152c1c2068": {
+      "text": "נכון או לא נכון? לטרפז יש שני זוגות של צלעות מקבילות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "edd9ff9f1d1f918d": {
+      "text": "לא נכון: זווית קהה גדולה מזווית ישרה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f9ee5625d84aa1c5": {
+      "text": "נכון או לא נכון? זווית קהה קטנה מזווית ישרה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ef8a8fce461484e4": {
+      "text": "נכון או לא נכון? זווית חדה קטנה מזווית ישרה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "05e43d772292b730": {
+      "text": "נכון או לא נכון? ישרים מאונכים נפגשים בזווית ישרה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "2abd504a43c4cd46": {
+      "text": "לא נכון: ישרים מקבילים לא נפגשים אף פעם.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d1592aa04dfa79f0": {
+      "text": "נכון או לא נכון? ישרים מקבילים נפגשים בנקודה אחת.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "8d07188e8192bfb6": {
+      "text": "נכון או לא נכון? במשולש שווה צלעות כל הזוויות שוות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "bfd1435b12b835bb": {
+      "text": "נכון או לא נכון? לכל מרובע יש ארבע זוויות ישרות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e00a63539257e672": {
+      "text": "שטח של מלבן: אורך כפול רוחב.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "2c2e1863d1e2e025": {
+      "text": "מה השטח של מלבן שאורכו",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "db5e0aaddfb499ce": {
+      "text": "לא נכון: למשל, למעוין ולמקבילית אין זוויות ישרות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b17df79eb398620c": {
+      "text": "סנטימטרים והניצב השני",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "edb56190d4d82c0b": {
+      "text": "בריבוע כל הצלעות שוות, אז מכפילים את הצלע בעצמה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f3ef12c9ffc8ad25": {
+      "text": "במשולש ישר זווית, ניצב אחד",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "6fc327887d1da3f4": {
+      "text": "מה השטח של ריבוע שאורך הצלע שלו",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "6647ee6d987f3706": {
+      "text": "הבסיס של המשולש",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "3ad6f13950b2c9eb": {
+      "text": ", וחצי מזה הוא",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "73827f035294c95d": {
+      "text": "מכפילים, ואחר כך מחלקים לשתיים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a60dea364877b283": {
+      "text": "משולש ישר זווית הוא חצי ממלבן שהצלעות שלו הן שני הניצבים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "cde8628c779a48c8": {
+      "text": "שטח משולש: בסיס כפול גובה, לחלק לשתיים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "01dc85235cb7c9a3": {
+      "text": "סנטימטרים, והגובה שלה",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "4ba537df97aa66e0": {
+      "text": "סנטימטרים, והגובה שלו",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "457a07b165e5a235": {
+      "text": "הבסיס של המקבילית",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "4b2c93e474221fbc": {
+      "text": "שטח מקבילית: בסיס כפול גובה, כמו במלבן.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "6221d78d363b0566": {
+      "text": "סנטימטרים. מה השטח שלה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "5874a26706c0aa10": {
+      "text": "בטרפז, הבסיס הקצר",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c44948902f7080b7": {
+      "text": "הגובה הוא הקו המקווקו שעומד ישר על הבסיס, לא הצלע הנטויה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "009fc1e9d83ef419": {
+      "text": "סנטימטרים, הבסיס הארוך",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c60da95fcc96626e": {
+      "text": "שני הבסיסים ביחד הם",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "0758aab012bae39e": {
+      "text": "סנטימטרים והגובה",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "8668ea78f42649f5": {
+      "text": ", לחלק לשתיים, זה",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "3c6fac4fe75bad75": {
+      "text": "קודם מחברים את הבסיסים, ורק אחר כך כופלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "617723e7aaf3372e": {
+      "text": "סנטימטרים ובגובה",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "2c752bb25621ac22": {
+      "text": "לבית יש קיר מלבני ברוחב",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "8a2b9b3363a3b5f1": {
+      "text": "שטח טרפז: מחברים את שני הבסיסים, כופלים בגובה ומחלקים לשתיים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c272f5a03325c97b": {
+      "text": "סנטימטרים, ומעליו גג משולש בגובה",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "5a7994439f8d43d1": {
+      "text": ", המשולש",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "4085b054fff62922": {
+      "text": "סנטימטרים. מה השטח של כל הבית?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c2bfe11dbde83f02": {
+      "text": ", וביחד",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "2f715d8741db2296": {
+      "text": "המלבן",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "45b2bfa52adbdf41": {
+      "text": "מכמה קוביות בנויה התיבה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "db00c1a5eb95a515": {
+      "text": "מחשבים את השטח של כל חלק, ומחברים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "837bdb2719b2992d": {
+      "text": "מחלקים את הצורה לשני חלקים: מלבן למטה ומשולש למעלה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "9d441c5654620a0e": {
+      "text": "התיבה בנויה מ־שמונה קוביות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c4ff7073cb4b15e6": {
+      "text": "סופרים כמה קוביות יש בשכבה התחתונה, ואחר כך כמה שכבות יש.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f9f25cab15f1a637": {
+      "text": "בכל שכבה יש ארבע קוביות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d225eb17bfb76040": {
+      "text": "למשל, התיבה בנויה מ־שתים עשרה קוביות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "88b42d62f9857526": {
+      "text": "התיבה בנויה מ־",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "222a9185615a04fc": {
+      "text": "בכל שכבה יש",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "81402696618a0bff": {
+      "text": "קוביות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b557a07482b11d1b": {
+      "text": "התיבה בנויה מ־שתים עשרה קוביות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "14fd68d48b6a4e25": {
+      "text": "התיבה בנויה מ־שמונה עשרה קוביות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "eb2e0b3ea05841da": {
+      "text": "למשל, התיבה בנויה מ־שמונה קוביות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "26ede1c652838290": {
+      "text": "בכל שכבה יש תשע קוביות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e39b6cbc7ed36c47": {
+      "text": "התיבה בנויה מ־עשרים ושבע קוביות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "9aec8c85afebae9d": {
+      "text": "בכל שכבה יש שש קוביות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "63135155ea34d71e": {
+      "text": "בכל שכבה יש שמונה קוביות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "2490e1398be9e60d": {
+      "text": "התיבה בנויה מ־עשרים וארבע קוביות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e9af7c3a8fb3e7c8": {
+      "text": "התיבה בנויה מ־שש עשרה קוביות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "3a4feb7d3b532a90": {
+      "text": "בכל שכבה יש שתים עשרה קוביות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c0feb12db0896eec": {
+      "text": "נפח תיבה: אורך כפול רוחב כפול גובה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "11031fd506694508": {
+      "text": "מה הנפח של תיבה שאורכה",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "9666eba9f1c95421": {
+      "text": "התיבה בנויה מ־שלושים ושש קוביות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "25293a15f4470712": {
+      "text": "שטח הבסיס הוא",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "fe0f6504c4b46b67": {
+      "text": ". עכשיו כופלים בגובה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b8c798e4053f48c5": {
+      "text": "כמה סנטימטרים רבועים יש במטר רבוע אחד?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ba908464d7262e12": {
+      "text": "מטר הוא מאה סנטימטרים, ודצימטר הוא עשרה סנטימטרים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c8a9e6a213c9f7de": {
+      "text": "מטר רבוע הוא מאה סנטימטר כפול מאה סנטימטר: עשרת אלפים סנטימטרים רבועים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "737cdea7b8a575ea": {
+      "text": "ביחידות שטח כופלים פעמיים, וביחידות נפח שלוש פעמים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "11b182a9f747150f": {
+      "text": "ליטר אחד הוא בדיוק קובייה של עשרה סנטימטרים על עשרה על עשרה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "39185d8ff275dc63": {
+      "text": "כל אלף סנטימטרים מעוקבים הם ליטר, אז שלושת אלפים הם שלושה ליטרים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c5b0cc8188536b73": {
+      "text": "מה הנפח, בסנטימטרים מעוקבים, של קובייה שהמקצוע שלה עשרה סנטימטרים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f31f6343a01eca71": {
+      "text": "עשר כפול עשר כפול עשר זה אלף סנטימטרים מעוקבים, בדיוק ליטר.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "0ef181bcb588a0e7": {
+      "text": "כמה ליטרים הם שלושת אלפים סנטימטרים מעוקבים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "927ac09fa9f88cf6": {
+      "text": "במטר מעוקב אחד נכנסים אלף ליטרים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "66c4e9417b6a239c": {
+      "text": "כמה ליטרים נכנסים במטר מעוקב אחד?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "7e0bef02997c8176": {
+      "text": "דצימטר רבוע הוא עשרה סנטימטר כפול עשרה סנטימטר: מאה סנטימטרים רבועים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "65799ef5552cf74f": {
+      "text": "כמה סנטימטרים מעוקבים הם חמישה ליטרים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "85d7be0a6b7a3586": {
+      "text": "כמה סנטימטרים רבועים יש בדצימטר רבוע אחד?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "aca8efcb8f19577d": {
+      "text": "כל ליטר הוא אלף סנטימטרים מעוקבים, אז חמישה ליטרים הם חמשת אלפים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "eebc92d633172bad": {
+      "text": "כמה סנטימטרים רבועים יש בשני מטרים רבועים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "835a92fb407e4a13": {
+      "text": "בכל מטר רבוע יש עשרת אלפים סנטימטרים רבועים, אז בשניים יש עשרים אלף.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "3b0e289390804848": {
+      "text": "קופסה באורך",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "817229e9596e7c92": {
+      "text": "סנטימטרים. כמה קוביות שהמקצוע שלהן",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "03b36b4682a21fae": {
+      "text": "סנטימטרים נכנסות בה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b40cbae59d63bfe8": {
+      "text": "בודקים כמה קוביות נכנסות לאורך, כמה לרוחב וכמה לגובה, וכופלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "172e2d5d5c0b92f8": {
+      "text": "לחדר יש רצפה מלבנית באורך",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "6c7afdaa06014f25": {
+      "text": "מטרים וברוחב",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f293aaa1e81cc9d9": {
+      "text": "מטרים. כמה מטרים רבועים של שטיח צריך כדי לכסות את כל הרצפה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "525f5abe25ae48ef": {
+      "text": "לכסות את הרצפה: מחפשים את השטח שלה, לא את ההיקף.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "15f4b58ffcb9efab": {
+      "text": "סנטימטרים. כמה קוביות שהמקצוע שלהן שני סנטימטרים נכנסות בה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "0ff5b9bed2fc58db": {
+      "text": "סנטימטרים, ברוחב",
+      "voice": "wavenet/he-IL-Wavenet-A"
     }
   }
 }
