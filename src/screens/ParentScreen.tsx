@@ -11,6 +11,8 @@ import { makeT, t } from '@/i18n';
 import { formatDate, formatPercent, gradeLabel, mistakeLabel, topicLabel } from '@/i18n/labels';
 import { ParentGate } from '@/parent/ParentGate';
 import { ProfileForm } from '@/parent/ProfileForm';
+import { SyncSection } from '@/parent/SyncSection';
+import { useSync } from '@/sync';
 import { isStandalone } from '@/pwa/standalone';
 import { backupFileName, deliverFile, readBackupFile, serializeBackup } from '@/state/backup';
 import { PIN_LENGTH } from '@/state/pin';
@@ -69,6 +71,7 @@ function ParentArea() {
         </button>
       </header>
       <ChildrenSection />
+      <SyncSection />
       <BackupSection />
       <SecuritySection />
       <DeviceSection />
@@ -268,6 +271,7 @@ function BackupSection() {
   const data = useApp((s) => s.data);
   const markBackedUp = useApp((s) => s.markBackedUp);
   const replaceData = useApp((s) => s.replaceData);
+  const synced = useSync((s) => s.linked);
   const fileInput = useRef<HTMLInputElement>(null);
   const [message, setMessage] = useState<string | null>(null);
   const [pending, setPending] = useState<AppData | null>(null);
@@ -299,7 +303,7 @@ function BackupSection() {
   return (
     <section className="card stack" aria-labelledby="backup">
       <h2 id="backup">{t('parent.backup.title')}</h2>
-      <p>{t('parent.backup.body')}</p>
+      <p>{synced ? t('parent.backup.bodySynced') : t('parent.backup.body')}</p>
       <p className="muted">
         {lastBackupAt === null
           ? t('parent.backup.never')

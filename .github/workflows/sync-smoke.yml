@@ -1,0 +1,19 @@
+name: Sync smoke test
+
+# Exercises the production sync API end to end and deletes what it created.
+# Prints status codes only; the run's result is the answer.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npx --yes tsx@4 scripts/sync-smoke.ts https://math.assafkutai.workers.dev

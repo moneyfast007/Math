@@ -2438,3 +2438,63 @@ ol.steps {
   stroke-width: 1.5;
   stroke-dasharray: 3 3;
 }
+
+/* Sync between devices (parent area) */
+.sync-code {
+  font-family: var(--font-math);
+  letter-spacing: 0.3em;
+  font-variant-numeric: tabular-nums;
+}
+
+.sync-code--big {
+  display: block;
+  text-align: center;
+  font-size: clamp(2.5rem, 9vw, 4rem);
+  font-weight: 700;
+  color: var(--color-accent-strong);
+  padding: var(--space-3) 0;
+}
+
+.sync-pair {
+  text-align: center;
+}
+
+.sync-devices__title {
+  margin: var(--space-2) 0 0;
+  font-size: var(--text-md);
+}
+
+.sync-devices {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.sync-device {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  padding: var(--space-2) 0;
+  border-bottom: 1px solid var(--color-accent-soft);
+}
+
+.sync-device:last-child {
+  border-bottom: none;
+}
+
+.sync-device__main {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.sync-snapshots summary {
+  cursor: pointer;
+  font-weight: 700;
+  min-height: var(--tap-min);
+  display: flex;
+  align-items: center;
+}

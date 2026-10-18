@@ -75,6 +75,8 @@ export const he = {
   'parent.backup.title': 'גיבוי',
   'parent.backup.body':
     'ההתקדמות נשמרת רק במכשיר הזה. כדאי לשמור גיבוי מדי פעם, ובוודאי לפני החלפת מכשיר.',
+  'parent.backup.bodySynced':
+    'ההתקדמות מסונכרנת בין המכשירים של המשפחה. גיבוי לקובץ שומר בנוסף עותק משלכם, שלא תלוי בשרת.',
   'parent.backup.export': 'שמירת גיבוי',
   'parent.backup.import': 'שחזור מגיבוי',
   'parent.backup.last': 'גיבוי אחרון: {date}',
@@ -87,6 +89,73 @@ export const he = {
   'parent.backup.confirm': 'שחזור',
   'parent.backup.imported': 'השחזור הושלם.',
   'parent.backup.importError': 'לא הצלחנו לקרוא את הקובץ: {reason}',
+
+  // Sync between the family's devices (parent area)
+  'sync.title': 'סנכרון בין מכשירים',
+  'sync.intro':
+    'כדי שההתקדמות של הילדים תופיע בכל המכשירים של המשפחה, למשל באייפד ובטלפון, ותמשיך מאותה נקודה.',
+  'sync.privacy':
+    'בסנכרון, הפרופילים וההתקדמות נשמרים גם בשרת של פלוסי. אין צורך באימייל או בסיסמה, והנתונים לא נשלחים לאף גורם אחר.',
+  'sync.create': 'זה המכשיר הראשון: יצירת משפחה',
+  'sync.creating': 'יוצרים…',
+  'sync.join': 'חיבור למשפחה קיימת',
+  'sync.join.title': 'חיבור למשפחה קיימת',
+  'sync.join.how':
+    'במכשיר שכבר מחובר: אזור הורים ← סנכרון בין מכשירים ← חיבור מכשיר נוסף. מקלידים כאן את הקוד שמופיע שם.',
+  'sync.join.code': 'קוד חיבור',
+  'sync.join.submit': 'חיבור',
+  'sync.join.busy': 'מתחברים…',
+  'sync.joined.title': 'המכשיר חובר!',
+  'sync.joined.body': 'מעכשיו ההתקדמות מתעדכנת בכל המכשירים של המשפחה.',
+  'sync.joined.matched': 'אוחדו עם הפרופילים שכבר היו במשפחה: {names}.',
+  'sync.joined.added': 'נוספו למשפחה מהמכשיר הזה: {names}.',
+  'sync.status.syncing': 'מסנכרנים…',
+  'sync.status.synced': 'מסונכרן · {when}',
+  'sync.status.offline': 'אין חיבור לאינטרנט. הכל נשמר במכשיר ויסונכרן כשהחיבור יחזור.',
+  'sync.status.error': 'הסנכרון לא הצליח הפעם. ננסה שוב בקרוב.',
+  'sync.time.now': 'עכשיו',
+  'sync.time.minute': 'לפני דקה',
+  'sync.time.minutes': 'לפני {count} דקות',
+  'sync.now': 'סנכרון עכשיו',
+  'sync.addDevice': 'חיבור מכשיר נוסף',
+  'sync.pair.title': 'חיבור מכשיר נוסף',
+  'sync.pair.how':
+    'במכשיר החדש: אזור הורים ← סנכרון בין מכשירים ← חיבור למשפחה קיימת, ושם מקלידים את הקוד:',
+  'sync.pair.valid': 'הקוד תקף לחיבור של מכשיר אחד, עוד {time} דקות.',
+  'sync.pair.loading': 'מכינים קוד…',
+  'sync.pair.expired': 'פג תוקף הקוד. אפשר לסגור ולבקש קוד חדש.',
+  'sync.devices': 'המכשירים של המשפחה',
+  'sync.thisDevice': '(המכשיר הזה)',
+  'sync.deviceSince': 'חובר ב־{date}',
+  'sync.deviceSeen': 'סונכרן {when}',
+  'sync.removeDevice': 'ניתוק',
+  'sync.removeDevice.title': 'לנתק את המכשיר?',
+  'sync.removeDevice.body':
+    'המכשיר יפסיק להסתנכרן עם המשפחה. ההתקדמות שנעשתה בו עד עכשיו נשארת בחשבון, והנתונים שעליו נשארים בו.',
+  'sync.leave': 'ניתוק המכשיר הזה',
+  'sync.leave.title': 'לנתק את המכשיר הזה?',
+  'sync.leave.body': 'המכשיר יפסיק להסתנכרן. כל מה שמופיע בו עכשיו יישאר בו.',
+  'sync.delete': 'מחיקת המשפחה מהשרת',
+  'sync.delete.title': 'למחוק את המשפחה מהשרת?',
+  'sync.delete.body':
+    'כל הנתונים של המשפחה יימחקו מהשרת וכל המכשירים יתנתקו. מה שמופיע בכל מכשיר יישאר בו. אי אפשר לבטל את המחיקה.',
+  'sync.delete.confirm': 'מחיקה',
+  'sync.removed': 'המכשיר נותק מהסנכרון (ממכשיר אחר, או שהמשפחה נמחקה). הנתונים שבו נשארו.',
+  'sync.snapshots.title': 'עותקים מקומיים מלפני הסנכרון',
+  'sync.snapshots.body':
+    'לפני שהסנכרון משנה את הנתונים במכשיר הזה, נשמר בו עותק של מה שהיה (שלושת הימים האחרונים). חזרה לעותק מנתקת את המכשיר מהסנכרון.',
+  'sync.snapshots.restore': 'חזרה לעותק',
+  'sync.snapshots.confirmTitle': 'לחזור לעותק?',
+  'sync.snapshots.confirmBody':
+    'המכשיר יתנתק מהסנכרון ויחזור למצב שהיה בו ב־{date}. מה שנוסף מאז במכשיר הזה יימחק ממנו.',
+  'sync.snapshots.done': 'חזרנו לעותק. המכשיר לא מסונכרן עכשיו.',
+  'sync.problem.offline': 'אין חיבור לאינטרנט. נסו שוב כשיש חיבור.',
+  'sync.problem.invalidCode': 'הקוד לא נכון או שפג תוקפו. בקשו קוד חדש במכשיר המחובר.',
+  'sync.problem.rateLimited': 'יותר מדי ניסיונות. נסו שוב בעוד שעה.',
+  'sync.problem.tooManyDevices': 'למשפחה כבר מחוברים 10 מכשירים. נתקו מכשיר ישן ונסו שוב.',
+  'sync.problem.tooManyChildren':
+    'יחד יהיו יותר מ־6 ילדים. מחקו פרופיל באחד המכשירים ונסו שוב.',
+  'sync.problem.server': 'משהו השתבש בשרת. נסו שוב מאוחר יותר.',
 
   'parent.security.title': 'נעילת אזור ההורים',
   'parent.security.noPin':
