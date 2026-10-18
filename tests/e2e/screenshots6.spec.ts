@@ -61,7 +61,8 @@ async function level(page: Page, label: string, name: string, hints = 0) {
   await page.getByRole('dialog').getByRole('listitem').filter({ hasText: label }).click();
   await page.getByRole('button', { name: 'יאללה, מתחילים!' }).click();
   await expect(page.locator('.exercise')).toBeVisible();
-  for (let i = 0; i < hints; i++) await page.getByRole('button', { name: 'רמז', exact: true }).click();
+  for (let i = 0; i < hints; i++)
+    await page.getByRole('button', { name: 'רמז', exact: true }).click();
   await shot(page, name);
   await page.getByRole('button', { name: 'סיום' }).click();
 }

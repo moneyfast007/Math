@@ -1,5 +1,6 @@
 
-Running 2 tests using 2 workers
-··
-  2 passed (22.9s)
-::notice title=🎭 Playwright Run Summary::  2 passed (22.9s)
+Error: Process from config.webServer was not able to start. Exit code: 1
+::error ::Error: Process from config.webServer was not able to start. Exit code: 1
+
+
+::notice title=🎭 Playwright Run Summary::

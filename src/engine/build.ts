@@ -123,7 +123,8 @@ export function labelledChoices(labels: string[]): Exercise['input'] {
 
 /** Choices drawn as pictures (clocks, coins); `labels` name them for the reveal and screen readers. */
 export function pictureChoices(labels: string[], visuals: Visual[]): Exercise['input'] {
-  if (labels.length !== visuals.length) throw new RangeError('pictureChoices: one label per picture');
+  if (labels.length !== visuals.length)
+    throw new RangeError('pictureChoices: one label per picture');
   return { type: 'choices', choices: labels.map((_, i) => i), labels, visuals };
 }
 

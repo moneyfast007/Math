@@ -45,8 +45,7 @@ const money = (items: readonly number[], price?: number): Visual =>
     ? { type: 'money', items: [...items] }
     : { type: 'money', items: [...items], price };
 const shekels = (n: number): Slot => ({ n, noun: SHEKEL });
-const plusAll = (items: readonly number[]) =>
-  [...items].sort((a, b) => b - a).join(' + ');
+const plusAll = (items: readonly number[]) => [...items].sort((a, b) => b - a).join(' + ');
 
 /* ---------- Level 1: knowing the coins and notes ---------- */
 
@@ -132,18 +131,13 @@ function handfuls(
 }
 
 const COUNT_SETS: Record<2 | 3 | 4, () => number[][]> = {
-  2: () =>
-    handfuls([2, 1], [4, 4], (xs) => xs.length >= 2 && xs.length <= 6 && sum(xs) >= 3),
+  2: () => handfuls([2, 1], [4, 4], (xs) => xs.length >= 2 && xs.length <= 6 && sum(xs) >= 3),
   3: () =>
     handfuls(
       [10, 5, 2, 1],
       [3, 2, 1, 2],
       (xs) =>
-        xs.length >= 2 &&
-        xs.length <= 6 &&
-        xs.some((x) => x >= 5) &&
-        sum(xs) <= 50 &&
-        sum(xs) >= 6,
+        xs.length >= 2 && xs.length <= 6 && xs.some((x) => x >= 5) && sum(xs) <= 50 && sum(xs) >= 6,
     ),
   4: () =>
     handfuls(
@@ -153,7 +147,7 @@ const COUNT_SETS: Record<2 | 3 | 4, () => number[][]> = {
     ),
 };
 
-const memo = <T,>(f: () => T): (() => T) => {
+const memo = <T>(f: () => T): (() => T) => {
   let v: T | undefined;
   return () => (v ??= f());
 };
@@ -193,11 +187,7 @@ function count(level: 2 | 3 | 4) {
       solution: say('ex.money.count.solution', { n: shekels(n) }),
       // Five coins worth 9 shekels, answered "5": the coins were counted, not their worth.
       diagnose: (v) =>
-        v === items.length && v !== n
-          ? 'countedCoins'
-          : Math.abs(v - n) === 1
-            ? 'offByOne'
-            : null,
+        v === items.length && v !== n ? 'countedCoins' : Math.abs(v - n) === 1 ? 'offByOne' : null,
     });
   };
 }
@@ -386,7 +376,8 @@ function payExactly(rng: Rng): Exercise {
 function change(level: 8 | 9) {
   return (rng: Rng): Exercise => {
     const paid = level === 8 ? pick(rng, [10, 20]) : pick(rng, [50, 100]);
-    const p = level === 8 ? randInt(rng, 3, paid - 1) : randInt(rng, paid === 50 ? 12 : 23, paid - 3);
+    const p =
+      level === 8 ? randInt(rng, 3, paid - 1) : randInt(rng, paid === 50 ? 12 : 23, paid - 3);
     const c = paid - p;
     const who = pick(rng, CHARACTERS);
     const item = pick(rng, ITEMS);
@@ -395,7 +386,14 @@ function change(level: 8 | 9) {
       p: shekels(p),
       paid: PAID_WITH[paid] ?? '',
     });
-    const ex = level === 8 ? (p === 7 && paid === 10 ? { p: 6, paid: 10 } : { p: 7, paid: 10 }) : p === 36 && paid === 50 ? { p: 64, paid: 100 } : { p: 36, paid: 50 };
+    const ex =
+      level === 8
+        ? p === 7 && paid === 10
+          ? { p: 6, paid: 10 }
+          : { p: 7, paid: 10 }
+        : p === 36 && paid === 50
+          ? { p: 64, paid: 100 }
+          : { p: 36, paid: 50 };
     const hint2: Hint =
       level === 8
         ? hint(say('ex.money.change.hint2'), {
@@ -403,7 +401,10 @@ function change(level: 8 | 9) {
           })
         : {
             ...hint(say('ex.money.change.hint3', { paid })),
-            example: { display: `${p} + ? = ${paid}`, spoken: say('ex.money.change.hint3', { paid }).text },
+            example: {
+              display: `${p} + ? = ${paid}`,
+              spoken: say('ex.money.change.hint3', { paid }).text,
+            },
           };
     return exercise({
       factId: `mchange:${p}/${paid}`,
@@ -483,9 +484,10 @@ function shopping(rng: Rng): Exercise {
     diagnose: (v) =>
       withChange && v === total
         ? 'other'
-        : diagnoseArith(v, withChange
-            ? { a: paid, op: '-', b: total, answer }
-            : { a, op: '+', b, answer }),
+        : diagnoseArith(
+            v,
+            withChange ? { a: paid, op: '-', b: total, answer } : { a, op: '+', b, answer },
+          ),
   });
 }
 
@@ -495,11 +497,13 @@ export const moneyTopic = defineTopic({
   grades: [2],
   startLevel: () => 1,
   levels: [
-    closed(L(1), () =>
-      [...COINS, ...NOTES].flatMap((v): KnowFact[] => [
-        { kind: 'value', v },
-        { kind: 'pick', v },
-      ]),
+    closed(
+      L(1),
+      () =>
+        [...COINS, ...NOTES].flatMap((v): KnowFact[] => [
+          { kind: 'value', v },
+          { kind: 'pick', v },
+        ]),
       know,
     ),
     closed(L(2), countSets[2], count(2)),

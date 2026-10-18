@@ -69,7 +69,12 @@ function choiceSet(
   );
   const options = shuffle(rng, [right, ...unique.map((w) => w.time)]);
   const mistakes = new Map<number, MistakeKind>();
-  for (const w of unique) if (w.mistake) mistakes.set(options.findIndex((o) => same(o, w.time)), w.mistake);
+  for (const w of unique)
+    if (w.mistake)
+      mistakes.set(
+        options.findIndex((o) => same(o, w.time)),
+        w.mistake,
+      );
   return { options, answer: options.findIndex((o) => same(o, right)), mistakes };
 }
 
@@ -183,10 +188,7 @@ function level3(time: ClockTime, rng: Rng): Exercise {
 type DigitalFact = { time: ClockTime; to: 'analog' | 'digital' };
 
 function level4({ time, to }: DigitalFact, rng: Rng): Exercise {
-  const wrong = [
-    { time: at(time.h + 1, time.m) },
-    { time: at(time.h, time.m === 0 ? 30 : 0) },
-  ];
+  const wrong = [{ time: at(time.h + 1, time.m) }, { time: at(time.h, time.m === 0 ? 30 : 0) }];
   const set = choiceSet(rng, time, wrong);
   const ex = exampleTime(time, at(9, 30), at(5, 0));
   const hints: [Hint, Hint, Hint] = [
@@ -325,7 +327,8 @@ function elapsedSaid(from: ClockTime, d: number): Said {
 function level9({ from, d }: ElapsedFact, rng: Rng): Exercise {
   const to = plus(from, d);
   const set = durationChoices(rng, d);
-  const ex = same(from, at(3, 0)) && d === 120 ? { from: at(1, 30), d: 90 } : { from: at(3, 0), d: 120 };
+  const ex =
+    same(from, at(3, 0)) && d === 120 ? { from: at(1, 30), d: 90 } : { from: at(3, 0), d: 120 };
   return exercise({
     factId: `clock9:${key(from)}+${d}`,
     topicId: ID,
@@ -384,7 +387,8 @@ function level10({ kind, who, from, d }: StoryFact, rng: Rng): Exercise {
     answer = set.answer;
     labels = set.options.map(durationWords);
   }
-  const ex = same(from, at(4, 0)) && d === 60 ? { from: at(5, 0), d: 90 } : { from: at(4, 0), d: 60 };
+  const ex =
+    same(from, at(4, 0)) && d === 60 ? { from: at(5, 0), d: 90 } : { from: at(4, 0), d: 60 };
   return exercise({
     factId: `clock10:${kind}:${who.name}:${key(from)}+${d}`,
     topicId: ID,
@@ -426,8 +430,16 @@ export const clockTopic = defineTopic({
         ]),
       (f: DigitalFact, rng) => level4(f, rng),
     ),
-    closed(L(5), () => HOURS.map((h) => at(h, 15)), (f: ClockTime, rng) => level5(f, rng)),
-    closed(L(6), () => HOURS.map((h) => at(h, 45)), (f: ClockTime, rng) => level6(f, rng)),
+    closed(
+      L(5),
+      () => HOURS.map((h) => at(h, 15)),
+      (f: ClockTime, rng) => level5(f, rng),
+    ),
+    closed(
+      L(6),
+      () => HOURS.map((h) => at(h, 45)),
+      (f: ClockTime, rng) => level6(f, rng),
+    ),
     closed(
       L(7),
       () => HOURS.flatMap((h) => [at(h, 15), at(h, 45)]),

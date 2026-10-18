@@ -250,7 +250,14 @@ export function AnalogClock({ h, m }: ClockTime) {
       {DIAL_NUMBERS.map((n) => {
         const p = onDial(n * 30, 108);
         return (
-          <text key={n} x={p.x} y={p.y} className="clock__num" textAnchor="middle" dominantBaseline="central">
+          <text
+            key={n}
+            x={p.x}
+            y={p.y}
+            className="clock__num"
+            textAnchor="middle"
+            dominantBaseline="central"
+          >
             {n}
           </text>
         );
@@ -292,7 +299,11 @@ const NOTE_COLORS: Record<number, string> = {
 export function MoneyItem({ value }: { value: number }) {
   if (value >= 20) {
     return (
-      <svg viewBox="0 0 96 52" className={`money__note ${NOTE_COLORS[value] ?? ''}`} aria-hidden="true">
+      <svg
+        viewBox="0 0 96 52"
+        className={`money__note ${NOTE_COLORS[value] ?? ''}`}
+        aria-hidden="true"
+      >
         <rect x="2" y="2" width="92" height="48" rx="8" className="note__paper" />
         <text x="48" y="27" textAnchor="middle" dominantBaseline="central" className="note__value">
           {value}
@@ -300,7 +311,8 @@ export function MoneyItem({ value }: { value: number }) {
       </svg>
     );
   }
-  const size = value === 10 ? 'coin--10' : value === 5 ? 'coin--5' : value === 2 ? 'coin--2' : 'coin--1';
+  const size =
+    value === 10 ? 'coin--10' : value === 5 ? 'coin--5' : value === 2 ? 'coin--2' : 'coin--1';
   return (
     <svg viewBox="0 0 60 60" className={`money__coin ${size}`} aria-hidden="true">
       {value === 5 ? (
