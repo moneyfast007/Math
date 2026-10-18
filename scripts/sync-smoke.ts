@@ -11,7 +11,11 @@ const base = process.argv[2] ?? 'https://math.assafkutai.workers.dev';
 async function post(path: string, body: unknown, token?: string): Promise<Record<string, unknown>> {
   const headers: Record<string, string> = { 'content-type': 'application/json' };
   if (token) headers['authorization'] = `Bearer ${token}`;
-  const res = await fetch(`${base}${path}`, { method: 'POST', headers, body: JSON.stringify(body) });
+  const res = await fetch(`${base}${path}`, {
+    method: 'POST',
+    headers,
+    body: JSON.stringify(body),
+  });
   console.log(`${path} → ${res.status}`);
   if (!res.ok) throw new Error(`${path} failed with ${res.status}`);
   return (await res.json()) as Record<string, unknown>;

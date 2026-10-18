@@ -70,7 +70,11 @@ export function SyncSection() {
       {removed ? (
         <div className="notice row">
           <span>{t('sync.removed')}</span>
-          <button type="button" className="btn btn--ghost btn--small" onClick={() => syncEngine.dismissRemoved()}>
+          <button
+            type="button"
+            className="btn btn--ghost btn--small"
+            onClick={() => syncEngine.dismissRemoved()}
+          >
             {t('action.close')}
           </button>
         </div>
@@ -230,9 +234,9 @@ function Linked() {
   const deviceId = useSync((s) => s.deviceId);
   const now = useNow(30_000);
   const [pairing, setPairing] = useState(false);
-  const [confirm, setConfirm] = useState<{ kind: 'remove'; id: string } | { kind: 'leave' } | { kind: 'delete' } | null>(
-    null,
-  );
+  const [confirm, setConfirm] = useState<
+    { kind: 'remove'; id: string } | { kind: 'leave' } | { kind: 'delete' } | null
+  >(null);
   const [problem, setProblem] = useState<SyncProblem | null>(null);
 
   const statusText =
@@ -255,7 +259,10 @@ function Linked() {
 
   return (
     <>
-      <p className={status === 'offline' || status === 'error' ? 'notice' : 'notice notice--ok'} role="status">
+      <p
+        className={status === 'offline' || status === 'error' ? 'notice' : 'notice notice--ok'}
+        role="status"
+      >
         {statusText}
       </p>
       <div className="row">
@@ -301,10 +308,18 @@ function Linked() {
         ))}
       </ul>
       <div className="row">
-        <button type="button" className="btn btn--secondary" onClick={() => setConfirm({ kind: 'leave' })}>
+        <button
+          type="button"
+          className="btn btn--secondary"
+          onClick={() => setConfirm({ kind: 'leave' })}
+        >
           {t('sync.leave')}
         </button>
-        <button type="button" className="btn btn--ghost" onClick={() => setConfirm({ kind: 'delete' })}>
+        <button
+          type="button"
+          className="btn btn--ghost"
+          onClick={() => setConfirm({ kind: 'delete' })}
+        >
           {t('sync.delete')}
         </button>
       </div>
@@ -416,7 +431,11 @@ function Snapshots({ snapshots }: { snapshots: Snapshot[] }) {
               <strong>{label(s.day)}</strong>
               <span className="muted">{s.data.profiles.map((p) => p.name).join(', ') || '—'}</span>
             </span>
-            <button type="button" className="btn btn--ghost btn--small" onClick={() => setRestoring(s)}>
+            <button
+              type="button"
+              className="btn btn--ghost btn--small"
+              onClick={() => setRestoring(s)}
+            >
               {t('sync.snapshots.restore')}
             </button>
           </li>

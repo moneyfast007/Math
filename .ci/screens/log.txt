@@ -4,7 +4,37 @@
 [WebServer] - Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
 [WebServer] - Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
 
-Running 9 tests using 2 workers
-·········
-  9 passed (1.5m)
-::notice title=🎭 Playwright Run Summary::  9 passed (1.5m)
+Running 11 tests using 2 workers
+··········F
+::error file=tests/e2e/sync.spec.ts,title=[ipad] › tests/e2e/sync.spec.ts:49:1 › two devices: create a family, link with a code, see each other’s changes, unlink,line=97,col=24::  1) [ipad] › tests/e2e/sync.spec.ts:49:1 › two devices: create a family, link with a code, see each other’s changes, unlink %0A    Error: expect(locator).toBeVisible() failed%0A%0A    Locator: getByRole('dialog', { name: 'המכשיר חובר!' })%0A    Expected: visible%0A    Timeout: 5000ms%0A    Error: element(s) not found%0A%0A    Call log:%0A      - Expect "toBeVisible" getByRole('dialog', { name: 'המכשיר חובר!' }) with timeout 5000ms%0A      - waiting for getByRole('dialog', { name: 'המכשיר חובר!' })%0A%0A%0A       95 |   await join.getByRole('button', { name: 'חיבור', exact: true }).click();%0A       96 |   const joined = b.getByRole('dialog', { name: 'המכשיר חובר!' });%0A    >  97 |   await expect(joined).toBeVisible();%0A          |                        ^%0A       98 |   await joined.getByRole('button', { name: 'ממשיכים' }).click();%0A       99 |   await expect(children(b)).toHaveText([/נועה/]);%0A      100 |%0A        at /home/runner/work/Math/Math/tests/e2e/sync.spec.ts:97:24
+
+
+  1) [ipad] › tests/e2e/sync.spec.ts:49:1 › two devices: create a family, link with a code, see each other’s changes, unlink 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('dialog', { name: 'המכשיר חובר!' })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('dialog', { name: 'המכשיר חובר!' }) with timeout 5000ms
+      - waiting for getByRole('dialog', { name: 'המכשיר חובר!' })
+
+
+       95 |   await join.getByRole('button', { name: 'חיבור', exact: true }).click();
+       96 |   const joined = b.getByRole('dialog', { name: 'המכשיר חובר!' });
+    >  97 |   await expect(joined).toBeVisible();
+          |                        ^
+       98 |   await joined.getByRole('button', { name: 'ממשיכים' }).click();
+       99 |   await expect(children(b)).toHaveText([/נועה/]);
+      100 |
+        at /home/runner/work/Math/Math/tests/e2e/sync.spec.ts:97:24
+
+    Error Context: test-results/sync-two-devices-create-a--833ff-each-other’s-changes-unlink-ipad/error-context.md
+
+  1 failed
+    [ipad] › tests/e2e/sync.spec.ts:49:1 › two devices: create a family, link with a code, see each other’s changes, unlink 
+  10 passed (1.7m)
+::notice title=🎭 Playwright Run Summary::  1 failed%0A    [ipad] › tests/e2e/sync.spec.ts:49:1 › two devices: create a family, link with a code, see each other’s changes, unlink %0A  10 passed (1.7m)

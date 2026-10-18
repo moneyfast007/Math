@@ -153,8 +153,7 @@ export const he = {
   'sync.problem.invalidCode': 'הקוד לא נכון או שפג תוקפו. בקשו קוד חדש במכשיר המחובר.',
   'sync.problem.rateLimited': 'יותר מדי ניסיונות. נסו שוב בעוד שעה.',
   'sync.problem.tooManyDevices': 'למשפחה כבר מחוברים 10 מכשירים. נתקו מכשיר ישן ונסו שוב.',
-  'sync.problem.tooManyChildren':
-    'יחד יהיו יותר מ־6 ילדים. מחקו פרופיל באחד המכשירים ונסו שוב.',
+  'sync.problem.tooManyChildren': 'יחד יהיו יותר מ־6 ילדים. מחקו פרופיל באחד המכשירים ונסו שוב.',
   'sync.problem.server': 'משהו השתבש בשרת. נסו שוב מאוחר יותר.',
 
   'parent.security.title': 'נעילת אזור ההורים',

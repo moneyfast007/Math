@@ -61,7 +61,9 @@ test('two devices: create a family, link with a code, see each other’s changes
   await addChild(a, 'נועה', 'כיתה ב׳');
   await a.getByRole('button', { name: 'זה המכשיר הראשון: יצירת משפחה' }).click();
   await expect(a.getByText(/^מסונכרן · /)).toBeVisible();
-  await expect(a.getByText('ההתקדמות מסונכרנת בין המכשירים של המשפחה', { exact: false })).toBeVisible();
+  await expect(
+    a.getByText('ההתקדמות מסונכרנת בין המכשירים של המשפחה', { exact: false }),
+  ).toBeVisible();
 
   await a.getByRole('button', { name: 'חיבור מכשיר נוסף' }).click();
   const pairing = a.getByRole('dialog', { name: 'חיבור מכשיר נוסף' });
@@ -108,8 +110,15 @@ test('two devices: create a family, link with a code, see each other’s changes
   await shot(a, 'sync-03-linked');
 
   // A unlinks B; B is told on its next sync and keeps both children.
-  await a.locator('.sync-device').filter({ hasNotText: 'המכשיר הזה' }).getByRole('button', { name: 'ניתוק' }).click();
-  await a.getByRole('dialog', { name: 'לנתק את המכשיר?' }).getByRole('button', { name: 'ניתוק' }).click();
+  await a
+    .locator('.sync-device')
+    .filter({ hasNotText: 'המכשיר הזה' })
+    .getByRole('button', { name: 'ניתוק' })
+    .click();
+  await a
+    .getByRole('dialog', { name: 'לנתק את המכשיר?' })
+    .getByRole('button', { name: 'ניתוק' })
+    .click();
   await expect(a.locator('.sync-device')).toHaveCount(1);
   await b.getByRole('button', { name: 'סנכרון עכשיו' }).click();
   await expect(b.getByText('המכשיר נותק מהסנכרון', { exact: false })).toBeVisible();

@@ -78,9 +78,12 @@ describe('sync between two devices', () => {
     expect(b.app.getState().data.profiles.map((p) => p.name)).toEqual(['נועה']);
     expect(attempts(b, noa.id)).toBe(3);
     expect(b.engine.ui.getState()).toMatchObject({ linked: true, status: 'idle' });
-    expect(b.engine.ui.getState().devices.map((d) => d.name).sort()).toEqual(
-      ['אייפד', 'טלפון'].sort(),
-    );
+    expect(
+      b.engine.ui
+        .getState()
+        .devices.map((d) => d.name)
+        .sort(),
+    ).toEqual(['אייפד', 'טלפון'].sort());
     await a.engine.sync();
     expect(a.engine.ui.getState().devices).toHaveLength(2);
   });

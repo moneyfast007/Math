@@ -21,97 +21,91 @@ ok
 
 [1m[46m RUN [49m[22m [36mv3.2.7 [39m[90m/home/runner/work/Math/Math[39m
 
- [32m✓[39m src/state/store.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 40[2mms[22m[39m
- [32m✓[39m src/sync/merge.test.ts [2m([22m[2m13 tests[22m[2m)[22m[32m 60[2mms[22m[39m
+ [32m✓[39m src/state/store.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 41[2mms[22m[39m
+ [32m✓[39m src/sync/merge.test.ts [2m([22m[2m13 tests[22m[2m)[22m[32m 57[2mms[22m[39m
  [32m✓[39m src/state/progress.test.ts [2m([22m[2m14 tests[22m[2m)[22m[32m 21[2mms[22m[39m
- [32m✓[39m src/state/validate.test.ts [2m([22m[2m19 tests[22m[2m)[22m[32m 13[2mms[22m[39m
- [32m✓[39m src/lang/hebrewNumbers.test.ts [2m([22m[2m81 tests[22m[2m)[22m[33m 2172[2mms[22m[39m
-   [33m[2m✓[22m[39m numberToWords, properties[2m > [22mis injective on 0–99,999: different numbers never produce the same words [33m 2103[2mms[22m[39m
- [32m✓[39m src/audio/speaker.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 22[2mms[22m[39m
- [32m✓[39m src/engine/session.test.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 16[2mms[22m[39m
- [32m✓[39m src/engine/topics/addSub20.test.ts [2m([22m[2m14 tests[22m[2m)[22m[33m 647[2mms[22m[39m
- [32m✓[39m src/engine/journey.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 12[2mms[22m[39m
- [32m✓[39m src/ui/components.test.tsx [2m([22m[2m7 tests[22m[2m)[22m[33m 412[2mms[22m[39m
- [32m✓[39m src/lang/compose.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 9[2mms[22m[39m
- [32m✓[39m src/parent/gate.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[33m 553[2mms[22m[39m
+ [32m✓[39m src/state/validate.test.ts [2m([22m[2m19 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+ [32m✓[39m src/lang/hebrewNumbers.test.ts [2m([22m[2m81 tests[22m[2m)[22m[33m 1883[2mms[22m[39m
+   [33m[2m✓[22m[39m numberToWords, properties[2m > [22mis injective on 0–99,999: different numbers never produce the same words [33m 1819[2mms[22m[39m
+ [32m✓[39m src/audio/speaker.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 30[2mms[22m[39m
+ [32m✓[39m src/engine/session.test.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 23[2mms[22m[39m
+ [32m✓[39m src/engine/topics/addSub20.test.ts [2m([22m[2m14 tests[22m[2m)[22m[33m 708[2mms[22m[39m
+ [32m✓[39m src/engine/journey.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 11[2mms[22m[39m
+ [32m✓[39m src/ui/components.test.tsx [2m([22m[2m7 tests[22m[2m)[22m[33m 403[2mms[22m[39m
+ [32m✓[39m src/lang/compose.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+ [32m✓[39m src/parent/gate.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[33m 569[2mms[22m[39m
  [32m✓[39m src/state/streak.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 8[2mms[22m[39m
- [32m✓[39m scripts/tts/pronunciation.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 7[2mms[22m[39m
- [32m✓[39m src/lang/time.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 10[2mms[22m[39m
- [32m✓[39m src/screens/JourneyScreen.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[32m 152[2mms[22m[39m
- [32m✓[39m src/i18n/i18n.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 76[2mms[22m[39m
- [32m✓[39m src/engine/daily.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 8[2mms[22m[39m
- [32m✓[39m src/lang/spoken.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 6[2mms[22m[39m
- [32m✓[39m src/lang/spokenLabel.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 10[2mms[22m[39m
- [32m✓[39m src/audio/hash.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+ [32m✓[39m scripts/tts/pronunciation.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+ [32m✓[39m src/lang/time.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+ [32m✓[39m src/screens/JourneyScreen.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[32m 142[2mms[22m[39m
+ [32m✓[39m src/i18n/i18n.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 122[2mms[22m[39m
+ [32m✓[39m src/engine/daily.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m src/lang/spoken.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+ [32m✓[39m src/lang/spokenLabel.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 18[2mms[22m[39m
+ [32m✓[39m src/audio/hash.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 8[2mms[22m[39m
  [32m✓[39m src/state/pin.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 10[2mms[22m[39m
- [32m✓[39m src/lang/groupDigits.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 4[2mms[22m[39m
- [32m✓[39m src/ui/MathExpr.test.tsx [2m([22m[2m3 tests[22m[2m)[22m[32m 57[2mms[22m[39m
- [32m✓[39m src/state/backup.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+ [32m✓[39m src/lang/groupDigits.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+ [32m✓[39m src/ui/MathExpr.test.tsx [2m([22m[2m3 tests[22m[2m)[22m[32m 70[2mms[22m[39m
+ [32m✓[39m src/state/backup.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 8[2mms[22m[39m
  [32m✓[39m src/lang/fractions.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 4[2mms[22m[39m
- [32m✓[39m src/app/router.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m src/app/router.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 4[2mms[22m[39m
  [32m✓[39m src/ui/ageBand.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 5[2mms[22m[39m
- [31m❯[39m src/sync/client.test.ts [2m([22m[2m10 tests[22m[2m | [22m[31m1 failed[39m[2m)[22m[32m 87[2mms[22m[39m
-[31m   [31m×[31m sync between two devices[2m > [22ma joining device gets the family: children and their progress[39m[32m 29[2mms[22m[39m
+ [32m✓[39m src/sync/client.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 91[2mms[22m[39m
+ [31m❯[39m worker/core.test.ts [2m([22m[2m7 tests[22m[2m | [22m[31m1 failed[39m[2m)[22m[32m 65[2mms[22m[39m
+[31m   [31m×[31m the sync server[2m > [22mcreates a family, links a second device with a code, and shares the data[39m[32m 33[2mms[22m[39m
 [31m     → expected [ 'טלפון', 'אייפד' ] to deeply equal [ 'אייפד', 'טלפון' ][39m
-   [32m✓[39m sync between two devices[2m > [22mpractice on both devices is added up on both[32m 11[2mms[22m[39m
-   [32m✓[39m sync between two devices[2m > [22mprofile changes and removals reach the other device[32m 10[2mms[22m[39m
-   [32m✓[39m sync between two devices[2m > [22mwithout a connection the device keeps working and catches up later[32m 7[2mms[22m[39m
-   [32m✓[39m sync between two devices[2m > [22ma device removed elsewhere is told so and keeps what it shows[32m 8[2mms[22m[39m
-   [32m✓[39m sync between two devices[2m > [22mdeleting the family unlinks every device[32m 4[2mms[22m[39m
-   [32m✓[39m sync between two devices[2m > [22mkeeps a copy of what the device showed before joining, and can go back to it[32m 5[2mms[22m[39m
-   [32m✓[39m sync between two devices[2m > [22ma child with the same name on the joining device is the same child[32m 7[2mms[22m[39m
-   [32m✓[39m sync between two devices[2m > [22ma wrong code is reported and nothing changes[32m 1[2mms[22m[39m
-   [32m✓[39m sync between two devices[2m > [22mthe link survives the app being closed and opened again[32m 4[2mms[22m[39m
- [32m✓[39m worker/core.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 55[2mms[22m[39m
- [32m✓[39m src/engine/topics/audioBank.test.ts [2m([22m[2m270 tests[22m[2m)[22m[33m 17072[2mms[22m[39m
-   [33m[2m✓[22m[39m the audio bank covers what a child can hear: shapes[2m > [22mlevel 9 [33m 314[2mms[22m[39m
-   [33m[2m✓[22m[39m the audio bank covers what a child can hear: numbers-100[2m > [22mlevel 3 [33m 552[2mms[22m[39m
-   [33m[2m✓[22m[39m the audio bank covers what a child can hear: numbers-100[2m > [22mlevel 4 [33m 1372[2mms[22m[39m
-   [33m[2m✓[22m[39m the audio bank covers what a child can hear: numbers-100[2m > [22mlevel 5 [33m 349[2mms[22m[39m
-   [33m[2m✓[22m[39m the audio bank covers what a child can hear: numbers-100[2m > [22mlevel 9 [33m 561[2mms[22m[39m
-   [33m[2m✓[22m[39m the audio bank covers what a child can hear: clock[2m > [22mlevel 10 [33m 579[2mms[22m[39m
-   [33m[2m✓[22m[39m the audio bank covers what a child can hear: measure[2m > [22mlevel 1 [33m 312[2mms[22m[39m
-   [33m[2m✓[22m[39m the audio bank covers what a child can hear: fraction-ops[2m > [22mlevel 3 [33m 335[2mms[22m[39m
-   [33m[2m✓[22m[39m the audio bank covers what a child can hear: fraction-ops[2m > [22mlevel 9 [33m 310[2mms[22m[39m
- [32m✓[39m src/engine/topics/all.test.ts [2m([22m[2m353 tests[22m[2m)[22m[33m 59158[2mms[22m[39m
-   [33m[2m✓[22m[39m topic count-10[2m > [22mlevel 10 produces valid exercises [33m 341[2mms[22m[39m
-   [33m[2m✓[22m[39m topic shapes[2m > [22mlevel 9 produces valid exercises [33m 510[2mms[22m[39m
-   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 2 produces valid exercises [33m 531[2mms[22m[39m
-   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 3 produces valid exercises [33m 668[2mms[22m[39m
-   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 4 produces valid exercises [33m 2157[2mms[22m[39m
-   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 5 produces valid exercises [33m 792[2mms[22m[39m
-   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 6 produces valid exercises [33m 653[2mms[22m[39m
-   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 7 produces valid exercises [33m 396[2mms[22m[39m
-   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 8 produces valid exercises [33m 545[2mms[22m[39m
-   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 9 produces valid exercises [33m 957[2mms[22m[39m
-   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 10 produces valid exercises [33m 326[2mms[22m[39m
-   [33m[2m✓[22m[39m topic numbers-100[2m > [22mavoids an immediate repeat [33m 694[2mms[22m[39m
-   [33m[2m✓[22m[39m topic clock-money-1[2m > [22mlevel 7 produces valid exercises [33m 411[2mms[22m[39m
-   [33m[2m✓[22m[39m topic clock-money-1[2m > [22mlevel 9 produces valid exercises [33m 529[2mms[22m[39m
-   [33m[2m✓[22m[39m topic clock-money-1[2m > [22mlevel 10 produces valid exercises [33m 339[2mms[22m[39m
-   [33m[2m✓[22m[39m topic add-sub-100[2m > [22mlevel 1 produces valid exercises [33m 301[2mms[22m[39m
-   [33m[2m✓[22m[39m topic add-sub-100[2m > [22mlevel 2 produces valid exercises [33m 343[2mms[22m[39m
-   [33m[2m✓[22m[39m topic add-sub-100[2m > [22mlevel 3 produces valid exercises [33m 373[2mms[22m[39m
-   [33m[2m✓[22m[39m topic add-sub-100[2m > [22mlevel 4 produces valid exercises [33m 350[2mms[22m[39m
-   [33m[2m✓[22m[39m topic add-sub-100[2m > [22mlevel 5 produces valid exercises [33m 350[2mms[22m[39m
-   [33m[2m✓[22m[39m topic add-sub-100[2m > [22mlevel 6 produces valid exercises [33m 415[2mms[22m[39m
-   [33m[2m✓[22m[39m topic add-sub-100[2m > [22mlevel 7 produces valid exercises [33m 358[2mms[22m[39m
-   [33m[2m✓[22m[39m topic add-sub-100[2m > [22mlevel 8 produces valid exercises [33m 469[2mms[22m[39m
-   [33m[2m✓[22m[39m topic add-sub-100[2m > [22mlevel 9 produces valid exercises [33m 354[2mms[22m[39m
-   [33m[2m✓[22m[39m topic clock[2m > [22mlevel 10 produces valid exercises [33m 480[2mms[22m[39m
-   [33m[2m✓[22m[39m topic fractions-1[2m > [22mlevel 7 produces valid exercises [33m 305[2mms[22m[39m
+   [32m✓[39m the sync server[2m > [22ma code works once and expires after ten minutes[32m 6[2mms[22m[39m
+   [32m✓[39m the sync server[2m > [22mguessing codes is stopped after ten wrong tries from one address[32m 8[2mms[22m[39m
+   [32m✓[39m the sync server[2m > [22mrejects a wrong or missing token, another origin, and oversized data[32m 9[2mms[22m[39m
+   [32m✓[39m the sync server[2m > [22ma removed device can no longer sync, and its practice stays counted[32m 5[2mms[22m[39m
+   [32m✓[39m the sync server[2m > [22mdeleting the family removes everything; its devices are unlinked[32m 2[2mms[22m[39m
+   [32m✓[39m the sync server[2m > [22monly POST under /api is answered[32m 0[2mms[22m[39m
+ [32m✓[39m src/engine/topics/audioBank.test.ts [2m([22m[2m270 tests[22m[2m)[22m[33m 17443[2mms[22m[39m
+   [33m[2m✓[22m[39m the audio bank covers what a child can hear: shapes[2m > [22mlevel 9 [33m 310[2mms[22m[39m
+   [33m[2m✓[22m[39m the audio bank covers what a child can hear: numbers-100[2m > [22mlevel 3 [33m 447[2mms[22m[39m
+   [33m[2m✓[22m[39m the audio bank covers what a child can hear: numbers-100[2m > [22mlevel 4 [33m 1430[2mms[22m[39m
+   [33m[2m✓[22m[39m the audio bank covers what a child can hear: numbers-100[2m > [22mlevel 5 [33m 465[2mms[22m[39m
+   [33m[2m✓[22m[39m the audio bank covers what a child can hear: numbers-100[2m > [22mlevel 6 [33m 508[2mms[22m[39m
+   [33m[2m✓[22m[39m the audio bank covers what a child can hear: numbers-100[2m > [22mlevel 9 [33m 818[2mms[22m[39m
+   [33m[2m✓[22m[39m the audio bank covers what a child can hear: clock[2m > [22mlevel 10 [33m 396[2mms[22m[39m
+   [33m[2m✓[22m[39m the audio bank covers what a child can hear: measure[2m > [22mlevel 1 [33m 306[2mms[22m[39m
+   [33m[2m✓[22m[39m the audio bank covers what a child can hear: fraction-ops[2m > [22mlevel 3 [33m 367[2mms[22m[39m
+ [32m✓[39m src/engine/topics/all.test.ts [2m([22m[2m353 tests[22m[2m)[22m[33m 59164[2mms[22m[39m
+   [33m[2m✓[22m[39m topic count-10[2m > [22mlevel 10 produces valid exercises [33m 360[2mms[22m[39m
+   [33m[2m✓[22m[39m topic shapes[2m > [22mlevel 7 produces valid exercises [33m 350[2mms[22m[39m
+   [33m[2m✓[22m[39m topic shapes[2m > [22mlevel 9 produces valid exercises [33m 628[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 2 produces valid exercises [33m 511[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 3 produces valid exercises [33m 836[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 4 produces valid exercises [33m 2252[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 5 produces valid exercises [33m 685[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 6 produces valid exercises [33m 696[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 7 produces valid exercises [33m 447[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 8 produces valid exercises [33m 372[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 9 produces valid exercises [33m 907[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mavoids an immediate repeat [33m 720[2mms[22m[39m
+   [33m[2m✓[22m[39m topic clock-money-1[2m > [22mlevel 9 produces valid exercises [33m 455[2mms[22m[39m
+   [33m[2m✓[22m[39m topic clock-money-1[2m > [22mlevel 10 produces valid exercises [33m 320[2mms[22m[39m
+   [33m[2m✓[22m[39m topic add-sub-100[2m > [22mlevel 1 produces valid exercises [33m 397[2mms[22m[39m
+   [33m[2m✓[22m[39m topic add-sub-100[2m > [22mlevel 2 produces valid exercises [33m 420[2mms[22m[39m
+   [33m[2m✓[22m[39m topic add-sub-100[2m > [22mlevel 4 produces valid exercises [33m 403[2mms[22m[39m
+   [33m[2m✓[22m[39m topic add-sub-100[2m > [22mlevel 5 produces valid exercises [33m 328[2mms[22m[39m
+   [33m[2m✓[22m[39m topic add-sub-100[2m > [22mlevel 6 produces valid exercises [33m 328[2mms[22m[39m
+   [33m[2m✓[22m[39m topic add-sub-100[2m > [22mlevel 7 produces valid exercises [33m 380[2mms[22m[39m
+   [33m[2m✓[22m[39m topic add-sub-100[2m > [22mlevel 8 produces valid exercises [33m 346[2mms[22m[39m
+   [33m[2m✓[22m[39m topic add-sub-100[2m > [22mlevel 9 produces valid exercises [33m 351[2mms[22m[39m
+   [33m[2m✓[22m[39m topic add-sub-100[2m > [22mlevel 10 produces valid exercises [33m 381[2mms[22m[39m
+   [33m[2m✓[22m[39m topic clock[2m > [22mlevel 10 produces valid exercises [33m 484[2mms[22m[39m
    [33m[2m✓[22m[39m topic fraction-ops[2m > [22mlevel 3 produces valid exercises [33m 411[2mms[22m[39m
-   [33m[2m✓[22m[39m topic fraction-ops[2m > [22mlevel 9 produces valid exercises [33m 327[2mms[22m[39m
+   [33m[2m✓[22m[39m topic fraction-ops[2m > [22mlevel 9 produces valid exercises [33m 306[2mms[22m[39m
    [33m[2m✓[22m[39m topic ratio[2m > [22mlevel 1 produces valid exercises [33m 373[2mms[22m[39m
-   [33m[2m✓[22m[39m topic ratio[2m > [22mlevel 2 produces valid exercises [33m 346[2mms[22m[39m
-   [33m[2m✓[22m[39m topic ratio[2m > [22mlevel 3 produces valid exercises [33m 316[2mms[22m[39m
-   [33m[2m✓[22m[39m topic ratio[2m > [22mlevel 4 produces valid exercises [33m 301[2mms[22m[39m
-   [33m[2m✓[22m[39m topic circle-volume[2m > [22mlevel 6 produces valid exercises [33m 423[2mms[22m[39m
-   [33m[2m✓[22m[39m topic circle-volume[2m > [22mlevel 8 produces valid exercises [33m 406[2mms[22m[39m
+   [33m[2m✓[22m[39m topic ratio[2m > [22mlevel 2 produces valid exercises [33m 344[2mms[22m[39m
+   [33m[2m✓[22m[39m topic ratio[2m > [22mlevel 3 produces valid exercises [33m 304[2mms[22m[39m
+   [33m[2m✓[22m[39m topic circle-volume[2m > [22mlevel 6 produces valid exercises [33m 428[2mms[22m[39m
+   [33m[2m✓[22m[39m topic circle-volume[2m > [22mlevel 8 produces valid exercises [33m 409[2mms[22m[39m
 
 [31m⎯⎯⎯⎯⎯⎯⎯[39m[1m[41m Failed Tests 1 [49m[22m[31m⎯⎯⎯⎯⎯⎯⎯[39m
 
-[41m[1m FAIL [22m[49m src/sync/client.test.ts[2m > [22msync between two devices[2m > [22ma joining device gets the family: children and their progress
+[41m[1m FAIL [22m[49m worker/core.test.ts[2m > [22mthe sync server[2m > [22mcreates a family, links a second device with a code, and shares the data
 [31m[1mAssertionError[22m: expected [ 'טלפון', 'אייפד' ] to deeply equal [ 'אייפד', 'טלפון' ][39m
 
 [32m- Expected[39m
@@ -123,24 +117,24 @@ ok
 [31m+   "אייפד",[39m
 [2m  ][22m
 
-[36m [2m❯[22m src/sync/client.test.ts:[2m81:63[22m[39m
-    [90m 79| [39m    [34mexpect[39m([34mattempts[39m(b[33m,[39m noa[33m.[39mid))[33m.[39m[34mtoBe[39m([34m3[39m)[33m;[39m
-    [90m 80| [39m    expect(b.engine.ui.getState()).toMatchObject({ linked: true, statu…
-    [90m 81| [39m    expect(b.engine.ui.getState().devices.map((d) => d.name)).toEqual(…
-    [90m   | [39m                                                              [31m^[39m
-    [90m 82| [39m    [35mawait[39m a[33m.[39mengine[33m.[39m[34msync[39m()[33m;[39m
-    [90m 83| [39m    [34mexpect[39m(a[33m.[39mengine[33m.[39mui[33m.[39m[34mgetState[39m()[33m.[39mdevices)[33m.[39m[34mtoHaveLength[39m([34m2[39m)[33m;[39m
+[36m [2m❯[22m worker/core.test.ts:[2m79:47[22m[39m
+    [90m 77| [39m    [34mexpect[39m(b[33m.[39mbody[33m.[39mfamilyId)[33m.[39m[34mtoBe[39m(a[33m.[39mfamilyId)[33m;[39m
+    [90m 78| [39m    [34mexpect[39m(b[33m.[39mbody[33m.[39mshared[33m.[39mprofiles[[32m'noa'[39m][33m?.[39mvalue[33m?.[39mname)[33m.[39m[34mtoBe[39m([32m'נועה'[39m)[33m;[39m
+    [90m 79| [39m    expect(b.body.devices.map((d) => d.name)).toEqual(['אייפד', 'טלפון…
+    [90m   | [39m                                              [31m^[39m
+    [90m 80| [39m
+    [90m 81| [39m    [90m// B renames the child; A sees it on its next sync, and B's slice.[39m
 
 [31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯[22m[39m
 
 
 [2m Test Files [22m [1m[31m1 failed[39m[22m[2m | [22m[1m[32m31 passed[39m[22m[90m (32)[39m
 [2m      Tests [22m [1m[31m1 failed[39m[22m[2m | [22m[1m[32m903 passed[39m[22m[90m (904)[39m
-[2m   Start at [22m 15:00:29
-[2m   Duration [22m 64.46s[2m (transform 1.58s, setup 6.60s, collect 2.99s, tests 80.73s, environment 16.42s, prepare 3.60s)[22m
+[2m   Start at [22m 15:09:23
+[2m   Duration [22m 64.10s[2m (transform 1.44s, setup 6.80s, collect 2.84s, tests 80.96s, environment 16.40s, prepare 3.70s)[22m
 
 
-::error file=/home/runner/work/Math/Math/src/sync/client.test.ts,title=src/sync/client.test.ts > sync between two devices > a joining device gets the family%3A children and their progress,line=81,column=63::AssertionError: expected [ 'טלפון', 'אייפד' ] to deeply equal [ 'אייפד', 'טלפון' ]%0A%0A- Expected%0A+ Received%0A%0A  [%0A-   "אייפד",%0A    "טלפון",%0A+   "אייפד",%0A  ]%0A%0A ❯ src/sync/client.test.ts:81:63%0A%0A
+::error file=/home/runner/work/Math/Math/worker/core.test.ts,title=worker/core.test.ts > the sync server > creates a family%2C links a second device with a code%2C and shares the data,line=79,column=47::AssertionError: expected [ 'טלפון', 'אייפד' ] to deeply equal [ 'אייפד', 'טלפון' ]%0A%0A- Expected%0A+ Received%0A%0A  [%0A-   "אייפד",%0A    "טלפון",%0A+   "אייפד",%0A  ]%0A%0A ❯ worker/core.test.ts:79:47%0A%0A
 TESTS FAILED
 
 ## build
@@ -155,24 +149,24 @@ TESTS FAILED
 audio index: shared: 2272, g0: 5249, g1: 7754, g2: 4090, g3: 4377, g4: 5517, g5: 4500, g6: 4846 clips
 [36mvite v7.3.7 [32mbuilding client environment for production...[36m[39m
 transforming...
-[32m✓[39m 124 modules transformed.
+[32m✓[39m 125 modules transformed.
 rendering chunks...
 computing gzip size...
 [2mdist/[22m[32mmanifest.webmanifest                        [39m[1m[2m  0.53 kB[22m[1m[22m
 [2mdist/[22m[32mindex.html                                  [39m[1m[2m  1.26 kB[22m[1m[22m[2m │ gzip:   0.60 kB[22m
-[2mdist/[22m[2massets/[22m[35mindex-BcdvNhep.css                   [39m[1m[2m 34.59 kB[22m[1m[22m[2m │ gzip:   7.21 kB[22m
+[2mdist/[22m[2massets/[22m[35mindex-uS_uKcBf.css                   [39m[1m[2m 35.42 kB[22m[1m[22m[2m │ gzip:   7.36 kB[22m
 [2mdist/[22m[2massets/[22m[36mworkbox-window.prod.es5-BBnX5xw4.js  [39m[1m[2m  5.75 kB[22m[1m[22m[2m │ gzip:   2.36 kB[22m
-[2mdist/[22m[2massets/[22m[36mindex-xSFgKgtT.js                    [39m[1m[33m605.42 kB[39m[22m[2m │ gzip: 175.99 kB[22m
+[2mdist/[22m[2massets/[22m[36mindex-CpdmIOME.js                    [39m[1m[33m618.68 kB[39m[22m[2m │ gzip: 179.21 kB[22m
 [33m
 (!) Some chunks are larger than 500 kB after minification. Consider:
 - Using dynamic import() to code-split the application
 - Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
 - Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.[39m
-[32m✓ built in 4.14s[39m
+[32m✓ built in 3.99s[39m
 
 [36mPWA v1.3.0[39m
 mode      [35mgenerateSW[39m
-precache  [32m14 entries[39m [2m(695.11 KiB)[22m
+precache  [32m14 entries[39m [2m(708.87 KiB)[22m
 files generated
   [2mdist/sw.js[22m
   [2mdist/workbox-355bf58a.js[22m
@@ -195,9 +189,277 @@ files generated
 [WebServer] - Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
 [WebServer] - Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
 
-Running 120 tests using 2 workers
-······························°°°°°°°°°·······························°°°°°°°°°·
-······························°°°°°°°°°·
+Running 126 tests using 2 workers
+······························°°°°°°°°°···×·········×F
+::error file=tests/e2e/sync.spec.ts,title=[ipad] › tests/e2e/sync.spec.ts:49:1 › two devices: create a family, link with a code, see each other’s changes, unlink,line=97,col=24::  1) [ipad] › tests/e2e/sync.spec.ts:49:1 › two devices: create a family, link with a code, see each other’s changes, unlink %0A    Error: expect(locator).toBeVisible() failed%0A%0A    Locator: getByRole('dialog', { name: 'המכשיר חובר!' })%0A    Expected: visible%0A    Timeout: 5000ms%0A    Error: element(s) not found%0A%0A    Call log:%0A      - Expect "toBeVisible" getByRole('dialog', { name: 'המכשיר חובר!' }) with timeout 5000ms%0A      - waiting for getByRole('dialog', { name: 'המכשיר חובר!' })%0A%0A%0A       95 |   await join.getByRole('button', { name: 'חיבור', exact: true }).click();%0A       96 |   const joined = b.getByRole('dialog', { name: 'המכשיר חובר!' });%0A    >  97 |   await expect(joined).toBeVisible();%0A          |                        ^%0A       98 |   await joined.getByRole('button', { name: 'ממשיכים' }).click();%0A       99 |   await expect(children(b)).toHaveText([/נועה/]);%0A      100 |%0A        at /home/runner/work/Math/Math/tests/e2e/sync.spec.ts:97:24
+::error file=tests/e2e/sync.spec.ts,title=[ipad] › tests/e2e/sync.spec.ts:49:1 › two devices: create a family, link with a code, see each other’s changes, unlink,line=97,col=24::  1) [ipad] › tests/e2e/sync.spec.ts:49:1 › two devices: create a family, link with a code, see each other’s changes, unlink %0A%0A    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────%0A    Error: expect(locator).toBeVisible() failed%0A%0A    Locator: getByRole('dialog', { name: 'המכשיר חובר!' })%0A    Expected: visible%0A    Timeout: 5000ms%0A    Error: element(s) not found%0A%0A    Call log:%0A      - Expect "toBeVisible" getByRole('dialog', { name: 'המכשיר חובר!' }) with timeout 5000ms%0A      - waiting for getByRole('dialog', { name: 'המכשיר חובר!' })%0A%0A%0A       95 |   await join.getByRole('button', { name: 'חיבור', exact: true }).click();%0A       96 |   const joined = b.getByRole('dialog', { name: 'המכשיר חובר!' });%0A    >  97 |   await expect(joined).toBeVisible();%0A          |                        ^%0A       98 |   await joined.getByRole('button', { name: 'ממשיכים' }).click();%0A       99 |   await expect(children(b)).toHaveText([/נועה/]);%0A      100 |%0A        at /home/runner/work/Math/Math/tests/e2e/sync.spec.ts:97:24
+::error file=tests/e2e/sync.spec.ts,title=[ipad] › tests/e2e/sync.spec.ts:49:1 › two devices: create a family, link with a code, see each other’s changes, unlink,line=97,col=24::  1) [ipad] › tests/e2e/sync.spec.ts:49:1 › two devices: create a family, link with a code, see each other’s changes, unlink %0A%0A    Retry #2 ───────────────────────────────────────────────────────────────────────────────────────%0A    Error: expect(locator).toBeVisible() failed%0A%0A    Locator: getByRole('dialog', { name: 'המכשיר חובר!' })%0A    Expected: visible%0A    Timeout: 5000ms%0A    Error: element(s) not found%0A%0A    Call log:%0A      - Expect "toBeVisible" getByRole('dialog', { name: 'המכשיר חובר!' }) with timeout 5000ms%0A      - waiting for getByRole('dialog', { name: 'המכשיר חובר!' })%0A%0A%0A       95 |   await join.getByRole('button', { name: 'חיבור', exact: true }).click();%0A       96 |   const joined = b.getByRole('dialog', { name: 'המכשיר חובר!' });%0A    >  97 |   await expect(joined).toBeVisible();%0A          |                        ^%0A       98 |   await joined.getByRole('button', { name: 'ממשיכים' }).click();%0A       99 |   await expect(children(b)).toHaveText([/נועה/]);%0A      100 |%0A        at /home/runner/work/Math/Math/tests/e2e/sync.spec.ts:97:24
+····················°°°°°°
+°°°············××···F
+::error file=tests/e2e/sync.spec.ts,title=[iphone] › tests/e2e/sync.spec.ts:49:1 › two devices: create a family, link with a code, see each other’s changes, unlink,line=97,col=24::  2) [iphone] › tests/e2e/sync.spec.ts:49:1 › two devices: create a family, link with a code, see each other’s changes, unlink %0A    Error: expect(locator).toBeVisible() failed%0A%0A    Locator: getByRole('dialog', { name: 'המכשיר חובר!' })%0A    Expected: visible%0A    Timeout: 5000ms%0A    Error: element(s) not found%0A%0A    Call log:%0A      - Expect "toBeVisible" getByRole('dialog', { name: 'המכשיר חובר!' }) with timeout 5000ms%0A      - waiting for getByRole('dialog', { name: 'המכשיר חובר!' })%0A%0A%0A       95 |   await join.getByRole('button', { name: 'חיבור', exact: true }).click();%0A       96 |   const joined = b.getByRole('dialog', { name: 'המכשיר חובר!' });%0A    >  97 |   await expect(joined).toBeVisible();%0A          |                        ^%0A       98 |   await joined.getByRole('button', { name: 'ממשיכים' }).click();%0A       99 |   await expect(children(b)).toHaveText([/נועה/]);%0A      100 |%0A        at /home/runner/work/Math/Math/tests/e2e/sync.spec.ts:97:24
+::error file=tests/e2e/sync.spec.ts,title=[iphone] › tests/e2e/sync.spec.ts:49:1 › two devices: create a family, link with a code, see each other’s changes, unlink,line=97,col=24::  2) [iphone] › tests/e2e/sync.spec.ts:49:1 › two devices: create a family, link with a code, see each other’s changes, unlink %0A%0A    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────%0A    Error: expect(locator).toBeVisible() failed%0A%0A    Locator: getByRole('dialog', { name: 'המכשיר חובר!' })%0A    Expected: visible%0A    Timeout: 5000ms%0A    Error: element(s) not found%0A%0A    Call log:%0A      - Expect "toBeVisible" getByRole('dialog', { name: 'המכשיר חובר!' }) with timeout 5000ms%0A      - waiting for getByRole('dialog', { name: 'המכשיר חובר!' })%0A%0A%0A       95 |   await join.getByRole('button', { name: 'חיבור', exact: true }).click();%0A       96 |   const joined = b.getByRole('dialog', { name: 'המכשיר חובר!' });%0A    >  97 |   await expect(joined).toBeVisible();%0A          |                        ^%0A       98 |   await joined.getByRole('button', { name: 'ממשיכים' }).click();%0A       99 |   await expect(children(b)).toHaveText([/נועה/]);%0A      100 |%0A        at /home/runner/work/Math/Math/tests/e2e/sync.spec.ts:97:24
+::error file=tests/e2e/sync.spec.ts,title=[iphone] › tests/e2e/sync.spec.ts:49:1 › two devices: create a family, link with a code, see each other’s changes, unlink,line=97,col=24::  2) [iphone] › tests/e2e/sync.spec.ts:49:1 › two devices: create a family, link with a code, see each other’s changes, unlink %0A%0A    Retry #2 ───────────────────────────────────────────────────────────────────────────────────────%0A    Error: expect(locator).toBeVisible() failed%0A%0A    Locator: getByRole('dialog', { name: 'המכשיר חובר!' })%0A    Expected: visible%0A    Timeout: 5000ms%0A    Error: element(s) not found%0A%0A    Call log:%0A      - Expect "toBeVisible" getByRole('dialog', { name: 'המכשיר חובר!' }) with timeout 5000ms%0A      - waiting for getByRole('dialog', { name: 'המכשיר חובר!' })%0A%0A%0A       95 |   await join.getByRole('button', { name: 'חיבור', exact: true }).click();%0A       96 |   const joined = b.getByRole('dialog', { name: 'המכשיר חובר!' });%0A    >  97 |   await expect(joined).toBeVisible();%0A          |                        ^%0A       98 |   await joined.getByRole('button', { name: 'ממשיכים' }).click();%0A       99 |   await expect(children(b)).toHaveText([/נועה/]);%0A      100 |%0A        at /home/runner/work/Math/Math/tests/e2e/sync.spec.ts:97:24
+·················°°°°°°°°°··××F
+::error file=tests/e2e/sync.spec.ts,title=[desktop-chromium] › tests/e2e/sync.spec.ts:49:1 › two devices: create a family, link with a code, see each other’s changes, unlink,line=97,col=24::  3) [desktop-chromium] › tests/e2e/sync.spec.ts:49:1 › two devices: create a family, link with a code, see each other’s changes, unlink %0A    Error: expect(locator).toBeVisible() failed%0A%0A    Locator: getByRole('dialog', { name: 'המכשיר חובר!' })%0A    Expected: visible%0A    Timeout: 5000ms%0A    Error: element(s) not found%0A%0A    Call log:%0A      - Expect "toBeVisible" getByRole('dialog', { name: 'המכשיר חובר!' }) with timeout 5000ms%0A      - waiting for getByRole('dialog', { name: 'המכשיר חובר!' })%0A%0A%0A       95 |   await join.getByRole('button', { name: 'חיבור', exact: true }).click();%0A       96 |   const joined = b.getByRole('dialog', { name: 'המכשיר חובר!' });%0A    >  97 |   await expect(joined).toBeVisible();%0A          |                        ^%0A       98 |   await joined.getByRole('button', { name: 'ממשיכים' }).click();%0A       99 |   await expect(children(b)).toHaveText([/נועה/]);%0A      100 |%0A        at /home/runner/work/Math/Math/tests/e2e/sync.spec.ts:97:24
+::error file=tests/e2e/sync.spec.ts,title=[desktop-chromium] › tests/e2e/sync.spec.ts:49:1 › two devices: create a family, link with a code, see each other’s changes, unlink,line=97,col=24::  3) [desktop-chromium] › tests/e2e/sync.spec.ts:49:1 › two devices: create a family, link with a code, see each other’s changes, unlink %0A%0A    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────%0A    Error: expect(locator).toBeVisible() failed%0A%0A    Locator: getByRole('dialog', { name: 'המכשיר חובר!' })%0A    Expected: visible%0A    Timeout: 5000ms%0A    Error: element(s) not found%0A%0A    Call log:%0A      - Expect "toBeVisible" getByRole('dialog', { name: 'המכשיר חובר!' }) with timeout 5000ms%0A      - waiting for getByRole('dialog', { name: 'המכשיר חובר!' })%0A%0A%0A       95 |   await join.getByRole('button', { name: 'חיבור', exact: true }).click();%0A       96 |   const joined = b.getByRole('dialog', { name: 'המכשיר חובר!' });%0A    >  97 |   await expect(joined).toBeVisible();%0A          |                        ^%0A       98 |   await joined.getByRole('button', { name: 'ממשיכים' }).click();%0A       99 |   await expect(children(b)).toHaveText([/נועה/]);%0A      100 |%0A        at /home/runner/work/Math/Math/tests/e2e/sync.spec.ts:97:24
+::error file=tests/e2e/sync.spec.ts,title=[desktop-chromium] › tests/e2e/sync.spec.ts:49:1 › two devices: create a family, link with a code, see each other’s changes, unlink,line=97,col=24::  3) [desktop-chromium] › tests/e2e/sync.spec.ts:49:1 › two devices: create a family, link with a code, see each other’s changes, unlink %0A%0A    Retry #2 ───────────────────────────────────────────────────────────────────────────────────────%0A    Error: expect(locator).toBeVisible() failed%0A%0A    Locator: getByRole('dialog', { name: 'המכשיר חובר!' })%0A    Expected: visible%0A    Timeout: 5000ms%0A    Error: element(s) not found%0A%0A    Call log:%0A      - Expect "toBeVisible" getByRole('dialog', { name: 'המכשיר חובר!' }) with timeout 5000ms%0A      - waiting for getByRole('dialog', { name: 'המכשיר חובר!' })%0A%0A%0A       95 |   await join.getByRole('button', { name: 'חיבור', exact: true }).click();%0A       96 |   const joined = b.getByRole('dialog', { name: 'המכשיר חובר!' });%0A    >  97 |   await expect(joined).toBeVisible();%0A          |                        ^%0A       98 |   await joined.getByRole('button', { name: 'ממשיכים' }).click();%0A       99 |   await expect(children(b)).toHaveText([/נועה/]);%0A      100 |%0A        at /home/runner/work/Math/Math/tests/e2e/sync.spec.ts:97:24
+
+
+  1) [ipad] › tests/e2e/sync.spec.ts:49:1 › two devices: create a family, link with a code, see each other’s changes, unlink 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('dialog', { name: 'המכשיר חובר!' })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('dialog', { name: 'המכשיר חובר!' }) with timeout 5000ms
+      - waiting for getByRole('dialog', { name: 'המכשיר חובר!' })
+
+
+       95 |   await join.getByRole('button', { name: 'חיבור', exact: true }).click();
+       96 |   const joined = b.getByRole('dialog', { name: 'המכשיר חובר!' });
+    >  97 |   await expect(joined).toBeVisible();
+          |                        ^
+       98 |   await joined.getByRole('button', { name: 'ממשיכים' }).click();
+       99 |   await expect(children(b)).toHaveText([/נועה/]);
+      100 |
+        at /home/runner/work/Math/Math/tests/e2e/sync.spec.ts:97:24
+
+    Error Context: test-results/sync-two-devices-create-a--833ff-each-other’s-changes-unlink-ipad/error-context.md
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('dialog', { name: 'המכשיר חובר!' })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('dialog', { name: 'המכשיר חובר!' }) with timeout 5000ms
+      - waiting for getByRole('dialog', { name: 'המכשיר חובר!' })
+
+
+       95 |   await join.getByRole('button', { name: 'חיבור', exact: true }).click();
+       96 |   const joined = b.getByRole('dialog', { name: 'המכשיר חובר!' });
+    >  97 |   await expect(joined).toBeVisible();
+          |                        ^
+       98 |   await joined.getByRole('button', { name: 'ממשיכים' }).click();
+       99 |   await expect(children(b)).toHaveText([/נועה/]);
+      100 |
+        at /home/runner/work/Math/Math/tests/e2e/sync.spec.ts:97:24
+
+    Error Context: test-results/sync-two-devices-create-a--833ff-each-other’s-changes-unlink-ipad-retry1/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/sync-two-devices-create-a--833ff-each-other’s-changes-unlink-ipad-retry1/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/sync-two-devices-create-a--833ff-each-other’s-changes-unlink-ipad-retry1/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #2 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('dialog', { name: 'המכשיר חובר!' })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('dialog', { name: 'המכשיר חובר!' }) with timeout 5000ms
+      - waiting for getByRole('dialog', { name: 'המכשיר חובר!' })
+
+
+       95 |   await join.getByRole('button', { name: 'חיבור', exact: true }).click();
+       96 |   const joined = b.getByRole('dialog', { name: 'המכשיר חובר!' });
+    >  97 |   await expect(joined).toBeVisible();
+          |                        ^
+       98 |   await joined.getByRole('button', { name: 'ממשיכים' }).click();
+       99 |   await expect(children(b)).toHaveText([/נועה/]);
+      100 |
+        at /home/runner/work/Math/Math/tests/e2e/sync.spec.ts:97:24
+
+    Error Context: test-results/sync-two-devices-create-a--833ff-each-other’s-changes-unlink-ipad-retry2/error-context.md
+
+  2) [iphone] › tests/e2e/sync.spec.ts:49:1 › two devices: create a family, link with a code, see each other’s changes, unlink 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('dialog', { name: 'המכשיר חובר!' })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('dialog', { name: 'המכשיר חובר!' }) with timeout 5000ms
+      - waiting for getByRole('dialog', { name: 'המכשיר חובר!' })
+
+
+       95 |   await join.getByRole('button', { name: 'חיבור', exact: true }).click();
+       96 |   const joined = b.getByRole('dialog', { name: 'המכשיר חובר!' });
+    >  97 |   await expect(joined).toBeVisible();
+          |                        ^
+       98 |   await joined.getByRole('button', { name: 'ממשיכים' }).click();
+       99 |   await expect(children(b)).toHaveText([/נועה/]);
+      100 |
+        at /home/runner/work/Math/Math/tests/e2e/sync.spec.ts:97:24
+
+    Error Context: test-results/sync-two-devices-create-a--833ff-each-other’s-changes-unlink-iphone/error-context.md
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('dialog', { name: 'המכשיר חובר!' })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('dialog', { name: 'המכשיר חובר!' }) with timeout 5000ms
+      - waiting for getByRole('dialog', { name: 'המכשיר חובר!' })
+
+
+       95 |   await join.getByRole('button', { name: 'חיבור', exact: true }).click();
+       96 |   const joined = b.getByRole('dialog', { name: 'המכשיר חובר!' });
+    >  97 |   await expect(joined).toBeVisible();
+          |                        ^
+       98 |   await joined.getByRole('button', { name: 'ממשיכים' }).click();
+       99 |   await expect(children(b)).toHaveText([/נועה/]);
+      100 |
+        at /home/runner/work/Math/Math/tests/e2e/sync.spec.ts:97:24
+
+    Error Context: test-results/sync-two-devices-create-a--833ff-each-other’s-changes-unlink-iphone-retry1/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/sync-two-devices-create-a--833ff-each-other’s-changes-unlink-iphone-retry1/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/sync-two-devices-create-a--833ff-each-other’s-changes-unlink-iphone-retry1/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #2 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('dialog', { name: 'המכשיר חובר!' })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('dialog', { name: 'המכשיר חובר!' }) with timeout 5000ms
+      - waiting for getByRole('dialog', { name: 'המכשיר חובר!' })
+
+
+       95 |   await join.getByRole('button', { name: 'חיבור', exact: true }).click();
+       96 |   const joined = b.getByRole('dialog', { name: 'המכשיר חובר!' });
+    >  97 |   await expect(joined).toBeVisible();
+          |                        ^
+       98 |   await joined.getByRole('button', { name: 'ממשיכים' }).click();
+       99 |   await expect(children(b)).toHaveText([/נועה/]);
+      100 |
+        at /home/runner/work/Math/Math/tests/e2e/sync.spec.ts:97:24
+
+    Error Context: test-results/sync-two-devices-create-a--833ff-each-other’s-changes-unlink-iphone-retry2/error-context.md
+
+  3) [desktop-chromium] › tests/e2e/sync.spec.ts:49:1 › two devices: create a family, link with a code, see each other’s changes, unlink 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('dialog', { name: 'המכשיר חובר!' })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('dialog', { name: 'המכשיר חובר!' }) with timeout 5000ms
+      - waiting for getByRole('dialog', { name: 'המכשיר חובר!' })
+
+
+       95 |   await join.getByRole('button', { name: 'חיבור', exact: true }).click();
+       96 |   const joined = b.getByRole('dialog', { name: 'המכשיר חובר!' });
+    >  97 |   await expect(joined).toBeVisible();
+          |                        ^
+       98 |   await joined.getByRole('button', { name: 'ממשיכים' }).click();
+       99 |   await expect(children(b)).toHaveText([/נועה/]);
+      100 |
+        at /home/runner/work/Math/Math/tests/e2e/sync.spec.ts:97:24
+
+    Error Context: test-results/sync-two-devices-create-a--833ff-each-other’s-changes-unlink-desktop-chromium/error-context.md
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('dialog', { name: 'המכשיר חובר!' })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('dialog', { name: 'המכשיר חובר!' }) with timeout 5000ms
+      - waiting for getByRole('dialog', { name: 'המכשיר חובר!' })
+
+
+       95 |   await join.getByRole('button', { name: 'חיבור', exact: true }).click();
+       96 |   const joined = b.getByRole('dialog', { name: 'המכשיר חובר!' });
+    >  97 |   await expect(joined).toBeVisible();
+          |                        ^
+       98 |   await joined.getByRole('button', { name: 'ממשיכים' }).click();
+       99 |   await expect(children(b)).toHaveText([/נועה/]);
+      100 |
+        at /home/runner/work/Math/Math/tests/e2e/sync.spec.ts:97:24
+
+    Error Context: test-results/sync-two-devices-create-a--833ff-each-other’s-changes-unlink-desktop-chromium-retry1/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/sync-two-devices-create-a--833ff-each-other’s-changes-unlink-desktop-chromium-retry1/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/sync-two-devices-create-a--833ff-each-other’s-changes-unlink-desktop-chromium-retry1/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #2 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('dialog', { name: 'המכשיר חובר!' })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('dialog', { name: 'המכשיר חובר!' }) with timeout 5000ms
+      - waiting for getByRole('dialog', { name: 'המכשיר חובר!' })
+
+
+       95 |   await join.getByRole('button', { name: 'חיבור', exact: true }).click();
+       96 |   const joined = b.getByRole('dialog', { name: 'המכשיר חובר!' });
+    >  97 |   await expect(joined).toBeVisible();
+          |                        ^
+       98 |   await joined.getByRole('button', { name: 'ממשיכים' }).click();
+       99 |   await expect(children(b)).toHaveText([/נועה/]);
+      100 |
+        at /home/runner/work/Math/Math/tests/e2e/sync.spec.ts:97:24
+
+    Error Context: test-results/sync-two-devices-create-a--833ff-each-other’s-changes-unlink-desktop-chromium-retry2/error-context.md
+
+  3 failed
+    [ipad] › tests/e2e/sync.spec.ts:49:1 › two devices: create a family, link with a code, see each other’s changes, unlink 
+    [iphone] › tests/e2e/sync.spec.ts:49:1 › two devices: create a family, link with a code, see each other’s changes, unlink 
+    [desktop-chromium] › tests/e2e/sync.spec.ts:49:1 › two devices: create a family, link with a code, see each other’s changes, unlink 
   27 skipped
-  93 passed (3.4m)
-::notice title=🎭 Playwright Run Summary::  27 skipped%0A  93 passed (3.4m)
+  96 passed (4.5m)
+::notice title=🎭 Playwright Run Summary::  3 failed%0A    [ipad] › tests/e2e/sync.spec.ts:49:1 › two devices: create a family, link with a code, see each other’s changes, unlink %0A    [iphone] › tests/e2e/sync.spec.ts:49:1 › two devices: create a family, link with a code, see each other’s changes, unlink %0A    [desktop-chromium] › tests/e2e/sync.spec.ts:49:1 › two devices: create a family, link with a code, see each other’s changes, unlink %0A  27 skipped%0A  96 passed (4.5m)
+E2E FAILED
+SCREENSHOTS FAILED
