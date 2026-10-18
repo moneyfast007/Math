@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react';
 import { navigate } from '@/app/router';
+import { dailyPool } from '@/engine/daily';
 import { activeWorld, nextStop, type World, type WorldStation } from '@/engine/journey';
 import { makeT, t, type TranslationKey } from '@/i18n';
 import { gradeLabel } from '@/i18n/labels';
 import { spokenLabel } from '@/lang/spokenLabel';
 import type { Profile } from '@/state/schema';
 import { useActiveProfile, useApp } from '@/state/store';
-import { currentStreak } from '@/state/streak';
+import { currentStreak, dayKey } from '@/state/streak';
 import { ageBandForGrade, applyAgeBand } from '@/ui/ageBand';
 import { Avatar } from '@/ui/Avatar';
 import { Dialog } from '@/ui/Dialog';
@@ -64,6 +65,8 @@ function Journey({ profile }: { profile: Profile }) {
   const streak = currentStreak(progress?.streak ?? { count: 0, lastDay: null }, Date.now());
 
   const start = () => navigate({ name: stop.kind === 'review' ? 'review' : 'practice' });
+  const hasDaily = dailyPool(profile.grade, progress).length > 0;
+  const dailyDone = progress?.days[dayKey(Date.now())]?.daily === true;
 
   return (
     <main className="screen journey" data-screen="play">
@@ -139,6 +142,16 @@ function Journey({ profile }: { profile: Profile }) {
           <button type="button" className="btn btn--hero journey__start" onClick={start}>
             {startLabel}
           </button>
+          {hasDaily ? (
+            <button
+              type="button"
+              className={dailyDone ? 'btn btn--secondary daily daily--done' : 'btn btn--secondary daily'}
+              onClick={() => navigate({ name: 'daily' })}
+            >
+              <DailyIcon done={dailyDone} />
+              <span>{dailyDone ? t('journey.dailyDone') : t('journey.daily')}</span>
+            </button>
+          ) : null}
           {profile.settings.allowLevelChange && stop.kind === 'level' ? (
             <button type="button" className="btn btn--ghost" onClick={() => setPicking(true)}>
               {t('child.otherLevel')}
@@ -191,6 +204,30 @@ function StreakChip({ count, young }: { count: number; young: boolean }) {
       </svg>
       {!young || count > 0 ? <span className="streak__count">{count}</span> : null}
     </div>
+  );
+}
+
+function DailyIcon({ done }: { done: boolean }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+      className="daily__icon"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      {done ? (
+        <path d="M5 12l5 5 9-10" />
+      ) : (
+        <>
+          <path d="M4 12a8 8 0 1 0 2.3-5.7" />
+          <path d="M4 4v4h4" />
+        </>
+      )}
+    </svg>
   );
 }
 

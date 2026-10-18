@@ -1169,6 +1169,20 @@ export const he = {
   'journey.review.locked': 'סיום העולם, עדיין סגור',
   'journey.plusiWaiting': 'פלוסי מחכה ליד התחנה הבאה',
   'journey.map': 'מפת המסע',
+  'journey.daily': 'חזרה של היום',
+  'journey.dailyDone': 'החזרה של היום נעשתה',
+  // Phase 6: the parents' weekly report
+  'parent.week.title': 'השבוע (שבעת הימים האחרונים)',
+  'parent.week.none': { f: 'לא תרגלה השבוע.', m: 'לא תרגל השבוע.' },
+  'parent.week.days': 'ימי תרגול: {days} מתוך 7',
+  'parent.week.exercises': '{count} תרגילים',
+  'parent.week.rate': '{percent} נכון בניסיון הראשון',
+  'parent.week.daily': 'חזרה של היום: {count} פעמים',
+  'parent.week.chart': 'תרגילים בכל יום בשבוע האחרון',
+  'parent.journey.title': 'התקדמות במסע',
+  'parent.journey.world': '{name}: {done} מתוך {total} תחנות',
+  'parent.journey.worldDone': '{name}: הושלם',
+
   // Phase 6: recordings for use without internet (parents)
   'parent.offline.title': 'שימוש בלי אינטרנט',
   'parent.offline.intro':
@@ -1410,6 +1424,7 @@ export const he = {
   'practice.done.reviewOpened': 'כל התחנות הושלמו! עכשיו אפשר לסיים את העולם.',
   'practice.done.worldDone': 'סיימת את כל העולם! מדבקה חדשה מחכה באלבום.',
   'practice.done.toAlbum': 'לאלבום',
+  'practice.done.daily': 'כל הכבוד! סיימת את החזרה של היום.',
   'practice.done.replay': 'כל הכבוד! חזרת על העולם הזה.',
   'practice.done.toJourney': 'למסע',
   'practice.review.title': 'חזרה על כל העולם',

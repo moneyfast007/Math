@@ -26,6 +26,8 @@ export function App() {
       return <PracticeScreen mode="review" />;
     case 'replay':
       return <PracticeScreen mode="replay" />;
+    case 'daily':
+      return <PracticeScreen mode="daily" />;
     case 'album':
       return <AlbumScreen />;
     case 'parents':

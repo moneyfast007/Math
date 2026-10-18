@@ -1,6 +1,7 @@
 import { isAvatarId } from '@/profiles/avatars';
 import type { Grade } from '@/ui/ageBand';
 import {
+  DAYS_KEPT,
   MAX_LEVEL,
   MAX_NAME_LENGTH,
   MAX_PROFILES,
@@ -10,6 +11,7 @@ import {
   SUPPORTED_SCHEMA_VERSIONS,
   emptyStreak,
   type AppData,
+  type DayStats,
   type PinRecord,
   type Profile,
   type ProfileProgress,
@@ -129,6 +131,28 @@ function parseStreak(value: unknown): Streak {
   return { count: intInRange(s['count'], 0, Number.MAX_SAFE_INTEGER, 'רצף'), lastDay };
 }
 
+/** Days of practice (schema 3); absent before. The most recent DAYS_KEPT are kept. */
+function parseDays(value: unknown): Record<string, DayStats> {
+  if (value === undefined) return {};
+  const all = record(value, 'ימי תרגול');
+  const out: Record<string, DayStats> = {};
+  const keys = Object.keys(all)
+    .filter((k) => /^\d{4}-\d{2}-\d{2}$/.test(k))
+    .sort()
+    .slice(-DAYS_KEPT);
+  for (const key of keys) {
+    const d = record(all[key], 'יום תרגול');
+    const exercises = intInRange(d['exercises'] ?? 0, 0, Number.MAX_SAFE_INTEGER, 'יום תרגול');
+    out[key] = {
+      exercises,
+      correct: intInRange(d['correct'] ?? 0, 0, exercises, 'יום תרגול'),
+      rounds: intInRange(d['rounds'] ?? 0, 0, Number.MAX_SAFE_INTEGER, 'יום תרגול'),
+      daily: d['daily'] === true,
+    };
+  }
+  return out;
+}
+
 function parseProgress(
   value: unknown,
   profileIds: ReadonlySet<string>,
@@ -144,7 +168,7 @@ function parseProgress(
     for (const [topicId, stats] of Object.entries(topicsRaw)) {
       topics[topicId] = parseTopicStats(stats, `התקדמות בנושא ${topicId}`);
     }
-    out[profileId] = { topics, streak: parseStreak(p['streak']) };
+    out[profileId] = { topics, streak: parseStreak(p['streak']), days: parseDays(p['days']) };
   }
   return out;
 }

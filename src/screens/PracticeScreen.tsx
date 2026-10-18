@@ -1,9 +1,10 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { replayTopic } from '@/app/replay';
 import { navigate } from '@/app/router';
+import { dailyPool, pickDaily, type DailyItem } from '@/engine/daily';
 import { activeWorld, nextStop, worldsFor } from '@/engine/journey';
 import { pick } from '@/engine/rng';
-import { currentLevel } from '@/engine/registry';
+import { currentLevel, topicById } from '@/engine/registry';
 import {
   completedExercise,
   reduce,
@@ -30,9 +31,10 @@ const CORRECT_PAUSE_MS = 1400;
 /**
  * 'level': the next station. 'review': the world's final station, exercises
  * from every level. 'replay': a finished world played again from the album,
- * mixed like the review; it changes nothing on the journey.
+ * mixed like the review; it changes nothing on the journey. 'daily': the
+ * day's review, exercises from stations passed in any of her worlds.
  */
-export type PracticeMode = 'level' | 'review' | 'replay';
+export type PracticeMode = 'level' | 'review' | 'replay' | 'daily';
 
 /** The finished world chosen in the album, if it is really hers and finished. */
 function replayableTopic(profile: Profile): Topic | undefined {
@@ -45,17 +47,23 @@ function replayableTopic(profile: Profile): Topic | undefined {
 export function PracticeScreen({ mode }: { mode: PracticeMode }) {
   const profile = useActiveProfile();
   const missingReplay = mode === 'replay' && profile !== undefined && !replayableTopic(profile);
+  const noDaily =
+    mode === 'daily' &&
+    profile !== undefined &&
+    dailyPool(profile.grade, appProgress(profile.id)).length === 0;
   useEffect(() => {
     if (!profile) navigate({ name: 'home' }, { replace: true });
     else if (missingReplay) navigate({ name: 'album' }, { replace: true });
-  }, [profile, missingReplay]);
-  if (!profile || missingReplay) return null;
+    else if (noDaily) navigate({ name: 'play' }, { replace: true });
+  }, [profile, missingReplay, noDaily]);
+  if (!profile || missingReplay || noDaily) return null;
   return <Practice key={`${profile.id}:${mode}`} profile={profile} mode={mode} />;
 }
 
 function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
   const recordAttempt = useApp((s) => s.recordAttempt);
   const completeRound = useApp((s) => s.completeRound);
+  const completeDaily = useApp((s) => s.completeDaily);
   const setTopicLevel = useApp((s) => s.setTopicLevel);
   const band = ageBandForGrade(profile.grade);
   const tc = makeT(profile.gender);
@@ -65,6 +73,11 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
   const station = useMemo(
     () => {
       const progress = appProgress(profile.id);
+      if (mode === 'daily') {
+        const pool = dailyPool(profile.grade, progress);
+        const first = pool[0] as DailyItem;
+        return { topic: first.topic, level: first.level, stored: first.level, pool };
+      }
       const replay = mode === 'replay' ? replayableTopic(profile) : undefined;
       if (replay) {
         const last = replay.levels.at(-1)?.level ?? 1;
@@ -87,9 +100,16 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
   const topic: Topic = station.topic;
   const review = mode !== 'level';
   const replaying = mode === 'replay';
+  const daily = mode === 'daily';
+  const pool = 'pool' in station ? station.pool : [];
   const levels = topic.levels.map((l) => l.level);
-  const generate = (level: number, avoid?: string): Exercise =>
-    topic.generate(review ? pick(rng, levels) : level, rng, profile.gender, avoid);
+  const generate = (level: number, avoid?: string): Exercise => {
+    if (daily) {
+      const item = pickDaily(pool, rng);
+      return item.topic.generate(item.level, rng, profile.gender, avoid);
+    }
+    return topic.generate(review ? pick(rng, levels) : level, rng, profile.gender, avoid);
+  };
 
   const newRound = (level: number): SessionState =>
     startSession({
@@ -118,17 +138,24 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
     const after = reduce(before, action);
     if (completedExercise(before, after)) {
       const outcome = after.history.at(-1);
+      const exTopic = daily ? (topicById(before.exercise.topicId) ?? topic) : topic;
       recordAttempt(profile.id, {
-        topicId: topic.id,
+        topicId: exTopic.id,
         // A review round is scored, but never moves the level the child is at.
-        level: review ? station.stored : before.level,
+        level: daily
+          ? currentLevel(exTopic, profile.grade, appProgress(profile.id))
+          : review
+            ? station.stored
+            : before.level,
         correct: outcome === 'first',
         at: Date.now(),
         ...(outcome !== 'first' && after.firstMistake ? { mistake: after.firstMistake } : {}),
       });
     }
     if (action.type === 'changeLevel') setTopicLevel(profile.id, topic.id, after.level);
-    if (after.phase === 'finished' && before.phase !== 'finished') {
+    if (after.phase === 'finished' && before.phase !== 'finished' && daily) {
+      completeDaily(profile.id);
+    } else if (after.phase === 'finished' && before.phase !== 'finished') {
       setOutcome(
         completeRound(profile.id, {
           topicId: topic.id,
@@ -177,14 +204,18 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
 
   if (s.phase === 'finished') {
     // Playing a finished world again is always just praise: there is nothing to pass.
-    const result = replaying
-      ? t('practice.done.replay')
-      : outcome
+    const result = daily
+      ? t('practice.done.daily')
+      : replaying
+        ? t('practice.done.replay')
+        : outcome
         ? resultLine(outcome, tc, profile.id, profile.grade)
         : null;
-    const passed = replaying || outcome?.passed === true;
-    const spoken = replaying
-      ? t('practice.done.replay')
+    const passed = daily || replaying || outcome?.passed === true;
+    const spoken = daily
+      ? t('practice.done.daily')
+      : replaying
+        ? t('practice.done.replay')
       : passed
         ? tc('practice.done.passedSpoken')
         : t('practice.done.notPassed');

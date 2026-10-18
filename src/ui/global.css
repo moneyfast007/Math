@@ -2181,3 +2181,90 @@ ol.steps {
   height: 12px;
   accent-color: var(--color-accent);
 }
+
+/* The day's review: under the big start button */
+.daily {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+}
+
+.daily__icon {
+  width: 24px;
+  height: 24px;
+}
+
+.daily--done {
+  color: var(--color-accent-strong);
+}
+
+/* Parents: the week and the journey */
+.report {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  margin-top: var(--space-2);
+}
+
+.report__title {
+  font-size: var(--text-sm);
+}
+
+.week {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+  height: 96px;
+  max-width: 360px;
+  direction: rtl;
+}
+
+.week__day {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 2px;
+  min-height: 0;
+}
+
+.week__bar {
+  width: 100%;
+  min-height: 4px;
+  border-radius: 6px 6px 2px 2px;
+  background: var(--color-border);
+}
+
+.week__bar--on {
+  background: var(--color-accent);
+}
+
+.week__count,
+.week__label {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.report__worlds {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.report__world {
+  display: grid;
+  grid-template-columns: 1fr 120px;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.report__bar {
+  width: 120px;
+  height: 10px;
+  accent-color: var(--color-accent);
+}

@@ -190,3 +190,35 @@ describe('completeRound', () => {
     expect(out.progress.topics['new']).toMatchObject({ level: 2, completedLevels: [1] });
   });
 });
+
+describe('the week and the days of practice (schema 3)', () => {
+  it('records each exercise on its day, and the review and rounds', async () => {
+    const { recordAttempt, completeRound, completeDaily, weekSummary } = await import('./progress');
+    const { emptyProgress } = await import('./schema');
+    const day = new Date(2026, 9, 18, 10).getTime();
+    let p = emptyProgress();
+    p = recordAttempt(p, { topicId: 'money', level: 1, correct: true, at: day });
+    p = recordAttempt(p, { topicId: 'money', level: 1, correct: false, at: day });
+    p = completeRound(p, { topicId: 'money', station: 1, firstTry: 1, length: 2, at: day }).progress;
+    p = completeDaily(p, day);
+    const week = weekSummary(p, day);
+    expect(week.days).toHaveLength(7);
+    expect(week.days.at(-1)).toMatchObject({ exercises: 2, correct: 1, daily: true });
+    expect(week.daysPracticed).toBe(1);
+    expect(week.rate).toBe(0.5);
+    expect(week.dailyReviews).toBe(1);
+    expect(p.days['2026-10-18']?.rounds).toBe(2);
+  });
+
+  it('keeps only about two months of days', async () => {
+    const { bumpDay } = await import('./progress');
+    const { DAYS_KEPT } = await import('./schema');
+    let days = {};
+    for (let i = 0; i < 100; i++)
+      days = bumpDay(days, new Date(2026, 0, 1 + i, 12).getTime(), (d) => ({
+        ...d,
+        exercises: d.exercises + 1,
+      }));
+    expect(Object.keys(days)).toHaveLength(DAYS_KEPT);
+  });
+});

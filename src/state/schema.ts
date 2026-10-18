@@ -12,9 +12,9 @@ import type { Grade } from '@/ui/ageBand';
  * Changing this shape means bumping SCHEMA_VERSION and adding a migration in
  * validate.ts; old backups must keep importing.
  */
-export const SCHEMA_VERSION = 2;
+export const SCHEMA_VERSION = 3;
 /** Versions `parseAppData` still accepts and migrates forward. */
-export const SUPPORTED_SCHEMA_VERSIONS: readonly number[] = [1, 2];
+export const SUPPORTED_SCHEMA_VERSIONS: readonly number[] = [1, 2, 3];
 
 export const MAX_PROFILES = 6;
 export const MAX_NAME_LENGTH = 20;
@@ -87,9 +87,26 @@ export interface Streak {
   lastDay: string | null;
 }
 
+/** One day of practice (schema 3), for the parents' weekly report. */
+export interface DayStats {
+  /** Exercises finished (answered right, or revealed). */
+  exercises: number;
+  /** Of them, right on the first try. */
+  correct: number;
+  /** Rounds finished. */
+  rounds: number;
+  /** The day's review ("חזרה של היום") was done. */
+  daily: boolean;
+}
+
+/** Days kept in `ProfileProgress.days`: about two months. */
+export const DAYS_KEPT = 62;
+
 export interface ProfileProgress {
   topics: Record<string, TopicStats>;
   streak: Streak;
+  /** "YYYY-MM-DD" (local) → that day's practice; the last DAYS_KEPT days only. */
+  days: Record<string, DayStats>;
 }
 
 export interface PinRecord {
@@ -127,7 +144,7 @@ export function emptyAppData(now: number): AppData {
 }
 
 export function emptyProgress(): ProfileProgress {
-  return { topics: {}, streak: emptyStreak() };
+  return { topics: {}, streak: emptyStreak(), days: {} };
 }
 
 export function emptyStreak(): Streak {

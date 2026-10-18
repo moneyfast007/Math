@@ -2,6 +2,7 @@ import { useStore } from 'zustand';
 import { createStore, type StoreApi } from 'zustand/vanilla';
 import { createPinRecord, verifyPin as checkPin } from './pin';
 import {
+  completeDaily as finishDaily,
   completeRound as finishRound,
   recordAttempt as addAttempt,
   type Attempt,
@@ -68,6 +69,8 @@ export interface AppState {
   /** A round finished: stations, streak and the next level are updated together. */
   completeRound: (profileId: string, result: RoundResult) => RoundOutcome | null;
   setTopicLevel: (profileId: string, topicId: string, level: number) => void;
+  /** The day's review finished: the streak and the day's record. */
+  completeDaily: (profileId: string) => void;
 }
 
 export type AppStore = StoreApi<AppState>;
@@ -216,6 +219,13 @@ export function createAppStore(storage: StorageAdapter, clock: () => number = Da
         const outcome = finishRound(data.progress[profileId] ?? emptyProgress(), result);
         commit({ ...data, progress: { ...data.progress, [profileId]: outcome.progress } });
         return outcome;
+      },
+
+      completeDaily: (profileId) => {
+        const { data } = get();
+        if (!data.profiles.some((p) => p.id === profileId)) return;
+        const progress = finishDaily(data.progress[profileId] ?? emptyProgress(), clock());
+        commit({ ...data, progress: { ...data.progress, [profileId]: progress } });
       },
 
       setTopicLevel: (profileId, topicId, level) => {

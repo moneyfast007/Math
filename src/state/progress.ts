@@ -1,13 +1,15 @@
 import {
+  DAYS_KEPT,
   emptyTopicStats,
   MAX_LEVEL,
   MIN_LEVEL,
   RECENT_WINDOW,
+  type DayStats,
   type MistakeKind,
   type ProfileProgress,
   type TopicStats,
 } from './schema';
-import { advanceStreak } from './streak';
+import { advanceStreak, dayKey } from './streak';
 
 /**
  * Pure functions over progress data. The exercise engine (phase 3) calls
@@ -37,7 +39,39 @@ export function recordAttempt(progress: ProfileProgress, attempt: Attempt): Prof
     recent: [...(prev?.recent ?? []), attempt.correct].slice(-RECENT_WINDOW),
     mistakes,
   };
-  return { ...progress, topics: { ...progress.topics, [attempt.topicId]: next } };
+  return {
+    ...progress,
+    topics: { ...progress.topics, [attempt.topicId]: next },
+    days: bumpDay(progress.days, attempt.at, (d) => ({
+      ...d,
+      exercises: d.exercises + 1,
+      correct: d.correct + (attempt.correct ? 1 : 0),
+    })),
+  };
+}
+
+const EMPTY_DAY: DayStats = { exercises: 0, correct: 0, rounds: 0, daily: false };
+
+/** Updates one day's record, keeping only the most recent DAYS_KEPT days. */
+export function bumpDay(
+  days: Record<string, DayStats> | undefined,
+  at: number,
+  change: (d: DayStats) => DayStats,
+): Record<string, DayStats> {
+  const key = dayKey(at);
+  const next = { ...(days ?? {}), [key]: change(days?.[key] ?? EMPTY_DAY) };
+  const keys = Object.keys(next).sort();
+  for (const old of keys.slice(0, Math.max(0, keys.length - DAYS_KEPT))) delete next[old];
+  return next;
+}
+
+/** A finished daily review: counts for the streak and is marked on the day. */
+export function completeDaily(progress: ProfileProgress, at: number): ProfileProgress {
+  return {
+    ...progress,
+    streak: advanceStreak(progress.streak, at),
+    days: bumpDay(progress.days, at, (d) => ({ ...d, rounds: d.rounds + 1, daily: true })),
+  };
 }
 
 /** Share of first-try answers that passes a station. */
@@ -88,7 +122,12 @@ export function completeRound(progress: ProfileProgress, r: RoundResult): RoundO
       lastPracticedAt: r.at,
     };
     return {
-      progress: { ...progress, streak, topics: { ...progress.topics, [r.topicId]: stats } },
+      progress: {
+        ...progress,
+        streak,
+        topics: { ...progress.topics, [r.topicId]: stats },
+        days: bumpDay(progress.days, r.at, (d) => ({ ...d, rounds: d.rounds + 1 })),
+      },
       passed,
       newlyCompleted,
       advancedTo: null,
@@ -111,7 +150,12 @@ export function completeRound(progress: ProfileProgress, r: RoundResult): RoundO
     lastPracticedAt: r.at,
   };
   return {
-    progress: { ...progress, streak, topics: { ...progress.topics, [r.topicId]: stats } },
+    progress: {
+      ...progress,
+      streak,
+      topics: { ...progress.topics, [r.topicId]: stats },
+      days: bumpDay(progress.days, r.at, (d) => ({ ...d, rounds: d.rounds + 1 })),
+    },
     passed,
     newlyCompleted,
     advancedTo,
@@ -184,5 +228,52 @@ export function summarizeProgress(progress: ProfileProgress | undefined): ChildS
     strong,
     topMistakes,
     lastPracticedAt,
+  };
+}
+
+/** One day in the parents' weekly view. */
+export interface WeekDay {
+  key: string;
+  /** 0 = Sunday … 6 = Saturday. */
+  weekday: number;
+  exercises: number;
+  correct: number;
+  daily: boolean;
+}
+
+export interface WeekSummary {
+  /** The last seven days, oldest first, ending today. */
+  days: WeekDay[];
+  daysPracticed: number;
+  exercises: number;
+  /** First-try rate over the week, or null without exercises. */
+  rate: number | null;
+  dailyReviews: number;
+}
+
+/** The last seven days of practice, for the parents' report. */
+export function weekSummary(progress: ProfileProgress | undefined, now: number): WeekSummary {
+  const days: WeekDay[] = [];
+  for (let back = 6; back >= 0; back--) {
+    const date = new Date(now);
+    date.setDate(date.getDate() - back);
+    const key = dayKey(date.getTime());
+    const d = progress?.days[key];
+    days.push({
+      key,
+      weekday: date.getDay(),
+      exercises: d?.exercises ?? 0,
+      correct: d?.correct ?? 0,
+      daily: d?.daily ?? false,
+    });
+  }
+  const exercises = days.reduce((n, d) => n + d.exercises, 0);
+  const correct = days.reduce((n, d) => n + d.correct, 0);
+  return {
+    days,
+    daysPracticed: days.filter((d) => d.exercises > 0).length,
+    exercises,
+    rate: exercises > 0 ? correct / exercises : null,
+    dailyReviews: days.filter((d) => d.daily).length,
   };
 }

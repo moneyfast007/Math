@@ -14,7 +14,8 @@ import { ProfileForm } from '@/parent/ProfileForm';
 import { isStandalone } from '@/pwa/standalone';
 import { backupFileName, deliverFile, readBackupFile, serializeBackup } from '@/state/backup';
 import { PIN_LENGTH } from '@/state/pin';
-import { summarizeProgress } from '@/state/progress';
+import { summarizeProgress, weekSummary } from '@/state/progress';
+import { worldsFor } from '@/engine/journey';
 import { MAX_PROFILES, type AppData, type Profile } from '@/state/schema';
 import type { Grade } from '@/ui/ageBand';
 import { useApp } from '@/state/store';
@@ -183,6 +184,8 @@ function ChildRow({ profile, onEdit }: { profile: Profile; onEdit: () => void })
                 {summary.topMistakes.map((m) => mistakeLabel(m.kind)).join(', ')}
               </span>
             ) : null}
+            <WeekReport profile={profile} />
+            <JourneyReport profile={profile} />
           </>
         )}
       </div>
@@ -500,6 +503,79 @@ function OfflineGrade({ grade }: { grade: Grade }) {
           {count > 0 ? t('parent.offline.resume') : t('parent.offline.download')}
         </button>
       )}
+    </div>
+  );
+}
+
+/* ---------- The week and the journey, per child ---------- */
+
+const WEEKDAYS = ['א׳', 'ב׳', 'ג׳', 'ד׳', 'ה׳', 'ו׳', 'ש׳'];
+
+function WeekReport({ profile }: { profile: Profile }) {
+  const progress = useApp((s) => s.data.progress[profile.id]);
+  const week = weekSummary(progress, Date.now());
+  const tc = makeT(profile.gender);
+  const most = Math.max(1, ...week.days.map((d) => d.exercises));
+  return (
+    <div className="report" aria-label={t('parent.week.title')}>
+      <strong className="report__title">{t('parent.week.title')}</strong>
+      {week.exercises === 0 ? (
+        <span className="muted">{tc('parent.week.none')}</span>
+      ) : (
+        <span>
+          {t('parent.week.days', { params: { days: week.daysPracticed } })}
+          {' · '}
+          {t('parent.week.exercises', { params: { count: week.exercises } })}
+          {week.rate !== null ? (
+            <>
+              {' · '}
+              {t('parent.week.rate', { params: { percent: formatPercent(week.rate) } })}
+            </>
+          ) : null}
+          {week.dailyReviews > 0 ? (
+            <>
+              {' · '}
+              {t('parent.week.daily', { params: { count: week.dailyReviews } })}
+            </>
+          ) : null}
+        </span>
+      )}
+      <div className="week" role="img" aria-label={t('parent.week.chart')}>
+        {week.days.map((d) => (
+          <div key={d.key} className="week__day">
+            <span className="week__count">{d.exercises > 0 ? d.exercises : ''}</span>
+            <span
+              className={d.exercises > 0 ? 'week__bar week__bar--on' : 'week__bar'}
+              style={{ height: `${Math.round((d.exercises / most) * 100)}%` }}
+            />
+            <span className="week__label">{WEEKDAYS[d.weekday]}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function JourneyReport({ profile }: { profile: Profile }) {
+  const progress = useApp((s) => s.data.progress[profile.id]);
+  const worlds = worldsFor(profile.grade, progress);
+  return (
+    <div className="report" aria-label={t('parent.journey.title')}>
+      <strong className="report__title">{t('parent.journey.title')}</strong>
+      <ul className="report__worlds">
+        {worlds.map((w) => (
+          <li key={w.topic.id} className="report__world">
+            <span>
+              {w.completed
+                ? t('parent.journey.worldDone', { params: { name: topicLabel(w.topic.id) } })
+                : t('parent.journey.world', {
+                    params: { name: topicLabel(w.topic.id), done: w.done, total: w.total },
+                  })}
+            </span>
+            <progress max={w.total} value={w.done} className="report__bar" />
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
