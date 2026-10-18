@@ -196,6 +196,7 @@ function JoinDialog({
             setCode(v.replace(/\D/g, ''));
           }}
           maxLength={PAIR_CODE_LENGTH}
+          code
         />
       </div>
     </Dialog>

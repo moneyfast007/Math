@@ -4,7 +4,15 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { LongPressButton } from './LongPressButton';
 import { NumberPad } from './NumberPad';
 
-function Pad({ onSubmit, maxLength }: { onSubmit?: () => void; maxLength?: number }) {
+function Pad({
+  onSubmit,
+  maxLength,
+  code = false,
+}: {
+  onSubmit?: () => void;
+  maxLength?: number;
+  code?: boolean;
+}) {
   const [value, setValue] = useState('');
   return (
     <>
@@ -15,6 +23,7 @@ function Pad({ onSubmit, maxLength }: { onSubmit?: () => void; maxLength?: numbe
         onChange={setValue}
         {...(maxLength === undefined ? {} : { maxLength })}
         {...(onSubmit ? { onSubmit } : {})}
+        code={code}
       />
     </>
   );
@@ -34,6 +43,12 @@ describe('<NumberPad>', () => {
     fireEvent.click(screen.getByRole('button', { name: '0' }));
     fireEvent.click(screen.getByRole('button', { name: '5' }));
     expect(screen.getByTestId('value')).toHaveTextContent(/^5$/);
+  });
+
+  it('keeps a leading zero when typing a code', () => {
+    render(<Pad code />);
+    for (const d of ['0', '4', '5']) fireEvent.click(screen.getByRole('button', { name: d }));
+    expect(screen.getByTestId('value')).toHaveTextContent(/^045$/);
   });
 
   it('enables confirm only when there is a value', () => {

@@ -13,6 +13,8 @@ interface NumberPadProps {
   label: string;
   /** Adds a decimal point key (for decimal fractions). */
   decimal?: boolean;
+  /** Typing a code rather than a number: a 0 at the start is kept ("045123"). */
+  code?: boolean;
 }
 
 const KEYS = ['1', '2', '3', '4', '5', '6', '7', '8', '9'] as const;
@@ -31,11 +33,12 @@ export function NumberPad({
   submitDisabled,
   label,
   decimal = false,
+  code = false,
 }: NumberPadProps) {
   const press = (digit: string) => {
     if (value.replace('.', '').length >= maxLength) return;
     // No leading zeros except a lone "0" (or "0." on the way to a decimal).
-    onChange(value === '0' ? digit : value + digit);
+    onChange(value === '0' && !code ? digit : value + digit);
   };
   const point = () => {
     if (value.includes('.')) return;

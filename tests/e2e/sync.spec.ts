@@ -132,7 +132,8 @@ test('a wrong code is explained, and nothing changes', async ({ page, context })
   await page.getByRole('button', { name: 'יצירת פרופיל ראשון' }).click();
   await page.getByRole('button', { name: 'חיבור למשפחה קיימת' }).click();
   const join = page.getByRole('dialog', { name: 'חיבור למשפחה קיימת' });
-  for (const d of '123456') await join.getByRole('button', { name: d, exact: true }).click();
+  for (const d of '012345') await join.getByRole('button', { name: d, exact: true }).click();
+  await expect(join.locator('output')).toHaveText('012345');
   await join.getByRole('button', { name: 'חיבור', exact: true }).click();
   await expect(join.getByText('הקוד לא נכון או שפג תוקפו', { exact: false })).toBeVisible();
 });
