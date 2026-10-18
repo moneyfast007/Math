@@ -36,7 +36,7 @@ function lockPageScroll(): () => void {
     saved = null;
     if (style) document.body.setAttribute('style', style);
     else document.body.removeAttribute('style');
-    window.scrollTo(0, y);
+    if (window.scrollY !== y) window.scrollTo(0, y);
   };
 }
 
