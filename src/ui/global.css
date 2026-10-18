@@ -2076,3 +2076,86 @@ ol.steps {
 .money__price {
   margin-inline-end: var(--space-3);
 }
+
+/* ---------- Phase 6: shapes, patterns and pencils (gan) ---------- */
+
+.shapes {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  background: var(--color-surface-alt);
+  border-radius: var(--radius-lg);
+}
+
+.shape {
+  width: 84px;
+  height: 84px;
+}
+
+.shape--red {
+  fill: #e8604c;
+  stroke: #e8604c;
+}
+
+.shape--blue {
+  fill: #5b63d6;
+  stroke: #5b63d6;
+}
+
+.shape--yellow {
+  fill: #f0b429;
+  stroke: #f0b429;
+}
+
+.shape--green {
+  fill: #3f9e5a;
+  stroke: #3f9e5a;
+}
+
+.shape path {
+  stroke-width: 6;
+}
+
+.shapes__blank {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  border: 4px dashed var(--color-accent-strong);
+  border-radius: var(--radius-md);
+  font-family: var(--font-math);
+  font-size: var(--text-xl);
+  font-weight: 800;
+  color: var(--color-accent-strong);
+}
+
+.pencils {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: var(--space-3);
+}
+
+.pencil {
+  width: 40px;
+  height: 200px;
+}
+
+.choice-big--picture .shapes {
+  background: none;
+  padding: 0;
+}
+
+.choice-big--picture .shape {
+  width: 120px;
+  height: 120px;
+}
+
+.choice-big--picture .pencil {
+  width: 36px;
+  height: 180px;
+}

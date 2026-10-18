@@ -44,6 +44,10 @@ const backup = {
     ],
     progress: {
       a: { topics: { 'add-sub-100': done() }, streak: { count: 0, lastDay: null } },
+      d: {
+        topics: { 'count-10': done(), 'add-sub-20': done() },
+        streak: { count: 0, lastDay: null },
+      },
       c: {
         topics: { 'add-sub-20': done(), 'numbers-100': done() },
         streak: { count: 0, lastDay: null },
@@ -123,4 +127,17 @@ test('money and clock screens', async ({ page }, info) => {
   await shot(page, 'g1-01-journey');
   await level(page, 'סופרים כסף עד 20', 'g1-02-count');
   await level(page, 'מה השעה בעוד שעה?', 'g1-03-later');
+
+  // Gan: shapes and patterns
+  await page.getByRole('button', { name: 'מי משחק?' }).click();
+  await page.getByRole('button', { name: 'תמר' }).click();
+  await shot(page, 's-01-journey');
+  await level(page, 'עיגול, ריבוע, משולש', 's-02-where');
+  await level(page, 'אותה צורה', 's-03-same');
+  await level(page, 'כמה פינות?', 's-04-corners');
+  await level(page, 'גדול וקטן', 's-05-size');
+  await level(page, 'ארוך וקצר', 's-06-pencils');
+  await level(page, 'דפוס של צורות', 's-07-pattern', 1);
+  await level(page, 'מה חסר בדפוס?', 's-08-missing');
+  await level(page, 'כמה יש בתמונה?', 's-09-count');
 });

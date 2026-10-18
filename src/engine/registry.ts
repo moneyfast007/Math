@@ -23,12 +23,14 @@ import { perimeterArea } from './topics/perimeterArea';
 import { percent } from './topics/percent';
 import { percentIntro } from './topics/percentIntro';
 import { ratio } from './topics/ratio';
+import { shapesTopic } from './topics/shapes';
 import type { Topic } from './types';
 
 /** All topics (worlds), in curriculum order (Ministry of Education, 2006/2024). */
 export const TOPICS: readonly Topic[] = [
   count10,
   addSub20,
+  shapesTopic,
   numbers100,
   clockMoney1,
   addSub100,

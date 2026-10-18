@@ -68,7 +68,26 @@ export type Visual =
    * Shekel coins (1, 2, 5, 10) and notes (20, 50, 100, 200), drawn left to
    * right, largest first. `price` adds a price tag before them (shopping).
    */
-  | { type: 'money'; items: number[]; price?: number };
+  | { type: 'money'; items: number[]; price?: number }
+  /**
+   * Shapes in a row: a pattern (`null` is the place to fill, drawn as a dashed
+   * box) or a picture to count in. Each shape has its own size and turn.
+   */
+  | { type: 'shapes'; items: (ShapeItem | null)[] }
+  /** Pencils standing on one line, `lengths` in units of 1–5: which is longest? */
+  | { type: 'pencils'; lengths: number[] };
+
+export type ShapeKind = 'circle' | 'square' | 'triangle' | 'rectangle';
+export type ShapeColor = 'red' | 'blue' | 'yellow' | 'green';
+
+export interface ShapeItem {
+  shape: ShapeKind;
+  color: ShapeColor;
+  /** 0.4–1 of the full size (default 1). */
+  size?: number;
+  /** Degrees clockwise (default 0). */
+  turn?: number;
+}
 
 export interface ClockTime {
   h: number;

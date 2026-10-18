@@ -1,4 +1,4 @@
-import type { ClockTime, Visual } from '@/engine/types';
+import type { ClockTime, ShapeItem, Visual } from '@/engine/types';
 import { t } from '@/i18n';
 import { digitalTime } from '@/lang/time';
 
@@ -21,6 +21,10 @@ export function VisualView({ visual }: { visual: Visual }) {
       return <Clocks v={visual} />;
     case 'money':
       return <Money v={visual} />;
+    case 'shapes':
+      return <Shapes v={visual} />;
+    case 'pencils':
+      return <Pencils v={visual} />;
   }
 }
 
@@ -345,6 +349,72 @@ function Money({ v }: { v: Extract<Visual, { type: 'money' }> }) {
       {items.map((value, i) => (
         <MoneyItem key={i} value={value} />
       ))}
+    </div>
+  );
+}
+
+/* ---------- Shapes and pencils (world: צורות ודפוסים) ---------- */
+
+/** One shape in a 100 × 100 box, scaled and turned about its centre. */
+export function ShapeView({ item }: { item: ShapeItem }) {
+  const k = item.size ?? 1;
+  const transform = `rotate(${item.turn ?? 0} 50 50) translate(50 50) scale(${k}) translate(-50 -50)`;
+  let body;
+  switch (item.shape) {
+    case 'circle':
+      body = <circle cx="50" cy="50" r="40" />;
+      break;
+    case 'square':
+      body = <rect x="12" y="12" width="76" height="76" rx="6" />;
+      break;
+    case 'rectangle':
+      body = <rect x="4" y="27" width="92" height="46" rx="6" />;
+      break;
+    case 'triangle':
+      body = <path d="M50 12 L90 84 L10 84 Z" strokeLinejoin="round" />;
+      break;
+  }
+  return (
+    <svg viewBox="0 0 100 100" className={`shape shape--${item.color}`} aria-hidden="true">
+      <g transform={transform}>{body}</g>
+    </svg>
+  );
+}
+
+function Shapes({ v }: { v: Extract<Visual, { type: 'shapes' }> }) {
+  return (
+    <div className="shapes" dir="ltr" data-visual="shapes" aria-hidden="true">
+      {v.items.map((item, i) =>
+        item ? (
+          <ShapeView key={i} item={item} />
+        ) : (
+          <span key={i} className="shapes__blank">
+            ?
+          </span>
+        ),
+      )}
+    </div>
+  );
+}
+
+const PENCIL_COLORS = ['#e2a33b', '#5b63d6', '#2f8f83', '#e8793a', '#c45f9e'];
+
+/** Pencils standing on a line; each is drawn in a box of the longest possible height, so they line up. */
+function Pencils({ v }: { v: Extract<Visual, { type: 'pencils' }> }) {
+  return (
+    <div className="pencils" dir="ltr" data-visual="pencils" aria-hidden="true">
+      {v.lengths.map((len, i) => {
+        const body = 20 + len * 28;
+        const top = 200 - body - 30;
+        return (
+          <svg key={i} viewBox="0 0 40 200" className="pencil">
+            <path d={`M20 ${top} L32 ${top + 30} L8 ${top + 30} Z`} fill="#f3d9b0" />
+            <path d={`M20 ${top} L24 ${top + 10} L16 ${top + 10} Z`} fill="#3a2f2a" />
+            <rect x="8" y={top + 30} width="24" height={body - 12} fill={PENCIL_COLORS[(len + i) % PENCIL_COLORS.length]} />
+            <rect x="8" y={200 - 12} width="24" height="12" rx="3" fill="#e8793a" opacity="0.8" />
+          </svg>
+        );
+      })}
     </div>
   );
 }
