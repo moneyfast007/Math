@@ -258,8 +258,9 @@ function enough(rng: Rng): Exercise {
     display: '',
     spoken,
     visual: money(items, price),
-    answer: yes ? 0 : 1,
-    input: { type: 'choices', choices: [0, 1], labels: [t('ex.money.yes'), t('ex.money.no')] },
+    // The buttons run left to right: "לא" on the left, "כן" on the right, where a Hebrew reader starts.
+    answer: yes ? 1 : 0,
+    input: { type: 'choices', choices: [0, 1], labels: [t('ex.money.no'), t('ex.money.yes')] },
     hints: [
       hint(say('ex.money.enough.hint1', {}, who.gender)),
       hint(say('ex.money.count.hint2'), {

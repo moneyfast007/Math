@@ -2047,3 +2047,32 @@ ol.steps {
   width: auto;
   height: auto;
 }
+
+/* Landscape iPad: coins beside the answer box, so the number pad stays on screen. */
+@media (orientation: landscape) and (max-height: 900px) {
+  .exercise:has(> .money):has(> .answer-box) {
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: center;
+    align-items: center;
+    column-gap: var(--space-4);
+  }
+
+  .exercise:has(> .money):has(> .answer-box) > .exercise__prompt {
+    grid-column: 1 / -1;
+  }
+
+  .exercise .money {
+    padding: var(--space-2);
+  }
+
+  .exercise .money__coin {
+    transform: scale(0.85);
+    margin: -5px;
+  }
+}
+
+/* The price tag sits apart from the coins. */
+.money__price {
+  margin-inline-end: var(--space-3);
+}

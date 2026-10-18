@@ -242,7 +242,7 @@ function onDial(angle: number, r: number): { x: number; y: number } {
 /** An analog clock face: every hour numbered, a short thick hour hand and a long orange minute hand. */
 export function AnalogClock({ h, m }: ClockTime) {
   const hour = onDial(((h % 12) + m / 60) * 30, 68);
-  const minute = onDial(m * 6, 96);
+  const minute = onDial(m * 6, 86);
   return (
     <svg viewBox="0 0 300 300" className="clock__face" aria-hidden="true">
       <circle cx="150" cy="150" r="142" className="clock__rim" />
@@ -342,10 +342,7 @@ function Money({ v }: { v: Extract<Visual, { type: 'money' }> }) {
   return (
     <div className="money" dir="ltr" data-visual="money" aria-hidden="true">
       {v.price !== undefined ? (
-        <>
-          <span className="money__price">{v.price} ₪</span>
-          <span className="money__arrow">→</span>
-        </>
+        <span className="money__price">{v.price} ₪</span>
       ) : null}
       {items.map((value, i) => (
         <MoneyItem key={i} value={value} />
