@@ -4,7 +4,8 @@
 [WebServer] - Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
 [WebServer] - Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
 
-Running 11 tests using 2 workers
-···········
-  11 passed (1.7m)
-::notice title=🎭 Playwright Run Summary::  11 passed (1.7m)
+Running 40 tests using 2 workers
+°°°°°°°°°°°°°°°°°°°°°°°°°°°°············
+  28 skipped
+  12 passed (1.8m)
+::notice title=🎭 Playwright Run Summary::  28 skipped%0A  12 passed (1.8m)

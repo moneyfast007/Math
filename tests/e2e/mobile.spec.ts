@@ -91,12 +91,18 @@ function inspect(page: Page) {
       if (r.width === 0 || r.height === 0) continue;
       if (r.left < -1 || r.right > width + 1) {
         const cls = el.getAttribute('class') ?? '';
-        outside.push(`<${el.tagName.toLowerCase()} class="${cls}"> ${Math.round(r.left)}…${Math.round(r.right)}`);
+        outside.push(
+          `<${el.tagName.toLowerCase()} class="${cls}"> ${Math.round(r.left)}…${Math.round(r.right)}`,
+        );
       }
     }
     const math = document.querySelector<HTMLElement>('.exercise .math--block');
     const digits = math ? parseFloat(getComputedStyle(math).fontSize) : null;
-    return { outside: outside.slice(0, 5), digits, wrapped: math?.hasAttribute('data-wrap') ?? false };
+    return {
+      outside: outside.slice(0, 5),
+      digits,
+      wrapped: math?.hasAttribute('data-wrap') ?? false,
+    };
   });
 }
 
