@@ -66,7 +66,7 @@ describe('worldFor', () => {
 describe('worlds', () => {
   it('lists the grade’s topics in order and picks the first unfinished one', () => {
     const worlds = worldsFor(1, undefined);
-    expect(worlds.map((w) => w.index)).toEqual([1, 2]);
+    expect(worlds.map((w) => w.index)).toEqual([1, 2, 3]);
     expect(worlds[0]?.topic.id).toBe(addSub20.id);
     expect(activeWorld(1, undefined)?.topic.id).toBe(addSub20.id);
     expect(stickersEarned(worlds)).toBe(0);
