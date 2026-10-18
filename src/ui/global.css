@@ -2159,3 +2159,9 @@ ol.steps {
   width: 36px;
   height: 180px;
 }
+
+/* A picture to count in (eight shapes or more) stays on one line. */
+.exercise .shapes:has(> :nth-child(8)) .shape {
+  width: 64px;
+  height: 64px;
+}

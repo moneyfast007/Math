@@ -383,7 +383,8 @@ export function ShapeView({ item }: { item: ShapeItem }) {
 
 function Shapes({ v }: { v: Extract<Visual, { type: 'shapes' }> }) {
   return (
-    <div className="shapes" dir="ltr" data-visual="shapes" aria-hidden="true">
+    // Patterns read the way a Hebrew reader looks: from the right; the gap at the end is on the left.
+    <div className="shapes" dir="rtl" data-visual="shapes" aria-hidden="true">
       {v.items.map((item, i) =>
         item ? (
           <ShapeView key={i} item={item} />
