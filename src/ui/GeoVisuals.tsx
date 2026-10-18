@@ -28,30 +28,22 @@ export function AngleView({ v }: { v: Extract<Visual, { type: 'angle' }> }) {
   const ar = 22;
   const q1: P = [o[0] + ar * Math.cos(a1), o[1] + ar * Math.sin(a1)];
   const q2: P = [o[0] + ar * Math.cos(a2), o[1] + ar * Math.sin(a2)];
-  const right = v.deg === 90;
   // The picture is framed around the angle, whichever way it is turned.
   const xs = [o[0], p1[0], p2[0]];
   const ys = [o[1], p1[1], p2[1]];
   const minX = Math.min(...xs) - 12;
   const minY = Math.min(...ys) - 12;
   const box = `${fmt(minX)} ${fmt(minY)} ${fmt(Math.max(...xs) - minX + 12)} ${fmt(Math.max(...ys) - minY + 12)}`;
-  const corner = add(add(o, scale(unit(sub(p1, o)), 16)), scale(unit(sub(p2, o)), 16));
   return (
     <div className="geo" dir="ltr" data-visual="angle" aria-hidden="true">
       <svg viewBox={box} className="geo__svg">
         <line x1={o[0]} y1={o[1]} x2={fmt(p1[0])} y2={fmt(p1[1])} className="geo__ray" />
         <line x1={o[0]} y1={o[1]} x2={fmt(p2[0])} y2={fmt(p2[1])} className="geo__ray" />
-        {right ? (
-          <path
-            d={`M${fmt(add(o, scale(unit(sub(p1, o)), 16))[0])} ${fmt(add(o, scale(unit(sub(p1, o)), 16))[1])} L${fmt(corner[0])} ${fmt(corner[1])} L${fmt(add(o, scale(unit(sub(p2, o)), 16))[0])} ${fmt(add(o, scale(unit(sub(p2, o)), 16))[1])}`}
-            className="geo__mark"
-          />
-        ) : (
+        {/* An arc, never a right-angle square: the square would give the answer away. */}
           <path
             d={`M${fmt(q1[0])} ${fmt(q1[1])} A${ar} ${ar} 0 ${v.deg > 180 ? 1 : 0} 0 ${fmt(q2[0])} ${fmt(q2[1])}`}
             className="geo__mark"
           />
-        )}
         <circle cx={o[0]} cy={o[1]} r="3.5" className="geo__dot" />
       </svg>
     </div>
