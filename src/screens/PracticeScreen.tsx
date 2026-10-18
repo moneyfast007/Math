@@ -209,16 +209,16 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
       : replaying
         ? t('practice.done.replay')
         : outcome
-        ? resultLine(outcome, tc, profile.id, profile.grade)
-        : null;
+          ? resultLine(outcome, tc, profile.id, profile.grade)
+          : null;
     const passed = daily || replaying || outcome?.passed === true;
     const spoken = daily
       ? t('practice.done.daily')
       : replaying
         ? t('practice.done.replay')
-      : passed
-        ? tc('practice.done.passedSpoken')
-        : t('practice.done.notPassed');
+        : passed
+          ? tc('practice.done.passedSpoken')
+          : t('practice.done.notPassed');
     return (
       <main className="screen practice" data-screen="practice-done">
         <section className="stack done" style={{ alignItems: 'center', textAlign: 'center' }}>

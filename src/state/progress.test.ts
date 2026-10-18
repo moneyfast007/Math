@@ -199,7 +199,13 @@ describe('the week and the days of practice (schema 3)', () => {
     let p = emptyProgress();
     p = recordAttempt(p, { topicId: 'money', level: 1, correct: true, at: day });
     p = recordAttempt(p, { topicId: 'money', level: 1, correct: false, at: day });
-    p = completeRound(p, { topicId: 'money', station: 1, firstTry: 1, length: 2, at: day }).progress;
+    p = completeRound(p, {
+      topicId: 'money',
+      station: 1,
+      firstTry: 1,
+      length: 2,
+      at: day,
+    }).progress;
     p = completeDaily(p, day);
     const week = weekSummary(p, day);
     expect(week.days).toHaveLength(7);

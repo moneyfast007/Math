@@ -145,7 +145,9 @@ function Journey({ profile }: { profile: Profile }) {
           {hasDaily ? (
             <button
               type="button"
-              className={dailyDone ? 'btn btn--secondary daily daily--done' : 'btn btn--secondary daily'}
+              className={
+                dailyDone ? 'btn btn--secondary daily daily--done' : 'btn btn--secondary daily'
+              }
               onClick={() => navigate({ name: 'daily' })}
             >
               <DailyIcon done={dailyDone} />
