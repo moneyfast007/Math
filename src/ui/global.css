@@ -175,6 +175,34 @@ button {
   margin: 0 auto;
 }
 
+/* A screen with a bar pinned to the bottom of the viewport (the parent area). */
+.screen__footer {
+  position: sticky;
+  bottom: 0;
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  margin: 0 calc(-1 * var(--space-4)) calc(-1 * var(--space-4));
+  padding: var(--space-3) var(--space-4) max(var(--space-3), env(safe-area-inset-bottom));
+  background: color-mix(in srgb, var(--color-bg) 92%, transparent);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  border-top: 1px solid var(--color-accent-soft);
+}
+
+.btn--wide {
+  width: 100%;
+  max-width: 28rem;
+}
+
+.child-added {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+  text-align: center;
+}
+
 .screen__header {
   display: flex;
   align-items: center;

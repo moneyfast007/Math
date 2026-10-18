@@ -63,7 +63,7 @@ test('the day’s review appears after a passed station and starts a round', asy
     .getByRole('button', { name: 'שחזור' })
     .click();
   await expect(page.getByText('השחזור הושלם.')).toBeVisible();
-  await page.getByRole('button', { name: 'יציאה' }).click();
+  await page.getByRole('button', { name: 'סיימתי, למסך הבית' }).first().click();
 
   // A child with nothing passed yet has no review to do.
   await page.getByRole('button', { name: 'רוני' }).click();

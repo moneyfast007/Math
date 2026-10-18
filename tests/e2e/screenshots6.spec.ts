@@ -129,7 +129,7 @@ async function setup(page: Page, name: string, data: object = backup) {
     .getByRole('button', { name: 'שחזור' })
     .click();
   await expect(page.getByText('השחזור הושלם.')).toBeVisible();
-  await page.getByRole('button', { name: 'יציאה' }).click();
+  await page.getByRole('button', { name: 'סיימתי, למסך הבית' }).first().click();
   await page.getByRole('button', { name }).click();
 }
 

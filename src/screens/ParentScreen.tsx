@@ -61,10 +61,10 @@ function ParentArea() {
     navigate({ name: 'home' });
   };
   return (
-    <main className="screen" data-screen="parents">
+    <main className="screen screen--with-footer" data-screen="parents">
       <header className="screen__header">
         <h1>{t('parent.title')}</h1>
-        <button type="button" className="btn btn--secondary" onClick={exit}>
+        <button type="button" className="btn" onClick={exit}>
           {t('parent.exit')}
         </button>
       </header>
@@ -73,6 +73,12 @@ function ParentArea() {
       <SecuritySection />
       <DeviceSection />
       <OfflineSection />
+      {/* Always in reach at the bottom, however long the page gets. */}
+      <footer className="screen__footer">
+        <button type="button" className="btn btn--wide" onClick={exit}>
+          {t('parent.exit')}
+        </button>
+      </footer>
     </main>
   );
 }
@@ -84,7 +90,10 @@ function ChildrenSection() {
   const addProfile = useApp((s) => s.addProfile);
   const updateProfile = useApp((s) => s.updateProfile);
   const removeProfile = useApp((s) => s.removeProfile);
+  const selectProfile = useApp((s) => s.selectProfile);
+  const lockParent = useApp((s) => s.lockParent);
   const [editing, setEditing] = useState<Profile | 'new' | null>(null);
+  const [added, setAdded] = useState<Profile | null>(null);
   const full = profiles.length >= MAX_PROFILES;
 
   return (
@@ -107,7 +116,7 @@ function ChildrenSection() {
       {editing === 'new' ? (
         <ProfileForm
           onSave={(input) => {
-            addProfile(input);
+            setAdded(addProfile(input));
             setEditing(null);
           }}
           onClose={() => setEditing(null)}
@@ -126,7 +135,64 @@ function ChildrenSection() {
           onClose={() => setEditing(null)}
         />
       ) : null}
+
+      {added ? (
+        <ChildAdded
+          profile={added}
+          canAddAnother={!full}
+          onPlay={() => {
+            lockParent();
+            selectProfile(added.id);
+            navigate({ name: 'play' });
+          }}
+          onAddAnother={() => {
+            setAdded(null);
+            setEditing('new');
+          }}
+          onClose={() => setAdded(null)}
+        />
+      ) : null}
     </section>
+  );
+}
+
+/** Right after a child is added: the next step is always one tap away. */
+function ChildAdded({
+  profile,
+  canAddAnother,
+  onPlay,
+  onAddAnother,
+  onClose,
+}: {
+  profile: Profile;
+  canAddAnother: boolean;
+  onPlay: () => void;
+  onAddAnother: () => void;
+  onClose: () => void;
+}) {
+  const tc = makeT(profile.gender);
+  return (
+    <Dialog
+      title={tc('parent.added.title', { name: profile.name })}
+      onClose={onClose}
+      actions={
+        <>
+          <button type="button" className="btn" onClick={onPlay}>
+            {t('parent.added.play')}
+          </button>
+          {canAddAnother ? (
+            <button type="button" className="btn btn--secondary" onClick={onAddAnother}>
+              {t('parent.added.another')}
+            </button>
+          ) : null}
+        </>
+      }
+    >
+      <div className="child-added">
+        <Avatar id={profile.avatar} size="lg" decorative />
+        <p>{tc('parent.added.body')}</p>
+      </div>
+    </Dialog>
   );
 }
 

@@ -13,8 +13,7 @@ async function setupChild(page: Page, name: string, grade: string) {
   await dialog.getByLabel('שם', { exact: true }).fill(name);
   await dialog.getByRole('radio', { name: grade }).check({ force: true });
   await dialog.getByRole('button', { name: 'שמירה' }).click();
-  await page.getByRole('button', { name: 'יציאה' }).click();
-  await page.getByRole('button', { name }).click();
+  await page.getByRole('button', { name: 'להתחיל לשחק' }).click();
   await page.getByRole('button', { name: 'יאללה, מתחילים!' }).click();
   await expect(page).toHaveURL(/\/practice$/);
 }

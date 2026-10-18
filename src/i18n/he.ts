@@ -53,7 +53,11 @@ export const he = {
 
   // Parent area
   'parent.title': 'אזור הורים',
-  'parent.exit': 'יציאה',
+  'parent.exit': 'סיימתי, למסך הבית',
+  'parent.added.title': { f: '{name} מוכנה!', m: '{name} מוכן!' },
+  'parent.added.body': 'הפרופיל נשמר. אפשר להתחיל לשחק עכשיו, או להוסיף עוד ילד או ילדה.',
+  'parent.added.play': 'להתחיל לשחק',
+  'parent.added.another': 'להוסיף עוד ילד או ילדה',
   'parent.children': 'הילדים',
   'parent.addChild': 'הוספת ילד או ילדה',
   'parent.edit': 'עריכה',

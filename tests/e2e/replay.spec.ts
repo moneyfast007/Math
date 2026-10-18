@@ -61,7 +61,7 @@ test('a sticker in the album plays its world again, and the journey stays put', 
     .getByRole('button', { name: 'שחזור' })
     .click();
   await expect(page.getByText('השחזור הושלם.')).toBeVisible();
-  await page.getByRole('button', { name: 'יציאה' }).click();
+  await page.getByRole('button', { name: 'סיימתי, למסך הבית' }).first().click();
   await page.getByRole('button', { name: 'שירה' }).click();
 
   // World 1 is finished: the journey is in world 2.

@@ -12,8 +12,7 @@ test('the level picker scrolls inside the dialog, not the page behind', async ({
   await form.getByLabel('שם', { exact: true }).fill('רוני');
   await form.getByRole('radio', { name: 'כיתה ד׳' }).check({ force: true });
   await form.getByRole('button', { name: 'שמירה' }).click();
-  await page.getByRole('button', { name: 'יציאה' }).click();
-  await page.getByRole('button', { name: 'רוני' }).click();
+  await page.getByRole('button', { name: 'להתחיל לשחק' }).click();
 
   await page.getByRole('button', { name: 'שלב אחר' }).click();
   const dialog = page.getByRole('dialog', { name: 'באיזה שלב לתרגל?' });

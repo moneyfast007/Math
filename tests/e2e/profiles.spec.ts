@@ -29,10 +29,13 @@ async function addChild(
   await dialog.getByRole('radio', { name: gender }).check({ force: true });
   await dialog.getByRole('button', { name: 'שמירה' }).click();
   await expect(dialog).toBeHidden();
+  const added = page.getByRole('dialog', { name: new RegExp(`^${name} מוכנ`) });
+  await added.getByRole('button', { name: 'סגירה' }).click();
+  await expect(added).toBeHidden();
 }
 
 async function exitParents(page: Page) {
-  await page.getByRole('button', { name: 'יציאה' }).click();
+  await page.getByRole('button', { name: 'סיימתי, למסך הבית' }).first().click();
   await expect(page).toHaveURL(/\/$/);
 }
 
@@ -69,6 +72,41 @@ test.describe('profiles', () => {
 
     await page.reload();
     await expect(page.getByRole('button', { name: 'נועה' })).toBeVisible();
+  });
+
+  test('after adding a child: start playing right away, or add another', async ({ page }) => {
+    await startSetup(page);
+    await page.getByRole('button', { name: 'הוספת ילד או ילדה' }).click();
+    const form = page.getByRole('dialog', { name: 'פרופיל חדש' });
+    await form.getByLabel('שם', { exact: true }).fill('נועה');
+    await form.getByRole('radio', { name: 'כיתה ב׳' }).check({ force: true });
+    await form.getByRole('button', { name: 'שמירה' }).click();
+
+    const added = page.getByRole('dialog', { name: 'נועה מוכנה!' });
+    await expect(added).toBeVisible();
+    await added.getByRole('button', { name: 'להוסיף עוד ילד או ילדה' }).click();
+    const second = page.getByRole('dialog', { name: 'פרופיל חדש' });
+    await second.getByLabel('שם', { exact: true }).fill('איתי');
+    await second.getByRole('radio', { name: 'כיתה ד׳' }).check({ force: true });
+    await second.getByRole('radio', { name: 'בלשון זכר' }).check({ force: true });
+    await second.getByRole('button', { name: 'שמירה' }).click();
+
+    await page
+      .getByRole('dialog', { name: 'איתי מוכן!' })
+      .getByRole('button', { name: 'להתחיל לשחק' })
+      .click();
+    await expect(page).toHaveURL(/\/play$/);
+    await expect(page.getByRole('button', { name: 'יאללה, מתחילים!' })).toBeVisible();
+  });
+
+  test('the way home stays in reach at the bottom of a long parent area', async ({ page }) => {
+    await startSetup(page);
+    await addChild(page, { name: 'נועה', grade: 'כיתה ב׳' });
+    await page.mouse.wheel(0, 3000);
+    const done = page.getByRole('button', { name: 'סיימתי, למסך הבית' }).last();
+    await expect(done).toBeInViewport();
+    await done.click();
+    await expect(page).toHaveURL(/\/$/);
   });
 
   test('selecting a child greets her and applies her age band', async ({ page }) => {

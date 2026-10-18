@@ -16,6 +16,7 @@ async function addChild(
   grade: string,
   avatar: string,
   gender = 'בלשון נקבה',
+  snap?: string,
 ) {
   await page.getByRole('button', { name: 'הוספת ילד או ילדה' }).click();
   const dialog = page.getByRole('dialog', { name: 'פרופיל חדש' });
@@ -25,6 +26,10 @@ async function addChild(
   await dialog.getByRole('radio', { name: gender }).check({ force: true });
   await dialog.getByRole('button', { name: 'שמירה' }).click();
   await expect(dialog).toBeHidden();
+  const added = page.getByRole('dialog', { name: new RegExp(`^${name} מוכנ`) });
+  if (snap) await shot(page, snap);
+  await added.getByRole('button', { name: 'סגירה' }).click();
+  await expect(added).toBeHidden();
 }
 
 async function shot(page: Page, name: string) {
@@ -42,11 +47,11 @@ for (const orientation of ['landscape', 'portrait'] as const) {
     await page.goto('/');
     await shot(page, `${o}-01-welcome`);
     await page.getByRole('button', { name: 'יצירת פרופיל ראשון' }).click();
-    await addChild(page, 'תמר', 'גן חובה', 'ארנב');
+    await addChild(page, 'תמר', 'גן חובה', 'ארנב', 'בלשון נקבה', `${o}-01b-child-added`);
     await addChild(page, 'נועה', 'כיתה ב׳', 'שועל');
     await addChild(page, 'מאיה', 'כיתה ד׳', 'חתול');
     await shot(page, `${o}-02-parents`);
-    await page.getByRole('button', { name: 'יציאה' }).click();
+    await page.getByRole('button', { name: 'סיימתי, למסך הבית' }).first().click();
     await shot(page, `${o}-03-home`);
 
     // Gan
