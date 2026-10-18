@@ -49,6 +49,12 @@ describe.each(TOPICS.map((t) => [t.id, t] as const))('topic %s', (_id, topic) =>
         expect(e.input.choices, e.factId).toContain(e.answer);
         expect(new Set(e.input.choices).size).toBe(e.input.choices.length);
         if (e.input.labels) expect(e.input.labels).toHaveLength(e.input.choices.length);
+        if (e.input.visuals) {
+          expect(e.input.visuals, e.factId).toHaveLength(e.input.choices.length);
+          // A picture button still has a name, for the reveal and for screen readers.
+          expect(e.input.labels, e.factId).toHaveLength(e.input.choices.length);
+        }
+        if (e.input.labels) expect(new Set(e.input.labels).size, e.factId).toBe(e.input.labels.length);
       } else {
         expect(String(Math.floor(e.answer)).length, e.factId).toBeLessThanOrEqual(
           e.input.maxDigits,

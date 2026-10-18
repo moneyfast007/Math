@@ -121,6 +121,12 @@ export function labelledChoices(labels: string[]): Exercise['input'] {
   return { type: 'choices', choices: labels.map((_, i) => i), labels };
 }
 
+/** Choices drawn as pictures (clocks, coins); `labels` name them for the reveal and screen readers. */
+export function pictureChoices(labels: string[], visuals: Visual[]): Exercise['input'] {
+  if (labels.length !== visuals.length) throw new RangeError('pictureChoices: one label per picture');
+  return { type: 'choices', choices: labels.map((_, i) => i), labels, visuals };
+}
+
 export function numpad(maxDigits: number, decimal = false): Exercise['input'] {
   return decimal ? { type: 'numpad', maxDigits, decimal: true } : { type: 'numpad', maxDigits };
 }
@@ -253,6 +259,17 @@ export function exampleHint(display: string, solved: Said): Hint {
     spoken: t('spoken.example', { params: { sentence: solved.text } }),
     spokenParts: ['למשל', ...solved.parts],
     example: { display, spoken: solved.text },
+  };
+}
+
+/** Hint 3 with a picture: a similar exercise, solved, shown as a picture (coins, a clock). */
+export function pictureExample(solved: Said, visual: Visual, display?: string): Hint {
+  return {
+    text: t('hint.example'),
+    spoken: t('spoken.example', { params: { sentence: solved.text } }),
+    spokenParts: ['למשל', ...solved.parts],
+    visual,
+    ...(display ? { example: { display, spoken: solved.text } } : {}),
   };
 }
 

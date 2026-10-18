@@ -330,6 +330,21 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
             >
               {e.input.choices.map((c, i) => {
                 const label = e.input.type === 'choices' ? e.input.labels?.[i] : undefined;
+                const picture = e.input.type === 'choices' ? e.input.visuals?.[i] : undefined;
+                if (picture) {
+                  return (
+                    <button
+                      key={c}
+                      type="button"
+                      className="choice-big choice-big--picture"
+                      aria-label={label}
+                      disabled={tried.includes(c)}
+                      onClick={() => answer(c)}
+                    >
+                      <VisualView visual={picture} />
+                    </button>
+                  );
+                }
                 return (
                   <button
                     key={c}
@@ -507,7 +522,9 @@ function explanation(s: SessionState, tc: TC): string {
     m === 'placeValue' ||
     m === 'carry' ||
     m === 'offByTen' ||
-    m === 'remainder'
+    m === 'remainder' ||
+    m === 'countedCoins' ||
+    m === 'clockHands'
   ) {
     return tc(`explain.${m}`);
   }

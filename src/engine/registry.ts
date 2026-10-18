@@ -4,6 +4,7 @@ import { addSub100 } from './topics/addSub100';
 import { addSub20 } from './topics/addSub20';
 import { bigNumbers } from './topics/bigNumbers';
 import { circleVolume } from './topics/circleVolume';
+import { clockTopic } from './topics/clock';
 import { count10 } from './topics/count10';
 import { decimalOps } from './topics/decimalOps';
 import { decimals } from './topics/decimals';
@@ -11,6 +12,7 @@ import { fractionMulDiv } from './topics/fractionMulDiv';
 import { fractionOps } from './topics/fractionOps';
 import { fractions1 } from './topics/fractions1';
 import { longMulDiv } from './topics/longMulDiv';
+import { moneyTopic } from './topics/money';
 import { multIntro } from './topics/multIntro';
 import { multTable } from './topics/multTable';
 import { numbers100 } from './topics/numbers100';
@@ -28,7 +30,9 @@ export const TOPICS: readonly Topic[] = [
   addSub20,
   numbers100,
   addSub100,
+  moneyTopic,
   multIntro,
+  clockTopic,
   multTable,
   numbers10000,
   fractions1,

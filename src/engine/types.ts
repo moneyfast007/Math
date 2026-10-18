@@ -57,7 +57,23 @@ export type Visual =
       target?: number;
       /** Tick spacing (default 1); a hop is one tick. */
       step?: number;
-    };
+    }
+  /**
+   * Clocks: one, or two side by side (from, to: how much time passed). Analog
+   * by default; `digital` shows the time as on a digital clock ("3:30").
+   * Hours 1–12, minutes 0–59.
+   */
+  | { type: 'clock'; times: ClockTime[]; digital?: boolean }
+  /**
+   * Shekel coins (1, 2, 5, 10) and notes (20, 50, 100, 200), drawn left to
+   * right, largest first. `price` adds a price tag before them (shopping).
+   */
+  | { type: 'money'; items: number[]; price?: number };
+
+export interface ClockTime {
+  h: number;
+  m: number;
+}
 
 export interface Hint {
   /** Shown text (may contain digits, never the answer). */
@@ -94,7 +110,13 @@ export interface Exercise {
    * `decimal` adds a decimal point to the pad.
    */
   input:
-    | { type: 'choices'; choices: number[]; labels?: string[] }
+    | {
+        type: 'choices';
+        choices: number[];
+        labels?: string[];
+        /** A picture on each button (clocks, coins); the label is then its spoken name. */
+        visuals?: Visual[];
+      }
     | { type: 'numpad'; maxDigits: number; decimal?: boolean };
   /** Exactly three, increasingly concrete: simpler wording, a picture, a solved example. */
   hints: [Hint, Hint, Hint];

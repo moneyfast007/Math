@@ -1,5 +1,6 @@
-import type { Visual } from '@/engine/types';
+import type { ClockTime, Visual } from '@/engine/types';
 import { t } from '@/i18n';
+import { digitalTime } from '@/lang/time';
 
 /** Renders an exercise or hint picture. Always left-to-right, like the arithmetic. */
 export function VisualView({ visual }: { visual: Visual }) {
@@ -16,6 +17,10 @@ export function VisualView({ visual }: { visual: Visual }) {
       return <Rect v={visual} />;
     case 'placeValue':
       return <PlaceValue v={visual} />;
+    case 'clock':
+      return <Clocks v={visual} />;
+    case 'money':
+      return <Money v={visual} />;
   }
 }
 
@@ -220,6 +225,119 @@ function PlaceValue({ v }: { v: Extract<Visual, { type: 'placeValue' }> }) {
           </div>
         );
       })}
+    </div>
+  );
+}
+
+/* ---------- Clocks (world: שעון) ---------- */
+
+const DIAL_NUMBERS = Array.from({ length: 12 }, (_, i) => i + 1);
+
+/** A point at `angle` degrees clockwise from 12, `r` from the centre of a 300 × 300 dial. */
+function onDial(angle: number, r: number): { x: number; y: number } {
+  const a = (angle * Math.PI) / 180;
+  return { x: 150 + r * Math.sin(a), y: 150 - r * Math.cos(a) };
+}
+
+/** An analog clock face: every hour numbered, a short thick hour hand and a long orange minute hand. */
+export function AnalogClock({ h, m }: ClockTime) {
+  const hour = onDial(((h % 12) + m / 60) * 30, 68);
+  const minute = onDial(m * 6, 96);
+  return (
+    <svg viewBox="0 0 300 300" className="clock__face" aria-hidden="true">
+      <circle cx="150" cy="150" r="142" className="clock__rim" />
+      <circle cx="150" cy="150" r="128" className="clock__dial" />
+      {DIAL_NUMBERS.map((n) => {
+        const p = onDial(n * 30, 108);
+        return (
+          <text key={n} x={p.x} y={p.y} className="clock__num" textAnchor="middle" dominantBaseline="central">
+            {n}
+          </text>
+        );
+      })}
+      <line x1="150" y1="150" x2={hour.x} y2={hour.y} className="clock__hour" />
+      <line x1="150" y1="150" x2={minute.x} y2={minute.y} className="clock__minute" />
+      <circle cx="150" cy="150" r="9" className="clock__pin" />
+    </svg>
+  );
+}
+
+function Clocks({ v }: { v: Extract<Visual, { type: 'clock' }> }) {
+  return (
+    <div className="clocks" dir="ltr" data-visual="clock" aria-hidden="true">
+      {v.times.map((time, i) => (
+        <div key={i} className="clocks__item">
+          {i > 0 ? <span className="clocks__arrow">→</span> : null}
+          {v.digital ? (
+            <span className="clock-digital">{digitalTime(time)}</span>
+          ) : (
+            <AnalogClock h={time.h} m={time.m} />
+          )}
+        </div>
+      ))}
+    </div>
+  );
+}
+
+/* ---------- Money (world: כסף) ---------- */
+
+const NOTE_COLORS: Record<number, string> = {
+  20: 'note--20',
+  50: 'note--50',
+  100: 'note--100',
+  200: 'note--200',
+};
+
+/** One shekel coin or note, with its value written on it. Simple drawings, not the real designs. */
+export function MoneyItem({ value }: { value: number }) {
+  if (value >= 20) {
+    return (
+      <svg viewBox="0 0 96 52" className={`money__note ${NOTE_COLORS[value] ?? ''}`} aria-hidden="true">
+        <rect x="2" y="2" width="92" height="48" rx="8" className="note__paper" />
+        <text x="48" y="27" textAnchor="middle" dominantBaseline="central" className="note__value">
+          {value}
+        </text>
+      </svg>
+    );
+  }
+  const size = value === 10 ? 'coin--10' : value === 5 ? 'coin--5' : value === 2 ? 'coin--2' : 'coin--1';
+  return (
+    <svg viewBox="0 0 60 60" className={`money__coin ${size}`} aria-hidden="true">
+      {value === 5 ? (
+        <polygon
+          points="30,2 44,6 54,16 58,30 54,44 44,54 30,58 16,54 6,44 2,30 6,16 16,6"
+          className="coin__metal"
+        />
+      ) : (
+        <circle cx="30" cy="30" r="28" className="coin__metal" />
+      )}
+      {value === 10 ? <circle cx="30" cy="30" r="19" className="coin__gold" /> : null}
+      <text
+        x="30"
+        y="31"
+        textAnchor="middle"
+        dominantBaseline="central"
+        className={value === 10 ? 'coin__value coin__value--gold' : 'coin__value'}
+      >
+        {value}
+      </text>
+    </svg>
+  );
+}
+
+function Money({ v }: { v: Extract<Visual, { type: 'money' }> }) {
+  const items = [...v.items].sort((a, b) => b - a);
+  return (
+    <div className="money" dir="ltr" data-visual="money" aria-hidden="true">
+      {v.price !== undefined ? (
+        <>
+          <span className="money__price">{v.price} ₪</span>
+          <span className="money__arrow">→</span>
+        </>
+      ) : null}
+      {items.map((value, i) => (
+        <MoneyItem key={i} value={value} />
+      ))}
     </div>
   );
 }

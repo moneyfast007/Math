@@ -54,6 +54,10 @@ export type MistakeKind =
   | 'remainder'
   | 'carry'
   | 'offByTen'
+  /** Counted the coins instead of what they are worth (phase 6). */
+  | 'countedCoins'
+  /** Read the hour from the minute hand, or the other way round (phase 6). */
+  | 'clockHands'
   | 'other';
 
 export interface TopicStats {

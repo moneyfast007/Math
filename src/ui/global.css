@@ -1806,3 +1806,244 @@ ol.steps {
   background: var(--color-accent);
   opacity: 0.55;
 }
+
+/* ---------- Phase 6: clocks and money ---------- */
+
+.clocks {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+}
+
+.clocks__item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.clocks__arrow,
+.money__arrow {
+  font-size: var(--text-lg);
+  color: var(--color-text-muted);
+}
+
+.clock__face {
+  width: min(300px, 62vw);
+  height: auto;
+}
+
+.clocks__item + .clocks__item .clock__face,
+.clocks:has(.clocks__item + .clocks__item) .clock__face {
+  width: min(220px, 38vw);
+}
+
+.clock__rim {
+  fill: var(--color-surface);
+  stroke: var(--color-accent);
+  stroke-width: 10;
+}
+
+.clock__dial {
+  fill: var(--color-bg);
+}
+
+.clock__num {
+  font-family: var(--font-math);
+  font-size: 28px;
+  font-weight: 800;
+  fill: var(--color-text);
+}
+
+.clock__hour {
+  stroke: var(--color-text);
+  stroke-width: 13;
+  stroke-linecap: round;
+}
+
+.clock__minute {
+  stroke: #e8793a;
+  stroke-width: 8;
+  stroke-linecap: round;
+}
+
+.clock__pin {
+  fill: var(--color-text);
+}
+
+.clock-digital {
+  display: inline-block;
+  font-family: var(--font-math);
+  font-size: var(--text-math);
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  background: var(--color-text);
+  color: var(--color-bg);
+  border-radius: var(--radius-md);
+  padding: var(--space-1) var(--space-3);
+  letter-spacing: 0.04em;
+}
+
+.money {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  background: var(--color-surface-alt);
+  border-radius: var(--radius-lg);
+}
+
+.money__coin {
+  width: 72px;
+  height: 72px;
+}
+
+.coin--1 {
+  width: 60px;
+  height: 60px;
+}
+
+.coin--2 {
+  width: 68px;
+  height: 68px;
+}
+
+.coin--5 {
+  width: 76px;
+  height: 76px;
+}
+
+.coin--10 {
+  width: 84px;
+  height: 84px;
+}
+
+.coin__metal {
+  fill: #d9dde3;
+  stroke: #a9b0ba;
+  stroke-width: 2.5;
+}
+
+.coin__gold {
+  fill: #f0c75e;
+  stroke: #c99a2e;
+  stroke-width: 1.5;
+}
+
+.coin__value {
+  font-family: var(--font-math);
+  font-size: 24px;
+  font-weight: 800;
+  fill: #4a5260;
+}
+
+.coin__value--gold {
+  font-size: 18px;
+  fill: #6b4e12;
+}
+
+.money__note {
+  width: 128px;
+  height: 70px;
+}
+
+.note__paper {
+  stroke-width: 3;
+}
+
+.note__value {
+  font-family: var(--font-math);
+  font-size: 24px;
+  font-weight: 800;
+}
+
+.note--20 .note__paper {
+  fill: #f6c9c4;
+  stroke: #d98a80;
+}
+
+.note--20 .note__value {
+  fill: #8a3a30;
+}
+
+.note--50 .note__paper {
+  fill: #cfe8c9;
+  stroke: #86b67b;
+}
+
+.note--50 .note__value {
+  fill: #2e5e25;
+}
+
+.note--100 .note__paper {
+  fill: #fbdcb5;
+  stroke: #e0a45c;
+}
+
+.note--100 .note__value {
+  fill: #7a4a12;
+}
+
+.note--200 .note__paper {
+  fill: #c9d6f2;
+  stroke: #7d93c9;
+}
+
+.note--200 .note__value {
+  fill: #27407a;
+}
+
+.money__price {
+  background: #fbeccf;
+  border: 3px solid #e2a33b;
+  border-radius: var(--radius-md);
+  padding: 2px var(--space-2);
+  font-family: var(--font-math);
+  font-size: var(--text-lg);
+  font-weight: 800;
+  color: #7a4a12;
+  transform: rotate(-4deg);
+}
+
+/* Answer buttons that carry a picture: a clock, a handful of coins. */
+.choice-big--picture {
+  width: auto;
+  height: auto;
+  min-width: calc(var(--tap-min) * 1.5);
+  min-height: calc(var(--tap-min) * 1.5);
+  padding: var(--space-2);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.choice-big--picture .clock__face {
+  width: min(180px, 26vw);
+}
+
+.choice-big--picture .money {
+  background: none;
+  padding: var(--space-1);
+  max-width: 300px;
+}
+
+.choice-big--picture .money__coin {
+  width: 52px;
+  height: 52px;
+}
+
+.choice-big--picture .money__note {
+  width: 92px;
+  height: 50px;
+}
+
+.choice-big--picture .clock-digital {
+  font-size: var(--text-xl);
+}
+
+:root[data-age='young'] .choice-big--picture {
+  width: auto;
+  height: auto;
+}
