@@ -41,6 +41,7 @@ const backup = {
       profile('a', 'עדי', 'fox'),
       profile('b', 'רוני', 'cat'),
       profile('c', 'ליה', 'frog', 1),
+      profile('d', 'תמר', 'rabbit', 0),
     ],
     progress: {
       a: { topics: { 'add-sub-100': done() }, streak: { count: 0, lastDay: null } },
