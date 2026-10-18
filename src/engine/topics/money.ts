@@ -176,7 +176,7 @@ function count(level: 2 | 3 | 4) {
       hints: [
         hint(say('ex.money.count.hint1')),
         hint(say('ex.money.count.hint2'), {
-          example: { display: `${plusAll(items)} = ?`, spoken: say('ex.money.count.hint2').text },
+          example: { display: `${plusAll(items)} = ?`, spoken: say('ex.money.count.hint2') },
         }),
         pictureExample(
           say('ex.money.count.solution', { n: shekels(sum(ex)) }),
@@ -263,7 +263,7 @@ function enough(rng: Rng): Exercise {
     hints: [
       hint(say('ex.money.enough.hint1', {}, who.gender)),
       hint(say('ex.money.count.hint2'), {
-        example: { display: `${plusAll(items)} = ?`, spoken: say('ex.money.count.hint2').text },
+        example: { display: `${plusAll(items)} = ?`, spoken: say('ex.money.count.hint2') },
       }),
       exampleHint(
         `${exHave} > 15`,
@@ -321,7 +321,12 @@ function wallets(rng: Rng): Exercise {
 function makeUp(n: number): number[] {
   const out: number[] = [];
   let left = n;
-  for (const v of [20, 10, 5, 2, 1]) while (left >= v) (out.push(v), (left -= v));
+  for (const v of [20, 10, 5, 2, 1]) {
+    while (left >= v) {
+      out.push(v);
+      left -= v;
+    }
+  }
   return out;
 }
 
