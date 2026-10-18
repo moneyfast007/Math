@@ -71448,6 +71448,18 @@
     "7e7c45cd19fba454": {
       "text": "יש כאן שישה ריבועים.",
       "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "7a943c9f8445a3b2": {
+      "text": "חזרה של היום",
+      "voice": "chirp3-hd/Leda"
+    },
+    "5b0a98bab846321d": {
+      "text": "החזרה של היום נעשתה",
+      "voice": "chirp3-hd/Leda"
+    },
+    "60205d988bb7af51": {
+      "text": "כל הכבוד! סיימת את החזרה של היום.",
+      "voice": "chirp3-hd/Leda"
     }
   }
 }
