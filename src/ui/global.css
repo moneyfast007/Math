@@ -330,14 +330,25 @@ ol.steps {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: var(--space-3);
+  padding: max(var(--space-3), env(safe-area-inset-top)) var(--space-3)
+    max(var(--space-3), env(safe-area-inset-bottom));
   background: rgb(58 47 42 / 35%);
+  /* A dialog taller than the screen still scrolls here, never the page behind. */
+  overflow-y: auto;
+  overscroll-behavior: contain;
 }
 
+/*
+ * The header and the actions stay put; the body between them scrolls. The
+ * body (not the panel) is the scroller, with min-height: 0 so it can shrink
+ * below its content: iPhone Safari would not scroll the panel otherwise.
+ */
 .dialog {
   width: min(560px, 100%);
+  max-height: calc(100vh - 2 * var(--space-3));
   max-height: calc(100dvh - 2 * var(--space-3));
-  overflow: auto;
+  margin: auto;
+  overflow: hidden;
   background: var(--color-bg);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-md);
@@ -345,6 +356,22 @@ ol.steps {
   display: flex;
   flex-direction: column;
   gap: var(--space-3);
+}
+
+.dialog__header,
+.dialog__actions {
+  flex: none;
+}
+
+.dialog__body {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  /* Room for focus rings, which overflow would otherwise clip. */
+  margin: -4px;
+  padding: 4px;
 }
 
 .dialog:focus {

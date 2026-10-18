@@ -9,9 +9,41 @@ interface DialogProps {
   actions?: ReactNode;
 }
 
+let locks = 0;
+let saved: { y: number; style: string } | null = null;
+
+/**
+ * Freezes the page behind an open dialog. iPhone Safari ignores overflow:
+ * hidden on the body, so the body is pinned with position: fixed at its
+ * current offset and put back (scroll position included) when the last
+ * dialog closes. Counted, so a dialog over a dialog is fine.
+ */
+function lockPageScroll(): () => void {
+  if (locks++ === 0) {
+    const body = document.body;
+    saved = { y: window.scrollY, style: body.getAttribute('style') ?? '' };
+    Object.assign(body.style, {
+      position: 'fixed',
+      top: `-${saved.y}px`,
+      left: '0',
+      right: '0',
+      overflow: 'hidden',
+    });
+  }
+  return () => {
+    if (--locks > 0 || !saved) return;
+    const { y, style } = saved;
+    saved = null;
+    if (style) document.body.setAttribute('style', style);
+    else document.body.removeAttribute('style');
+    window.scrollTo(0, y);
+  };
+}
+
 /**
  * Modal dialog. Escape and the close button dismiss it; focus moves into it on
- * open and returns to where it was on close. Never uses the browser's own
+ * open and returns to where it was on close. The page behind does not move
+ * while it is open; a long body scrolls inside the dialog. Never uses the browser's own
  * alert/confirm, which look foreign on iPad and block the page.
  */
 export function Dialog({ title, onClose, children, actions }: DialogProps) {
@@ -30,8 +62,10 @@ export function Dialog({ title, onClose, children, actions }: DialogProps) {
       if (e.key === 'Escape') close.current();
     };
     document.addEventListener('keydown', onKey);
+    const unlock = lockPageScroll();
     return () => {
       document.removeEventListener('keydown', onKey);
+      unlock();
       previous?.focus();
     };
   }, []);
