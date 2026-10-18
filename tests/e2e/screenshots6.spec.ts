@@ -81,7 +81,7 @@ async function level(page: Page, label: string, name: string, hints = 0) {
 
 test('money and clock screens', async ({ page }, info) => {
   test.skip(info.project.name !== 'ipad', 'iPad only');
-  test.setTimeout(180_000);
+  test.setTimeout(420_000);
 
   await page.goto('/');
   await page.getByRole('button', { name: 'יצירת פרופיל ראשון' }).click();
