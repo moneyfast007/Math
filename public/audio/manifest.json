@@ -70444,6 +70444,38 @@
     "0d508111139ddb0c": {
       "text": "יובל יצא לטיול בשעה תשע וחצי, וחזר בשעה אחת עשרה וחצי. כמה זמן נמשך הטיול?",
       "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "7f3fc473205fd818": {
+      "text": "עודף מעשר",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "078aac83e4454582": {
+      "text": "סופרים כסף עד עשרים",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "4a785aa287b56f34": {
+      "text": "למשל, יש כאן עשרה שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "1b65d9fb4bb42693": {
+      "text": "למשל, יש כאן אחד עשר שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a7bc6591e4b8ffc0": {
+      "text": "שעון וכסף",
+      "voice": "chirp3-hd/Leda"
+    },
+    "9d2d65da22fbd574": {
+      "text": "למשל, יש כאן חמישה עשר שקלים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "cf264621a75092dc": {
+      "text": "שעות שלמות: מה השעה?",
+      "voice": "chirp3-hd/Leda"
+    },
+    "0727132538d28ae6": {
+      "text": "מה השעה בעוד שעה?",
+      "voice": "chirp3-hd/Leda"
     }
   }
 }
