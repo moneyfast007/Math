@@ -108,7 +108,7 @@ function compare(rng: Rng): Exercise {
     topicId: ID,
     level: 3,
     prompt: t('ex.bigger.prompt'),
-    display: `${a}   ${b}`,
+    display: '', // the two numbers are the answer buttons
     spoken: say('ex.bigger.spoken', { a, b }),
     answer: a > b ? 0 : 1,
     input: labelledChoices([String(a), String(b)]),

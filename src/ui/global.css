@@ -897,6 +897,7 @@ ol.steps {
 .choices-big {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
   gap: var(--space-3);
 }
 
@@ -1434,8 +1435,23 @@ ol.steps {
   font-weight: 700;
 }
 
+/* Buttons that carry a word or a long number grow with it instead of overflowing. */
 .choice-big--label {
-  font-size: var(--text-md);
+  width: auto;
+  min-width: calc(var(--tap-min) * 1.5);
+  padding: 0 var(--space-4);
+  font-size: var(--text-lg);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.journey__empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+  margin: auto;
+  text-align: center;
 }
 
 /* ---------- Kid-friendly pass (after the first visual review) ---------- */
@@ -1740,6 +1756,13 @@ ol.steps {
   height: 148px;
   font-size: 76px;
   border-radius: 36px;
+}
+
+:root[data-age='young'] .choice-big--label {
+  width: auto;
+  min-width: 148px;
+  padding: 0 28px;
+  font-size: 48px;
 }
 
 :root[data-age='young'] .choices-big .choice-big:nth-child(3n + 1) {

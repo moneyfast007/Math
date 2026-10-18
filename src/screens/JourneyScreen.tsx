@@ -38,7 +38,20 @@ function Journey({ profile }: { profile: Profile }) {
   const young = ageBandForGrade(profile.grade) === 'young';
 
   const world = activeWorld(profile.grade, progress);
-  if (!world) return null;
+  if (!world) {
+    // Every grade has worlds today; this only guards against a future gap.
+    return (
+      <main className="screen journey" data-screen="play">
+        <section className="card journey__empty">
+          <Plusi mood="calm" size={72} decorative />
+          <p>{t('journey.noWorlds')}</p>
+          <button type="button" className="btn" onClick={() => navigate({ name: 'home' })}>
+            {tc('child.switch')}
+          </button>
+        </section>
+      </main>
+    );
+  }
   const stop = nextStop(world);
   const level =
     world.stations.find((s) => s.state === 'current')?.level ?? world.stations.at(-1)?.level ?? 1;

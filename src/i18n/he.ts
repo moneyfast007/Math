@@ -1162,6 +1162,7 @@ export const he = {
   'journey.review.locked': 'סיום העולם, עדיין סגור',
   'journey.plusiWaiting': 'פלוסי מחכה ליד התחנה הבאה',
   'journey.map': 'מפת המסע',
+  'journey.noWorlds': 'עוד אין כאן עולמות לכיתה הזאת. בקרוב!',
   'journey.album': 'האלבום',
   'journey.streak': { f: 'את מתרגלת {count} ימים ברצף!', m: 'אתה מתרגל {count} ימים ברצף!' },
   'journey.streak.one': { f: 'יום ראשון ברצף. יאללה!', m: 'יום ראשון ברצף. יאללה!' },

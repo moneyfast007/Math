@@ -86,3 +86,18 @@ describe('worlds', () => {
     expect(worldsFor(6, undefined).length).toBeGreaterThan(0);
   });
 });
+
+describe('worldsFor', () => {
+  it('every grade, gan to grade 6, has worlds of its own, starting with world 1', () => {
+    for (const grade of [0, 1, 2, 3, 4, 5, 6] as const) {
+      const worlds = worldsFor(grade, undefined);
+      expect(worlds.length, `grade ${grade}`).toBeGreaterThan(0);
+      expect(worlds.every((w) => w.topic.grades.includes(grade))).toBe(true);
+      expect(worlds[0]?.index).toBe(1);
+    }
+  });
+
+  it('a grade-4 child starts in big numbers, not in counting', () => {
+    expect(activeWorld(4, undefined)?.topic.id).toBe('big-numbers');
+  });
+});

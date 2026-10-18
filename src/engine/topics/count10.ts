@@ -236,7 +236,7 @@ function bigger(level: number, p: Pair): Exercise {
     topicId: ID,
     level,
     prompt,
-    display: `${p.a}   ${p.b}`,
+    display: '', // the two numbers are the answer buttons
     spoken,
     answer,
     input: labelledChoices([String(p.a), String(p.b)]),

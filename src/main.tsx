@@ -1,7 +1,7 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import { registerSW } from 'virtual:pwa-register';
 import { App } from './app/App';
+import { startUpdates } from './app/updates';
 import { appStore } from './state/store';
 import { applyAgeBand } from './ui/ageBand';
 import './ui/global.css';
@@ -12,9 +12,8 @@ applyAgeBand('middle');
 // Load saved profiles and progress from IndexedDB.
 void appStore.getState().hydrate();
 
-// Offline support. Updates are applied on the next launch; we never interrupt a
-// child mid-exercise with an "update available" prompt.
-registerSW({ immediate: true });
+// Offline support; a new version is applied between screens, never mid-round.
+startUpdates();
 
 const rootEl = document.getElementById('root');
 if (!rootEl) throw new Error('#root not found');

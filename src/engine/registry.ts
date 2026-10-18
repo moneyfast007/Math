@@ -50,10 +50,9 @@ export function topicById(id: string): Topic | undefined {
   return TOPICS.find((t) => t.id === id);
 }
 
-/** Topics in the child's grade band; older children also see earlier topics for review. */
+/** The worlds of the child's grade, in curriculum order (every grade has some). */
 export function topicsForGrade(grade: Grade): Topic[] {
-  const inGrade = TOPICS.filter((t) => t.grades.includes(grade));
-  return inGrade.length > 0 ? inGrade : [...TOPICS];
+  return TOPICS.filter((t) => t.grades.includes(grade));
 }
 
 export function currentLevel(

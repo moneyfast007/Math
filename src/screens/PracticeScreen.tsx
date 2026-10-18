@@ -17,6 +17,7 @@ import type { Profile } from '@/state/schema';
 import { appStore, useActiveProfile, useApp } from '@/state/store';
 import { ageBandForGrade, applyAgeBand } from '@/ui/ageBand';
 import { MathExpr } from '@/ui/MathExpr';
+import { groupDigits } from '@/lang/groupDigits';
 import { NumberPad } from '@/ui/NumberPad';
 import { Plusi, type PlusiMood } from '@/ui/Plusi';
 import { SpeakerButton } from '@/ui/SpeakerButton';
@@ -255,7 +256,7 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
       <section className="exercise card" aria-live="polite">
         <div className="exercise__prompt">
           <SpeakerButton text={e.spokenText} parts={e.spokenParts} slow={slow} size="lg" />
-          <h1 className="exercise__title">{e.prompt}</h1>
+          <h1 className="exercise__title">{groupDigits(e.prompt)}</h1>
         </div>
         {e.visual ? <VisualView visual={e.visual} /> : null}
         {e.display ? (
@@ -310,7 +311,7 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
                     disabled={tried.includes(c)}
                     onClick={() => answer(c)}
                   >
-                    {label ?? c}
+                    {groupDigits(label ?? String(c))}
                   </button>
                 );
               })}
@@ -404,9 +405,9 @@ function Confetti() {
 function answerLabel(e: Exercise): string {
   if (e.input.type === 'choices' && e.input.labels) {
     const i = e.input.choices.indexOf(e.answer);
-    return e.input.labels[i] ?? String(e.answer);
+    return groupDigits(e.input.labels[i] ?? String(e.answer));
   }
-  return String(e.answer);
+  return groupDigits(String(e.answer));
 }
 
 function splitAtSlot(display: string): [string, string] {
