@@ -59,7 +59,7 @@ async function check(page: Page, where: string) {
         .map((n) => n.target.join(' '))
         .join(' | ')}`,
   );
-  expect(found, `${where}: accessibility problems`).toEqual([]);
+  expect.soft(found, `${where}: accessibility problems`).toEqual([]);
 }
 
 async function restore(page: Page) {
@@ -78,9 +78,7 @@ async function restore(page: Page) {
 }
 
 test.describe('accessibility (WCAG 2.0 AA)', () => {
-  test.beforeEach(({}, info) => {
-    test.skip(info.project.name !== 'desktop-chromium', 'one browser is enough for axe');
-  });
+  test.skip(({ browserName }) => browserName !== 'chromium', 'one browser is enough for axe');
 
   test('first run, install guide, information page', async ({ page }) => {
     await page.goto('/');
