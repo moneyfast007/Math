@@ -7,5 +7,5 @@
 Running 40 tests using 2 workers
 °°°°°°°°°°°°°°°°°°°°°°°°°°°°············
   28 skipped
-  12 passed (1.8m)
-::notice title=🎭 Playwright Run Summary::  28 skipped%0A  12 passed (1.8m)
+  12 passed (1.3m)
+::notice title=🎭 Playwright Run Summary::  28 skipped%0A  12 passed (1.3m)
