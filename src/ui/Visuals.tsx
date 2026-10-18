@@ -341,9 +341,7 @@ function Money({ v }: { v: Extract<Visual, { type: 'money' }> }) {
   const items = [...v.items].sort((a, b) => b - a);
   return (
     <div className="money" dir="ltr" data-visual="money" aria-hidden="true">
-      {v.price !== undefined ? (
-        <span className="money__price">{v.price} ₪</span>
-      ) : null}
+      {v.price !== undefined ? <span className="money__price">{v.price} ₪</span> : null}
       {items.map((value, i) => (
         <MoneyItem key={i} value={value} />
       ))}
