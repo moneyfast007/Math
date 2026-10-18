@@ -6,10 +6,6 @@ ok
 > heshbon@0.1.0 typecheck
 > tsc -b
 
-src/state/validate.test.ts(20,9): error TS2741: Property 'days' is missing in type '{ topics: { 'add-sub-20': { level: number; attempts: number; correct: number; lastPracticedAt: number; recent: boolean[]; mistakes: { wrongOperation: number; offByOne: number; }; completedLevels: number[]; reviewPassed: false; }; }; streak: { ...; }; }' but required in type 'ProfileProgress'.
-src/state/validate.test.ts(134,11): error TS2741: Property 'days' is missing in type '{ topics: { t: { level: number; attempts: number; correct: number; lastPracticedAt: number; recent: never[]; mistakes: {}; completedLevels: never[]; reviewPassed: false; }; }; streak: { count: number; lastDay: null; }; }' but required in type 'ProfileProgress'.
-src/state/validate.test.ts(171,9): error TS2741: Property 'days' is missing in type '{ topics: { t: { level: number; attempts: number; correct: number; lastPracticedAt: number; recent: boolean[]; mistakes: {}; completedLevels: never[]; reviewPassed: false; }; }; streak: { count: number; lastDay: null; }; }' but required in type 'ProfileProgress'.
-TYPECHECK FAILED
 
 ## lint
 
@@ -25,140 +21,82 @@ TYPECHECK FAILED
 
 [1m[46m RUN [49m[22m [36mv3.2.7 [39m[90m/home/runner/work/Math/Math[39m
 
- [32m✓[39m src/state/progress.test.ts [2m([22m[2m14 tests[22m[2m)[22m[32m 33[2mms[22m[39m
- [32m✓[39m src/state/store.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 35[2mms[22m[39m
- [31m❯[39m src/state/validate.test.ts [2m([22m[2m19 tests[22m[2m | [22m[31m1 failed[39m[2m)[22m[32m 32[2mms[22m[39m
-   [32m✓[39m parseAppData[2m > [22maccepts an empty document[32m 2[2mms[22m[39m
-[31m   [31m×[31m parseAppData[2m > [22maccepts a full document and round-trips through JSON[39m[32m 21[2mms[22m[39m
-[31m     → expected { ok: true, data: { …(5) } } to deeply equal { ok: true, data: { …(5) } }[39m
-   [32m✓[39m parseAppData[2m > [22mmigrates a version 1 document (no stations, no streak) to the current schema[32m 2[2mms[22m[39m
-   [32m✓[39m parseAppData[2m > [22mrejects malformed stations and streaks[32m 1[2mms[22m[39m
-   [32m✓[39m parseAppData[2m > [22mtrims names[32m 1[2mms[22m[39m
-   [32m✓[39m parseAppData[2m > [22mrejects: not an object[32m 0[2mms[22m[39m
-   [32m✓[39m parseAppData[2m > [22mrejects: wrong schema version[32m 0[2mms[22m[39m
-   [32m✓[39m parseAppData[2m > [22mrejects: profiles missing[32m 0[2mms[22m[39m
-   [32m✓[39m parseAppData[2m > [22mrejects: empty name[32m 0[2mms[22m[39m
-   [32m✓[39m parseAppData[2m > [22mrejects: name too long[32m 0[2mms[22m[39m
-   [32m✓[39m parseAppData[2m > [22mrejects: unknown avatar[32m 0[2mms[22m[39m
-   [32m✓[39m parseAppData[2m > [22mrejects: grade out of range[32m 0[2mms[22m[39m
-   [32m✓[39m parseAppData[2m > [22mrejects: bad gender[32m 0[2mms[22m[39m
-   [32m✓[39m parseAppData[2m > [22mrejects: duplicate ids[32m 0[2mms[22m[39m
-   [32m✓[39m parseAppData[2m > [22mrejects: too many profiles[32m 0[2mms[22m[39m
-   [32m✓[39m parseAppData[2m > [22mrejects: correct > attempts[32m 0[2mms[22m[39m
-   [32m✓[39m parseAppData[2m > [22mdrops progress for profiles that do not exist[32m 0[2mms[22m[39m
-   [32m✓[39m parseAppData[2m > [22mkeeps only the most recent results window[32m 0[2mms[22m[39m
-   [32m✓[39m parseBackup[2m > [22mrequires the backup envelope[32m 0[2mms[22m[39m
- [32m✓[39m src/audio/speaker.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 30[2mms[22m[39m
- [32m✓[39m src/lang/hebrewNumbers.test.ts [2m([22m[2m81 tests[22m[2m)[22m[33m 1791[2mms[22m[39m
-   [33m[2m✓[22m[39m numberToWords, properties[2m > [22mis injective on 0–99,999: different numbers never produce the same words [33m 1725[2mms[22m[39m
- [32m✓[39m src/engine/session.test.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 18[2mms[22m[39m
- [32m✓[39m src/engine/topics/addSub20.test.ts [2m([22m[2m14 tests[22m[2m)[22m[33m 655[2mms[22m[39m
- [32m✓[39m src/engine/journey.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 13[2mms[22m[39m
- [32m✓[39m src/ui/components.test.tsx [2m([22m[2m7 tests[22m[2m)[22m[33m 390[2mms[22m[39m
- [32m✓[39m src/parent/gate.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[33m 510[2mms[22m[39m
- [32m✓[39m src/lang/compose.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 12[2mms[22m[39m
- [32m✓[39m src/state/streak.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 6[2mms[22m[39m
- [32m✓[39m scripts/tts/pronunciation.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 9[2mms[22m[39m
- [32m✓[39m src/screens/JourneyScreen.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[32m 133[2mms[22m[39m
- [32m✓[39m src/i18n/i18n.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 98[2mms[22m[39m
- [32m✓[39m src/lang/time.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 18[2mms[22m[39m
- [32m✓[39m src/engine/daily.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+ [32m✓[39m src/state/progress.test.ts [2m([22m[2m14 tests[22m[2m)[22m[32m 23[2mms[22m[39m
+ [32m✓[39m src/state/store.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 38[2mms[22m[39m
+ [32m✓[39m src/audio/speaker.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 20[2mms[22m[39m
+ [32m✓[39m src/state/validate.test.ts [2m([22m[2m19 tests[22m[2m)[22m[32m 14[2mms[22m[39m
+ [32m✓[39m src/lang/hebrewNumbers.test.ts [2m([22m[2m81 tests[22m[2m)[22m[33m 1893[2mms[22m[39m
+   [33m[2m✓[22m[39m numberToWords, properties[2m > [22mis injective on 0–99,999: different numbers never produce the same words [33m 1832[2mms[22m[39m
+ [32m✓[39m src/engine/session.test.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 19[2mms[22m[39m
+ [32m✓[39m src/engine/topics/addSub20.test.ts [2m([22m[2m14 tests[22m[2m)[22m[33m 746[2mms[22m[39m
+ [32m✓[39m src/engine/journey.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 12[2mms[22m[39m
+ [32m✓[39m src/ui/components.test.tsx [2m([22m[2m7 tests[22m[2m)[22m[33m 388[2mms[22m[39m
+ [32m✓[39m src/parent/gate.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[33m 513[2mms[22m[39m
+ [32m✓[39m src/lang/compose.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+ [32m✓[39m src/state/streak.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+ [32m✓[39m scripts/tts/pronunciation.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 11[2mms[22m[39m
+ [32m✓[39m src/screens/JourneyScreen.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[32m 139[2mms[22m[39m
+ [32m✓[39m src/i18n/i18n.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 100[2mms[22m[39m
+ [32m✓[39m src/lang/time.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+ [32m✓[39m src/engine/daily.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 11[2mms[22m[39m
  [32m✓[39m src/lang/spoken.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 4[2mms[22m[39m
- [32m✓[39m src/lang/spokenLabel.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 11[2mms[22m[39m
- [32m✓[39m src/audio/hash.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 11[2mms[22m[39m
+ [32m✓[39m src/lang/spokenLabel.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 17[2mms[22m[39m
+ [32m✓[39m src/audio/hash.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 10[2mms[22m[39m
  [32m✓[39m src/state/pin.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 11[2mms[22m[39m
  [32m✓[39m src/lang/groupDigits.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 5[2mms[22m[39m
- [32m✓[39m src/ui/MathExpr.test.tsx [2m([22m[2m3 tests[22m[2m)[22m[32m 58[2mms[22m[39m
- [32m✓[39m src/state/backup.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 5[2mms[22m[39m
- [32m✓[39m src/lang/fractions.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 5[2mms[22m[39m
- [32m✓[39m src/app/router.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 7[2mms[22m[39m
- [32m✓[39m src/ui/ageBand.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 8[2mms[22m[39m
- [32m✓[39m src/engine/topics/audioBank.test.ts [2m([22m[2m240 tests[22m[2m)[22m[33m 17503[2mms[22m[39m
-   [33m[2m✓[22m[39m the audio bank covers what a child can hear: numbers-100[2m > [22mlevel 3 [33m 590[2mms[22m[39m
-   [33m[2m✓[22m[39m the audio bank covers what a child can hear: numbers-100[2m > [22mlevel 4 [33m 1732[2mms[22m[39m
-   [33m[2m✓[22m[39m the audio bank covers what a child can hear: numbers-100[2m > [22mlevel 5 [33m 353[2mms[22m[39m
-   [33m[2m✓[22m[39m the audio bank covers what a child can hear: numbers-100[2m > [22mlevel 6 [33m 373[2mms[22m[39m
-   [33m[2m✓[22m[39m the audio bank covers what a child can hear: numbers-100[2m > [22mlevel 8 [33m 323[2mms[22m[39m
-   [33m[2m✓[22m[39m the audio bank covers what a child can hear: numbers-100[2m > [22mlevel 9 [33m 718[2mms[22m[39m
-   [33m[2m✓[22m[39m the audio bank covers what a child can hear: clock[2m > [22mlevel 10 [33m 355[2mms[22m[39m
-   [33m[2m✓[22m[39m the audio bank covers what a child can hear: fraction-ops[2m > [22mlevel 3 [33m 396[2mms[22m[39m
-   [33m[2m✓[22m[39m the audio bank covers what a child can hear: fraction-ops[2m > [22mlevel 8 [33m 312[2mms[22m[39m
- [32m✓[39m src/engine/topics/all.test.ts [2m([22m[2m314 tests[22m[2m)[22m[33m 55627[2mms[22m[39m
-   [33m[2m✓[22m[39m topic count-10[2m > [22mlevel 4 produces valid exercises [33m 348[2mms[22m[39m
-   [33m[2m✓[22m[39m topic count-10[2m > [22mlevel 10 produces valid exercises [33m 376[2mms[22m[39m
-   [33m[2m✓[22m[39m topic shapes[2m > [22mlevel 7 produces valid exercises [33m 343[2mms[22m[39m
-   [33m[2m✓[22m[39m topic shapes[2m > [22mlevel 9 produces valid exercises [33m 605[2mms[22m[39m
-   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 2 produces valid exercises [33m 395[2mms[22m[39m
-   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 3 produces valid exercises [33m 663[2mms[22m[39m
-   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 4 produces valid exercises [33m 1924[2mms[22m[39m
-   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 5 produces valid exercises [33m 642[2mms[22m[39m
-   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 6 produces valid exercises [33m 697[2mms[22m[39m
-   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 7 produces valid exercises [33m 333[2mms[22m[39m
-   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 8 produces valid exercises [33m 572[2mms[22m[39m
-   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 9 produces valid exercises [33m 1150[2mms[22m[39m
-   [33m[2m✓[22m[39m topic numbers-100[2m > [22mavoids an immediate repeat [33m 662[2mms[22m[39m
-   [33m[2m✓[22m[39m topic clock-money-1[2m > [22mlevel 7 produces valid exercises [33m 404[2mms[22m[39m
-   [33m[2m✓[22m[39m topic clock-money-1[2m > [22mlevel 9 produces valid exercises [33m 460[2mms[22m[39m
-   [33m[2m✓[22m[39m topic clock-money-1[2m > [22mlevel 10 produces valid exercises [33m 427[2mms[22m[39m
-   [33m[2m✓[22m[39m topic add-sub-100[2m > [22mlevel 1 produces valid exercises [33m 408[2mms[22m[39m
-   [33m[2m✓[22m[39m topic add-sub-100[2m > [22mlevel 2 produces valid exercises [33m 384[2mms[22m[39m
-   [33m[2m✓[22m[39m topic add-sub-100[2m > [22mlevel 4 produces valid exercises [33m 351[2mms[22m[39m
-   [33m[2m✓[22m[39m topic add-sub-100[2m > [22mlevel 5 produces valid exercises [33m 409[2mms[22m[39m
-   [33m[2m✓[22m[39m topic add-sub-100[2m > [22mlevel 7 produces valid exercises [33m 359[2mms[22m[39m
-   [33m[2m✓[22m[39m topic add-sub-100[2m > [22mlevel 8 produces valid exercises [33m 304[2mms[22m[39m
-   [33m[2m✓[22m[39m topic add-sub-100[2m > [22mlevel 9 produces valid exercises [33m 353[2mms[22m[39m
-   [33m[2m✓[22m[39m topic add-sub-100[2m > [22mlevel 10 produces valid exercises [33m 395[2mms[22m[39m
-   [33m[2m✓[22m[39m topic clock[2m > [22mlevel 10 produces valid exercises [33m 498[2mms[22m[39m
-   [33m[2m✓[22m[39m topic fractions-1[2m > [22mlevel 7 produces valid exercises [33m 312[2mms[22m[39m
-   [33m[2m✓[22m[39m topic fraction-ops[2m > [22mlevel 3 produces valid exercises [33m 425[2mms[22m[39m
-   [33m[2m✓[22m[39m topic fraction-ops[2m > [22mlevel 9 produces valid exercises [33m 313[2mms[22m[39m
-   [33m[2m✓[22m[39m topic ratio[2m > [22mlevel 1 produces valid exercises [33m 388[2mms[22m[39m
-   [33m[2m✓[22m[39m topic ratio[2m > [22mlevel 2 produces valid exercises [33m 358[2mms[22m[39m
-   [33m[2m✓[22m[39m topic ratio[2m > [22mlevel 3 produces valid exercises [33m 346[2mms[22m[39m
-   [33m[2m✓[22m[39m topic ratio[2m > [22mlevel 4 produces valid exercises [33m 316[2mms[22m[39m
-   [33m[2m✓[22m[39m topic circle-volume[2m > [22mlevel 6 produces valid exercises [33m 421[2mms[22m[39m
-   [33m[2m✓[22m[39m topic circle-volume[2m > [22mlevel 8 produces valid exercises [33m 418[2mms[22m[39m
+ [32m✓[39m src/ui/MathExpr.test.tsx [2m([22m[2m3 tests[22m[2m)[22m[32m 60[2mms[22m[39m
+ [32m✓[39m src/state/backup.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 11[2mms[22m[39m
+ [32m✓[39m src/lang/fractions.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+ [32m✓[39m src/app/router.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m src/ui/ageBand.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+ [32m✓[39m src/engine/topics/audioBank.test.ts [2m([22m[2m240 tests[22m[2m)[22m[33m 16701[2mms[22m[39m
+   [33m[2m✓[22m[39m the audio bank covers what a child can hear: shapes[2m > [22mlevel 9 [33m 346[2mms[22m[39m
+   [33m[2m✓[22m[39m the audio bank covers what a child can hear: numbers-100[2m > [22mlevel 3 [33m 588[2mms[22m[39m
+   [33m[2m✓[22m[39m the audio bank covers what a child can hear: numbers-100[2m > [22mlevel 4 [33m 1621[2mms[22m[39m
+   [33m[2m✓[22m[39m the audio bank covers what a child can hear: numbers-100[2m > [22mlevel 5 [33m 321[2mms[22m[39m
+   [33m[2m✓[22m[39m the audio bank covers what a child can hear: numbers-100[2m > [22mlevel 6 [33m 424[2mms[22m[39m
+   [33m[2m✓[22m[39m the audio bank covers what a child can hear: numbers-100[2m > [22mlevel 9 [33m 492[2mms[22m[39m
+   [33m[2m✓[22m[39m the audio bank covers what a child can hear: clock[2m > [22mlevel 10 [33m 352[2mms[22m[39m
+   [33m[2m✓[22m[39m the audio bank covers what a child can hear: fraction-ops[2m > [22mlevel 3 [33m 390[2mms[22m[39m
+   [33m[2m✓[22m[39m the audio bank covers what a child can hear: fraction-ops[2m > [22mlevel 9 [33m 373[2mms[22m[39m
+ [32m✓[39m src/engine/topics/all.test.ts [2m([22m[2m314 tests[22m[2m)[22m[33m 54000[2mms[22m[39m
+   [33m[2m✓[22m[39m topic count-10[2m > [22mlevel 10 produces valid exercises [33m 422[2mms[22m[39m
+   [33m[2m✓[22m[39m topic shapes[2m > [22mlevel 7 produces valid exercises [33m 335[2mms[22m[39m
+   [33m[2m✓[22m[39m topic shapes[2m > [22mlevel 9 produces valid exercises [33m 626[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 2 produces valid exercises [33m 412[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 3 produces valid exercises [33m 791[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 4 produces valid exercises [33m 2051[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 5 produces valid exercises [33m 740[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 6 produces valid exercises [33m 675[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 7 produces valid exercises [33m 391[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 8 produces valid exercises [33m 388[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 9 produces valid exercises [33m 1013[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mavoids an immediate repeat [33m 667[2mms[22m[39m
+   [33m[2m✓[22m[39m topic clock-money-1[2m > [22mlevel 7 produces valid exercises [33m 352[2mms[22m[39m
+   [33m[2m✓[22m[39m topic clock-money-1[2m > [22mlevel 9 produces valid exercises [33m 525[2mms[22m[39m
+   [33m[2m✓[22m[39m topic clock-money-1[2m > [22mlevel 10 produces valid exercises [33m 334[2mms[22m[39m
+   [33m[2m✓[22m[39m topic add-sub-100[2m > [22mlevel 1 produces valid exercises [33m 305[2mms[22m[39m
+   [33m[2m✓[22m[39m topic add-sub-100[2m > [22mlevel 4 produces valid exercises [33m 344[2mms[22m[39m
+   [33m[2m✓[22m[39m topic add-sub-100[2m > [22mlevel 5 produces valid exercises [33m 329[2mms[22m[39m
+   [33m[2m✓[22m[39m topic add-sub-100[2m > [22mlevel 6 produces valid exercises [33m 339[2mms[22m[39m
+   [33m[2m✓[22m[39m topic add-sub-100[2m > [22mlevel 7 produces valid exercises [33m 424[2mms[22m[39m
+   [33m[2m✓[22m[39m topic add-sub-100[2m > [22mlevel 8 produces valid exercises [33m 311[2mms[22m[39m
+   [33m[2m✓[22m[39m topic add-sub-100[2m > [22mlevel 10 produces valid exercises [33m 370[2mms[22m[39m
+   [33m[2m✓[22m[39m topic money[2m > [22mlevel 7 produces valid exercises [33m 300[2mms[22m[39m
+   [33m[2m✓[22m[39m topic clock[2m > [22mlevel 10 produces valid exercises [33m 481[2mms[22m[39m
+   [33m[2m✓[22m[39m topic fraction-ops[2m > [22mlevel 3 produces valid exercises [33m 405[2mms[22m[39m
+   [33m[2m✓[22m[39m topic fraction-ops[2m > [22mlevel 9 produces valid exercises [33m 329[2mms[22m[39m
+   [33m[2m✓[22m[39m topic ratio[2m > [22mlevel 1 produces valid exercises [33m 371[2mms[22m[39m
+   [33m[2m✓[22m[39m topic ratio[2m > [22mlevel 2 produces valid exercises [33m 342[2mms[22m[39m
+   [33m[2m✓[22m[39m topic ratio[2m > [22mlevel 3 produces valid exercises [33m 304[2mms[22m[39m
+   [33m[2m✓[22m[39m topic circle-volume[2m > [22mlevel 6 produces valid exercises [33m 401[2mms[22m[39m
+   [33m[2m✓[22m[39m topic circle-volume[2m > [22mlevel 8 produces valid exercises [33m 393[2mms[22m[39m
 
-[31m⎯⎯⎯⎯⎯⎯⎯[39m[1m[41m Failed Tests 1 [49m[22m[31m⎯⎯⎯⎯⎯⎯⎯[39m
+[2m Test Files [22m [1m[32m29 passed[39m[22m[90m (29)[39m
+[2m      Tests [22m [1m[32m804 passed[39m[22m[90m (804)[39m
+[2m   Start at [22m 12:43:53
+[2m   Duration [22m 58.10s[2m (transform 1.19s, setup 6.30s, collect 2.44s, tests 74.79s, environment 15.29s, prepare 3.24s)[22m
 
-[41m[1m FAIL [22m[49m src/state/validate.test.ts[2m > [22mparseAppData[2m > [22maccepts a full document and round-trips through JSON
-[31m[1mAssertionError[22m: expected { ok: true, data: { …(5) } } to deeply equal { ok: true, data: { …(5) } }[39m
-
-[32m- Expected[39m
-[31m+ Received[39m
-
-[33m@@ -34,10 +34,11 @@[39m
-[2m          },[22m
-[2m        },[22m
-[2m      ],[22m
-[2m      "progress": {[22m
-[2m        "p1": {[22m
-[31m+         "days": {},[39m
-[2m          "streak": {[22m
-[2m            "count": 3,[22m
-[2m            "lastDay": "2026-10-15",[22m
-[2m          },[22m
-[2m          "topics": {[22m
-
-[36m [2m❯[22m src/state/validate.test.ts:[2m39:20[22m[39m
-    [90m 37| [39m    })[33m;[39m
-    [90m 38| [39m    [35mconst[39m result [33m=[39m [34mparseAppData[39m([34mclone[39m(data))[33m;[39m
-    [90m 39| [39m    [34mexpect[39m(result)[33m.[39m[34mtoEqual[39m({ ok[33m:[39m [35mtrue[39m[33m,[39m data })[33m;[39m
-    [90m   | [39m                   [31m^[39m
-    [90m 40| [39m  })[33m;[39m
-    [90m 41| [39m
-
-[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯[22m[39m
-
-
-[2m Test Files [22m [1m[31m1 failed[39m[22m[2m | [22m[1m[32m28 passed[39m[22m[90m (29)[39m
-[2m      Tests [22m [1m[31m1 failed[39m[22m[2m | [22m[1m[32m803 passed[39m[22m[90m (804)[39m
-[2m   Start at [22m 12:39:42
-[2m   Duration [22m 60.26s[2m (transform 1.29s, setup 6.27s, collect 2.74s, tests 77.05s, environment 16.53s, prepare 3.17s)[22m
-
-
-::error file=/home/runner/work/Math/Math/src/state/validate.test.ts,title=src/state/validate.test.ts > parseAppData > accepts a full document and round-trips through JSON,line=39,column=20::AssertionError: expected { ok: true, data: { …(5) } } to deeply equal { ok: true, data: { …(5) } }%0A%0A- Expected%0A+ Received%0A%0A@@ -34,10 +34,11 @@%0A          },%0A        },%0A      ],%0A      "progress": {%0A        "p1": {%0A+         "days": {},%0A          "streak": {%0A            "count": 3,%0A            "lastDay": "2026-10-15",%0A          },%0A          "topics": {%0A%0A ❯ src/state/validate.test.ts:39:20%0A%0A
-TESTS FAILED
 
 ## build
 
@@ -170,10 +108,29 @@ TESTS FAILED
 > tsx --tsconfig tsconfig.node.json scripts/tts/index.ts
 
 audio index: shared: 2238, g0: 5215, g1: 7720, g2: 4056, g3: 3814, g4: 5352, g5: 4373, g6: 4812 clips
-src/state/validate.test.ts(20,9): error TS2741: Property 'days' is missing in type '{ topics: { 'add-sub-20': { level: number; attempts: number; correct: number; lastPracticedAt: number; recent: boolean[]; mistakes: { wrongOperation: number; offByOne: number; }; completedLevels: number[]; reviewPassed: false; }; }; streak: { ...; }; }' but required in type 'ProfileProgress'.
-src/state/validate.test.ts(134,11): error TS2741: Property 'days' is missing in type '{ topics: { t: { level: number; attempts: number; correct: number; lastPracticedAt: number; recent: never[]; mistakes: {}; completedLevels: never[]; reviewPassed: false; }; }; streak: { count: number; lastDay: null; }; }' but required in type 'ProfileProgress'.
-src/state/validate.test.ts(171,9): error TS2741: Property 'days' is missing in type '{ topics: { t: { level: number; attempts: number; correct: number; lastPracticedAt: number; recent: boolean[]; mistakes: {}; completedLevels: never[]; reviewPassed: false; }; }; streak: { count: number; lastDay: null; }; }' but required in type 'ProfileProgress'.
-BUILD FAILED
+[36mvite v7.3.7 [32mbuilding client environment for production...[36m[39m
+transforming...
+[32m✓[39m 116 modules transformed.
+rendering chunks...
+computing gzip size...
+[2mdist/[22m[32mmanifest.webmanifest                        [39m[1m[2m  0.53 kB[22m[1m[22m
+[2mdist/[22m[32mindex.html                                  [39m[1m[2m  1.26 kB[22m[1m[22m[2m │ gzip:   0.60 kB[22m
+[2mdist/[22m[2massets/[22m[35mindex-BZLko_ip.css                   [39m[1m[2m 32.37 kB[22m[1m[22m[2m │ gzip:   6.77 kB[22m
+[2mdist/[22m[2massets/[22m[36mworkbox-window.prod.es5-BBnX5xw4.js  [39m[1m[2m  5.75 kB[22m[1m[22m[2m │ gzip:   2.36 kB[22m
+[2mdist/[22m[2massets/[22m[36mindex-CetjrXJq.js                    [39m[1m[33m534.28 kB[39m[22m[2m │ gzip: 156.86 kB[22m
+[33m
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.[39m
+[32m✓ built in 3.95s[39m
+
+[36mPWA v1.3.0[39m
+mode      [35mgenerateSW[39m
+precache  [32m14 entries[39m [2m(623.46 KiB)[22m
+files generated
+  [2mdist/sw.js[22m
+  [2mdist/workbox-355bf58a.js[22m
 
 ## audio bank (dry run: what would be generated, and the cost)
 
@@ -191,11 +148,15 @@ BUILD FAILED
 > heshbon@0.1.0 test:e2e
 > playwright test
 
+[WebServer] 
+[WebServer] (!) Some chunks are larger than 500 kB after minification. Consider:
+[WebServer] - Using dynamic import() to code-split the application
+[WebServer] - Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+[WebServer] - Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
 
-Error: Process from config.webServer was not able to start. Exit code: 1
-::error ::Error: Process from config.webServer was not able to start. Exit code: 1
-
-
-::notice title=🎭 Playwright Run Summary::
-E2E FAILED
-SCREENSHOTS FAILED
+Running 105 tests using 2 workers
+····························°°°°°°·····························°°°°°°···········
+··················°°°°°°·
+  18 skipped
+  87 passed (3.3m)
+::notice title=🎭 Playwright Run Summary::  18 skipped%0A  87 passed (3.3m)
