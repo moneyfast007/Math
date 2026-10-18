@@ -74376,6 +74376,686 @@
     "0ff5b9bed2fc58db": {
       "text": "סנטימטרים, ברוחב",
       "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e217e7f3cade76e0": {
+      "text": "? פותרים במאונך.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "4524407031aafbac": {
+      "text": "חיסור: שתי פריטות",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "952530704d26f3b3": {
+      "text": "חיסור: שתי פריטות, צעד אחרי צעד",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ee81e7ae49ec9a56": {
+      "text": "חיבור רב־ספרתי עד מיליון",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "82a5bccb02d627fe": {
+      "text": "כך נראה הצעד הראשון:",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d16967b3d1480535": {
+      "text": ". כותבים",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c804929d799b66b5": {
+      "text": "מתחילים באחדות, עמודה אחרי עמודה. כשיוצא עשר או יותר, כותבים את ספרת האחדות ומעבירים אחת לעמודה הבאה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "06dd9ff3325c514b": {
+      "text": "באחדות:",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "61ca5011fe8d0f38": {
+      "text": "בעשרות:",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b70ba99a7a5beb31": {
+      "text": ": כותבים",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "dd5bfd026ccf2804": {
+      "text": ", ועוד",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "5f9f4a8a8b9d7d66": {
+      "text": "לעשרות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "24ee29963c881597": {
+      "text": "ומעבירים",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d6bcc8010973367d": {
+      "text": "שהעברנו",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "edee683a43c9ecb1": {
+      "text": "כמעט. כשהספרה למעלה קטנה מהספרה למטה, פורטים מהעמודה הבאה.",
+      "voice": "chirp3-hd/Leda"
+    },
+    "cf7037e384158ae6": {
+      "text": "צריך להוריד",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "1963e35e2326ab2e": {
+      "text": "מתחילים באחדות. כשהספרה למעלה קטנה מהספרה למטה, פורטים: לוקחים אחת מהעמודה הבאה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c32b78af9f424e10": {
+      "text": ", ויש רק",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "eec80811076492f5": {
+      "text": "חיבור וחיסור במאונך",
+      "voice": "chirp3-hd/Leda"
+    },
+    "8a15c5155f65d404": {
+      "text": "הספרה החסרה היא",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "1a98ed14946142c5": {
+      "text": "שהעברנו, זה",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "83bb4630a8d9aee8": {
+      "text": "איזו ספרה מסתתרת מאחורי סימן השאלה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "df52e81bf5dc2945": {
+      "text": ". לכן פורטים: לוקחים אחת מהעשרות. עכשיו יש",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d242934734649d1e": {
+      "text": "חיבור, חיסור וכפל במאונך",
+      "voice": "chirp3-hd/Leda"
+    },
+    "9b2ad85d077945df": {
+      "text": "אפשר לנסות ספרה ולחשב את העמודה. ולא לשכוח את מה שעבר מהעמודה הקודמת.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d60648078981f754": {
+      "text": "מסתכלים על העמודה של סימן השאלה, בעשרות. מה צריך להיות שם כדי שיצא מה שכתוב למטה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "707452ec3eba07f1": {
+      "text": "מסתכלים על העמודה של סימן השאלה, באחדות. מה צריך להיות שם כדי שיצא מה שכתוב למטה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "75c9c5eceb3e2ed9": {
+      "text": "הטעות בעשרות: כתוב",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "3dbaaf8fa14d420d": {
+      "text": ", וצריך להיות",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ed25a7ff4894f510": {
+      "text": "חיבור בלי המרה, צעד אחרי צעד",
+      "voice": "chirp3-hd/Leda"
+    },
+    "cdfa487212741803": {
+      "text": "בודקים כל עמודה בתורה, מהאחדות: האם הספרה למטה נכונה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "72cf9ead65c46aef": {
+      "text": "שימו לב לעמודות שבהן היה צריך לפרוט.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "4d130544db3ba8de": {
+      "text": "מישהו פתר את התרגיל הזה. באיזו עמודה יש טעות? ואם הכל נכון, בוחרים: אין טעות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "6edb632c4a489cb9": {
+      "text": "הטעות באחדות: כתוב",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b9ff01f70e708ac0": {
+      "text": "שימו לב לעמודות שבהן היה צריך להעביר לעמודה הבאה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b71731f1e7f53871": {
+      "text": "כל העמודות נכונות: אין טעות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "44b55fe57c399495": {
+      "text": "חיבור עם המרה, צעד אחרי צעד",
+      "voice": "chirp3-hd/Leda"
+    },
+    "0cea3265ffaa7b89": {
+      "text": "שקלים על אופניים. כמה שקלים נשארו לה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "78c6ac8a94fc8409": {
+      "text": "שקלים. הוא שילם",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "45e2344152013c7c": {
+      "text": "שקלים. היא שילמה",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f9b5bbf18c07ea82": {
+      "text": "דנה הלכה אתמול",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a9f63d4772538685": {
+      "text": "חיבור עם המרה",
+      "voice": "chirp3-hd/Leda"
+    },
+    "4357d7e1b7e051bd": {
+      "text": "שקלים על אופניים. כמה שקלים נשארו לו?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d7bddf87302e69a6": {
+      "text": "צעדים, והיום",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "cde36433a7999360": {
+      "text": "במשחק צריך לצבור",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "47d7dedad1a9191d": {
+      "text": "צעדים. כמה צעדים הלכה ביומיים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "22c894bd3d7a171b": {
+      "text": "נקודות. נועם צבר כבר",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a2ac20db38a10ada": {
+      "text": "חיסור בלי פריטה, צעד אחרי צעד",
+      "voice": "chirp3-hd/Leda"
+    },
+    "5ba0411dc443845e": {
+      "text": "נקודות. כמה נקודות חסרות לו?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c3b5dc38c6af0f20": {
+      "text": "פקקים, ובחורף עוד",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ee1863c388517171": {
+      "text": "יובל אסף בקיץ",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "bc10dfb2ac434d01": {
+      "text": "פקקים. כמה פקקים אסף בסך הכול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "bb27b435c0f06b06": {
+      "text": "בספרייה של מאיה יש",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d0e9fdc5cb0e1fb1": {
+      "text": "חיסור עם פריטה, צעד אחרי צעד",
+      "voice": "chirp3-hd/Leda"
+    },
+    "9c70a845f64e9fea": {
+      "text": "סבא אסף בקיץ",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "347c14e153458bc2": {
+      "text": "ספרים. כמה ספרים נשארו לה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d09814111dd42ed0": {
+      "text": "ספרים. היא נתנה לבית הספר",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "bca8e00a3747a704": {
+      "text": "דנה אספה בקיץ",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f284b2816ba4baaf": {
+      "text": "בספרייה של סבתא היו",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "71fc3774144a1790": {
+      "text": "חיסור עם פריטה",
+      "voice": "chirp3-hd/Leda"
+    },
+    "14e06a711fb1f963": {
+      "text": "ספרים. היא קיבלה עוד",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "fdba00f2ba1809a2": {
+      "text": "פקקים. כמה פקקים אספה בסך הכול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "7f3f126d0555256d": {
+      "text": "ספרים. כמה ספרים יש עכשיו בספרייה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "dc025545299c089c": {
+      "text": "בספרייה של סבתא יש",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "fe35658039c576d5": {
+      "text": "בספרייה של דנה היו",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "eba052592c2a0a68": {
+      "text": "חיבור וחיסור לסירוגין",
+      "voice": "chirp3-hd/Leda"
+    },
+    "7d2b6dca2364f20b": {
+      "text": "נועם הלך אתמול",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "0c16aa7bda84a63f": {
+      "text": "סבתא הלכה אתמול",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "28e21dc121984635": {
+      "text": "נקודות. סבא צבר כבר",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "3711e0e82fbc01da": {
+      "text": "איזו ספרה חסרה?",
+      "voice": "chirp3-hd/Leda"
+    },
+    "7309cb8a1cf9c315": {
+      "text": "יובל הלך אתמול",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c3d75f9a92b47257": {
+      "text": "מאיה הלכה אתמול",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a60cbf373e6e1c37": {
+      "text": "נועם אסף בקיץ",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d4acaa3d0256a069": {
+      "text": "צעדים. כמה צעדים הלך ביומיים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f3d16c0749e9515f": {
+      "text": "בספרייה של נועם היו",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "80bbb4e4f7a824bc": {
+      "text": "ספרים. הוא קיבל עוד",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "4f240c78f500158c": {
+      "text": "מצאו את הטעות",
+      "voice": "chirp3-hd/Leda"
+    },
+    "bcf2c6b8fdf0a1a1": {
+      "text": "סבא הלך אתמול",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "448ee743a60fbc79": {
+      "text": "בספרייה של דנה יש",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a49a170f3eb5538a": {
+      "text": "בספרייה של סבא יש",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "4a5f88bab592ea96": {
+      "text": "בספרייה של נועם יש",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b35730a1c7a86213": {
+      "text": "סבתא אספה בקיץ",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "61d6c46d471eea2e": {
+      "text": "בעיות מילוליות במאונך",
+      "voice": "chirp3-hd/Leda"
+    },
+    "70b48c5c885707ed": {
+      "text": "בספרייה של יובל יש",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f82195e363e434a0": {
+      "text": "ספרים. כמה ספרים נשארו לו?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "247b6fd00362f2cc": {
+      "text": "ספרים. הוא נתן לבית הספר",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "7987e3075a5c02c5": {
+      "text": "בספרייה של סבא היו",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b536b4fb747f75fa": {
+      "text": "נקודות. סבתא צברה כבר",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "362c04a00f007fe2": {
+      "text": "נקודות. כמה נקודות חסרות לה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a2832b226a60d6be": {
+      "text": "בספרייה של יובל היו",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "89432e31e7ebc6fd": {
+      "text": "חיבור תלת־ספרתי, צעד אחרי צעד",
+      "voice": "chirp3-hd/Leda"
+    },
+    "2e16d42ec6373ac3": {
+      "text": "מאיה אספה בקיץ",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ad67b19363c4bd27": {
+      "text": "נקודות. יובל צבר כבר",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e9d112c45912c76b": {
+      "text": "נקודות. דנה צברה כבר",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "293e8359c95920c2": {
+      "text": "חיבור ארבע־ספרתי, כמה המרות",
+      "voice": "chirp3-hd/Leda"
+    },
+    "1db53cf53483a043": {
+      "text": "בספרייה של מאיה היו",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f7e167cc779cf756": {
+      "text": "נקודות. מאיה צברה כבר",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "79567d04e999c995": {
+      "text": "דנה סידרה",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "913884931e42b6c3": {
+      "text": "ארגזים, ובכל ארגז שמה",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "44f8fc0308862e38": {
+      "text": "יובל סידר",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "910a21e5312b24ae": {
+      "text": "ארגזים, ובכל ארגז שם",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "fa6db27a48fdfbaf": {
+      "text": "מאיה סידרה",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "af4d76f6807324a6": {
+      "text": "נועם סידר",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "39e035458a1768af": {
+      "text": "חיסור: פריטה באחדות, צעד אחרי צעד",
+      "voice": "chirp3-hd/Leda"
+    },
+    "c4e0eaeb1b39f41b": {
+      "text": "תפוזים. כמה תפוזים יש בכל הארגזים?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b13c88ef4e1f7e41": {
+      "text": "כרטיס להופעה עולה",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "9145261231452ed5": {
+      "text": "שקלים. דנה קנתה",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "4e537ace5a8331eb": {
+      "text": "חיסור: פריטה בעשרות",
+      "voice": "chirp3-hd/Leda"
+    },
+    "360c118b93ab6a70": {
+      "text": "חיסור עם אפסים",
+      "voice": "chirp3-hd/Leda"
+    },
+    "1a0889a6a1937cec": {
+      "text": "כרטיסים. כמה שקלים שילמה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ef8bd85c9fb12c19": {
+      "text": "שקלים. יובל קנה",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f54bb415b779b50c": {
+      "text": "סבא סידר",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "20fad30f6510ef96": {
+      "text": "סבתא סידרה",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "2ed57a8726c07344": {
+      "text": "חיסור רב־ספרתי",
+      "voice": "chirp3-hd/Leda"
+    },
+    "2976725469772c03": {
+      "text": "כרטיסים. כמה שקלים שילם?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f80faa7d3912faf7": {
+      "text": "שקלים. מאיה קנתה",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "904277ef26be86f5": {
+      "text": "שקלים. נועם קנה",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e78b27988b216123": {
+      "text": "שקלים. סבא קנה",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "4b5acf3be553bfa9": {
+      "text": "במאות:",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "336ae9118898e687": {
+      "text": "כפל: דו־ספרתי בחד־ספרתי, צעד אחרי צעד",
+      "voice": "chirp3-hd/Leda"
+    },
+    "bb5d35a2b1849ab9": {
+      "text": "למאות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "7bc556641639ea5c": {
+      "text": "באלפים:",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "7a892be8d0d170d3": {
+      "text": "שקלים. סבתא קנתה",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "df198b0a9fc218d3": {
+      "text": "באלפים: רק",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "74487edbcf3ff694": {
+      "text": "לאלפים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a714e8839a315879": {
+      "text": ", ולמטה אין כלום",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b93c0d1ac8805bdf": {
+      "text": "כפל: רב־ספרתי בחד־ספרתי",
+      "voice": "chirp3-hd/Leda"
+    },
+    "b9cdad9f09d045ed": {
+      "text": ". לכן פורטים: לוקחים אחת מהמאות. עכשיו יש",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "dde51d670e6145e9": {
+      "text": "למטה אין כלום, לכן כותבים",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d33dcfe3fba4f71f": {
+      "text": "למטה אין מה להוריד, לכן כותבים",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c4d9a6f1a418f8c6": {
+      "text": ". בעמודה הבאה יש אפס, לכן פורטים מהמאות, והאפס נהיה תשע. עכשיו יש",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "2350a5e43fe265fe": {
+      "text": "כפל: דו־ספרתי בדו־ספרתי, צעד אחרי צעד",
+      "voice": "chirp3-hd/Leda"
+    },
+    "00c5f7bf9856b694": {
+      "text": ". בעמודה הבאה יש אפס, לכן פורטים מהאלפים, והאפס נהיה תשע. עכשיו יש",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b892dac02d425d6a": {
+      "text": ". לכן פורטים: לוקחים אחת מהאלפים. עכשיו יש",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "531b93c7de84551e": {
+      "text": "מסתכלים על העמודה של סימן השאלה, במאות. מה צריך להיות שם כדי שיצא מה שכתוב למטה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "8bc409e7570ccda1": {
+      "text": ". בעמודות הבאות יש אפסים, לכן פורטים מהאלפים, והאפסים נהיים תשע. עכשיו יש",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "cdcdd1bf20947cda": {
+      "text": "כפל: דו־ספרתי בדו־ספרתי",
+      "voice": "chirp3-hd/Leda"
+    },
+    "1f0a41843d16bfa2": {
+      "text": "הטעות באלפים: כתוב",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "50896b24a588a8ce": {
+      "text": "לעשרות האלפים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "5538a1bb32be2453": {
+      "text": "הטעות במאות: כתוב",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b216d939ed67607a": {
+      "text": "בעשרות האלפים:",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "8e1cd6b85a4b34fa": {
+      "text": "מסתכלים על העמודה של סימן השאלה, באלפים. מה צריך להיות שם כדי שיצא מה שכתוב למטה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d669ce8913688cd4": {
+      "text": "במאות האלפים:",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a46c15a7dca1909b": {
+      "text": "כפל: תלת־ספרתי בדו־ספרתי",
+      "voice": "chirp3-hd/Leda"
+    },
+    "66e957cc394687bc": {
+      "text": "למאות האלפים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "add308ed6e9c4dae": {
+      "text": "במאות האלפים: רק",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e7c4168864fabd21": {
+      "text": "בעשרות האלפים: רק",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e2b94e9d852079ef": {
+      "text": "במאות האלפים: מה שהעברנו",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ad5436644de4f65e": {
+      "text": "את מה שהעברנו כותבים למטה:",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ce23829032120dff": {
+      "text": "אומדן: בערך כמה?",
+      "voice": "chirp3-hd/Leda"
+    },
+    "cccca57bd1e2008b": {
+      "text": ". בעמודה הבאה יש אפס, לכן פורטים ממאות האלפים, והאפס נהיה תשע. עכשיו יש",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "2c0e29d1792a7276": {
+      "text": ". לכן פורטים: לוקחים אחת ממאות האלפים. עכשיו יש",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "8876a07004566c53": {
+      "text": ". בעמודות הבאות יש אפסים, לכן פורטים ממאות האלפים, והאפסים נהיים תשע. עכשיו יש",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "537ae18eda80b12e": {
+      "text": ". לכן פורטים: לוקחים אחת מעשרות האלפים. עכשיו יש",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "944c74fc747e567c": {
+      "text": ". בעמודה הבאה יש אפס, לכן פורטים מעשרות האלפים, והאפס נהיה תשע. עכשיו יש",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "5e6e4d265f90bb26": {
+      "text": "במאות: מה שהעברנו",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "84a8915cf4e1db67": {
+      "text": "שהעברנו זה",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "22dd8c43426b1d8d": {
+      "text": "כופלים כל ספרה, מהאחדות. את מה שמעל עשר מעבירים לעמודה הבאה, ומוסיפים אחרי הכפל.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "2d4dee22d5e35353": {
+      "text": "בעשרות האלפים: מה שהעברנו",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "9cc2719b0df9d56c": {
+      "text": "באלפים: מה שהעברנו",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f86b562b06576870": {
+      "text": "עכשיו כופלים בספרת העשרות,",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "3e49b26961a6c86b": {
+      "text": "ועכשיו מחברים את שתי השורות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "24316d7be233abec": {
+      "text": "במאות: רק",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a3e93c4d4db60f2b": {
+      "text": ". לכן באחדות כבר כתוב אפס.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "0be7f9db3e94e7b4": {
+      "text": "זה בערך",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "5bdfc319530030b6": {
+      "text": ", כלומר בערך",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "418408d38b139f49": {
+      "text": "קודם כופלים בספרת האחדות. אחר כך בספרת העשרות, ובשורה הזו באחדות כותבים אפס. בסוף מחברים את שתי השורות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d5587f526255510d": {
+      "text": "מעגלים כל מספר למספר עגול קרוב, וכופלים את המספרים העגולים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c27fa1af662baac3": {
+      "text": "הטעות במאות האלפים: כתוב",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "bf6f09731cd72d79": {
+      "text": "הטעות בעשרות האלפים: כתוב",
+      "voice": "wavenet/he-IL-Wavenet-A"
     }
   }
 }
