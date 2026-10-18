@@ -6,15 +6,15 @@
 
 Running 3 tests using 2 workers
 ··T
-::error file=tests/e2e/screenshots6.spec.ts,title=[ipad] › tests/e2e/screenshots6.spec.ts:82:1 › money and clock screens::  1) [ipad] › tests/e2e/screenshots6.spec.ts:82:1 › money and clock screens ────────────────────────%0A    Test timeout of 180000ms exceeded.
-::error file=tests/e2e/screenshots6.spec.ts,title=[ipad] › tests/e2e/screenshots6.spec.ts:82:1 › money and clock screens,line=133,col=51::  1) [ipad] › tests/e2e/screenshots6.spec.ts:82:1 › money and clock screens ────────────────────────%0A    Error: locator.click: Test timeout of 180000ms exceeded.%0A    Call log:%0A      - waiting for getByRole('button', { name: 'תמר' })%0A%0A%0A      131 |   // Gan: shapes and patterns%0A      132 |   await page.getByRole('button', { name: 'מי משחק?' }).click();%0A    > 133 |   await page.getByRole('button', { name: 'תמר' }).click();%0A          |                                                   ^%0A      134 |   await shot(page, 's-01-journey');%0A      135 |   await level(page, 'עיגול, ריבוע, משולש', 's-02-where');%0A      136 |   await level(page, 'אותה צורה', 's-03-same');%0A        at /home/runner/work/Math/Math/tests/e2e/screenshots6.spec.ts:133:51
+::error file=tests/e2e/screenshots6.spec.ts,title=[ipad] › tests/e2e/screenshots6.spec.ts:82:1 › money and clock screens::  1) [ipad] › tests/e2e/screenshots6.spec.ts:82:1 › money and clock screens ────────────────────────%0A    Test timeout of 420000ms exceeded.
+::error file=tests/e2e/screenshots6.spec.ts,title=[ipad] › tests/e2e/screenshots6.spec.ts:82:1 › money and clock screens,line=133,col=51::  1) [ipad] › tests/e2e/screenshots6.spec.ts:82:1 › money and clock screens ────────────────────────%0A    Error: locator.click: Test timeout of 420000ms exceeded.%0A    Call log:%0A      - waiting for getByRole('button', { name: 'תמר' })%0A%0A%0A      131 |   // Gan: shapes and patterns%0A      132 |   await page.getByRole('button', { name: 'מי משחק?' }).click();%0A    > 133 |   await page.getByRole('button', { name: 'תמר' }).click();%0A          |                                                   ^%0A      134 |   await shot(page, 's-01-journey');%0A      135 |   await level(page, 'עיגול, ריבוע, משולש', 's-02-where');%0A      136 |   await level(page, 'אותה צורה', 's-03-same');%0A        at /home/runner/work/Math/Math/tests/e2e/screenshots6.spec.ts:133:51
 
 
   1) [ipad] › tests/e2e/screenshots6.spec.ts:82:1 › money and clock screens ────────────────────────
 
-    Test timeout of 180000ms exceeded.
+    Test timeout of 420000ms exceeded.
 
-    Error: locator.click: Test timeout of 180000ms exceeded.
+    Error: locator.click: Test timeout of 420000ms exceeded.
     Call log:
       - waiting for getByRole('button', { name: 'תמר' })
 
@@ -30,7 +30,10 @@ Running 3 tests using 2 workers
 
     Error Context: test-results/screenshots6-money-and-clock-screens-ipad/error-context.md
 
+  Slow test file: [ipad] › tests/e2e/screenshots6.spec.ts (7.0m)
+  Consider running tests from slow files in parallel. See: https://playwright.dev/docs/test-parallel
   1 failed
     [ipad] › tests/e2e/screenshots6.spec.ts:82:1 › money and clock screens ─────────────────────────
-  2 passed (3.4m)
-::notice title=🎭 Playwright Run Summary::  1 failed%0A    [ipad] › tests/e2e/screenshots6.spec.ts:82:1 › money and clock screens ─────────────────────────%0A  2 passed (3.4m)
+  2 passed (7.4m)
+::warning title=Slow Test,file=[ipad] › tests/e2e/screenshots6.spec.ts::[ipad] › tests/e2e/screenshots6.spec.ts took 7.0m
+::notice title=🎭 Playwright Run Summary::  1 failed%0A    [ipad] › tests/e2e/screenshots6.spec.ts:82:1 › money and clock screens ─────────────────────────%0A  2 passed (7.4m)
