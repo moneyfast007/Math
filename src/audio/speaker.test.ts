@@ -99,7 +99,10 @@ describe('Speaker, assembled sentences', () => {
     const ids = await Promise.all(parts.map((p) => clipId(p)));
     const clips = Object.fromEntries(ids.map((id, i) => [id, parts[i]]));
     const created = fakeAudio();
-    const s = new Speaker(() => Promise.resolve({ ids: Object.keys(clips).join('') }), fakeSpeech([]));
+    const s = new Speaker(
+      () => Promise.resolve({ ids: Object.keys(clips).join('') }),
+      fakeSpeech([]),
+    );
     const text = 'כמה זה ארבעת אלפים ועוד שבע?';
     await expect(s.speak(text, { parts })).resolves.toBe('clip');
     expect(created.map((c) => c.src)).toEqual([`/audio/${ids[0]}.mp3`]);
@@ -117,7 +120,10 @@ describe('Speaker, assembled sentences', () => {
     const ids = await Promise.all(parts.map((p) => clipId(p)));
     const clips = Object.fromEntries(ids.map((id, i) => [id, parts[i]]));
     const created = fakeAudio();
-    const s = new Speaker(() => Promise.resolve({ ids: Object.keys(clips).join('') }), fakeSpeech([]));
+    const s = new Speaker(
+      () => Promise.resolve({ ids: Object.keys(clips).join('') }),
+      fakeSpeech([]),
+    );
     await s.speak('א ב ג', { parts });
     s.stop();
     created[0]?.end();
