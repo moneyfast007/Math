@@ -98,6 +98,9 @@ button {
   font-size: calc(var(--text-math) * var(--fit, 1));
   line-height: 1.2;
   text-align: center;
+  /* The whole width it is given (a centered flex item would only be as wide as its text). */
+  align-self: stretch;
+  min-width: 0;
 }
 
 .math__line {
@@ -889,7 +892,8 @@ ol.steps {
 .numberline svg {
   display: block;
   width: 100%;
-  min-width: 320px;
+  /* Room for the labels on a tablet; never wider than a phone's card. */
+  min-width: min(320px, 100%);
   height: auto;
 }
 

@@ -19,7 +19,7 @@ test.describe('foundations', () => {
     const box3 = await page.evaluate(() => {
       const el = document.querySelector('[data-math]')!;
       const range = document.createRange();
-      const text = el.firstChild!;
+      const text = document.createTreeWalker(el, NodeFilter.SHOW_TEXT).nextNode()!;
       range.setStart(text, 0);
       range.setEnd(text, 1);
       return range.getBoundingClientRect().left;
@@ -27,7 +27,7 @@ test.describe('foundations', () => {
     const box5 = await page.evaluate(() => {
       const el = document.querySelector('[data-math]')!;
       const range = document.createRange();
-      const text = el.firstChild!;
+      const text = document.createTreeWalker(el, NodeFilter.SHOW_TEXT).nextNode()!;
       const s = text.textContent!.indexOf('5');
       range.setStart(text, s);
       range.setEnd(text, s + 1);
