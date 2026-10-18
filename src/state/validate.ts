@@ -162,15 +162,19 @@ function parseProgress(
   for (const [profileId, raw] of Object.entries(all)) {
     // Progress of a profile that no longer exists is dropped, not an error.
     if (!profileIds.has(profileId)) continue;
-    const p = record(raw, 'התקדמות');
-    const topicsRaw = record(p['topics'], 'התקדמות');
-    const topics: Record<string, TopicStats> = {};
-    for (const [topicId, stats] of Object.entries(topicsRaw)) {
-      topics[topicId] = parseTopicStats(stats, `התקדמות בנושא ${topicId}`);
-    }
-    out[profileId] = { topics, streak: parseStreak(p['streak']), days: parseDays(p['days']) };
+    out[profileId] = parseOneProgress(raw);
   }
   return out;
+}
+
+function parseOneProgress(raw: unknown): ProfileProgress {
+  const p = record(raw, 'התקדמות');
+  const topicsRaw = record(p['topics'], 'התקדמות');
+  const topics: Record<string, TopicStats> = {};
+  for (const [topicId, stats] of Object.entries(topicsRaw)) {
+    topics[topicId] = parseTopicStats(stats, `התקדמות בנושא ${topicId}`);
+  }
+  return { topics, streak: parseStreak(p['streak']), days: parseDays(p['days']) };
 }
 
 function parsePin(value: unknown): PinRecord | null {
@@ -209,6 +213,35 @@ function parseData(value: unknown): AppData {
       lastBackupAt: lastBackupAt === null ? null : finiteNumber(lastBackupAt, 'תאריך גיבוי'),
     },
   };
+}
+
+function orNull<T>(parse: () => T): T | null {
+  try {
+    return parse();
+  } catch (err) {
+    if (err instanceof InvalidData) return null;
+    throw err;
+  }
+}
+
+/** One profile from elsewhere (the sync server), or null if it is not valid. */
+export function safeProfile(value: unknown): Profile | null {
+  return orNull(() => parseProfile(value, 0));
+}
+
+/** One child's progress from elsewhere (the sync server), or null if it is not valid. */
+export function safeProgress(value: unknown): ProfileProgress | null {
+  return orNull(() => parseOneProgress(value));
+}
+
+/** A PIN record from elsewhere: the record, null for "no PIN", undefined if not valid. */
+export function safePin(value: unknown): PinRecord | null | undefined {
+  try {
+    return parsePin(value);
+  } catch (err) {
+    if (err instanceof InvalidData) return undefined;
+    throw err;
+  }
 }
 
 /** Validates a stored AppData document. */

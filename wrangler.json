@@ -1,9 +1,19 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "math",
+  "main": "worker/index.ts",
   "compatibility_date": "2026-10-01",
   "assets": {
     "directory": "./dist",
-    "not_found_handling": "single-page-application"
-  }
+    "binding": "ASSETS",
+    "not_found_handling": "single-page-application",
+    "run_worker_first": ["/api/*"]
+  },
+  "durable_objects": {
+    "bindings": [
+      { "name": "FAMILY", "class_name": "Family" },
+      { "name": "PAIRING", "class_name": "Pairing" }
+    ]
+  },
+  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["Family", "Pairing"] }]
 }

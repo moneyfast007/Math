@@ -23,5 +23,5 @@
     "composite": true,
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo"
   },
-  "include": ["src", "tests/setup.ts"]
+  "include": ["src", "tests/setup.ts", "worker/core.ts"]
 }

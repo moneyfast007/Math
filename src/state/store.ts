@@ -64,6 +64,8 @@ export interface AppState {
   setPin: (pin: string | null) => Promise<void>;
   verifyPin: (pin: string) => Promise<boolean>;
   replaceData: (data: AppData) => void;
+  /** The family's data arrived from sync: applied without leaving the current screen. */
+  applySynced: (data: AppData) => void;
   markBackedUp: () => void;
   recordAttempt: (profileId: string, attempt: Attempt) => void;
   /** A round finished: stations, streak and the next level are updated together. */
@@ -199,6 +201,12 @@ export function createAppStore(storage: StorageAdapter, clock: () => number = Da
       replaceData: (data) => {
         commit(data);
         set({ activeProfileId: null, storageIssue: null });
+      },
+
+      applySynced: (data) => {
+        commit(data);
+        const id = get().activeProfileId;
+        if (id !== null && !data.profiles.some((p) => p.id === id)) set({ activeProfileId: null });
       },
 
       markBackedUp: () => {

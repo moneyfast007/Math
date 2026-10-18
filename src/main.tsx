@@ -4,14 +4,18 @@ import { App } from './app/App';
 import { startUpdates } from './app/updates';
 import { speaker } from './audio/speaker';
 import { appStore } from './state/store';
+import { startSync } from './sync';
 import { applyAgeBand } from './ui/ageBand';
 import './ui/global.css';
 
 // Until a profile is chosen, the middle band is the default density.
 applyAgeBand('middle');
 
-// Load saved profiles and progress from IndexedDB.
-void appStore.getState().hydrate();
+// Load saved profiles and progress from IndexedDB; then sync, if this device is linked.
+void appStore
+  .getState()
+  .hydrate()
+  .then(() => startSync());
 
 // The speaker looks for clips in the chosen child's grade list, fetched (a few
 // tens of kilobytes) as soon as she is chosen, so her first tap plays at once.
