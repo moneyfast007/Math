@@ -13,6 +13,13 @@ ok
 > eslint .
 
 
+/home/runner/work/Math/Math/tests/e2e/a11y.spec.ts
+  81:20  error  Unexpected empty object pattern  no-empty-pattern
+
+✖ 1 problem (1 error, 0 warnings)
+
+LINT FAILED
+
 ## unit tests
 
 > heshbon@0.1.0 test
@@ -21,63 +28,86 @@ ok
 
 [1m[46m RUN [49m[22m [36mv3.2.7 [39m[90m/home/runner/work/Math/Math[39m
 
- [32m✓[39m src/state/store.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 30[2mms[22m[39m
- [32m✓[39m src/sync/merge.test.ts [2m([22m[2m13 tests[22m[2m)[22m[32m 50[2mms[22m[39m
- [32m✓[39m src/state/validate.test.ts [2m([22m[2m19 tests[22m[2m)[22m[32m 10[2mms[22m[39m
- [32m✓[39m src/state/progress.test.ts [2m([22m[2m14 tests[22m[2m)[22m[32m 13[2mms[22m[39m
- [32m✓[39m src/lang/hebrewNumbers.test.ts [2m([22m[2m81 tests[22m[2m)[22m[33m 1407[2mms[22m[39m
-   [33m[2m✓[22m[39m numberToWords, properties[2m > [22mis injective on 0–99,999: different numbers never produce the same words [33m 1360[2mms[22m[39m
- [32m✓[39m src/audio/speaker.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 21[2mms[22m[39m
- [32m✓[39m src/engine/topics/addSub20.test.ts [2m([22m[2m14 tests[22m[2m)[22m[33m 499[2mms[22m[39m
- [32m✓[39m src/engine/session.test.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 14[2mms[22m[39m
- [32m✓[39m src/engine/journey.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 9[2mms[22m[39m
- [32m✓[39m src/ui/components.test.tsx [2m([22m[2m8 tests[22m[2m)[22m[33m 397[2mms[22m[39m
- [32m✓[39m src/parent/gate.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[33m 378[2mms[22m[39m
- [32m✓[39m src/lang/compose.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 8[2mms[22m[39m
- [32m✓[39m src/state/streak.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m src/state/store.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 38[2mms[22m[39m
+ [32m✓[39m src/sync/merge.test.ts [2m([22m[2m13 tests[22m[2m)[22m[32m 58[2mms[22m[39m
+ [32m✓[39m src/state/validate.test.ts [2m([22m[2m19 tests[22m[2m)[22m[32m 14[2mms[22m[39m
+ [32m✓[39m src/state/progress.test.ts [2m([22m[2m14 tests[22m[2m)[22m[32m 20[2mms[22m[39m
+ [32m✓[39m src/lang/hebrewNumbers.test.ts [2m([22m[2m81 tests[22m[2m)[22m[33m 1561[2mms[22m[39m
+   [33m[2m✓[22m[39m numberToWords, properties[2m > [22mis injective on 0–99,999: different numbers never produce the same words [33m 1494[2mms[22m[39m
+ [32m✓[39m src/audio/speaker.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 37[2mms[22m[39m
+ [32m✓[39m src/engine/topics/addSub20.test.ts [2m([22m[2m14 tests[22m[2m)[22m[33m 718[2mms[22m[39m
+ [32m✓[39m src/engine/session.test.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 13[2mms[22m[39m
+ [32m✓[39m src/engine/journey.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 12[2mms[22m[39m
+ [32m✓[39m src/ui/components.test.tsx [2m([22m[2m8 tests[22m[2m)[22m[33m 399[2mms[22m[39m
+ [32m✓[39m src/lang/compose.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 16[2mms[22m[39m
+ [32m✓[39m src/parent/gate.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[33m 534[2mms[22m[39m
+ [32m✓[39m src/state/streak.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 8[2mms[22m[39m
  [32m✓[39m scripts/tts/pronunciation.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 6[2mms[22m[39m
- [32m✓[39m src/lang/time.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 8[2mms[22m[39m
- [32m✓[39m src/screens/JourneyScreen.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[32m 91[2mms[22m[39m
- [32m✓[39m src/i18n/i18n.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 100[2mms[22m[39m
- [32m✓[39m src/engine/daily.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 7[2mms[22m[39m
- [32m✓[39m src/ui/MathExpr.test.tsx [2m([22m[2m4 tests[22m[2m)[22m[32m 54[2mms[22m[39m
- [32m✓[39m src/lang/spoken.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 4[2mms[22m[39m
- [32m✓[39m src/lang/spokenLabel.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 13[2mms[22m[39m
- [32m✓[39m src/audio/hash.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 6[2mms[22m[39m
- [32m✓[39m src/state/pin.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 8[2mms[22m[39m
- [32m✓[39m src/lang/groupDigits.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 4[2mms[22m[39m
- [32m✓[39m src/state/backup.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 4[2mms[22m[39m
- [32m✓[39m src/lang/fractions.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+ [32m✓[39m src/lang/time.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 11[2mms[22m[39m
+ [32m✓[39m src/screens/JourneyScreen.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[32m 116[2mms[22m[39m
+ [32m✓[39m src/i18n/i18n.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 85[2mms[22m[39m
+ [32m✓[39m src/engine/daily.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+ [32m✓[39m src/ui/MathExpr.test.tsx [2m([22m[2m4 tests[22m[2m)[22m[32m 67[2mms[22m[39m
+ [32m✓[39m src/lang/spoken.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+ [32m✓[39m src/lang/spokenLabel.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 14[2mms[22m[39m
+ [32m✓[39m src/audio/hash.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 12[2mms[22m[39m
+ [32m✓[39m src/state/pin.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+ [32m✓[39m src/lang/groupDigits.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+ [32m✓[39m src/state/backup.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m src/lang/fractions.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 6[2mms[22m[39m
  [32m✓[39m src/app/router.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 5[2mms[22m[39m
- [32m✓[39m src/ui/ageBand.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 5[2mms[22m[39m
- [32m✓[39m src/sync/client.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 79[2mms[22m[39m
- [32m✓[39m worker/core.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 38[2mms[22m[39m
- [32m✓[39m src/engine/topics/audioBank.test.ts [2m([22m[2m270 tests[22m[2m)[22m[33m 12313[2mms[22m[39m
-   [33m[2m✓[22m[39m the audio bank covers what a child can hear: numbers-100[2m > [22mlevel 3 [33m 332[2mms[22m[39m
-   [33m[2m✓[22m[39m the audio bank covers what a child can hear: numbers-100[2m > [22mlevel 4 [33m 1070[2mms[22m[39m
-   [33m[2m✓[22m[39m the audio bank covers what a child can hear: numbers-100[2m > [22mlevel 9 [33m 625[2mms[22m[39m
-   [33m[2m✓[22m[39m the audio bank covers what a child can hear: clock[2m > [22mlevel 10 [33m 388[2mms[22m[39m
- [32m✓[39m src/engine/topics/all.test.ts [2m([22m[2m353 tests[22m[2m)[22m[33m 43966[2mms[22m[39m
-   [33m[2m✓[22m[39m topic shapes[2m > [22mlevel 9 produces valid exercises [33m 400[2mms[22m[39m
-   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 2 produces valid exercises [33m 380[2mms[22m[39m
-   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 3 produces valid exercises [33m 527[2mms[22m[39m
-   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 4 produces valid exercises [33m 1523[2mms[22m[39m
-   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 5 produces valid exercises [33m 441[2mms[22m[39m
-   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 6 produces valid exercises [33m 407[2mms[22m[39m
-   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 9 produces valid exercises [33m 736[2mms[22m[39m
-   [33m[2m✓[22m[39m topic numbers-100[2m > [22mavoids an immediate repeat [33m 445[2mms[22m[39m
-   [33m[2m✓[22m[39m topic clock-money-1[2m > [22mlevel 7 produces valid exercises [33m 315[2mms[22m[39m
-   [33m[2m✓[22m[39m topic clock-money-1[2m > [22mlevel 9 produces valid exercises [33m 312[2mms[22m[39m
-   [33m[2m✓[22m[39m topic money[2m > [22mlevel 7 produces valid exercises [33m 360[2mms[22m[39m
-   [33m[2m✓[22m[39m topic clock[2m > [22mlevel 10 produces valid exercises [33m 352[2mms[22m[39m
-   [33m[2m✓[22m[39m topic fraction-ops[2m > [22mlevel 3 produces valid exercises [33m 301[2mms[22m[39m
-   [33m[2m✓[22m[39m topic circle-volume[2m > [22mlevel 6 produces valid exercises [33m 330[2mms[22m[39m
-   [33m[2m✓[22m[39m topic circle-volume[2m > [22mlevel 8 produces valid exercises [33m 309[2mms[22m[39m
+ [32m✓[39m src/ui/ageBand.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m src/sync/client.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 111[2mms[22m[39m
+ [32m✓[39m worker/core.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 42[2mms[22m[39m
+ [32m✓[39m src/engine/topics/audioBank.test.ts [2m([22m[2m270 tests[22m[2m)[22m[33m 17912[2mms[22m[39m
+   [33m[2m✓[22m[39m the audio bank covers what a child can hear: shapes[2m > [22mlevel 9 [33m 328[2mms[22m[39m
+   [33m[2m✓[22m[39m the audio bank covers what a child can hear: numbers-100[2m > [22mlevel 3 [33m 454[2mms[22m[39m
+   [33m[2m✓[22m[39m the audio bank covers what a child can hear: numbers-100[2m > [22mlevel 4 [33m 1704[2mms[22m[39m
+   [33m[2m✓[22m[39m the audio bank covers what a child can hear: numbers-100[2m > [22mlevel 5 [33m 543[2mms[22m[39m
+   [33m[2m✓[22m[39m the audio bank covers what a child can hear: numbers-100[2m > [22mlevel 6 [33m 466[2mms[22m[39m
+   [33m[2m✓[22m[39m the audio bank covers what a child can hear: numbers-100[2m > [22mlevel 9 [33m 729[2mms[22m[39m
+   [33m[2m✓[22m[39m the audio bank covers what a child can hear: measure[2m > [22mlevel 1 [33m 340[2mms[22m[39m
+   [33m[2m✓[22m[39m the audio bank covers what a child can hear: fraction-ops[2m > [22mlevel 3 [33m 359[2mms[22m[39m
+   [33m[2m✓[22m[39m the audio bank covers what a child can hear: fraction-ops[2m > [22mlevel 9 [33m 329[2mms[22m[39m
+ [32m✓[39m src/engine/topics/all.test.ts [2m([22m[2m353 tests[22m[2m)[22m[33m 59501[2mms[22m[39m
+   [33m[2m✓[22m[39m topic count-10[2m > [22mlevel 10 produces valid exercises [33m 455[2mms[22m[39m
+   [33m[2m✓[22m[39m topic shapes[2m > [22mlevel 7 produces valid exercises [33m 316[2mms[22m[39m
+   [33m[2m✓[22m[39m topic shapes[2m > [22mlevel 9 produces valid exercises [33m 651[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 2 produces valid exercises [33m 451[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 3 produces valid exercises [33m 788[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 4 produces valid exercises [33m 2113[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 5 produces valid exercises [33m 694[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 6 produces valid exercises [33m 568[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 7 produces valid exercises [33m 398[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 8 produces valid exercises [33m 424[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 9 produces valid exercises [33m 913[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mavoids an immediate repeat [33m 397[2mms[22m[39m
+   [33m[2m✓[22m[39m topic clock-money-1[2m > [22mlevel 7 produces valid exercises [33m 373[2mms[22m[39m
+   [33m[2m✓[22m[39m topic clock-money-1[2m > [22mlevel 9 produces valid exercises [33m 373[2mms[22m[39m
+   [33m[2m✓[22m[39m topic add-sub-100[2m > [22mlevel 1 produces valid exercises [33m 328[2mms[22m[39m
+   [33m[2m✓[22m[39m topic add-sub-100[2m > [22mlevel 2 produces valid exercises [33m 323[2mms[22m[39m
+   [33m[2m✓[22m[39m topic add-sub-100[2m > [22mlevel 3 produces valid exercises [33m 330[2mms[22m[39m
+   [33m[2m✓[22m[39m topic add-sub-100[2m > [22mlevel 4 produces valid exercises [33m 419[2mms[22m[39m
+   [33m[2m✓[22m[39m topic add-sub-100[2m > [22mlevel 5 produces valid exercises [33m 323[2mms[22m[39m
+   [33m[2m✓[22m[39m topic add-sub-100[2m > [22mlevel 8 produces valid exercises [33m 365[2mms[22m[39m
+   [33m[2m✓[22m[39m topic add-sub-100[2m > [22mlevel 9 produces valid exercises [33m 302[2mms[22m[39m
+   [33m[2m✓[22m[39m topic money[2m > [22mlevel 4 produces valid exercises [33m 321[2mms[22m[39m
+   [33m[2m✓[22m[39m topic money[2m > [22mlevel 5 produces valid exercises [33m 351[2mms[22m[39m
+   [33m[2m✓[22m[39m topic money[2m > [22mlevel 6 produces valid exercises [33m 382[2mms[22m[39m
+   [33m[2m✓[22m[39m topic money[2m > [22mlevel 7 produces valid exercises [33m 415[2mms[22m[39m
+   [33m[2m✓[22m[39m topic clock[2m > [22mlevel 10 produces valid exercises [33m 574[2mms[22m[39m
+   [33m[2m✓[22m[39m topic fraction-ops[2m > [22mlevel 3 produces valid exercises [33m 405[2mms[22m[39m
+   [33m[2m✓[22m[39m topic fraction-ops[2m > [22mlevel 9 produces valid exercises [33m 304[2mms[22m[39m
+   [33m[2m✓[22m[39m topic ratio[2m > [22mlevel 1 produces valid exercises [33m 372[2mms[22m[39m
+   [33m[2m✓[22m[39m topic ratio[2m > [22mlevel 2 produces valid exercises [33m 346[2mms[22m[39m
+   [33m[2m✓[22m[39m topic ratio[2m > [22mlevel 3 produces valid exercises [33m 307[2mms[22m[39m
+   [33m[2m✓[22m[39m topic circle-volume[2m > [22mlevel 6 produces valid exercises [33m 511[2mms[22m[39m
+   [33m[2m✓[22m[39m topic circle-volume[2m > [22mlevel 8 produces valid exercises [33m 414[2mms[22m[39m
 
 [2m Test Files [22m [1m[32m32 passed[39m[22m[90m (32)[39m
 [2m      Tests [22m [1m[32m906 passed[39m[22m[90m (906)[39m
-[2m   Start at [22m 16:24:34
-[2m   Duration [22m 47.62s[2m (transform 1.21s, setup 5.06s, collect 2.38s, tests 59.56s, environment 12.03s, prepare 2.79s)[22m
+[2m   Start at [22m 16:40:37
+[2m   Duration [22m 64.13s[2m (transform 1.61s, setup 6.94s, collect 3.06s, tests 81.36s, environment 16.54s, prepare 3.56s)[22m
 
 
 ## build
@@ -92,24 +122,24 @@ ok
 audio index: shared: 2272, g0: 5249, g1: 7754, g2: 4090, g3: 4377, g4: 5517, g5: 4500, g6: 4846 clips
 [36mvite v7.3.7 [32mbuilding client environment for production...[36m[39m
 transforming...
-[32m✓[39m 125 modules transformed.
+[32m✓[39m 127 modules transformed.
 rendering chunks...
 computing gzip size...
 [2mdist/[22m[32mmanifest.webmanifest                        [39m[1m[2m  0.53 kB[22m[1m[22m
 [2mdist/[22m[32mindex.html                                  [39m[1m[2m  1.26 kB[22m[1m[22m[2m │ gzip:   0.60 kB[22m
-[2mdist/[22m[2massets/[22m[35mindex-CB7mBDn9.css                   [39m[1m[2m 35.74 kB[22m[1m[22m[2m │ gzip:   7.45 kB[22m
+[2mdist/[22m[2massets/[22m[35mindex-CUVV3Q6m.css                   [39m[1m[2m 36.49 kB[22m[1m[22m[2m │ gzip:   7.58 kB[22m
 [2mdist/[22m[2massets/[22m[36mworkbox-window.prod.es5-BBnX5xw4.js  [39m[1m[2m  5.75 kB[22m[1m[22m[2m │ gzip:   2.36 kB[22m
-[2mdist/[22m[2massets/[22m[36mindex-BvN3lvdU.js                    [39m[1m[33m619.79 kB[39m[22m[2m │ gzip: 179.63 kB[22m
+[2mdist/[22m[2massets/[22m[36mindex-9pCykV5g.js                    [39m[1m[33m632.30 kB[39m[22m[2m │ gzip: 184.27 kB[22m
 [33m
 (!) Some chunks are larger than 500 kB after minification. Consider:
 - Using dynamic import() to code-split the application
 - Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
 - Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.[39m
-[32m✓ built in 9.28s[39m
+[32m✓ built in 4.54s[39m
 
 [36mPWA v1.3.0[39m
 mode      [35mgenerateSW[39m
-precache  [32m14 entries[39m [2m(710.26 KiB)[22m
+precache  [32m14 entries[39m [2m(723.21 KiB)[22m
 files generated
   [2mdist/sw.js[22m
   [2mdist/workbox-355bf58a.js[22m
@@ -132,38 +162,468 @@ files generated
 [WebServer] - Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
 [WebServer] - Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
 
-Running 213 tests using 2 workers
-·········°·°°°°°°°°°°°°°°°°°°°°°°°°°°°°····················°°°°°°°°°············
-····························°·····×···········±
-::error file=tests/e2e/practice.spec.ts,title=[iphone] › tests/e2e/practice.spec.ts:50:3 › practice › a full round: every answer right, the station passed, progress recorded,line=92,col=20::  1) [iphone] › tests/e2e/practice.spec.ts:50:3 › practice › a full round: every answer right, the station passed, progress recorded %0A    Error: expect(received).toEqual(expected) // deep equality%0A%0A    - Expected  - 1%0A    + Received  + 3%0A%0A    - Array []%0A    + Array [%0A    +   "ResizeObserver loop completed with undelivered notifications.",%0A    + ]%0A%0A      90 |     await expect(row).toContainText('10 תרגילים');%0A      91 |     await expect(row).toContainText('הצלחה: 100%');%0A    > 92 |     expect(errors).toEqual([]);%0A         |                    ^%0A      93 |   });%0A      94 |%0A      95 |   test('wrong answers get a gentle explanation, hints, and finally the answer', async ({%0A        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:92:20
-····°°°°°°°°°·············°°°°°°°
-°°°°°°°°°°°°°°°°°°°°°°····················°°°°°°°°°···
+Running 228 tests using 2 workers
+°°°°°··········°°°°°°°°°°°°°°°°°°°°°°°°°°°°°····················°°°°°°°°°··°°°°°
+······································°·····················°°°°°°°°°··××·F
+::error file=tests/e2e/a11y.spec.ts,title=[desktop-chromium] › tests/e2e/a11y.spec.ts:85:3 › accessibility (WCAG 2.0 AA) › first run, install guide, information page,line=62,col=53::  1) [desktop-chromium] › tests/e2e/a11y.spec.ts:85:3 › accessibility (WCAG 2.0 AA) › first run, install guide, information page %0A    Error: welcome: accessibility problems%0A%0A    expect(received).toEqual(expected) // deep equality%0A%0A    - Expected  - 1%0A    + Received  + 3%0A%0A    - Array []%0A    + Array [%0A    +   "meta-viewport (moderate): Zooming and scaling must not be disabled — meta[name=\"viewport\"]",%0A    + ]%0A%0A      60 |         .join(' | ')}`,%0A      61 |   );%0A    > 62 |   expect(found, `${where}: accessibility problems`).toEqual([]);%0A         |                                                     ^%0A      63 | }%0A      64 |%0A      65 | async function restore(page: Page) {%0A        at check (/home/runner/work/Math/Math/tests/e2e/a11y.spec.ts:62:53)%0A        at /home/runner/work/Math/Math/tests/e2e/a11y.spec.ts:87:5
+::error file=tests/e2e/a11y.spec.ts,title=[desktop-chromium] › tests/e2e/a11y.spec.ts:85:3 › accessibility (WCAG 2.0 AA) › first run, install guide, information page,line=62,col=53::  1) [desktop-chromium] › tests/e2e/a11y.spec.ts:85:3 › accessibility (WCAG 2.0 AA) › first run, install guide, information page %0A%0A    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────%0A    Error: welcome: accessibility problems%0A%0A    expect(received).toEqual(expected) // deep equality%0A%0A    - Expected  - 1%0A    + Received  + 3%0A%0A    - Array []%0A    + Array [%0A    +   "meta-viewport (moderate): Zooming and scaling must not be disabled — meta[name=\"viewport\"]",%0A    + ]%0A%0A      60 |         .join(' | ')}`,%0A      61 |   );%0A    > 62 |   expect(found, `${where}: accessibility problems`).toEqual([]);%0A         |                                                     ^%0A      63 | }%0A      64 |%0A      65 | async function restore(page: Page) {%0A        at check (/home/runner/work/Math/Math/tests/e2e/a11y.spec.ts:62:53)%0A        at /home/runner/work/Math/Math/tests/e2e/a11y.spec.ts:87:5
+::error file=tests/e2e/a11y.spec.ts,title=[desktop-chromium] › tests/e2e/a11y.spec.ts:85:3 › accessibility (WCAG 2.0 AA) › first run, install guide, information page,line=62,col=53::  1) [desktop-chromium] › tests/e2e/a11y.spec.ts:85:3 › accessibility (WCAG 2.0 AA) › first run, install guide, information page %0A%0A    Retry #2 ───────────────────────────────────────────────────────────────────────────────────────%0A    Error: welcome: accessibility problems%0A%0A    expect(received).toEqual(expected) // deep equality%0A%0A    - Expected  - 1%0A    + Received  + 3%0A%0A    - Array []%0A    + Array [%0A    +   "meta-viewport (moderate): Zooming and scaling must not be disabled — meta[name=\"viewport\"]",%0A    + ]%0A%0A      60 |         .join(' | ')}`,%0A      61 |   );%0A    > 62 |   expect(found, `${where}: accessibility problems`).toEqual([]);%0A         |                                                     ^%0A      63 | }%0A      64 |%0A      65 | async function restore(page: Page) {%0A        at check (/home/runner/work/Math/Math/tests/e2e/a11y.spec.ts:62:53)%0A        at /home/runner/work/Math/Math/tests/e2e/a11y.spec.ts:87:5
+××××F
+::error file=tests/e2e/a11y.spec.ts,title=[desktop-chromium] › tests/e2e/a11y.spec.ts:107:3 › accessibility (WCAG 2.0 AA) › journey, level picker, practice with numbers, hints and feedback, album,line=62,col=53::  2) [desktop-chromium] › tests/e2e/a11y.spec.ts:107:3 › accessibility (WCAG 2.0 AA) › journey, level picker, practice with numbers, hints and feedback, album %0A    Error: journey: accessibility problems%0A%0A    expect(received).toEqual(expected) // deep equality%0A%0A    - Expected  - 1%0A    + Received  + 3%0A%0A    - Array []%0A    + Array [%0A    +   "meta-viewport (moderate): Zooming and scaling must not be disabled — meta[name=\"viewport\"]",%0A    + ]%0A%0A      60 |         .join(' | ')}`,%0A      61 |   );%0A    > 62 |   expect(found, `${where}: accessibility problems`).toEqual([]);%0A         |                                                     ^%0A      63 | }%0A      64 |%0A      65 | async function restore(page: Page) {%0A        at check (/home/runner/work/Math/Math/tests/e2e/a11y.spec.ts:62:53)%0A        at /home/runner/work/Math/Math/tests/e2e/a11y.spec.ts:113:5
+::error file=tests/e2e/a11y.spec.ts,title=[desktop-chromium] › tests/e2e/a11y.spec.ts:107:3 › accessibility (WCAG 2.0 AA) › journey, level picker, practice with numbers, hints and feedback, album,line=62,col=53::  2) [desktop-chromium] › tests/e2e/a11y.spec.ts:107:3 › accessibility (WCAG 2.0 AA) › journey, level picker, practice with numbers, hints and feedback, album %0A%0A    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────%0A    Error: journey: accessibility problems%0A%0A    expect(received).toEqual(expected) // deep equality%0A%0A    - Expected  - 1%0A    + Received  + 3%0A%0A    - Array []%0A    + Array [%0A    +   "meta-viewport (moderate): Zooming and scaling must not be disabled — meta[name=\"viewport\"]",%0A    + ]%0A%0A      60 |         .join(' | ')}`,%0A      61 |   );%0A    > 62 |   expect(found, `${where}: accessibility problems`).toEqual([]);%0A         |                                                     ^%0A      63 | }%0A      64 |%0A      65 | async function restore(page: Page) {%0A        at check (/home/runner/work/Math/Math/tests/e2e/a11y.spec.ts:62:53)%0A        at /home/runner/work/Math/Math/tests/e2e/a11y.spec.ts:113:5
+::error file=tests/e2e/a11y.spec.ts,title=[desktop-chromium] › tests/e2e/a11y.spec.ts:107:3 › accessibility (WCAG 2.0 AA) › journey, level picker, practice with numbers, hints and feedback, album,line=62,col=53::  2) [desktop-chromium] › tests/e2e/a11y.spec.ts:107:3 › accessibility (WCAG 2.0 AA) › journey, level picker, practice with numbers, hints and feedback, album %0A%0A    Retry #2 ───────────────────────────────────────────────────────────────────────────────────────%0A    Error: journey: accessibility problems%0A%0A    expect(received).toEqual(expected) // deep equality%0A%0A    - Expected  - 1%0A    + Received  + 3%0A%0A    - Array []%0A    + Array [%0A    +   "meta-viewport (moderate): Zooming and scaling must not be disabled — meta[name=\"viewport\"]",%0A    + ]%0A%0A      60 |         .join(' | ')}`,%0A      61 |   );%0A    > 62 |   expect(found, `${where}: accessibility problems`).toEqual([]);%0A         |                                                     ^%0A      63 | }%0A      64 |%0A      65 | async function restore(page: Page) {%0A        at check (/home/runner/work/Math/Math/tests/e2e/a11y.spec.ts:62:53)%0A        at /home/runner/work/Math/Math/tests/e2e/a11y.spec.ts:113:5
 
-  1) [iphone] › tests/e2e/practice.spec.ts:50:3 › practice › a full round: every answer right, the station passed, progress recorded 
+F
+::error file=tests/e2e/a11y.spec.ts,title=[desktop-chromium] › tests/e2e/a11y.spec.ts:94:3 › accessibility (WCAG 2.0 AA) › parent area, its dialogs, and home,line=62,col=53::  3) [desktop-chromium] › tests/e2e/a11y.spec.ts:94:3 › accessibility (WCAG 2.0 AA) › parent area, its dialogs, and home %0A    Error: parent area: accessibility problems%0A%0A    expect(received).toEqual(expected) // deep equality%0A%0A    - Expected  - 1%0A    + Received  + 3%0A%0A    - Array []%0A    + Array [%0A    +   "meta-viewport (moderate): Zooming and scaling must not be disabled — meta[name=\"viewport\"]",%0A    + ]%0A%0A      60 |         .join(' | ')}`,%0A      61 |   );%0A    > 62 |   expect(found, `${where}: accessibility problems`).toEqual([]);%0A         |                                                     ^%0A      63 | }%0A      64 |%0A      65 | async function restore(page: Page) {%0A        at check (/home/runner/work/Math/Math/tests/e2e/a11y.spec.ts:62:53)%0A        at /home/runner/work/Math/Math/tests/e2e/a11y.spec.ts:96:5
+::error file=tests/e2e/a11y.spec.ts,title=[desktop-chromium] › tests/e2e/a11y.spec.ts:94:3 › accessibility (WCAG 2.0 AA) › parent area, its dialogs, and home,line=62,col=53::  3) [desktop-chromium] › tests/e2e/a11y.spec.ts:94:3 › accessibility (WCAG 2.0 AA) › parent area, its dialogs, and home %0A%0A    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────%0A    Error: parent area: accessibility problems%0A%0A    expect(received).toEqual(expected) // deep equality%0A%0A    - Expected  - 1%0A    + Received  + 3%0A%0A    - Array []%0A    + Array [%0A    +   "meta-viewport (moderate): Zooming and scaling must not be disabled — meta[name=\"viewport\"]",%0A    + ]%0A%0A      60 |         .join(' | ')}`,%0A      61 |   );%0A    > 62 |   expect(found, `${where}: accessibility problems`).toEqual([]);%0A         |                                                     ^%0A      63 | }%0A      64 |%0A      65 | async function restore(page: Page) {%0A        at check (/home/runner/work/Math/Math/tests/e2e/a11y.spec.ts:62:53)%0A        at /home/runner/work/Math/Math/tests/e2e/a11y.spec.ts:96:5
+::error file=tests/e2e/a11y.spec.ts,title=[desktop-chromium] › tests/e2e/a11y.spec.ts:94:3 › accessibility (WCAG 2.0 AA) › parent area, its dialogs, and home,line=62,col=53::  3) [desktop-chromium] › tests/e2e/a11y.spec.ts:94:3 › accessibility (WCAG 2.0 AA) › parent area, its dialogs, and home %0A%0A    Retry #2 ───────────────────────────────────────────────────────────────────────────────────────%0A    Error: parent area: accessibility problems%0A%0A    expect(received).toEqual(expected) // deep equality%0A%0A    - Expected  - 1%0A    + Received  + 3%0A%0A    - Array []%0A    + Array [%0A    +   "meta-viewport (moderate): Zooming and scaling must not be disabled — meta[name=\"viewport\"]",%0A    + ]%0A%0A      60 |         .join(' | ')}`,%0A      61 |   );%0A    > 62 |   expect(found, `${where}: accessibility problems`).toEqual([]);%0A         |                                                     ^%0A      63 | }%0A      64 |%0A      65 | async function restore(page: Page) {%0A        at check (/home/runner/work/Math/Math/tests/e2e/a11y.spec.ts:62:53)%0A        at /home/runner/work/Math/Math/tests/e2e/a11y.spec.ts:96:5
+××××F
+::error file=tests/e2e/a11y.spec.ts,title=[desktop-chromium] › tests/e2e/a11y.spec.ts:127:3 › accessibility (WCAG 2.0 AA) › gan: picture exercises with big answer buttons,line=62,col=53::  4) [desktop-chromium] › tests/e2e/a11y.spec.ts:127:3 › accessibility (WCAG 2.0 AA) › gan: picture exercises with big answer buttons %0A    Error: gan practice: accessibility problems%0A%0A    expect(received).toEqual(expected) // deep equality%0A%0A    - Expected  - 1%0A    + Received  + 3%0A%0A    - Array []%0A    + Array [%0A    +   "meta-viewport (moderate): Zooming and scaling must not be disabled — meta[name=\"viewport\"]",%0A    + ]%0A%0A      60 |         .join(' | ')}`,%0A      61 |   );%0A    > 62 |   expect(found, `${where}: accessibility problems`).toEqual([]);%0A         |                                                     ^%0A      63 | }%0A      64 |%0A      65 | async function restore(page: Page) {%0A        at check (/home/runner/work/Math/Math/tests/e2e/a11y.spec.ts:62:53)%0A        at /home/runner/work/Math/Math/tests/e2e/a11y.spec.ts:133:5
+::error file=tests/e2e/a11y.spec.ts,title=[desktop-chromium] › tests/e2e/a11y.spec.ts:127:3 › accessibility (WCAG 2.0 AA) › gan: picture exercises with big answer buttons,line=62,col=53::  4) [desktop-chromium] › tests/e2e/a11y.spec.ts:127:3 › accessibility (WCAG 2.0 AA) › gan: picture exercises with big answer buttons %0A%0A    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────%0A    Error: gan practice: accessibility problems%0A%0A    expect(received).toEqual(expected) // deep equality%0A%0A    - Expected  - 1%0A    + Received  + 3%0A%0A    - Array []%0A    + Array [%0A    +   "meta-viewport (moderate): Zooming and scaling must not be disabled — meta[name=\"viewport\"]",%0A    + ]%0A%0A      60 |         .join(' | ')}`,%0A      61 |   );%0A    > 62 |   expect(found, `${where}: accessibility problems`).toEqual([]);%0A         |                                                     ^%0A      63 | }%0A      64 |%0A      65 | async function restore(page: Page) {%0A        at check (/home/runner/work/Math/Math/tests/e2e/a11y.spec.ts:62:53)%0A        at /home/runner/work/Math/Math/tests/e2e/a11y.spec.ts:133:5
+::error file=tests/e2e/a11y.spec.ts,title=[desktop-chromium] › tests/e2e/a11y.spec.ts:127:3 › accessibility (WCAG 2.0 AA) › gan: picture exercises with big answer buttons,line=62,col=53::  4) [desktop-chromium] › tests/e2e/a11y.spec.ts:127:3 › accessibility (WCAG 2.0 AA) › gan: picture exercises with big answer buttons %0A%0A    Retry #2 ───────────────────────────────────────────────────────────────────────────────────────%0A    Error: gan practice: accessibility problems%0A%0A    expect(received).toEqual(expected) // deep equality%0A%0A    - Expected  - 1%0A    + Received  + 3%0A%0A    - Array []%0A    + Array [%0A    +   "meta-viewport (moderate): Zooming and scaling must not be disabled — meta[name=\"viewport\"]",%0A    + ]%0A%0A      60 |         .join(' | ')}`,%0A      61 |   );%0A    > 62 |   expect(found, `${where}: accessibility problems`).toEqual([]);%0A         |                                                     ^%0A      63 | }%0A      64 |%0A      65 | async function restore(page: Page) {%0A        at check (/home/runner/work/Math/Math/tests/e2e/a11y.spec.ts:62:53)%0A        at /home/runner/work/Math/Math/tests/e2e/a11y.spec.ts:133:5
+F
+::error file=tests/e2e/a11y.spec.ts,title=[desktop-chromium] › tests/e2e/a11y.spec.ts:136:3 › accessibility (WCAG 2.0 AA) › parent gate,line=62,col=53::  5) [desktop-chromium] › tests/e2e/a11y.spec.ts:136:3 › accessibility (WCAG 2.0 AA) › parent gate ─%0A    Error: parent gate: accessibility problems%0A%0A    expect(received).toEqual(expected) // deep equality%0A%0A    - Expected  - 1%0A    + Received  + 3%0A%0A    - Array []%0A    + Array [%0A    +   "meta-viewport (moderate): Zooming and scaling must not be disabled — meta[name=\"viewport\"]",%0A    + ]%0A%0A      60 |         .join(' | ')}`,%0A      61 |   );%0A    > 62 |   expect(found, `${where}: accessibility problems`).toEqual([]);%0A         |                                                     ^%0A      63 | }%0A      64 |%0A      65 | async function restore(page: Page) {%0A        at check (/home/runner/work/Math/Math/tests/e2e/a11y.spec.ts:62:53)%0A        at /home/runner/work/Math/Math/tests/e2e/a11y.spec.ts:140:5
+::error file=tests/e2e/a11y.spec.ts,title=[desktop-chromium] › tests/e2e/a11y.spec.ts:136:3 › accessibility (WCAG 2.0 AA) › parent gate,line=62,col=53::  5) [desktop-chromium] › tests/e2e/a11y.spec.ts:136:3 › accessibility (WCAG 2.0 AA) › parent gate ─%0A%0A    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────%0A    Error: parent gate: accessibility problems%0A%0A    expect(received).toEqual(expected) // deep equality%0A%0A    - Expected  - 1%0A    + Received  + 3%0A%0A    - Array []%0A    + Array [%0A    +   "meta-viewport (moderate): Zooming and scaling must not be disabled — meta[name=\"viewport\"]",%0A    + ]%0A%0A      60 |         .join(' | ')}`,%0A      61 |   );%0A    > 62 |   expect(found, `${where}: accessibility problems`).toEqual([]);%0A         |                                                     ^%0A      63 | }%0A      64 |%0A      65 | async function restore(page: Page) {%0A        at check (/home/runner/work/Math/Math/tests/e2e/a11y.spec.ts:62:53)%0A        at /home/runner/work/Math/Math/tests/e2e/a11y.spec.ts:140:5
+::error file=tests/e2e/a11y.spec.ts,title=[desktop-chromium] › tests/e2e/a11y.spec.ts:136:3 › accessibility (WCAG 2.0 AA) › parent gate,line=62,col=53::  5) [desktop-chromium] › tests/e2e/a11y.spec.ts:136:3 › accessibility (WCAG 2.0 AA) › parent gate ─%0A%0A    Retry #2 ───────────────────────────────────────────────────────────────────────────────────────%0A    Error: parent gate: accessibility problems%0A%0A    expect(received).toEqual(expected) // deep equality%0A%0A    - Expected  - 1%0A    + Received  + 3%0A%0A    - Array []%0A    + Array [%0A    +   "meta-viewport (moderate): Zooming and scaling must not be disabled — meta[name=\"viewport\"]",%0A    + ]%0A%0A      60 |         .join(' | ')}`,%0A      61 |   );%0A    > 62 |   expect(found, `${where}: accessibility problems`).toEqual([]);%0A         |                                                     ^%0A      63 | }%0A      64 |%0A      65 | async function restore(page: Page) {%0A        at check (/home/runner/work/Math/Math/tests/e2e/a11y.spec.ts:62:53)%0A        at /home/runner/work/Math/Math/tests/e2e/a11y.spec.ts:140:5
+··········°°°°°°°°°°°°°°°°°°°°°°°°°°°°°····················°°°°°°°°°···
 
-    Error: expect(received).toEqual(expected) // deep equality
+  1) [desktop-chromium] › tests/e2e/a11y.spec.ts:85:3 › accessibility (WCAG 2.0 AA) › first run, install guide, information page 
+
+    Error: welcome: accessibility problems
+
+    expect(received).toEqual(expected) // deep equality
 
     - Expected  - 1
     + Received  + 3
 
     - Array []
     + Array [
-    +   "ResizeObserver loop completed with undelivered notifications.",
+    +   "meta-viewport (moderate): Zooming and scaling must not be disabled — meta[name=\"viewport\"]",
     + ]
 
-      90 |     await expect(row).toContainText('10 תרגילים');
-      91 |     await expect(row).toContainText('הצלחה: 100%');
-    > 92 |     expect(errors).toEqual([]);
-         |                    ^
-      93 |   });
-      94 |
-      95 |   test('wrong answers get a gentle explanation, hints, and finally the answer', async ({
-        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:92:20
+      60 |         .join(' | ')}`,
+      61 |   );
+    > 62 |   expect(found, `${where}: accessibility problems`).toEqual([]);
+         |                                                     ^
+      63 | }
+      64 |
+      65 | async function restore(page: Page) {
+        at check (/home/runner/work/Math/Math/tests/e2e/a11y.spec.ts:62:53)
+        at /home/runner/work/Math/Math/tests/e2e/a11y.spec.ts:87:5
 
-    Error Context: test-results/practice-practice-a-full-r-8f7ae-on-passed-progress-recorded-iphone/error-context.md
+    Error Context: test-results/a11y-accessibility-WCAG-2--0c7c6-tall-guide-information-page-desktop-chromium/error-context.md
 
-  1 flaky
-    [iphone] › tests/e2e/practice.spec.ts:50:3 › practice › a full round: every answer right, the station passed, progress recorded 
-  86 skipped
-  126 passed (7.5m)
-::notice title=🎭 Playwright Run Summary::  1 flaky%0A    [iphone] › tests/e2e/practice.spec.ts:50:3 › practice › a full round: every answer right, the station passed, progress recorded %0A  86 skipped%0A  126 passed (7.5m)
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: welcome: accessibility problems
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 3
+
+    - Array []
+    + Array [
+    +   "meta-viewport (moderate): Zooming and scaling must not be disabled — meta[name=\"viewport\"]",
+    + ]
+
+      60 |         .join(' | ')}`,
+      61 |   );
+    > 62 |   expect(found, `${where}: accessibility problems`).toEqual([]);
+         |                                                     ^
+      63 | }
+      64 |
+      65 | async function restore(page: Page) {
+        at check (/home/runner/work/Math/Math/tests/e2e/a11y.spec.ts:62:53)
+        at /home/runner/work/Math/Math/tests/e2e/a11y.spec.ts:87:5
+
+    Error Context: test-results/a11y-accessibility-WCAG-2--0c7c6-tall-guide-information-page-desktop-chromium-retry1/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/a11y-accessibility-WCAG-2--0c7c6-tall-guide-information-page-desktop-chromium-retry1/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/a11y-accessibility-WCAG-2--0c7c6-tall-guide-information-page-desktop-chromium-retry1/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #2 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: welcome: accessibility problems
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 3
+
+    - Array []
+    + Array [
+    +   "meta-viewport (moderate): Zooming and scaling must not be disabled — meta[name=\"viewport\"]",
+    + ]
+
+      60 |         .join(' | ')}`,
+      61 |   );
+    > 62 |   expect(found, `${where}: accessibility problems`).toEqual([]);
+         |                                                     ^
+      63 | }
+      64 |
+      65 | async function restore(page: Page) {
+        at check (/home/runner/work/Math/Math/tests/e2e/a11y.spec.ts:62:53)
+        at /home/runner/work/Math/Math/tests/e2e/a11y.spec.ts:87:5
+
+    Error Context: test-results/a11y-accessibility-WCAG-2--0c7c6-tall-guide-information-page-desktop-chromium-retry2/error-context.md
+
+  2) [desktop-chromium] › tests/e2e/a11y.spec.ts:94:3 › accessibility (WCAG 2.0 AA) › parent area, its dialogs, and home 
+
+    Error: parent area: accessibility problems
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 3
+
+    - Array []
+    + Array [
+    +   "meta-viewport (moderate): Zooming and scaling must not be disabled — meta[name=\"viewport\"]",
+    + ]
+
+      60 |         .join(' | ')}`,
+      61 |   );
+    > 62 |   expect(found, `${where}: accessibility problems`).toEqual([]);
+         |                                                     ^
+      63 | }
+      64 |
+      65 | async function restore(page: Page) {
+        at check (/home/runner/work/Math/Math/tests/e2e/a11y.spec.ts:62:53)
+        at /home/runner/work/Math/Math/tests/e2e/a11y.spec.ts:96:5
+
+    Error Context: test-results/a11y-accessibility-WCAG-2--74805-t-area-its-dialogs-and-home-desktop-chromium/error-context.md
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: parent area: accessibility problems
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 3
+
+    - Array []
+    + Array [
+    +   "meta-viewport (moderate): Zooming and scaling must not be disabled — meta[name=\"viewport\"]",
+    + ]
+
+      60 |         .join(' | ')}`,
+      61 |   );
+    > 62 |   expect(found, `${where}: accessibility problems`).toEqual([]);
+         |                                                     ^
+      63 | }
+      64 |
+      65 | async function restore(page: Page) {
+        at check (/home/runner/work/Math/Math/tests/e2e/a11y.spec.ts:62:53)
+        at /home/runner/work/Math/Math/tests/e2e/a11y.spec.ts:96:5
+
+    Error Context: test-results/a11y-accessibility-WCAG-2--74805-t-area-its-dialogs-and-home-desktop-chromium-retry1/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/a11y-accessibility-WCAG-2--74805-t-area-its-dialogs-and-home-desktop-chromium-retry1/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/a11y-accessibility-WCAG-2--74805-t-area-its-dialogs-and-home-desktop-chromium-retry1/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #2 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: parent area: accessibility problems
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 3
+
+    - Array []
+    + Array [
+    +   "meta-viewport (moderate): Zooming and scaling must not be disabled — meta[name=\"viewport\"]",
+    + ]
+
+      60 |         .join(' | ')}`,
+      61 |   );
+    > 62 |   expect(found, `${where}: accessibility problems`).toEqual([]);
+         |                                                     ^
+      63 | }
+      64 |
+      65 | async function restore(page: Page) {
+        at check (/home/runner/work/Math/Math/tests/e2e/a11y.spec.ts:62:53)
+        at /home/runner/work/Math/Math/tests/e2e/a11y.spec.ts:96:5
+
+    Error Context: test-results/a11y-accessibility-WCAG-2--74805-t-area-its-dialogs-and-home-desktop-chromium-retry2/error-context.md
+
+  3) [desktop-chromium] › tests/e2e/a11y.spec.ts:107:3 › accessibility (WCAG 2.0 AA) › journey, level picker, practice with numbers, hints and feedback, album 
+
+    Error: journey: accessibility problems
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 3
+
+    - Array []
+    + Array [
+    +   "meta-viewport (moderate): Zooming and scaling must not be disabled — meta[name=\"viewport\"]",
+    + ]
+
+      60 |         .join(' | ')}`,
+      61 |   );
+    > 62 |   expect(found, `${where}: accessibility problems`).toEqual([]);
+         |                                                     ^
+      63 | }
+      64 |
+      65 | async function restore(page: Page) {
+        at check (/home/runner/work/Math/Math/tests/e2e/a11y.spec.ts:62:53)
+        at /home/runner/work/Math/Math/tests/e2e/a11y.spec.ts:113:5
+
+    Error Context: test-results/a11y-accessibility-WCAG-2--9e020-rs-hints-and-feedback-album-desktop-chromium/error-context.md
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: journey: accessibility problems
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 3
+
+    - Array []
+    + Array [
+    +   "meta-viewport (moderate): Zooming and scaling must not be disabled — meta[name=\"viewport\"]",
+    + ]
+
+      60 |         .join(' | ')}`,
+      61 |   );
+    > 62 |   expect(found, `${where}: accessibility problems`).toEqual([]);
+         |                                                     ^
+      63 | }
+      64 |
+      65 | async function restore(page: Page) {
+        at check (/home/runner/work/Math/Math/tests/e2e/a11y.spec.ts:62:53)
+        at /home/runner/work/Math/Math/tests/e2e/a11y.spec.ts:113:5
+
+    Error Context: test-results/a11y-accessibility-WCAG-2--9e020-rs-hints-and-feedback-album-desktop-chromium-retry1/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/a11y-accessibility-WCAG-2--9e020-rs-hints-and-feedback-album-desktop-chromium-retry1/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/a11y-accessibility-WCAG-2--9e020-rs-hints-and-feedback-album-desktop-chromium-retry1/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #2 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: journey: accessibility problems
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 3
+
+    - Array []
+    + Array [
+    +   "meta-viewport (moderate): Zooming and scaling must not be disabled — meta[name=\"viewport\"]",
+    + ]
+
+      60 |         .join(' | ')}`,
+      61 |   );
+    > 62 |   expect(found, `${where}: accessibility problems`).toEqual([]);
+         |                                                     ^
+      63 | }
+      64 |
+      65 | async function restore(page: Page) {
+        at check (/home/runner/work/Math/Math/tests/e2e/a11y.spec.ts:62:53)
+        at /home/runner/work/Math/Math/tests/e2e/a11y.spec.ts:113:5
+
+    Error Context: test-results/a11y-accessibility-WCAG-2--9e020-rs-hints-and-feedback-album-desktop-chromium-retry2/error-context.md
+
+  4) [desktop-chromium] › tests/e2e/a11y.spec.ts:127:3 › accessibility (WCAG 2.0 AA) › gan: picture exercises with big answer buttons 
+
+    Error: gan practice: accessibility problems
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 3
+
+    - Array []
+    + Array [
+    +   "meta-viewport (moderate): Zooming and scaling must not be disabled — meta[name=\"viewport\"]",
+    + ]
+
+      60 |         .join(' | ')}`,
+      61 |   );
+    > 62 |   expect(found, `${where}: accessibility problems`).toEqual([]);
+         |                                                     ^
+      63 | }
+      64 |
+      65 | async function restore(page: Page) {
+        at check (/home/runner/work/Math/Math/tests/e2e/a11y.spec.ts:62:53)
+        at /home/runner/work/Math/Math/tests/e2e/a11y.spec.ts:133:5
+
+    Error Context: test-results/a11y-accessibility-WCAG-2--e37d1-ses-with-big-answer-buttons-desktop-chromium/error-context.md
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: gan practice: accessibility problems
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 3
+
+    - Array []
+    + Array [
+    +   "meta-viewport (moderate): Zooming and scaling must not be disabled — meta[name=\"viewport\"]",
+    + ]
+
+      60 |         .join(' | ')}`,
+      61 |   );
+    > 62 |   expect(found, `${where}: accessibility problems`).toEqual([]);
+         |                                                     ^
+      63 | }
+      64 |
+      65 | async function restore(page: Page) {
+        at check (/home/runner/work/Math/Math/tests/e2e/a11y.spec.ts:62:53)
+        at /home/runner/work/Math/Math/tests/e2e/a11y.spec.ts:133:5
+
+    Error Context: test-results/a11y-accessibility-WCAG-2--e37d1-ses-with-big-answer-buttons-desktop-chromium-retry1/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/a11y-accessibility-WCAG-2--e37d1-ses-with-big-answer-buttons-desktop-chromium-retry1/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/a11y-accessibility-WCAG-2--e37d1-ses-with-big-answer-buttons-desktop-chromium-retry1/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #2 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: gan practice: accessibility problems
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 3
+
+    - Array []
+    + Array [
+    +   "meta-viewport (moderate): Zooming and scaling must not be disabled — meta[name=\"viewport\"]",
+    + ]
+
+      60 |         .join(' | ')}`,
+      61 |   );
+    > 62 |   expect(found, `${where}: accessibility problems`).toEqual([]);
+         |                                                     ^
+      63 | }
+      64 |
+      65 | async function restore(page: Page) {
+        at check (/home/runner/work/Math/Math/tests/e2e/a11y.spec.ts:62:53)
+        at /home/runner/work/Math/Math/tests/e2e/a11y.spec.ts:133:5
+
+    Error Context: test-results/a11y-accessibility-WCAG-2--e37d1-ses-with-big-answer-buttons-desktop-chromium-retry2/error-context.md
+
+  5) [desktop-chromium] › tests/e2e/a11y.spec.ts:136:3 › accessibility (WCAG 2.0 AA) › parent gate ─
+
+    Error: parent gate: accessibility problems
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 3
+
+    - Array []
+    + Array [
+    +   "meta-viewport (moderate): Zooming and scaling must not be disabled — meta[name=\"viewport\"]",
+    + ]
+
+      60 |         .join(' | ')}`,
+      61 |   );
+    > 62 |   expect(found, `${where}: accessibility problems`).toEqual([]);
+         |                                                     ^
+      63 | }
+      64 |
+      65 | async function restore(page: Page) {
+        at check (/home/runner/work/Math/Math/tests/e2e/a11y.spec.ts:62:53)
+        at /home/runner/work/Math/Math/tests/e2e/a11y.spec.ts:140:5
+
+    Error Context: test-results/a11y-accessibility-WCAG-2-0-AA-parent-gate-desktop-chromium/error-context.md
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: parent gate: accessibility problems
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 3
+
+    - Array []
+    + Array [
+    +   "meta-viewport (moderate): Zooming and scaling must not be disabled — meta[name=\"viewport\"]",
+    + ]
+
+      60 |         .join(' | ')}`,
+      61 |   );
+    > 62 |   expect(found, `${where}: accessibility problems`).toEqual([]);
+         |                                                     ^
+      63 | }
+      64 |
+      65 | async function restore(page: Page) {
+        at check (/home/runner/work/Math/Math/tests/e2e/a11y.spec.ts:62:53)
+        at /home/runner/work/Math/Math/tests/e2e/a11y.spec.ts:140:5
+
+    Error Context: test-results/a11y-accessibility-WCAG-2-0-AA-parent-gate-desktop-chromium-retry1/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/a11y-accessibility-WCAG-2-0-AA-parent-gate-desktop-chromium-retry1/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/a11y-accessibility-WCAG-2-0-AA-parent-gate-desktop-chromium-retry1/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #2 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: parent gate: accessibility problems
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 3
+
+    - Array []
+    + Array [
+    +   "meta-viewport (moderate): Zooming and scaling must not be disabled — meta[name=\"viewport\"]",
+    + ]
+
+      60 |         .join(' | ')}`,
+      61 |   );
+    > 62 |   expect(found, `${where}: accessibility problems`).toEqual([]);
+         |                                                     ^
+      63 | }
+      64 |
+      65 | async function restore(page: Page) {
+        at check (/home/runner/work/Math/Math/tests/e2e/a11y.spec.ts:62:53)
+        at /home/runner/work/Math/Math/tests/e2e/a11y.spec.ts:140:5
+
+    Error Context: test-results/a11y-accessibility-WCAG-2-0-AA-parent-gate-desktop-chromium-retry2/error-context.md
+
+  5 failed
+    [desktop-chromium] › tests/e2e/a11y.spec.ts:85:3 › accessibility (WCAG 2.0 AA) › first run, install guide, information page 
+    [desktop-chromium] › tests/e2e/a11y.spec.ts:94:3 › accessibility (WCAG 2.0 AA) › parent area, its dialogs, and home 
+    [desktop-chromium] › tests/e2e/a11y.spec.ts:107:3 › accessibility (WCAG 2.0 AA) › journey, level picker, practice with numbers, hints and feedback, album 
+    [desktop-chromium] › tests/e2e/a11y.spec.ts:127:3 › accessibility (WCAG 2.0 AA) › gan: picture exercises with big answer buttons 
+    [desktop-chromium] › tests/e2e/a11y.spec.ts:136:3 › accessibility (WCAG 2.0 AA) › parent gate ──
+  96 skipped
+  127 passed (10.9m)
+::notice title=🎭 Playwright Run Summary::  5 failed%0A    [desktop-chromium] › tests/e2e/a11y.spec.ts:85:3 › accessibility (WCAG 2.0 AA) › first run, install guide, information page %0A    [desktop-chromium] › tests/e2e/a11y.spec.ts:94:3 › accessibility (WCAG 2.0 AA) › parent area, its dialogs, and home %0A    [desktop-chromium] › tests/e2e/a11y.spec.ts:107:3 › accessibility (WCAG 2.0 AA) › journey, level picker, practice with numbers, hints and feedback, album %0A    [desktop-chromium] › tests/e2e/a11y.spec.ts:127:3 › accessibility (WCAG 2.0 AA) › gan: picture exercises with big answer buttons %0A    [desktop-chromium] › tests/e2e/a11y.spec.ts:136:3 › accessibility (WCAG 2.0 AA) › parent gate ──%0A  96 skipped%0A  127 passed (10.9m)
+E2E FAILED

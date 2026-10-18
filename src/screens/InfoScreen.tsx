@@ -57,12 +57,19 @@ export function InfoScreen() {
         </p>
       </nav>
       {LEGAL_DOCS.map((doc) => (
-        <article key={doc.id} id={doc.id} className="card stack info__doc" aria-labelledby={`${doc.id}-title`}>
+        <article
+          key={doc.id}
+          id={doc.id}
+          className="card stack info__doc"
+          aria-labelledby={`${doc.id}-title`}
+        >
           <h2 id={`${doc.id}-title`}>{doc.title}</h2>
           {doc.sections.map((s) => (
             <section key={s.heading} className="stack info__section">
               <h3>{s.heading}</h3>
-              {s.paragraphs?.map((p) => <p key={p}>{withMail(p)}</p>)}
+              {s.paragraphs?.map((p) => (
+                <p key={p}>{withMail(p)}</p>
+              ))}
               {s.bullets ? (
                 <ul>
                   {s.bullets.map((b) => (
