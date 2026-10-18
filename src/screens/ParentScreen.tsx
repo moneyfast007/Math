@@ -58,6 +58,23 @@ export function ParentScreen() {
 
 function ParentArea() {
   const lockParent = useApp((s) => s.lockParent);
+  const unlockParent = useApp((s) => s.unlockParent);
+  // The area locks itself after a while, but not under a parent who is using it (WCAG 2.2.1).
+  useEffect(() => {
+    let last = 0;
+    const keepOpen = () => {
+      const now = Date.now();
+      if (now - last < 30_000) return;
+      last = now;
+      unlockParent();
+    };
+    window.addEventListener('pointerdown', keepOpen);
+    window.addEventListener('keydown', keepOpen);
+    return () => {
+      window.removeEventListener('pointerdown', keepOpen);
+      window.removeEventListener('keydown', keepOpen);
+    };
+  }, [unlockParent]);
   const exit = () => {
     lockParent();
     navigate({ name: 'home' });

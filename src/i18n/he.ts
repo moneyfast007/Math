@@ -90,6 +90,16 @@ export const he = {
   'parent.backup.imported': 'השחזור הושלם.',
   'parent.backup.importError': 'לא הצלחנו לקרוא את הקובץ: {reason}',
 
+  // Browser tab titles, one per screen
+  'pageTitle.home': 'פלוסי',
+  'pageTitle.play': 'המסע · פלוסי',
+  'pageTitle.practice': 'תרגול · פלוסי',
+  'pageTitle.album': 'האלבום · פלוסי',
+  'pageTitle.parents': 'אזור הורים · פלוסי',
+  'pageTitle.install': 'הוספה למסך הבית · פלוסי',
+  'pageTitle.info': 'נגישות, פרטיות ותנאי שימוש · פלוסי',
+  'pageTitle.playground': 'בדיקת תצוגה · פלוסי',
+
   // Accessibility statement, privacy policy, terms of use (/info)
   'info.link': 'נגישות, פרטיות ותנאי שימוש',
   'info.title': 'נגישות, פרטיות ותנאי שימוש',
