@@ -21,99 +21,86 @@ ok
 
 [1m[46m RUN [49m[22m [36mv3.2.7 [39m[90m/home/runner/work/Math/Math[39m
 
- [32m✓[39m src/state/store.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 47[2mms[22m[39m
- [32m✓[39m src/sync/merge.test.ts [2m([22m[2m13 tests[22m[2m)[22m[32m 72[2mms[22m[39m
- [32m✓[39m src/state/progress.test.ts [2m([22m[2m14 tests[22m[2m)[22m[32m 22[2mms[22m[39m
- [32m✓[39m src/state/validate.test.ts [2m([22m[2m19 tests[22m[2m)[22m[32m 16[2mms[22m[39m
- [32m✓[39m src/lang/hebrewNumbers.test.ts [2m([22m[2m81 tests[22m[2m)[22m[33m 2165[2mms[22m[39m
-   [33m[2m✓[22m[39m numberToWords, properties[2m > [22mis injective on 0–99,999: different numbers never produce the same words [33m 2098[2mms[22m[39m
- [32m✓[39m src/audio/speaker.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 37[2mms[22m[39m
- [32m✓[39m src/engine/session.test.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 17[2mms[22m[39m
- [32m✓[39m src/engine/topics/addSub20.test.ts [2m([22m[2m14 tests[22m[2m)[22m[33m 746[2mms[22m[39m
- [32m✓[39m src/engine/journey.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 9[2mms[22m[39m
- [32m✓[39m src/ui/components.test.tsx [2m([22m[2m7 tests[22m[2m)[22m[33m 412[2mms[22m[39m
- [32m✓[39m src/lang/compose.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 12[2mms[22m[39m
- [32m✓[39m src/parent/gate.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[33m 550[2mms[22m[39m
- [32m✓[39m src/state/streak.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 16[2mms[22m[39m
- [32m✓[39m scripts/tts/pronunciation.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+ [32m✓[39m src/state/store.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 37[2mms[22m[39m
+ [32m✓[39m src/sync/merge.test.ts [2m([22m[2m13 tests[22m[2m)[22m[32m 53[2mms[22m[39m
+ [32m✓[39m src/state/progress.test.ts [2m([22m[2m14 tests[22m[2m)[22m[32m 21[2mms[22m[39m
+ [32m✓[39m src/state/validate.test.ts [2m([22m[2m19 tests[22m[2m)[22m[32m 13[2mms[22m[39m
+ [32m✓[39m src/lang/hebrewNumbers.test.ts [2m([22m[2m81 tests[22m[2m)[22m[33m 1769[2mms[22m[39m
+   [33m[2m✓[22m[39m numberToWords, properties[2m > [22mis injective on 0–99,999: different numbers never produce the same words [33m 1703[2mms[22m[39m
+ [32m✓[39m src/audio/speaker.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 20[2mms[22m[39m
+ [32m✓[39m src/engine/session.test.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 18[2mms[22m[39m
+ [32m✓[39m src/engine/topics/addSub20.test.ts [2m([22m[2m14 tests[22m[2m)[22m[33m 747[2mms[22m[39m
+ [32m✓[39m src/engine/journey.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 12[2mms[22m[39m
+ [32m✓[39m src/ui/components.test.tsx [2m([22m[2m8 tests[22m[2m)[22m[33m 426[2mms[22m[39m
+ [32m✓[39m src/lang/compose.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m src/parent/gate.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[33m 480[2mms[22m[39m
+ [32m✓[39m src/state/streak.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+ [32m✓[39m scripts/tts/pronunciation.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 14[2mms[22m[39m
  [32m✓[39m src/lang/time.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 11[2mms[22m[39m
- [32m✓[39m src/screens/JourneyScreen.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[32m 109[2mms[22m[39m
+ [32m✓[39m src/screens/JourneyScreen.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[32m 128[2mms[22m[39m
  [32m✓[39m src/i18n/i18n.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 120[2mms[22m[39m
  [32m✓[39m src/engine/daily.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 9[2mms[22m[39m
  [32m✓[39m src/lang/spoken.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 6[2mms[22m[39m
- [32m✓[39m src/lang/spokenLabel.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 13[2mms[22m[39m
- [32m✓[39m src/audio/hash.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 15[2mms[22m[39m
- [32m✓[39m src/state/pin.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 11[2mms[22m[39m
- [32m✓[39m src/lang/groupDigits.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 6[2mms[22m[39m
- [32m✓[39m src/ui/MathExpr.test.tsx [2m([22m[2m3 tests[22m[2m)[22m[32m 68[2mms[22m[39m
- [32m✓[39m src/state/backup.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 5[2mms[22m[39m
- [32m✓[39m src/lang/fractions.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 5[2mms[22m[39m
- [32m✓[39m src/app/router.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 6[2mms[22m[39m
- [32m✓[39m src/ui/ageBand.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 7[2mms[22m[39m
- [32m✓[39m src/sync/client.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 91[2mms[22m[39m
- [32m✓[39m worker/core.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 62[2mms[22m[39m
- [32m✓[39m src/engine/topics/audioBank.test.ts [2m([22m[2m270 tests[22m[2m)[22m[33m 17157[2mms[22m[39m
-   [33m[2m✓[22m[39m the audio bank covers what a child can hear: numbers-100[2m > [22mlevel 3 [33m 515[2mms[22m[39m
-   [33m[2m✓[22m[39m the audio bank covers what a child can hear: numbers-100[2m > [22mlevel 4 [33m 1366[2mms[22m[39m
-   [33m[2m✓[22m[39m the audio bank covers what a child can hear: numbers-100[2m > [22mlevel 5 [33m 503[2mms[22m[39m
-   [33m[2m✓[22m[39m the audio bank covers what a child can hear: numbers-100[2m > [22mlevel 6 [33m 446[2mms[22m[39m
-   [33m[2m✓[22m[39m the audio bank covers what a child can hear: numbers-100[2m > [22mlevel 9 [33m 484[2mms[22m[39m
-   [33m[2m✓[22m[39m the audio bank covers what a child can hear: clock[2m > [22mlevel 10 [33m 375[2mms[22m[39m
-   [33m[2m✓[22m[39m the audio bank covers what a child can hear: decimals[2m > [22mlevel 3 [33m 302[2mms[22m[39m
- [32m✓[39m src/engine/topics/all.test.ts [2m([22m[2m353 tests[22m[2m)[22m[33m 60261[2mms[22m[39m
-   [33m[2m✓[22m[39m topic count-10[2m > [22mlevel 10 produces valid exercises [33m 365[2mms[22m[39m
-   [33m[2m✓[22m[39m topic shapes[2m > [22mlevel 9 produces valid exercises [33m 589[2mms[22m[39m
-   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 2 produces valid exercises [33m 523[2mms[22m[39m
-   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 3 produces valid exercises [33m 680[2mms[22m[39m
-   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 4 produces valid exercises [33m 2469[2mms[22m[39m
-   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 5 produces valid exercises [33m 815[2mms[22m[39m
-   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 6 produces valid exercises [33m 654[2mms[22m[39m
-   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 7 produces valid exercises [33m 399[2mms[22m[39m
-   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 8 produces valid exercises [33m 474[2mms[22m[39m
-   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 9 produces valid exercises [33m 1314[2mms[22m[39m
-   [33m[2m✓[22m[39m topic numbers-100[2m > [22mavoids an immediate repeat [33m 626[2mms[22m[39m
-   [33m[2m✓[22m[39m topic clock-money-1[2m > [22mlevel 9 produces valid exercises [33m 506[2mms[22m[39m
-   [33m[2m✓[22m[39m topic clock-money-1[2m > [22mlevel 10 produces valid exercises [33m 334[2mms[22m[39m
-   [33m[2m✓[22m[39m topic add-sub-100[2m > [22mlevel 3 produces valid exercises [33m 415[2mms[22m[39m
-   [33m[2m✓[22m[39m topic add-sub-100[2m > [22mlevel 4 produces valid exercises [33m 434[2mms[22m[39m
-   [33m[2m✓[22m[39m topic add-sub-100[2m > [22mlevel 5 produces valid exercises [33m 353[2mms[22m[39m
-   [33m[2m✓[22m[39m topic add-sub-100[2m > [22mlevel 7 produces valid exercises [33m 361[2mms[22m[39m
-   [33m[2m✓[22m[39m topic add-sub-100[2m > [22mlevel 8 produces valid exercises [33m 306[2mms[22m[39m
-   [33m[2m✓[22m[39m topic add-sub-100[2m > [22mlevel 9 produces valid exercises [33m 415[2mms[22m[39m
-   [33m[2m✓[22m[39m topic add-sub-100[2m > [22mlevel 10 produces valid exercises [33m 329[2mms[22m[39m
-   [33m[2m✓[22m[39m topic clock[2m > [22mlevel 10 produces valid exercises [33m 499[2mms[22m[39m
-   [33m[2m✓[22m[39m topic fractions-1[2m > [22mlevel 7 produces valid exercises [33m 306[2mms[22m[39m
-   [33m[2m✓[22m[39m topic fraction-ops[2m > [22mlevel 3 produces valid exercises [33m 412[2mms[22m[39m
-   [33m[2m✓[22m[39m topic fraction-ops[2m > [22mlevel 9 produces valid exercises [33m 324[2mms[22m[39m
-   [33m[2m✓[22m[39m topic fraction-mul-div[2m > [22mlevel 9 produces valid exercises [33m 301[2mms[22m[39m
-   [33m[2m✓[22m[39m topic ratio[2m > [22mlevel 1 produces valid exercises [33m 384[2mms[22m[39m
-   [33m[2m✓[22m[39m topic ratio[2m > [22mlevel 2 produces valid exercises [33m 363[2mms[22m[39m
-   [33m[2m✓[22m[39m topic ratio[2m > [22mlevel 3 produces valid exercises [33m 316[2mms[22m[39m
-   [33m[2m✓[22m[39m topic ratio[2m > [22mlevel 4 produces valid exercises [33m 309[2mms[22m[39m
-   [33m[2m✓[22m[39m topic circle-volume[2m > [22mlevel 6 produces valid exercises [33m 438[2mms[22m[39m
-   [33m[2m✓[22m[39m topic circle-volume[2m > [22mlevel 8 produces valid exercises [33m 420[2mms[22m[39m
-[31m⎯⎯⎯⎯⎯⎯[39m[1m[41m Unhandled Errors [49m[22m[31m⎯⎯⎯⎯⎯⎯[39m
-[31m[1m
-Vitest caught 1 unhandled error during the test run.
-This might cause false positive tests. Resolve unhandled errors to make sure your tests are not affected.[22m[39m
-
-[31m⎯⎯⎯⎯⎯⎯[39m[1m[41m Unhandled Error [49m[22m[31m⎯⎯⎯⎯⎯⎯⎯[39m
-[31m[1mError[22m: [vitest-worker]: Timeout calling "onTaskUpdate"[39m
-[90m [2m❯[22m Object.onTimeoutError node_modules/vitest/dist/chunks/rpc.-pEldfrD.js:[2m53:10[22m[39m
-[90m [2m❯[22m Timeout._onTimeout node_modules/vitest/dist/chunks/index.B521nVV-.js:[2m59:62[22m[39m
-[90m [2m❯[22m listOnTimeout node:internal/timers:[2m585:17[22m[39m
-[90m [2m❯[22m processTimers node:internal/timers:[2m521:7[22m[39m
-
-[31m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[39m
-
+ [32m✓[39m src/lang/spokenLabel.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 15[2mms[22m[39m
+ [32m✓[39m src/audio/hash.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+ [32m✓[39m src/state/pin.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 14[2mms[22m[39m
+ [32m✓[39m src/lang/groupDigits.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+ [32m✓[39m src/ui/MathExpr.test.tsx [2m([22m[2m3 tests[22m[2m)[22m[32m 36[2mms[22m[39m
+ [32m✓[39m src/state/backup.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+ [32m✓[39m src/lang/fractions.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+ [32m✓[39m src/app/router.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m src/ui/ageBand.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+ [32m✓[39m src/sync/client.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 86[2mms[22m[39m
+ [32m✓[39m worker/core.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 58[2mms[22m[39m
+ [32m✓[39m src/engine/topics/audioBank.test.ts [2m([22m[2m270 tests[22m[2m)[22m[33m 18026[2mms[22m[39m
+   [33m[2m✓[22m[39m the audio bank covers what a child can hear: shapes[2m > [22mlevel 9 [33m 377[2mms[22m[39m
+   [33m[2m✓[22m[39m the audio bank covers what a child can hear: numbers-100[2m > [22mlevel 3 [33m 487[2mms[22m[39m
+   [33m[2m✓[22m[39m the audio bank covers what a child can hear: numbers-100[2m > [22mlevel 4 [33m 1720[2mms[22m[39m
+   [33m[2m✓[22m[39m the audio bank covers what a child can hear: numbers-100[2m > [22mlevel 5 [33m 501[2mms[22m[39m
+   [33m[2m✓[22m[39m the audio bank covers what a child can hear: numbers-100[2m > [22mlevel 6 [33m 477[2mms[22m[39m
+   [33m[2m✓[22m[39m the audio bank covers what a child can hear: numbers-100[2m > [22mlevel 9 [33m 852[2mms[22m[39m
+   [33m[2m✓[22m[39m the audio bank covers what a child can hear: clock[2m > [22mlevel 10 [33m 483[2mms[22m[39m
+   [33m[2m✓[22m[39m the audio bank covers what a child can hear: measure[2m > [22mlevel 1 [33m 315[2mms[22m[39m
+   [33m[2m✓[22m[39m the audio bank covers what a child can hear: fraction-ops[2m > [22mlevel 3 [33m 490[2mms[22m[39m
+ [32m✓[39m src/engine/topics/all.test.ts [2m([22m[2m353 tests[22m[2m)[22m[33m 58920[2mms[22m[39m
+   [33m[2m✓[22m[39m topic count-10[2m > [22mlevel 3 produces valid exercises [33m 312[2mms[22m[39m
+   [33m[2m✓[22m[39m topic count-10[2m > [22mlevel 10 produces valid exercises [33m 492[2mms[22m[39m
+   [33m[2m✓[22m[39m topic shapes[2m > [22mlevel 9 produces valid exercises [33m 653[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 2 produces valid exercises [33m 509[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 3 produces valid exercises [33m 710[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 4 produces valid exercises [33m 2105[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 5 produces valid exercises [33m 718[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 6 produces valid exercises [33m 653[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 7 produces valid exercises [33m 369[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 8 produces valid exercises [33m 517[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 9 produces valid exercises [33m 930[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mavoids an immediate repeat [33m 634[2mms[22m[39m
+   [33m[2m✓[22m[39m topic clock-money-1[2m > [22mlevel 7 produces valid exercises [33m 467[2mms[22m[39m
+   [33m[2m✓[22m[39m topic clock-money-1[2m > [22mlevel 9 produces valid exercises [33m 420[2mms[22m[39m
+   [33m[2m✓[22m[39m topic clock-money-1[2m > [22mlevel 10 produces valid exercises [33m 333[2mms[22m[39m
+   [33m[2m✓[22m[39m topic add-sub-100[2m > [22mlevel 1 produces valid exercises [33m 401[2mms[22m[39m
+   [33m[2m✓[22m[39m topic add-sub-100[2m > [22mlevel 2 produces valid exercises [33m 336[2mms[22m[39m
+   [33m[2m✓[22m[39m topic add-sub-100[2m > [22mlevel 3 produces valid exercises [33m 335[2mms[22m[39m
+   [33m[2m✓[22m[39m topic add-sub-100[2m > [22mlevel 7 produces valid exercises [33m 396[2mms[22m[39m
+   [33m[2m✓[22m[39m topic add-sub-100[2m > [22mlevel 8 produces valid exercises [33m 386[2mms[22m[39m
+   [33m[2m✓[22m[39m topic add-sub-100[2m > [22mlevel 9 produces valid exercises [33m 329[2mms[22m[39m
+   [33m[2m✓[22m[39m topic add-sub-100[2m > [22mlevel 10 produces valid exercises [33m 462[2mms[22m[39m
+   [33m[2m✓[22m[39m topic clock[2m > [22mlevel 10 produces valid exercises [33m 509[2mms[22m[39m
+   [33m[2m✓[22m[39m topic fractions-1[2m > [22mlevel 7 produces valid exercises [33m 313[2mms[22m[39m
+   [33m[2m✓[22m[39m topic fraction-ops[2m > [22mlevel 3 produces valid exercises [33m 411[2mms[22m[39m
+   [33m[2m✓[22m[39m topic fraction-ops[2m > [22mlevel 9 produces valid exercises [33m 304[2mms[22m[39m
+   [33m[2m✓[22m[39m topic ratio[2m > [22mlevel 1 produces valid exercises [33m 368[2mms[22m[39m
+   [33m[2m✓[22m[39m topic ratio[2m > [22mlevel 2 produces valid exercises [33m 343[2mms[22m[39m
+   [33m[2m✓[22m[39m topic ratio[2m > [22mlevel 3 produces valid exercises [33m 305[2mms[22m[39m
+   [33m[2m✓[22m[39m topic ratio[2m > [22mlevel 4 produces valid exercises [33m 300[2mms[22m[39m
+   [33m[2m✓[22m[39m topic circle-volume[2m > [22mlevel 6 produces valid exercises [33m 432[2mms[22m[39m
+   [33m[2m✓[22m[39m topic circle-volume[2m > [22mlevel 8 produces valid exercises [33m 400[2mms[22m[39m
 
 [2m Test Files [22m [1m[32m32 passed[39m[22m[90m (32)[39m
-[2m      Tests [22m [1m[32m904 passed[39m[22m[90m (904)[39m
-[2m     Errors [22m [1m[31m1 error[39m[22m
-[2m   Start at [22m 15:21:19
-[2m   Duration [22m 65.61s[2m (transform 1.50s, setup 7.17s, collect 3.08s, tests 82.09s, environment 16.80s, prepare 3.73s)[22m
+[2m      Tests [22m [1m[32m905 passed[39m[22m[90m (905)[39m
+[2m   Start at [22m 15:34:17
+[2m   Duration [22m 63.72s[2m (transform 1.41s, setup 6.73s, collect 2.80s, tests 81.09s, environment 16.06s, prepare 3.60s)[22m
 
-TESTS FAILED
 
 ## build
 
@@ -134,17 +121,17 @@ computing gzip size...
 [2mdist/[22m[32mindex.html                                  [39m[1m[2m  1.26 kB[22m[1m[22m[2m │ gzip:   0.60 kB[22m
 [2mdist/[22m[2massets/[22m[35mindex-uS_uKcBf.css                   [39m[1m[2m 35.42 kB[22m[1m[22m[2m │ gzip:   7.36 kB[22m
 [2mdist/[22m[2massets/[22m[36mworkbox-window.prod.es5-BBnX5xw4.js  [39m[1m[2m  5.75 kB[22m[1m[22m[2m │ gzip:   2.36 kB[22m
-[2mdist/[22m[2massets/[22m[36mindex-DpzL2p6Z.js                    [39m[1m[33m618.71 kB[39m[22m[2m │ gzip: 179.22 kB[22m
+[2mdist/[22m[2massets/[22m[36mindex-BoQeA7NF.js                    [39m[1m[33m618.73 kB[39m[22m[2m │ gzip: 179.24 kB[22m
 [33m
 (!) Some chunks are larger than 500 kB after minification. Consider:
 - Using dynamic import() to code-split the application
 - Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
 - Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.[39m
-[32m✓ built in 4.41s[39m
+[32m✓ built in 4.00s[39m
 
 [36mPWA v1.3.0[39m
 mode      [35mgenerateSW[39m
-precache  [32m14 entries[39m [2m(708.89 KiB)[22m
+precache  [32m14 entries[39m [2m(708.91 KiB)[22m
 files generated
   [2mdist/sw.js[22m
   [2mdist/workbox-355bf58a.js[22m
@@ -169,96 +156,7 @@ files generated
 
 Running 126 tests using 2 workers
 ······························°°°°°°°°°·································°°°°°°°°
-°·································°°°°°°°°°··××±
-::error file=tests/e2e/sync.spec.ts,title=[desktop-chromium] › tests/e2e/sync.spec.ts:49:1 › two devices: create a family, link with a code, see each other’s changes, unlink::  1) [desktop-chromium] › tests/e2e/sync.spec.ts:49:1 › two devices: create a family, link with a code, see each other’s changes, unlink %0A    Test timeout of 90000ms exceeded.
-::error file=tests/e2e/sync.spec.ts,title=[desktop-chromium] › tests/e2e/sync.spec.ts:49:1 › two devices: create a family, link with a code, see each other’s changes, unlink::  1) [desktop-chromium] › tests/e2e/sync.spec.ts:49:1 › two devices: create a family, link with a code, see each other’s changes, unlink %0A%0A    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────%0A    Test timeout of 90000ms exceeded.
-::error file=tests/e2e/sync.spec.ts,title=[desktop-chromium] › tests/e2e/sync.spec.ts:49:1 › two devices: create a family, link with a code, see each other’s changes, unlink,line=95,col=66::  1) [desktop-chromium] › tests/e2e/sync.spec.ts:49:1 › two devices: create a family, link with a code, see each other’s changes, unlink %0A%0A    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────%0A    Error: locator.click: Test ended.%0A    Browser logs:%0A%0A    <launching> /home/runner/.cache/ms-playwright/chromium_headless_shell-1248/chrome-headless-shell-linux64/chrome-headless-shell --disable-field-trial-config --disable-background-networking --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-edgeupdater --disable-extensions --disable-features=AvoidUnnecessaryBeforeUnloadCheckSync,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,BlockOriginHeaderModificationOnRedirect,AvoidCorsURLLoaderRestartOnRedirect,Translate,AutoDeElevate,OptimizationHints,NetworkTimeServiceQuerying,AimEnabled,msForceBrowserSignIn,msEdgeUpdateLaunchServicesPreferredVersion --enable-features=CDPScreenshotNewSurface --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --disable-updater-scheduler --force-color-profile=srgb --metrics-recording-only --no-first-run --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --disable-search-engine-choice-screen --unsafely-disable-devtools-self-xss-warnings --edge-skip-compat-layer-relaunch --disable-infobars --disable-search-engine-choice-screen --disable-sync --enable-unsafe-swiftshader --headless --hide-scrollbars --mute-audio --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --no-sandbox --user-data-dir=/tmp/playwright_chromiumdev_profile-3PLrYc --remote-debugging-pipe --no-startup-window%0A    <launched> pid=10448%0A    [pid=10448][err] [1018/152658.149931:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")%0A    [pid=10448][err] [1018/152658.155218:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: %0A    [pid=10448][err] [1018/152658.155699:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")%0A    [pid=10448][err] [1018/152658.160192:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: %0A    [pid=10448][err] [1018/152658.175567:WARNING:media/gpu/vaapi/vaapi_wrapper.cc:1655] drmGetDevices2() has not found any devices%0A    [pid=10448][err] [1018/152658.179365:WARNING:sandbox/policy/linux/sandbox_linux.cc:405] InitializeSandbox() called with multiple threads in process gpu-process.%0A    [pid=10448][err] [1018/152704.993165:WARNING:media/audio/linux/audio_manager_linux.cc:53] Falling back to ALSA for audio output. PulseAudio is not available or could not be initialized.%0A    [pid=10448][err] ALSA lib confmisc.c:855:(parse_card) cannot find card '0'%0A    [pid=10448][err] ALSA lib conf.c:5208:(_snd_config_evaluate) function snd_func_card_inum returned error: No such file or directory%0A    [pid=10448][err] ALSA lib confmisc.c:422:(snd_func_concat) error evaluating strings%0A    [pid=10448][err] ALSA lib conf.c:5208:(_snd_config_evaluate) function snd_func_concat returned error: No such file or directory%0A    [pid=10448][err] ALSA lib confmisc.c:1342:(snd_func_refer) error evaluating name%0A    [pid=10448][err] ALSA lib conf.c:5208:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory%0A    [pid=10448][err] ALSA lib conf.c:5731:(snd_config_expand) Evaluate error: No such file or directory%0A    [pid=10448][err] ALSA lib pcm.c:2721:(snd_pcm_open_noupdate) Unknown PCM default%0A    [pid=10448][err] [1018/152704.995943:ERROR:media/audio/alsa/alsa_util.cc:204] PcmOpen: default,No such file or directory%0A    [pid=10448][err] ALSA lib confmisc.c:855:(parse_card) cannot find card '0'%0A    [pid=10448][err] ALSA lib conf.c:5208:(_snd_config_evaluate) function snd_func_card_inum returned error: No such file or directory%0A    [pid=10448][err] ALSA lib confmisc.c:422:(snd_func_concat) error evaluating strings%0A    [pid=10448][err] ALSA lib conf.c:5208:(_snd_config_evaluate) function snd_func_concat returned error: No such file or directory%0A    [pid=10448][err] ALSA lib confmisc.c:1342:(snd_func_refer) error evaluating name%0A    [pid=10448][err] ALSA lib conf.c:5208:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory%0A    [pid=10448][err] ALSA lib conf.c:5731:(snd_config_expand) Evaluate error: No such file or directory%0A    [pid=10448][err] ALSA lib pcm.c:2721:(snd_pcm_open_noupdate) Unknown PCM default%0A    [pid=10448][err] [1018/152704.996060:ERROR:media/audio/alsa/alsa_util.cc:204] PcmOpen: plug:default,No such file or directory%0A    [pid=10448][err] [1018/152719.277230:INFO:CONSOLE:3] "Service Worker registration blocked by Playwright", source:  (3)%0A    [pid=10448][err] [1018/152846.487961:INFO:CONSOLE:3] "Service Worker registration blocked by Playwright", source:  (3)%0A    [pid=10448][err] [1018/152847.063750:INFO:CONSOLE:3] "Service Worker registration blocked by Playwright", source:  (3)%0A    [pid=10448] <gracefully close start>%0A    Call log:%0A      - waiting for getByRole('dialog', { name: 'חיבור למשפחה קיימת' }).getByRole('button', { name: 'חיבור', exact: true })%0A        - locator resolved to <button disabled class="btn" type="button">חיבור</button>%0A      - attempting click action%0A        2 × waiting for element to be visible, enabled and stable%0A          - element is not enabled%0A        - retrying click action%0A        - waiting 20ms%0A        2 × waiting for element to be visible, enabled and stable%0A          - element is not enabled%0A        - retrying click action%0A          - waiting 100ms%0A        172 × waiting for element to be visible, enabled and stable%0A            - element is not enabled%0A          - retrying click action%0A            - waiting 500ms%0A        - waiting for element to be visible, enabled and stable%0A%0A%0A      93 |   for (const d of code) await join.getByRole('button', { name: d, exact: true }).click();%0A      94 |   await shot(b, 'sync-02-join');%0A    > 95 |   await join.getByRole('button', { name: 'חיבור', exact: true }).click();%0A         |                                                                  ^%0A      96 |   const joined = b.getByRole('dialog', { name: 'המכשיר חובר!' });%0A      97 |   await expect(joined).toBeVisible();%0A      98 |   await joined.getByRole('button', { name: 'ממשיכים' }).click();%0A        at /home/runner/work/Math/Math/tests/e2e/sync.spec.ts:95:66
-
-
-  1) [desktop-chromium] › tests/e2e/sync.spec.ts:49:1 › two devices: create a family, link with a code, see each other’s changes, unlink 
-
-    Test timeout of 90000ms exceeded.
-
-    Error Context: test-results/sync-two-devices-create-a--833ff-each-other’s-changes-unlink-desktop-chromium/error-context.md
-
-    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
-
-    Test timeout of 90000ms exceeded.
-
-    Error: locator.click: Test ended.
-    Browser logs:
-
-    <launching> /home/runner/.cache/ms-playwright/chromium_headless_shell-1248/chrome-headless-shell-linux64/chrome-headless-shell --disable-field-trial-config --disable-background-networking --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-edgeupdater --disable-extensions --disable-features=AvoidUnnecessaryBeforeUnloadCheckSync,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,BlockOriginHeaderModificationOnRedirect,AvoidCorsURLLoaderRestartOnRedirect,Translate,AutoDeElevate,OptimizationHints,NetworkTimeServiceQuerying,AimEnabled,msForceBrowserSignIn,msEdgeUpdateLaunchServicesPreferredVersion --enable-features=CDPScreenshotNewSurface --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --disable-updater-scheduler --force-color-profile=srgb --metrics-recording-only --no-first-run --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --disable-search-engine-choice-screen --unsafely-disable-devtools-self-xss-warnings --edge-skip-compat-layer-relaunch --disable-infobars --disable-search-engine-choice-screen --disable-sync --enable-unsafe-swiftshader --headless --hide-scrollbars --mute-audio --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --no-sandbox --user-data-dir=/tmp/playwright_chromiumdev_profile-3PLrYc --remote-debugging-pipe --no-startup-window
-    <launched> pid=10448
-    [pid=10448][err] [1018/152658.149931:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
-    [pid=10448][err] [1018/152658.155218:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: 
-    [pid=10448][err] [1018/152658.155699:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
-    [pid=10448][err] [1018/152658.160192:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: 
-    [pid=10448][err] [1018/152658.175567:WARNING:media/gpu/vaapi/vaapi_wrapper.cc:1655] drmGetDevices2() has not found any devices
-    [pid=10448][err] [1018/152658.179365:WARNING:sandbox/policy/linux/sandbox_linux.cc:405] InitializeSandbox() called with multiple threads in process gpu-process.
-    [pid=10448][err] [1018/152704.993165:WARNING:media/audio/linux/audio_manager_linux.cc:53] Falling back to ALSA for audio output. PulseAudio is not available or could not be initialized.
-    [pid=10448][err] ALSA lib confmisc.c:855:(parse_card) cannot find card '0'
-    [pid=10448][err] ALSA lib conf.c:5208:(_snd_config_evaluate) function snd_func_card_inum returned error: No such file or directory
-    [pid=10448][err] ALSA lib confmisc.c:422:(snd_func_concat) error evaluating strings
-    [pid=10448][err] ALSA lib conf.c:5208:(_snd_config_evaluate) function snd_func_concat returned error: No such file or directory
-    [pid=10448][err] ALSA lib confmisc.c:1342:(snd_func_refer) error evaluating name
-    [pid=10448][err] ALSA lib conf.c:5208:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
-    [pid=10448][err] ALSA lib conf.c:5731:(snd_config_expand) Evaluate error: No such file or directory
-    [pid=10448][err] ALSA lib pcm.c:2721:(snd_pcm_open_noupdate) Unknown PCM default
-    [pid=10448][err] [1018/152704.995943:ERROR:media/audio/alsa/alsa_util.cc:204] PcmOpen: default,No such file or directory
-    [pid=10448][err] ALSA lib confmisc.c:855:(parse_card) cannot find card '0'
-    [pid=10448][err] ALSA lib conf.c:5208:(_snd_config_evaluate) function snd_func_card_inum returned error: No such file or directory
-    [pid=10448][err] ALSA lib confmisc.c:422:(snd_func_concat) error evaluating strings
-    [pid=10448][err] ALSA lib conf.c:5208:(_snd_config_evaluate) function snd_func_concat returned error: No such file or directory
-    [pid=10448][err] ALSA lib confmisc.c:1342:(snd_func_refer) error evaluating name
-    [pid=10448][err] ALSA lib conf.c:5208:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
-    [pid=10448][err] ALSA lib conf.c:5731:(snd_config_expand) Evaluate error: No such file or directory
-    [pid=10448][err] ALSA lib pcm.c:2721:(snd_pcm_open_noupdate) Unknown PCM default
-    [pid=10448][err] [1018/152704.996060:ERROR:media/audio/alsa/alsa_util.cc:204] PcmOpen: plug:default,No such file or directory
-    [pid=10448][err] [1018/152719.277230:INFO:CONSOLE:3] "Service Worker registration blocked by Playwright", source:  (3)
-    [pid=10448][err] [1018/152846.487961:INFO:CONSOLE:3] "Service Worker registration blocked by Playwright", source:  (3)
-    [pid=10448][err] [1018/152847.063750:INFO:CONSOLE:3] "Service Worker registration blocked by Playwright", source:  (3)
-    [pid=10448] <gracefully close start>
-    Call log:
-      - waiting for getByRole('dialog', { name: 'חיבור למשפחה קיימת' }).getByRole('button', { name: 'חיבור', exact: true })
-        - locator resolved to <button disabled class="btn" type="button">חיבור</button>
-      - attempting click action
-        2 × waiting for element to be visible, enabled and stable
-          - element is not enabled
-        - retrying click action
-        - waiting 20ms
-        2 × waiting for element to be visible, enabled and stable
-          - element is not enabled
-        - retrying click action
-          - waiting 100ms
-        172 × waiting for element to be visible, enabled and stable
-            - element is not enabled
-          - retrying click action
-            - waiting 500ms
-        - waiting for element to be visible, enabled and stable
-
-
-      93 |   for (const d of code) await join.getByRole('button', { name: d, exact: true }).click();
-      94 |   await shot(b, 'sync-02-join');
-    > 95 |   await join.getByRole('button', { name: 'חיבור', exact: true }).click();
-         |                                                                  ^
-      96 |   const joined = b.getByRole('dialog', { name: 'המכשיר חובר!' });
-      97 |   await expect(joined).toBeVisible();
-      98 |   await joined.getByRole('button', { name: 'ממשיכים' }).click();
-        at /home/runner/work/Math/Math/tests/e2e/sync.spec.ts:95:66
-
-    Error Context: test-results/sync-two-devices-create-a--833ff-each-other’s-changes-unlink-desktop-chromium-retry1/error-context.md
-
-    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
-    test-results/sync-two-devices-create-a--833ff-each-other’s-changes-unlink-desktop-chromium-retry1/trace.zip
-    Usage:
-
-        npx playwright show-trace test-results/sync-two-devices-create-a--833ff-each-other’s-changes-unlink-desktop-chromium-retry1/trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-  1 flaky
-    [desktop-chromium] › tests/e2e/sync.spec.ts:49:1 › two devices: create a family, link with a code, see each other’s changes, unlink 
+°·································°°°°°°°°°···
   27 skipped
-  98 passed (6.9m)
-::notice title=🎭 Playwright Run Summary::  1 flaky%0A    [desktop-chromium] › tests/e2e/sync.spec.ts:49:1 › two devices: create a family, link with a code, see each other’s changes, unlink %0A  27 skipped%0A  98 passed (6.9m)
+  99 passed (3.9m)
+::notice title=🎭 Playwright Run Summary::  27 skipped%0A  99 passed (3.9m)
