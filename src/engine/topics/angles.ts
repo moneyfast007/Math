@@ -221,7 +221,10 @@ function rightAngles([shape, n]: [ShapeName, number]): Exercise {
     hints: [
       hint(say('ex.angles.rights.hint1')),
       hint(say('ex.angles.rights.hint2')),
-      pictureExample(say('ex.angles.rights.example'), poly(SHAPES.rectangle, { rightAngles: [0, 1, 2, 3] })),
+      pictureExample(
+        say('ex.angles.rights.example'),
+        poly(SHAPES.rectangle, { rightAngles: [0, 1, 2, 3] }),
+      ),
     ],
     solution:
       n === 0
@@ -283,7 +286,8 @@ const SIDE_FACTS: { kind: SideKind; sides: [number, number, number] }[] = [
 ];
 
 function bySides({ kind, sides }: (typeof SIDE_FACTS)[number], rng: Rng): Exercise {
-  const shape: ShapeName = kind === 'equilateral' ? 'equilateral' : kind === 'isosceles' ? 'isosceles' : 'scalene';
+  const shape: ShapeName =
+    kind === 'equilateral' ? 'equilateral' : kind === 'isosceles' ? 'isosceles' : 'scalene';
   // Side i joins point i to i+1: for the isosceles picture the equal legs are sides 0 and 2.
   const order: [number, number, number] =
     kind === 'isosceles' ? [sides[0], sides[2], sides[1]] : sides;
@@ -508,7 +512,10 @@ function symmetry([shape, name, n, marks]: (typeof SYMMETRY)[number]): Exercise 
     hints: [
       hint(say('ex.angles.sym.hint1')),
       hint(say('ex.angles.sym.hint2')),
-      pictureExample(say('ex.angles.sym.example'), poly(SHAPES.isosceles, { ticks: [1, 0, 1], height: { from: [50, 3], to: [50, 92] } })),
+      pictureExample(
+        say('ex.angles.sym.example'),
+        poly(SHAPES.isosceles, { ticks: [1, 0, 1], height: { from: [50, 3], to: [50, 92] } }),
+      ),
     ],
     solution:
       n === 0
@@ -571,7 +578,11 @@ export const anglesTopic = defineTopic({
         ),
       angleKind,
     ),
-    closed(L(2), () => RIGHT_ANGLES, (f: [ShapeName, number]) => rightAngles(f)),
+    closed(
+      L(2),
+      () => RIGHT_ANGLES,
+      (f: [ShapeName, number]) => rightAngles(f),
+    ),
     closed(
       L(3),
       () =>
@@ -582,14 +593,22 @@ export const anglesTopic = defineTopic({
     ),
     closed(L(4), () => SIDE_FACTS, bySides),
     closed(L(5), () => ANGLE_FACTS, byAngles),
-    closed(
-      L(6),
-      () => (Object.keys(QUAD_WORD) as Quad[]).map((shape) => ({ shape })),
-      quad,
-    ),
+    closed(L(6), () => (Object.keys(QUAD_WORD) as Quad[]).map((shape) => ({ shape })), quad),
     open(L(7), thirdAngle),
-    closed(L(8), () => DIAGONALS, (f: [ShapeName, string, number]) => diagonals(f)),
-    closed(L(9), () => SYMMETRY, (f: (typeof SYMMETRY)[number]) => symmetry(f)),
-    closed(L(10), () => STATEMENTS, (f: (typeof STATEMENTS)[number]) => trueFalse(f)),
+    closed(
+      L(8),
+      () => DIAGONALS,
+      (f: [ShapeName, string, number]) => diagonals(f),
+    ),
+    closed(
+      L(9),
+      () => SYMMETRY,
+      (f: (typeof SYMMETRY)[number]) => symmetry(f),
+    ),
+    closed(
+      L(10),
+      () => STATEMENTS,
+      (f: (typeof STATEMENTS)[number]) => trueFalse(f),
+    ),
   ],
 });

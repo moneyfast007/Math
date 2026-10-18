@@ -137,7 +137,10 @@ function rightTriangle(rng: Rng): Exercise {
     display: `${a} × ${b} ÷ 2 = ?`,
     answer: (a * b) / 2,
     hints: [hint(say('ex.areas.rtri.hint1')), hint(say('ex.areas.half.hint2'))],
-    example: { display: `${ex.a} × ${ex.b} ÷ 2 = ${(ex.a * ex.b) / 2}`, solved: solved(ex.a, ex.b) },
+    example: {
+      display: `${ex.a} × ${ex.b} ÷ 2 = ${(ex.a * ex.b) / 2}`,
+      solved: solved(ex.a, ex.b),
+    },
     solution: solved(a, b),
   });
 }
@@ -167,7 +170,10 @@ function triangle(rng: Rng): Exercise {
     display: `${b} × ${h} ÷ 2 = ?`,
     answer: (b * h) / 2,
     hints: [hint(say('ex.areas.tri.hint1')), hint(say('ex.areas.half.hint2'))],
-    example: { display: `${ex.a} × ${ex.b} ÷ 2 = ${(ex.a * ex.b) / 2}`, solved: solved(ex.a, ex.b) },
+    example: {
+      display: `${ex.a} × ${ex.b} ÷ 2 = ${(ex.a * ex.b) / 2}`,
+      solved: solved(ex.a, ex.b),
+    },
     solution: solved(b, h),
   });
 }
@@ -191,7 +197,10 @@ function parallelogram(rng: Rng): Exercise {
         [72, 80],
         [3, 80],
       ],
-      { sideLabels: [null, null, lab(b), null], height: { from: [28, 20], to: [28, 80], label: lab(h) } },
+      {
+        sideLabels: [null, null, lab(b), null],
+        height: { from: [28, 20], to: [28, 80], label: lab(h) },
+      },
     ),
     display: `${b} × ${h} = ?`,
     answer: b * h,
@@ -350,14 +359,24 @@ function boxVolume(rng: Rng): Exercise {
 /* ---------- Level 9: units ---------- */
 
 const UNITS: { key: TranslationKey; answer: number; choices: number[]; why: TranslationKey }[] = [
-  { key: 'ex.areas.units.q1', answer: 10000, choices: [100, 1000, 10000], why: 'ex.areas.units.a1' },
+  {
+    key: 'ex.areas.units.q1',
+    answer: 10000,
+    choices: [100, 1000, 10000],
+    why: 'ex.areas.units.a1',
+  },
   { key: 'ex.areas.units.q2', answer: 1000, choices: [100, 1000, 10000], why: 'ex.areas.units.a2' },
   { key: 'ex.areas.units.q3', answer: 3, choices: [3, 30, 300], why: 'ex.areas.units.a3' },
   { key: 'ex.areas.units.q4', answer: 1000, choices: [10, 100, 1000], why: 'ex.areas.units.a4' },
   { key: 'ex.areas.units.q5', answer: 1000, choices: [10, 100, 1000], why: 'ex.areas.units.a5' },
   { key: 'ex.areas.units.q6', answer: 100, choices: [10, 100, 1000], why: 'ex.areas.units.a6' },
   { key: 'ex.areas.units.q7', answer: 5000, choices: [50, 500, 5000], why: 'ex.areas.units.a7' },
-  { key: 'ex.areas.units.q8', answer: 20000, choices: [200, 2000, 20000], why: 'ex.areas.units.a8' },
+  {
+    key: 'ex.areas.units.q8',
+    answer: 20000,
+    choices: [200, 2000, 20000],
+    why: 'ex.areas.units.a8',
+  },
 ];
 
 function units({ key, answer, choices, why }: (typeof UNITS)[number]): Exercise {
@@ -400,7 +419,10 @@ function word(rng: Rng): Exercise {
       input: numpad(3),
       hints: [
         hint(say('ex.areas.floor.hint1')),
-        { ...hint(say('hint.equation')), example: { display: `${a} × ${b} = ?`, spoken: say('hint.equation').text } },
+        {
+          ...hint(say('hint.equation')),
+          example: { display: `${a} × ${b} = ?`, spoken: say('hint.equation').text },
+        },
         exampleHint(`${ex.a} × ${ex.b} = ${ex.a * ex.b}`, solved(ex.a, ex.b)),
       ],
       solution: solved(a, b),
@@ -468,7 +490,11 @@ export const areasTopic = defineTopic({
       (f: BoxFact) => cubes(f),
     ),
     open(L(8), boxVolume),
-    closed(L(9), () => UNITS, (f: (typeof UNITS)[number]) => units(f)),
+    closed(
+      L(9),
+      () => UNITS,
+      (f: (typeof UNITS)[number]) => units(f),
+    ),
     open(L(10), word),
   ],
 });

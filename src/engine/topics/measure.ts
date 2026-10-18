@@ -40,7 +40,11 @@ const at = (h: number, m: number): ClockTime => ({ h: wrapHour(h), m });
 const same = (a: ClockTime, b: ClockTime) => a.h === b.h && a.m === b.m;
 
 /** Clock choices: the right time and its distractors, shuffled, with the mistakes they stand for. */
-function clockChoices(rng: Rng, right: ClockTime, wrong: { time: ClockTime; mistake?: MistakeKind }[]) {
+function clockChoices(
+  rng: Rng,
+  right: ClockTime,
+  wrong: { time: ClockTime; mistake?: MistakeKind }[],
+) {
   const unique = wrong.filter(
     (w, i) =>
       !same(w.time, right) &&
@@ -52,7 +56,11 @@ function clockChoices(rng: Rng, right: ClockTime, wrong: { time: ClockTime; mist
   const options = shuffle(rng, [right, ...unique.slice(0, 2).map((w) => w.time)]);
   const mistakes = new Map<number, MistakeKind>();
   for (const w of unique.slice(0, 2))
-    if (w.mistake) mistakes.set(options.findIndex((o) => same(o, w.time)), w.mistake);
+    if (w.mistake)
+      mistakes.set(
+        options.findIndex((o) => same(o, w.time)),
+        w.mistake,
+      );
   return { options, answer: options.findIndex((o) => same(o, right)), mistakes };
 }
 
@@ -238,7 +246,12 @@ function ruler(rng: Rng): Exercise {
     hints: [
       hint(say('ex.measure.ruler.hint1')),
       hint(say('ex.measure.ruler.hint2')),
-      pictureExample(say('ex.measure.ruler.example'), { type: 'ruler', from: 2, to: 7, length: 15 }),
+      pictureExample(say('ex.measure.ruler.example'), {
+        type: 'ruler',
+        from: 2,
+        to: 7,
+        length: 15,
+      }),
     ],
     solution: say('ex.measure.ruler.solution', { to, from, len: { n: len, noun: CM } }),
     // Reading the end mark when the pencil does not start at zero.
@@ -255,8 +268,16 @@ function compare(rng: Rng): Exercise {
   let b = randInt(rng, 3, 9) * (length ? 25 : 250);
   if (b === a * k) b += length ? 25 : 250;
   const bigFirst = rng() < 0.5;
-  const big = { label: `${a} ${length ? 'מ׳' : 'ק״ג'}`, value: a * k, slot: { n: a, noun: length ? METER : KG } };
-  const small = { label: `${b} ${length ? 'ס״מ' : 'גרם'}`, value: b, slot: { n: b, noun: length ? CM : GRAM } };
+  const big = {
+    label: `${a} ${length ? 'מ׳' : 'ק״ג'}`,
+    value: a * k,
+    slot: { n: a, noun: length ? METER : KG },
+  };
+  const small = {
+    label: `${b} ${length ? 'ס״מ' : 'גרם'}`,
+    value: b,
+    slot: { n: b, noun: length ? CM : GRAM },
+  };
   const pair = bigFirst ? [big, small] : [small, big];
   const [x, y] = pair as [typeof big, typeof big];
   const answer = x.value > y.value ? 0 : 1;
@@ -326,14 +347,18 @@ function problem(rng: Rng): Exercise {
       factId: `ribbon:${a}:${b}`,
       topicId: ID,
       level: 10,
-      prompt: say('ex.measure.ribbon.story', { a: { n: a, noun: METER }, b: { n: b, noun: CM } }).text,
+      prompt: say('ex.measure.ribbon.story', { a: { n: a, noun: METER }, b: { n: b, noun: CM } })
+        .text,
       display: '',
       spoken: say('ex.measure.ribbon.story', { a: { n: a, noun: METER }, b: { n: b, noun: CM } }),
       answer: left,
       input: numpad(3),
       hints: [
         hint(say('ex.measure.ribbon.hint1')),
-        { ...hint(say('hint.equation')), example: { display: `${a * 100} − ${b} = ?`, spoken: say('hint.equation').text } },
+        {
+          ...hint(say('hint.equation')),
+          example: { display: `${a * 100} − ${b} = ?`, spoken: say('hint.equation').text },
+        },
         exampleHint('200 − 50 = 150', say('ex.measure.ribbon.example')),
       ],
       solution: say('ex.measure.ribbon.solution', { all: a * 100, b, left: { n: left, noun: CM } }),
@@ -354,7 +379,10 @@ function problem(rng: Rng): Exercise {
     input: numpad(4),
     hints: [
       hint(say('ex.measure.flour.hint1')),
-      { ...hint(say('hint.equation')), example: { display: `${a * 1000} − ${b} = ?`, spoken: say('hint.equation').text } },
+      {
+        ...hint(say('hint.equation')),
+        example: { display: `${a * 1000} − ${b} = ?`, spoken: say('hint.equation').text },
+      },
       exampleHint('2000 − 500 = 1500', say('ex.measure.flour.example')),
     ],
     solution: say('ex.measure.flour.solution', { all: a * 1000, b, left: { n: left, noun: GRAM } }),
@@ -374,7 +402,11 @@ export const measureTopic = defineTopic({
     closed(L(1), () => range(1, 12).flatMap((h) => FIVES.map((m) => at(h, m))), readClock(1)),
     closed(L(2), () => range(1, 12).flatMap((h) => ODD_MINUTES.map((m) => at(h, m))), readClock(2)),
     open(L(3), elapsed),
-    closed(L(4), () => HOUR_FACTS, (f: (typeof HOUR_FACTS)[number]) => hours(f)),
+    closed(
+      L(4),
+      () => HOUR_FACTS,
+      (f: (typeof HOUR_FACTS)[number]) => hours(f),
+    ),
     open(L(5), convert(5)),
     open(L(6), ruler),
     open(L(7), convert(7)),

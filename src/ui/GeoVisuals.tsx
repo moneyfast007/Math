@@ -117,7 +117,14 @@ export function PolygonView({ v }: { v: Polygon }) {
           ? pts.flatMap((a, i) =>
               pts.map((b, j) =>
                 j > i + 1 && !(i === 0 && j === n - 1) ? (
-                  <line key={`${i}-${j}`} x1={a[0]} y1={a[1]} x2={b[0]} y2={b[1]} className="geo__diag" />
+                  <line
+                    key={`${i}-${j}`}
+                    x1={a[0]}
+                    y1={a[1]}
+                    x2={b[0]}
+                    y2={b[1]}
+                    className="geo__diag"
+                  />
                 ) : null,
               ),
             )
@@ -171,7 +178,14 @@ export function PolygonView({ v }: { v: Polygon }) {
             const t1 = add(m, scale(nrm, 4));
             const t2 = add(m, scale(nrm, -4));
             return (
-              <line key={`t${i}-${k}`} x1={fmt(t1[0])} y1={fmt(t1[1])} x2={fmt(t2[0])} y2={fmt(t2[1])} className="geo__tick" />
+              <line
+                key={`t${i}-${k}`}
+                x1={fmt(t1[0])}
+                y1={fmt(t1[1])}
+                x2={fmt(t2[0])}
+                y2={fmt(t2[1])}
+                className="geo__tick"
+              />
             );
           });
         })}
@@ -182,7 +196,14 @@ export function PolygonView({ v }: { v: Polygon }) {
           const out = unit(sub(mid, c));
           const at = add(mid, scale(out, 11));
           return (
-            <text key={`s${i}`} x={fmt(at[0])} y={fmt(at[1])} className="geo__label" textAnchor="middle" dominantBaseline="central">
+            <text
+              key={`s${i}`}
+              x={fmt(at[0])}
+              y={fmt(at[1])}
+              className="geo__label"
+              textAnchor="middle"
+              dominantBaseline="central"
+            >
               {label}
             </text>
           );
@@ -192,7 +213,14 @@ export function PolygonView({ v }: { v: Polygon }) {
           const p = pts[i] as P;
           const at = add(p, scale(unit(sub(c, p)), 15));
           return (
-            <text key={`a${i}`} x={fmt(at[0])} y={fmt(at[1])} className="geo__label geo__label--angle" textAnchor="middle" dominantBaseline="central">
+            <text
+              key={`a${i}`}
+              x={fmt(at[0])}
+              y={fmt(at[1])}
+              className="geo__label geo__label--angle"
+              textAnchor="middle"
+              dominantBaseline="central"
+            >
               {label}
             </text>
           );
@@ -210,15 +238,35 @@ export function RulerView({ v }: { v: Extract<Visual, { type: 'ruler' }> }) {
   return (
     <div className="geo geo--wide" dir="ltr" data-visual="ruler" aria-hidden="true">
       <svg viewBox={`0 0 ${w} 96`} className="geo__svg">
-        <rect x={fmt(x(v.from))} y="10" width={fmt((v.to - v.from) * unitW)} height="22" rx="4" className="geo__object" />
+        <rect
+          x={fmt(x(v.from))}
+          y="10"
+          width={fmt((v.to - v.from) * unitW)}
+          height="22"
+          rx="4"
+          className="geo__object"
+        />
         <path d={`M${fmt(x(v.to))} 10 l12 11 l-12 11 z`} className="geo__object-tip" />
-        <rect x={pad - 6} y="40" width={w - pad * 2 + 12} height="46" rx="6" className="geo__ruler" />
+        <rect
+          x={pad - 6}
+          y="40"
+          width={w - pad * 2 + 12}
+          height="46"
+          rx="6"
+          className="geo__ruler"
+        />
         {Array.from({ length: v.length * 2 + 1 }, (_, i) => {
           const cm = i / 2;
           const whole = i % 2 === 0;
           return (
             <g key={i}>
-              <line x1={fmt(x(cm))} y1="40" x2={fmt(x(cm))} y2={whole ? 56 : 49} className="geo__rtick" />
+              <line
+                x1={fmt(x(cm))}
+                y1="40"
+                x2={fmt(x(cm))}
+                y2={whole ? 56 : 49}
+                className="geo__rtick"
+              />
               {whole ? (
                 <text x={fmt(x(cm))} y="72" textAnchor="middle" className="geo__rnum">
                   {cm}
@@ -252,18 +300,72 @@ export function BoxView({ v }: { v: Extract<Visual, { type: 'box' }> }) {
   if (v.cubes) {
     for (let i = 1; i < v.l; i++) {
       const x = o[0] + i * k;
-      grid.push(<line key={`fl${i}`} x1={fmt(x)} y1={fmt(A[1])} x2={fmt(x)} y2={fmt(E[1])} className="geo__grid" />);
-      grid.push(<line key={`tl${i}`} x1={fmt(x)} y1={fmt(E[1])} x2={fmt(x + D[0])} y2={fmt(E[1] + D[1])} className="geo__grid" />);
+      grid.push(
+        <line
+          key={`fl${i}`}
+          x1={fmt(x)}
+          y1={fmt(A[1])}
+          x2={fmt(x)}
+          y2={fmt(E[1])}
+          className="geo__grid"
+        />,
+      );
+      grid.push(
+        <line
+          key={`tl${i}`}
+          x1={fmt(x)}
+          y1={fmt(E[1])}
+          x2={fmt(x + D[0])}
+          y2={fmt(E[1] + D[1])}
+          className="geo__grid"
+        />,
+      );
     }
     for (let j = 1; j < v.h; j++) {
       const y = o[1] - j * k;
-      grid.push(<line key={`fh${j}`} x1={fmt(A[0])} y1={fmt(y)} x2={fmt(B[0])} y2={fmt(y)} className="geo__grid" />);
-      grid.push(<line key={`sh${j}`} x1={fmt(B[0])} y1={fmt(y)} x2={fmt(B[0] + D[0])} y2={fmt(y + D[1])} className="geo__grid" />);
+      grid.push(
+        <line
+          key={`fh${j}`}
+          x1={fmt(A[0])}
+          y1={fmt(y)}
+          x2={fmt(B[0])}
+          y2={fmt(y)}
+          className="geo__grid"
+        />,
+      );
+      grid.push(
+        <line
+          key={`sh${j}`}
+          x1={fmt(B[0])}
+          y1={fmt(y)}
+          x2={fmt(B[0] + D[0])}
+          y2={fmt(y + D[1])}
+          className="geo__grid"
+        />,
+      );
     }
     for (let d = 1; d < v.w; d++) {
       const off = scale(D, d / v.w);
-      grid.push(<line key={`td${d}`} x1={fmt(E[0] + off[0])} y1={fmt(E[1] + off[1])} x2={fmt(C[0] + off[0])} y2={fmt(C[1] + off[1])} className="geo__grid" />);
-      grid.push(<line key={`sd${d}`} x1={fmt(B[0] + off[0])} y1={fmt(B[1] + off[1])} x2={fmt(C[0] + off[0])} y2={fmt(C[1] + off[1])} className="geo__grid" />);
+      grid.push(
+        <line
+          key={`td${d}`}
+          x1={fmt(E[0] + off[0])}
+          y1={fmt(E[1] + off[1])}
+          x2={fmt(C[0] + off[0])}
+          y2={fmt(C[1] + off[1])}
+          className="geo__grid"
+        />,
+      );
+      grid.push(
+        <line
+          key={`sd${d}`}
+          x1={fmt(B[0] + off[0])}
+          y1={fmt(B[1] + off[1])}
+          x2={fmt(C[0] + off[0])}
+          y2={fmt(C[1] + off[1])}
+          className="geo__grid"
+        />,
+      );
     }
   }
   const u = v.unit ? ` ${v.unit}` : '';
@@ -276,15 +378,31 @@ export function BoxView({ v }: { v: Extract<Visual, { type: 'box' }> }) {
         {grid}
         {v.cubes ? null : (
           <>
-            <text x={fmt((A[0] + B[0]) / 2)} y={fmt(A[1] + 12)} textAnchor="middle" className="geo__label">
+            <text
+              x={fmt((A[0] + B[0]) / 2)}
+              y={fmt(A[1] + 12)}
+              textAnchor="middle"
+              className="geo__label"
+            >
               {v.l}
               {u}
             </text>
-            <text x={fmt(A[0] - 4)} y={fmt((A[1] + E[1]) / 2)} textAnchor="end" dominantBaseline="central" className="geo__label">
+            <text
+              x={fmt(A[0] - 4)}
+              y={fmt((A[1] + E[1]) / 2)}
+              textAnchor="end"
+              dominantBaseline="central"
+              className="geo__label"
+            >
               {v.h}
               {u}
             </text>
-            <text x={fmt((B[0] + Bk[0]) / 2 + 6)} y={fmt((B[1] + Bk[1]) / 2 + 6)} textAnchor="start" className="geo__label">
+            <text
+              x={fmt((B[0] + Bk[0]) / 2 + 6)}
+              y={fmt((B[1] + Bk[1]) / 2 + 6)}
+              textAnchor="start"
+              className="geo__label"
+            >
               {v.w}
               {u}
             </text>
