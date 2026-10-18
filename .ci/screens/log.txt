@@ -5,33 +5,6 @@
 [WebServer] - Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
 
 Running 6 tests using 2 workers
-·····T
-::error file=tests/e2e/screenshots6.spec.ts,title=[ipad] › tests/e2e/screenshots6.spec.ts:139:1 › gan shapes screens::  1) [ipad] › tests/e2e/screenshots6.spec.ts:139:1 › gan shapes screens ────────────────────────────%0A    Test timeout of 240000ms exceeded.
-::error file=tests/e2e/screenshots6.spec.ts,title=[ipad] › tests/e2e/screenshots6.spec.ts:139:1 › gan shapes screens,line=96,col=44::  1) [ipad] › tests/e2e/screenshots6.spec.ts:139:1 › gan shapes screens ────────────────────────────%0A    Error: locator.click: Test timeout of 240000ms exceeded.%0A    Call log:%0A      - waiting for getByRole('button', { name: 'תמר' })%0A%0A%0A      94 |   await expect(page.getByText('השחזור הושלם.')).toBeVisible();%0A      95 |   await page.getByRole('button', { name: 'יציאה' }).click();%0A    > 96 |   await page.getByRole('button', { name }).click();%0A         |                                            ^%0A      97 | }%0A      98 |%0A      99 | function ipadOnly(info: TestInfo) {%0A        at setup (/home/runner/work/Math/Math/tests/e2e/screenshots6.spec.ts:96:44)%0A        at /home/runner/work/Math/Math/tests/e2e/screenshots6.spec.ts:141:3
-
-
-  1) [ipad] › tests/e2e/screenshots6.spec.ts:139:1 › gan shapes screens ────────────────────────────
-
-    Test timeout of 240000ms exceeded.
-
-    Error: locator.click: Test timeout of 240000ms exceeded.
-    Call log:
-      - waiting for getByRole('button', { name: 'תמר' })
-
-
-      94 |   await expect(page.getByText('השחזור הושלם.')).toBeVisible();
-      95 |   await page.getByRole('button', { name: 'יציאה' }).click();
-    > 96 |   await page.getByRole('button', { name }).click();
-         |                                            ^
-      97 | }
-      98 |
-      99 | function ipadOnly(info: TestInfo) {
-        at setup (/home/runner/work/Math/Math/tests/e2e/screenshots6.spec.ts:96:44)
-        at /home/runner/work/Math/Math/tests/e2e/screenshots6.spec.ts:141:3
-
-    Error Context: test-results/screenshots6-gan-shapes-screens-ipad/error-context.md
-
-  1 failed
-    [ipad] › tests/e2e/screenshots6.spec.ts:139:1 › gan shapes screens ─────────────────────────────
-  5 passed (4.8m)
-::notice title=🎭 Playwright Run Summary::  1 failed%0A    [ipad] › tests/e2e/screenshots6.spec.ts:139:1 › gan shapes screens ─────────────────────────────%0A  5 passed (4.8m)
+······
+  6 passed (1.0m)
+::notice title=🎭 Playwright Run Summary::  6 passed (1.0m)
