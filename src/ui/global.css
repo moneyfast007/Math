@@ -1305,6 +1305,32 @@ ol.steps {
   font-weight: 700;
 }
 
+/* A finished world's sticker is a button: touch it to play the world again. */
+.sticker-card__play {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+  border-radius: var(--radius-md);
+  transition: transform var(--dur-fast) var(--ease);
+}
+
+.sticker-card__play:active {
+  transform: scale(0.95);
+}
+
+.sticker-card__again {
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  padding: 0 var(--space-3);
+  border-radius: 999px;
+  background: var(--color-accent-soft);
+  color: var(--color-accent-strong);
+  font-weight: 700;
+  font-size: var(--text-sm);
+}
+
 .sticker-card:not(.sticker-card--earned) .sticker-card__name {
   color: var(--color-text-muted);
 }

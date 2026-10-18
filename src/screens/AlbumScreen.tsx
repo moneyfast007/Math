@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { setReplayTopic } from '@/app/replay';
 import { navigate } from '@/app/router';
 import { stickersEarned, worldsFor } from '@/engine/journey';
 import { t, type TranslationKey } from '@/i18n';
@@ -10,7 +11,10 @@ import { SpeakerButton } from '@/ui/SpeakerButton';
 import { Sticker } from '@/ui/Sticker';
 import { stickerForWorld, stickerLabel } from '@/ui/stickers';
 
-/** One sticker per completed world; the rest are shown as numbered, closed slots. */
+/**
+ * One sticker per completed world; the rest are shown as numbered, closed slots.
+ * Touching a sticker plays that world again (a mixed round, like its review).
+ */
 export function AlbumScreen() {
   const profile = useActiveProfile();
   const progress = useApp((s) => (profile ? s.data.progress[profile.id] : undefined));
@@ -71,7 +75,20 @@ export function AlbumScreen() {
               className={w.completed ? 'sticker-card sticker-card--earned' : 'sticker-card'}
             >
               {w.completed ? (
-                <Sticker id={id} />
+                <button
+                  type="button"
+                  className="sticker-card__play"
+                  aria-label={t('album.replay.label', { params: { name } })}
+                  onClick={() => {
+                    setReplayTopic(w.topic.id);
+                    navigate({ name: 'replay' });
+                  }}
+                >
+                  <Sticker id={id} />
+                  <span className="sticker-card__again" aria-hidden="true">
+                    {t('album.replay')}
+                  </span>
+                </button>
               ) : (
                 <div
                   className="sticker-card__slot"

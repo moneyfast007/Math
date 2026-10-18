@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
+import { replayTopic } from '@/app/replay';
 import { navigate } from '@/app/router';
-import { activeWorld, nextStop } from '@/engine/journey';
+import { activeWorld, nextStop, worldsFor } from '@/engine/journey';
 import { pick } from '@/engine/rng';
 import { currentLevel } from '@/engine/registry';
 import {
@@ -26,15 +27,29 @@ import { VisualView } from '@/ui/Visuals';
 /** How long a correct answer stays on screen before the next exercise. */
 const CORRECT_PAUSE_MS = 1400;
 
-/** 'level': the next station. 'review': the world's final station, exercises from every level. */
-export type PracticeMode = 'level' | 'review';
+/**
+ * 'level': the next station. 'review': the world's final station, exercises
+ * from every level. 'replay': a finished world played again from the album,
+ * mixed like the review; it changes nothing on the journey.
+ */
+export type PracticeMode = 'level' | 'review' | 'replay';
+
+/** The finished world chosen in the album, if it is really hers and finished. */
+function replayableTopic(profile: Profile): Topic | undefined {
+  const id = replayTopic();
+  return worldsFor(profile.grade, appProgress(profile.id)).find(
+    (w) => w.completed && w.topic.id === id,
+  )?.topic;
+}
 
 export function PracticeScreen({ mode }: { mode: PracticeMode }) {
   const profile = useActiveProfile();
+  const missingReplay = mode === 'replay' && profile !== undefined && !replayableTopic(profile);
   useEffect(() => {
     if (!profile) navigate({ name: 'home' }, { replace: true });
-  }, [profile]);
-  if (!profile) return null;
+    else if (missingReplay) navigate({ name: 'album' }, { replace: true });
+  }, [profile, missingReplay]);
+  if (!profile || missingReplay) return null;
   return <Practice key={`${profile.id}:${mode}`} profile={profile} mode={mode} />;
 }
 
@@ -50,6 +65,11 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
   const station = useMemo(
     () => {
       const progress = appProgress(profile.id);
+      const replay = mode === 'replay' ? replayableTopic(profile) : undefined;
+      if (replay) {
+        const last = replay.levels.at(-1)?.level ?? 1;
+        return { topic: replay, level: last, stored: last };
+      }
       const world = activeWorld(profile.grade, progress);
       const topic = world?.topic;
       if (!topic) throw new Error('No topic for this grade');
@@ -65,7 +85,8 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
     [],
   );
   const topic: Topic = station.topic;
-  const review = mode === 'review';
+  const review = mode !== 'level';
+  const replaying = mode === 'replay';
   const levels = topic.levels.map((l) => l.level);
   const generate = (level: number, avoid?: string): Exercise =>
     topic.generate(review ? pick(rng, levels) : level, rng, profile.gender, avoid);
@@ -155,15 +176,23 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
   };
 
   if (s.phase === 'finished') {
-    const result = outcome ? resultLine(outcome, tc, profile.id, profile.grade) : null;
-    const spoken = outcome?.passed
-      ? tc('practice.done.passedSpoken')
-      : t('practice.done.notPassed');
+    // Playing a finished world again is always just praise: there is nothing to pass.
+    const result = replaying
+      ? t('practice.done.replay')
+      : outcome
+        ? resultLine(outcome, tc, profile.id, profile.grade)
+        : null;
+    const passed = replaying || outcome?.passed === true;
+    const spoken = replaying
+      ? t('practice.done.replay')
+      : passed
+        ? tc('practice.done.passedSpoken')
+        : t('practice.done.notPassed');
     return (
       <main className="screen practice" data-screen="practice-done">
         <section className="stack done" style={{ alignItems: 'center', textAlign: 'center' }}>
           <Plusi
-            mood={outcome?.passed ? 'cheering' : 'happy'}
+            mood={passed ? 'cheering' : 'happy'}
             size={band === 'young' ? 160 : 128}
             decorative
           />
@@ -172,7 +201,7 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
           {result ? (
             <div
               className={
-                outcome?.passed ? 'feedback feedback--correct' : 'feedback feedback--almost'
+                passed ? 'feedback feedback--correct' : 'feedback feedback--almost'
               }
               role="status"
             >
@@ -181,14 +210,14 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
             </div>
           ) : null}
           <div className="row" style={{ justifyContent: 'center' }}>
-            {outcome?.worldCompleted ? (
+            {outcome?.worldCompleted || replaying ? (
               <button type="button" className="btn" onClick={() => navigate({ name: 'album' })}>
                 {t('practice.done.toAlbum')}
               </button>
             ) : null}
             <button
               type="button"
-              className={outcome?.worldCompleted ? 'btn btn--secondary' : 'btn'}
+              className={outcome?.worldCompleted || replaying ? 'btn btn--secondary' : 'btn'}
               onClick={() => navigate({ name: 'play' })}
             >
               {t('practice.done.toJourney')}

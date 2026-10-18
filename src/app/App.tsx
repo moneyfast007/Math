@@ -24,6 +24,8 @@ export function App() {
       return <PracticeScreen mode="level" />;
     case 'review':
       return <PracticeScreen mode="review" />;
+    case 'replay':
+      return <PracticeScreen mode="replay" />;
     case 'album':
       return <AlbumScreen />;
     case 'parents':

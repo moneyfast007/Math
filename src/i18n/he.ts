@@ -1171,12 +1171,14 @@ export const he = {
   'journey.start.review': 'יאללה, חוזרים על הכול!',
 
   'album.title': 'האלבום של {name}',
-  'album.intro': 'כל עולם שמסיימים משאיר כאן מדבקה.',
+  'album.intro': 'כל עולם שמסיימים משאיר כאן מדבקה. נוגעים במדבקה כדי לתרגל את העולם שוב.',
   'album.count': 'אספת {earned} מתוך {total} מדבקות.',
   'album.count.none': 'עוד אין מדבקות. העולם הראשון מחכה!',
   'album.count.all': 'אספת את כל המדבקות! כל הכבוד!',
   'album.sticker.locked': 'מדבקה סגורה: {name}',
   'album.back': 'חזרה למסע',
+  'album.replay': 'לתרגל שוב',
+  'album.replay.label': 'לתרגל שוב: {name}',
 
   'sticker.balloon': 'בלון',
   'sticker.boat': 'סירה',
@@ -1192,6 +1194,7 @@ export const he = {
   'practice.done.reviewOpened': 'כל התחנות הושלמו! עכשיו אפשר לסיים את העולם.',
   'practice.done.worldDone': 'סיימת את כל העולם! מדבקה חדשה מחכה באלבום.',
   'practice.done.toAlbum': 'לאלבום',
+  'practice.done.replay': 'כל הכבוד! חזרת על העולם הזה.',
   'practice.done.toJourney': 'למסע',
   'practice.review.title': 'חזרה על כל העולם',
   'practice.review.body': 'תרגילים מכל התחנות, מעורבבים.',
