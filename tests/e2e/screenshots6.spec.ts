@@ -1,4 +1,4 @@
-import { expect, test, type Page } from '@playwright/test';
+import { expect, test, type Page, type TestInfo } from '@playwright/test';
 
 /**
  * Not a test: photographs the money and clock worlds (phase 6) for a visual
@@ -79,10 +79,7 @@ async function level(page: Page, label: string, name: string, hints = 0) {
   await page.getByRole('button', { name: 'סיום' }).click();
 }
 
-test('money and clock screens', async ({ page }, info) => {
-  test.skip(info.project.name !== 'ipad', 'iPad only');
-  test.setTimeout(420_000);
-
+async function setup(page: Page, name: string) {
   await page.goto('/');
   await page.getByRole('button', { name: 'יצירת פרופיל ראשון' }).click();
   await page.getByTestId('backup-file').setInputFiles({
@@ -96,9 +93,17 @@ test('money and clock screens', async ({ page }, info) => {
     .click();
   await expect(page.getByText('השחזור הושלם.')).toBeVisible();
   await page.getByRole('button', { name: 'יציאה' }).click();
+  await page.getByRole('button', { name }).click();
+}
 
-  // Money
-  await page.getByRole('button', { name: 'עדי' }).click();
+function ipadOnly(info: TestInfo) {
+  test.skip(info.project.name !== 'ipad', 'iPad only');
+  test.setTimeout(240_000);
+}
+
+test('money screens', async ({ page }, info) => {
+  ipadOnly(info);
+  await setup(page, 'עדי');
   await shot(page, 'm-01-journey-money');
   await level(page, 'מכירים את המטבעות', 'm-02-money-know');
   await level(page, 'סופרים מטבעות גדולים', 'm-03-money-count');
@@ -108,10 +113,11 @@ test('money and clock screens', async ({ page }, info) => {
   await level(page, 'משלמים בדיוק', 'm-07-money-pay');
   await level(page, 'עודף מ-10', 'm-08-money-change', 2);
   await level(page, 'בעיות קנייה', 'm-09-money-shopping');
-  await page.getByRole('button', { name: 'מי משחק?' }).click();
+});
 
-  // Clock
-  await page.getByRole('button', { name: 'רוני' }).click();
+test('clock screens', async ({ page }, info) => {
+  ipadOnly(info);
+  await setup(page, 'רוני');
   await shot(page, 'c-01-journey-clock');
   await level(page, 'שעות שלמות: איזה שעון?', 'c-02-clock-pick');
   await level(page, 'חצאי שעה', 'c-03-clock-half', 3);
@@ -120,17 +126,19 @@ test('money and clock screens', async ({ page }, info) => {
   await level(page, 'רבעי שעה: איזה שעון?', 'c-06-clock-quarters');
   await level(page, 'כמה זמן עבר?', 'c-07-clock-elapsed');
   await level(page, 'בעיות זמן', 'c-08-clock-story', 2);
+});
 
-  // Grade 1: clock and money
-  await page.getByRole('button', { name: 'מי משחק?' }).click();
-  await page.getByRole('button', { name: 'ליה' }).click();
+test('grade 1 clock and money screens', async ({ page }, info) => {
+  ipadOnly(info);
+  await setup(page, 'ליה');
   await shot(page, 'g1-01-journey');
   await level(page, 'סופרים כסף עד 20', 'g1-02-count');
   await level(page, 'מה השעה בעוד שעה?', 'g1-03-later');
+});
 
-  // Gan: shapes and patterns
-  await page.getByRole('button', { name: 'מי משחק?' }).click();
-  await page.getByRole('button', { name: 'תמר' }).click();
+test('gan shapes screens', async ({ page }, info) => {
+  ipadOnly(info);
+  await setup(page, 'תמר');
   await shot(page, 's-01-journey');
   await level(page, 'עיגול, ריבוע, משולש', 's-02-where');
   await level(page, 'אותה צורה', 's-03-same');
