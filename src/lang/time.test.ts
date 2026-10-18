@@ -34,3 +34,17 @@ describe('telling the time in Hebrew', () => {
     expect(durationWords(180)).toBe('שלוש שעות');
   });
 });
+
+describe('minutes (grade 3)', () => {
+  it('says five-minute marks the way people do, other minutes like a digital clock', async () => {
+    const { minuteWords } = await import('./time');
+    const { numberToWords } = await import('./hebrewNumbers');
+    const w = (h: number, m: number) => minuteWords({ h, m }, (n) => numberToWords(n, 'f'));
+    expect(w(3, 20)).toBe('שלוש ועשרים');
+    expect(w(3, 25)).toBe('שלוש עשרים וחמש');
+    expect(w(3, 40)).toBe('עשרים לארבע');
+    expect(w(12, 55)).toBe('חמישה לאחת');
+    expect(w(3, 17)).toBe('שלוש ושבע עשרה דקות');
+    expect(w(3, 0)).toBe('שלוש');
+  });
+});

@@ -75,7 +75,33 @@ export type Visual =
    */
   | { type: 'shapes'; items: (ShapeItem | null)[] }
   /** Pencils standing on one line, `lengths` in units of 1–5: which is longest? */
-  | { type: 'pencils'; lengths: number[] };
+  | { type: 'pencils'; lengths: number[] }
+  /** An angle of `deg` degrees between a ray along the base and a second ray, the whole turned by `turn`. */
+  | { type: 'angle'; deg: number; turn?: number }
+  /** Two straight lines: parallel, perpendicular, or crossing at a slant. */
+  | { type: 'lines'; kind: 'parallel' | 'perpendicular' | 'crossing'; turn?: number }
+  /** A polygon in a 100 × 100 box (y down), with optional marks (see Polygon). */
+  | ({ type: 'polygon' } & Polygon)
+  /** A ruler from 0 to `length` cm with something lying on it from `from` to `to`. */
+  | { type: 'ruler'; from: number; to: number; length: number }
+  /** A box drawn in perspective; `cubes` draws the unit cubes, `labels` its edges. */
+  | { type: 'box'; l: number; w: number; h: number; cubes?: boolean; unit?: string };
+
+export interface Polygon {
+  points: [number, number][];
+  /** Vertices (indices) marked with a right-angle square. */
+  rightAngles?: number[];
+  /** Equal-side ticks per side (side i joins point i to point i+1). */
+  ticks?: number[];
+  /** A label per side, or null. */
+  sideLabels?: (string | null)[];
+  /** A label inside each vertex (an angle), or null. */
+  angleLabels?: (string | null)[];
+  /** A dashed height from a vertex to the base, with an optional label. */
+  height?: { from: [number, number]; to: [number, number]; label?: string };
+  /** Draw every diagonal. */
+  diagonals?: boolean;
+}
 
 export type ShapeKind = 'circle' | 'square' | 'triangle' | 'rectangle';
 export type ShapeColor = 'red' | 'blue' | 'yellow' | 'green';

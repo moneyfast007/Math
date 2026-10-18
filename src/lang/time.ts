@@ -69,3 +69,34 @@ export function durationWords(minutes: number): string {
   if (!half) return whole;
   return whole ? `${whole} וחצי` : 'חצי שעה';
 }
+
+/** Minutes past and to, the way they are said, for multiples of five. */
+const PAST: Record<number, string> = {
+  5: 'וחמישה',
+  10: 'ועשרה',
+  15: 'ורבע',
+  20: 'ועשרים',
+  25: 'עשרים וחמש',
+  30: 'וחצי',
+};
+const TO: Record<number, string> = {
+  35: 'עשרים וחמש ל',
+  40: 'עשרים ל',
+  45: 'רבע ל',
+  50: 'עשרה ל',
+  55: 'חמישה ל',
+};
+
+/**
+ * Any time read aloud (grade 3): five-minute marks the way people say them
+ * ("שלוש ועשרים", "עשרה לארבע"), other minutes as on a digital clock
+ * ("שלוש ושבע עשרה דקות"). Minutes 1 and 2 are not used by the exercises.
+ */
+export function minuteWords({ h, m }: ClockTime, numberWord: (n: number) => string): string {
+  if (m === 0) return hourWord(h);
+  const past = PAST[m];
+  if (past) return `${hourWord(h)} ${past}`;
+  const to = TO[m];
+  if (to) return `${to}${hourWord(h + 1)}`;
+  return `${hourWord(h)} ו${numberWord(m)} דקות`;
+}

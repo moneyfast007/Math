@@ -1,6 +1,8 @@
 import type { Grade } from '@/ui/ageBand';
 import type { ProfileProgress } from '@/state/schema';
 import { addSub100 } from './topics/addSub100';
+import { anglesTopic } from './topics/angles';
+import { areasTopic } from './topics/areas';
 import { addSub20 } from './topics/addSub20';
 import { bigNumbers } from './topics/bigNumbers';
 import { circleVolume } from './topics/circleVolume';
@@ -13,6 +15,7 @@ import { fractionMulDiv } from './topics/fractionMulDiv';
 import { fractionOps } from './topics/fractionOps';
 import { fractions1 } from './topics/fractions1';
 import { longMulDiv } from './topics/longMulDiv';
+import { measureTopic } from './topics/measure';
 import { moneyTopic } from './topics/money';
 import { multIntro } from './topics/multIntro';
 import { multTable } from './topics/multTable';
@@ -40,15 +43,18 @@ export const TOPICS: readonly Topic[] = [
   multTable,
   numbers10000,
   fractions1,
+  measureTopic,
   bigNumbers,
   longMulDiv,
   fractionOps,
   decimals,
   perimeterArea,
+  anglesTopic,
   fractionMulDiv,
   decimalOps,
   percentIntro,
   orderOps,
+  areasTopic,
   percent,
   ratio,
   circleVolume,

@@ -42,9 +42,25 @@ const backup = {
       profile('b', 'רוני', 'cat'),
       profile('c', 'ליה', 'frog', 1),
       profile('d', 'תמר', 'rabbit', 0),
+      profile('e', 'גלי', 'panda', 3),
+      profile('f', 'מאיה', 'tiger', 4),
     ],
     progress: {
       a: { topics: { 'add-sub-100': done() }, streak: { count: 0, lastDay: null } },
+      e: {
+        topics: { 'mult-table': done(), 'numbers-10000': done(), 'fractions-1': done() },
+        streak: { count: 0, lastDay: null },
+      },
+      f: {
+        topics: {
+          'big-numbers': done(),
+          'long-mul-div': done(),
+          'fraction-ops': done(),
+          decimals: done(),
+          'perimeter-area': done(),
+        },
+        streak: { count: 0, lastDay: null },
+      },
       d: {
         topics: { 'count-10': done(), 'add-sub-20': done() },
         streak: { count: 0, lastDay: null },
@@ -69,7 +85,7 @@ async function shot(page: Page, name: string) {
 }
 
 /** From the journey: pick a level in the picker, start it, photograph, go back. */
-async function level(page: Page, label: string, name: string, hints = 0) {
+async function level(page: Page, label: string | RegExp, name: string, hints = 0) {
   await page.getByRole('button', { name: 'שלב אחר' }).click();
   await page.getByRole('dialog').getByRole('listitem').filter({ hasText: label }).click();
   await page.getByRole('button', { name: 'יאללה, מתחילים!' }).click();
@@ -80,13 +96,33 @@ async function level(page: Page, label: string, name: string, hints = 0) {
   await page.getByRole('button', { name: 'סיום' }).click();
 }
 
-async function setup(page: Page, name: string) {
+/** A grade-5 child alone (the main backup is full: six children). */
+const backup5 = {
+  ...backup,
+  data: {
+    ...backup.data,
+    profiles: [profile('g', 'נגה', 'koala', 5)],
+    progress: {
+      g: {
+        topics: {
+          'fraction-mul-div': done(),
+          'decimal-ops': done(),
+          'percent-intro': done(),
+          'order-ops': done(),
+        },
+        streak: { count: 0, lastDay: null },
+      },
+    },
+  },
+};
+
+async function setup(page: Page, name: string, data: object = backup) {
   await page.goto('/');
   await page.getByRole('button', { name: 'יצירת פרופיל ראשון' }).click();
   await page.getByTestId('backup-file').setInputFiles({
     name: 'backup.json',
     mimeType: 'application/json',
-    buffer: Buffer.from(JSON.stringify(backup)),
+    buffer: Buffer.from(JSON.stringify(data)),
   });
   await page
     .getByRole('dialog', { name: 'לשחזר מהגיבוי?' })
@@ -149,4 +185,36 @@ test('gan shapes screens', async ({ page }, info) => {
   await level(page, 'דפוס של צורות', 's-07-pattern', 1);
   await level(page, 'מה חסר בדפוס?', 's-08-missing');
   await level(page, 'כמה יש בתמונה?', 's-09-count');
+});
+
+test('grade 3 measuring screens', async ({ page }, info) => {
+  ipadOnly(info);
+  await setup(page, 'גלי');
+  await shot(page, 'u-01-journey-g3');
+  await level(page, 'מה השעה? כל חמש דקות', 'u-02-clock5');
+  await level(page, 'כמה דקות עברו?', 'u-03-elapsed');
+  await level(page, 'מודדים בסרגל', 'u-04-ruler');
+  await level(page, 'מה ארוך יותר?', 'u-05-compare');
+});
+
+test('grade 4 angles screens', async ({ page }, info) => {
+  ipadOnly(info);
+  await setup(page, 'מאיה');
+  await shot(page, 'u-11-journey-g4');
+  await level(page, 'זווית ישרה, חדה, קהה', 'u-12-angle');
+  await level(page, 'משולשים לפי הצלעות', 'u-13-sides');
+  await level(page, 'מרובעים', 'u-14-quad');
+  await level(page, 'סכום הזוויות במשולש', 'u-15-third');
+  await level(page, 'נכון או לא נכון?', 'u-16-tf');
+});
+
+test('grade 5 areas screens', async ({ page }, info) => {
+  ipadOnly(info);
+  await setup(page, 'נגה', backup5);
+  await shot(page, 'u-21-journey-g5');
+  await level(page, /שטח משולש$/, 'u-22-triangle');
+  await level(page, 'שטח טרפז', 'u-23-trapezoid');
+  await level(page, 'צורה מורכבת', 'u-24-house');
+  await level(page, 'נפח בקוביות', 'u-25-cubes');
+  await level(page, 'נפח תיבה', 'u-26-box');
 });

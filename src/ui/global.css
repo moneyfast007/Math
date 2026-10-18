@@ -2268,3 +2268,124 @@ ol.steps {
   height: 10px;
   accent-color: var(--color-accent);
 }
+
+/* ---------- Phase 6: geometry pictures (grades 3–5) ---------- */
+
+.geo {
+  display: flex;
+  justify-content: center;
+}
+
+.geo__svg {
+  width: min(320px, 70vw);
+  height: auto;
+  overflow: visible;
+}
+
+.geo--wide .geo__svg {
+  width: min(560px, 86vw);
+}
+
+.choice-big--picture .geo__svg {
+  width: min(170px, 26vw);
+}
+
+.geo__ray,
+.geo__line {
+  stroke: var(--color-text);
+  stroke-width: 4;
+  stroke-linecap: round;
+}
+
+.geo__mark {
+  fill: none;
+  stroke: var(--color-accent);
+  stroke-width: 3;
+}
+
+.geo__dot {
+  fill: var(--color-text);
+}
+
+.geo__shape {
+  fill: var(--color-accent-soft);
+  stroke: var(--color-accent-strong);
+  stroke-width: 3;
+  stroke-linejoin: round;
+}
+
+.geo__diag {
+  stroke: #e8793a;
+  stroke-width: 2;
+  stroke-dasharray: 5 4;
+}
+
+.geo__height {
+  stroke: #e8793a;
+  stroke-width: 2.5;
+  stroke-dasharray: 6 5;
+}
+
+.geo__tick {
+  stroke: var(--color-accent-strong);
+  stroke-width: 2.5;
+}
+
+.geo__label {
+  font-family: var(--font-math);
+  font-size: 11px;
+  font-weight: 800;
+  fill: var(--color-text);
+}
+
+.geo__label--height,
+.geo__label--angle {
+  fill: #c45f24;
+}
+
+.geo__object {
+  fill: #e2a33b;
+}
+
+.geo__object-tip {
+  fill: #f3d9b0;
+}
+
+.geo__ruler {
+  fill: #fbeccf;
+  stroke: #e0b979;
+  stroke-width: 2;
+}
+
+.geo__rtick {
+  stroke: #7a5a2a;
+  stroke-width: 1.5;
+}
+
+.geo__rnum {
+  font-family: var(--font-math);
+  font-size: 12px;
+  font-weight: 700;
+  fill: #7a5a2a;
+}
+
+.geo__face {
+  fill: var(--color-accent-soft);
+  stroke: var(--color-accent-strong);
+  stroke-width: 2;
+  stroke-linejoin: round;
+}
+
+.geo__face--top {
+  fill: color-mix(in srgb, var(--color-accent-soft) 70%, white);
+}
+
+.geo__face--side {
+  fill: color-mix(in srgb, var(--color-accent-soft) 70%, var(--color-accent));
+}
+
+.geo__grid {
+  stroke: var(--color-accent-strong);
+  stroke-width: 1;
+  opacity: 0.7;
+}
