@@ -29,7 +29,7 @@ async function addChild(
   await dialog.getByRole('radio', { name: gender }).check({ force: true });
   await dialog.getByRole('button', { name: 'שמירה' }).click();
   await expect(dialog).toBeHidden();
-  const added = page.getByRole('dialog', { name: new RegExp(`^${name} מוכנ`) });
+  const added = page.getByRole('dialog', { name: new RegExp(`^${name} מוכ(ן|נה)!`) });
   await added.getByRole('button', { name: 'סגירה' }).click();
   await expect(added).toBeHidden();
 }
@@ -102,7 +102,7 @@ test.describe('profiles', () => {
   test('the way home stays in reach at the bottom of a long parent area', async ({ page }) => {
     await startSetup(page);
     await addChild(page, { name: 'נועה', grade: 'כיתה ב׳' });
-    await page.mouse.wheel(0, 3000);
+    await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
     const done = page.getByRole('button', { name: 'סיימתי, למסך הבית' }).last();
     await expect(done).toBeInViewport();
     await done.click();

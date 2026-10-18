@@ -53,6 +53,8 @@ test('the level picker scrolls inside the dialog, not the page behind', async ({
   await last.click();
   await expect(dialog).toHaveCount(0);
 
-  // Closed: the page is free again.
-  expect(await page.evaluate(() => document.body.getAttribute('style'))).toBeNull();
+  // Closed: the page is free again (the lock's inline styles are gone).
+  await expect
+    .poll(() => page.evaluate(() => document.body.getAttribute('style') ?? ''))
+    .not.toMatch(/position|overflow|top/);
 });

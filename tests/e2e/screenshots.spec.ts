@@ -26,7 +26,7 @@ async function addChild(
   await dialog.getByRole('radio', { name: gender }).check({ force: true });
   await dialog.getByRole('button', { name: 'שמירה' }).click();
   await expect(dialog).toBeHidden();
-  const added = page.getByRole('dialog', { name: new RegExp(`^${name} מוכנ`) });
+  const added = page.getByRole('dialog', { name: new RegExp(`^${name} מוכ(ן|נה)!`) });
   if (snap) await shot(page, snap);
   await added.getByRole('button', { name: 'סגירה' }).click();
   await expect(added).toBeHidden();
