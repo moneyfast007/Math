@@ -70476,6 +70476,978 @@
     "0727132538d28ae6": {
       "text": "מה השעה בעוד שעה?",
       "voice": "chirp3-hd/Leda"
+    },
+    "c25f6c5954c769c2": {
+      "text": "איפה העיגול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c75a90f85b684131": {
+      "text": "לעיגול אין פינות: הוא עגול מסביב.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "5b3a53bb40f8e67e": {
+      "text": "זה עיגול.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a56374cbb397d834": {
+      "text": "נסו לספור את הפינות של כל צורה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "9de023d18c19e7ed": {
+      "text": "איפה הריבוע?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "876c228a77f8c2df": {
+      "text": "למשל, זה עיגול.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "855922e5c6edca5d": {
+      "text": "צורות ודפוסים",
+      "voice": "chirp3-hd/Leda"
+    },
+    "4514ddd7a539271b": {
+      "text": "זה ריבוע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a88c4e46195774d4": {
+      "text": "לריבוע יש ארבע פינות, וכל הצלעות שלו באותו אורך.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c41b94699f3a6dbe": {
+      "text": "איפה המשולש?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "024a18ca7db7ee1f": {
+      "text": "למשל, זה ריבוע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "24657df0f9314af4": {
+      "text": "זה משולש.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d4ae872fa43b97f8": {
+      "text": "למשולש יש שלוש פינות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "9628355ee36cfcfa": {
+      "text": "איפה המלבן?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "58f9d848e753d881": {
+      "text": "זה מלבן.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b68b7e5d31cc3db7": {
+      "text": "למשל, זה משולש.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ef058900da091c6d": {
+      "text": "עיגול, ריבוע, משולש",
+      "voice": "chirp3-hd/Leda"
+    },
+    "523f7e1f058b00b8": {
+      "text": "למלבן יש ארבע פינות: שתי צלעות ארוכות ושתי צלעות קצרות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "9abb8dc9f4de8095": {
+      "text": "למשל, זה מלבן.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "8132d874db70544a": {
+      "text": "גם זה עיגול.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "1a671b4a43cb27ee": {
+      "text": "איפה אותה צורה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "bdd164fd48566e31": {
+      "text": "למשל, שני אלה ריבועים, גם אם הם בצבעים שונים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "df3438dd8551ca67": {
+      "text": "גם זה ריבוע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "fca6183099311ab5": {
+      "text": "מחפשים את אותה צורה. הצבע, הגודל והכיוון לא משנים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "8b24d9182ed0cce9": {
+      "text": "ריבוע או מלבן?",
+      "voice": "chirp3-hd/Leda"
+    },
+    "a12610b9ec27b8b4": {
+      "text": "שני אלה ריבועים, גם אם הם בצבעים שונים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "07cf87fb12c66f23": {
+      "text": "למשל, שני אלה משולשים, גם אם הם בצבעים שונים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b1ae3ef1d4aacb2d": {
+      "text": "שני אלה משולשים, גם אם הם בצבעים שונים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c5d251b2c0162e93": {
+      "text": "גם זה משולש.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "9fd478bae764372a": {
+      "text": "גם זה מלבן.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "2c21c06cb684c367": {
+      "text": "אותה צורה",
+      "voice": "chirp3-hd/Leda"
+    },
+    "91aaa1d3df0ac23b": {
+      "text": "כמה פינות יש לצורה הזאת?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "69b673c7e38a9938": {
+      "text": "לעיגול אין פינות בכלל.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "172104bda3d4bc6b": {
+      "text": "סופרים כל פינה פעם אחת.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "0410b14174806a89": {
+      "text": "פינה היא המקום שבו שני קווים נפגשים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "50e27f0f5951fbf0": {
+      "text": "למשולש יש",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "9a61de14fe0bc39a": {
+      "text": "למשל, למשולש יש שלוש פינות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "fd1cf0067ee8825d": {
+      "text": "לריבוע יש ארבע פינות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "2cf167791aa7eee8": {
+      "text": "פינות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d09d137e2fc217db": {
+      "text": "כמה פינות?",
+      "voice": "chirp3-hd/Leda"
+    },
+    "5729b22d80f49026": {
+      "text": "לריבוע יש",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "8a6e4986a70b11ed": {
+      "text": "למשל, לריבוע יש ארבע פינות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d6a65c07d9f9d588": {
+      "text": "למלבן יש",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "47f55d62977bd093": {
+      "text": "למלבן יש ארבע פינות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a9623b04d7acac55": {
+      "text": "איזה עיגול הכי גדול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "287d27177f9b8551": {
+      "text": "הגדול תופס הכי הרבה מקום.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "0c452c3849a549cd": {
+      "text": "זה הגדול ביותר.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ebaa63fabc25897b": {
+      "text": "משווים את הצורות זו לזו.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "383c038dd9c9a201": {
+      "text": "למשל, כאן הריבוע הגדול תופס הכי הרבה מקום, והקטן הכי מעט.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "cd8c3684a7a6019b": {
+      "text": "זה הקטן ביותר.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c32b9de96bb896ab": {
+      "text": "איזה עיגול הכי קטן?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "398d093b7b6341a2": {
+      "text": "כאן הריבוע הגדול תופס הכי הרבה מקום, והקטן הכי מעט.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "88024c94a340440c": {
+      "text": "הקטן תופס הכי מעט מקום.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "eeaaf484da11fe49": {
+      "text": "איזה ריבוע הכי גדול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "cd28996837b0b6ed": {
+      "text": "למשל, כאן העיגול הגדול תופס הכי הרבה מקום, והקטן הכי מעט.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "60354e223e0cd4c8": {
+      "text": "כאן העיגול הגדול תופס הכי הרבה מקום, והקטן הכי מעט.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "077084c4fcb7c024": {
+      "text": "איזה ריבוע הכי קטן?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ef6e804d5e6878e2": {
+      "text": "איזה משולש הכי גדול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "19e790701864f48f": {
+      "text": "איזה מלבן הכי גדול?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "742637642a5148b4": {
+      "text": "איזה משולש הכי קטן?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e5f54e0940680158": {
+      "text": "גדול וקטן",
+      "voice": "chirp3-hd/Leda"
+    },
+    "e8f272f97f36f6d9": {
+      "text": "איזה עיפרון הכי ארוך?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "3623c09f82683393": {
+      "text": "איזה מלבן הכי קטן?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b6e875e35ce22aac": {
+      "text": "זה העיפרון הארוך ביותר.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "17eb12e09fc89b07": {
+      "text": "כל העפרונות עומדים על אותו קו. מסתכלים עד איפה כל אחד מגיע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "926634bbb80f6ab6": {
+      "text": "הארוך מגיע הכי גבוה.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "1daa91d24d5bde4a": {
+      "text": "איזה עיפרון הכי קצר?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e36a4851f1b5de10": {
+      "text": "למשל, העיפרון שמגיע הכי גבוה הוא הארוך ביותר.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "2cb6bd288aab5a46": {
+      "text": "העיפרון שמגיע הכי גבוה הוא הארוך ביותר.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "cd0d9b1e22490912": {
+      "text": "זה העיפרון הקצר ביותר.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "4b016d02c8f3ce00": {
+      "text": "מה בא אחר כך?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c3b696c5373dc455": {
+      "text": "עכשיו בא עיגול אדום.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "281d9e825586100d": {
+      "text": "הקצר מגיע הכי נמוך.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "61397dd70e309f47": {
+      "text": "מה חוזר שוב ושוב?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "9ca605cfe1d01d09": {
+      "text": "למשל, בדפוס, אותו דבר חוזר שוב ושוב.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "0f9acf07c9d368e0": {
+      "text": "אומרים את הדפוס בקול: אדום, כחול, אדום, כחול, אדום, כחול...",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "2d1b33419e118a61": {
+      "text": "עכשיו בא עיגול כחול.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "96f0afc28d50673b": {
+      "text": "בדפוס, אותו דבר חוזר שוב ושוב.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "eaead6841704d24a": {
+      "text": "עכשיו בא עיגול צהוב.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "1c4371cacdd49aba": {
+      "text": "אומרים את הדפוס בקול: צהוב, אדום, צהוב, אדום, צהוב, אדום...",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "30543203dd76af5b": {
+      "text": "אומרים את הדפוס בקול: כחול, אדום, כחול, אדום, כחול, אדום...",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "badbee51b0382c07": {
+      "text": "עכשיו בא עיגול ירוק.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "2aa8f4776e4bb982": {
+      "text": "ארוך וקצר",
+      "voice": "chirp3-hd/Leda"
+    },
+    "71bff5402190cb3f": {
+      "text": "אומרים את הדפוס בקול: אדום, אדום, כחול, אדום, אדום, כחול...",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "26b4a7b477b5cb62": {
+      "text": "אומרים את הדפוס בקול: ירוק, אדום, ירוק, אדום, ירוק, אדום...",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "056ab21df595b954": {
+      "text": "אומרים את הדפוס בקול: כחול, כחול, אדום, כחול, כחול, אדום...",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d1cab993caf4c678": {
+      "text": "אומרים את הדפוס בקול: צהוב, צהוב, אדום, צהוב, צהוב, אדום...",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a512060e89178bfe": {
+      "text": "אומרים את הדפוס בקול: ירוק, ירוק, אדום, ירוק, ירוק, אדום...",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "9c0293b1c5a3ad46": {
+      "text": "אומרים את הדפוס בקול: כחול, אדום, אדום, כחול, אדום, אדום...",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "59d52b9f24d22222": {
+      "text": "אומרים את הדפוס בקול: אדום, כחול, כחול, אדום, כחול, כחול...",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "4c40f6476e4c22e9": {
+      "text": "אומרים את הדפוס בקול: צהוב, אדום, אדום, צהוב, אדום, אדום...",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a1827d384180e57c": {
+      "text": "אומרים את הדפוס בקול: ירוק, אדום, אדום, ירוק, אדום, אדום...",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a1aa6d0e09d90de9": {
+      "text": "אומרים את הדפוס בקול: אדום, צהוב, ירוק, אדום, צהוב, ירוק...",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "307d6a38b3dafb87": {
+      "text": "אומרים את הדפוס בקול: אדום, כחול, צהוב, אדום, כחול, צהוב...",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "0cd3dfab0b802b3d": {
+      "text": "דפוס של צבעים",
+      "voice": "chirp3-hd/Leda"
+    },
+    "54dfc34f5f5a1302": {
+      "text": "אומרים את הדפוס בקול: כחול, אדום, צהוב, כחול, אדום, צהוב...",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "8fbdd9f9c70688b7": {
+      "text": "אומרים את הדפוס בקול: צהוב, אדום, כחול, צהוב, אדום, כחול...",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "cea91bd587eb0639": {
+      "text": "אומרים את הדפוס בקול: ירוק, אדום, כחול, ירוק, אדום, כחול...",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "974b0d5a1c587cf6": {
+      "text": "אומרים את הדפוס בקול: כחול, צהוב, ירוק, כחול, צהוב, ירוק...",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "af4d0f914fd8f3be": {
+      "text": "אומרים את הדפוס בקול: צהוב, כחול, ירוק, צהוב, כחול, ירוק...",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "bba38ed31dd585a3": {
+      "text": "עכשיו בא עיגול.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "6fc8fc88e45e4404": {
+      "text": "אומרים את הדפוס בקול: ירוק, כחול, צהוב, ירוק, כחול, צהוב...",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "bca15d566874e90d": {
+      "text": "עכשיו בא ריבוע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e7d9cf01cd2e55d2": {
+      "text": "אומרים את הדפוס בקול: עיגול, ריבוע, עיגול, ריבוע, עיגול, ריבוע...",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "542994159ca95b57": {
+      "text": "עכשיו בא משולש.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ae791d2d59a78b41": {
+      "text": "דפוס של צורות",
+      "voice": "chirp3-hd/Leda"
+    },
+    "c3638ec409442b47": {
+      "text": "אומרים את הדפוס בקול: ריבוע, עיגול, ריבוע, עיגול, ריבוע, עיגול...",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "442d9f41975ad89c": {
+      "text": "אומרים את הדפוס בקול: משולש, עיגול, משולש, עיגול, משולש, עיגול...",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "defa587443b80221": {
+      "text": "עכשיו בא מלבן.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d877b5fac9d6475d": {
+      "text": "אומרים את הדפוס בקול: מלבן, עיגול, מלבן, עיגול, מלבן, עיגול...",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e184fa51ba4fdc0b": {
+      "text": "אומרים את הדפוס בקול: עיגול, עיגול, ריבוע, עיגול, עיגול, ריבוע...",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "26517c8015d04cd2": {
+      "text": "אומרים את הדפוס בקול: ריבוע, ריבוע, עיגול, ריבוע, ריבוע, עיגול...",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "bab4c81f9f0bc149": {
+      "text": "אומרים את הדפוס בקול: משולש, משולש, עיגול, משולש, משולש, עיגול...",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "9fefd719bbf7ba00": {
+      "text": "אומרים את הדפוס בקול: מלבן, מלבן, עיגול, מלבן, מלבן, עיגול...",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "4f73416fc05f1827": {
+      "text": "מה חסר בדפוס?",
+      "voice": "chirp3-hd/Leda"
+    },
+    "b6a8da674de92c55": {
+      "text": "אומרים את הדפוס בקול: עיגול, ריבוע, ריבוע, עיגול, ריבוע, ריבוע...",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "449e51e4d1379e0b": {
+      "text": "אומרים את הדפוס בקול: ריבוע, עיגול, עיגול, ריבוע, עיגול, עיגול...",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "1cccfdad4b1c636f": {
+      "text": "אומרים את הדפוס בקול: משולש, עיגול, עיגול, משולש, עיגול, עיגול...",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "041bcd8b642d3033": {
+      "text": "אומרים את הדפוס בקול: מלבן, עיגול, עיגול, מלבן, עיגול, עיגול...",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "68ce10a240eea998": {
+      "text": "אומרים את הדפוס בקול: עיגול, משולש, מלבן, עיגול, משולש, מלבן...",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "9a03548bd0aa10af": {
+      "text": "אומרים את הדפוס בקול: עיגול, ריבוע, משולש, עיגול, ריבוע, משולש...",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "63f0319eb335c861": {
+      "text": "אומרים את הדפוס בקול: ריבוע, משולש, מלבן, ריבוע, משולש, מלבן...",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "2b55b89ea0820781": {
+      "text": "אומרים את הדפוס בקול: ריבוע, עיגול, משולש, ריבוע, עיגול, משולש...",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "9516352870adb24b": {
+      "text": "אומרים את הדפוס בקול: משולש, עיגול, ריבוע, משולש, עיגול, ריבוע...",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "def2b1a81775df69": {
+      "text": "חסר כאן עיגול אדום.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "355a63b042bc6dc9": {
+      "text": "אומרים את הדפוס בקול: משולש, ריבוע, מלבן, משולש, ריבוע, מלבן...",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "46c337931026f99c": {
+      "text": "אומרים את הדפוס בקול: מלבן, עיגול, ריבוע, מלבן, עיגול, ריבוע...",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "6282e19264c8aab4": {
+      "text": "אומרים את הדפוס בקול: אדום, כחול, מה?, כחול, אדום, כחול",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "464145ec0babcdb4": {
+      "text": "אומרים את הדפוס בקול: מלבן, ריבוע, משולש, מלבן, ריבוע, משולש...",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "1e318448bb752303": {
+      "text": "חסר כאן עיגול כחול.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "7e0a0e7621b786cf": {
+      "text": "חסר כאן עיגול צהוב.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "3bc5f2d64936f659": {
+      "text": "אומרים את הדפוס בקול: אדום, כחול, אדום, מה?, אדום, כחול",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c79076cfbedc1307": {
+      "text": "כמה יש בתמונה?",
+      "voice": "chirp3-hd/Leda"
+    },
+    "2a0b68484cac5f98": {
+      "text": "אומרים את הדפוס בקול: כחול, אדום, מה?, אדום, כחול, אדום",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "4d74749ca84062c2": {
+      "text": "אומרים את הדפוס בקול: כחול, אדום, כחול, מה?, כחול, אדום",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "8c4dafd5711b5978": {
+      "text": "חסר כאן עיגול ירוק.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "86cf3bd14c136dfa": {
+      "text": "אומרים את הדפוס בקול: צהוב, אדום, צהוב, מה?, צהוב, אדום",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "083272fa7f717aa8": {
+      "text": "אומרים את הדפוס בקול: צהוב, אדום, מה?, אדום, צהוב, אדום",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a88d83a200d7a680": {
+      "text": "אומרים את הדפוס בקול: ירוק, אדום, מה?, אדום, ירוק, אדום",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "9e26ef27ae9c9dd3": {
+      "text": "אומרים את הדפוס בקול: ירוק, אדום, ירוק, מה?, ירוק, אדום",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "2d303b70d18ae544": {
+      "text": "אומרים את הדפוס בקול: אדום, אדום, מה?, אדום, אדום, כחול",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "5e12943bb795c85b": {
+      "text": "אומרים את הדפוס בקול: אדום, אדום, כחול, מה?, אדום, כחול",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b83a1332b4d7517d": {
+      "text": "אומרים את הדפוס בקול: כחול, כחול, מה?, כחול, כחול, אדום",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "1571c16305dfda8b": {
+      "text": "אומרים את הדפוס בקול: כחול, כחול, אדום, מה?, כחול, אדום",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "3c0fdabc823b1623": {
+      "text": "אומרים את הדפוס בקול: צהוב, צהוב, אדום, מה?, צהוב, אדום",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "89f26b595acae694": {
+      "text": "אומרים את הדפוס בקול: צהוב, צהוב, מה?, צהוב, צהוב, אדום",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c59452487825f3a2": {
+      "text": "אומרים את הדפוס בקול: ירוק, ירוק, מה?, ירוק, ירוק, אדום",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e24f68d5b53d07bc": {
+      "text": "אומרים את הדפוס בקול: אדום, כחול, כחול, מה?, כחול, כחול",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a7115a201c87cb1f": {
+      "text": "אומרים את הדפוס בקול: ירוק, ירוק, אדום, מה?, ירוק, אדום",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e60ee650be740623": {
+      "text": "אומרים את הדפוס בקול: אדום, כחול, מה?, אדום, כחול, כחול",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f67969aa7bdaf554": {
+      "text": "אומרים את הדפוס בקול: כחול, אדום, מה?, כחול, אדום, אדום",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "dc0eb656a116fd20": {
+      "text": "אומרים את הדפוס בקול: כחול, אדום, אדום, מה?, אדום, אדום",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "981f0a4e1894ac68": {
+      "text": "אומרים את הדפוס בקול: צהוב, אדום, אדום, מה?, אדום, אדום",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "8e6626a4a0ca113e": {
+      "text": "אומרים את הדפוס בקול: צהוב, אדום, מה?, צהוב, אדום, אדום",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "cbb4fc4f78d3e4f1": {
+      "text": "אומרים את הדפוס בקול: ירוק, אדום, מה?, ירוק, אדום, אדום",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "6b6d27254ec6b670": {
+      "text": "אומרים את הדפוס בקול: ירוק, אדום, אדום, מה?, אדום, אדום",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "01707b52c1bbd217": {
+      "text": "אומרים את הדפוס בקול: אדום, כחול, מה?, אדום, כחול, צהוב",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "9ce8821250aebd31": {
+      "text": "אומרים את הדפוס בקול: אדום, כחול, צהוב, מה?, כחול, צהוב",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "4f0aeb6a090c6392": {
+      "text": "אומרים את הדפוס בקול: אדום, צהוב, ירוק, מה?, צהוב, ירוק",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f28f6676d0b961d4": {
+      "text": "אומרים את הדפוס בקול: אדום, צהוב, מה?, אדום, צהוב, ירוק",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "8937382b00d0bbfd": {
+      "text": "אומרים את הדפוס בקול: כחול, אדום, מה?, כחול, אדום, צהוב",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "9d5ab43b5e15e7f8": {
+      "text": "אומרים את הדפוס בקול: כחול, אדום, צהוב, מה?, אדום, צהוב",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "14b904b8e8114523": {
+      "text": "אומרים את הדפוס בקול: כחול, צהוב, מה?, כחול, צהוב, ירוק",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "dd123e14b0c5818c": {
+      "text": "אומרים את הדפוס בקול: כחול, צהוב, ירוק, מה?, צהוב, ירוק",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "55e907dd08289d59": {
+      "text": "אומרים את הדפוס בקול: צהוב, אדום, מה?, צהוב, אדום, כחול",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d71855ca2a5aa7b3": {
+      "text": "אומרים את הדפוס בקול: צהוב, אדום, כחול, מה?, אדום, כחול",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d642b1386b99d8a1": {
+      "text": "אומרים את הדפוס בקול: צהוב, כחול, מה?, צהוב, כחול, ירוק",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "78dd49858e5bbe27": {
+      "text": "אומרים את הדפוס בקול: ירוק, אדום, מה?, ירוק, אדום, כחול",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "2e8081756bf2997b": {
+      "text": "אומרים את הדפוס בקול: צהוב, כחול, ירוק, מה?, כחול, ירוק",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "86a2db114df80e9a": {
+      "text": "אומרים את הדפוס בקול: ירוק, אדום, כחול, מה?, אדום, כחול",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "caf86cc865134129": {
+      "text": "חסר כאן עיגול.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c8a2ba2e70fcace3": {
+      "text": "אומרים את הדפוס בקול: ירוק, כחול, מה?, ירוק, כחול, צהוב",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "42fa62d63749f5dd": {
+      "text": "אומרים את הדפוס בקול: ירוק, כחול, צהוב, מה?, כחול, צהוב",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "86703b0a2568f888": {
+      "text": "אומרים את הדפוס בקול: עיגול, ריבוע, מה?, ריבוע, עיגול, ריבוע",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f2892cc1b7b70a9a": {
+      "text": "אומרים את הדפוס בקול: עיגול, ריבוע, עיגול, ריבוע, מה?, ריבוע",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a920d6c2b953c401": {
+      "text": "חסר כאן ריבוע.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "45e1c59c662be01c": {
+      "text": "אומרים את הדפוס בקול: ריבוע, עיגול, ריבוע, עיגול, מה?, עיגול",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a2cf609ef1f48104": {
+      "text": "חסר כאן משולש.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f2f9b1cbebf34ccd": {
+      "text": "אומרים את הדפוס בקול: ריבוע, עיגול, מה?, עיגול, ריבוע, עיגול",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e2aa3989feae037e": {
+      "text": "אומרים את הדפוס בקול: משולש, עיגול, מה?, עיגול, משולש, עיגול",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "996a42a763dcaa5d": {
+      "text": "חסר כאן מלבן.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "0a2eaa1c9b808502": {
+      "text": "אומרים את הדפוס בקול: מלבן, עיגול, מה?, עיגול, מלבן, עיגול",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c370e14ab33c7f73": {
+      "text": "אומרים את הדפוס בקול: משולש, עיגול, משולש, עיגול, מה?, עיגול",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a631e7f4bf9c9b16": {
+      "text": "אומרים את הדפוס בקול: מלבן, עיגול, מלבן, עיגול, מה?, עיגול",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d5ec605ce53241ee": {
+      "text": "אומרים את הדפוס בקול: עיגול, עיגול, מה?, עיגול, עיגול, ריבוע",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "68279a02904ad849": {
+      "text": "אומרים את הדפוס בקול: עיגול, עיגול, ריבוע, עיגול, מה?, ריבוע",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "e514ab85baf0425a": {
+      "text": "אומרים את הדפוס בקול: ריבוע, ריבוע, מה?, ריבוע, ריבוע, עיגול",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "6f4298d2f55b5f25": {
+      "text": "אומרים את הדפוס בקול: ריבוע, ריבוע, עיגול, ריבוע, מה?, עיגול",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "0e6e0cbb27555024": {
+      "text": "אומרים את הדפוס בקול: משולש, משולש, עיגול, משולש, מה?, עיגול",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "6ff678ac58da3d99": {
+      "text": "אומרים את הדפוס בקול: מלבן, מלבן, מה?, מלבן, מלבן, עיגול",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "71f07c050f2eb68c": {
+      "text": "אומרים את הדפוס בקול: משולש, משולש, מה?, משולש, משולש, עיגול",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "9fc10ee721126246": {
+      "text": "אומרים את הדפוס בקול: מלבן, מלבן, עיגול, מלבן, מה?, עיגול",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f43446e3cadc10b7": {
+      "text": "אומרים את הדפוס בקול: ריבוע, עיגול, מה?, ריבוע, עיגול, עיגול",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "9d79829b9250f377": {
+      "text": "אומרים את הדפוס בקול: עיגול, ריבוע, ריבוע, עיגול, מה?, ריבוע",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f59319f04ab9dc8f": {
+      "text": "אומרים את הדפוס בקול: עיגול, ריבוע, מה?, עיגול, ריבוע, ריבוע",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "2531cfa801095247": {
+      "text": "אומרים את הדפוס בקול: משולש, עיגול, מה?, משולש, עיגול, עיגול",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "3aa8f7d80907586d": {
+      "text": "אומרים את הדפוס בקול: ריבוע, עיגול, עיגול, ריבוע, מה?, עיגול",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "17120deaa5d07558": {
+      "text": "אומרים את הדפוס בקול: משולש, עיגול, עיגול, משולש, מה?, עיגול",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "a5cdade30addcd29": {
+      "text": "אומרים את הדפוס בקול: מלבן, עיגול, מה?, מלבן, עיגול, עיגול",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "3845420ec4a420d2": {
+      "text": "אומרים את הדפוס בקול: עיגול, ריבוע, מה?, עיגול, ריבוע, משולש",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "456c5fd8e7dcc932": {
+      "text": "אומרים את הדפוס בקול: מלבן, עיגול, עיגול, מלבן, מה?, עיגול",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "6786b0e3e3f0f61c": {
+      "text": "אומרים את הדפוס בקול: עיגול, משולש, מה?, עיגול, משולש, מלבן",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "20290b1da6599512": {
+      "text": "אומרים את הדפוס בקול: עיגול, ריבוע, משולש, עיגול, מה?, משולש",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "91bd5e2f29987d00": {
+      "text": "אומרים את הדפוס בקול: עיגול, משולש, מלבן, עיגול, מה?, מלבן",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "99253eab2b0bb8e2": {
+      "text": "אומרים את הדפוס בקול: ריבוע, עיגול, מה?, ריבוע, עיגול, משולש",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "64783a853883d573": {
+      "text": "אומרים את הדפוס בקול: ריבוע, עיגול, משולש, ריבוע, מה?, משולש",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "3025715dcc1c47fc": {
+      "text": "אומרים את הדפוס בקול: ריבוע, משולש, מה?, ריבוע, משולש, מלבן",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "0142472a6e5c86ba": {
+      "text": "אומרים את הדפוס בקול: משולש, עיגול, מה?, משולש, עיגול, ריבוע",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b481c296297baf7b": {
+      "text": "אומרים את הדפוס בקול: ריבוע, משולש, מלבן, ריבוע, מה?, מלבן",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b4cee9b5b7a7ff3b": {
+      "text": "אומרים את הדפוס בקול: משולש, עיגול, ריבוע, משולש, מה?, ריבוע",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "26d44264f348f0cd": {
+      "text": "אומרים את הדפוס בקול: משולש, ריבוע, מה?, משולש, ריבוע, מלבן",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "6bc76085bc14268b": {
+      "text": "אומרים את הדפוס בקול: מלבן, עיגול, מה?, מלבן, עיגול, ריבוע",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "6fb96945c7aee725": {
+      "text": "אומרים את הדפוס בקול: משולש, ריבוע, מלבן, משולש, מה?, מלבן",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "7e68b3440bedc61a": {
+      "text": "אומרים את הדפוס בקול: מלבן, עיגול, ריבוע, מלבן, מה?, ריבוע",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "bf2a8c362cbe3df1": {
+      "text": "אומרים את הדפוס בקול: מלבן, ריבוע, מה?, מלבן, ריבוע, משולש",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "da9a21b5e57cf8f2": {
+      "text": "יש כאן שני משולשים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "1e3d8a1bdbe841d1": {
+      "text": "אומרים את הדפוס בקול: מלבן, ריבוע, משולש, מלבן, מה?, משולש",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b5387d2d0f16f476": {
+      "text": "כמה משולשים יש בתמונה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c6977d384c73b088": {
+      "text": "סופרים רק את המשולשים, ולא את שאר הצורות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c6096a660ecb67c0": {
+      "text": "מסמנים באצבע כל אחד שכבר ספרנו.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "dc071b1cfea07d5a": {
+      "text": "עיגולים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "ef06653d58997094": {
+      "text": "למשל, יש כאן שלושה עיגולים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "da73fbddd5befee4": {
+      "text": "יש כאן שלושה משולשים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "d7c969fa94cd15a4": {
+      "text": "משולשים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "0b908ae7782eb381": {
+      "text": "יש כאן ארבעה משולשים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "7d718d3f99a41235": {
+      "text": "יש כאן חמישה משולשים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "8a58fd0615855e3f": {
+      "text": "יש כאן שישה משולשים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "b7b4748d1475a3a7": {
+      "text": "יש כאן שני עיגולים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "0a558dcd91dac620": {
+      "text": "כמה עיגולים יש בתמונה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "37a8819bdb1ba0ea": {
+      "text": "סופרים רק את העיגולים, ולא את שאר הצורות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "c6c8ad5fc034d6bb": {
+      "text": "למשל, יש כאן שלושה ריבועים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "8905eb2330a01728": {
+      "text": "ריבועים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "7cbd22c383be0acf": {
+      "text": "יש כאן שלושה עיגולים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "f791c4359b64990b": {
+      "text": "יש כאן חמישה עיגולים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "cd1847c255efd5e4": {
+      "text": "יש כאן ארבעה עיגולים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "79f6e29b77ed258e": {
+      "text": "יש כאן שישה עיגולים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "9a10ee3ab65635e1": {
+      "text": "יש כאן שני ריבועים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "57e60fdbf31b63e8": {
+      "text": "כמה ריבועים יש בתמונה?",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "af8a0310b2f11fa4": {
+      "text": "סופרים רק את הריבועים, ולא את שאר הצורות.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "60d3237dc44107b0": {
+      "text": "יש כאן ארבעה ריבועים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "28ff2f77e9afefca": {
+      "text": "יש כאן שלושה ריבועים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "790a3e5167f35c9c": {
+      "text": "יש כאן חמישה ריבועים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
+    },
+    "7e7c45cd19fba454": {
+      "text": "יש כאן שישה ריבועים.",
+      "voice": "wavenet/he-IL-Wavenet-A"
     }
   }
 }
