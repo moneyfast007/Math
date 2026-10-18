@@ -279,8 +279,11 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
   const e = s.exercise;
   const finished = s.phase === 'correct' || s.phase === 'revealed';
   // A long typed number is easier to check with separators (1,462,743), as everywhere else.
-  const slotValue =
-    finished ? answerLabel(e) : e.input.type === 'numpad' && value ? groupDigits(value) : '?';
+  const slotValue = finished
+    ? answerLabel(e)
+    : e.input.type === 'numpad' && value
+      ? groupDigits(value)
+      : '?';
   const hasSlot = e.display.includes('?');
   const [before, after] = e.display ? splitAtSlot(e.display) : ['', ''];
 
@@ -320,7 +323,9 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
         <div
           className={
             // A word problem: on a phone the speaker goes above it, so the text gets the full width.
-            e.prompt.length > LONG_PROMPT ? 'exercise__prompt exercise__prompt--long' : 'exercise__prompt'
+            e.prompt.length > LONG_PROMPT
+              ? 'exercise__prompt exercise__prompt--long'
+              : 'exercise__prompt'
           }
         >
           <SpeakerButton text={e.spokenText} parts={e.spokenParts} slow={slow} size="lg" />

@@ -21,51 +21,63 @@ ok
 
 [1m[46m RUN [49m[22m [36mv3.2.7 [39m[90m/home/runner/work/Math/Math[39m
 
- [32m✓[39m src/sync/merge.test.ts [2m([22m[2m13 tests[22m[2m)[22m[32m 38[2mms[22m[39m
- [32m✓[39m src/state/store.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 15[2mms[22m[39m
- [32m✓[39m src/state/progress.test.ts [2m([22m[2m14 tests[22m[2m)[22m[32m 10[2mms[22m[39m
- [32m✓[39m src/state/validate.test.ts [2m([22m[2m19 tests[22m[2m)[22m[32m 5[2mms[22m[39m
- [32m✓[39m src/lang/hebrewNumbers.test.ts [2m([22m[2m81 tests[22m[2m)[22m[33m 863[2mms[22m[39m
-   [33m[2m✓[22m[39m numberToWords, properties[2m > [22mis injective on 0–99,999: different numbers never produce the same words [33m 824[2mms[22m[39m
- [32m✓[39m src/audio/speaker.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 13[2mms[22m[39m
- [32m✓[39m src/engine/session.test.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 12[2mms[22m[39m
- [32m✓[39m src/engine/topics/addSub20.test.ts [2m([22m[2m14 tests[22m[2m)[22m[33m 332[2mms[22m[39m
- [32m✓[39m src/engine/journey.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 5[2mms[22m[39m
- [32m✓[39m src/ui/components.test.tsx [2m([22m[2m8 tests[22m[2m)[22m[32m 286[2mms[22m[39m
- [32m✓[39m src/lang/compose.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 3[2mms[22m[39m
- [32m✓[39m src/parent/gate.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[32m 281[2mms[22m[39m
- [32m✓[39m src/state/streak.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 5[2mms[22m[39m
- [32m✓[39m scripts/tts/pronunciation.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 4[2mms[22m[39m
- [32m✓[39m src/lang/time.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 7[2mms[22m[39m
- [32m✓[39m src/screens/JourneyScreen.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[32m 74[2mms[22m[39m
- [32m✓[39m src/i18n/i18n.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 48[2mms[22m[39m
- [32m✓[39m src/engine/daily.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 3[2mms[22m[39m
- [32m✓[39m src/ui/MathExpr.test.tsx [2m([22m[2m4 tests[22m[2m)[22m[32m 30[2mms[22m[39m
- [32m✓[39m src/lang/spoken.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 2[2mms[22m[39m
- [32m✓[39m src/lang/spokenLabel.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 9[2mms[22m[39m
- [32m✓[39m src/audio/hash.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 4[2mms[22m[39m
- [32m✓[39m src/state/pin.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 6[2mms[22m[39m
- [32m✓[39m src/lang/groupDigits.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m src/state/store.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 30[2mms[22m[39m
+ [32m✓[39m src/sync/merge.test.ts [2m([22m[2m13 tests[22m[2m)[22m[32m 50[2mms[22m[39m
+ [32m✓[39m src/state/validate.test.ts [2m([22m[2m19 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+ [32m✓[39m src/state/progress.test.ts [2m([22m[2m14 tests[22m[2m)[22m[32m 13[2mms[22m[39m
+ [32m✓[39m src/lang/hebrewNumbers.test.ts [2m([22m[2m81 tests[22m[2m)[22m[33m 1407[2mms[22m[39m
+   [33m[2m✓[22m[39m numberToWords, properties[2m > [22mis injective on 0–99,999: different numbers never produce the same words [33m 1360[2mms[22m[39m
+ [32m✓[39m src/audio/speaker.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 21[2mms[22m[39m
+ [32m✓[39m src/engine/topics/addSub20.test.ts [2m([22m[2m14 tests[22m[2m)[22m[33m 499[2mms[22m[39m
+ [32m✓[39m src/engine/session.test.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 14[2mms[22m[39m
+ [32m✓[39m src/engine/journey.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+ [32m✓[39m src/ui/components.test.tsx [2m([22m[2m8 tests[22m[2m)[22m[33m 397[2mms[22m[39m
+ [32m✓[39m src/parent/gate.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[33m 378[2mms[22m[39m
+ [32m✓[39m src/lang/compose.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+ [32m✓[39m src/state/streak.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m scripts/tts/pronunciation.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m src/lang/time.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+ [32m✓[39m src/screens/JourneyScreen.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[32m 91[2mms[22m[39m
+ [32m✓[39m src/i18n/i18n.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 100[2mms[22m[39m
+ [32m✓[39m src/engine/daily.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m src/ui/MathExpr.test.tsx [2m([22m[2m4 tests[22m[2m)[22m[32m 54[2mms[22m[39m
+ [32m✓[39m src/lang/spoken.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+ [32m✓[39m src/lang/spokenLabel.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 13[2mms[22m[39m
+ [32m✓[39m src/audio/hash.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m src/state/pin.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+ [32m✓[39m src/lang/groupDigits.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 4[2mms[22m[39m
  [32m✓[39m src/state/backup.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 4[2mms[22m[39m
- [32m✓[39m src/lang/fractions.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 3[2mms[22m[39m
- [32m✓[39m src/app/router.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 3[2mms[22m[39m
- [32m✓[39m src/ui/ageBand.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 4[2mms[22m[39m
- [32m✓[39m src/sync/client.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 74[2mms[22m[39m
- [32m✓[39m worker/core.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 32[2mms[22m[39m
- [32m✓[39m src/engine/topics/audioBank.test.ts [2m([22m[2m270 tests[22m[2m)[22m[33m 10014[2mms[22m[39m
-   [33m[2m✓[22m[39m the audio bank covers what a child can hear: numbers-100[2m > [22mlevel 4 [33m 960[2mms[22m[39m
-   [33m[2m✓[22m[39m the audio bank covers what a child can hear: numbers-100[2m > [22mlevel 9 [33m 556[2mms[22m[39m
- [32m✓[39m src/engine/topics/all.test.ts [2m([22m[2m353 tests[22m[2m)[22m[33m 32403[2mms[22m[39m
-   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 3 produces valid exercises [33m 413[2mms[22m[39m
-   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 4 produces valid exercises [33m 1131[2mms[22m[39m
-   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 5 produces valid exercises [33m 379[2mms[22m[39m
-   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 9 produces valid exercises [33m 603[2mms[22m[39m
-   [33m[2m✓[22m[39m topic clock[2m > [22mlevel 10 produces valid exercises [33m 343[2mms[22m[39m
+ [32m✓[39m src/lang/fractions.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+ [32m✓[39m src/app/router.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+ [32m✓[39m src/ui/ageBand.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+ [32m✓[39m src/sync/client.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 79[2mms[22m[39m
+ [32m✓[39m worker/core.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 38[2mms[22m[39m
+ [32m✓[39m src/engine/topics/audioBank.test.ts [2m([22m[2m270 tests[22m[2m)[22m[33m 12313[2mms[22m[39m
+   [33m[2m✓[22m[39m the audio bank covers what a child can hear: numbers-100[2m > [22mlevel 3 [33m 332[2mms[22m[39m
+   [33m[2m✓[22m[39m the audio bank covers what a child can hear: numbers-100[2m > [22mlevel 4 [33m 1070[2mms[22m[39m
+   [33m[2m✓[22m[39m the audio bank covers what a child can hear: numbers-100[2m > [22mlevel 9 [33m 625[2mms[22m[39m
+   [33m[2m✓[22m[39m the audio bank covers what a child can hear: clock[2m > [22mlevel 10 [33m 388[2mms[22m[39m
+ [32m✓[39m src/engine/topics/all.test.ts [2m([22m[2m353 tests[22m[2m)[22m[33m 43966[2mms[22m[39m
+   [33m[2m✓[22m[39m topic shapes[2m > [22mlevel 9 produces valid exercises [33m 400[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 2 produces valid exercises [33m 380[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 3 produces valid exercises [33m 527[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 4 produces valid exercises [33m 1523[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 5 produces valid exercises [33m 441[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 6 produces valid exercises [33m 407[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 9 produces valid exercises [33m 736[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mavoids an immediate repeat [33m 445[2mms[22m[39m
+   [33m[2m✓[22m[39m topic clock-money-1[2m > [22mlevel 7 produces valid exercises [33m 315[2mms[22m[39m
+   [33m[2m✓[22m[39m topic clock-money-1[2m > [22mlevel 9 produces valid exercises [33m 312[2mms[22m[39m
+   [33m[2m✓[22m[39m topic money[2m > [22mlevel 7 produces valid exercises [33m 360[2mms[22m[39m
+   [33m[2m✓[22m[39m topic clock[2m > [22mlevel 10 produces valid exercises [33m 352[2mms[22m[39m
+   [33m[2m✓[22m[39m topic fraction-ops[2m > [22mlevel 3 produces valid exercises [33m 301[2mms[22m[39m
+   [33m[2m✓[22m[39m topic circle-volume[2m > [22mlevel 6 produces valid exercises [33m 330[2mms[22m[39m
+   [33m[2m✓[22m[39m topic circle-volume[2m > [22mlevel 8 produces valid exercises [33m 309[2mms[22m[39m
 
 [2m Test Files [22m [1m[32m32 passed[39m[22m[90m (32)[39m
 [2m      Tests [22m [1m[32m906 passed[39m[22m[90m (906)[39m
-[2m   Start at [22m 16:12:22
-[2m   Duration [22m 35.37s[2m (transform 1.13s, setup 4.12s, collect 2.16s, tests 44.60s, environment 9.72s, prepare 2.26s)[22m
+[2m   Start at [22m 16:24:34
+[2m   Duration [22m 47.62s[2m (transform 1.21s, setup 5.06s, collect 2.38s, tests 59.56s, environment 12.03s, prepare 2.79s)[22m
 
 
 ## build
@@ -85,19 +97,19 @@ rendering chunks...
 computing gzip size...
 [2mdist/[22m[32mmanifest.webmanifest                        [39m[1m[2m  0.53 kB[22m[1m[22m
 [2mdist/[22m[32mindex.html                                  [39m[1m[2m  1.26 kB[22m[1m[22m[2m │ gzip:   0.60 kB[22m
-[2mdist/[22m[2massets/[22m[35mindex-aLc768zZ.css                   [39m[1m[2m 35.61 kB[22m[1m[22m[2m │ gzip:   7.42 kB[22m
+[2mdist/[22m[2massets/[22m[35mindex-CB7mBDn9.css                   [39m[1m[2m 35.74 kB[22m[1m[22m[2m │ gzip:   7.45 kB[22m
 [2mdist/[22m[2massets/[22m[36mworkbox-window.prod.es5-BBnX5xw4.js  [39m[1m[2m  5.75 kB[22m[1m[22m[2m │ gzip:   2.36 kB[22m
-[2mdist/[22m[2massets/[22m[36mindex-Z0ixxCVR.js                    [39m[1m[33m619.71 kB[39m[22m[2m │ gzip: 179.60 kB[22m
+[2mdist/[22m[2massets/[22m[36mindex-BvN3lvdU.js                    [39m[1m[33m619.79 kB[39m[22m[2m │ gzip: 179.63 kB[22m
 [33m
 (!) Some chunks are larger than 500 kB after minification. Consider:
 - Using dynamic import() to code-split the application
 - Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
 - Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.[39m
-[32m✓ built in 8.41s[39m
+[32m✓ built in 9.28s[39m
 
 [36mPWA v1.3.0[39m
 mode      [35mgenerateSW[39m
-precache  [32m14 entries[39m [2m(710.06 KiB)[22m
+precache  [32m14 entries[39m [2m(710.26 KiB)[22m
 files generated
   [2mdist/sw.js[22m
   [2mdist/workbox-355bf58a.js[22m
@@ -122,8 +134,36 @@ files generated
 
 Running 213 tests using 2 workers
 ·········°·°°°°°°°°°°°°°°°°°°°°°°°°°°°°····················°°°°°°°°°············
-····························°·····················°°°°°°°°°············°°°°°°°°°
-°°°°°°°°°°°°°°°°°·°°°····················°°°°°°°°°···
+····························°·····×···········±
+::error file=tests/e2e/practice.spec.ts,title=[iphone] › tests/e2e/practice.spec.ts:50:3 › practice › a full round: every answer right, the station passed, progress recorded,line=92,col=20::  1) [iphone] › tests/e2e/practice.spec.ts:50:3 › practice › a full round: every answer right, the station passed, progress recorded %0A    Error: expect(received).toEqual(expected) // deep equality%0A%0A    - Expected  - 1%0A    + Received  + 3%0A%0A    - Array []%0A    + Array [%0A    +   "ResizeObserver loop completed with undelivered notifications.",%0A    + ]%0A%0A      90 |     await expect(row).toContainText('10 תרגילים');%0A      91 |     await expect(row).toContainText('הצלחה: 100%');%0A    > 92 |     expect(errors).toEqual([]);%0A         |                    ^%0A      93 |   });%0A      94 |%0A      95 |   test('wrong answers get a gentle explanation, hints, and finally the answer', async ({%0A        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:92:20
+····°°°°°°°°°·············°°°°°°°
+°°°°°°°°°°°°°°°°°°°°°°····················°°°°°°°°°···
+
+  1) [iphone] › tests/e2e/practice.spec.ts:50:3 › practice › a full round: every answer right, the station passed, progress recorded 
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 3
+
+    - Array []
+    + Array [
+    +   "ResizeObserver loop completed with undelivered notifications.",
+    + ]
+
+      90 |     await expect(row).toContainText('10 תרגילים');
+      91 |     await expect(row).toContainText('הצלחה: 100%');
+    > 92 |     expect(errors).toEqual([]);
+         |                    ^
+      93 |   });
+      94 |
+      95 |   test('wrong answers get a gentle explanation, hints, and finally the answer', async ({
+        at /home/runner/work/Math/Math/tests/e2e/practice.spec.ts:92:20
+
+    Error Context: test-results/practice-practice-a-full-r-8f7ae-on-passed-progress-recorded-iphone/error-context.md
+
+  1 flaky
+    [iphone] › tests/e2e/practice.spec.ts:50:3 › practice › a full round: every answer right, the station passed, progress recorded 
   86 skipped
-  127 passed (6.9m)
-::notice title=🎭 Playwright Run Summary::  86 skipped%0A  127 passed (6.9m)
+  126 passed (7.5m)
+::notice title=🎭 Playwright Run Summary::  1 flaky%0A    [iphone] › tests/e2e/practice.spec.ts:50:3 › practice › a full round: every answer right, the station passed, progress recorded %0A  86 skipped%0A  126 passed (7.5m)
