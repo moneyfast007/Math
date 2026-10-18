@@ -146,7 +146,6 @@ describe('parseAppData', () => {
               },
             },
             streak: { count: 0, lastDay: null },
-          days: {},
             days: {},
           },
         },
