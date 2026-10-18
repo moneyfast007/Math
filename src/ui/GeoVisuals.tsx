@@ -40,10 +40,10 @@ export function AngleView({ v }: { v: Extract<Visual, { type: 'angle' }> }) {
         <line x1={o[0]} y1={o[1]} x2={fmt(p1[0])} y2={fmt(p1[1])} className="geo__ray" />
         <line x1={o[0]} y1={o[1]} x2={fmt(p2[0])} y2={fmt(p2[1])} className="geo__ray" />
         {/* An arc, never a right-angle square: the square would give the answer away. */}
-          <path
-            d={`M${fmt(q1[0])} ${fmt(q1[1])} A${ar} ${ar} 0 ${v.deg > 180 ? 1 : 0} 0 ${fmt(q2[0])} ${fmt(q2[1])}`}
-            className="geo__mark"
-          />
+        <path
+          d={`M${fmt(q1[0])} ${fmt(q1[1])} A${ar} ${ar} 0 ${v.deg > 180 ? 1 : 0} 0 ${fmt(q2[0])} ${fmt(q2[1])}`}
+          className="geo__mark"
+        />
         <circle cx={o[0]} cy={o[1]} r="3.5" className="geo__dot" />
       </svg>
     </div>
