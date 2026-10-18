@@ -129,9 +129,8 @@ test.describe('column arithmetic', () => {
     // Written for her (green), and on to the next column.
     await expect(page.locator('.vcell--ok')).toHaveCount(1);
     for (const d of digits.slice(1)) await press(page, d);
-    // The exercise counts as shown, not solved alone.
-    await expect(page.locator('.feedback--correct')).toHaveCount(0);
-    await expect(page.getByRole('button', { name: 'הבא' })).toBeVisible();
+    // Finished (counted in progress as shown, not solved alone): on to the next one.
+    await expect(page.getByRole('progressbar')).toHaveAttribute('aria-valuenow', '1');
   });
 
   test('written whole: checked, the wrong cell marked, then together', async ({ page }) => {
@@ -160,7 +159,7 @@ test.describe('column arithmetic', () => {
     await expect(page.locator('.column-work__say')).toBeVisible();
     await expect(page.locator('.vcell--wrong')).toHaveCount(0);
     for (const d of digits) await press(page, d);
-    await expect(page.getByRole('button', { name: 'הבא' })).toBeVisible();
+    await expect(page.getByRole('progressbar')).toHaveAttribute('aria-valuenow', '1');
     expect(errors).toEqual([]);
   });
 

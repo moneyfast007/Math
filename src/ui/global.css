@@ -858,7 +858,7 @@ ol.steps {
   flex-wrap: wrap;
   justify-content: center;
   gap: 6px;
-  max-width: 340px;
+  max-width: min(340px, 100%);
   padding: var(--space-2);
   border-radius: var(--radius-md);
   background: var(--color-surface-alt);
@@ -875,7 +875,8 @@ ol.steps {
 }
 
 .obj {
-  font-size: calc(var(--text-math) * 0.62);
+  /* A row of five (and its frame) must fit a 360px phone. */
+  font-size: min(calc(var(--text-math) * 0.62), 10.5vw);
   line-height: 1.1;
 }
 
@@ -1829,11 +1830,11 @@ ol.steps {
 
 /* Gan: bigger pictures and big, friendly answer buttons in soft colours. */
 :root[data-age='young'] .obj {
-  font-size: calc(var(--text-math) * 0.8);
+  font-size: min(calc(var(--text-math) * 0.8), 10.5vw);
 }
 
 :root[data-age='young'] .objects__group {
-  max-width: 480px;
+  max-width: min(480px, 100%);
 }
 
 :root[data-age='young'] .choice-big {
