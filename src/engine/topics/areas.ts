@@ -58,12 +58,17 @@ function areaExercise(p: AreaParts): Exercise {
     topicId: ID,
     level: p.level,
     prompt: t('ex.areas.prompt'),
-    display: p.display,
+    // The picture carries the numbers; the formula is the second hint, not the question.
+    display: '',
     spoken: p.spoken,
     visual: p.visual,
     answer: p.answer,
     input: numpad(p.digits ?? 3),
-    hints: [p.hints[0], p.hints[1], exampleHint(p.example.display, p.example.solved)],
+    hints: [
+      p.hints[0],
+      { ...p.hints[1], example: { display: p.display, spoken: p.hints[1].spoken } },
+      exampleHint(p.example.display, p.example.solved),
+    ],
     solution: p.solution,
   });
 }
@@ -341,7 +346,7 @@ function boxVolume(rng: Rng): Exercise {
     topicId: ID,
     level: 8,
     prompt: t('ex.areas.box.prompt'),
-    display: `${l} × ${w} × ${h} = ?`,
+    display: '',
     spoken: say('ex.areas.box.spoken', { l: cm(l), w: cm(w), h: cm(h) }),
     visual: { type: 'box', l, w, h, unit: 'ס״מ' },
     answer: v,

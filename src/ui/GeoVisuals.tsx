@@ -194,14 +194,16 @@ export function PolygonView({ v }: { v: Polygon }) {
           const [a, b] = side(i);
           const mid = scale(add(a, b), 0.5);
           const out = unit(sub(mid, c));
-          const at = add(mid, scale(out, 11));
+          // Beside the side, on the outside: text runs away from the line, never across it.
+          const anchor = out[0] > 0.35 ? 'start' : out[0] < -0.35 ? 'end' : 'middle';
+          const at = add(mid, scale(out, anchor === 'middle' ? 10 : 6));
           return (
             <text
               key={`s${i}`}
               x={fmt(at[0])}
               y={fmt(at[1])}
               className="geo__label"
-              textAnchor="middle"
+              textAnchor={anchor}
               dominantBaseline="central"
             >
               {label}
@@ -241,12 +243,18 @@ export function RulerView({ v }: { v: Extract<Visual, { type: 'ruler' }> }) {
         <rect
           x={fmt(x(v.from))}
           y="10"
-          width={fmt((v.to - v.from) * unitW)}
+          width={fmt((v.to - v.from) * unitW - 12)}
           height="22"
           rx="4"
           className="geo__object"
         />
-        <path d={`M${fmt(x(v.to))} 10 l12 11 l-12 11 z`} className="geo__object-tip" />
+        {/* The whole pencil, tip included, lies between the two dashed marks. */}
+        <path
+          d={`M${fmt(x(v.to) - 12)} 10 L${fmt(x(v.to))} 21 L${fmt(x(v.to) - 12)} 32 Z`}
+          className="geo__object-tip"
+        />
+        <line x1={fmt(x(v.from))} y1="6" x2={fmt(x(v.from))} y2="58" className="geo__guide" />
+        <line x1={fmt(x(v.to))} y1="6" x2={fmt(x(v.to))} y2="58" className="geo__guide" />
         <rect
           x={pad - 6}
           y="40"

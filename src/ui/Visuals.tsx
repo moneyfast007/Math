@@ -247,6 +247,7 @@ function PlaceValue({ v }: { v: Extract<Visual, { type: 'placeValue' }> }) {
 /* ---------- Clocks (world: שעון) ---------- */
 
 const DIAL_NUMBERS = Array.from({ length: 12 }, (_, i) => i + 1);
+const MINUTE_TICKS = Array.from({ length: 60 }, (_, i) => i);
 
 /** A point at `angle` degrees clockwise from 12, `r` from the centre of a 300 × 300 dial. */
 function onDial(angle: number, r: number): { x: number; y: number } {
@@ -262,8 +263,22 @@ export function AnalogClock({ h, m }: ClockTime) {
     <svg viewBox="0 0 300 300" className="clock__face" aria-hidden="true">
       <circle cx="150" cy="150" r="142" className="clock__rim" />
       <circle cx="150" cy="150" r="128" className="clock__dial" />
+      {MINUTE_TICKS.map((k) => {
+        const a = onDial(k * 6, 127);
+        const b = onDial(k * 6, k % 5 === 0 ? 117 : 121);
+        return (
+          <line
+            key={k}
+            x1={a.x}
+            y1={a.y}
+            x2={b.x}
+            y2={b.y}
+            className={k % 5 === 0 ? 'clock__tick clock__tick--five' : 'clock__tick'}
+          />
+        );
+      })}
       {DIAL_NUMBERS.map((n) => {
-        const p = onDial(n * 30, 108);
+        const p = onDial(n * 30, 100);
         return (
           <text
             key={n}

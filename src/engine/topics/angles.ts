@@ -430,7 +430,7 @@ function thirdAngle(rng: Rng): Exercise {
     topicId: ID,
     level: 7,
     prompt: t('ex.angles.third.prompt'),
-    display: `${a}° + ${b}° + ? = 180°`,
+    display: '',
     spoken: say('ex.angles.third.spoken', { a: deg(a), b: deg(b) }),
     visual: poly(SHAPES.scalene, { angleLabels: [`${a}°`, `${b}°`, '?'] }),
     answer: c,

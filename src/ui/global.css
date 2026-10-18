@@ -2048,9 +2048,9 @@ ol.steps {
   height: auto;
 }
 
-/* Landscape iPad: coins beside the answer box, so the number pad stays on screen. */
+/* Landscape iPad: the picture beside the answer box, so the number pad stays on screen. */
 @media (orientation: landscape) and (max-height: 900px) {
-  .exercise:has(> .money):has(> .answer-box) {
+  .exercise:has(> [data-visual]):has(> .answer-box) {
     display: grid;
     grid-template-columns: auto auto;
     justify-content: center;
@@ -2058,7 +2058,7 @@ ol.steps {
     column-gap: var(--space-4);
   }
 
-  .exercise:has(> .money):has(> .answer-box) > .exercise__prompt {
+  .exercise:has(> [data-visual]):has(> .answer-box) > .exercise__prompt {
     grid-column: 1 / -1;
   }
 
@@ -2336,6 +2336,11 @@ ol.steps {
   font-size: 11px;
   font-weight: 800;
   fill: var(--color-text);
+  /* A halo keeps a label readable where it meets a line. */
+  paint-order: stroke;
+  stroke: var(--color-surface);
+  stroke-width: 3px;
+  stroke-linejoin: round;
 }
 
 .geo__label--height,
@@ -2388,4 +2393,20 @@ ol.steps {
   stroke: var(--color-accent-strong);
   stroke-width: 1;
   opacity: 0.7;
+}
+
+.clock__tick {
+  stroke: #c9b8a6;
+  stroke-width: 2;
+}
+
+.clock__tick--five {
+  stroke: var(--color-text);
+  stroke-width: 3.5;
+}
+
+.geo__guide {
+  stroke: #c45f24;
+  stroke-width: 1.5;
+  stroke-dasharray: 3 3;
 }
