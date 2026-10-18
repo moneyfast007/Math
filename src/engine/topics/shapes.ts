@@ -79,7 +79,12 @@ interface Pick {
   answer: number;
 }
 
-function shuffled(rng: Rng, right: ShapeItem, rightLabel: string, wrong: [ShapeItem, string][]): Pick {
+function shuffled(
+  rng: Rng,
+  right: ShapeItem,
+  rightLabel: string,
+  wrong: [ShapeItem, string][],
+): Pick {
   const all = shuffle(rng, [[right, rightLabel] as [ShapeItem, string], ...wrong]);
   return {
     options: all.map(([s]) => s),
@@ -116,10 +121,11 @@ function pickExercise(
 
 type WhereFact = { target: ShapeKind; others: ShapeKind[]; turn: number };
 
-const whereFacts = (targets: ShapeKind[], pool: (t: ShapeKind) => ShapeKind[][]) => (): WhereFact[] =>
-  targets.flatMap((target) =>
-    pool(target).flatMap((others) => [0, 20].map((turn) => ({ target, others, turn }))),
-  );
+const whereFacts =
+  (targets: ShapeKind[], pool: (t: ShapeKind) => ShapeKind[][]) => (): WhereFact[] =>
+    targets.flatMap((target) =>
+      pool(target).flatMap((others) => [0, 20].map((turn) => ({ target, others, turn }))),
+    );
 
 function where(level: number) {
   return ({ target, others, turn }: WhereFact, rng: Rng): Exercise => {
@@ -212,7 +218,9 @@ const SIZES = [
 type SizeFact = { shape: ShapeKind; ask: 'big' | 'small' };
 
 function size({ shape, ask }: SizeFact, rng: Rng): Exercise {
-  const items = SIZES.map((s, i) => [item(shape, colorOf(i), s.size), s.label] as [ShapeItem, string]);
+  const items = SIZES.map(
+    (s, i) => [item(shape, colorOf(i), s.size), s.label] as [ShapeItem, string],
+  );
   const [right, ...wrong] = ask === 'big' ? items : [items[2], items[0], items[1]];
   const name = NAME[shape];
   const ex: ShapeKind = shape === 'circle' ? 'square' : 'circle';
@@ -220,7 +228,12 @@ function size({ shape, ask }: SizeFact, rng: Rng): Exercise {
     5,
     `size:${shape}:${ask}`,
     say(ask === 'big' ? 'ex.shapes.biggest' : 'ex.shapes.smallest', { name }),
-    shuffled(rng, (right as [ShapeItem, string])[0], (right as [ShapeItem, string])[1], wrong as [ShapeItem, string][]),
+    shuffled(
+      rng,
+      (right as [ShapeItem, string])[0],
+      (right as [ShapeItem, string])[1],
+      wrong as [ShapeItem, string][],
+    ),
     [
       hint(say('ex.shapes.size.hint1')),
       hint(say(ask === 'big' ? 'ex.shapes.size.hintBig' : 'ex.shapes.size.hintSmall')),
@@ -332,7 +345,9 @@ function patternExercise(level: number) {
     const seq = sequence(pattern, gap === 'end' ? length + 1 : length);
     const at = gap === 'end' ? length : gap;
     const right = seq[at] as number;
-    const shown = seq.slice(0, length).map((k, i) => (i === at ? null : thingItem(kind, things[k] as string)));
+    const shown = seq
+      .slice(0, length)
+      .map((k, i) => (i === at ? null : thingItem(kind, things[k] as string)));
     if (gap === 'end') shown.push(null);
     // The choices: everything in the pattern, plus one thing that is not in it.
     const pool = kind === 'color' ? COLORS : ALL;
@@ -350,7 +365,13 @@ function patternExercise(level: number) {
     );
     const sayIt = seq
       .slice(0, length)
-      .map((k, i) => (i === at ? 'מה?' : kind === 'color' ? COLOR_NAME[things[k] as ShapeColor] : NAME[things[k] as ShapeKind]))
+      .map((k, i) =>
+        i === at
+          ? 'מה?'
+          : kind === 'color'
+            ? COLOR_NAME[things[k] as ShapeColor]
+            : NAME[things[k] as ShapeKind],
+      )
       .join(', ');
     const exThings = kind === 'color' ? ['yellow', 'green'] : ['square', 'circle'];
     return pickExercise(
@@ -382,9 +403,16 @@ function scene(target: ShapeKind, n: number, seed: number): ShapeItem[] {
   const rng = seededRng(seed);
   const others = ALL.filter((s) => s !== target);
   const items = [
-    ...Array.from({ length: n }, (_, i) => item(target, colorOf(i + seed), 0.55 + (i % 3) * 0.15, (i * 40) % 90)),
+    ...Array.from({ length: n }, (_, i) =>
+      item(target, colorOf(i + seed), 0.55 + (i % 3) * 0.15, (i * 40) % 90),
+    ),
     ...Array.from({ length: 9 - n }, (_, i) =>
-      item(others[i % others.length] as ShapeKind, colorOf(i + 1), 0.5 + (i % 2) * 0.25, (i * 25) % 60),
+      item(
+        others[i % others.length] as ShapeKind,
+        colorOf(i + 1),
+        0.5 + (i % 2) * 0.25,
+        (i * 25) % 60,
+      ),
     ),
   ];
   return shuffle(rng, items);
@@ -392,7 +420,8 @@ function scene(target: ShapeKind, n: number, seed: number): ShapeItem[] {
 
 function countShapes({ target, n }: CountFact): Exercise {
   const noun = NOUN[target];
-  const ex: CountFact = target === 'circle' ? { target: 'square', n: 3 } : { target: 'circle', n: 3 };
+  const ex: CountFact =
+    target === 'circle' ? { target: 'square', n: 3 } : { target: 'circle', n: 3 };
   const choices = (n === 1 ? [1, 2, 3] : [n - 1, n, n + 1]).sort((a, b) => a - b);
   return exercise({
     factId: `count:${target}:${n}`,
@@ -437,7 +466,11 @@ export const shapesTopic = defineTopic({
       where(2),
     ),
     closed(L(3), () => ALL.flatMap((target) => [30, 90].map((turn) => ({ target, turn }))), same),
-    closed(L(4), () => ALL.flatMap((shape) => [0, 30].map((turn) => ({ shape, turn }))), (f: CornerFact) => corners(f)),
+    closed(
+      L(4),
+      () => ALL.flatMap((shape) => [0, 30].map((turn) => ({ shape, turn }))),
+      (f: CornerFact) => corners(f),
+    ),
     closed(
       L(5),
       () => ALL.flatMap((shape) => (['big', 'small'] as const).map((ask) => ({ shape, ask }))),
@@ -445,7 +478,8 @@ export const shapesTopic = defineTopic({
     ),
     closed(
       L(6),
-      () => TRIPLES.flatMap((lengths) => (['long', 'short'] as const).map((ask) => ({ lengths, ask }))),
+      () =>
+        TRIPLES.flatMap((lengths) => (['long', 'short'] as const).map((ask) => ({ lengths, ask }))),
       pencils,
     ),
     closed(L(7), patternFacts('color', ['end']), patternExercise(7)),
@@ -457,9 +491,10 @@ export const shapesTopic = defineTopic({
     ),
     closed(
       L(10),
-      () => (['triangle', 'circle', 'square'] as ShapeKind[]).flatMap((target) =>
-        [2, 3, 4, 5, 6].map((n) => ({ target, n })),
-      ),
+      () =>
+        (['triangle', 'circle', 'square'] as ShapeKind[]).flatMap((target) =>
+          [2, 3, 4, 5, 6].map((n) => ({ target, n })),
+        ),
       (f: CountFact) => countShapes(f),
     ),
   ],

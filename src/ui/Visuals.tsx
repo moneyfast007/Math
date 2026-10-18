@@ -410,7 +410,13 @@ function Pencils({ v }: { v: Extract<Visual, { type: 'pencils' }> }) {
           <svg key={i} viewBox="0 0 40 200" className="pencil">
             <path d={`M20 ${top} L32 ${top + 30} L8 ${top + 30} Z`} fill="#f3d9b0" />
             <path d={`M20 ${top} L24 ${top + 10} L16 ${top + 10} Z`} fill="#3a2f2a" />
-            <rect x="8" y={top + 30} width="24" height={body - 12} fill={PENCIL_COLORS[(len + i) % PENCIL_COLORS.length]} />
+            <rect
+              x="8"
+              y={top + 30}
+              width="24"
+              height={body - 12}
+              fill={PENCIL_COLORS[(len + i) % PENCIL_COLORS.length]}
+            />
             <rect x="8" y={200 - 12} width="24" height="12" rx="3" fill="#e8793a" opacity="0.8" />
           </svg>
         );

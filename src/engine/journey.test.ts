@@ -79,7 +79,11 @@ describe('worlds', () => {
     for (const grade of [0, 1, 2, 3, 4, 5, 6] as const) {
       expect(worldsFor(grade, undefined).length, `grade ${grade}`).toBeGreaterThan(0);
     }
-    expect(worldsFor(0, undefined).map((w) => w.topic.id)).toEqual(['count-10', 'add-sub-20', 'shapes']);
+    expect(worldsFor(0, undefined).map((w) => w.topic.id)).toEqual([
+      'count-10',
+      'add-sub-20',
+      'shapes',
+    ]);
   });
 
   it('an older child without topics of her own gets the whole list', () => {

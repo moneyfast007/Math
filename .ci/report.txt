@@ -21,115 +21,73 @@ ok
 
 [1m[46m RUN [49m[22m [36mv3.2.7 [39m[90m/home/runner/work/Math/Math[39m
 
- [32m✓[39m src/state/validate.test.ts [2m([22m[2m19 tests[22m[2m)[22m[32m 14[2mms[22m[39m
- [32m✓[39m src/state/store.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 31[2mms[22m[39m
+ [32m✓[39m src/state/validate.test.ts [2m([22m[2m19 tests[22m[2m)[22m[32m 17[2mms[22m[39m
+ [32m✓[39m src/state/store.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 37[2mms[22m[39m
  [32m✓[39m src/state/progress.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 12[2mms[22m[39m
- [32m✓[39m src/lang/hebrewNumbers.test.ts [2m([22m[2m81 tests[22m[2m)[22m[33m 2081[2mms[22m[39m
-   [33m[2m✓[22m[39m numberToWords, properties[2m > [22mis injective on 0–99,999: different numbers never produce the same words [33m 2013[2mms[22m[39m
- [32m✓[39m src/audio/speaker.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 16[2mms[22m[39m
- [32m✓[39m src/engine/topics/addSub20.test.ts [2m([22m[2m14 tests[22m[2m)[22m[33m 733[2mms[22m[39m
- [32m✓[39m src/engine/session.test.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 34[2mms[22m[39m
- [31m❯[39m src/engine/journey.test.ts [2m([22m[2m10 tests[22m[2m | [22m[31m1 failed[39m[2m)[22m[32m 15[2mms[22m[39m
-   [32m✓[39m worldFor[2m > [22ma new grade-2 child starts at her grade level with earlier stations done[32m 2[2mms[22m[39m
-   [32m✓[39m worldFor[2m > [22ma kindergartener arrives at add-sub-20 past the counting stations (world 1 taught them)[32m 0[2mms[22m[39m
-   [32m✓[39m worldFor[2m > [22mpassed stations above the current level stay done after a level-down[32m 0[2mms[22m[39m
-   [32m✓[39m worldFor[2m > [22mopens the review when every level is done, and completes the world when it is passed[32m 1[2mms[22m[39m
-   [32m✓[39m worldFor[2m > [22mthe review passed early (imported data) does not complete a world with open stations[32m 0[2mms[22m[39m
-[31m   [31m×[31m worlds[2m > [22mlists the grade’s topics in order and picks the first unfinished one[39m[32m 8[2mms[22m[39m
-[31m     → expected [ 1, 2, 3 ] to deeply equal [ 1, 2 ][39m
-   [32m✓[39m worlds[2m > [22mevery grade has at least one world, in curriculum order[32m 1[2mms[22m[39m
-   [32m✓[39m worlds[2m > [22man older child without topics of her own gets the whole list[32m 0[2mms[22m[39m
-   [32m✓[39m worldsFor[2m > [22mevery grade, gan to grade 6, has worlds of its own, starting with world 1[32m 1[2mms[22m[39m
-   [32m✓[39m worldsFor[2m > [22ma grade-4 child starts in big numbers, not in counting[32m 0[2mms[22m[39m
- [32m✓[39m src/ui/components.test.tsx [2m([22m[2m7 tests[22m[2m)[22m[33m 417[2mms[22m[39m
- [32m✓[39m src/parent/gate.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[33m 513[2mms[22m[39m
- [32m✓[39m src/lang/compose.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 9[2mms[22m[39m
- [32m✓[39m src/state/streak.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 5[2mms[22m[39m
- [32m✓[39m scripts/tts/pronunciation.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 8[2mms[22m[39m
- [32m✓[39m src/screens/JourneyScreen.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[32m 141[2mms[22m[39m
- [32m✓[39m src/i18n/i18n.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 88[2mms[22m[39m
+ [32m✓[39m src/lang/hebrewNumbers.test.ts [2m([22m[2m81 tests[22m[2m)[22m[33m 2037[2mms[22m[39m
+   [33m[2m✓[22m[39m numberToWords, properties[2m > [22mis injective on 0–99,999: different numbers never produce the same words [33m 1979[2mms[22m[39m
+ [32m✓[39m src/audio/speaker.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 23[2mms[22m[39m
+ [32m✓[39m src/engine/topics/addSub20.test.ts [2m([22m[2m14 tests[22m[2m)[22m[33m 710[2mms[22m[39m
+ [32m✓[39m src/engine/session.test.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 18[2mms[22m[39m
+ [32m✓[39m src/engine/journey.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 13[2mms[22m[39m
+ [32m✓[39m src/ui/components.test.tsx [2m([22m[2m7 tests[22m[2m)[22m[33m 395[2mms[22m[39m
+ [32m✓[39m src/parent/gate.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[33m 539[2mms[22m[39m
+ [32m✓[39m src/lang/compose.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+ [32m✓[39m src/state/streak.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+ [32m✓[39m scripts/tts/pronunciation.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m src/screens/JourneyScreen.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[32m 118[2mms[22m[39m
+ [32m✓[39m src/i18n/i18n.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 113[2mms[22m[39m
  [32m✓[39m src/lang/time.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 8[2mms[22m[39m
- [32m✓[39m src/lang/spoken.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 8[2mms[22m[39m
- [32m✓[39m src/lang/spokenLabel.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 10[2mms[22m[39m
- [32m✓[39m src/audio/hash.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 8[2mms[22m[39m
- [32m✓[39m src/state/pin.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 11[2mms[22m[39m
- [32m✓[39m src/lang/groupDigits.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 4[2mms[22m[39m
- [32m✓[39m src/ui/MathExpr.test.tsx [2m([22m[2m3 tests[22m[2m)[22m[32m 52[2mms[22m[39m
- [32m✓[39m src/state/backup.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+ [32m✓[39m src/lang/spoken.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+ [32m✓[39m src/lang/spokenLabel.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 11[2mms[22m[39m
+ [32m✓[39m src/audio/hash.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+ [32m✓[39m src/state/pin.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 14[2mms[22m[39m
+ [32m✓[39m src/lang/groupDigits.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 3[2mms[22m[39m
+ [32m✓[39m src/ui/MathExpr.test.tsx [2m([22m[2m3 tests[22m[2m)[22m[32m 60[2mms[22m[39m
+ [32m✓[39m src/state/backup.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 10[2mms[22m[39m
  [32m✓[39m src/lang/fractions.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 5[2mms[22m[39m
- [32m✓[39m src/app/router.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+ [32m✓[39m src/app/router.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 7[2mms[22m[39m
  [32m✓[39m src/ui/ageBand.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 7[2mms[22m[39m
- [32m✓[39m src/engine/topics/audioBank.test.ts [2m([22m[2m230 tests[22m[2m)[22m[33m 15974[2mms[22m[39m
-   [33m[2m✓[22m[39m the audio bank covers what a child can hear: numbers-100[2m > [22mlevel 3 [33m 440[2mms[22m[39m
-   [33m[2m✓[22m[39m the audio bank covers what a child can hear: numbers-100[2m > [22mlevel 4 [33m 1622[2mms[22m[39m
-   [33m[2m✓[22m[39m the audio bank covers what a child can hear: numbers-100[2m > [22mlevel 5 [33m 515[2mms[22m[39m
-   [33m[2m✓[22m[39m the audio bank covers what a child can hear: numbers-100[2m > [22mlevel 6 [33m 336[2mms[22m[39m
-   [33m[2m✓[22m[39m the audio bank covers what a child can hear: numbers-100[2m > [22mlevel 9 [33m 821[2mms[22m[39m
-   [33m[2m✓[22m[39m the audio bank covers what a child can hear: clock[2m > [22mlevel 10 [33m 640[2mms[22m[39m
-   [33m[2m✓[22m[39m the audio bank covers what a child can hear: fraction-ops[2m > [22mlevel 3 [33m 358[2mms[22m[39m
- [32m✓[39m src/engine/topics/all.test.ts [2m([22m[2m301 tests[22m[2m)[22m[33m 52597[2mms[22m[39m
-   [33m[2m✓[22m[39m topic count-10[2m > [22mlevel 10 produces valid exercises [33m 408[2mms[22m[39m
-   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 2 produces valid exercises [33m 659[2mms[22m[39m
-   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 3 produces valid exercises [33m 636[2mms[22m[39m
-   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 4 produces valid exercises [33m 2143[2mms[22m[39m
-   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 5 produces valid exercises [33m 606[2mms[22m[39m
-   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 6 produces valid exercises [33m 644[2mms[22m[39m
-   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 7 produces valid exercises [33m 446[2mms[22m[39m
-   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 8 produces valid exercises [33m 469[2mms[22m[39m
-   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 9 produces valid exercises [33m 1266[2mms[22m[39m
-   [33m[2m✓[22m[39m topic numbers-100[2m > [22mavoids an immediate repeat [33m 597[2mms[22m[39m
-   [33m[2m✓[22m[39m topic clock-money-1[2m > [22mlevel 7 produces valid exercises [33m 427[2mms[22m[39m
-   [33m[2m✓[22m[39m topic clock-money-1[2m > [22mlevel 9 produces valid exercises [33m 386[2mms[22m[39m
-   [33m[2m✓[22m[39m topic add-sub-100[2m > [22mlevel 1 produces valid exercises [33m 393[2mms[22m[39m
-   [33m[2m✓[22m[39m topic add-sub-100[2m > [22mlevel 2 produces valid exercises [33m 351[2mms[22m[39m
-   [33m[2m✓[22m[39m topic add-sub-100[2m > [22mlevel 3 produces valid exercises [33m 380[2mms[22m[39m
-   [33m[2m✓[22m[39m topic add-sub-100[2m > [22mlevel 4 produces valid exercises [33m 391[2mms[22m[39m
-   [33m[2m✓[22m[39m topic add-sub-100[2m > [22mlevel 5 produces valid exercises [33m 386[2mms[22m[39m
-   [33m[2m✓[22m[39m topic add-sub-100[2m > [22mlevel 8 produces valid exercises [33m 342[2mms[22m[39m
-   [33m[2m✓[22m[39m topic add-sub-100[2m > [22mlevel 9 produces valid exercises [33m 394[2mms[22m[39m
-   [33m[2m✓[22m[39m topic clock[2m > [22mlevel 10 produces valid exercises [33m 518[2mms[22m[39m
-   [33m[2m✓[22m[39m topic fraction-ops[2m > [22mlevel 3 produces valid exercises [33m 409[2mms[22m[39m
-   [33m[2m✓[22m[39m topic fraction-ops[2m > [22mlevel 9 produces valid exercises [33m 310[2mms[22m[39m
+ [32m✓[39m src/engine/topics/audioBank.test.ts [2m([22m[2m240 tests[22m[2m)[22m[33m 16319[2mms[22m[39m
+   [33m[2m✓[22m[39m the audio bank covers what a child can hear: shapes[2m > [22mlevel 9 [33m 331[2mms[22m[39m
+   [33m[2m✓[22m[39m the audio bank covers what a child can hear: numbers-100[2m > [22mlevel 3 [33m 434[2mms[22m[39m
+   [33m[2m✓[22m[39m the audio bank covers what a child can hear: numbers-100[2m > [22mlevel 4 [33m 1738[2mms[22m[39m
+   [33m[2m✓[22m[39m the audio bank covers what a child can hear: numbers-100[2m > [22mlevel 5 [33m 347[2mms[22m[39m
+   [33m[2m✓[22m[39m the audio bank covers what a child can hear: numbers-100[2m > [22mlevel 8 [33m 327[2mms[22m[39m
+   [33m[2m✓[22m[39m the audio bank covers what a child can hear: numbers-100[2m > [22mlevel 9 [33m 910[2mms[22m[39m
+   [33m[2m✓[22m[39m the audio bank covers what a child can hear: fraction-ops[2m > [22mlevel 3 [33m 526[2mms[22m[39m
+ [32m✓[39m src/engine/topics/all.test.ts [2m([22m[2m314 tests[22m[2m)[22m[33m 53784[2mms[22m[39m
+   [33m[2m✓[22m[39m topic count-10[2m > [22mlevel 10 produces valid exercises [33m 461[2mms[22m[39m
+   [33m[2m✓[22m[39m topic shapes[2m > [22mlevel 7 produces valid exercises [33m 320[2mms[22m[39m
+   [33m[2m✓[22m[39m topic shapes[2m > [22mlevel 9 produces valid exercises [33m 703[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 2 produces valid exercises [33m 422[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 3 produces valid exercises [33m 715[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 4 produces valid exercises [33m 2350[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 5 produces valid exercises [33m 731[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 6 produces valid exercises [33m 681[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 7 produces valid exercises [33m 398[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 8 produces valid exercises [33m 521[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 9 produces valid exercises [33m 1171[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mavoids an immediate repeat [33m 722[2mms[22m[39m
+   [33m[2m✓[22m[39m topic clock-money-1[2m > [22mlevel 7 produces valid exercises [33m 350[2mms[22m[39m
+   [33m[2m✓[22m[39m topic clock-money-1[2m > [22mlevel 9 produces valid exercises [33m 465[2mms[22m[39m
+   [33m[2m✓[22m[39m topic add-sub-100[2m > [22mlevel 3 produces valid exercises [33m 375[2mms[22m[39m
+   [33m[2m✓[22m[39m topic add-sub-100[2m > [22mlevel 4 produces valid exercises [33m 316[2mms[22m[39m
+   [33m[2m✓[22m[39m topic clock[2m > [22mlevel 10 produces valid exercises [33m 491[2mms[22m[39m
+   [33m[2m✓[22m[39m topic fraction-ops[2m > [22mlevel 3 produces valid exercises [33m 412[2mms[22m[39m
+   [33m[2m✓[22m[39m topic fraction-ops[2m > [22mlevel 9 produces valid exercises [33m 308[2mms[22m[39m
    [33m[2m✓[22m[39m topic ratio[2m > [22mlevel 1 produces valid exercises [33m 368[2mms[22m[39m
-   [33m[2m✓[22m[39m topic ratio[2m > [22mlevel 2 produces valid exercises [33m 346[2mms[22m[39m
-   [33m[2m✓[22m[39m topic ratio[2m > [22mlevel 3 produces valid exercises [33m 331[2mms[22m[39m
-   [33m[2m✓[22m[39m topic ratio[2m > [22mlevel 4 produces valid exercises [33m 305[2mms[22m[39m
-   [33m[2m✓[22m[39m topic circle-volume[2m > [22mlevel 6 produces valid exercises [33m 392[2mms[22m[39m
-   [33m[2m✓[22m[39m topic circle-volume[2m > [22mlevel 8 produces valid exercises [33m 409[2mms[22m[39m
+   [33m[2m✓[22m[39m topic ratio[2m > [22mlevel 2 produces valid exercises [33m 347[2mms[22m[39m
+   [33m[2m✓[22m[39m topic ratio[2m > [22mlevel 3 produces valid exercises [33m 314[2mms[22m[39m
+   [33m[2m✓[22m[39m topic ratio[2m > [22mlevel 4 produces valid exercises [33m 301[2mms[22m[39m
+   [33m[2m✓[22m[39m topic circle-volume[2m > [22mlevel 6 produces valid exercises [33m 403[2mms[22m[39m
+   [33m[2m✓[22m[39m topic circle-volume[2m > [22mlevel 8 produces valid exercises [33m 406[2mms[22m[39m
 
-[31m⎯⎯⎯⎯⎯⎯⎯[39m[1m[41m Failed Tests 1 [49m[22m[31m⎯⎯⎯⎯⎯⎯⎯[39m
+[2m Test Files [22m [1m[32m28 passed[39m[22m[90m (28)[39m
+[2m      Tests [22m [1m[32m799 passed[39m[22m[90m (799)[39m
+[2m   Start at [22m 10:32:54
+[2m   Duration [22m 58.76s[2m (transform 1.13s, setup 5.88s, collect 2.40s, tests 74.30s, environment 15.43s, prepare 3.21s)[22m
 
-[41m[1m FAIL [22m[49m src/engine/journey.test.ts[2m > [22mworlds[2m > [22mlists the grade’s topics in order and picks the first unfinished one
-[31m[1mAssertionError[22m: expected [ 1, 2, 3 ] to deeply equal [ 1, 2 ][39m
-
-[32m- Expected[39m
-[31m+ Received[39m
-
-[2m  [[22m
-[2m    1,[22m
-[2m    2,[22m
-[31m+   3,[39m
-[2m  ][22m
-
-[36m [2m❯[22m src/engine/journey.test.ts:[2m69:40[22m[39m
-    [90m 67| [39m  it('lists the grade’s topics in order and picks the first unfinished…
-    [90m 68| [39m    [35mconst[39m worlds [33m=[39m [34mworldsFor[39m([34m1[39m[33m,[39m undefined)[33m;[39m
-    [90m 69| [39m    [34mexpect[39m(worlds[33m.[39m[34mmap[39m((w) [33m=>[39m w[33m.[39mindex))[33m.[39m[34mtoEqual[39m([[34m1[39m[33m,[39m [34m2[39m])[33m;[39m
-    [90m   | [39m                                       [31m^[39m
-    [90m 70| [39m    [34mexpect[39m(worlds[[34m0[39m][33m?.[39mtopic[33m.[39mid)[33m.[39m[34mtoBe[39m(addSub20[33m.[39mid)[33m;[39m
-    [90m 71| [39m    [34mexpect[39m([34mactiveWorld[39m([34m1[39m[33m,[39m undefined)[33m?.[39mtopic[33m.[39mid)[33m.[39m[34mtoBe[39m(addSub20[33m.[39mid)[33m;[39m
-
-[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯[22m[39m
-
-
-[2m Test Files [22m [1m[31m1 failed[39m[22m[2m | [22m[1m[32m27 passed[39m[22m[90m (28)[39m
-[2m      Tests [22m [1m[31m1 failed[39m[22m[2m | [22m[1m[32m775 passed[39m[22m[90m (776)[39m
-[2m   Start at [22m 10:11:29
-[2m   Duration [22m 57.66s[2m (transform 1.24s, setup 5.76s, collect 2.61s, tests 72.82s, environment 15.70s, prepare 3.13s)[22m
-
-
-::error file=/home/runner/work/Math/Math/src/engine/journey.test.ts,title=src/engine/journey.test.ts > worlds > lists the grade’s topics in order and picks the first unfinished one,line=69,column=40::AssertionError: expected [ 1, 2, 3 ] to deeply equal [ 1, 2 ]%0A%0A- Expected%0A+ Received%0A%0A  [%0A    1,%0A    2,%0A+   3,%0A  ]%0A%0A ❯ src/engine/journey.test.ts:69:40%0A%0A
-TESTS FAILED
 
 ## build
 
@@ -138,24 +96,24 @@ TESTS FAILED
 
 [36mvite v7.3.7 [32mbuilding client environment for production...[36m[39m
 transforming...
-[32m✓[39m 113 modules transformed.
+[32m✓[39m 114 modules transformed.
 rendering chunks...
 computing gzip size...
 [2mdist/[22m[32mmanifest.webmanifest                        [39m[1m[2m  0.53 kB[22m[1m[22m
 [2mdist/[22m[32mindex.html                                  [39m[1m[2m  1.26 kB[22m[1m[22m[2m │ gzip:   0.60 kB[22m
-[2mdist/[22m[2massets/[22m[35mindex-D5AtOT8s.css                   [39m[1m[2m 30.07 kB[22m[1m[22m[2m │ gzip:   6.37 kB[22m
+[2mdist/[22m[2massets/[22m[35mindex-Dz-UP4lc.css                   [39m[1m[2m 31.04 kB[22m[1m[22m[2m │ gzip:   6.54 kB[22m
 [2mdist/[22m[2massets/[22m[36mworkbox-window.prod.es5-BBnX5xw4.js  [39m[1m[2m  5.75 kB[22m[1m[22m[2m │ gzip:   2.36 kB[22m
-[2mdist/[22m[2massets/[22m[36mindex-DVd3UiDq.js                    [39m[1m[33m511.37 kB[39m[22m[2m │ gzip: 149.80 kB[22m
+[2mdist/[22m[2massets/[22m[36mindex-CbhKz5SS.js                    [39m[1m[33m523.70 kB[39m[22m[2m │ gzip: 153.65 kB[22m
 [33m
 (!) Some chunks are larger than 500 kB after minification. Consider:
 - Using dynamic import() to code-split the application
 - Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
 - Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.[39m
-[32m✓ built in 3.92s[39m
+[32m✓ built in 3.83s[39m
 
 [36mPWA v1.3.0[39m
 mode      [35mgenerateSW[39m
-precache  [32m14 entries[39m [2m(598.85 KiB)[22m
+precache  [32m14 entries[39m [2m(611.84 KiB)[22m
 files generated
   [2mdist/sw.js[22m
   [2mdist/workbox-35e397ac.js[22m
@@ -165,17 +123,30 @@ files generated
 > heshbon@0.1.0 tts:build
 > tsx --tsconfig tsconfig.node.json scripts/tts/generate.ts --dry-run
 
-17280 phrases in the bank, 8 to generate.
-  chirp3-hd/Leda: 3 clips, 0.00 USD (Chirp 3 HD, 46 chars within the 1M free tier)
-  wavenet/he-IL-Wavenet-A: 5 clips, 0.00 USD (WaveNet/Standard, 108 chars within the 4M free tier)
-  [chirp3-hd/Leda] ui.topic.clockMoney1: שעון וכסף
-  [chirp3-hd/Leda] ui.level.clockMoney1.3: שעות שלמות: מה השעה?
-  [wavenet/he-IL-Wavenet-A] ui.level.clockMoney1.5: סופרים כסף עד עשרים
-  [chirp3-hd/Leda] ui.level.clockMoney1.8: מה השעה בעוד שעה?
-  [wavenet/he-IL-Wavenet-A] ui.level.clockMoney1.10: עודף מעשר
-  [wavenet/he-IL-Wavenet-A] ex.6041: למשל, יש כאן אחד עשר שקלים.
-  [wavenet/he-IL-Wavenet-A] ex.6044: למשל, יש כאן עשרה שקלים.
-  [wavenet/he-IL-Wavenet-A] ex.6046: למשל, יש כאן חמישה עשר שקלים.
+17523 phrases in the bank, 243 to generate.
+  chirp3-hd/Leda: 11 clips, 0.00 USD (Chirp 3 HD, 136 chars within the 1M free tier)
+  wavenet/he-IL-Wavenet-A: 232 clips, 0.00 USD (WaveNet/Standard, 9579 chars within the 4M free tier)
+  [chirp3-hd/Leda] ui.topic.shapes: צורות ודפוסים
+  [chirp3-hd/Leda] ui.level.shapes.1: עיגול, ריבוע, משולש
+  [chirp3-hd/Leda] ui.level.shapes.2: ריבוע או מלבן?
+  [chirp3-hd/Leda] ui.level.shapes.3: אותה צורה
+  [chirp3-hd/Leda] ui.level.shapes.4: כמה פינות?
+  [chirp3-hd/Leda] ui.level.shapes.5: גדול וקטן
+  [chirp3-hd/Leda] ui.level.shapes.6: ארוך וקצר
+  [chirp3-hd/Leda] ui.level.shapes.7: דפוס של צבעים
+  [chirp3-hd/Leda] ui.level.shapes.8: דפוס של צורות
+  [chirp3-hd/Leda] ui.level.shapes.9: מה חסר בדפוס?
+  [chirp3-hd/Leda] ui.level.shapes.10: כמה יש בתמונה?
+  [wavenet/he-IL-Wavenet-A] ex.2762: איפה העיגול?
+  [wavenet/he-IL-Wavenet-A] ex.2763: זה עיגול.
+  [wavenet/he-IL-Wavenet-A] ex.2764: לעיגול אין פינות: הוא עגול מסביב.
+  [wavenet/he-IL-Wavenet-A] ex.2765: נסו לספור את הפינות של כל צורה.
+  [wavenet/he-IL-Wavenet-A] ex.2766: למשל, זה עיגול.
+  [wavenet/he-IL-Wavenet-A] ex.2767: איפה הריבוע?
+  [wavenet/he-IL-Wavenet-A] ex.2768: זה ריבוע.
+  [wavenet/he-IL-Wavenet-A] ex.2769: לריבוע יש ארבע פינות, וכל הצלעות שלו באותו אורך.
+  [wavenet/he-IL-Wavenet-A] ex.2770: למשל, זה ריבוע.
+  … and 223 more
 
 ## e2e
 
@@ -192,5 +163,6 @@ Running 93 tests using 2 workers
 ···························°°°····························°°°···················
 ·········°°°·
   9 skipped
-  84 passed (2.9m)
-::notice title=🎭 Playwright Run Summary::  9 skipped%0A  84 passed (2.9m)
+  84 passed (3.0m)
+::notice title=🎭 Playwright Run Summary::  9 skipped%0A  84 passed (3.0m)
+SCREENSHOTS FAILED
