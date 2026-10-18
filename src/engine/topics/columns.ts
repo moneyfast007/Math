@@ -15,7 +15,6 @@ import {
   pictureExample,
   say,
   spokenEquationSolved,
-  type Op,
 } from '../build';
 import { pick, randInt } from '../rng';
 import type { Exercise, Rng } from '../types';
@@ -114,10 +113,10 @@ export function columnExercise(o: ColumnOptions): Exercise {
     topicId: o.topicId,
     level: o.level,
     prompt: o.story ? o.story.text : t('col.prompt'),
-    display: displayEquation(o.a, o.op as Op, o.b, '?'),
+    display: displayEquation(o.a, o.op, o.b, '?'),
     spoken,
     answer: c,
-    operation: OPERATION[o.op as Op],
+    operation: OPERATION[o.op],
     input: { type: 'vertical', layout, guided: o.guided },
     hints: [
       hint(say(twoRows ? 'col.hint1.mul2' : HINT1[o.op])),
@@ -125,16 +124,16 @@ export function columnExercise(o: ColumnOptions): Exercise {
         visual: { type: 'vertical', layout, upto: Math.min(1, firstRowSteps) },
       }),
       pictureExample(
-        spokenEquationSolved(ex.a, o.op as Op, ex.b, exC),
+        spokenEquationSolved(ex.a, o.op, ex.b, exC),
         { type: 'vertical', layout: exLayout },
-        displayEquation(ex.a, o.op as Op, ex.b, exC),
+        displayEquation(ex.a, o.op, ex.b, exC),
       ),
     ],
-    solution: spokenEquationSolved(o.a, o.op as Op, o.b, c),
+    solution: spokenEquationSolved(o.a, o.op, o.b, c),
     diagnose: (v) => {
       if (o.op === '+' && v === withoutCarrying(o.a, o.b)) return 'carry';
       if (o.op === '-' && v === withoutBorrowing(o.a, o.b)) return 'borrow';
-      return diagnoseArith(v, { a: o.a, op: o.op as Op, b: o.b, answer: c });
+      return diagnoseArith(v, { a: o.a, op: o.op, b: o.b, answer: c });
     },
   });
 }

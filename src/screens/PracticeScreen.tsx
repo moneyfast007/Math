@@ -339,7 +339,7 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
             key={`${s.done}:${e.factId}`}
             layout={e.input.layout}
             guided={e.input.guided}
-            phase={s.phase === 'finished' ? 'correct' : s.phase}
+            phase={s.phase}
             slow={slow}
             onMiss={(mistake, assisted) => apply({ type: 'stepMiss', mistake, assisted })}
             onSubmit={(v) => apply({ type: 'answer', value: v })}
