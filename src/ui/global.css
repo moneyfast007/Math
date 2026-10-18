@@ -819,6 +819,17 @@ ol.steps {
   font-size: var(--text-lg);
 }
 
+/* Phones: a word problem gets the card's full width, the speaker above it. */
+@media (max-width: 560px) {
+  .exercise__prompt--long {
+    flex-direction: column;
+  }
+
+  .exercise__prompt--long .exercise__title {
+    text-align: center;
+  }
+}
+
 .slot {
   display: inline-block;
   min-width: 1.4em;

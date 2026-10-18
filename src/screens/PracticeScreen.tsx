@@ -25,6 +25,9 @@ import { Plusi, type PlusiMood } from '@/ui/Plusi';
 import { SpeakerButton } from '@/ui/SpeakerButton';
 import { VisualView } from '@/ui/Visuals';
 
+/** A prompt longer than this (characters) is a word problem rather than "how much is it?". */
+const LONG_PROMPT = 40;
+
 /** How long a correct answer stays on screen before the next exercise. */
 const CORRECT_PAUSE_MS = 1400;
 
@@ -275,7 +278,9 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
 
   const e = s.exercise;
   const finished = s.phase === 'correct' || s.phase === 'revealed';
-  const slotValue = finished ? answerLabel(e) : e.input.type === 'numpad' && value ? value : '?';
+  // A long typed number is easier to check with separators (1,462,743), as everywhere else.
+  const slotValue =
+    finished ? answerLabel(e) : e.input.type === 'numpad' && value ? groupDigits(value) : '?';
   const hasSlot = e.display.includes('?');
   const [before, after] = e.display ? splitAtSlot(e.display) : ['', ''];
 
@@ -312,7 +317,12 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
       ) : null}
 
       <section className="exercise card" aria-live="polite">
-        <div className="exercise__prompt">
+        <div
+          className={
+            // A word problem: on a phone the speaker goes above it, so the text gets the full width.
+            e.prompt.length > LONG_PROMPT ? 'exercise__prompt exercise__prompt--long' : 'exercise__prompt'
+          }
+        >
           <SpeakerButton text={e.spokenText} parts={e.spokenParts} slow={slow} size="lg" />
           <h1 className="exercise__title">{groupDigits(e.prompt)}</h1>
         </div>
@@ -333,7 +343,7 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
             dir="ltr"
             aria-live="polite"
           >
-            {finished ? answerLabel(e) : value || '?'}
+            {finished ? answerLabel(e) : groupDigits(value) || '?'}
           </div>
         ) : null}
       </section>
