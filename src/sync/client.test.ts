@@ -42,7 +42,9 @@ async function device(services: Services, name: string, clock: { now: number }):
 
 function practice(d: Device, pid: string, n: number, at: number) {
   for (let i = 0; i < n; i++) {
-    d.app.getState().recordAttempt(pid, { topicId: 'addSub20', level: 1, correct: true, at: at + i });
+    d.app
+      .getState()
+      .recordAttempt(pid, { topicId: 'addSub20', level: 1, correct: true, at: at + i });
   }
 }
 

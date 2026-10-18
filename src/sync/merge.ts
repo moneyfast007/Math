@@ -141,7 +141,12 @@ export function applyDiff(
 /* ---------- View → shared document ---------- */
 
 /** The shared document after the view's profiles or PIN changed from `prev` to `next`. */
-export function stampShared(shared: SharedDoc, prev: AppData, next: AppData, now: number): SharedDoc {
+export function stampShared(
+  shared: SharedDoc,
+  prev: AppData,
+  next: AppData,
+  now: number,
+): SharedDoc {
   if (prev.profiles === next.profiles && prev.parent.pin === next.parent.pin) return shared;
   const profiles = { ...shared.profiles };
   const before = new Map(prev.profiles.map((p) => [p.id, p]));

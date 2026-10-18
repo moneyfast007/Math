@@ -6,5 +6,5 @@
 
 Running 9 tests using 2 workers
 ·········
-  9 passed (59.2s)
-::notice title=🎭 Playwright Run Summary::  9 passed (59.2s)
+  9 passed (1.5m)
+::notice title=🎭 Playwright Run Summary::  9 passed (1.5m)

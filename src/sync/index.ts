@@ -1,6 +1,12 @@
 import { useStore } from 'zustand';
 import { appStore } from '@/state/store';
-import { createIdbSyncStorage, createMemorySyncStorage, PULL_EVERY_MS, SyncEngine, type SyncUi } from './client';
+import {
+  createIdbSyncStorage,
+  createMemorySyncStorage,
+  PULL_EVERY_MS,
+  SyncEngine,
+  type SyncUi,
+} from './client';
 
 /** A name a parent recognizes in the list of devices. */
 export function deviceName(): string {

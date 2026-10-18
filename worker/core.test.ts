@@ -155,9 +155,14 @@ describe('the sync server', () => {
     });
     expect(cross.status).toBe(401);
     const huge = { ...emptySlice(), progress: { x: { pad: 'x'.repeat(300_000) } } };
-    const big = await call(services, '/api/sync', { shared: emptyShared(), slice: huge }, {
-      token: a.token,
-    });
+    const big = await call(
+      services,
+      '/api/sync',
+      { shared: emptyShared(), slice: huge },
+      {
+        token: a.token,
+      },
+    );
     expect(big.status).toBe(413);
     const bad = await call(services, '/api/sync', { shared: 5, slice: [] }, { token: a.token });
     expect(bad.status).toBe(400);

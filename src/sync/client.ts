@@ -382,7 +382,10 @@ export class SyncEngine {
       'tooManyDevices',
       'notFound',
     ];
-    return { ok: false, error: (known as string[]).includes(code) ? (code as SyncProblem) : 'unavailable' };
+    return {
+      ok: false,
+      error: (known as string[]).includes(code) ? (code as SyncProblem) : 'unavailable',
+    };
   }
 
   private viewOf(s: SyncState, data: AppData): AppData {
@@ -478,7 +481,11 @@ export class SyncEngine {
     if (this.state) return { ok: true };
     const at = this.now();
     const { shared, own } = startFamily(this.deps.app.getState().data, at);
-    const res = await this.post('/api/family', { deviceName: this.deviceName(), shared, slice: own });
+    const res = await this.post('/api/family', {
+      deviceName: this.deviceName(),
+      shared,
+      slice: own,
+    });
     if (!res.ok) return res;
     const link = readLink(res.body);
     if (!link) return { ok: false, error: 'unavailable' };
