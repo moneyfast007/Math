@@ -1,5 +1,5 @@
 
 Running 2 tests using 2 workers
 ··
-  2 passed (26.3s)
-::notice title=🎭 Playwright Run Summary::  2 passed (26.3s)
+  2 passed (25.6s)
+::notice title=🎭 Playwright Run Summary::  2 passed (25.6s)

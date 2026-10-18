@@ -21,126 +21,73 @@ ok
 
 [1m[46m RUN [49m[22m [36mv3.2.7 [39m[90m/home/runner/work/Math/Math[39m
 
- [32m✓[39m src/state/store.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 27[2mms[22m[39m
- [32m✓[39m src/state/validate.test.ts [2m([22m[2m19 tests[22m[2m)[22m[32m 28[2mms[22m[39m
- [32m✓[39m src/state/progress.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 14[2mms[22m[39m
- [32m✓[39m src/lang/hebrewNumbers.test.ts [2m([22m[2m81 tests[22m[2m)[22m[33m 1874[2mms[22m[39m
-   [33m[2m✓[22m[39m numberToWords, properties[2m > [22mis injective on 0–99,999: different numbers never produce the same words [33m 1807[2mms[22m[39m
- [32m✓[39m src/audio/speaker.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 30[2mms[22m[39m
- [32m✓[39m src/engine/topics/addSub20.test.ts [2m([22m[2m14 tests[22m[2m)[22m[33m 802[2mms[22m[39m
- [32m✓[39m src/engine/session.test.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 31[2mms[22m[39m
- [32m✓[39m src/engine/journey.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 14[2mms[22m[39m
- [32m✓[39m src/ui/components.test.tsx [2m([22m[2m7 tests[22m[2m)[22m[33m 407[2mms[22m[39m
-[90mstderr[2m | src/parent/gate.test.tsx[2m > [22m[2m<ParentGate> with the arithmetic question[2m > [22m[2munlocks on the right answer
-[22m[39mError: Not implemented: window.scrollTo
-    at module.exports (/home/runner/work/Math/Math/node_modules/jsdom/lib/jsdom/browser/not-implemented.js:9:17)
-    at /home/runner/work/Math/Math/node_modules/jsdom/lib/jsdom/browser/Window.js:960:7
-    at /home/runner/work/Math/Math/src/ui/Dialog.tsx:39:12
-    at /home/runner/work/Math/Math/src/ui/Dialog.tsx:68:7
-    at Object.react_stack_bottom_frame (/home/runner/work/Math/Math/node_modules/react-dom/cjs/react-dom-client.development.js:28668:13)
-    at runWithFiberInDEV (/home/runner/work/Math/Math/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)
-    at commitHookEffectListUnmount (/home/runner/work/Math/Math/node_modules/react-dom/cjs/react-dom-client.development.js:13815:17)
-    at commitHookPassiveUnmountEffects (/home/runner/work/Math/Math/node_modules/react-dom/cjs/react-dom-client.development.js:13846:11)
-    at commitPassiveUnmountEffectsInsideOfDeletedTree_begin (/home/runner/work/Math/Math/node_modules/react-dom/cjs/react-dom-client.development.js:17754:13)
-    at recursivelyTraversePassiveUnmountEffects (/home/runner/work/Math/Math/node_modules/react-dom/cjs/react-dom-client.development.js:17575:13) [90mundefined[39m
-
-[90mstderr[2m | src/parent/gate.test.tsx[2m > [22m[2m<ParentGate> with the arithmetic question[2m > [22m[2mshows a gentle message and stays locked on a wrong answer
-[22m[39mError: Not implemented: window.scrollTo
-    at module.exports (/home/runner/work/Math/Math/node_modules/jsdom/lib/jsdom/browser/not-implemented.js:9:17)
-    at /home/runner/work/Math/Math/node_modules/jsdom/lib/jsdom/browser/Window.js:960:7
-    at /home/runner/work/Math/Math/src/ui/Dialog.tsx:39:12
-    at /home/runner/work/Math/Math/src/ui/Dialog.tsx:68:7
-    at Object.react_stack_bottom_frame (/home/runner/work/Math/Math/node_modules/react-dom/cjs/react-dom-client.development.js:28668:13)
-    at runWithFiberInDEV (/home/runner/work/Math/Math/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)
-    at commitHookEffectListUnmount (/home/runner/work/Math/Math/node_modules/react-dom/cjs/react-dom-client.development.js:13815:17)
-    at commitHookPassiveUnmountEffects (/home/runner/work/Math/Math/node_modules/react-dom/cjs/react-dom-client.development.js:13846:11)
-    at commitPassiveUnmountEffectsInsideOfDeletedTree_begin (/home/runner/work/Math/Math/node_modules/react-dom/cjs/react-dom-client.development.js:17754:13)
-    at recursivelyTraversePassiveUnmountEffects (/home/runner/work/Math/Math/node_modules/react-dom/cjs/react-dom-client.development.js:17575:13) [90mundefined[39m
-
-[90mstderr[2m | src/parent/gate.test.tsx[2m > [22m[2m<ParentGate> with the arithmetic question[2m > [22m[2mcancels with the close button
-[22m[39mError: Not implemented: window.scrollTo
-    at module.exports (/home/runner/work/Math/Math/node_modules/jsdom/lib/jsdom/browser/not-implemented.js:9:17)
-    at /home/runner/work/Math/Math/node_modules/jsdom/lib/jsdom/browser/Window.js:960:7
-    at /home/runner/work/Math/Math/src/ui/Dialog.tsx:39:12
-    at /home/runner/work/Math/Math/src/ui/Dialog.tsx:68:7
-    at Object.react_stack_bottom_frame (/home/runner/work/Math/Math/node_modules/react-dom/cjs/react-dom-client.development.js:28668:13)
-    at runWithFiberInDEV (/home/runner/work/Math/Math/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)
-    at commitHookEffectListUnmount (/home/runner/work/Math/Math/node_modules/react-dom/cjs/react-dom-client.development.js:13815:17)
-    at commitHookPassiveUnmountEffects (/home/runner/work/Math/Math/node_modules/react-dom/cjs/react-dom-client.development.js:13846:11)
-    at commitPassiveUnmountEffectsInsideOfDeletedTree_begin (/home/runner/work/Math/Math/node_modules/react-dom/cjs/react-dom-client.development.js:17754:13)
-    at recursivelyTraversePassiveUnmountEffects (/home/runner/work/Math/Math/node_modules/react-dom/cjs/react-dom-client.development.js:17575:13) [90mundefined[39m
-
-[90mstderr[2m | src/parent/gate.test.tsx[2m > [22m[2m<ParentGate> with a PIN[2m > [22m[2msubmits automatically after four digits
-[22m[39mError: Not implemented: window.scrollTo
-    at module.exports (/home/runner/work/Math/Math/node_modules/jsdom/lib/jsdom/browser/not-implemented.js:9:17)
-    at /home/runner/work/Math/Math/node_modules/jsdom/lib/jsdom/browser/Window.js:960:7
-    at /home/runner/work/Math/Math/src/ui/Dialog.tsx:39:12
-    at /home/runner/work/Math/Math/src/ui/Dialog.tsx:68:7
-    at Object.react_stack_bottom_frame (/home/runner/work/Math/Math/node_modules/react-dom/cjs/react-dom-client.development.js:28668:13)
-    at runWithFiberInDEV (/home/runner/work/Math/Math/node_modules/react-dom/cjs/react-dom-client.development.js:1048:13)
-    at commitHookEffectListUnmount (/home/runner/work/Math/Math/node_modules/react-dom/cjs/react-dom-client.development.js:13815:17)
-    at commitHookPassiveUnmountEffects (/home/runner/work/Math/Math/node_modules/react-dom/cjs/react-dom-client.development.js:13846:11)
-    at commitPassiveUnmountEffectsInsideOfDeletedTree_begin (/home/runner/work/Math/Math/node_modules/react-dom/cjs/react-dom-client.development.js:17754:13)
-    at recursivelyTraversePassiveUnmountEffects (/home/runner/work/Math/Math/node_modules/react-dom/cjs/react-dom-client.development.js:17575:13) [90mundefined[39m
-
- [32m✓[39m src/parent/gate.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[33m 531[2mms[22m[39m
+ [32m✓[39m src/state/validate.test.ts [2m([22m[2m19 tests[22m[2m)[22m[32m 18[2mms[22m[39m
+ [32m✓[39m src/state/store.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 38[2mms[22m[39m
+ [32m✓[39m src/state/progress.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 13[2mms[22m[39m
+ [32m✓[39m src/lang/hebrewNumbers.test.ts [2m([22m[2m81 tests[22m[2m)[22m[33m 2016[2mms[22m[39m
+   [33m[2m✓[22m[39m numberToWords, properties[2m > [22mis injective on 0–99,999: different numbers never produce the same words [33m 1946[2mms[22m[39m
+ [32m✓[39m src/audio/speaker.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 25[2mms[22m[39m
+ [32m✓[39m src/engine/topics/addSub20.test.ts [2m([22m[2m14 tests[22m[2m)[22m[33m 669[2mms[22m[39m
+ [32m✓[39m src/engine/session.test.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 15[2mms[22m[39m
+ [32m✓[39m src/engine/journey.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 13[2mms[22m[39m
+ [32m✓[39m src/ui/components.test.tsx [2m([22m[2m7 tests[22m[2m)[22m[33m 396[2mms[22m[39m
+ [32m✓[39m src/parent/gate.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[33m 441[2mms[22m[39m
  [32m✓[39m src/lang/compose.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 9[2mms[22m[39m
- [32m✓[39m src/state/streak.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 8[2mms[22m[39m
- [32m✓[39m scripts/tts/pronunciation.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 8[2mms[22m[39m
- [32m✓[39m src/screens/JourneyScreen.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[32m 172[2mms[22m[39m
- [32m✓[39m src/i18n/i18n.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 98[2mms[22m[39m
- [32m✓[39m src/lang/spoken.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 4[2mms[22m[39m
- [32m✓[39m src/lang/spokenLabel.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 9[2mms[22m[39m
- [32m✓[39m src/audio/hash.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 6[2mms[22m[39m
- [32m✓[39m src/state/pin.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 19[2mms[22m[39m
- [32m✓[39m src/ui/MathExpr.test.tsx [2m([22m[2m3 tests[22m[2m)[22m[32m 42[2mms[22m[39m
- [32m✓[39m src/state/backup.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 5[2mms[22m[39m
- [32m✓[39m src/lang/fractions.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+ [32m✓[39m src/state/streak.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 13[2mms[22m[39m
+ [32m✓[39m scripts/tts/pronunciation.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m src/screens/JourneyScreen.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[32m 105[2mms[22m[39m
+ [32m✓[39m src/i18n/i18n.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 69[2mms[22m[39m
+ [32m✓[39m src/lang/spoken.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+ [32m✓[39m src/lang/spokenLabel.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 17[2mms[22m[39m
+ [32m✓[39m src/audio/hash.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+ [32m✓[39m src/state/pin.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 11[2mms[22m[39m
+ [32m✓[39m src/lang/groupDigits.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+ [32m✓[39m src/ui/MathExpr.test.tsx [2m([22m[2m3 tests[22m[2m)[22m[32m 47[2mms[22m[39m
+ [32m✓[39m src/state/backup.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m src/lang/fractions.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 6[2mms[22m[39m
  [32m✓[39m src/app/router.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 7[2mms[22m[39m
- [32m✓[39m src/ui/ageBand.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 8[2mms[22m[39m
- [32m✓[39m src/engine/topics/audioBank.test.ts [2m([22m[2m200 tests[22m[2m)[22m[33m 14623[2mms[22m[39m
-   [33m[2m✓[22m[39m the audio bank covers what a child can hear: numbers-100[2m > [22mlevel 3 [33m 549[2mms[22m[39m
-   [33m[2m✓[22m[39m the audio bank covers what a child can hear: numbers-100[2m > [22mlevel 4 [33m 1666[2mms[22m[39m
+ [32m✓[39m src/ui/ageBand.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m src/engine/topics/audioBank.test.ts [2m([22m[2m200 tests[22m[2m)[22m[33m 14993[2mms[22m[39m
+   [33m[2m✓[22m[39m the audio bank covers what a child can hear: numbers-100[2m > [22mlevel 3 [33m 569[2mms[22m[39m
+   [33m[2m✓[22m[39m the audio bank covers what a child can hear: numbers-100[2m > [22mlevel 4 [33m 1599[2mms[22m[39m
    [33m[2m✓[22m[39m the audio bank covers what a child can hear: numbers-100[2m > [22mlevel 5 [33m 304[2mms[22m[39m
-   [33m[2m✓[22m[39m the audio bank covers what a child can hear: numbers-100[2m > [22mlevel 9 [33m 994[2mms[22m[39m
-   [33m[2m✓[22m[39m the audio bank covers what a child can hear: fraction-ops[2m > [22mlevel 3 [33m 413[2mms[22m[39m
-   [33m[2m✓[22m[39m the audio bank covers what a child can hear: fraction-ops[2m > [22mlevel 8 [33m 364[2mms[22m[39m
-   [33m[2m✓[22m[39m the audio bank covers what a child can hear: fraction-ops[2m > [22mlevel 9 [33m 305[2mms[22m[39m
- [32m✓[39m src/engine/topics/all.test.ts [2m([22m[2m262 tests[22m[2m)[22m[33m 48639[2mms[22m[39m
-   [33m[2m✓[22m[39m topic count-10[2m > [22mlevel 10 produces valid exercises [33m 452[2mms[22m[39m
-   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 2 produces valid exercises [33m 606[2mms[22m[39m
-   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 3 produces valid exercises [33m 859[2mms[22m[39m
-   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 4 produces valid exercises [33m 2183[2mms[22m[39m
-   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 5 produces valid exercises [33m 717[2mms[22m[39m
-   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 6 produces valid exercises [33m 695[2mms[22m[39m
-   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 7 produces valid exercises [33m 423[2mms[22m[39m
-   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 8 produces valid exercises [33m 476[2mms[22m[39m
-   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 9 produces valid exercises [33m 1355[2mms[22m[39m
-   [33m[2m✓[22m[39m topic numbers-100[2m > [22mavoids an immediate repeat [33m 594[2mms[22m[39m
-   [33m[2m✓[22m[39m topic add-sub-100[2m > [22mlevel 2 produces valid exercises [33m 361[2mms[22m[39m
-   [33m[2m✓[22m[39m topic add-sub-100[2m > [22mlevel 3 produces valid exercises [33m 417[2mms[22m[39m
-   [33m[2m✓[22m[39m topic add-sub-100[2m > [22mlevel 4 produces valid exercises [33m 417[2mms[22m[39m
-   [33m[2m✓[22m[39m topic add-sub-100[2m > [22mlevel 5 produces valid exercises [33m 371[2mms[22m[39m
-   [33m[2m✓[22m[39m topic add-sub-100[2m > [22mlevel 6 produces valid exercises [33m 392[2mms[22m[39m
-   [33m[2m✓[22m[39m topic add-sub-100[2m > [22mlevel 7 produces valid exercises [33m 461[2mms[22m[39m
-   [33m[2m✓[22m[39m topic add-sub-100[2m > [22mlevel 8 produces valid exercises [33m 356[2mms[22m[39m
-   [33m[2m✓[22m[39m topic add-sub-100[2m > [22mlevel 9 produces valid exercises [33m 367[2mms[22m[39m
-   [33m[2m✓[22m[39m topic add-sub-100[2m > [22mlevel 10 produces valid exercises [33m 391[2mms[22m[39m
-   [33m[2m✓[22m[39m topic fractions-1[2m > [22mlevel 7 produces valid exercises [33m 311[2mms[22m[39m
-   [33m[2m✓[22m[39m topic fraction-ops[2m > [22mlevel 3 produces valid exercises [33m 421[2mms[22m[39m
-   [33m[2m✓[22m[39m topic fraction-ops[2m > [22mlevel 9 produces valid exercises [33m 318[2mms[22m[39m
-   [33m[2m✓[22m[39m topic fraction-mul-div[2m > [22mlevel 9 produces valid exercises [33m 313[2mms[22m[39m
-   [33m[2m✓[22m[39m topic ratio[2m > [22mlevel 1 produces valid exercises [33m 391[2mms[22m[39m
-   [33m[2m✓[22m[39m topic ratio[2m > [22mlevel 2 produces valid exercises [33m 358[2mms[22m[39m
-   [33m[2m✓[22m[39m topic ratio[2m > [22mlevel 3 produces valid exercises [33m 320[2mms[22m[39m
-   [33m[2m✓[22m[39m topic ratio[2m > [22mlevel 4 produces valid exercises [33m 316[2mms[22m[39m
-   [33m[2m✓[22m[39m topic circle-volume[2m > [22mlevel 6 produces valid exercises [33m 416[2mms[22m[39m
-   [33m[2m✓[22m[39m topic circle-volume[2m > [22mlevel 8 produces valid exercises [33m 426[2mms[22m[39m
+   [33m[2m✓[22m[39m the audio bank covers what a child can hear: numbers-100[2m > [22mlevel 6 [33m 402[2mms[22m[39m
+   [33m[2m✓[22m[39m the audio bank covers what a child can hear: numbers-100[2m > [22mlevel 9 [33m 991[2mms[22m[39m
+   [33m[2m✓[22m[39m the audio bank covers what a child can hear: fraction-ops[2m > [22mlevel 3 [33m 330[2mms[22m[39m
+   [33m[2m✓[22m[39m the audio bank covers what a child can hear: fraction-ops[2m > [22mlevel 9 [33m 358[2mms[22m[39m
+ [32m✓[39m src/engine/topics/all.test.ts [2m([22m[2m262 tests[22m[2m)[22m[33m 48463[2mms[22m[39m
+   [33m[2m✓[22m[39m topic count-10[2m > [22mlevel 10 produces valid exercises [33m 376[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 2 produces valid exercises [33m 582[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 3 produces valid exercises [33m 798[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 4 produces valid exercises [33m 2262[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 5 produces valid exercises [33m 825[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 6 produces valid exercises [33m 570[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 7 produces valid exercises [33m 399[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 8 produces valid exercises [33m 544[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 9 produces valid exercises [33m 1025[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mavoids an immediate repeat [33m 709[2mms[22m[39m
+   [33m[2m✓[22m[39m topic add-sub-100[2m > [22mlevel 1 produces valid exercises [33m 391[2mms[22m[39m
+   [33m[2m✓[22m[39m topic add-sub-100[2m > [22mlevel 2 produces valid exercises [33m 386[2mms[22m[39m
+   [33m[2m✓[22m[39m topic add-sub-100[2m > [22mlevel 3 produces valid exercises [33m 378[2mms[22m[39m
+   [33m[2m✓[22m[39m topic add-sub-100[2m > [22mlevel 4 produces valid exercises [33m 396[2mms[22m[39m
+   [33m[2m✓[22m[39m topic add-sub-100[2m > [22mlevel 5 produces valid exercises [33m 314[2mms[22m[39m
+   [33m[2m✓[22m[39m topic add-sub-100[2m > [22mlevel 6 produces valid exercises [33m 400[2mms[22m[39m
+   [33m[2m✓[22m[39m topic add-sub-100[2m > [22mlevel 7 produces valid exercises [33m 376[2mms[22m[39m
+   [33m[2m✓[22m[39m topic add-sub-100[2m > [22mlevel 8 produces valid exercises [33m 389[2mms[22m[39m
+   [33m[2m✓[22m[39m topic fraction-ops[2m > [22mlevel 3 produces valid exercises [33m 423[2mms[22m[39m
+   [33m[2m✓[22m[39m topic fraction-ops[2m > [22mlevel 9 produces valid exercises [33m 317[2mms[22m[39m
+   [33m[2m✓[22m[39m topic fraction-mul-div[2m > [22mlevel 9 produces valid exercises [33m 302[2mms[22m[39m
+   [33m[2m✓[22m[39m topic ratio[2m > [22mlevel 1 produces valid exercises [33m 392[2mms[22m[39m
+   [33m[2m✓[22m[39m topic ratio[2m > [22mlevel 2 produces valid exercises [33m 361[2mms[22m[39m
+   [33m[2m✓[22m[39m topic ratio[2m > [22mlevel 3 produces valid exercises [33m 325[2mms[22m[39m
+   [33m[2m✓[22m[39m topic ratio[2m > [22mlevel 4 produces valid exercises [33m 314[2mms[22m[39m
+   [33m[2m✓[22m[39m topic circle-volume[2m > [22mlevel 6 produces valid exercises [33m 414[2mms[22m[39m
+   [33m[2m✓[22m[39m topic circle-volume[2m > [22mlevel 8 produces valid exercises [33m 425[2mms[22m[39m
 
-[2m Test Files [22m [1m[32m26 passed[39m[22m[90m (26)[39m
-[2m      Tests [22m [1m[32m699 passed[39m[22m[90m (699)[39m
-[2m   Start at [22m 06:33:56
-[2m   Duration [22m 53.49s[2m (transform 1.08s, setup 5.55s, collect 2.22s, tests 67.42s, environment 14.52s, prepare 3.30s)[22m
+[2m Test Files [22m [1m[32m27 passed[39m[22m[90m (27)[39m
+[2m      Tests [22m [1m[32m703 passed[39m[22m[90m (703)[39m
+[2m   Start at [22m 08:33:25
+[2m   Duration [22m 53.38s[2m (transform 1.21s, setup 5.88s, collect 2.54s, tests 67.42s, environment 14.99s, prepare 3.27s)[22m
 
 
 ## build
@@ -150,19 +97,19 @@ ok
 
 [36mvite v7.3.7 [32mbuilding client environment for production...[36m[39m
 transforming...
-[32m✓[39m 106 modules transformed.
+[32m✓[39m 108 modules transformed.
 rendering chunks...
 computing gzip size...
 [2mdist/[22m[32mmanifest.webmanifest                        [39m[1m[2m  0.53 kB[22m[1m[22m
 [2mdist/[22m[32mindex.html                                  [39m[1m[2m  1.26 kB[22m[1m[22m[2m │ gzip:   0.60 kB[22m
-[2mdist/[22m[2massets/[22m[35mindex-CrTFB5wg.css                   [39m[1m[2m 25.87 kB[22m[1m[22m[2m │ gzip:   5.60 kB[22m
+[2mdist/[22m[2massets/[22m[35mindex-vUTG1xzn.css                   [39m[1m[2m 26.23 kB[22m[1m[22m[2m │ gzip:   5.65 kB[22m
 [2mdist/[22m[2massets/[22m[36mworkbox-window.prod.es5-BBnX5xw4.js  [39m[1m[2m  5.75 kB[22m[1m[22m[2m │ gzip:   2.36 kB[22m
-[2mdist/[22m[2massets/[22m[36mindex-Z4gEplsX.js                    [39m[1m[2m481.06 kB[22m[1m[22m[2m │ gzip: 141.17 kB[22m
-[32m✓ built in 3.63s[39m
+[2mdist/[22m[2massets/[22m[36mindex-D5VI0R--.js                    [39m[1m[2m482.11 kB[22m[1m[22m[2m │ gzip: 141.62 kB[22m
+[32m✓ built in 3.71s[39m
 
 [36mPWA v1.3.0[39m
 mode      [35mgenerateSW[39m
-precache  [32m14 entries[39m [2m(565.15 KiB)[22m
+precache  [32m14 entries[39m [2m(566.53 KiB)[22m
 files generated
   [2mdist/sw.js[22m
   [2mdist/workbox-35e397ac.js[22m
@@ -172,7 +119,9 @@ files generated
 > heshbon@0.1.0 tts:build
 > tsx --tsconfig tsconfig.node.json scripts/tts/generate.ts --dry-run
 
-16404 phrases in the bank, 0 to generate.
+16405 phrases in the bank, 1 to generate.
+  chirp3-hd/Leda: 1 clips, 0.00 USD (Chirp 3 HD, 37 chars within the 1M free tier)
+  [chirp3-hd/Leda] ui.journey.noWorlds: עוד אין כאן עולמות לכיתה הזאת. בקרוב!
 
 ## e2e
 
