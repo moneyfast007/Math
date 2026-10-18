@@ -6,7 +6,15 @@ import { useEffect, useState } from 'react';
  * serves index.html for any unknown path (wrangler.json: single-page-application).
  */
 export type RouteName =
-  'home' | 'play' | 'practice' | 'review' | 'replay' | 'album' | 'parents' | 'install' | 'playground';
+  | 'home'
+  | 'play'
+  | 'practice'
+  | 'review'
+  | 'replay'
+  | 'album'
+  | 'parents'
+  | 'install'
+  | 'playground';
 export type Route = { name: RouteName };
 
 const PATHS: Record<RouteName, string> = {

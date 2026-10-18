@@ -200,9 +200,7 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
           <p className="done__body">{t('practice.done.body', { params: { count: s.done } })}</p>
           {result ? (
             <div
-              className={
-                passed ? 'feedback feedback--correct' : 'feedback feedback--almost'
-              }
+              className={passed ? 'feedback feedback--correct' : 'feedback feedback--almost'}
               role="status"
             >
               <SpeakerButton text={spoken} slow={slow} />
