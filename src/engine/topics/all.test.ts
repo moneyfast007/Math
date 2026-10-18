@@ -56,10 +56,19 @@ describe.each(TOPICS.map((t) => [t.id, t] as const))('topic %s', (_id, topic) =>
         }
         if (e.input.labels)
           expect(new Set(e.input.labels).size, e.factId).toBe(e.input.labels.length);
-      } else {
+      } else if (e.input.type === 'numpad') {
         expect(String(Math.floor(e.answer)).length, e.factId).toBeLessThanOrEqual(
           e.input.maxDigits,
         );
+      } else {
+        // A column exercise: its last row is the answer, every step's words have no digits.
+        const { layout } = e.input;
+        expect(layout.rows.at(-1)?.value, e.factId).toBe(e.answer);
+        for (const st of layout.steps) {
+          expect(st.ask.spoken, e.factId).not.toMatch(/\d/);
+          expect(st.explain.spoken, e.factId).not.toMatch(/\d/);
+          for (const p of [...st.ask.parts, ...st.explain.parts]) expect(p, e.factId).not.toMatch(/\d/);
+        }
       }
       // A right answer is never diagnosed as a mistake.
       expect(e.diagnose(e.answer), e.factId).toBeNull();

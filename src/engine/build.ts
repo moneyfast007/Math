@@ -274,6 +274,24 @@ export function pictureExample(solved: Said, visual: Visual, display?: string): 
   };
 }
 
+/**
+ * Everything an exercise can say, as [sentence, clips]: the question, the
+ * solution, the hints, and for a column exercise what is said at every step.
+ */
+export function sayingsOf(e: Exercise): [string, string[] | undefined][] {
+  const out: [string, string[] | undefined][] = [
+    [e.spokenText, e.spokenParts],
+    [e.solutionSpoken, e.solutionParts],
+    ...e.hints.map((h): [string, string[] | undefined] => [h.spoken, h.spokenParts]),
+  ];
+  if (e.input.type === 'vertical') {
+    const { steps, rowIntro } = e.input.layout;
+    for (const s of steps) out.push([s.ask.spoken, s.ask.parts], [s.explain.spoken, s.explain.parts]);
+    for (const l of rowIntro) if (l) out.push([l.spoken, l.parts]);
+  }
+  return out;
+}
+
 /* ---------- Levels and topics ---------- */
 
 export type Build<F> = (fact: F, rng: Rng, gender: Gender) => Exercise;
@@ -355,16 +373,10 @@ export function defineTopic(def: TopicDef): Topic & { enumerate: (level: number)
     for (const { level } of levels) {
       const l = levelDef(level);
       for (const e of enumerate(level)) {
-        const parts = [
-          e.spokenParts ?? [],
-          e.solutionParts ?? [],
-          ...e.hints.map((h) => h.spokenParts ?? []),
-        ];
+        const sayings = sayingsOf(e);
         // Closed levels record whole sentences; open levels only the clips sentences are assembled from.
-        if (!('gen' in l))
-          for (const x of [e.spokenText, e.solutionSpoken, ...e.hints.map((h) => h.spoken)])
-            out.add(x);
-        for (const p of parts.flat()) out.add(p);
+        if (!('gen' in l)) for (const [text] of sayings) out.add(text);
+        for (const [, parts] of sayings) for (const p of parts ?? []) out.add(p);
       }
     }
     for (const p of storyPieces()) out.add(p);

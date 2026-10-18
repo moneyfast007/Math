@@ -53,6 +53,8 @@ export type MistakeKind =
   | 'placeValue'
   | 'remainder'
   | 'carry'
+  /** Subtracted the smaller digit from the bigger in a column, without borrowing (column subtraction). */
+  | 'borrow'
   | 'offByTen'
   /** Counted the coins instead of what they are worth (phase 6). */
   | 'countedCoins'

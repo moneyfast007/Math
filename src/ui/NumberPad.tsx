@@ -15,6 +15,13 @@ interface NumberPadProps {
   decimal?: boolean;
   /** Typing a code rather than a number: a 0 at the start is kept ("045123"). */
   code?: boolean;
+  /**
+   * Key by key instead of a value (a column exercise fills one cell per key):
+   * when given, digits and the backspace go here and `value` only decides
+   * whether the backspace is enabled.
+   */
+  onDigit?: (digit: string) => void;
+  onBackspace?: () => void;
 }
 
 const KEYS = ['1', '2', '3', '4', '5', '6', '7', '8', '9'] as const;
@@ -34,8 +41,14 @@ export function NumberPad({
   label,
   decimal = false,
   code = false,
+  onDigit,
+  onBackspace,
 }: NumberPadProps) {
   const press = (digit: string) => {
+    if (onDigit) {
+      onDigit(digit);
+      return;
+    }
     if (value.replace('.', '').length >= maxLength) return;
     // No leading zeros except a lone "0" (or "0." on the way to a decimal).
     onChange(value === '0' && !code ? digit : value + digit);
@@ -44,7 +57,7 @@ export function NumberPad({
     if (value.includes('.')) return;
     onChange(value === '' ? '0.' : `${value}.`);
   };
-  const backspace = () => onChange(value.slice(0, -1));
+  const backspace = () => (onBackspace ? onBackspace() : onChange(value.slice(0, -1)));
   const disabled = submitDisabled ?? value.length === 0;
 
   return (

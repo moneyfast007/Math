@@ -85,7 +85,77 @@ export type Visual =
   /** A ruler from 0 to `length` cm with something lying on it from `from` to `to`. */
   | { type: 'ruler'; from: number; to: number; length: number }
   /** A box drawn in perspective; `cubes` draws the unit cubes, `labels` its edges. */
-  | { type: 'box'; l: number; w: number; h: number; cubes?: boolean; unit?: string };
+  | { type: 'box'; l: number; w: number; h: number; cubes?: boolean; unit?: string }
+  /**
+   * A column (vertical) exercise, drawn as in the notebook: solved up to step
+   * `upto` (all of it by default), with the carry and borrow marks. `wrong`
+   * writes a wrong digit in one cell (find the mistake); `missing` hides one
+   * digit of a number on top (which digit is missing?).
+   */
+  | {
+      type: 'vertical';
+      layout: VerticalLayout;
+      upto?: number;
+      wrong?: { row: number; col: number; digit: number };
+      missing?: { operand: 'top' | 'bottom'; col: number };
+    };
+
+/** A sentence shown (with digits) and read (words, and the clips that assemble it). */
+export interface Line {
+  text: string;
+  spoken: string;
+  parts: string[];
+}
+
+/**
+ * A column exercise: the two numbers, the rows written under the line, and
+ * every written digit as a step, in the order a child writes them (units
+ * first). Columns count from the right: 0 is the units.
+ */
+export interface VerticalLayout {
+  op: 'add' | 'sub' | 'mul';
+  top: number;
+  bottom: number;
+  /** Digit columns of the grid. */
+  width: number;
+  rows: VerticalRow[];
+  steps: VerticalStep[];
+  /** Said before the first step of a row (multiplying by the tens: a zero first). */
+  rowIntro: (Line | null)[];
+}
+
+export interface VerticalRow {
+  value: number;
+  /** The first column written; the columns before it hold a grey zero (the second partial product). */
+  from: number;
+  /** "35 × 7": what this row is, beside it (partial products). */
+  label?: string;
+  /** A line and a plus sign above it: the sum of the partial products. */
+  sum?: boolean;
+}
+
+export interface VerticalStep {
+  row: number;
+  col: number;
+  digit: number;
+  /** Marks written above the top number once this step is done (a carry, a borrow). */
+  marks: VerticalMark[];
+  /** What to do here, before writing ("ביחידות: 6 ועוד 5"). */
+  ask: Line;
+  /** The column worked out, with the digit ("6 ועוד 5 זה 11: כותבים 1 ומעבירים 1 לעשרות."). */
+  explain: Line;
+  /** What a typical slip writes here, for a specific word (a forgotten carry, no borrow). */
+  slips: { digit: number; kind: 'carry' | 'borrow' }[];
+}
+
+export interface VerticalMark {
+  col: number;
+  text: string;
+  /** Marks of an earlier row of a multiplication are drawn faded, crossed out. */
+  group: number;
+  /** The top digit in this column is crossed out (it was borrowed from). */
+  strike?: boolean;
+}
 
 export interface Polygon {
   points: [number, number][];
@@ -162,7 +232,13 @@ export interface Exercise {
         /** A picture on each button (clocks, coins); the label is then its spoken name. */
         visuals?: Visual[];
       }
-    | { type: 'numpad'; maxDigits: number; decimal?: boolean };
+    | { type: 'numpad'; maxDigits: number; decimal?: boolean }
+    /**
+     * Written in columns, digit by digit (see VerticalLayout). Guided: every
+     * digit is checked as it is written and the carry appears by itself. Not
+     * guided: the child writes everything, then checks.
+     */
+    | { type: 'vertical'; layout: VerticalLayout; guided: boolean };
   /** Exactly three, increasingly concrete: simpler wording, a picture, a solved example. */
   hints: [Hint, Hint, Hint];
   /** The sentence read when the answer is revealed after the last try, e.g. "שלוש ועוד חמש זה שמונה." */

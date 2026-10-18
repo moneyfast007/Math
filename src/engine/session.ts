@@ -51,10 +51,19 @@ export interface SessionState {
   firstTryCount: number;
   /** The round should drop a level before the next exercise. */
   suggestion: 'down' | null;
+  /** A digit of a column exercise had to be written for the child (see 'stepMiss'). */
+  assisted: boolean;
 }
 
 export type SessionAction =
   | { type: 'answer'; value: number }
+  /**
+   * A wrong digit in a guided column exercise: it counts as a try (the
+   * exercise is no longer right the first time) but does not end it; the
+   * column is explained and the child goes on. `assisted`: the digit was then
+   * written for her, which counts like a revealed answer.
+   */
+  | { type: 'stepMiss'; mistake: MistakeKind | null; assisted: boolean }
   | { type: 'hint' }
   | { type: 'next'; exercise: Exercise }
   | { type: 'changeLevel'; level: number; exercise: Exercise }
@@ -87,6 +96,7 @@ export function startSession(o: StartOptions): SessionState {
     history: [],
     firstTryCount: 0,
     suggestion: null,
+    assisted: false,
   };
 }
 
@@ -122,6 +132,7 @@ function freshExercise(s: SessionState, exercise: Exercise): SessionState {
     lastMistake: null,
     firstMistake: null,
     suggestion: null,
+    assisted: false,
   };
 }
 
@@ -130,7 +141,8 @@ export function reduce(s: SessionState, a: SessionAction): SessionState {
     case 'answer': {
       if (s.phase !== 'answering' && s.phase !== 'wrong') return s;
       if (a.value === s.exercise.answer) {
-        return complete(s, s.tries === 0 ? 'first' : 'later', 'correct');
+        const outcome = s.tries === 0 ? 'first' : s.assisted ? 'revealed' : 'later';
+        return complete(s, outcome, 'correct');
       }
       const mistake = s.exercise.diagnose(a.value);
       const tries = s.tries + 1;
@@ -145,6 +157,15 @@ export function reduce(s: SessionState, a: SessionAction): SessionState {
         ? complete(next, 'revealed', 'revealed')
         : { ...next, phase: 'wrong' };
     }
+    case 'stepMiss':
+      if (s.phase !== 'answering' && s.phase !== 'wrong') return s;
+      return {
+        ...s,
+        tries: s.tries + 1,
+        lastMistake: a.mistake,
+        firstMistake: s.firstMistake ?? a.mistake ?? 'other',
+        assisted: s.assisted || a.assisted,
+      };
     case 'hint':
       if (s.phase !== 'answering' && s.phase !== 'wrong') return s;
       return { ...s, hintsShown: Math.min(3, s.hintsShown + 1) };

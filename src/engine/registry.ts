@@ -27,6 +27,7 @@ import { percent } from './topics/percent';
 import { percentIntro } from './topics/percentIntro';
 import { ratio } from './topics/ratio';
 import { shapesTopic } from './topics/shapes';
+import { vertical2, vertical3, vertical4 } from './topics/vertical';
 import type { Topic } from './types';
 
 /** All topics (worlds), in curriculum order (Ministry of Education, 2006/2024). */
@@ -40,16 +41,19 @@ export const TOPICS: readonly Topic[] = [
   moneyTopic,
   multIntro,
   clockTopic,
+  vertical2,
   multTable,
   numbers10000,
   fractions1,
   measureTopic,
+  vertical3,
   bigNumbers,
   longMulDiv,
   fractionOps,
   decimals,
   perimeterArea,
   anglesTopic,
+  vertical4,
   fractionMulDiv,
   decimalOps,
   percentIntro,

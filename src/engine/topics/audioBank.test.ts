@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { numberToWords, vavForms } from '@/lang/hebrewNumbers';
+import { sayingsOf } from '../build';
 import { TOPICS } from '../registry';
 import { seededRng } from '../rng';
 
@@ -15,12 +16,7 @@ describe.each(TOPICS.map((t) => [t.id, t] as const))(
       const rng = seededRng(2026 + level);
       for (let i = 0; i < 120; i++) {
         const e = topic.generate(level, rng, i % 2 ? 'f' : 'm');
-        const sayings: [string, string[] | undefined][] = [
-          [e.spokenText, e.spokenParts],
-          [e.solutionSpoken, e.solutionParts],
-          ...e.hints.map((h): [string, string[] | undefined] => [h.spoken, h.spokenParts]),
-        ];
-        for (const [text, parts] of sayings) {
+        for (const [text, parts] of sayingsOf(e)) {
           // Recorded whole, or every clip of it is (numbers come from the shared number bank).
           if (bank.has(text)) continue;
           for (const p of parts ?? [text]) if (!bank.has(p) && !isNumberClip(p)) missing.add(p);

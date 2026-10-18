@@ -23,6 +23,7 @@ import { groupDigits } from '@/lang/groupDigits';
 import { NumberPad } from '@/ui/NumberPad';
 import { Plusi, type PlusiMood } from '@/ui/Plusi';
 import { SpeakerButton } from '@/ui/SpeakerButton';
+import { ColumnWork } from '@/ui/Vertical';
 import { VisualView } from '@/ui/Visuals';
 
 /** A prompt longer than this (characters) is a word problem rather than "how much is it?". */
@@ -332,7 +333,18 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
           <h1 className="exercise__title">{groupDigits(e.prompt)}</h1>
         </div>
         {e.visual ? <VisualView visual={e.visual} /> : null}
-        {e.display ? (
+        {e.input.type === 'vertical' ? (
+          // Written in columns: the grid, what to do, and its own number pad.
+          <ColumnWork
+            key={`${s.done}:${e.factId}`}
+            layout={e.input.layout}
+            guided={e.input.guided}
+            phase={s.phase === 'finished' ? 'correct' : s.phase}
+            slow={slow}
+            onMiss={(mistake, assisted) => apply({ type: 'stepMiss', mistake, assisted })}
+            onSubmit={(v) => apply({ type: 'answer', value: v })}
+          />
+        ) : e.display ? (
           <MathExpr block label={e.spokenText}>
             {before}
             {hasSlot ? (
@@ -404,7 +416,7 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
                 );
               })}
             </div>
-          ) : (
+          ) : e.input.type === 'vertical' ? null : (
             <NumberPad
               label={t('practice.answerLabel')}
               value={value}
@@ -567,6 +579,7 @@ function explanation(s: SessionState, tc: TC): string {
     m === 'digitReversal' ||
     m === 'placeValue' ||
     m === 'carry' ||
+    m === 'borrow' ||
     m === 'offByTen' ||
     m === 'remainder' ||
     m === 'countedCoins' ||

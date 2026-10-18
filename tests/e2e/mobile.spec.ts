@@ -12,9 +12,17 @@ import { expect, test, type Page } from '@playwright/test';
 const WORLDS: Record<number, string[]> = {
   0: ['count-10', 'add-sub-20', 'shapes'],
   1: ['add-sub-20', 'numbers-100', 'clock-money-1'],
-  2: ['add-sub-100', 'money', 'mult-intro', 'clock'],
-  3: ['mult-table', 'numbers-10000', 'fractions-1', 'measure'],
-  4: ['big-numbers', 'long-mul-div', 'fraction-ops', 'decimals', 'perimeter-area', 'angles'],
+  2: ['add-sub-100', 'money', 'mult-intro', 'clock', 'vertical-2'],
+  3: ['mult-table', 'numbers-10000', 'fractions-1', 'measure', 'vertical-3'],
+  4: [
+    'big-numbers',
+    'long-mul-div',
+    'fraction-ops',
+    'decimals',
+    'perimeter-area',
+    'angles',
+    'vertical-4',
+  ],
   5: ['fraction-mul-div', 'decimal-ops', 'percent-intro', 'order-ops', 'areas'],
   6: ['percent', 'ratio', 'circle-volume'],
 };
@@ -97,7 +105,10 @@ function inspect(page: Page) {
       }
     }
     const math = document.querySelector<HTMLElement>('.exercise .math--block');
-    const digits = math ? parseFloat(getComputedStyle(math).fontSize) : null;
+    // Written in columns: the grid's digits instead of the equation.
+    const column = document.querySelector<HTMLElement>('.column-work .vgrid__digit');
+    const sized = math ?? column;
+    const digits = sized ? parseFloat(getComputedStyle(sized).fontSize) : null;
     return {
       outside: outside.slice(0, 5),
       digits,
@@ -169,6 +180,43 @@ test('phone screens for review', async ({ page }, info) => {
       for (let k = 0; k < 9; k++) await eight.click();
       await shot(`phone-big-${i + 1}-typed`);
     }
+    await page.getByRole('button', { name: 'סיום' }).click();
+  }
+});
+
+/** Not a test: phone screenshots of column arithmetic, for a visual review (SCREENSHOTS=1). */
+test('phone column screens for review', async ({ page }, info) => {
+  test.skip(!process.env['SCREENSHOTS'] || info.project.name !== 'ipad', 'visual review only');
+  test.setTimeout(120_000);
+  const shot = async (name: string) => {
+    await page.waitForTimeout(400);
+    await page.screenshot({ path: `.ci/screens/${name}.png` });
+  };
+  const open = async (i: number) => {
+    await page.getByRole('button', { name: 'שלב אחר' }).click();
+    await page.getByRole('dialog').getByRole('listitem').nth(i).click();
+    await page.getByRole('button', { name: 'יאללה, מתחילים!' }).click();
+    await expect(page.locator('.exercise')).toBeVisible();
+  };
+  const pad = () => page.getByRole('group', { name: 'התשובה' });
+  await setup(page, 4, 'vertical-4');
+  await page.setViewportSize({ width: 390, height: 844 });
+  // Guided multiplication, one and two digits: the first column, then a slip explained.
+  for (const i of [2, 4]) {
+    await open(i);
+    await shot(`phone-col-${i + 1}`);
+    await pad().getByRole('button', { name: '0', exact: true }).click();
+    await shot(`phone-col-${i + 1}-slip`);
+    await page.getByRole('button', { name: 'סיום' }).click();
+  }
+  // Written whole: three digits typed, then find the mistake and estimation.
+  await open(6);
+  for (let k = 0; k < 3; k++) await pad().getByRole('button', { name: '7', exact: true }).click();
+  await shot('phone-col-7-typed');
+  await page.getByRole('button', { name: 'סיום' }).click();
+  for (const i of [7, 8]) {
+    await open(i);
+    await shot(`phone-col-${i + 1}`);
     await page.getByRole('button', { name: 'סיום' }).click();
   }
 });

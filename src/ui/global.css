@@ -2587,3 +2587,204 @@ ol.steps {
 .info__section + .info__section {
   margin-top: var(--space-2);
 }
+
+/* ---------- Column arithmetic (במאונך) ---------- */
+
+.column-work {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  width: 100%;
+}
+
+.vgrid {
+  /* Eight columns (a sign and seven digits) fit a 360px phone. */
+  --vcell: clamp(30px, 10vw, 54px);
+  display: grid;
+  grid-auto-rows: auto;
+  justify-content: center;
+  align-items: center;
+  font-family: var(--font-math);
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+  line-height: 1;
+  max-width: 100%;
+}
+
+.vgrid--small {
+  --vcell: clamp(24px, 7vw, 38px);
+}
+
+.vgrid__digit,
+.vgrid__sign,
+.vgrid__zero,
+.vcell {
+  font-size: calc(var(--vcell) * 0.72);
+  height: calc(var(--vcell) * 1.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.vgrid__sign {
+  color: var(--color-accent-strong);
+}
+
+.vgrid__digit--struck {
+  text-decoration: line-through;
+  text-decoration-thickness: 3px;
+  text-decoration-color: #a94f1c;
+  color: var(--color-text-muted);
+}
+
+.vgrid__zero {
+  color: var(--color-text-muted);
+  font-weight: 600;
+}
+
+.vgrid__head {
+  font-family: var(--font-sans);
+  font-size: calc(var(--vcell) * 0.36);
+  font-weight: 700;
+  color: var(--color-text-muted);
+  padding-bottom: 2px;
+}
+
+.vgrid__markrow {
+  height: calc(var(--vcell) * 0.5);
+}
+
+.vgrid__mark {
+  font-size: calc(var(--vcell) * 0.4);
+  color: #a94f1c;
+  height: calc(var(--vcell) * 0.5);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.vgrid__mark--old {
+  color: var(--color-text-muted);
+  font-weight: 600;
+  text-decoration: line-through;
+}
+
+.vgrid__line {
+  height: 0;
+  border-top: 4px solid var(--color-text);
+  margin: 4px 0 6px;
+  align-self: center;
+}
+
+.vgrid__label {
+  font-family: var(--font-sans);
+  font-size: calc(var(--vcell) * 0.34);
+  font-weight: 700;
+  color: var(--color-text-muted);
+  padding-inline-end: 6px;
+  white-space: nowrap;
+}
+
+.vcell {
+  margin: 2px 3px;
+  height: calc(var(--vcell) * 1.05);
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+.vgrid--small .vcell {
+  margin: 1px 2px;
+  border-radius: 6px;
+}
+
+.vcell--empty {
+  border: 2px dashed var(--color-border);
+}
+
+.vcell--cursor {
+  border: 3px solid var(--color-accent);
+  background: var(--color-accent-soft);
+}
+
+.vcell--typed,
+.vcell--static {
+  background: #f3efe9;
+}
+
+.vcell--ok {
+  background: #dcf2e4;
+  color: #2e7d4f;
+}
+
+.vcell--wrong {
+  background: #fde4d2;
+  color: #b4521c;
+  border: 2px solid #e8793a;
+}
+
+.vcell--given {
+  background: #fff1dc;
+  color: var(--color-text-muted);
+  border: 2px dashed #e2a33b;
+}
+
+.vcell--missing {
+  border: 3px solid var(--color-accent);
+  background: var(--color-accent-soft);
+  color: var(--color-accent-strong);
+}
+
+.vcell--shake {
+  animation: vcell-shake 320ms var(--ease);
+}
+
+@keyframes vcell-shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  75% {
+    transform: translateX(5px);
+  }
+}
+
+.vertical-visual {
+  display: flex;
+  justify-content: center;
+  margin-block: var(--space-1);
+}
+
+.column-work__say {
+  width: 100%;
+  max-width: 34rem;
+  background: var(--color-surface-alt);
+  border-radius: var(--radius-md);
+  padding: var(--space-1) var(--space-2);
+}
+
+.column-work__say--explain {
+  background: #fde4d2;
+}
+
+.column-work__line {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  margin: 0;
+  font-size: var(--text-md);
+  line-height: var(--line);
+}
+
+.column-work__line + .column-work__line {
+  margin-top: var(--space-1);
+}
+
+.column-work__after {
+  flex-wrap: wrap;
+  gap: var(--space-1);
+}
