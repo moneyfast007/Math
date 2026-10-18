@@ -58,6 +58,7 @@ export function HomeScreen() {
             </button>
           </div>
         </section>
+        <InfoLink />
       </main>
     );
   }
@@ -93,15 +94,20 @@ export function HomeScreen() {
         ))}
       </ul>
 
-      <footer className="row" style={{ justifyContent: 'center', marginTop: 'auto' }}>
+      <footer className="home__footer">
         <div className="parent-entry">
-          <LongPressButton className="btn btn--ghost" onLongPress={() => setGateOpen(true)}>
+          <LongPressButton
+            className="btn btn--ghost"
+            onLongPress={() => setGateOpen(true)}
+            aria-describedby="parents-hold"
+          >
             {t('home.parents')}
           </LongPressButton>
-          <span className="muted" aria-hidden="true">
+          <span className="muted" id="parents-hold">
             {t('home.parentsHoldHint')}
           </span>
         </div>
+        <InfoLink />
       </footer>
 
       {gateOpen ? (
@@ -116,5 +122,21 @@ export function HomeScreen() {
         />
       ) : null}
     </main>
+  );
+}
+
+/** Accessibility statement, privacy and terms: in a prominent place, on every home screen. */
+function InfoLink() {
+  return (
+    <a
+      className="info-link"
+      href="/info"
+      onClick={(e) => {
+        e.preventDefault();
+        navigate({ name: 'info' });
+      }}
+    >
+      {t('info.link')}
+    </a>
   );
 }

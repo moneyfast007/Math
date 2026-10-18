@@ -15,6 +15,7 @@ export type RouteName =
   | 'album'
   | 'parents'
   | 'install'
+  | 'info'
   | 'playground';
 export type Route = { name: RouteName };
 
@@ -28,6 +29,7 @@ const PATHS: Record<RouteName, string> = {
   album: '/album',
   parents: '/parents',
   install: '/install',
+  info: '/info',
   playground: '/playground',
 };
 

@@ -7,6 +7,8 @@ interface LongPressButtonProps {
   className?: string;
   children: ReactNode;
   'aria-label'?: string;
+  /** Id of the text that says to hold (so screen readers announce it too). */
+  'aria-describedby'?: string;
 }
 
 /**
@@ -22,6 +24,7 @@ export function LongPressButton({
   className,
   children,
   'aria-label': ariaLabel,
+  'aria-describedby': describedBy,
 }: LongPressButtonProps) {
   const [pressing, setPressing] = useState(false);
   const timer = useRef<number | null>(null);
@@ -62,6 +65,7 @@ export function LongPressButton({
       style={style}
       data-pressing={pressing}
       aria-label={ariaLabel}
+      aria-describedby={describedBy}
       onPointerDown={start}
       onPointerUp={cancel}
       onPointerLeave={cancel}

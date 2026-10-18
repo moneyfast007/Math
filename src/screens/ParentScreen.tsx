@@ -76,6 +76,18 @@ function ParentArea() {
       <SecuritySection />
       <DeviceSection />
       <OfflineSection />
+      <p className="info-link-row">
+        <a
+          className="info-link"
+          href="/info"
+          onClick={(e) => {
+            e.preventDefault();
+            navigate({ name: 'info' });
+          }}
+        >
+          {t('info.link')}
+        </a>
+      </p>
       {/* Always in reach at the bottom, however long the page gets. */}
       <footer className="screen__footer">
         <button type="button" className="btn btn--wide" onClick={exit}>

@@ -90,6 +90,12 @@ export const he = {
   'parent.backup.imported': 'השחזור הושלם.',
   'parent.backup.importError': 'לא הצלחנו לקרוא את הקובץ: {reason}',
 
+  // Accessibility statement, privacy policy, terms of use (/info)
+  'info.link': 'נגישות, פרטיות ותנאי שימוש',
+  'info.title': 'נגישות, פרטיות ותנאי שימוש',
+  'info.contents': 'תוכן העמוד',
+  'info.dates': 'נכתב ב־{written} · עודכן לאחרונה ב־{updated}',
+
   // Sync between the family's devices (parent area)
   'sync.title': 'סנכרון בין מכשירים',
   'sync.intro':

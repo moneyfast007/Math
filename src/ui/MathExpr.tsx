@@ -64,16 +64,21 @@ function useFit(block: boolean) {
     fit();
     if (typeof ResizeObserver === 'undefined') return;
     let last = el.clientWidth;
+    let frame = 0;
     const observer = new ResizeObserver(() => {
       // Only the room changing matters; the expression's own size is set by fit().
-      if (el.clientWidth !== last) {
-        last = el.clientWidth;
-        fit();
-      }
+      // Resized on the next frame, not inside the observer (which would loop).
+      if (el.clientWidth === last) return;
+      last = el.clientWidth;
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(fit);
     });
     observer.observe(el);
     void document.fonts?.ready.then(fit);
-    return () => observer.disconnect();
+    return () => {
+      cancelAnimationFrame(frame);
+      observer.disconnect();
+    };
   });
 
   return { outer, line };

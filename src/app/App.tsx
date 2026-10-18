@@ -1,5 +1,6 @@
 import { AlbumScreen } from '@/screens/AlbumScreen';
 import { HomeScreen } from '@/screens/HomeScreen';
+import { InfoScreen } from '@/screens/InfoScreen';
 import { InstallGuideScreen } from '@/screens/InstallGuideScreen';
 import { JourneyScreen } from '@/screens/JourneyScreen';
 import { ParentScreen } from '@/screens/ParentScreen';
@@ -34,6 +35,8 @@ export function App() {
       return <ParentScreen />;
     case 'install':
       return <InstallGuideScreen />;
+    case 'info':
+      return <InfoScreen />;
     case 'playground':
       return <PlaygroundScreen />;
   }

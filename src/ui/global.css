@@ -2529,3 +2529,61 @@ ol.steps {
   display: flex;
   align-items: center;
 }
+
+/* Accessibility statement, privacy, terms (/info) and the links to them */
+.info-link {
+  color: var(--color-accent-strong);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  min-height: var(--tap-min);
+  display: inline-flex;
+  align-items: center;
+}
+
+.info-link-row {
+  text-align: center;
+  margin: 0;
+}
+
+.home__footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+  margin-top: auto;
+}
+
+.info__nav ul {
+  margin: 0;
+  padding-inline-start: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.info__nav a,
+.info__doc a {
+  color: var(--color-accent-strong);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.info__doc h3 {
+  font-size: var(--text-md);
+  margin: 0;
+}
+
+.info__doc p,
+.info__doc ul {
+  margin: 0;
+  line-height: 1.6;
+}
+
+.info__doc ul {
+  padding-inline-start: var(--space-4);
+}
+
+.info__section + .info__section {
+  margin-top: var(--space-2);
+}

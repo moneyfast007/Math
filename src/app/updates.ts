@@ -10,7 +10,7 @@ import { routeFromPath, type RouteName } from './router';
  * an old version forever.
  */
 
-const SAFE_ROUTES: ReadonlySet<RouteName> = new Set(['home', 'play', 'album', 'install']);
+const SAFE_ROUTES: ReadonlySet<RouteName> = new Set(['home', 'play', 'album', 'install', 'info']);
 const CHECK_EVERY_MS = 30 * 60 * 1000;
 
 function safeToReload(): boolean {
