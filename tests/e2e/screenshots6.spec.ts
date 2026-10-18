@@ -37,7 +37,11 @@ const backup = {
   exportedAt: '2026-10-18T10:00:00.000Z',
   data: {
     schemaVersion: 2,
-    profiles: [profile('a', 'עדי', 'fox'), profile('b', 'רוני', 'cat'), profile('c', 'ליה', 'frog', 1)],
+    profiles: [
+      profile('a', 'עדי', 'fox'),
+      profile('b', 'רוני', 'cat'),
+      profile('c', 'ליה', 'frog', 1),
+    ],
     progress: {
       a: { topics: { 'add-sub-100': done() }, streak: { count: 0, lastDay: null } },
       c: {

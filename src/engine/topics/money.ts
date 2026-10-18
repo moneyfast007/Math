@@ -409,8 +409,7 @@ export function change(level: number, paids?: readonly number[]) {
   return (rng: Rng): Exercise => {
     const small = paids ? paids.every((x) => x <= 20) : level === 8;
     const paid = pick(rng, paids ?? (small ? [10, 20] : [50, 100]));
-    const p =
-      small ? randInt(rng, 3, paid - 1) : randInt(rng, paid === 50 ? 12 : 23, paid - 3);
+    const p = small ? randInt(rng, 3, paid - 1) : randInt(rng, paid === 50 ? 12 : 23, paid - 3);
     const c = paid - p;
     const who = pick(rng, CHARACTERS);
     const item = pick(rng, ITEMS);
@@ -419,26 +418,24 @@ export function change(level: number, paids?: readonly number[]) {
       p: shekels(p),
       paid: PAID_WITH[paid] ?? '',
     });
-    const ex =
-      small
-        ? p === 7 && paid === 10
-          ? { p: 6, paid: 10 }
-          : { p: 7, paid: 10 }
-        : p === 36 && paid === 50
-          ? { p: 64, paid: 100 }
-          : { p: 36, paid: 50 };
-    const hint2: Hint =
-      small
-        ? hint(say('ex.money.change.hint2'), {
-            visual: { type: 'numberLine', from: p, to: paid, start: p, hops: 0, target: paid },
-          })
-        : {
-            ...hint(say('ex.money.change.hint3', { paid })),
-            example: {
-              display: `${p} + ? = ${paid}`,
-              spoken: say('ex.money.change.hint3', { paid }).text,
-            },
-          };
+    const ex = small
+      ? p === 7 && paid === 10
+        ? { p: 6, paid: 10 }
+        : { p: 7, paid: 10 }
+      : p === 36 && paid === 50
+        ? { p: 64, paid: 100 }
+        : { p: 36, paid: 50 };
+    const hint2: Hint = small
+      ? hint(say('ex.money.change.hint2'), {
+          visual: { type: 'numberLine', from: p, to: paid, start: p, hops: 0, target: paid },
+        })
+      : {
+          ...hint(say('ex.money.change.hint3', { paid })),
+          example: {
+            display: `${p} + ? = ${paid}`,
+            spoken: say('ex.money.change.hint3', { paid }).text,
+          },
+        };
     return exercise({
       factId: `mchange:${p}/${paid}`,
       topicId: ID,

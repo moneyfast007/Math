@@ -30,7 +30,11 @@ const here =
   (level: number) =>
   (e: Exercise): Exercise => ({ ...e, topicId: ID, level });
 
-function closedHere<F>(level: number, facts: () => readonly F[], build: (f: F, rng: Rng) => Exercise): LevelDef {
+function closedHere<F>(
+  level: number,
+  facts: () => readonly F[],
+  build: (f: F, rng: Rng) => Exercise,
+): LevelDef {
   return closed(L(level), facts, (f: F, rng) => here(level)(build(f, rng)));
 }
 
@@ -46,10 +50,11 @@ export const clockMoney1 = defineTopic({
   levels: [
     closedHere(
       1,
-      () => COINS.flatMap((v): KnowFact[] => [
-        { kind: 'value', v },
-        { kind: 'pick', v },
-      ]),
+      () =>
+        COINS.flatMap((v): KnowFact[] => [
+          { kind: 'value', v },
+          { kind: 'pick', v },
+        ]),
       (f) => know(f),
     ),
     closedHere(2, tinyCoinSets, count(2, tinyCoinSets)),

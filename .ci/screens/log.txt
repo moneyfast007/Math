@@ -6,5 +6,5 @@
 
 Running 3 tests using 2 workers
 ···
-  3 passed (50.0s)
-::notice title=🎭 Playwright Run Summary::  3 passed (50.0s)
+  3 passed (53.0s)
+::notice title=🎭 Playwright Run Summary::  3 passed (53.0s)
