@@ -286,7 +286,8 @@ export function sayingsOf(e: Exercise): [string, string[] | undefined][] {
   ];
   if (e.input.type === 'vertical') {
     const { steps, rowIntro } = e.input.layout;
-    for (const s of steps) out.push([s.ask.spoken, s.ask.parts], [s.explain.spoken, s.explain.parts]);
+    for (const s of steps)
+      out.push([s.ask.spoken, s.ask.parts], [s.explain.spoken, s.explain.parts]);
     for (const l of rowIntro) if (l) out.push([l.spoken, l.parts]);
   }
   return out;

@@ -67,7 +67,8 @@ describe.each(TOPICS.map((t) => [t.id, t] as const))('topic %s', (_id, topic) =>
         for (const st of layout.steps) {
           expect(st.ask.spoken, e.factId).not.toMatch(/\d/);
           expect(st.explain.spoken, e.factId).not.toMatch(/\d/);
-          for (const p of [...st.ask.parts, ...st.explain.parts]) expect(p, e.factId).not.toMatch(/\d/);
+          for (const p of [...st.ask.parts, ...st.explain.parts])
+            expect(p, e.factId).not.toMatch(/\d/);
         }
       }
       // A right answer is never diagnosed as a mistake.

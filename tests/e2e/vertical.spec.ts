@@ -68,7 +68,6 @@ async function setup(page: Page, grade: number, world: string) {
   await page.getByRole('button', { name: 'טל' }).click();
 }
 
-
 async function openLevel(page: Page, index: number) {
   await page.getByRole('button', { name: 'שלב אחר' }).click();
   await page.getByRole('dialog').getByRole('listitem').nth(index).click();
@@ -88,7 +87,8 @@ async function operands(page: Page): Promise<[number, number, string]> {
 const fromUnits = (n: number) => String(n).split('').reverse();
 
 const pad = (page: Page) => page.locator('.column-work').getByRole('group', { name: 'התשובה' });
-const press = (page: Page, d: string) => pad(page).getByRole('button', { name: d, exact: true }).click();
+const press = (page: Page, d: string) =>
+  pad(page).getByRole('button', { name: d, exact: true }).click();
 
 test.describe('column arithmetic', () => {
   test('guided: a slip is explained, then column by column to the answer', async ({ page }) => {

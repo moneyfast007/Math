@@ -62,7 +62,8 @@ export function VerticalGrid({
   for (const m of marks) {
     const prev = markAt.get(m.col);
     // The current row's mark wins; an older one shows only where there is none.
-    if (!prev || (m.group === group && prev.group !== group) || m.group > prev.group) markAt.set(m.col, m);
+    if (!prev || (m.group === group && prev.group !== group) || m.group > prev.group)
+      markAt.set(m.col, m);
   }
   const struck = new Set(marks.filter((m) => m.strike).map((m) => m.col));
   const top = digitsOf(layout.top);
@@ -100,13 +101,19 @@ export function VerticalGrid({
   const operand = (digits: number[], which: 'top' | 'bottom', row: number) =>
     digits.map((d, c) =>
       missing && missing.operand === which && missing.col === c ? (
-        <span key={`${which}${c}`} className="vcell vcell--missing" style={{ gridRow: row, gridColumn: at(c) }}>
+        <span
+          key={`${which}${c}`}
+          className="vcell vcell--missing"
+          style={{ gridRow: row, gridColumn: at(c) }}
+        >
           ?
         </span>
       ) : (
         <span
           key={`${which}${c}`}
-          className={which === 'top' && struck.has(c) ? 'vgrid__digit vgrid__digit--struck' : 'vgrid__digit'}
+          className={
+            which === 'top' && struck.has(c) ? 'vgrid__digit vgrid__digit--struck' : 'vgrid__digit'
+          }
           style={{ gridRow: row, gridColumn: at(c) }}
         >
           {d}
@@ -123,13 +130,23 @@ export function VerticalGrid({
   );
   items.push(...operand(bottom, 'bottom', r));
   r++;
-  items.push(<span key="line0" className="vgrid__line" style={{ gridRow: r, gridColumn: `${signCol} / -1` }} />);
+  items.push(
+    <span
+      key="line0"
+      className="vgrid__line"
+      style={{ gridRow: r, gridColumn: `${signCol} / -1` }}
+    />,
+  );
   r++;
 
   rows.forEach((row, i) => {
     if (row.sum) {
       items.push(
-        <span key={`line${i}`} className="vgrid__line" style={{ gridRow: r, gridColumn: `${signCol} / -1` }} />,
+        <span
+          key={`line${i}`}
+          className="vgrid__line"
+          style={{ gridRow: r, gridColumn: `${signCol} / -1` }}
+        />,
       );
       r++;
     }
@@ -178,7 +195,9 @@ export function VerticalGrid({
       role="img"
       aria-label={label}
       data-math=""
-      style={{ gridTemplateColumns: `${hasLabels ? 'auto ' : ''}repeat(${columns - (hasLabels ? 1 : 0)}, var(--vcell))` }}
+      style={{
+        gridTemplateColumns: `${hasLabels ? 'auto ' : ''}repeat(${columns - (hasLabels ? 1 : 0)}, var(--vcell))`,
+      }}
     >
       {items}
     </div>
@@ -235,7 +254,14 @@ interface WorkProps {
  * The column exercise being answered: the grid, the line that says what to do
  * (guided) or what went wrong, and the number pad.
  */
-export function ColumnWork({ layout, guided: startGuided, phase, slow, onMiss, onSubmit }: WorkProps) {
+export function ColumnWork({
+  layout,
+  guided: startGuided,
+  phase,
+  slow,
+  onMiss,
+  onSubmit,
+}: WorkProps) {
   const steps = layout.steps;
   const expected = cellDigits(layout);
   const [guided, setGuided] = useState(startGuided);
@@ -275,7 +301,10 @@ export function ColumnWork({ layout, guided: startGuided, phase, slow, onMiss, o
     const k = key(s.row, s.col);
     const d = typed.get(k);
     if (finished) {
-      cells.set(k, { digit: s.digit, state: phase === 'revealed' && d !== s.digit ? 'given' : 'ok' });
+      cells.set(k, {
+        digit: s.digit,
+        state: phase === 'revealed' && d !== s.digit ? 'given' : 'ok',
+      });
     } else if (d !== undefined) {
       const right = d === expected.get(k);
       cells.set(k, { digit: d, state: guided || checked ? (right ? 'ok' : 'wrong') : 'typed' });
@@ -284,7 +313,11 @@ export function ColumnWork({ layout, guided: startGuided, phase, slow, onMiss, o
     }
   }
   const showAll = finished || checked;
-  const marks = showAll ? marksUpTo(layout, steps.length) : guided ? marksUpTo(layout, pos < 0 ? steps.length : pos) : [];
+  const marks = showAll
+    ? marksUpTo(layout, steps.length)
+    : guided
+      ? marksUpTo(layout, pos < 0 ? steps.length : pos)
+      : [];
   const group = next?.row ?? layout.rows.length - 1;
 
   const write = (digit: number) => {
@@ -380,7 +413,14 @@ export function ColumnWork({ layout, guided: startGuided, phase, slow, onMiss, o
         shake={shake}
       />
       {!finished && message ? (
-        <div className={message.tone === 'explain' ? 'column-work__say column-work__say--explain' : 'column-work__say'} role="status">
+        <div
+          className={
+            message.tone === 'explain'
+              ? 'column-work__say column-work__say--explain'
+              : 'column-work__say'
+          }
+          role="status"
+        >
           {message.lines.map((l, i) => (
             <p key={i} className="column-work__line">
               <SpeakerButton text={l.spoken} parts={l.parts} slow={slow} />

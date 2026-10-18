@@ -104,7 +104,11 @@ export function columnExercise(o: ColumnOptions): Exercise {
   const twoRows = o.op === '×' && o.b >= 10;
   const spoken = o.story
     ? { text: o.story.spoken, parts: o.story.parts }
-    : say('col.question', { a: o.a, op: t(o.op === '+' ? 'op.add' : o.op === '-' ? 'op.sub' : 'op.mul'), b: o.b });
+    : say('col.question', {
+        a: o.a,
+        op: t(o.op === '+' ? 'op.add' : o.op === '-' ? 'op.sub' : 'op.mul'),
+        b: o.b,
+      });
   return exercise({
     factId: `col:${o.guided ? 'g' : 'f'}:${o.a}${o.op}${o.b}`,
     topicId: o.topicId,
@@ -210,7 +214,11 @@ export function findMistake(
   const answer = none ? columns : step.col;
   const visual = none
     ? { type: 'vertical' as const, layout }
-    : { type: 'vertical' as const, layout, wrong: { row: lastRow, col: step.col, digit: wrongDigit } };
+    : {
+        type: 'vertical' as const,
+        layout,
+        wrong: { row: lastRow, col: step.col, digit: wrongDigit },
+      };
   // The example: another exercise of the same kind, with its mistake named.
   const exLayout = layoutFor(VOP[op], a + 3, b + 2);
   const exCells = exLayout.steps.filter((s) => s.row === exLayout.rows.length - 1);
@@ -325,7 +333,11 @@ export function storyBank(): string[] {
   const out = new Set<string>();
   for (const s of STORIES) {
     for (const who of CHARACTERS) {
-      const said = say(s.key, { name: who.name, a: { n: 33, noun: s.nouns[0] }, b: { n: 33, noun: s.nouns[1] } }, who.gender);
+      const said = say(
+        s.key,
+        { name: who.name, a: { n: 33, noun: s.nouns[0] }, b: { n: 33, noun: s.nouns[1] } },
+        who.gender,
+      );
       for (const p of said.parts) out.add(p);
     }
   }

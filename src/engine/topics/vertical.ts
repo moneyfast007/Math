@@ -32,19 +32,28 @@ const sub100: Make = (rng) => {
   const a = r(rng, 30, 99);
   return [a, r(rng, 10, a - 10)];
 };
-const addNoCarry2 = (rng: Rng) => pair(rng, add100, (a, b) => a + b <= 99 && carries(a, b).length === 0);
-const addCarry2 = (rng: Rng) => pair(rng, add100, (a, b) => a + b <= 99 && carries(a, b).length === 1);
-const subNoBorrow2 = (rng: Rng) => pair(rng, sub100, (a, b) => borrows(a, b).length === 0 && a - b >= 10);
-const subBorrow2 = (rng: Rng) => pair(rng, sub100, (a, b) => borrows(a, b).length === 1 && a - b >= 10);
+const addNoCarry2 = (rng: Rng) =>
+  pair(rng, add100, (a, b) => a + b <= 99 && carries(a, b).length === 0);
+const addCarry2 = (rng: Rng) =>
+  pair(rng, add100, (a, b) => a + b <= 99 && carries(a, b).length === 1);
+const subNoBorrow2 = (rng: Rng) =>
+  pair(rng, sub100, (a, b) => borrows(a, b).length === 0 && a - b >= 10);
+const subBorrow2 = (rng: Rng) =>
+  pair(rng, sub100, (a, b) => borrows(a, b).length === 1 && a - b >= 10);
 
-const col2 = (level: number, op: '+' | '-', make: (rng: Rng) => [number, number], guided: boolean) =>
+const col2 = (
+  level: number,
+  op: '+' | '-',
+  make: (rng: Rng) => [number, number],
+  guided: boolean,
+) =>
   open(L2(level), (rng) => {
     const [a, b] = make(rng);
     const [ea, eb] = make(rng);
     return columnExercise({ topicId: G2, level, op, a, b, guided, example: { a: ea, b: eb } });
   });
 
-const mixed2 = (rng: Rng): [ '+' | '-', number, number ] =>
+const mixed2 = (rng: Rng): ['+' | '-', number, number] =>
   rng() < 0.5 ? ['+', ...addCarry2(rng)] : ['-', ...subBorrow2(rng)];
 
 export const vertical2 = defineTopic({
@@ -62,7 +71,15 @@ export const vertical2 = defineTopic({
     open(L2(7), (rng) => {
       const [op, a, b] = mixed2(rng);
       const [, ea, eb] = op === '+' ? ['+', ...addCarry2(rng)] : ['-', ...subBorrow2(rng)];
-      return columnExercise({ topicId: G2, level: 7, op, a, b, guided: false, example: { a: ea, b: eb } });
+      return columnExercise({
+        topicId: G2,
+        level: 7,
+        op,
+        a,
+        b,
+        guided: false,
+        example: { a: ea, b: eb },
+      });
     }),
     open(L2(8), (rng) => {
       const [op, a, b] = mixed2(rng);
@@ -108,16 +125,24 @@ const withZeros: Make = (rng) => {
   return [a, r(rng, 100, a - 1)];
 };
 
-const addOneCarry3 = (rng: Rng) => pair(rng, add3, (a, b) => a + b <= 999 && carries(a, b).length === 1);
-const addCarries4 = (rng: Rng) => pair(rng, add4, (a, b) => a + b <= 9999 && carries(a, b).length >= 2);
+const addOneCarry3 = (rng: Rng) =>
+  pair(rng, add3, (a, b) => a + b <= 999 && carries(a, b).length === 1);
+const addCarries4 = (rng: Rng) =>
+  pair(rng, add4, (a, b) => a + b <= 9999 && carries(a, b).length >= 2);
 const borrowUnits = (rng: Rng) => pair(rng, sub3, (a, b) => borrows(a, b).join() === '0');
 const borrowTens = (rng: Rng) =>
   pair(rng, rng() < 0.5 ? sub3 : sub4, (a, b) => borrows(a, b).join() === '1');
-const twoBorrows3 = (rng: Rng) => pair(rng, sub3, (a, b) => borrows(a, b).join() === '0,1' && a - b >= 100);
+const twoBorrows3 = (rng: Rng) =>
+  pair(rng, sub3, (a, b) => borrows(a, b).join() === '0,1' && a - b >= 100);
 const twoBorrows4 = (rng: Rng) => pair(rng, sub4, (a, b) => borrows(a, b).length >= 2);
 const zeros4 = (rng: Rng) => pair(rng, withZeros, (a, b) => borrows(a, b).length >= 2);
 
-const col3 = (level: number, op: '+' | '-', make: (rng: Rng) => [number, number], guided: boolean) =>
+const col3 = (
+  level: number,
+  op: '+' | '-',
+  make: (rng: Rng) => [number, number],
+  guided: boolean,
+) =>
   open(L3(level), (rng) => {
     const [a, b] = make(rng);
     const [ea, eb] = make(rng);
@@ -166,7 +191,8 @@ const subBig: Make = (rng) => {
   const a = rng() < 0.3 ? r(rng, 1, 9) * 100_000 + r(rng, 0, 9) * 1000 : r(rng, 20_000, 999_999);
   return [a, r(rng, 1000, a - 1000)];
 };
-const addMillion = (rng: Rng) => pair(rng, addBig, (a, b) => a + b < 1_000_000 && carries(a, b).length >= 2);
+const addMillion = (rng: Rng) =>
+  pair(rng, addBig, (a, b) => a + b < 1_000_000 && carries(a, b).length >= 2);
 const subMillion = (rng: Rng) => pair(rng, subBig, (a, b) => borrows(a, b).length >= 2);
 /** No zero in the multiplier's units, so neither row is all zeros. */
 const mul21: Make = (rng) => [r(rng, 13, 98), r(rng, 3, 9)];
@@ -186,7 +212,15 @@ const colBig = (level: number, op: '+' | '-', make: (rng: Rng) => [number, numbe
   open(L4(level), (rng) => {
     const [a, b] = make(rng);
     const [ea, eb] = make(rng);
-    return columnExercise({ topicId: G4, level, op, a, b, guided: false, example: { a: ea, b: eb } });
+    return columnExercise({
+      topicId: G4,
+      level,
+      op,
+      a,
+      b,
+      guided: false,
+      example: { a: ea, b: eb },
+    });
   });
 
 function any4(rng: Rng): ['+' | '-' | '×', number, number] {

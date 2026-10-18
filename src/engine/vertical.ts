@@ -32,7 +32,15 @@ const AT = [
   'vert.at.5',
   'vert.at.6',
 ] as const;
-const TO = ['vert.to.1', 'vert.to.1', 'vert.to.2', 'vert.to.3', 'vert.to.4', 'vert.to.5', 'vert.to.6'] as const;
+const TO = [
+  'vert.to.1',
+  'vert.to.1',
+  'vert.to.2',
+  'vert.to.3',
+  'vert.to.4',
+  'vert.to.5',
+  'vert.to.6',
+] as const;
 const FROM = [
   'vert.from.1',
   'vert.from.1',
@@ -48,8 +56,7 @@ export const atPlace = (col: number): string => t(AT[Math.min(col, AT.length - 1
 /** "לעשרות": where a carry from this column goes. */
 const toPlace = (col: number): string => t(TO[Math.min(col + 1, TO.length - 1)] ?? 'vert.to.1');
 /** "מהעשרות": where a borrow for this column comes from. */
-const fromPlace = (col: number): string =>
-  t(FROM[Math.min(col, FROM.length - 1)] ?? 'vert.from.1');
+const fromPlace = (col: number): string => t(FROM[Math.min(col, FROM.length - 1)] ?? 'vert.from.1');
 
 /** A sentence from a template: digits on screen, words (and clips) when read. */
 export function line(key: TranslationKey, slots: Record<string, number | string>): Line {
@@ -180,7 +187,11 @@ export function subLayout(a: number, b: number): VerticalLayout {
       marks.push({ col, text: String(value), group: 0, strike: true });
       const zeros = j - col - 1;
       explain = line(
-        zeros === 0 ? 'vert.sub.borrow' : zeros === 1 ? 'vert.sub.borrowZero' : 'vert.sub.borrowZeros',
+        zeros === 0
+          ? 'vert.sub.borrow'
+          : zeros === 1
+            ? 'vert.sub.borrowZero'
+            : 'vert.sub.borrowZeros',
         { x, y, from: fromPlace(j), x2: value, d: value - y },
       );
     } else if (hasBottom) {
@@ -225,7 +236,8 @@ function mulRow(row: number, a: number, m: number, shift: number): VerticalStep[
         row,
         col,
         digit: carry % 10,
-        marks: carry >= 10 ? [{ col: col + 1, text: String(Math.floor(carry / 10)), group: row }] : [],
+        marks:
+          carry >= 10 ? [{ col: col + 1, text: String(Math.floor(carry / 10)), group: row }] : [],
         ask: line('vert.ask.down', { place }),
         explain: line('vert.add.down', { d: carry % 10 }),
         slips: [],
@@ -296,11 +308,7 @@ export function mulLayout(a: number, b: number): VerticalLayout {
     width: Math.max(len(a), len(b) + 1, len(total)),
     rows,
     steps,
-    rowIntro: [
-      null,
-      line('vert.mul.zero', { m: tens }),
-      line('vert.mul.sum', {}),
-    ],
+    rowIntro: [null, line('vert.mul.zero', { m: tens }), line('vert.mul.sum', {})],
   };
 }
 
@@ -330,7 +338,10 @@ export function marksUpTo(layout: VerticalLayout, upto: number): VerticalMark[] 
  * The value of the answer row a child typed column by column; null while a
  * cell is empty. `typed` maps "row:col" to a digit.
  */
-export function typedAnswer(layout: VerticalLayout, typed: ReadonlyMap<string, number>): number | null {
+export function typedAnswer(
+  layout: VerticalLayout,
+  typed: ReadonlyMap<string, number>,
+): number | null {
   const last = layout.rows.length - 1;
   const cells = layout.steps.filter((s) => s.row === last);
   let n = 0;
@@ -349,7 +360,8 @@ export function withoutCarrying(a: number, b: number): number {
   const x = digitsOf(a);
   const y = digitsOf(b);
   let n = 0;
-  for (let i = Math.max(x.length, y.length) - 1; i >= 0; i--) n = n * 10 + (((x[i] ?? 0) + (y[i] ?? 0)) % 10);
+  for (let i = Math.max(x.length, y.length) - 1; i >= 0; i--)
+    n = n * 10 + (((x[i] ?? 0) + (y[i] ?? 0)) % 10);
   return n;
 }
 
@@ -358,6 +370,7 @@ export function withoutBorrowing(a: number, b: number): number {
   const x = digitsOf(a);
   const y = digitsOf(b);
   let n = 0;
-  for (let i = Math.max(x.length, y.length) - 1; i >= 0; i--) n = n * 10 + Math.abs((x[i] ?? 0) - (y[i] ?? 0));
+  for (let i = Math.max(x.length, y.length) - 1; i >= 0; i--)
+    n = n * 10 + Math.abs((x[i] ?? 0) - (y[i] ?? 0));
   return n;
 }
