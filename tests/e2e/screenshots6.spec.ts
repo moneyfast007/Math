@@ -20,11 +20,11 @@ const done = (level = 10) => ({
   reviewPassed: true,
 });
 
-const profile = (id: string, name: string, avatar: string) => ({
+const profile = (id: string, name: string, avatar: string, grade = 2) => ({
   id,
   name,
   avatar,
-  grade: 2,
+  grade,
   gender: 'f',
   createdAt: 1,
   settings: { allowLevelChange: true },
@@ -37,9 +37,13 @@ const backup = {
   exportedAt: '2026-10-18T10:00:00.000Z',
   data: {
     schemaVersion: 2,
-    profiles: [profile('a', 'עדי', 'fox'), profile('b', 'רוני', 'cat')],
+    profiles: [profile('a', 'עדי', 'fox'), profile('b', 'רוני', 'cat'), profile('c', 'ליה', 'frog', 1)],
     progress: {
       a: { topics: { 'add-sub-100': done() }, streak: { count: 0, lastDay: null } },
+      c: {
+        topics: { 'add-sub-20': done(), 'numbers-100': done() },
+        streak: { count: 0, lastDay: null },
+      },
       b: {
         topics: { 'add-sub-100': done(), money: done(), 'mult-intro': done() },
         streak: { count: 0, lastDay: null },
@@ -108,4 +112,11 @@ test('money and clock screens', async ({ page }, info) => {
   await level(page, 'רבעי שעה: איזה שעון?', 'c-06-clock-quarters');
   await level(page, 'כמה זמן עבר?', 'c-07-clock-elapsed');
   await level(page, 'בעיות זמן', 'c-08-clock-story', 2);
+
+  // Grade 1: clock and money
+  await page.getByRole('button', { name: 'מי משחק?' }).click();
+  await page.getByRole('button', { name: 'ליה' }).click();
+  await shot(page, 'g1-01-journey');
+  await level(page, 'סופרים כסף עד 20', 'g1-02-count');
+  await level(page, 'מה השעה בעוד שעה?', 'g1-03-later');
 });

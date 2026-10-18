@@ -5,6 +5,7 @@ import { addSub20 } from './topics/addSub20';
 import { bigNumbers } from './topics/bigNumbers';
 import { circleVolume } from './topics/circleVolume';
 import { clockTopic } from './topics/clock';
+import { clockMoney1 } from './topics/clockMoney1';
 import { count10 } from './topics/count10';
 import { decimalOps } from './topics/decimalOps';
 import { decimals } from './topics/decimals';
@@ -29,6 +30,7 @@ export const TOPICS: readonly Topic[] = [
   count10,
   addSub20,
   numbers100,
+  clockMoney1,
   addSub100,
   moneyTopic,
   multIntro,

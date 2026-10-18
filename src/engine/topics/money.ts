@@ -36,7 +36,7 @@ import type { Exercise, Hint, Rng, Visual } from '../types';
 const ID = 'money';
 const L = (n: number) => `level.money.${n}`;
 const SHEKEL: Noun = { singular: 'שקל', plural: 'שקלים', gender: 'm' };
-const COINS = [1, 2, 5, 10] as const;
+export const COINS = [1, 2, 5, 10] as const;
 const NOTES = [20, 50, 100] as const;
 
 const sum = (xs: readonly number[]) => xs.reduce((a, b) => a + b, 0);
@@ -49,9 +49,9 @@ const plusAll = (items: readonly number[]) => [...items].sort((a, b) => b - a).j
 
 /* ---------- Level 1: knowing the coins and notes ---------- */
 
-type KnowFact = { kind: 'value' | 'pick'; v: number };
+export type KnowFact = { kind: 'value' | 'pick'; v: number };
 
-function know({ kind, v }: KnowFact): Exercise {
+export function know({ kind, v }: KnowFact): Exercise {
   const isNote = v >= 20;
   const family: readonly number[] = isNote ? NOTES : COINS;
   const others = family.filter((x) => x !== v);
@@ -158,10 +158,22 @@ const countSets = {
   4: memo(COUNT_SETS[4]),
 };
 
-function count(level: 2 | 3 | 4) {
+/** Grade 1: up to twenty shekels, with a five or a ten in every handful. */
+export const smallCoinSets = memo(() =>
+  handfuls(
+    [10, 5, 2, 1],
+    [1, 2, 2, 3],
+    (xs) =>
+      xs.length >= 2 && xs.length <= 6 && xs.some((x) => x >= 5) && sum(xs) <= 20 && sum(xs) >= 6,
+  ),
+);
+
+export const tinyCoinSets = countSets[2];
+
+export function count(level: number, from: () => number[][] = countSets[level as 2 | 3 | 4]) {
   return (items: number[]): Exercise => {
     const n = sum(items);
-    const sets = countSets[level]();
+    const sets = from();
     const ex = sets.find((s) => sum(s) !== n && s.length === items.length) ?? sets[0] ?? [5, 2];
     return exercise({
       factId: `mcount${level}:${plusAll(items)}`,
@@ -209,7 +221,7 @@ function story(key: TranslationKey, who: Character, slots: Record<string, Slot>)
 }
 
 /** Every literal piece of the shopping stories, for every character, item and payment. */
-function storyBank(): string[] {
+export function storyBank(): string[] {
   const out = new Set<string>();
   const keys: TranslationKey[] = [
     'ex.money.enough.story',
@@ -241,8 +253,14 @@ function storyBank(): string[] {
 
 /* ---------- Level 5: is there enough money? ---------- */
 
-function enough(rng: Rng): Exercise {
-  const items = pick(rng, countSets[3]());
+export const enough = enoughFrom(() => countSets[3]());
+
+/** "Is there enough money?" with handfuls from `sets`. */
+export function enoughFrom(sets: () => number[][]) {
+  return (rng: Rng): Exercise => enoughWith(rng, pick(rng, sets()));
+}
+
+function enoughWith(rng: Rng, items: number[]): Exercise {
   const have = sum(items);
   const price = Math.max(3, have + pick(rng, [-5, -3, -2, -1, 0, 1, 2, 3, 5]));
   const yes = have >= price;
@@ -280,13 +298,20 @@ function enough(rng: Rng): Exercise {
 
 /* ---------- Level 6: which wallet has more? ---------- */
 
-function wallets(rng: Rng): Exercise {
+const wallets = walletsWith([5, 10, 10, 20]);
+
+/** Which wallet has more: many small coins against one or two of `big`. */
+export function walletsWith(big: readonly number[]) {
+  return (rng: Rng): Exercise => walletPair(rng, big);
+}
+
+function walletPair(rng: Rng, bigValues: readonly number[]): Exercise {
   // One wallet of many small coins, one of a few big ones: more coins is not more money.
   let small: number[];
   let big: number[];
   do {
     small = Array.from({ length: randInt(rng, 4, 6) }, () => pick(rng, [1, 2, 2, 5]));
-    big = Array.from({ length: randInt(rng, 1, 2) }, () => pick(rng, [5, 10, 10, 20]));
+    big = Array.from({ length: randInt(rng, 1, 2) }, () => pick(rng, bigValues));
   } while (sum(small) === sum(big) || sum(small) < 3 || sum(big) < 3);
   const pair = shuffle(rng, [small, big]);
   const [a, b] = pair as [number[], number[]];
@@ -379,11 +404,13 @@ function payExactly(rng: Rng): Exercise {
 
 /* ---------- Levels 8–9: change ---------- */
 
-function change(level: 8 | 9) {
+/** Change from what was paid; level 8 pays with 10 or 20, level 9 with 50 or 100 (or `paids`). */
+export function change(level: number, paids?: readonly number[]) {
   return (rng: Rng): Exercise => {
-    const paid = level === 8 ? pick(rng, [10, 20]) : pick(rng, [50, 100]);
+    const small = paids ? paids.every((x) => x <= 20) : level === 8;
+    const paid = pick(rng, paids ?? (small ? [10, 20] : [50, 100]));
     const p =
-      level === 8 ? randInt(rng, 3, paid - 1) : randInt(rng, paid === 50 ? 12 : 23, paid - 3);
+      small ? randInt(rng, 3, paid - 1) : randInt(rng, paid === 50 ? 12 : 23, paid - 3);
     const c = paid - p;
     const who = pick(rng, CHARACTERS);
     const item = pick(rng, ITEMS);
@@ -393,7 +420,7 @@ function change(level: 8 | 9) {
       paid: PAID_WITH[paid] ?? '',
     });
     const ex =
-      level === 8
+      small
         ? p === 7 && paid === 10
           ? { p: 6, paid: 10 }
           : { p: 7, paid: 10 }
@@ -401,7 +428,7 @@ function change(level: 8 | 9) {
           ? { p: 64, paid: 100 }
           : { p: 36, paid: 50 };
     const hint2: Hint =
-      level === 8
+      small
         ? hint(say('ex.money.change.hint2'), {
             visual: { type: 'numberLine', from: p, to: paid, start: p, hops: 0, target: paid },
           })

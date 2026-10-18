@@ -143,10 +143,10 @@ function pickClock(
 
 /* ---------- Levels ---------- */
 
-const wholeHours = () => HOURS.map((h) => at(h, 0));
-const halfHours = () => HOURS.map((h) => at(h, 30));
+export const wholeHours = () => HOURS.map((h) => at(h, 0));
+export const halfHours = () => HOURS.map((h) => at(h, 30));
 
-function level1(time: ClockTime, rng: Rng): Exercise {
+export function level1(time: ClockTime, rng: Rng): Exercise {
   return readClock(
     1,
     time,
@@ -157,7 +157,7 @@ function level1(time: ClockTime, rng: Rng): Exercise {
   );
 }
 
-function level2(time: ClockTime, rng: Rng): Exercise {
+export function level2(time: ClockTime, rng: Rng): Exercise {
   // The classic mix-up: the hands swapped (the long hand on the hour).
   const wrong =
     time.h === 12
@@ -173,7 +173,7 @@ function level2(time: ClockTime, rng: Rng): Exercise {
   );
 }
 
-function level3(time: ClockTime, rng: Rng): Exercise {
+export function level3(time: ClockTime, rng: Rng): Exercise {
   return readClock(
     3,
     time,
@@ -185,9 +185,9 @@ function level3(time: ClockTime, rng: Rng): Exercise {
   );
 }
 
-type DigitalFact = { time: ClockTime; to: 'analog' | 'digital' };
+export type DigitalFact = { time: ClockTime; to: 'analog' | 'digital' };
 
-function level4({ time, to }: DigitalFact, rng: Rng): Exercise {
+export function level4({ time, to }: DigitalFact, rng: Rng): Exercise {
   const wrong = [{ time: at(time.h + 1, time.m) }, { time: at(time.h, time.m === 0 ? 30 : 0) }];
   const set = choiceSet(rng, time, wrong);
   const ex = exampleTime(time, at(9, 30), at(5, 0));
@@ -258,9 +258,9 @@ function level7(time: ClockTime, rng: Rng): Exercise {
   );
 }
 
-type ShiftFact = { time: ClockTime; dir: 'later' | 'earlier' };
+export type ShiftFact = { time: ClockTime; dir: 'later' | 'earlier' };
 
-function level8({ time, dir }: ShiftFact, rng: Rng): Exercise {
+export function level8({ time, dir }: ShiftFact, rng: Rng): Exercise {
   const k = dir === 'later' ? 60 : -60;
   const right = plus(time, k);
   const set = choiceSet(rng, right, [{ time: plus(time, -k) }, { time: plus(time, 2 * k) }]);

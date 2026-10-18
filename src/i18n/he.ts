@@ -1169,6 +1169,19 @@ export const he = {
   'journey.review.locked': 'סיום העולם, עדיין סגור',
   'journey.plusiWaiting': 'פלוסי מחכה ליד התחנה הבאה',
   'journey.map': 'מפת המסע',
+  // Phase 6: world "שעון וכסף" (grade 1)
+  'topic.clockMoney1': 'שעון וכסף',
+  'level.clockMoney1.1': 'מכירים את המטבעות',
+  'level.clockMoney1.2': 'סופרים מטבעות קטנים',
+  'level.clockMoney1.3': 'שעות שלמות: מה השעה?',
+  'level.clockMoney1.4': 'שעות שלמות: איזה שעון?',
+  'level.clockMoney1.5': 'סופרים כסף עד 20',
+  'level.clockMoney1.6': 'חצאי שעה',
+  'level.clockMoney1.7': 'יש מספיק כסף?',
+  'level.clockMoney1.8': 'מה השעה בעוד שעה?',
+  'level.clockMoney1.9': 'באיזה ארנק יש יותר?',
+  'level.clockMoney1.10': 'עודף מ-10',
+
   // Phase 6: world "שעון" (grade 2)
   'topic.clock': 'שעון',
   'level.clock.1': 'שעות שלמות',
