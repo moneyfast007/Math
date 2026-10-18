@@ -21,76 +21,75 @@ ok
 
 [1m[46m RUN [49m[22m [36mv3.2.7 [39m[90m/home/runner/work/Math/Math[39m
 
- [32m✓[39m src/state/validate.test.ts [2m([22m[2m19 tests[22m[2m)[22m[32m 20[2mms[22m[39m
- [32m✓[39m src/state/store.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 27[2mms[22m[39m
- [32m✓[39m src/state/progress.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 12[2mms[22m[39m
- [32m✓[39m src/lang/hebrewNumbers.test.ts [2m([22m[2m81 tests[22m[2m)[22m[33m 2055[2mms[22m[39m
-   [33m[2m✓[22m[39m numberToWords, properties[2m > [22mis injective on 0–99,999: different numbers never produce the same words [33m 1983[2mms[22m[39m
- [32m✓[39m src/engine/topics/addSub20.test.ts [2m([22m[2m14 tests[22m[2m)[22m[33m 761[2mms[22m[39m
- [32m✓[39m src/audio/speaker.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 28[2mms[22m[39m
- [32m✓[39m src/engine/session.test.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 15[2mms[22m[39m
- [32m✓[39m src/engine/journey.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 11[2mms[22m[39m
- [32m✓[39m src/ui/components.test.tsx [2m([22m[2m7 tests[22m[2m)[22m[33m 370[2mms[22m[39m
- [32m✓[39m src/parent/gate.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[33m 522[2mms[22m[39m
- [32m✓[39m src/lang/compose.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 9[2mms[22m[39m
- [32m✓[39m src/state/streak.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 9[2mms[22m[39m
- [32m✓[39m scripts/tts/pronunciation.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 12[2mms[22m[39m
- [32m✓[39m src/screens/JourneyScreen.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[32m 158[2mms[22m[39m
- [32m✓[39m src/i18n/i18n.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 104[2mms[22m[39m
- [32m✓[39m src/lang/time.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+ [32m✓[39m src/state/validate.test.ts [2m([22m[2m19 tests[22m[2m)[22m[32m 17[2mms[22m[39m
+ [32m✓[39m src/state/store.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 26[2mms[22m[39m
+ [32m✓[39m src/state/progress.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 13[2mms[22m[39m
+ [32m✓[39m src/lang/hebrewNumbers.test.ts [2m([22m[2m81 tests[22m[2m)[22m[33m 2048[2mms[22m[39m
+   [33m[2m✓[22m[39m numberToWords, properties[2m > [22mis injective on 0–99,999: different numbers never produce the same words [33m 1991[2mms[22m[39m
+ [32m✓[39m src/audio/speaker.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 31[2mms[22m[39m
+ [32m✓[39m src/engine/topics/addSub20.test.ts [2m([22m[2m14 tests[22m[2m)[22m[33m 828[2mms[22m[39m
+ [32m✓[39m src/engine/session.test.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 24[2mms[22m[39m
+ [32m✓[39m src/engine/journey.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+ [32m✓[39m src/ui/components.test.tsx [2m([22m[2m7 tests[22m[2m)[22m[33m 356[2mms[22m[39m
+ [32m✓[39m src/parent/gate.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[33m 549[2mms[22m[39m
+ [32m✓[39m src/lang/compose.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m src/state/streak.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+ [32m✓[39m scripts/tts/pronunciation.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m src/screens/JourneyScreen.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[32m 126[2mms[22m[39m
+ [32m✓[39m src/i18n/i18n.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 61[2mms[22m[39m
+ [32m✓[39m src/lang/time.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 8[2mms[22m[39m
  [32m✓[39m src/lang/spoken.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 6[2mms[22m[39m
  [32m✓[39m src/lang/spokenLabel.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 17[2mms[22m[39m
  [32m✓[39m src/audio/hash.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 10[2mms[22m[39m
- [32m✓[39m src/state/pin.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 11[2mms[22m[39m
- [32m✓[39m src/lang/groupDigits.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 5[2mms[22m[39m
- [32m✓[39m src/ui/MathExpr.test.tsx [2m([22m[2m3 tests[22m[2m)[22m[32m 58[2mms[22m[39m
- [32m✓[39m src/state/backup.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+ [32m✓[39m src/state/pin.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m src/lang/groupDigits.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m src/ui/MathExpr.test.tsx [2m([22m[2m3 tests[22m[2m)[22m[32m 37[2mms[22m[39m
+ [32m✓[39m src/state/backup.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 8[2mms[22m[39m
  [32m✓[39m src/lang/fractions.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 5[2mms[22m[39m
- [32m✓[39m src/app/router.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m src/app/router.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 5[2mms[22m[39m
  [32m✓[39m src/ui/ageBand.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 7[2mms[22m[39m
- [32m✓[39m src/engine/topics/audioBank.test.ts [2m([22m[2m240 tests[22m[2m)[22m[33m 17221[2mms[22m[39m
-   [33m[2m✓[22m[39m the audio bank covers what a child can hear: shapes[2m > [22mlevel 9 [33m 349[2mms[22m[39m
-   [33m[2m✓[22m[39m the audio bank covers what a child can hear: numbers-100[2m > [22mlevel 3 [33m 469[2mms[22m[39m
-   [33m[2m✓[22m[39m the audio bank covers what a child can hear: numbers-100[2m > [22mlevel 4 [33m 1690[2mms[22m[39m
-   [33m[2m✓[22m[39m the audio bank covers what a child can hear: numbers-100[2m > [22mlevel 5 [33m 555[2mms[22m[39m
-   [33m[2m✓[22m[39m the audio bank covers what a child can hear: numbers-100[2m > [22mlevel 6 [33m 452[2mms[22m[39m
-   [33m[2m✓[22m[39m the audio bank covers what a child can hear: numbers-100[2m > [22mlevel 9 [33m 865[2mms[22m[39m
-   [33m[2m✓[22m[39m the audio bank covers what a child can hear: clock[2m > [22mlevel 10 [33m 368[2mms[22m[39m
-   [33m[2m✓[22m[39m the audio bank covers what a child can hear: fraction-ops[2m > [22mlevel 3 [33m 569[2mms[22m[39m
- [32m✓[39m src/engine/topics/all.test.ts [2m([22m[2m314 tests[22m[2m)[22m[33m 54397[2mms[22m[39m
-   [33m[2m✓[22m[39m topic count-10[2m > [22mlevel 10 produces valid exercises [33m 441[2mms[22m[39m
-   [33m[2m✓[22m[39m topic shapes[2m > [22mlevel 9 produces valid exercises [33m 509[2mms[22m[39m
-   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 2 produces valid exercises [33m 531[2mms[22m[39m
-   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 3 produces valid exercises [33m 890[2mms[22m[39m
-   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 4 produces valid exercises [33m 2196[2mms[22m[39m
-   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 5 produces valid exercises [33m 605[2mms[22m[39m
-   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 6 produces valid exercises [33m 588[2mms[22m[39m
-   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 7 produces valid exercises [33m 321[2mms[22m[39m
-   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 8 produces valid exercises [33m 435[2mms[22m[39m
-   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 9 produces valid exercises [33m 1244[2mms[22m[39m
-   [33m[2m✓[22m[39m topic numbers-100[2m > [22mavoids an immediate repeat [33m 488[2mms[22m[39m
-   [33m[2m✓[22m[39m topic clock-money-1[2m > [22mlevel 7 produces valid exercises [33m 370[2mms[22m[39m
-   [33m[2m✓[22m[39m topic clock-money-1[2m > [22mlevel 9 produces valid exercises [33m 325[2mms[22m[39m
-   [33m[2m✓[22m[39m topic clock-money-1[2m > [22mlevel 10 produces valid exercises [33m 367[2mms[22m[39m
-   [33m[2m✓[22m[39m topic add-sub-100[2m > [22mlevel 1 produces valid exercises [33m 374[2mms[22m[39m
-   [33m[2m✓[22m[39m topic add-sub-100[2m > [22mlevel 2 produces valid exercises [33m 399[2mms[22m[39m
-   [33m[2m✓[22m[39m topic add-sub-100[2m > [22mlevel 3 produces valid exercises [33m 349[2mms[22m[39m
-   [33m[2m✓[22m[39m topic add-sub-100[2m > [22mlevel 7 produces valid exercises [33m 413[2mms[22m[39m
-   [33m[2m✓[22m[39m topic clock[2m > [22mlevel 10 produces valid exercises [33m 498[2mms[22m[39m
-   [33m[2m✓[22m[39m topic fraction-ops[2m > [22mlevel 3 produces valid exercises [33m 425[2mms[22m[39m
-   [33m[2m✓[22m[39m topic fraction-ops[2m > [22mlevel 9 produces valid exercises [33m 326[2mms[22m[39m
-   [33m[2m✓[22m[39m topic fraction-mul-div[2m > [22mlevel 9 produces valid exercises [33m 301[2mms[22m[39m
-   [33m[2m✓[22m[39m topic ratio[2m > [22mlevel 1 produces valid exercises [33m 377[2mms[22m[39m
-   [33m[2m✓[22m[39m topic ratio[2m > [22mlevel 2 produces valid exercises [33m 352[2mms[22m[39m
-   [33m[2m✓[22m[39m topic ratio[2m > [22mlevel 3 produces valid exercises [33m 313[2mms[22m[39m
-   [33m[2m✓[22m[39m topic ratio[2m > [22mlevel 4 produces valid exercises [33m 308[2mms[22m[39m
-   [33m[2m✓[22m[39m topic circle-volume[2m > [22mlevel 6 produces valid exercises [33m 404[2mms[22m[39m
-   [33m[2m✓[22m[39m topic circle-volume[2m > [22mlevel 8 produces valid exercises [33m 419[2mms[22m[39m
+ [32m✓[39m src/engine/topics/audioBank.test.ts [2m([22m[2m240 tests[22m[2m)[22m[33m 16355[2mms[22m[39m
+   [33m[2m✓[22m[39m the audio bank covers what a child can hear: shapes[2m > [22mlevel 9 [33m 367[2mms[22m[39m
+   [33m[2m✓[22m[39m the audio bank covers what a child can hear: numbers-100[2m > [22mlevel 3 [33m 415[2mms[22m[39m
+   [33m[2m✓[22m[39m the audio bank covers what a child can hear: numbers-100[2m > [22mlevel 4 [33m 1595[2mms[22m[39m
+   [33m[2m✓[22m[39m the audio bank covers what a child can hear: numbers-100[2m > [22mlevel 5 [33m 549[2mms[22m[39m
+   [33m[2m✓[22m[39m the audio bank covers what a child can hear: numbers-100[2m > [22mlevel 6 [33m 538[2mms[22m[39m
+   [33m[2m✓[22m[39m the audio bank covers what a child can hear: numbers-100[2m > [22mlevel 9 [33m 555[2mms[22m[39m
+   [33m[2m✓[22m[39m the audio bank covers what a child can hear: clock[2m > [22mlevel 10 [33m 417[2mms[22m[39m
+   [33m[2m✓[22m[39m the audio bank covers what a child can hear: fraction-ops[2m > [22mlevel 3 [33m 307[2mms[22m[39m
+ [32m✓[39m src/engine/topics/all.test.ts [2m([22m[2m314 tests[22m[2m)[22m[33m 54141[2mms[22m[39m
+   [33m[2m✓[22m[39m topic count-10[2m > [22mlevel 10 produces valid exercises [33m 421[2mms[22m[39m
+   [33m[2m✓[22m[39m topic shapes[2m > [22mlevel 9 produces valid exercises [33m 667[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 2 produces valid exercises [33m 451[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 3 produces valid exercises [33m 776[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 4 produces valid exercises [33m 2136[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 5 produces valid exercises [33m 556[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 6 produces valid exercises [33m 707[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 7 produces valid exercises [33m 328[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 8 produces valid exercises [33m 496[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 9 produces valid exercises [33m 1079[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mavoids an immediate repeat [33m 635[2mms[22m[39m
+   [33m[2m✓[22m[39m topic clock-money-1[2m > [22mlevel 7 produces valid exercises [33m 430[2mms[22m[39m
+   [33m[2m✓[22m[39m topic clock-money-1[2m > [22mlevel 9 produces valid exercises [33m 439[2mms[22m[39m
+   [33m[2m✓[22m[39m topic add-sub-100[2m > [22mlevel 1 produces valid exercises [33m 385[2mms[22m[39m
+   [33m[2m✓[22m[39m topic add-sub-100[2m > [22mlevel 2 produces valid exercises [33m 316[2mms[22m[39m
+   [33m[2m✓[22m[39m topic add-sub-100[2m > [22mlevel 3 produces valid exercises [33m 340[2mms[22m[39m
+   [33m[2m✓[22m[39m topic add-sub-100[2m > [22mlevel 6 produces valid exercises [33m 313[2mms[22m[39m
+   [33m[2m✓[22m[39m topic clock[2m > [22mlevel 10 produces valid exercises [33m 491[2mms[22m[39m
+   [33m[2m✓[22m[39m topic fractions-1[2m > [22mlevel 7 produces valid exercises [33m 303[2mms[22m[39m
+   [33m[2m✓[22m[39m topic fraction-ops[2m > [22mlevel 3 produces valid exercises [33m 419[2mms[22m[39m
+   [33m[2m✓[22m[39m topic fraction-ops[2m > [22mlevel 9 produces valid exercises [33m 314[2mms[22m[39m
+   [33m[2m✓[22m[39m topic ratio[2m > [22mlevel 1 produces valid exercises [33m 366[2mms[22m[39m
+   [33m[2m✓[22m[39m topic ratio[2m > [22mlevel 2 produces valid exercises [33m 344[2mms[22m[39m
+   [33m[2m✓[22m[39m topic ratio[2m > [22mlevel 3 produces valid exercises [33m 304[2mms[22m[39m
+   [33m[2m✓[22m[39m topic ratio[2m > [22mlevel 4 produces valid exercises [33m 300[2mms[22m[39m
+   [33m[2m✓[22m[39m topic circle-volume[2m > [22mlevel 6 produces valid exercises [33m 411[2mms[22m[39m
+   [33m[2m✓[22m[39m topic circle-volume[2m > [22mlevel 8 produces valid exercises [33m 411[2mms[22m[39m
 
 [2m Test Files [22m [1m[32m28 passed[39m[22m[90m (28)[39m
 [2m      Tests [22m [1m[32m799 passed[39m[22m[90m (799)[39m
-[2m   Start at [22m 10:43:14
-[2m   Duration [22m 59.52s[2m (transform 1.27s, setup 5.90s, collect 2.55s, tests 75.87s, environment 15.58s, prepare 3.43s)[22m
+[2m   Start at [22m 10:58:12
+[2m   Duration [22m 59.26s[2m (transform 1.20s, setup 5.86s, collect 2.31s, tests 74.72s, environment 15.92s, prepare 3.40s)[22m
 
 
 ## build
@@ -113,7 +112,7 @@ computing gzip size...
 - Using dynamic import() to code-split the application
 - Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
 - Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.[39m
-[32m✓ built in 3.81s[39m
+[32m✓ built in 3.94s[39m
 
 [36mPWA v1.3.0[39m
 mode      [35mgenerateSW[39m
@@ -163,10 +162,10 @@ files generated
 [WebServer] - Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
 [WebServer] - Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
 
-Running 93 tests using 2 workers
-···························°°°····························°°°···················
-·········°°°·
-  9 skipped
+Running 102 tests using 2 workers
+···························°°°°°°····························°°°°°°·············
+···············°°°°°°·
+  18 skipped
   84 passed (3.0m)
-::notice title=🎭 Playwright Run Summary::  9 skipped%0A  84 passed (3.0m)
+::notice title=🎭 Playwright Run Summary::  18 skipped%0A  84 passed (3.0m)
 SCREENSHOTS FAILED
