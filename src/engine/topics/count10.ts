@@ -173,7 +173,14 @@ function oneStep(level: number, n: number, rng: Rng, more1: boolean): Exercise {
     hints: [
       hint(say(k(`${key}.hint1`))),
       hint(say('hint.numberLine'), {
-        visual: { type: 'numberLine', from: 0, to: 10, start: n, hops: more1 ? 1 : -1, hide: answer },
+        visual: {
+          type: 'numberLine',
+          from: 0,
+          to: 10,
+          start: n,
+          hops: more1 ? 1 : -1,
+          hide: answer,
+        },
       }),
       exampleHint(`${ex.n} ${more1 ? '+' : '−'} 1 = ${more1 ? ex.n + 1 : ex.n - 1}`, exSolved),
     ],
@@ -231,7 +238,9 @@ function neighbour(level: number, n: number, rng: Rng, after: boolean): Exercise
   const solved = say(k(`${key}.solution`), { n, c: answer });
   // The example shares no number with the exercise (6 → 7 would answer "after 5").
   const exN =
-    [5, 7, 2, 8, 3].find((x) => ![n, answer].includes(x) && ![n, answer].includes(after ? x + 1 : x - 1)) ?? 5;
+    [5, 7, 2, 8, 3].find(
+      (x) => ![n, answer].includes(x) && ![n, answer].includes(after ? x + 1 : x - 1),
+    ) ?? 5;
   const exSolved = say(k(`${key}.solution`), { n: exN, c: after ? exN + 1 : exN - 1 });
   return exercise({
     factId: `${after ? 'after' : 'before'}:${n}`,
@@ -245,7 +254,14 @@ function neighbour(level: number, n: number, rng: Rng, after: boolean): Exercise
     hints: [
       hint(say(k(`${key}.hint1`))),
       hint(say('hint.numberLine'), {
-        visual: { type: 'numberLine', from: 0, to: 10, start: n, hops: after ? 1 : -1, hide: answer },
+        visual: {
+          type: 'numberLine',
+          from: 0,
+          to: 10,
+          start: n,
+          hops: after ? 1 : -1,
+          hide: answer,
+        },
       }),
       exampleHint(`${exN} → ${after ? exN + 1 : exN - 1}`, exSolved),
     ],

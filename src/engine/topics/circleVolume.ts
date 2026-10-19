@@ -278,9 +278,7 @@ const aquarium = (x: Box): Exercise => {
 /** Boxes whose volume is not also the sum of the edges or the surface (6 × 6 × 6: both 216). */
 const BOXES: Box[] = range(2, 9)
   .flatMap((a) => range(2, a).flatMap((b) => range(2, 6).map((c) => ({ a, b, c }))))
-  .filter(
-    ({ a, b, c }) => a * b * c !== a + b + c && a * b * c !== 2 * (a * b + b * c + a * c),
-  );
+  .filter(({ a, b, c }) => a * b * c !== a + b + c && a * b * c !== 2 * (a * b + b * c + a * c));
 const AQUARIUMS: Box[] = [20, 25, 30, 40, 50, 60]
   .flatMap((a) => [10, 20, 25, 30].flatMap((b) => [10, 20, 30, 40].map((c) => ({ a, b, c }))))
   .filter((x) => (x.a * x.b * x.c) % 1000 === 0);

@@ -209,10 +209,7 @@ function timesPower(rng: Rng): Exercise {
     a,
     op: '×',
     b: k,
-    hints: [
-      hint(say(`hint.timesPower.${power(k)}`)),
-      hint(say('hint.timesPower2')),
-    ],
+    hints: [hint(say(`hint.timesPower.${power(k)}`)), hint(say('hint.timesPower2'))],
     example: { a: 37, b: k },
     input: numpad(7),
   });
@@ -227,10 +224,7 @@ function dividePower(rng: Rng): Exercise {
     a: q * k,
     op: '÷',
     b: k,
-    hints: [
-      hint(say(`hint.dividePower.${power(k)}`)),
-      hint(say('hint.dividePower2')),
-    ],
+    hints: [hint(say(`hint.dividePower.${power(k)}`)), hint(say('hint.dividePower2'))],
     example: { a: 37 * k, b: k },
     input: numpad(6),
   });

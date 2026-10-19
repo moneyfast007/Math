@@ -290,7 +290,10 @@ function story(rng: Rng): Exercise {
           return {
             answer: r,
             hint: () =>
-              exampleHint(`${ex.a} × ${ex.b} + ${ex.c} = ${r}`, say('wp.ord.shop.solution', { ...ex, r })),
+              exampleHint(
+                `${ex.a} × ${ex.b} + ${ex.c} = ${r}`,
+                say('wp.ord.shop.solution', { ...ex, r }),
+              ),
           };
         }),
       ),

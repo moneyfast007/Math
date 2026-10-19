@@ -130,7 +130,12 @@ function change(level: 5 | 6, rng: Rng): Exercise {
       hint(sayP(`${key}.hint1` as 'ex.pct6.discount.hint1')),
       // What is paid, as a percent of the price: 100 − p after a discount, 100 + p after an increase.
       hint(
-        sayP(up ? 'ex.pct6.increase.hint2' : 'ex.pct6.discount.hint2', { p, q: up ? 100 + p : 100 - p }, 'f', ['p', 'q']),
+        sayP(
+          up ? 'ex.pct6.increase.hint2' : 'ex.pct6.discount.hint2',
+          { p, q: up ? 100 + p : 100 - p },
+          'f',
+          ['p', 'q'],
+        ),
       ),
       // Not an example whose new price is this answer: it would give it away.
       exampleAvoiding(

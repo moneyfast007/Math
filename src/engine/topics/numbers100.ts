@@ -45,7 +45,15 @@ function wholeTens(level: number, tens: number, rng: Rng): Exercise {
     hints: [
       hint(say('ex.tens.hint1')),
       hint(say('ex.tens.hint2'), {
-        visual: { type: 'numberLine', from: 0, to: 100, start: 0, hops: tens, step: 10, hide: answer },
+        visual: {
+          type: 'numberLine',
+          from: 0,
+          to: 100,
+          start: 0,
+          hops: tens,
+          step: 10,
+          hide: answer,
+        },
       }),
       // Repeated addition, not "3 × 10": multiplication comes in grade 2.
       exampleHint(

@@ -385,7 +385,9 @@ function problem(rng: Rng): Exercise {
     factId: `flour:${a}:${b}`,
     topicId: ID,
     level: 10,
-    prompt: shown(say('ex.measure.flour.story', { a: { n: a, noun: KG }, b: { n: b, noun: GRAM } })),
+    prompt: shown(
+      say('ex.measure.flour.story', { a: { n: a, noun: KG }, b: { n: b, noun: GRAM } }),
+    ),
     display: '',
     spoken: say('ex.measure.flour.story', { a: { n: a, noun: KG }, b: { n: b, noun: GRAM } }),
     answer: left,

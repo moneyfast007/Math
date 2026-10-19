@@ -58,7 +58,8 @@ export function percentOfExample(answer: number, options: readonly [number, numb
       const r = (p * base) / 100;
       return {
         answer: r,
-        hint: () => exampleHint(`${p}% × ${base} = ${r}`, sayP('ex.pct.of.solution', { p, base, r })),
+        hint: () =>
+          exampleHint(`${p}% × ${base} = ${r}`, sayP('ex.pct.of.solution', { p, base, r })),
       };
     }),
   );
@@ -223,7 +224,16 @@ function percentOf(level: 6 | 7, rng: Rng): Exercise {
     hints: [
       hint(say(level === 6 ? 'ex.pct.of.hint1familiar' : 'ex.pct.of.hint1tens')),
       // The shortcut for this percent: half, a quarter, or a tenth.
-      hint(sayP(p === 50 ? 'ex.pct.of.hint2half' : p === 25 ? 'ex.pct.of.hint2quarter' : 'ex.pct.of.hint2', { base })),
+      hint(
+        sayP(
+          p === 50
+            ? 'ex.pct.of.hint2half'
+            : p === 25
+              ? 'ex.pct.of.hint2quarter'
+              : 'ex.pct.of.hint2',
+          { base },
+        ),
+      ),
       percentOfExample(answer, [
         [30, 80],
         [20, 50],

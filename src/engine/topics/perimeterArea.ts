@@ -178,9 +178,7 @@ function missingSide(level: 6 | 7, rng: Rng): Exercise {
           answer: side,
           hint: () =>
             exampleHint(
-              fromArea
-                ? `${6 * side} ÷ 6 = ${side}`
-                : `(${2 * (6 + side)} − 6 − 6) ÷ 2 = ${side}`,
+              fromArea ? `${6 * side} ÷ 6 = ${side}` : `(${2 * (6 + side)} − 6 − 6) ÷ 2 = ${side}`,
               say(`${key}.solution` as const, { r: { n: side, noun: CM } }),
             ),
         })),

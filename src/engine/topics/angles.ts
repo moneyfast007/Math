@@ -582,7 +582,10 @@ function symmetry([shape, name, n, marks]: (typeof SYMMETRY)[number], rng: Rng):
       hint(say('ex.angles.sym.hint2')),
       // Never the shape that is asked about: for the isosceles triangle, a rectangle.
       shape === 'isosceles'
-        ? pictureExample(say('ex.angles.sym.exampleRect'), poly(SHAPES.rectangle, { rightAngles: [0, 1, 2, 3] }))
+        ? pictureExample(
+            say('ex.angles.sym.exampleRect'),
+            poly(SHAPES.rectangle, { rightAngles: [0, 1, 2, 3] }),
+          )
         : pictureExample(
             say('ex.angles.sym.example'),
             poly(SHAPES.isosceles, { ticks: [1, 0, 1], height: { from: [50, 3], to: [50, 92] } }),
