@@ -80,7 +80,8 @@ function dictation(rng: Rng): Exercise {
 function dictationSlips(n: number): number[] {
   const s = String(n);
   const out = new Set<number>();
-  for (let i = 1; i < s.length; i++) if (s[i] === '0') out.add(Number(s.slice(0, i) + s.slice(i + 1)));
+  for (let i = 1; i < s.length; i++)
+    if (s[i] === '0') out.add(Number(s.slice(0, i) + s.slice(i + 1)));
   out.add(Number(`${Math.floor(n / 1000)}${n % 1000}`));
   out.delete(n);
   return [...out].filter((v) => v > 0);
@@ -304,7 +305,8 @@ function zerosAdvice(
   const out: AdviceSpec[] = [];
   for (const j of [10, 100]) {
     out.push({ value: answer * j, say: say(more, { k }), kind: 'placeValue' });
-    if (answer % j === 0) out.push({ value: answer / j, say: say(less, { k }), kind: 'placeValue' });
+    if (answer % j === 0)
+      out.push({ value: answer / j, say: say(less, { k }), kind: 'placeValue' });
   }
   for (const v of [answer - 1, answer + 1])
     if (v > 0) out.push({ value: v, say: say(last, { k }), kind: 'offByOne' });
@@ -378,7 +380,11 @@ function regroupSlips(a: number, b: number, op: '+' | '-'): AdviceSpec[] {
     const k = 10 ** (place + 1);
     out.push(
       op === '+'
-        ? { value: answer - k, say: say('g4.big.carry', { place: placeObj(place + 1) }), kind: 'carry' }
+        ? {
+            value: answer - k,
+            say: say('g4.big.carry', { place: placeObj(place + 1) }),
+            kind: 'carry',
+          }
         : {
             value: answer + k,
             say: say('g4.big.borrow', { place: placeObj(place + 1) }),

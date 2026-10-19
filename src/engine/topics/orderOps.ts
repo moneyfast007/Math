@@ -316,7 +316,13 @@ function missingInside(rng: Rng): Exercise {
       { value: r / c, say: say('ord.adv.inside.bracket', { w: r / c, b }) },
       { value: r / c + b, say: say('ord.adv.inside.added', { b, s: r / c }) },
       ...(Number.isInteger((r - b) / c)
-        ? [{ value: (r - b) / c, say: say('ord.adv.inside.order', { c, r, b }), kind: 'order' as const }]
+        ? [
+            {
+              value: (r - b) / c,
+              say: say('ord.adv.inside.order', { c, r, b }),
+              kind: 'order' as const,
+            },
+          ]
         : []),
     ],
   });

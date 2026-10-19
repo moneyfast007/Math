@@ -220,7 +220,12 @@ function Fraction({ v }: { v: Extract<Visual, { type: 'fraction' }> }) {
   if ((v.wholes ?? 1) > 1) {
     // Several wholes, each its own bar of the same length.
     return (
-      <div className="fraction fraction--wholes" dir="ltr" data-visual="fraction" aria-hidden="true">
+      <div
+        className="fraction fraction--wholes"
+        dir="ltr"
+        data-visual="fraction"
+        aria-hidden="true"
+      >
         {Array.from({ length: v.wholes ?? 1 }, (_, w) => (
           <div key={w} className="fraction fraction--bar">
             {Array.from({ length: v.parts }, (_, i) => (

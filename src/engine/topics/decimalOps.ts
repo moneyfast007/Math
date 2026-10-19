@@ -126,53 +126,59 @@ function timesWhole(rng: Rng): Exercise {
   // Never a whole number (2.0 × 5 has no point to place).
   const x = trueDecimal(rng, 11, 99, 10);
   const k = randInt(rng, 2, 9);
-  return noWholeSlips(arith({
-    topicId: ID,
-    level: 3,
-    a: x,
-    op: '×',
-    b: k,
-    hints: timesWholeHints(x, k, 1),
-    example: { a: 2.5, b: 4 },
-    input: numpad(4, true),
-    diagnose: pointSlip(round(x * k, 2)),
-    advice: estimateAdvice(x, k),
-  }));
+  return noWholeSlips(
+    arith({
+      topicId: ID,
+      level: 3,
+      a: x,
+      op: '×',
+      b: k,
+      hints: timesWholeHints(x, k, 1),
+      example: { a: 2.5, b: 4 },
+      input: numpad(4, true),
+      diagnose: pointSlip(round(x * k, 2)),
+      advice: estimateAdvice(x, k),
+    }),
+  );
 }
 
 function timesWhole2(rng: Rng): Exercise {
   // Real hundredths: not 2.00 or 2.50.
   const x = trueDecimal(rng, 101, 999, 100);
   const k = randInt(rng, 2, 9);
-  return noWholeSlips(arith({
-    topicId: ID,
-    level: 4,
-    a: x,
-    op: '×',
-    b: k,
-    hints: timesWholeHints(x, k, 2),
-    example: { a: 1.25, b: 4 },
-    input: numpad(5, true),
-    diagnose: pointSlip(round(x * k, 2)),
-    advice: estimateAdvice(x, k),
-  }));
+  return noWholeSlips(
+    arith({
+      topicId: ID,
+      level: 4,
+      a: x,
+      op: '×',
+      b: k,
+      hints: timesWholeHints(x, k, 2),
+      example: { a: 1.25, b: 4 },
+      input: numpad(5, true),
+      diagnose: pointSlip(round(x * k, 2)),
+      advice: estimateAdvice(x, k),
+    }),
+  );
 }
 
 function timesDecimal(rng: Rng): Exercise {
   const a = round(randInt(rng, 2, 9) / 10, 1);
   const b = trueDecimal(rng, 11, 99, 10);
-  return noWholeSlips(arith({
-    topicId: ID,
-    level: 5,
-    a: b,
-    op: '×',
-    b: a,
-    hints: hints('ex.dop.timesDec.hint1', 'ex.dop.timesDec.hint2'),
-    example: { a: 1.5, b: 0.4 },
-    input: numpad(4, true),
-    diagnose: pointSlip(round(a * b, 2)),
-    advice: pointAdvice(round(a * b, 2), say('dop.adv.point.timesDec')),
-  }));
+  return noWholeSlips(
+    arith({
+      topicId: ID,
+      level: 5,
+      a: b,
+      op: '×',
+      b: a,
+      hints: hints('ex.dop.timesDec.hint1', 'ex.dop.timesDec.hint2'),
+      example: { a: 1.5, b: 0.4 },
+      input: numpad(4, true),
+      diagnose: pointSlip(round(a * b, 2)),
+      advice: pointAdvice(round(a * b, 2), say('dop.adv.point.timesDec')),
+    }),
+  );
 }
 
 function divWhole(rng: Rng): Exercise {
@@ -181,18 +187,20 @@ function divWhole(rng: Rng): Exercise {
   const a = round(q * k, 1);
   // A whole number divided (8 ÷ 4) has no point to keep above: draw again.
   if (Number.isInteger(a)) return divWhole(rng);
-  return noWholeSlips(arith({
-    topicId: ID,
-    level: 6,
-    a,
-    op: '÷',
-    b: k,
-    hints: hints('ex.dop.divWhole.hint1', 'ex.dop.divWhole.hint2'),
-    example: { a: 7.5, b: 3 },
-    input: numpad(4, true),
-    diagnose: pointSlip(q),
-    advice: pointAdvice(q, say('dop.adv.point.divWhole', { k, a })),
-  }));
+  return noWholeSlips(
+    arith({
+      topicId: ID,
+      level: 6,
+      a,
+      op: '÷',
+      b: k,
+      hints: hints('ex.dop.divWhole.hint1', 'ex.dop.divWhole.hint2'),
+      example: { a: 7.5, b: 3 },
+      input: numpad(4, true),
+      diagnose: pointSlip(q),
+      advice: pointAdvice(q, say('dop.adv.point.divWhole', { k, a })),
+    }),
+  );
 }
 
 function divHalf(rng: Rng): Exercise {
@@ -224,7 +232,12 @@ function divHalf(rng: Rng): Exercise {
     advice: [
       {
         value: round(a * b, 2),
-        say: say('dop.adv.divHalf.times', { w: round(a * b, 2), b, plural: fractionNoun(per).plural, a }),
+        say: say('dop.adv.divHalf.times', {
+          w: round(a * b, 2),
+          b,
+          plural: fractionNoun(per).plural,
+          a,
+        }),
         kind: 'wrongOperation',
       },
       {

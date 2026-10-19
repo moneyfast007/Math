@@ -428,13 +428,9 @@ function byAngles({ kind, angles }: (typeof ANGLE_FACTS)[number], rng: Rng): Exe
       ),
     ],
     solution: say(`ex.angles.tri.${kind}`),
-    advice: nameAdvice(
-      labels,
-      answer,
-      byWord(TRI_WORD, 'g4.tri.adv'),
-      'g4.tri.adv.check',
-      { m: { n: Math.max(...angles), noun: DEGREE } },
-    ),
+    advice: nameAdvice(labels, answer, byWord(TRI_WORD, 'g4.tri.adv'), 'g4.tri.adv.check', {
+      m: { n: Math.max(...angles), noun: DEGREE },
+    }),
   });
 }
 

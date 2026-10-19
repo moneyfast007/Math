@@ -522,9 +522,7 @@ function ruler(rng: Rng): Exercise {
     // Reading the end mark when the pencil does not start at zero.
     diagnose: (v) => (from > 0 && v === to ? 'other' : null),
     advice: [
-      ...(from > 0
-        ? [{ value: to, say: say('ex.measure.ruler.adviceEnd', { to, from }) }]
-        : []),
+      ...(from > 0 ? [{ value: to, say: say('ex.measure.ruler.adviceEnd', { to, from }) }] : []),
       // The marks counted instead of the spaces between them.
       { value: len + 1, say: say('ex.measure.ruler.adviceMarks'), kind: 'offByOne' },
     ],

@@ -75,9 +75,7 @@ function drawn(points: Pt[], extra: Omit<Polygon, 'points'> = {}): Visual {
     ...(extra.height
       ? { height: { ...extra.height, from: map(extra.height.from), to: map(extra.height.to) } }
       : {}),
-    ...(extra.extend
-      ? { extend: { from: map(extra.extend.from), to: map(extra.extend.to) } }
-      : {}),
+    ...(extra.extend ? { extend: { from: map(extra.extend.from), to: map(extra.extend.to) } } : {}),
   });
 }
 

@@ -703,9 +703,10 @@ function shopping(rng: Rng): Exercise {
     advice: withChange
       ? [
           { value: total, say: say('ex.money.totalChange.adviceTotal', { v: total, paid }) },
-          ...[paid - a, paid - b].map(
-            (v): AdviceSpec => ({ value: v, say: say('ex.money.totalChange.adviceOne', { v }) }),
-          ),
+          ...[paid - a, paid - b].map((v): AdviceSpec => ({
+            value: v,
+            say: say('ex.money.totalChange.adviceOne', { v }),
+          })),
           ...changeAdvice(total, paid),
         ]
       : [],

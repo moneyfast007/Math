@@ -130,13 +130,11 @@ function of(level: 1 | 2, rng: Rng): Exercise {
       ...(base % 10 === 0 && p !== 10
         ? [part * 10, part / 10]
             .filter((v) => Number.isInteger(v) && v > 0)
-            .map(
-              (v): AdviceSpec => ({
-                value: v,
-                say: sayP('p6.adv.of.size', { base, ten: base / 10, p }),
-                kind: 'placeValue',
-              }),
-            )
+            .map((v): AdviceSpec => ({
+              value: v,
+              say: sayP('p6.adv.of.size', { base, ten: base / 10, p }),
+              kind: 'placeValue',
+            }))
         : []),
     ],
   });

@@ -91,7 +91,8 @@ export const heGrades23 = {
   'ex.clock.advice.hourNumber': 'נסתכל שוב על המחוג הקצר: על איזה מספר בדיוק הוא מצביע? זו השעה.',
   'ex.clock.advice.halfNext':
     'בחצי שעה המחוג הקצר כבר עבר את השעה, אבל עוד לא הגיע למספר הבא. אומרים את המספר שהוא כבר עבר.',
-  'ex.clock.advice.halfNotWhole': 'המחוג הארוך על שש, לא על שתים עשרה: עברה חצי שעה. אומרים ״וחצי״.',
+  'ex.clock.advice.halfNotWhole':
+    'המחוג הארוך על שש, לא על שתים עשרה: עברה חצי שעה. אומרים ״וחצי״.',
   'ex.clock.advice.pastNext':
     'ב״ורבע״ המחוג הקצר רק עבר קצת את השעה, והוא עוד רחוק מהמספר הבא. אומרים את המספר שהוא עבר.',
   'ex.clock.advice.pastNotTo':
@@ -151,7 +152,8 @@ export const heGrades23 = {
   'ex.frac.whole.hint2many': 'בשלם אחד יש {all}. כמה יש ב{wholes}?',
   'ex.frac.whole.solution.one': 'בשלם אחד יש {frac}.',
   'ex.frac.whole.solution.many': 'ב{wholes} יש {frac}.',
-  'ex.frac.bigger.hint2both': 'בציור, השבר הראשון למעלה והשני מתחתיו, באותו אורך. איזה מהם צבוע יותר?',
+  'ex.frac.bigger.hint2both':
+    'בציור, השבר הראשון למעלה והשני מתחתיו, באותו אורך. איזה מהם צבוע יותר?',
   'ex.frac.advice.countedAll': '{v} הם כל החלקים של השלם. נספור רק את החלקים הצבועים.',
   'ex.frac.advice.unshaded': '{v} הם החלקים שלא צבועים. נספור את החלקים הצבועים.',
   'ex.frac.advice.onePart': {
@@ -218,6 +220,5 @@ export const heGrades23 = {
   'ex.measure.adviceKg': 'בקילוגרם יש אלף גרמים, לא מאה. כמה גרמים הם {a}?',
   'ex.measure.clock.adviceFives':
     'המחוג הארוך מצביע על מספר, אבל כל מספר בשעון שווה חמש דקות. נספור בחמש.',
-  'ex.measure.clock.adviceHour':
-    'המחוג הקצר עוד לא הגיע למספר הבא. השעה היא המספר שהוא כבר עבר.',
+  'ex.measure.clock.adviceHour': 'המחוג הקצר עוד לא הגיע למספר הבא. השעה היא המספר שהוא כבר עבר.',
 } as const;

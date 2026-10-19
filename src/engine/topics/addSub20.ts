@@ -370,13 +370,17 @@ function firstHints(f: Fact, noun: CountableNoun, level: number): [Hint, Hint] {
   if (level === 7 && f.kind === 'sub')
     return [
       saidHint('hint.friends10.sub', { b: f.b }),
-      saidHint('hint.friends10.subPicture', {}, {
-        type: 'objects',
-        kind: noun,
-        groups: [10],
-        removed: f.b,
-        arranged: true,
-      }),
+      saidHint(
+        'hint.friends10.subPicture',
+        {},
+        {
+          type: 'objects',
+          kind: noun,
+          groups: [10],
+          removed: f.b,
+          arranged: true,
+        },
+      ),
     ];
   // Ten-plus: one whole ten and some ones.
   if (level === 8 && (f.kind === 'add' || f.kind === 'sub')) {
@@ -384,12 +388,16 @@ function firstHints(f: Fact, noun: CountableNoun, level: number): [Hint, Hint] {
       const u = f.a === 10 ? f.b : f.a;
       return [
         saidHint('hint.tenPlus.add', { u }),
-        saidHint('hint.tenPlus.picture', {}, {
-          type: 'objects',
-          kind: noun,
-          groups: [10, u],
-          arranged: true,
-        }),
+        saidHint(
+          'hint.tenPlus.picture',
+          {},
+          {
+            type: 'objects',
+            kind: noun,
+            groups: [10, u],
+            arranged: true,
+          },
+        ),
       ];
     }
     return [
@@ -397,13 +405,17 @@ function firstHints(f: Fact, noun: CountableNoun, level: number): [Hint, Hint] {
         a: f.a,
         u: f.a % 10,
       }),
-      saidHint('hint.tenPlus.subPicture', {}, {
-        type: 'objects',
-        kind: noun,
-        groups: [f.a],
-        removed: f.b,
-        arranged: true,
-      }),
+      saidHint(
+        'hint.tenPlus.subPicture',
+        {},
+        {
+          type: 'objects',
+          kind: noun,
+          groups: [f.a],
+          removed: f.b,
+          arranged: true,
+        },
+      ),
     ];
   }
   switch (f.kind) {

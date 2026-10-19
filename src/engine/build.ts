@@ -253,9 +253,7 @@ export function diagnoseArith(value: number, f: ArithFacts): MistakeKind | null 
   // With a decimal on either side, the same digits with the point moved: the point's place.
   if (
     value > 0 &&
-    [10, 100, 1000].some(
-      (k) => sameNumber(value, answer * k) || sameNumber(value * k, answer),
-    )
+    [10, 100, 1000].some((k) => sameNumber(value, answer * k) || sameNumber(value * k, answer))
   )
     return Number.isInteger(answer) && Number.isInteger(value) && !hasDecimal(f)
       ? 'placeValue'
@@ -299,8 +297,7 @@ export interface AdviceSpec {
 function adviceOf(answer: number, specs: readonly AdviceSpec[] = []): AdviceSpec[] {
   const out: AdviceSpec[] = [];
   for (const a of specs)
-    if (!sameNumber(a.value, answer) && !out.some((o) => sameNumber(o.value, a.value)))
-      out.push(a);
+    if (!sameNumber(a.value, answer) && !out.some((o) => sameNumber(o.value, a.value))) out.push(a);
   return out;
 }
 
