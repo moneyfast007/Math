@@ -218,7 +218,11 @@ test.describe('practice', () => {
     await setupChild(page, 'נועה', 'כיתה ב׳');
     await page.getByRole('button', { name: 'סיום' }).click();
     // Grade 2 starts world 1, addition and subtraction to 100, at its first station.
-    const next = page.getByRole('heading', { level: 2, name: 'ועוד אחדות, בלי המרה', exact: true });
+    const next = page.getByRole('heading', {
+      level: 2,
+      name: 'ועוד ופחות אחדות, בלי המרה',
+      exact: true,
+    });
     await expect(next).toBeVisible();
     await page.getByRole('button', { name: 'שלב אחר' }).click();
     await page
