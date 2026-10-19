@@ -1,9 +1,11 @@
+import { shown } from '@/lang/compose';
 import { t } from '@/i18n';
 import type { MistakeKind } from '@/state/schema';
 import {
   arith,
   CHARACTERS,
   defineTopic,
+  exampleAvoiding,
   exampleHint,
   exercise,
   hint,
@@ -190,9 +192,16 @@ function roundTenth(rng: Rng): Exercise {
       hint(say('ex.dop.round.hint1')),
       // Rounding to tenths looks at the hundredths (the grade 4 hint was about whole numbers).
       hint(say('ex.dop.round.hint2', { x, d: Math.round(x * 100) % 10 })),
-      x === 3.47
-        ? exampleHint('2.81 → 2.8', say('ex.dop.round.solution', { x: 2.81, r: 2.8 }))
-        : exampleHint('3.47 → 3.5', say('ex.dop.round.solution', { x: 3.47, r: 3.5 })),
+      exampleAvoiding(
+        answer,
+        [
+          { x: 3.47, r: 3.5 },
+          { x: 2.81, r: 2.8 },
+        ].map((ex) => ({
+          answer: ex.r,
+          hint: () => exampleHint(`${ex.x} → ${ex.r}`, say('ex.dop.round.solution', ex)),
+        })),
+      ),
     ],
     solution: say('ex.dop.round.solution', { x, r: answer }),
     diagnose: (v) => (v === Math.round(x) ? 'placeValue' : null),
@@ -214,7 +223,7 @@ function story(rng: Rng): Exercise {
     factId: `dopwp:${k}x${price}`,
     topicId: ID,
     level: 10,
-    prompt: spoken.text,
+    prompt: shown(spoken),
     display: '',
     spoken,
     answer,
@@ -226,7 +235,20 @@ function story(rng: Rng): Exercise {
         ...hint(say('hint.equation')),
         example: { display: `${k} × ${price} = ?`, spoken: say('hint.equation').text },
       },
-      exampleHint('4 × 2.5 = 10', say('eq.times.solution', { a: 4, b: 2.5, c: 10 })),
+      exampleAvoiding(
+        answer,
+        [
+          { a: 4, b: 2.5 },
+          { a: 3, b: 1.5 },
+        ].map((ex) => {
+          const c = round(ex.a * ex.b, 2);
+          return {
+            answer: c,
+            hint: () =>
+              exampleHint(`${ex.a} × ${ex.b} = ${c}`, say('eq.times.solution', { ...ex, c })),
+          };
+        }),
+      ),
     ],
     solution: say('eq.times.solution', { a: k, b: price, c: answer }),
     diagnose: pointSlip(answer),

@@ -1,3 +1,4 @@
+import { shown } from '@/lang/compose';
 import { t, type TranslationKey } from '@/i18n';
 import type { Noun } from '@/lang/hebrewNumbers';
 import {
@@ -107,7 +108,7 @@ function pickExercise(
     factId,
     topicId: ID,
     level,
-    prompt: spoken.text,
+    prompt: shown(spoken),
     display: '',
     spoken,
     ...(visual ? { visual } : {}),
@@ -430,7 +431,7 @@ function countShapes({ target, n }: CountFact, rng: Rng): Exercise {
     factId: `count:${target}:${n}`,
     topicId: ID,
     level: 10,
-    prompt: say('ex.shapes.count.prompt', { names: noun.plural }).text,
+    prompt: shown(say('ex.shapes.count.prompt', { names: noun.plural })),
     display: '',
     spoken: say('ex.shapes.count.prompt', { names: noun.plural }),
     visual: row(scene(target, n, n * 7 + ALL.indexOf(target))),

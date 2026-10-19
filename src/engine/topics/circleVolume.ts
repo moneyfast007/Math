@@ -160,7 +160,8 @@ type Box = { a: number; b: number; c: number };
 
 const boxVolume = (x: Box): Exercise => {
   const answer = x.a * x.b * x.c;
-  const e: Box = x.a === 5 && x.b === 4 && x.c === 3 ? { a: 6, b: 2, c: 3 } : { a: 5, b: 4, c: 3 };
+  // Not an example whose volume is this answer: it would give it away.
+  const e: Box = answer === 5 * 4 * 3 ? { a: 6, b: 2, c: 3 } : { a: 5, b: 4, c: 3 };
   return build({
     level: 6,
     id: `box:${x.a}x${x.b}x${x.c}`,
@@ -200,7 +201,8 @@ const cube = (a: number): Exercise =>
 
 const missingEdge = (x: Box): Exercise => {
   const v = x.a * x.b * x.c;
-  const e: Box = x.a === 5 && x.b === 4 && x.c === 3 ? { a: 6, b: 2, c: 3 } : { a: 5, b: 4, c: 3 };
+  // Not an example whose missing edge is this answer: it would give it away.
+  const e: Box = x.c === 3 ? { a: 6, b: 2, c: 4 } : { a: 5, b: 4, c: 3 };
   return build({
     level: 8,
     id: `edge:${x.a}x${x.b}=${v}`,
@@ -240,8 +242,8 @@ const litres = (k: number): Exercise =>
 
 const aquarium = (x: Box): Exercise => {
   const answer = (x.a * x.b * x.c) / 1000;
-  const e: Box =
-    x.a === 50 && x.b === 20 && x.c === 30 ? { a: 40, b: 20, c: 25 } : { a: 50, b: 20, c: 30 };
+  // Not an example with as many litres as this answer: it would give it away.
+  const e: Box = answer === 30 ? { a: 40, b: 20, c: 25 } : { a: 50, b: 20, c: 30 };
   return build({
     level: 10,
     id: `aqua:${x.a}x${x.b}x${x.c}`,

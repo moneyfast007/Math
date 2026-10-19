@@ -8,6 +8,7 @@ import {
   exercise,
   hint,
   labelledChoices,
+  pictureChoices,
   range,
   say,
   sayText,
@@ -91,10 +92,16 @@ function more(level: number, p: Pair, fewer: boolean): Exercise {
   const prompt = t(k(`${key}.prompt`), { params: { x: x.plural, y: y.plural } });
   const winner = (fewer ? p.a < p.b : p.a > p.b) ? 0 : 1;
   const both: Visual = { type: 'objects', kind: x, kinds: [x, y], groups: [p.a, p.b] };
+  // The example uses two other things: with the question's own, it would always
+  // name one of them as the bigger group, giving the answer away or contradicting it.
+  const [ex1, ex2] = NOUNS.filter((n) => n.id !== x.id && n.id !== y.id) as [
+    CountableNoun,
+    CountableNoun,
+  ];
   const example: Visual = {
     type: 'objects',
-    kind: x,
-    kinds: [x, y],
+    kind: ex1,
+    kinds: [ex1, ex2],
     groups: [4, 2],
     arranged: true,
   };
@@ -112,11 +119,19 @@ function more(level: number, p: Pair, fewer: boolean): Exercise {
     spoken: { text: prompt, parts: [prompt] },
     visual: both,
     answer: winner,
-    input: labelledChoices([x.plural, y.plural]),
+    // Pictures, not words: most gan children cannot read yet. The first one named is on the right.
+    input: pictureChoices(
+      [x.plural, y.plural],
+      [
+        { type: 'objects', kind: x, groups: [1] },
+        { type: 'objects', kind: y, groups: [1] },
+      ],
+      true,
+    ),
     hints: [
       hint(say(k(`${key}.hint1`))),
       hint(say('hint.objects.2'), { visual: { ...both, arranged: true } }),
-      hint(say(k(`${key}.hint3`), { a: { n: 4, noun: x }, b: { n: 2, noun: y } }), {
+      hint(say(k(`${key}.hint3`), { a: { n: 4, noun: ex1 }, b: { n: 2, noun: ex2 } }), {
         visual: example,
       }),
     ],
@@ -196,7 +211,8 @@ function complete(level: number, n: number, rng: Rng, target: 5 | 10): Exercise 
       hint(say('hint.numberLineGap'), {
         visual: { type: 'numberLine', from: 0, to: target, start: n, hops: 0, target },
       }),
-      exampleHint(`${exN} + ${target - exN} = ${target}`, exSolved),
+      // Written as the split of the target, so it ends with the part, not with the target.
+      exampleHint(`${target} = ${exN} + ${target - exN}`, exSolved),
     ],
     solution: solved,
   });

@@ -1,3 +1,4 @@
+import { shown } from '@/lang/compose';
 import { t } from '@/i18n';
 import { displayFraction as f, fractionWords as w } from '@/lang/fractions';
 import type { MistakeKind } from '@/state/schema';
@@ -6,6 +7,7 @@ import {
   CHARACTERS,
   closed,
   defineTopic,
+  exampleAvoiding,
   exampleHint,
   exercise,
   hint,
@@ -118,7 +120,8 @@ function compareExercise(level: number, a: number, b: number): Exercise {
     hints: [
       hint(say('ex.dec.compare.hint1')),
       hint(say('ex.dec.compare.hint2')),
-      a === 0.5 && b === 0.45
+      // Not this pair, in either order.
+      Math.max(a, b) === 0.5 && Math.min(a, b) === 0.45
         ? exampleHint('0.6 > 0.58', say('ex.bigger.solution', { w: 0.6, l: 0.58 }))
         : exampleHint('0.5 > 0.45', say('ex.bigger.solution', { w: 0.5, l: 0.45 })),
     ],
@@ -138,7 +141,12 @@ function compareTricky(rng: Rng): Exercise {
   const whole = randInt(rng, 0, 9);
   const tenths = randInt(rng, 2, 9);
   const a = round(whole + tenths / 10, 2);
-  const b = round(whole + (tenths - 1) / 10 + randInt(rng, 1, 9) / 100, 2);
+  // Half the time the shorter number is bigger (0.5 > 0.45), half the time the longer
+  // one (0.45 > 0.4): "pick the shorter one" must not pass the level.
+  const b =
+    rng() < 0.5
+      ? round(whole + (tenths - 1) / 10 + randInt(rng, 1, 9) / 100, 2)
+      : round(whole + tenths / 10 + randInt(rng, 1, 9) / 100, 2);
   return rng() < 0.5 ? compareExercise(5, a, b) : compareExercise(5, b, a);
 }
 
@@ -189,9 +197,15 @@ function roundToWhole(rng: Rng): Exercise {
     hints: [
       hint(say('ex.round.hint1', { n: x, lo, hi: lo + 1 })),
       hint(say('ex.dec.round.hint2')),
-      exampleHint(
-        x === 3.7 ? '2.3 → 2' : '3.7 → 4',
-        say('ex.dec.round.solution', x === 3.7 ? { x: 2.3, r: 2 } : { x: 3.7, r: 4 }),
+      exampleAvoiding(
+        answer,
+        [
+          { x: 3.7, r: 4 },
+          { x: 2.3, r: 2 },
+        ].map((ex) => ({
+          answer: ex.r,
+          hint: () => exampleHint(`${ex.x} → ${ex.r}`, say('ex.dec.round.solution', ex)),
+        })),
       ),
     ],
     solution: say('ex.dec.round.solution', { x, r: answer }),
@@ -212,11 +226,12 @@ function story(rng: Rng): Exercise {
   const who = CHARACTERS[Math.round(a * 10) % CHARACTERS.length] as Character;
   const answer = round(op === '+' ? a + b : a - b, 1);
   const spoken = say(`${key}.story` as 'wp.dec.flour.story', { name: who.name, a, b }, who.gender);
+  const sentence = op === '+' ? '{a} ועוד {b} זה {c}.' : '{a} פחות {b} זה {c}.';
   return exercise({
     factId: `dwp:${key}:${a}:${b}`,
     topicId: ID,
     level: 10,
-    prompt: spoken.text,
+    prompt: shown(spoken),
     display: '',
     spoken,
     answer,
@@ -231,19 +246,31 @@ function story(rng: Rng): Exercise {
           spoken: say('hint.equation').text,
         },
       },
-      exampleHint(
-        op === '+' ? '1.5 + 2.5 = 4' : '3.5 − 1.2 = 2.3',
-        sayText(
-          op === '+' ? '{a} ועוד {b} זה {c}.' : '{a} פחות {b} זה {c}.',
-          op === '+' ? { a: 1.5, b: 2.5, c: 4 } : { a: 3.5, b: 1.2, c: 2.3 },
-        ),
+      exampleAvoiding(
+        answer,
+        (op === '+'
+          ? [
+              { a: 1.5, b: 2.5 },
+              { a: 2.4, b: 1.3 },
+            ]
+          : [
+              { a: 3.5, b: 1.2 },
+              { a: 4.6, b: 1.4 },
+            ]
+        ).map((ex) => {
+          const c = round(op === '+' ? ex.a + ex.b : ex.a - ex.b, 1);
+          return {
+            answer: c,
+            hint: () =>
+              exampleHint(
+                `${ex.a} ${op === '+' ? '+' : '−'} ${ex.b} = ${c}`,
+                sayText(sentence, { a: ex.a, b: ex.b, c }),
+              ),
+          };
+        }),
       ),
     ],
-    solution: sayText(op === '+' ? '{a} ועוד {b} זה {c}.' : '{a} פחות {b} זה {c}.', {
-      a,
-      b,
-      c: answer,
-    }),
+    solution: sayText(sentence, { a, b, c: answer }),
     diagnose: decimalDiagnose(answer),
   });
 }

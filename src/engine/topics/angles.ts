@@ -1,9 +1,11 @@
+import { shown } from '@/lang/compose';
 import { t, type TranslationKey } from '@/i18n';
 import type { Noun } from '@/lang/hebrewNumbers';
 import {
   closed,
   defineTopic,
   windowChoices,
+  exampleAvoiding,
   exampleHint,
   exercise,
   hint,
@@ -420,7 +422,8 @@ function quad({ shape }: { shape: Quad }, rng: Rng): Exercise {
     answer,
     hints: [
       hint(say('ex.angles.quad.hint1')),
-      hint(say(`ex.angles.quad.about.${shape}`)),
+      // A question that leads to the name, not the name itself.
+      hint(say('ex.angles.quad.ask')),
       pictureExample(say(`ex.angles.quad.about.${ex}`), poly(SHAPES[ex], QUAD_MARKS[ex])),
     ],
     solution: say('ex.angles.quad.solution', { name: QUAD_WORD[shape] }),
@@ -437,7 +440,6 @@ function thirdAngle(rng: Rng): Exercise {
     b = randInt(rng, 4, 24) * 5;
   } while (180 - a - b < 15);
   const c = 180 - a - b;
-  const ex = a === 60 && b === 70 ? { a: 50, b: 80 } : { a: 60, b: 70 };
   const deg = (n: number) => ({ n, noun: DEGREE });
   return exercise({
     factId: `third:${a}:${b}`,
@@ -454,9 +456,20 @@ function thirdAngle(rng: Rng): Exercise {
       hint(say('ex.angles.third.hint2'), {
         example: { display: `180 − ${a} − ${b} = ?`, spoken: say('ex.angles.third.hint2') },
       }),
-      exampleHint(
-        `180 − ${ex.a} − ${ex.b} = ${180 - ex.a - ex.b}`,
-        say('ex.angles.third.solution', { a: ex.a, b: ex.b, c: deg(180 - ex.a - ex.b) }),
+      // The two examples' third angles differ (50°, 60°): one is never this answer.
+      exampleAvoiding(
+        c,
+        [
+          { a: 60, b: 70 },
+          { a: 50, b: 70 },
+        ].map((ex) => ({
+          answer: 180 - ex.a - ex.b,
+          hint: () =>
+            exampleHint(
+              `180 − ${ex.a} − ${ex.b} = ${180 - ex.a - ex.b}`,
+              say('ex.angles.third.solution', { a: ex.a, b: ex.b, c: deg(180 - ex.a - ex.b) }),
+            ),
+        })),
       ),
     ],
     solution: say('ex.angles.third.solution', { a, b, c: deg(c) }),
@@ -481,7 +494,7 @@ function diagonals([shape, name, n]: [ShapeName, string, number], rng: Rng): Exe
     factId: `diag:${shape}`,
     topicId: ID,
     level: 8,
-    prompt: say('ex.angles.diag.prompt', { name }).text,
+    prompt: shown(say('ex.angles.diag.prompt', { name })),
     display: '',
     spoken: say('ex.angles.diag.prompt', { name }),
     visual: poly(SHAPES[shape]),
@@ -517,7 +530,7 @@ function symmetry([shape, name, n, marks]: (typeof SYMMETRY)[number], rng: Rng):
     factId: `sym:${shape}`,
     topicId: ID,
     level: 9,
-    prompt: say('ex.angles.sym.prompt', { name }).text,
+    prompt: shown(say('ex.angles.sym.prompt', { name })),
     display: '',
     spoken: say('ex.angles.sym.prompt', { name }),
     visual: poly(SHAPES[shape], marks),
@@ -526,10 +539,13 @@ function symmetry([shape, name, n, marks]: (typeof SYMMETRY)[number], rng: Rng):
     hints: [
       hint(say('ex.angles.sym.hint1')),
       hint(say('ex.angles.sym.hint2')),
-      pictureExample(
-        say('ex.angles.sym.example'),
-        poly(SHAPES.isosceles, { ticks: [1, 0, 1], height: { from: [50, 3], to: [50, 92] } }),
-      ),
+      // Never the shape that is asked about: for the isosceles triangle, a rectangle.
+      shape === 'isosceles'
+        ? pictureExample(say('ex.angles.sym.exampleRect'), poly(SHAPES.rectangle, { rightAngles: [0, 1, 2, 3] }))
+        : pictureExample(
+            say('ex.angles.sym.example'),
+            poly(SHAPES.isosceles, { ticks: [1, 0, 1], height: { from: [50, 3], to: [50, 92] } }),
+          ),
     ],
     solution:
       n === 0
@@ -563,7 +579,7 @@ function trueFalse({ key, truth, why }: (typeof STATEMENTS)[number]): Exercise {
     factId: `tf:${key}`,
     topicId: ID,
     level: 10,
-    prompt: statement.text,
+    prompt: shown(statement),
     display: '',
     spoken: say('ex.angles.tf.spoken', { s: statement.text }),
     // Left to right: "לא נכון", then "נכון" on the right, where a Hebrew reader starts.

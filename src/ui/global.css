@@ -1424,6 +1424,22 @@ ol.steps {
   background: var(--color-accent);
 }
 
+/* Adding: the second fraction in another colour. Taking away: crossed out. */
+.fraction--bar .frac-cell--added {
+  background: var(--color-almost);
+}
+
+.fraction--bar .frac-cell--crossed {
+  opacity: 0.35;
+  background-image: linear-gradient(
+    to top right,
+    transparent calc(50% - 2px),
+    var(--color-text) calc(50% - 2px),
+    var(--color-text) calc(50% + 2px),
+    transparent calc(50% + 2px)
+  );
+}
+
 .fraction--circle svg {
   width: 160px;
   height: 160px;
@@ -1465,6 +1481,11 @@ ol.steps {
   border-radius: 3px;
   background: var(--color-accent-soft);
   border: 1.5px solid var(--color-accent-strong);
+}
+
+/* The units under the rows of ten, set a little apart. */
+.dots__cell--extra {
+  margin-top: 8px;
 }
 
 .rect svg {

@@ -1,7 +1,9 @@
+import { shown } from '@/lang/compose';
 import { t } from '@/i18n';
 import {
   CHARACTERS,
   defineTopic,
+  exampleAvoiding,
   exampleHint,
   exercise,
   hint,
@@ -12,7 +14,7 @@ import {
 } from '../build';
 import { pick, randInt } from '../rng';
 import type { Exercise, Rng } from '../types';
-import { sayP } from './percentIntro';
+import { percentOfExample, sayP, whatPercentExample } from './percentIntro';
 
 /**
  * World 18, grade 6: "אחוזים". Any percent of a quantity, what percent a part
@@ -47,13 +49,10 @@ function of(level: 1 | 2, rng: Rng): Exercise {
     hints: [
       hint(sayP('ex.pct6.of.hint1')),
       hint(sayP('ex.pct.of.hint2', { base })),
-      exampleHint(
-        p === 15 && base === 60 ? '20% × 45 = 9' : '15% × 60 = 9',
-        sayP(
-          'ex.pct.of.solution',
-          p === 15 && base === 60 ? { p: 20, base: 45, r: 9 } : { p: 15, base: 60, r: 9 },
-        ),
-      ),
+      percentOfExample(part, [
+        [15, 60],
+        [25, 80],
+      ]),
     ],
     solution: sayP('ex.pct.of.solution', { p, base, r: part }),
     diagnose: (v) =>
@@ -76,13 +75,10 @@ function whatPercent(rng: Rng): Exercise {
     hints: [
       hint(sayP('ex.pct.what.hint1')),
       hint(sayP('ex.pct6.what.hint2')),
-      exampleHint(
-        part === 15 && base === 60 ? '9 / 36 = 25%' : '15 / 60 = 25%',
-        sayP(
-          'ex.pct.what.solution',
-          part === 15 && base === 60 ? { part: 9, base: 36, p: 25 } : { part: 15, base: 60, p: 25 },
-        ),
-      ),
+      whatPercentExample(p, [
+        [15, 60],
+        [12, 60],
+      ]),
     ],
     solution: sayP('ex.pct.what.solution', { part, base, p }),
   });
@@ -91,6 +87,9 @@ function whatPercent(rng: Rng): Exercise {
 function findWhole(rng: Rng): Exercise {
   const { p, base, part } = pctPair(rng, 400);
   if (part === 0) return findWhole(rng);
+  // Neither the example's whole nor its part may be this answer: either would give it away.
+  const first = { p: 20, part: 12, base: 60 };
+  const e = first.base !== base && first.part !== base ? first : { p: 25, part: 10, base: 40 };
   return exercise({
     factId: `p6whole:${p}%=${part}`,
     topicId: ID,
@@ -104,13 +103,7 @@ function findWhole(rng: Rng): Exercise {
     hints: [
       hint(sayP('ex.pct6.whole.hint1', { p })),
       hint(sayP('ex.pct6.whole.hint2')),
-      exampleHint(
-        p === 20 && part === 12 ? '25% × 48 = 12' : '20% × 60 = 12',
-        sayP(
-          'ex.pct6.whole.solution',
-          p === 20 && part === 12 ? { p: 25, part: 12, base: 48 } : { p: 20, part: 12, base: 60 },
-        ),
-      ),
+      exampleHint(`${e.p}% × ${e.base} = ${e.part}`, sayP('ex.pct6.whole.solution', e)),
     ],
     solution: sayP('ex.pct6.whole.solution', { p, part, base }),
     diagnose: (v) => (v === part * p || v === (part * p) / 100 ? 'other' : null),
@@ -123,11 +116,6 @@ function change(level: 5 | 6, rng: Rng): Exercise {
   const up = level === 6;
   const answer = up ? base + part : base - part;
   const key = up ? 'ex.pct6.increase' : 'ex.pct6.discount';
-  const exBase = 80;
-  const exP = 25;
-  const same = base === exBase && p === exP;
-  const e = same ? { base: 60, p: 10 } : { base: exBase, p: exP };
-  const eAns = up ? e.base + (e.base * e.p) / 100 : e.base - (e.base * e.p) / 100;
   return exercise({
     factId: `p6chg${level}:${base}:${p}`,
     topicId: ID,
@@ -143,9 +131,23 @@ function change(level: 5 | 6, rng: Rng): Exercise {
       hint(
         sayP(up ? 'ex.pct6.increase.hint2' : 'ex.pct6.discount.hint2', { p, q: up ? 100 + p : 100 - p }, 'f', ['p', 'q']),
       ),
-      exampleHint(
-        `${e.base} → ${eAns}`,
-        sayP(`${key}.solution` as 'ex.pct6.discount.solution', { base: e.base, p: e.p, r: eAns }),
+      // Not an example whose new price is this answer: it would give it away.
+      exampleAvoiding(
+        answer,
+        [
+          { base: 80, p: 25 },
+          { base: 60, p: 10 },
+        ].map((e) => {
+          const r = up ? e.base + (e.base * e.p) / 100 : e.base - (e.base * e.p) / 100;
+          return {
+            answer: r,
+            hint: () =>
+              exampleHint(
+                `${e.base} → ${r}`,
+                sayP(`${key}.solution` as 'ex.pct6.discount.solution', { ...e, r }),
+              ),
+          };
+        }),
       ),
     ],
     solution: sayP(`${key}.solution` as 'ex.pct6.discount.solution', { base, p, r: answer }),
@@ -159,6 +161,9 @@ function discountPercent(rng: Rng): Exercise {
   const { p, base, part } = pctPair(rng, 600);
   if (part === 0) return discountPercent(rng);
   const after = base - part;
+  // Neither the example's percent nor its new price may be this answer: either would give it away.
+  const first = { base: 80, after: 60, p: 25 };
+  const e = first.p !== p && first.after !== p ? first : { base: 50, after: 40, p: 20 };
   return exercise({
     factId: `p6dp:${base}->${after}`,
     topicId: ID,
@@ -171,15 +176,7 @@ function discountPercent(rng: Rng): Exercise {
     hints: [
       hint(sayP('ex.pct6.dp.hint1')),
       hint(sayP('ex.pct.what.hint1')),
-      exampleHint(
-        base === 80 && after === 60 ? '50 → 40: 20%' : '80 → 60: 25%',
-        sayP(
-          'ex.pct6.dp.solution',
-          base === 80 && after === 60
-            ? { base: 50, after: 40, p: 20 }
-            : { base: 80, after: 60, p: 25 },
-        ),
-      ),
+      exampleHint(`${e.base} → ${e.after}: ${e.p}%`, sayP('ex.pct6.dp.solution', e)),
     ],
     solution: sayP('ex.pct6.dp.solution', { base, after, p }),
     diagnose: (v) => (v === part ? 'other' : v === 100 - p ? 'other' : null),
@@ -211,7 +208,10 @@ function survey(rng: Rng): Exercise {
     hints: [
       hint(sayP('ex.pct.what.hint1')),
       hint(sayP('ex.pct6.what.hint2')),
-      exampleHint('10 / 40 = 25%', sayP('ex.pct.what.solution', { part: 10, base: 40, p: 25 })),
+      whatPercentExample(p, [
+        [10, 40],
+        [6, 20],
+      ]),
     ],
     solution: sayP('ex.pct.what.solution', { part: k, base: n, p }),
   });
@@ -254,7 +254,7 @@ function story(rng: Rng): Exercise {
     factId: `p6wp:${base}:${p}`,
     topicId: ID,
     level: 10,
-    prompt: spoken.text,
+    prompt: shown(spoken),
     display: '',
     spoken,
     answer: part,
@@ -266,13 +266,10 @@ function story(rng: Rng): Exercise {
         ...hint(say('hint.equation')),
         example: { display: `${p}% × ${base} = ?`, spoken: say('hint.equation').text },
       },
-      exampleHint(
-        p === 15 && base === 60 ? '20% × 45 = 9' : '15% × 60 = 9',
-        sayP(
-          'ex.pct.of.solution',
-          p === 15 && base === 60 ? { p: 20, base: 45, r: 9 } : { p: 15, base: 60, r: 9 },
-        ),
-      ),
+      percentOfExample(part, [
+        [15, 60],
+        [25, 80],
+      ]),
     ],
     solution: sayP('ex.pct.of.solution', { p, base, r: part }),
   });

@@ -1,8 +1,10 @@
+import { shown } from '@/lang/compose';
 import { t, type TranslationKey } from '@/i18n';
 import type { Noun } from '@/lang/hebrewNumbers';
 import {
   closed,
   defineTopic,
+  exampleAvoiding,
   exampleHint,
   exercise,
   hint,
@@ -47,9 +49,26 @@ interface AreaParts {
   display: string;
   answer: number;
   hints: [Hint, Hint];
-  example: { display: string; solved: Said };
+  /** Hint 3; never an example with this answer, which would give it away. */
+  example: Hint;
   solution: Said;
   digits?: number;
+}
+
+/**
+ * Hint 3 from the first of these examples whose value is not this answer:
+ * an example with the same answer would give it away.
+ */
+function avoiding<T>(
+  answer: number,
+  options: readonly T[],
+  value: (o: T) => number,
+  show: (o: T, v: number) => Hint,
+): Hint {
+  return exampleAvoiding(
+    answer,
+    options.map((o) => ({ answer: value(o), hint: () => show(o, value(o)) })),
+  );
 }
 
 function areaExercise(p: AreaParts): Exercise {
@@ -67,7 +86,7 @@ function areaExercise(p: AreaParts): Exercise {
     hints: [
       p.hints[0],
       { ...p.hints[1], example: { display: p.display, spoken: p.hints[1].spoken } },
-      exampleHint(p.example.display, p.example.solved),
+      p.example,
     ],
     solution: p.solution,
   });
@@ -79,7 +98,6 @@ function rectangle(rng: Rng): Exercise {
   const square = rng() < 0.3;
   const a = randInt(rng, 3, 20);
   const b = square ? a : randInt(rng, 3, 20);
-  const ex = a === 6 && b === 4 ? { a: 7, b: 3 } : { a: 6, b: 4 };
   const solved = (x: number, y: number) =>
     say('ex.areas.rect.solution', { a: x, b: y, s: cm2(x * y) });
   return areaExercise({
@@ -110,7 +128,15 @@ function rectangle(rng: Rng): Exercise {
     display: `${a} × ${b} = ?`,
     answer: a * b,
     hints: [hint(say('ex.areas.rect.hint1')), hint(say('ex.areas.rect.hint2'))],
-    example: { display: `${ex.a} × ${ex.b} = ${ex.a * ex.b}`, solved: solved(ex.a, ex.b) },
+    example: avoiding(
+      a * b,
+      [
+        { a: 6, b: 4 },
+        { a: 7, b: 3 },
+      ],
+      (e) => e.a * e.b,
+      (e, v) => exampleHint(`${e.a} × ${e.b} = ${v}`, solved(e.a, e.b)),
+    ),
     solution: solved(a, b),
   });
 }
@@ -124,7 +150,6 @@ function rightTriangle(rng: Rng): Exercise {
     a = randInt(rng, 3, 16);
     b = randInt(rng, 3, 16);
   } while ((a * b) % 2 !== 0);
-  const ex = a === 6 && b === 8 ? { a: 4, b: 10 } : { a: 6, b: 8 };
   const solved = (x: number, y: number) =>
     say('ex.areas.half.solution', { a: x, b: y, p: x * y, s: cm2((x * y) / 2) });
   return areaExercise({
@@ -142,10 +167,15 @@ function rightTriangle(rng: Rng): Exercise {
     display: `${a} × ${b} ÷ 2 = ?`,
     answer: (a * b) / 2,
     hints: [hint(say('ex.areas.rtri.hint1')), hint(say('ex.areas.half.hint2'))],
-    example: {
-      display: `${ex.a} × ${ex.b} ÷ 2 = ${(ex.a * ex.b) / 2}`,
-      solved: solved(ex.a, ex.b),
-    },
+    example: avoiding(
+      (a * b) / 2,
+      [
+        { a: 6, b: 8 },
+        { a: 4, b: 10 },
+      ],
+      (e) => (e.a * e.b) / 2,
+      (e, v) => exampleHint(`${e.a} × ${e.b} ÷ 2 = ${v}`, solved(e.a, e.b)),
+    ),
     solution: solved(a, b),
   });
 }
@@ -157,7 +187,6 @@ function triangle(rng: Rng): Exercise {
     b = randInt(rng, 4, 20);
     h = randInt(rng, 3, 15);
   } while ((b * h) % 2 !== 0);
-  const ex = b === 10 && h === 6 ? { a: 8, b: 5 } : { a: 10, b: 6 };
   const solved = (x: number, y: number) =>
     say('ex.areas.half.solution', { a: x, b: y, p: x * y, s: cm2((x * y) / 2) });
   return areaExercise({
@@ -175,10 +204,15 @@ function triangle(rng: Rng): Exercise {
     display: `${b} × ${h} ÷ 2 = ?`,
     answer: (b * h) / 2,
     hints: [hint(say('ex.areas.tri.hint1')), hint(say('ex.areas.half.hint2'))],
-    example: {
-      display: `${ex.a} × ${ex.b} ÷ 2 = ${(ex.a * ex.b) / 2}`,
-      solved: solved(ex.a, ex.b),
-    },
+    example: avoiding(
+      (b * h) / 2,
+      [
+        { a: 10, b: 6 },
+        { a: 8, b: 5 },
+      ],
+      (e) => (e.a * e.b) / 2,
+      (e, v) => exampleHint(`${e.a} × ${e.b} ÷ 2 = ${v}`, solved(e.a, e.b)),
+    ),
     solution: solved(b, h),
   });
 }
@@ -188,7 +222,6 @@ function triangle(rng: Rng): Exercise {
 function parallelogram(rng: Rng): Exercise {
   const b = randInt(rng, 4, 20);
   const h = randInt(rng, 3, 15);
-  const ex = b === 9 && h === 4 ? { a: 8, b: 5 } : { a: 9, b: 4 };
   const solved = (x: number, y: number) =>
     say('ex.areas.rect.solution', { a: x, b: y, s: cm2(x * y) });
   return areaExercise({
@@ -210,7 +243,15 @@ function parallelogram(rng: Rng): Exercise {
     display: `${b} × ${h} = ?`,
     answer: b * h,
     hints: [hint(say('ex.areas.para.hint1')), hint(say('ex.areas.para.hint2'))],
-    example: { display: `${ex.a} × ${ex.b} = ${ex.a * ex.b}`, solved: solved(ex.a, ex.b) },
+    example: avoiding(
+      b * h,
+      [
+        { a: 9, b: 4 },
+        { a: 8, b: 5 },
+      ],
+      (e) => e.a * e.b,
+      (e, v) => exampleHint(`${e.a} × ${e.b} = ${v}`, solved(e.a, e.b)),
+    ),
     solution: solved(b, h),
     // The slanted side times the base is the usual slip; nothing to diagnose without it.
   });
@@ -226,7 +267,6 @@ function trapezoid(rng: Rng): Exercise {
     h = randInt(rng, 3, 12);
   } while (((a + b) * h) % 2 !== 0);
   const area = ((a + b) * h) / 2;
-  const ex = a === 4 && b === 8 && h === 5 ? { a: 6, b: 10, h: 4 } : { a: 4, b: 8, h: 5 };
   const solved = (x: number, y: number, z: number) =>
     say('ex.areas.trap.solution', { a: x, b: y, sum: x + y, h: z, s: cm2(((x + y) * z) / 2) });
   return areaExercise({
@@ -248,10 +288,15 @@ function trapezoid(rng: Rng): Exercise {
     display: `(${a} + ${b}) × ${h} ÷ 2 = ?`,
     answer: area,
     hints: [hint(say('ex.areas.trap.hint1')), hint(say('ex.areas.trap.hint2'))],
-    example: {
-      display: `(${ex.a} + ${ex.b}) × ${ex.h} ÷ 2 = ${((ex.a + ex.b) * ex.h) / 2}`,
-      solved: solved(ex.a, ex.b, ex.h),
-    },
+    example: avoiding(
+      area,
+      [
+        { a: 4, b: 8, h: 5 },
+        { a: 6, b: 10, h: 4 },
+      ],
+      (e) => ((e.a + e.b) * e.h) / 2,
+      (e, v) => exampleHint(`(${e.a} + ${e.b}) × ${e.h} ÷ 2 = ${v}`, solved(e.a, e.b, e.h)),
+    ),
     solution: solved(a, b, h),
   });
 }
@@ -267,7 +312,6 @@ function house(rng: Rng): Exercise {
     roof = randInt(rng, 2, 8);
   } while ((w * roof) % 2 !== 0 || roof < 3);
   const area = w * hgt + (w * roof) / 2;
-  const ex = w === 6 && hgt === 4 && roof === 4 ? { w: 8, h: 3, r: 4 } : { w: 6, h: 4, r: 4 };
   const solved = (a: number, b: number, c: number) =>
     say('ex.areas.house.solution', {
       rect: a * b,
@@ -295,10 +339,15 @@ function house(rng: Rng): Exercise {
     display: `${w} × ${hgt} + ${w} × ${roof} ÷ 2 = ?`,
     answer: area,
     hints: [hint(say('ex.areas.house.hint1')), hint(say('ex.areas.house.hint2'))],
-    example: {
-      display: `${ex.w} × ${ex.h} + ${ex.w} × ${ex.r} ÷ 2 = ${ex.w * ex.h + (ex.w * ex.r) / 2}`,
-      solved: solved(ex.w, ex.h, ex.r),
-    },
+    example: avoiding(
+      area,
+      [
+        { w: 6, h: 4, r: 4 },
+        { w: 8, h: 3, r: 4 },
+      ],
+      (e) => e.w * e.h + (e.w * e.r) / 2,
+      (e, v) => exampleHint(`${e.w} × ${e.h} + ${e.w} × ${e.r} ÷ 2 = ${v}`, solved(e.w, e.h, e.r)),
+    ),
     solution: solved(w, hgt, roof),
   });
 }
@@ -309,7 +358,6 @@ type BoxFact = { l: number; w: number; h: number };
 
 function cubes({ l, w, h }: BoxFact): Exercise {
   const v = l * w * h;
-  const ex = l === 3 && w === 2 && h === 2 ? { l: 2, w: 2, h: 2 } : { l: 3, w: 2, h: 2 };
   return exercise({
     factId: `cubes:${l}x${w}x${h}`,
     topicId: ID,
@@ -323,9 +371,18 @@ function cubes({ l, w, h }: BoxFact): Exercise {
     hints: [
       hint(say('ex.areas.cubes.hint1')),
       hint(say('ex.areas.cubes.hint2', { n: l * w })),
-      exampleHint(
-        `${ex.l} × ${ex.w} × ${ex.h} = ${ex.l * ex.w * ex.h}`,
-        say('ex.areas.cubes.solution', { n: { n: ex.l * ex.w * ex.h, noun: CUBE } }),
+      avoiding(
+        v,
+        [
+          { l: 3, w: 2, h: 2 },
+          { l: 2, w: 2, h: 2 },
+        ],
+        (e) => e.l * e.w * e.h,
+        (e, n) =>
+          exampleHint(
+            `${e.l} × ${e.w} × ${e.h} = ${n}`,
+            say('ex.areas.cubes.solution', { n: { n, noun: CUBE } }),
+          ),
       ),
     ],
     solution: say('ex.areas.cubes.solution', { n: { n: v, noun: CUBE } }),
@@ -338,7 +395,6 @@ function boxVolume(rng: Rng): Exercise {
   const w = randInt(rng, 3, 12);
   const h = randInt(rng, 3, 10);
   const v = l * w * h;
-  const ex = l === 5 && w === 4 && h === 3 ? { l: 6, w: 4, h: 3 } : { l: 5, w: 4, h: 3 };
   const solved = (a: number, b: number, c: number) =>
     say('ex.areas.box.solution', { l: a, w: b, h: c, v: { n: a * b * c, noun: CM3 } });
   return exercise({
@@ -354,7 +410,15 @@ function boxVolume(rng: Rng): Exercise {
     hints: [
       hint(say('ex.areas.box.hint1')),
       hint(say('ex.areas.box.hint2', { base: l * w })),
-      exampleHint(`${ex.l} × ${ex.w} × ${ex.h} = ${ex.l * ex.w * ex.h}`, solved(ex.l, ex.w, ex.h)),
+      avoiding(
+        v,
+        [
+          { l: 5, w: 4, h: 3 },
+          { l: 6, w: 4, h: 3 },
+        ],
+        (e) => e.l * e.w * e.h,
+        (e, n) => exampleHint(`${e.l} × ${e.w} × ${e.h} = ${n}`, solved(e.l, e.w, e.h)),
+      ),
     ],
     solution: solved(l, w, h),
     diagnose: (x) => (x === l + w + h ? 'wrongOperation' : x === l * w ? 'other' : null),
@@ -415,14 +479,13 @@ function word(rng: Rng): Exercise {
   if (rng() < 0.5) {
     const a = randInt(rng, 3, 12);
     const b = randInt(rng, 3, 9);
-    const ex = a === 5 && b === 4 ? { a: 6, b: 4 } : { a: 5, b: 4 };
     const solved = (x: number, y: number) =>
       say('ex.areas.floor.solution', { a: x, b: y, s: { n: x * y, noun: M2 } });
     return exercise({
       factId: `floor:${a}x${b}`,
       topicId: ID,
       level: 10,
-      prompt: say('ex.areas.floor.story', { a: { n: a, noun: M }, b: { n: b, noun: M } }).text,
+      prompt: shown(say('ex.areas.floor.story', { a: { n: a, noun: M }, b: { n: b, noun: M } })),
       display: '',
       spoken: say('ex.areas.floor.story', { a: { n: a, noun: M }, b: { n: b, noun: M } }),
       answer: a * b,
@@ -433,7 +496,15 @@ function word(rng: Rng): Exercise {
           ...hint(say('hint.equation')),
           example: { display: `${a} × ${b} = ?`, spoken: say('hint.equation').text },
         },
-        exampleHint(`${ex.a} × ${ex.b} = ${ex.a * ex.b}`, solved(ex.a, ex.b)),
+        avoiding(
+          a * b,
+          [
+            { a: 5, b: 4 },
+            { a: 6, b: 4 },
+          ],
+          (e) => e.a * e.b,
+          (e, v) => exampleHint(`${e.a} × ${e.b} = ${v}`, solved(e.a, e.b)),
+        ),
       ],
       solution: solved(a, b),
       diagnose: (v) => (v === 2 * (a + b) ? 'other' : null),
@@ -449,7 +520,7 @@ function word(rng: Rng): Exercise {
     factId: `pack:${l}x${w}x${h}/${side}`,
     topicId: ID,
     level: 10,
-    prompt: say('ex.areas.pack.story', { l: cm(l), w: cm(w), h: cm(h), side: cm(side) }).text,
+    prompt: shown(say('ex.areas.pack.story', { l: cm(l), w: cm(w), h: cm(h), side: cm(side) })),
     display: '',
     spoken: say('ex.areas.pack.story', { l: cm(l), w: cm(w), h: cm(h), side: cm(side) }),
     answer: n,

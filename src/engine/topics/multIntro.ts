@@ -5,6 +5,7 @@ import {
   choicesAround,
   closed,
   defineTopic,
+  exampleAvoiding,
   exampleHint,
   exercise,
   hint,
@@ -30,7 +31,8 @@ const L = (n: number) => `level.multIntro.${n}`;
 function arrayHints(a: number, b: number): [Hint, Hint] {
   return [
     hint(say('hint.mul.groups', { a: { n: a, gender: 'f' }, b })),
-    hint(say('hint.mul.array'), { visual: { type: 'array', rows: a, cols: b } }),
+    // Counting in skips, row by row: not dot by dot up to 100.
+    hint(say('hint.mul.arraySkip', { b }), { visual: { type: 'array', rows: a, cols: b } }),
   ];
 }
 
@@ -39,7 +41,6 @@ function groups(level: number, a: number, b: number, rng: Rng): Exercise {
   const answer = a * b;
   const prompt = t('ex.groups.prompt', { params: { a, b } });
   const spoken = say('ex.groups.spoken', { a, b });
-  const ex = { a: a === 3 ? 2 : 3, b: b === 4 ? 5 : 4 };
   return exercise({
     factId: `groups:${a}x${b}`,
     topicId: ID,
@@ -59,13 +60,25 @@ function groups(level: number, a: number, b: number, rng: Rng): Exercise {
           spoken: say('hint.mul.repeated'),
         },
       }),
-      exampleHint(
-        `${ex.a} × ${ex.b} = ${ex.a * ex.b}`,
-        spokenEquationSolved(ex.a, '×', ex.b, ex.a * ex.b),
-      ),
+      // Not 3 × 4 for 4 × 3: an example with the same product gives the answer away.
+      mulExample(answer, [
+        [3, 4],
+        [2, 5],
+      ]),
     ],
     solution: spokenEquationSolved(a, '×', b, answer),
   });
+}
+
+/** Hint 3: the first of these products that is not `answer`, solved. */
+function mulExample(answer: number, pairs: readonly [number, number][]): Hint {
+  return exampleAvoiding(
+    answer,
+    pairs.map(([a, b]) => ({
+      answer: a * b,
+      hint: () => exampleHint(`${a} × ${b} = ${a * b}`, spokenEquationSolved(a, '×', b, a * b)),
+    })),
+  );
 }
 
 /** Repeated addition shown as a sum: "4 + 4 + 4 = ?" */
@@ -90,8 +103,11 @@ function repeated(level: number, a: number, b: number): Exercise {
     input: numpad(2),
     hints: [
       hint(say('hint.mul.sameNumber', { a: { n: a, gender: 'f' }, b })),
-      hint(say('hint.mul.array'), { visual: { type: 'array', rows: a, cols: b } }),
-      exampleHint(`3 × 2 = 6`, spokenEquationSolved(3, '×', 2, 6)),
+      hint(say('hint.mul.arraySkip', { b }), { visual: { type: 'array', rows: a, cols: b } }),
+      mulExample(answer, [
+        [3, 2],
+        [2, 5],
+      ]),
     ],
     solution: spokenEquationSolved(a, '×', b, answer),
   });
@@ -141,7 +157,10 @@ function missingFactor(rng: Rng): Exercise {
     missing: asA ? 'a' : 'b',
     hints: [
       hint(say('hint.mul.missing', { c: a * b, b })),
-      hint(say('hint.mul.array'), { visual: { type: 'array', rows: b, cols: a } }),
+      // Not the full array: it would show the missing factor. Skips of b up to the product.
+      hint(say('hint.mul.missingLine', { b, c: a * b }), {
+        visual: { type: 'numberLine', from: 0, to: a * b, start: 0, hops: 0, step: b },
+      }),
     ],
     example: { a: 3, b: 5 },
     input: numpad(2),

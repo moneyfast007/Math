@@ -2,6 +2,7 @@ import { t } from '@/i18n';
 import {
   arith,
   defineTopic,
+  exampleAvoiding,
   exampleHint,
   exercise,
   hint,
@@ -219,10 +220,19 @@ function order(rng: Rng): Exercise {
     hints: [
       hint(say(kind === '(a+b)c' ? 'hint.order.brackets' : 'hint.order.first')),
       hint(say('hint.order.rule')),
-      // Never the exercise itself.
-      display === '2 + 3 × 4 = ?'
-        ? exampleHint('5 + 2 × 3 = 11', say('ex.ord.example', { a: 5, b: 2, c: 3, r: 11 }))
-        : exampleHint('2 + 3 × 4 = 14', say('ex.ord.example', { a: 2, b: 3, c: 4, r: 14 })),
+      // Never one with this exercise's answer (so never the exercise itself): it gives it away.
+      exampleAvoiding(answer, [
+        {
+          answer: 14,
+          hint: () =>
+            exampleHint('2 + 3 × 4 = 14', say('ex.ord.example', { a: 2, b: 3, c: 4, r: 14 })),
+        },
+        {
+          answer: 11,
+          hint: () =>
+            exampleHint('5 + 2 × 3 = 11', say('ex.ord.example', { a: 5, b: 2, c: 3, r: 11 })),
+        },
+      ]),
     ],
     solution: say('eq.answerIs', { r: answer }),
     diagnose: (v) => (v === wrong ? 'order' : null),

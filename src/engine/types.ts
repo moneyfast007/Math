@@ -21,9 +21,22 @@ export interface ObjectKind {
 
 export type Visual =
   /** A fraction: `shaded` of `parts` cells of a bar (or a circle). */
-  | { type: 'fraction'; parts: number; shaded: number; shape?: 'bar' | 'circle' }
+  /**
+   * A whole in `parts`, `shaded` of them coloured. `added`: more parts after them in
+   * a second colour (adding fractions); `crossed`: the last shaded ones crossed out
+   * (taking away).
+   */
+  | {
+      type: 'fraction';
+      parts: number;
+      shaded: number;
+      shape?: 'bar' | 'circle';
+      added?: number;
+      crossed?: number;
+    }
   /** Dots in rows × cols, for multiplication; `squares` draws cells (area). */
-  | { type: 'array'; rows: number; cols: number; squares?: boolean }
+  /** Rows of `cols`; `extra`: single cells in a row of their own below (the units of 47). */
+  | { type: 'array'; rows: number; cols: number; squares?: boolean; extra?: number }
   /** A rectangle with labelled sides, for perimeter and area. */
   /** `hide`: that side is the question, drawn as "?". */
   | { type: 'rect'; width: number; height: number; unit?: string; hide?: 'height' }

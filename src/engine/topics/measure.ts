@@ -1,4 +1,5 @@
 import { t, type TranslationKey } from '@/i18n';
+import { shown } from '@/lang/compose';
 import { numberToWords, type Noun } from '@/lang/hebrewNumbers';
 import { digitalTime, fromMinutes, minuteWords, toMinutes, wrapHour } from '@/lang/time';
 import type { MistakeKind } from '@/state/schema';
@@ -265,8 +266,13 @@ function ruler(rng: Rng): Exercise {
 function compare(rng: Rng): Exercise {
   const length = rng() < 0.5;
   const k = length ? 100 : 1000;
-  const a = randInt(rng, 2, 6);
-  let b = randInt(rng, 3, 9) * (length ? 25 : 250);
+  // Half the time the bigger number in the smaller unit wins (2 מ׳ or 250 ס״מ?):
+  // otherwise "always pick metres" would pass the level without comparing.
+  const smallWins = rng() < 0.5;
+  const a = smallWins ? randInt(rng, 1, 4) : randInt(rng, 2, 6);
+  let b = smallWins
+    ? a * k + randInt(rng, 1, 6) * (length ? 25 : 250)
+    : randInt(rng, 3, 9) * (length ? 25 : 250);
   if (b === a * k) b += length ? 25 : 250;
   const bigFirst = rng() < 0.5;
   const big = {
@@ -329,7 +335,7 @@ function timeProblem({ from, d }: TimeFact, rng: Rng): Exercise {
     factId: `mtime:${from.h}:${from.m}+${d}`,
     topicId: ID,
     level: 9,
-    prompt: say('ex.measure.time.story', { start: words(from), d: dWords }).text,
+    prompt: shown(say('ex.measure.time.story', { start: words(from), d: dWords })),
     display: '',
     spoken: say('ex.measure.time.story', { start: words(from), d: dWords }),
     answer: set.answer,
@@ -379,7 +385,7 @@ function problem(rng: Rng): Exercise {
     factId: `flour:${a}:${b}`,
     topicId: ID,
     level: 10,
-    prompt: say('ex.measure.flour.story', { a: { n: a, noun: KG }, b: { n: b, noun: GRAM } }).text,
+    prompt: shown(say('ex.measure.flour.story', { a: { n: a, noun: KG }, b: { n: b, noun: GRAM } })),
     display: '',
     spoken: say('ex.measure.flour.story', { a: { n: a, noun: KG }, b: { n: b, noun: GRAM } }),
     answer: left,

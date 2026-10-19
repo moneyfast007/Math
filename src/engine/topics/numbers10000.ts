@@ -2,6 +2,7 @@ import { t } from '@/i18n';
 import {
   arith,
   defineTopic,
+  exampleAvoiding,
   exampleHint,
   exercise,
   hint,
@@ -96,7 +97,19 @@ function placeValue(rng: Rng): Exercise {
       hint(say('ex.placeValue.hint2'), {
         visual: { type: 'placeValue', n: n === 3452 ? 2715 : 3452 },
       }),
-      exampleHint('3452: 4 → 400', say('ex.placeValue.solution', { d: 4, n: 3452, v: 400 })),
+      // Not an example whose value is this exercise's answer: it would give it away.
+      exampleAvoiding(answer, [
+        {
+          answer: 400,
+          hint: () =>
+            exampleHint('3452: 4 → 400', say('ex.placeValue.solution', { d: 4, n: 3452, v: 400 })),
+        },
+        {
+          answer: 700,
+          hint: () =>
+            exampleHint('2715: 7 → 700', say('ex.placeValue.solution', { d: 7, n: 2715, v: 700 })),
+        },
+      ]),
     ],
     solution: say('ex.placeValue.solution', { d, n, v: answer }),
     // The digit itself, or the digit at another place (400 → 40): place value.
@@ -141,7 +154,8 @@ function rounding(rng: Rng): Exercise {
   const prompt = t(`ex.round.prompt.${key}` as const, { params: { n } });
   const spoken = say(`ex.round.prompt.${key}` as const, { n });
   const lower = Math.floor(n / to) * to;
-  const exN = to === 10 ? 347 : to === 100 ? 1264 : 3720;
+  // Two examples for each place, so one never rounds to this exercise's answer.
+  const exNs = to === 10 ? [347, 862] : to === 100 ? [1264, 5738] : [3720, 6180];
   return exercise({
     factId: `round${to}:${n}`,
     topicId: ID,
@@ -155,9 +169,16 @@ function rounding(rng: Rng): Exercise {
     hints: [
       hint(say('ex.round.hint1', { n, lo: lower, hi: lower + to })),
       hint(say('ex.round.hint2', { half: lower + to / 2 })),
-      exampleHint(
-        `${exN} → ${Math.round(exN / to) * to}`,
-        say(`ex.round.solution.${key}` as const, { n: exN, r: Math.round(exN / to) * to }),
+      exampleAvoiding(
+        answer,
+        exNs.map((exN) => {
+          const r = Math.round(exN / to) * to;
+          return {
+            answer: r,
+            hint: () =>
+              exampleHint(`${exN} → ${r}`, say(`ex.round.solution.${key}` as const, { n: exN, r })),
+          };
+        }),
       ),
     ],
     solution: say(`ex.round.solution.${key}` as const, { n, r: answer }),

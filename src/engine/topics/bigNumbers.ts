@@ -4,6 +4,7 @@ import { numberToWords } from '@/lang/hebrewNumbers';
 import {
   arith,
   defineTopic,
+  exampleAvoiding,
   exampleHint,
   exercise,
   hint,
@@ -99,10 +100,25 @@ function placeValue(rng: Rng): Exercise {
       hint(say('ex.placeValue.hint2'), {
         visual: { type: 'placeValue', n: n === 352_418 ? 241_635 : 352_418 },
       }),
-      exampleHint(
-        '352,418: 5 → 50,000',
-        say('ex.placeValue.solution', { d: 5, n: 352_418, v: 50_000 }),
-      ),
+      // Not an example whose value is this exercise's answer: it would give it away.
+      exampleAvoiding(answer, [
+        {
+          answer: 50_000,
+          hint: () =>
+            exampleHint(
+              '352,418: 5 → 50,000',
+              say('ex.placeValue.solution', { d: 5, n: 352_418, v: 50_000 }),
+            ),
+        },
+        {
+          answer: 40_000,
+          hint: () =>
+            exampleHint(
+              '241,635: 4 → 40,000',
+              say('ex.placeValue.solution', { d: 4, n: 241_635, v: 40_000 }),
+            ),
+        },
+      ]),
     ],
     solution: say('ex.placeValue.solution', { d, n, v: answer }),
     diagnose: (v) =>
@@ -152,8 +168,6 @@ function rounding(rng: Rng): Exercise {
   const answer = Math.round(n / to) * to;
   const lower = Math.floor(n / to) * to;
   const place = t(key);
-  const exN = 347_200;
-  const exR = Math.round(exN / to) * to;
   return exercise({
     factId: `bround${to}:${n}`,
     topicId: ID,
@@ -166,7 +180,18 @@ function rounding(rng: Rng): Exercise {
     hints: [
       hint(say('ex.round.hint1', { n, lo: lower, hi: lower + to })),
       hint(say('ex.round.hint2', { half: lower + to / 2 })),
-      exampleHint(`${exN} → ${exR}`, say('ex.roundTo.solution', { n: exN, place, r: exR })),
+      // Two examples, so one never rounds to this exercise's answer.
+      exampleAvoiding(
+        answer,
+        [347_200, 681_350].map((exN) => {
+          const exR = Math.round(exN / to) * to;
+          return {
+            answer: exR,
+            hint: () =>
+              exampleHint(`${exN} → ${exR}`, say('ex.roundTo.solution', { n: exN, place, r: exR })),
+          };
+        }),
+      ),
     ],
     solution: say('ex.roundTo.solution', { n, place, r: answer }),
   });

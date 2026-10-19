@@ -1,9 +1,10 @@
+import { shown, type Slot, type Spoken } from '@/lang/compose';
 import { t, type TranslationKey } from '@/i18n';
-import type { Slot, Spoken } from '@/lang/compose';
 import type { MistakeKind } from '@/state/schema';
 import {
   CHARACTERS,
   defineTopic,
+  exampleAvoiding,
   exampleHint,
   exercise,
   hint,
@@ -141,9 +142,12 @@ function fromShape(level: number, gen: Gen, rng: Rng): Exercise {
   const s = gen(rng);
   if (!s) return fromShape(level, gen, rng);
   const spoken = say(s.key, s.slots);
-  const exS = gen(() => 0.37);
-  const example = exS && exS.display !== s.display ? exS : (gen(() => 0.71) ?? exS);
-  if (!example || example.display === s.display) return fromShape(level, gen, rng);
+  // The example is the same shape at fixed draws: not this exercise, and not one with
+  // the same value, which would give the answer away.
+  const example = [0.37, 0.71, 0.13, 0.9]
+    .map((x) => gen(() => x))
+    .find((e) => e && e.display !== s.display && e.value !== s.value);
+  if (!example) return fromShape(level, gen, rng);
   const diagnose = (v: number): MistakeKind | null => (v === s.wrong ? 'order' : null);
   return exercise({
     factId: `ord:${s.display}`,
@@ -182,8 +186,6 @@ function distributive(rng: Rng): Exercise {
   const a = randInt(rng, 3, 9);
   const tens = randInt(rng, 1, 9) * 10;
   const u = randInt(rng, 1, 9);
-  const ex =
-    a === 4 && tens === 20 && u === 3 ? { a: 6, tens: 30, u: 2 } : { a: 4, tens: 20, u: 3 };
   return exercise({
     factId: `dist:${a}x${tens + u}`,
     topicId: ID,
@@ -196,9 +198,20 @@ function distributive(rng: Rng): Exercise {
     hints: [
       hint(say('ex.ord.dist.hint1', { n: tens + u, t: tens })),
       hint(say('ex.ord.dist.hint2')),
-      exampleHint(
-        `${ex.a} × ${ex.tens + ex.u} = ${ex.a} × ${ex.tens} + ${ex.a} × ${ex.u}`,
-        say('ex.ord.dist.solution', { n: ex.tens + ex.u, t: ex.tens, u: ex.u }),
+      // Not an example whose missing number is this answer: it would give it away.
+      exampleAvoiding(
+        u,
+        [
+          { a: 4, tens: 20, u: 3 },
+          { a: 6, tens: 30, u: 2 },
+        ].map((ex) => ({
+          answer: ex.u,
+          hint: () =>
+            exampleHint(
+              `${ex.a} × ${ex.tens + ex.u} = ${ex.a} × ${ex.tens} + ${ex.a} × ${ex.u}`,
+              say('ex.ord.dist.solution', { n: ex.tens + ex.u, t: ex.tens, u: ex.u }),
+            ),
+        })),
       ),
     ],
     solution: say('ex.ord.dist.solution', { n: tens + u, t: tens, u }),
@@ -212,7 +225,9 @@ function missingInside(rng: Rng): Exercise {
   const b = randInt(rng, 1, 9);
   const c = randInt(rng, 2, 9);
   const r = (x + b) * c;
-  const ex = x === 3 && b === 4 && c === 3 ? { x: 2, b: 5, c: 4 } : { x: 3, b: 4, c: 3 };
+  // Neither the example's missing number nor its result may be this answer.
+  const first = { x: 3, b: 4, c: 3 };
+  const ex = x !== first.x && x !== (first.x + first.b) * first.c ? first : { x: 2, b: 5, c: 4 };
   return exercise({
     factId: `minside:${x}+${b}x${c}`,
     topicId: ID,
@@ -253,7 +268,7 @@ function story(rng: Rng): Exercise {
     factId: `owp:${k}x${price}+${pen}`,
     topicId: ID,
     level: 10,
-    prompt: spoken.text,
+    prompt: shown(spoken),
     display: '',
     spoken,
     answer,
@@ -264,7 +279,21 @@ function story(rng: Rng): Exercise {
         ...hint(say('hint.equation')),
         example: { display: `${k} × ${price} + ${pen} = ?`, spoken: say('hint.equation').text },
       },
-      exampleHint('3 × 8 + 5 = 29', say('wp.ord.shop.solution', { a: 3, b: 8, c: 5, r: 29 })),
+      // Not an example whose total is this answer: it would give it away.
+      exampleAvoiding(
+        answer,
+        [
+          { a: 3, b: 8, c: 5 },
+          { a: 4, b: 6, c: 3 },
+        ].map((ex) => {
+          const r = ex.a * ex.b + ex.c;
+          return {
+            answer: r,
+            hint: () =>
+              exampleHint(`${ex.a} × ${ex.b} + ${ex.c} = ${r}`, say('wp.ord.shop.solution', { ...ex, r })),
+          };
+        }),
+      ),
     ],
     solution: say('wp.ord.shop.solution', { a: k, b: price, c: pen, r: answer }),
     diagnose: (v) => (v === k * (price + pen) ? 'order' : null),

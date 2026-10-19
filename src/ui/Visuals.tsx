@@ -169,10 +169,20 @@ function Fraction({ v }: { v: Extract<Visual, { type: 'fraction' }> }) {
       </div>
     );
   }
+  const added = v.added ?? 0;
+  const crossed = v.crossed ?? 0;
+  const cell = (i: number) =>
+    i < v.shaded - crossed
+      ? 'frac-cell frac-cell--on'
+      : i < v.shaded
+        ? 'frac-cell frac-cell--on frac-cell--crossed'
+        : i < v.shaded + added
+          ? 'frac-cell frac-cell--added'
+          : 'frac-cell';
   return (
     <div className="fraction fraction--bar" dir="ltr" data-visual="fraction" aria-hidden="true">
       {Array.from({ length: v.parts }, (_, i) => (
-        <span key={i} className={i < v.shaded ? 'frac-cell frac-cell--on' : 'frac-cell'} />
+        <span key={i} className={cell(i)} />
       ))}
     </div>
   );
@@ -189,6 +199,9 @@ function ArrayDots({ v }: { v: Extract<Visual, { type: 'array' }> }) {
     >
       {Array.from({ length: v.rows * v.cols }, (_, i) => (
         <span key={i} className="dots__cell" />
+      ))}
+      {Array.from({ length: v.extra ?? 0 }, (_, i) => (
+        <span key={`x${i}`} className="dots__cell dots__cell--extra" />
       ))}
     </div>
   );

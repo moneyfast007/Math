@@ -45,9 +45,13 @@ function wholeTens(level: number, tens: number, rng: Rng): Exercise {
     hints: [
       hint(say('ex.tens.hint1')),
       hint(say('ex.tens.hint2'), {
-        visual: { type: 'numberLine', from: 0, to: 100, start: 0, hops: tens, step: 10 },
+        visual: { type: 'numberLine', from: 0, to: 100, start: 0, hops: tens, step: 10, hide: answer },
       }),
-      exampleHint(`${ex} × 10 = ${ex * 10}`, say('ex.tens.solution', { tens: ex, n: ex * 10 })),
+      // Repeated addition, not "3 × 10": multiplication comes in grade 2.
+      exampleHint(
+        `${Array.from({ length: ex }, () => '10').join(' + ')} = ${ex * 10}`,
+        say('ex.tens.solution', { tens: ex, n: ex * 10 }),
+      ),
     ],
     solution: say('ex.tens.solution', { tens, n: answer }),
   });
@@ -67,7 +71,8 @@ function build(level: number, n: number): Exercise {
     prompt,
     display: '',
     spoken,
-    visual: { type: 'array', rows: tens, cols: 10, squares: true },
+    // The tens and the units: 47 is four rows of ten and seven more.
+    visual: { type: 'array', rows: tens, cols: 10, squares: true, extra: units },
     answer: n,
     input: numpad(2),
     hints: [
@@ -104,9 +109,8 @@ function decompose(level: number, n: number, askTens: boolean): Exercise {
     input: numpad(1),
     hints: [
       hint(say('ex.decompose.hint1')),
-      hint(say('ex.decompose.hint2'), {
-        example: { display: splitTensUnits(n), spoken: say('ex.decompose.hint2') },
-      }),
+      // Not "21 = 20 + 1": that would be the answer itself.
+      hint(say('ex.decompose.hint2sticks')),
       exampleHint(
         splitTensUnits(ex),
         say('ex.decompose.solution', { n: ex, tens: Math.floor(ex / 10), units: ex % 10 }),
@@ -401,12 +405,16 @@ export const numbers100 = defineTopic({
           b: f.b,
           hints: [
             hint(say('ex.tensUnits.hint1')),
-            hint(say('ex.decompose.hint2'), {
-              example: {
-                display: splitTensUnits(f.op === '+' ? f.a + f.b : f.a),
-                spoken: say('ex.decompose.hint2'),
-              },
-            }),
+            // A hint that shows the way without the result (splitting 77 or 89 would show it).
+            hint(
+              say(
+                f.op === '+'
+                  ? 'ex.tensUnits.hint2add'
+                  : f.b < 10
+                    ? 'ex.tensUnits.hint2subUnits'
+                    : 'ex.tensUnits.hint2subTens',
+              ),
+            ),
           ],
           example: f.op === '+' ? { a: 50, b: 3 } : f.b < 10 ? { a: 53, b: 3 } : { a: 53, b: 50 },
           input: numpad(2),
@@ -431,16 +439,16 @@ export const numbers100 = defineTopic({
               op: '+',
               b: 100 - f.to100,
               missing: 'b',
+              // Hops of ten, and then how much they are: not "how many hops" (that leads to 4 for 40).
               hints: [
-                hint(say('ex.to100.hint1')),
-                hint(say('hint.numberLineGap'), {
+                hint(say('ex.to100.hint1tens', { a: f.to100 })),
+                hint(say('hint.numberLine10'), {
                   visual: {
                     type: 'numberLine',
                     from: 0,
                     to: 100,
                     start: f.to100,
-                    hops: 0,
-                    target: 100,
+                    hops: (100 - f.to100) / 10,
                     step: 10,
                   },
                 }),

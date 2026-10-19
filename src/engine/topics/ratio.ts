@@ -3,6 +3,7 @@ import type { Noun } from '@/lang/hebrewNumbers';
 import {
   closed,
   defineTopic,
+  exampleAvoiding,
   exampleHint,
   exercise,
   gcd,
@@ -31,8 +32,6 @@ const r = (a: number, b: number) => `${a} : ${b}`;
 function simplify(a: number, b: number): Exercise {
   const g = gcd(a, b);
   const answer = b / g;
-  const ex = a === 6 && b === 4 ? { a: 10, b: 15 } : { a: 6, b: 4 };
-  const eg = gcd(ex.a, ex.b);
   return exercise({
     factId: `rsimp:${a}:${b}`,
     topicId: ID,
@@ -45,9 +44,23 @@ function simplify(a: number, b: number): Exercise {
     hints: [
       hint(say('ex.ratio.simplify.hint1')),
       hint(say('ex.ratio.simplify.hint2', { g })),
-      exampleHint(
-        `${r(ex.a, ex.b)} = ${r(ex.a / eg, ex.b / eg)}`,
-        say('ex.ratio.equal.solution', { a: ex.a, b: ex.b, c: ex.a / eg, d: ex.b / eg }),
+      // Not an example whose missing number is this answer: it would give it away.
+      exampleAvoiding(
+        answer,
+        [
+          { a: 6, b: 4 },
+          { a: 10, b: 15 },
+        ].map((ex) => {
+          const eg = gcd(ex.a, ex.b);
+          return {
+            answer: ex.b / eg,
+            hint: () =>
+              exampleHint(
+                `${r(ex.a, ex.b)} = ${r(ex.a / eg, ex.b / eg)}`,
+                say('ex.ratio.equal.solution', { a: ex.a, b: ex.b, c: ex.a / eg, d: ex.b / eg }),
+              ),
+          };
+        }),
       ),
     ],
     solution: say('ex.ratio.equal.solution', { a, b, c: a / g, d: answer }),
@@ -57,7 +70,6 @@ function simplify(a: number, b: number): Exercise {
 /** 2 : 3 = ? : 12 */
 function equivalent(a: number, b: number, k: number): Exercise {
   const answer = a * k;
-  const ex = a === 2 && b === 3 && k === 4 ? { a: 3, b: 4, k: 2 } : { a: 2, b: 3, k: 4 };
   return exercise({
     factId: `requiv:${a}:${b}x${k}`,
     topicId: ID,
@@ -70,9 +82,20 @@ function equivalent(a: number, b: number, k: number): Exercise {
     hints: [
       hint(say('ex.ratio.equiv.hint1', { b, d: b * k })),
       hint(say('ex.ratio.equiv.hint2')),
-      exampleHint(
-        `${r(ex.a, ex.b)} = ${r(ex.a * ex.k, ex.b * ex.k)}`,
-        say('ex.ratio.equal.solution', { a: ex.a, b: ex.b, c: ex.a * ex.k, d: ex.b * ex.k }),
+      // Not an example whose missing number is this answer: it would give it away.
+      exampleAvoiding(
+        answer,
+        [
+          { a: 2, b: 3, k: 4 },
+          { a: 3, b: 4, k: 2 },
+        ].map((ex) => ({
+          answer: ex.a * ex.k,
+          hint: () =>
+            exampleHint(
+              `${r(ex.a, ex.b)} = ${r(ex.a * ex.k, ex.b * ex.k)}`,
+              say('ex.ratio.equal.solution', { a: ex.a, b: ex.b, c: ex.a * ex.k, d: ex.b * ex.k }),
+            ),
+        })),
       ),
     ],
     solution: say('ex.ratio.equal.solution', { a, b, c: answer, d: b * k }),
@@ -89,7 +112,13 @@ function divide(level: 3 | 4, a: number, b: number, n: number): Exercise {
   const boys = a * unit;
   const girls = b * unit;
   const askBoys = level === 3;
-  const ex = a === 2 && b === 3 && n === 20 ? { a: 1, b: 3, n: 20 } : { a: 2, b: 3, n: 20 };
+  // The example shows one part, the boys and the girls: none of them may be this answer.
+  const shares = (e: { a: number; b: number; n: number }) => {
+    const u = e.n / (e.a + e.b);
+    return [u, e.a * u, e.b * u];
+  };
+  const first = { a: 2, b: 3, n: 20 };
+  const ex = shares(first).includes(askBoys ? boys : girls) ? { a: 1, b: 3, n: 20 } : first;
   const exU = ex.n / (ex.a + ex.b);
   return exercise({
     factId: `rdiv${level}:${a}:${b}:${n}`,
@@ -130,7 +159,12 @@ const CHILD: Noun = { singular: 'ילד', plural: 'ילדים', gender: 'm' };
 function wholeFromPart(a: number, b: number, unit: number): Exercise {
   const boys = a * unit;
   const total = (a + b) * unit;
-  const ex = a === 2 && b === 3 && unit === 4 ? { a: 1, b: 2, unit: 5 } : { a: 2, b: 3, unit: 4 };
+  // The example shows its boys and its total: neither may be this answer.
+  const first = { a: 2, b: 3, unit: 4 };
+  const ex =
+    first.a * first.unit === total || (first.a + first.b) * first.unit === total
+      ? { a: 1, b: 2, unit: 5 }
+      : first;
   return exercise({
     factId: `rwhole:${a}:${b}:${unit}`,
     topicId: ID,
@@ -194,8 +228,10 @@ const NOTEBOOK: Noun = { singular: 'מחברת', plural: 'מחברות', gender:
 function price(level: 8 | 9, k: number, each: number, m: number): Exercise {
   const total = k * each;
   const answer = level === 8 ? each : m * each;
-  const ex = { k: 3, each: 4, m: 5 };
-  const e = k === ex.k && each === ex.each ? { k: 4, each: 3, m: 6 } : ex;
+  // Not an example whose answer is this one: it would give it away.
+  const first = { k: 3, each: 4, m: 5 };
+  const e =
+    (level === 8 ? first.each : first.each * first.m) === answer ? { k: 4, each: 3, m: 6 } : first;
   return exercise({
     factId: `rprice${level}:${k}:${each}:${m}`,
     topicId: ID,
@@ -240,7 +276,8 @@ const HOUR: Noun = { singular: 'שעה', plural: 'שעות', gender: 'f' };
 /** A car drives v km an hour for h hours. */
 function distance(v: number, h: number): Exercise {
   const answer = v * h;
-  const e = v === 60 && h === 3 ? { v: 50, h: 2 } : { v: 60, h: 3 };
+  // Not an example whose distance is this answer: it would give it away.
+  const e = answer === 60 * 3 ? { v: 50, h: 2 } : { v: 60, h: 3 };
   return exercise({
     factId: `rdist:${v}x${h}`,
     topicId: ID,

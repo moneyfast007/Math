@@ -109,6 +109,8 @@ function numerator(level: number, num: number, den: number): Exercise {
   });
 }
 
+type Ex = { n: number; d: number; whole: number };
+
 /** "1/4 of 12" or "3/4 of 12". */
 function ofQuantity(level: number, num: number, den: number, whole: number): Exercise {
   const part = whole / den;
@@ -116,13 +118,25 @@ function ofQuantity(level: number, num: number, den: number, whole: number): Exe
   // The fraction in words inside the Hebrew sentence; the digits live in the LTR expression.
   const prompt = t('ex.frac.of.prompt', { params: { frac: w(num, den), whole } });
   const spoken = say('ex.frac.of.spoken', { frac: w(num, den), whole });
-  const ex = den === 3 ? { n: 1, d: 4, whole: 8 } : { n: 1, d: 3, whole: 9 };
+  // The example gives the answer away if it ends in this exercise's answer, or
+  // splits the same whole (1/3 × 12 = 4 for 1/4 × 12); in the exercise's own
+  // denominator it is too close. Four examples, so one is always left.
+  const exs: [Ex, ...Ex[]] = [
+    { n: 1, d: 3, whole: 9 },
+    { n: 1, d: 4, whole: 8 },
+    { n: 1, d: 5, whole: 20 },
+    { n: 1, d: 2, whole: 12 },
+  ];
+  const ex =
+    exs.find((x) => x.d !== den && x.whole !== whole && x.whole / x.d !== answer) ?? exs[0];
   return exercise({
     factId: `fof:${num}/${den}:${whole}`,
     topicId: ID,
     level,
     prompt,
-    display: `${f(num, den)} × ${whole} = ?`,
+    // No "1/5 × 15": grade 3 finds a part of a quantity without a multiplication
+    // exercise (the curriculum says so). The question is in the title and the picture.
+    display: '',
     spoken,
     visual: { type: 'array', rows: den, cols: part },
     answer,
@@ -135,8 +149,9 @@ function ofQuantity(level: number, num: number, den: number, whole: number): Exe
           : say('ex.frac.of.hint1', { d: den, n: num }),
       ),
       hint(say('ex.frac.of.hint2', { d: den })),
+      // Shown as what is done: split the whole into equal parts.
       exampleHint(
-        `${f(ex.n, ex.d)} × ${ex.whole} = ${ex.whole / ex.d}`,
+        `${ex.whole} ÷ ${ex.d} = ${ex.whole / ex.d}`,
         say('ex.frac.of.solution', { frac: w(ex.n, ex.d), whole: ex.whole, r: ex.whole / ex.d }),
       ),
     ],
@@ -205,8 +220,13 @@ function sameDen(level: number, a: number, op: '+' | '-', b: number, den: number
           plural: fractionNoun(den).plural,
         }),
       ),
+      // The two fractions apart (two colours), or the part taken away crossed out:
+      // the way to the answer, not the answer already coloured in.
       hint(say('ex.frac.same.hint2'), {
-        visual: { type: 'fraction', parts: den, shaded: op === '+' ? a + b : a },
+        visual:
+          op === '+'
+            ? { type: 'fraction', parts: den, shaded: a, added: b }
+            : { type: 'fraction', parts: den, shaded: a, crossed: b },
       }),
       exampleHint(
         `${f(ex.a, ex.d)} ${op === '+' ? '+' : '−'} ${f(ex.b, ex.d)} = ${f(exR, ex.d)}`,

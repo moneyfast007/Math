@@ -1,3 +1,4 @@
+import { shown } from '@/lang/compose';
 import { t, type TranslationKey } from '@/i18n';
 import {
   digitalTime,
@@ -127,7 +128,7 @@ function pickClock(
     factId: `clock${level}:${key(time)}`,
     topicId: ID,
     level,
-    prompt: spoken.text,
+    prompt: shown(spoken),
     display: '',
     spoken,
     answer: set.answer,
@@ -225,7 +226,9 @@ function level5(time: ClockTime, rng: Rng): Exercise {
   return readClock(
     5,
     time,
-    [{ time: at(time.h - 1, 45) }, { time: at(time.h, 45) }],
+    // One more "quarter past" (another hour) and one "quarter to": the right one is not
+    // simply the only "quarter past" among the three.
+    [{ time: at(time.h + 1, 15), mistake: 'clockHands' }, { time: at(time.h, 45) }],
     ['ex.clock.past.hint1', 'ex.clock.past.hint2'],
     exampleTime(time, at(4, 15), at(9, 15)),
     rng,
@@ -393,7 +396,7 @@ function level10({ kind, who, from, d }: StoryFact, rng: Rng): Exercise {
     factId: `clock10:${kind}:${who.name}:${key(from)}+${d}`,
     topicId: ID,
     level: 10,
-    prompt: spoken.text,
+    prompt: shown(spoken),
     display: '',
     spoken,
     answer,

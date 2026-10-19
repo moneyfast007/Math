@@ -24,6 +24,7 @@ describe('compose', () => {
     expect(compose('יש {a}.', { a: { n: 1, noun: apple } })).toEqual({
       text: 'יש תפוח אחד.',
       parts: ['יש תפוח אחד.'],
+      written: 'יש 1 תפוח.',
     });
     expect(compose('יש {a}.', { a: { n: 2, noun: apple } }).parts).toEqual(['יש שני תפוחים.']);
   });
@@ -32,6 +33,15 @@ describe('compose', () => {
     const s = compose('{a}, {b}.', { a: { n: 3, gender: 'm' }, b: 3 });
     expect(s.text).toBe('שלושה, שלוש.');
     expect(s.parts).toEqual(['שלושה', 'שלוש']);
+  });
+
+  it('writes the same sentence with digits for the screen', () => {
+    const s = compose('ל{name} יש {a}. כמה זה מ{b}?', {
+      name: 'דנה',
+      a: { n: 523, noun: apple },
+      b: 20,
+    });
+    expect(s.written).toBe('לדנה יש 523 תפוחים. כמה זה מ-20?');
   });
 
   it('leaves unknown placeholders alone', () => {

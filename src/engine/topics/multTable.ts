@@ -9,6 +9,7 @@ import {
   open,
   say,
   wordProblem,
+  exampleAvoiding,
 } from '../build';
 import { pick, randInt } from '../rng';
 import type { Exercise, Hint, Rng } from '../types';
@@ -107,7 +108,8 @@ function missingInDivision(rng: Rng): Exercise {
       hint(say(asA ? 'hint.div.missingStart' : 'hint.div.missingDivisor', { q, b, a: b * q })),
       hint(say('hint.mul.array'), { visual: { type: 'array', rows: b, cols: q } }),
     ],
-    example: { a: 24, b: 6 },
+    // 24 ÷ 6 = 4 ends in this exercise's answer when the answer is 4: then another example.
+    example: (asA ? b * q : b) === 4 ? { a: 18, b: 6 } : { a: 24, b: 6 },
     input: numpad(3),
   });
 }
@@ -175,7 +177,7 @@ function remainder(rng: Rng): Exercise {
   const prompt = t(askRemainder ? 'ex.remainder.promptR' : 'ex.remainder.promptQ');
   const spoken = say(askRemainder ? 'ex.remainder.spokenR' : 'ex.remainder.spokenQ', { a, b });
   const solved = say('eq.remainder.solution', { a, b, q, r });
-  const exSolved = say('eq.remainder.solution', { a: 17, b: 5, q: 3, r: 2 });
+
   return exercise({
     factId: `rem:${a}/${b}:${askRemainder ? 'r' : 'q'}`,
     topicId: ID,
@@ -187,9 +189,29 @@ function remainder(rng: Rng): Exercise {
     operation: 'div',
     input: numpad(1),
     hints: [
-      hint(say('hint.div.remainder', { b, q: b * q })),
-      hint(say('hint.div.array'), { visual: { type: 'array', rows: q, cols: b } }),
-      exampleHint('17 ÷ 5 = 3 (2)', exSolved),
+      // A hint for the part that is asked: how many in each group, or how many are left.
+      hint(
+        askRemainder
+          ? say('hint.div.remainderR', { a, b, bq: b * q })
+          : say('hint.div.remainderQ', { a, b }),
+      ),
+      // b groups of q (each row is a group), and the r left over in a row of their own.
+      hint(say(askRemainder ? 'hint.div.arrayLeft' : 'hint.div.array'), {
+        visual: { type: 'array', rows: b, cols: q, extra: r },
+      }),
+      // An example whose asked part is not this answer.
+      exampleAvoiding(
+        answer,
+        [
+          { a: 17, b: 5, q: 3, r: 2 },
+          { a: 23, b: 4, q: 5, r: 3 },
+          { a: 29, b: 6, q: 4, r: 5 },
+        ].map((ex) => ({
+          answer: askRemainder ? ex.r : ex.q,
+          hint: () =>
+            exampleHint(`${ex.a} ÷ ${ex.b} = ${ex.q} (${ex.r})`, say('eq.remainder.solution', ex)),
+        })),
+      ),
     ],
     solution: solved,
     diagnose: (v) =>

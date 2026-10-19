@@ -1,3 +1,4 @@
+import { shown } from '@/lang/compose';
 import { t } from '@/i18n';
 import {
   displayFraction as f,
@@ -10,6 +11,7 @@ import {
   CHARACTERS,
   closed,
   defineTopic,
+  exampleAvoiding,
   exampleHint,
   exercise,
   hint,
@@ -53,8 +55,6 @@ function mixedWords(whole: number, num: number, den: number): string {
 function expand(n: number, d: number, D: number): Exercise {
   const k = D / d;
   const answer = n * k;
-  const ex = n === 1 && d === 2 && D === 4 ? { n: 1, d: 3, D: 6 } : { n: 1, d: 2, D: 4 };
-  const exAns = ex.n * (ex.D / ex.d);
   return exercise({
     factId: `fexp:${n}/${d}=?/${D}`,
     topicId: ID,
@@ -67,10 +67,25 @@ function expand(n: number, d: number, D: number): Exercise {
     input: numpad(2),
     hints: [
       hint(say('ex.frac.expand.hint1', { k })),
-      hint(say('ex.frac.expand.hint2'), { visual: bar(answer, D) }),
-      exampleHint(
-        `${f(ex.n, ex.d)} = ${f(exAns, ex.D)}`,
-        say('ex.frac.equal.solution', { a: w(ex.n, ex.d), b: w(exAns, ex.D) }),
+      // Not a picture with the answer already coloured in: what to do with the parts.
+      hint(say('ex.frac.expand.split', { k })),
+      // The examples' numerators differ, so one of them is never this answer.
+      exampleAvoiding(
+        answer,
+        [
+          { n: 1, d: 2, D: 4 },
+          { n: 1, d: 2, D: 6 },
+        ].map((ex) => {
+          const exAns = ex.n * (ex.D / ex.d);
+          return {
+            answer: exAns,
+            hint: () =>
+              exampleHint(
+                `${f(ex.n, ex.d)} = ${f(exAns, ex.D)}`,
+                say('ex.frac.equal.solution', { a: w(ex.n, ex.d), b: w(exAns, ex.D) }),
+              ),
+          };
+        }),
       ),
     ],
     solution: say('ex.frac.equal.solution', { a: w(n, d), b: w(answer, D) }),
@@ -80,7 +95,6 @@ function expand(n: number, d: number, D: number): Exercise {
 /** 6/8 = ?/4 */
 function simplify(N: number, D: number, d: number): Exercise {
   const answer = N / (D / d);
-  const ex = N === 2 && D === 4 ? { N: 3, D: 6, d: 2 } : { N: 2, D: 4, d: 2 };
   return exercise({
     factId: `fsimp:${N}/${D}=?/${d}`,
     topicId: ID,
@@ -93,10 +107,23 @@ function simplify(N: number, D: number, d: number): Exercise {
     input: numpad(2),
     hints: [
       hint(say('ex.frac.simplify.hint1', { k: D / d })),
-      hint(say('ex.frac.expand.hint2'), { visual: bar(answer, d) }),
-      exampleHint(
-        `${f(ex.N, ex.D)} = ${f(ex.N / (ex.D / ex.d), ex.d)}`,
-        say('ex.frac.equal.solution', { a: w(ex.N, ex.D), b: w(ex.N / (ex.D / ex.d), ex.d) }),
+      hint(say('ex.frac.simplify.join', { k: D / d })),
+      exampleAvoiding(
+        answer,
+        [
+          { N: 2, D: 4, d: 2 },
+          { N: 4, D: 6, d: 3 },
+        ].map((ex) => {
+          const exAns = ex.N / (ex.D / ex.d);
+          return {
+            answer: exAns,
+            hint: () =>
+              exampleHint(
+                `${f(ex.N, ex.D)} = ${f(exAns, ex.d)}`,
+                say('ex.frac.equal.solution', { a: w(ex.N, ex.D), b: w(exAns, ex.d) }),
+              ),
+          };
+        }),
       ),
     ],
     solution: say('ex.frac.equal.solution', { a: w(N, D), b: w(answer, d) }),
@@ -141,9 +168,16 @@ function relatedSum(level: 4 | 5, a: number, d: number, b: number, D: number): E
   const answer = add ? a * k + b : a * k - b;
   const opWord = add ? 'ועוד' : 'פחות';
   const sym = add ? '+' : '−';
-  const ex = add ? { a: 1, d: 2, b: 1, D: 4, r: 3 } : { a: 1, d: 2, b: 1, D: 4, r: 1 };
-  const exAlt = add ? { a: 1, d: 3, b: 1, D: 6, r: 3 } : { a: 2, d: 3, b: 1, D: 6, r: 3 };
-  const e = a === ex.a && d === ex.d && b === ex.b && D === ex.D ? exAlt : ex;
+  // Two examples with different answers: the one used never has this answer.
+  const examples = add
+    ? [
+        { a: 1, d: 2, b: 1, D: 4, r: 3 },
+        { a: 1, d: 3, b: 2, D: 6, r: 4 },
+      ]
+    : [
+        { a: 1, d: 2, b: 1, D: 4, r: 1 },
+        { a: 2, d: 3, b: 1, D: 6, r: 3 },
+      ];
   const solved = (x: number, xd: number, y: number, yd: number, r: number) =>
     say('ex.frac.same.solution', { a: w(x, xd), op: opWord, b: w(y, yd), r: w(r, yd) });
   return exercise({
@@ -164,9 +198,16 @@ function relatedSum(level: 4 | 5, a: number, d: number, b: number, D: number): E
           plural: fractionNoun(D).plural,
         }),
       ),
-      exampleHint(
-        `${f(e.a, e.d)} ${sym} ${f(e.b, e.D)} = ${f(e.r, e.D)}`,
-        solved(e.a, e.d, e.b, e.D, e.r),
+      exampleAvoiding(
+        answer,
+        examples.map((e) => ({
+          answer: e.r,
+          hint: () =>
+            exampleHint(
+              `${f(e.a, e.d)} ${sym} ${f(e.b, e.D)} = ${f(e.r, e.D)}`,
+              solved(e.a, e.d, e.b, e.D, e.r),
+            ),
+        })),
       ),
     ],
     solution: solved(a, d, b, D, answer),
@@ -179,9 +220,6 @@ function improper(level: 6 | 7, N: number, d: number): Exercise {
   const whole = Math.floor(N / d);
   const rest = N % d;
   const askWhole = level === 6;
-  const ex = N === 7 && d === 4 ? { N: 8, d: 3 } : { N: 7, d: 4 };
-  const exW = Math.floor(ex.N / ex.d);
-  const exR = ex.N % ex.d;
   return exercise({
     factId: `fimp${level}:${N}/${d}`,
     topicId: ID,
@@ -197,9 +235,24 @@ function improper(level: 6 | 7, N: number, d: number): Exercise {
     hints: [
       hint(say('ex.frac.improper.hint1', { all: { n: d, noun: fractionNoun(d) } })),
       hint(say('ex.frac.improper.hint2'), { visual: bar(d, d) }),
-      exampleHint(
-        `${f(ex.N, ex.d)} = ${displayMixed(exW, exR, ex.d)}`,
-        say('ex.frac.equal.solution', { a: w(ex.N, ex.d), b: mixedWords(exW, exR, ex.d) }),
+      // 7/4 = 1 3/4 and 8/3 = 2 2/3 differ in both the wholes and the rest.
+      exampleAvoiding(
+        askWhole ? whole : rest,
+        [
+          { N: 7, d: 4 },
+          { N: 8, d: 3 },
+        ].map((ex) => {
+          const exW = Math.floor(ex.N / ex.d);
+          const exR = ex.N % ex.d;
+          return {
+            answer: askWhole ? exW : exR,
+            hint: () =>
+              exampleHint(
+                `${f(ex.N, ex.d)} = ${displayMixed(exW, exR, ex.d)}`,
+                say('ex.frac.equal.solution', { a: w(ex.N, ex.d), b: mixedWords(exW, exR, ex.d) }),
+              ),
+          };
+        }),
       ),
     ],
     solution: say('ex.frac.equal.solution', { a: w(N, d), b: mixedWords(whole, rest, d) }),
@@ -209,9 +262,6 @@ function improper(level: 6 | 7, N: number, d: number): Exercise {
 /** 2 1/3 = ?/3 */
 function mixedToImproper(whole: number, n: number, d: number): Exercise {
   const answer = whole * d + n;
-  const ex =
-    whole === 1 && n === 3 && d === 4 ? { whole: 2, n: 1, d: 3 } : { whole: 1, n: 3, d: 4 };
-  const exA = ex.whole * ex.d + ex.n;
   return exercise({
     factId: `fmix:${whole} ${n}/${d}`,
     topicId: ID,
@@ -228,9 +278,25 @@ function mixedToImproper(whole: number, n: number, d: number): Exercise {
     hints: [
       hint(say('ex.frac.mixed.hint1', { all: { n: d, noun: fractionNoun(d) } })),
       hint(say('ex.frac.mixed.hint2')),
-      exampleHint(
-        `${displayMixed(ex.whole, ex.n, ex.d)} = ${f(exA, ex.d)}`,
-        say('ex.frac.equal.solution', { a: mixedWords(ex.whole, ex.n, ex.d), b: w(exA, ex.d) }),
+      exampleAvoiding(
+        answer,
+        [
+          { whole: 1, n: 3, d: 4 },
+          { whole: 1, n: 2, d: 3 },
+        ].map((ex) => {
+          const exA = ex.whole * ex.d + ex.n;
+          return {
+            answer: exA,
+            hint: () =>
+              exampleHint(
+                `${displayMixed(ex.whole, ex.n, ex.d)} = ${f(exA, ex.d)}`,
+                say('ex.frac.equal.solution', {
+                  a: mixedWords(ex.whole, ex.n, ex.d),
+                  b: w(exA, ex.d),
+                }),
+              ),
+          };
+        }),
       ),
     ],
     solution: say('ex.frac.equal.solution', { a: mixedWords(whole, n, d), b: w(answer, d) }),
@@ -238,18 +304,39 @@ function mixedToImproper(whole: number, n: number, d: number): Exercise {
   });
 }
 
+/** A fraction of a quantity, solved: 2/3 × 12 = 8, or 3/4 × 12 = 9 when the answer is 8. */
+function ofExample(answer: number) {
+  return exampleAvoiding(
+    answer,
+    [
+      { n: 2, d: 3, total: 12 },
+      { n: 3, d: 4, total: 12 },
+    ].map((ex) => {
+      const exA = (ex.total / ex.d) * ex.n;
+      return {
+        answer: exA,
+        hint: () =>
+          // What is done, in whole numbers: split into d equal parts, take n of them.
+          exampleHint(
+            `${ex.total} ÷ ${ex.d} × ${ex.n} = ${exA}`,
+            say('ex.frac.of.solution', { frac: w(ex.n, ex.d), whole: ex.total, r: exA }),
+          ),
+      };
+    }),
+  );
+}
+
 /** 3/4 of 20 */
 function ofQuantity(n: number, d: number, total: number): Exercise {
   const answer = (total / d) * n;
-  const ex =
-    n === 2 && d === 3 && total === 12 ? { n: 3, d: 4, total: 12 } : { n: 2, d: 3, total: 12 };
-  const exA = (ex.total / ex.d) * ex.n;
   return exercise({
     factId: `fof2:${n}/${d}:${total}`,
     topicId: ID,
     level: 9,
     prompt: t('ex.frac.of.prompt', { params: { frac: w(n, d), whole: total } }),
-    display: `${f(n, d)} × ${total} = ?`,
+    // No "6/8 × 16": in grade 4 a part of a quantity is found by splitting it, not by
+    // multiplying by a fraction. The question is in the title and the picture.
+    display: '',
     spoken: say('ex.frac.of.spoken', { frac: w(n, d), whole: total }),
     visual: { type: 'array', rows: d, cols: total / d },
     answer,
@@ -258,10 +345,7 @@ function ofQuantity(n: number, d: number, total: number): Exercise {
     hints: [
       hint(say('ex.frac.of.hint1', { d, n })),
       hint(say('ex.frac.of.hint2', { d })),
-      exampleHint(
-        `${f(ex.n, ex.d)} × ${ex.total} = ${exA}`,
-        say('ex.frac.of.solution', { frac: w(ex.n, ex.d), whole: ex.total, r: exA }),
-      ),
+      ofExample(answer),
     ],
     solution: say('ex.frac.of.solution', { frac: w(n, d), whole: total, r: answer }),
     diagnose: (v) => (v === total / d ? 'other' : null),
@@ -290,7 +374,7 @@ function story(i: number, n: number, d: number, total: number): Exercise {
     factId: `fwp:${i}:${n}/${d}:${total}`,
     topicId: ID,
     level: 10,
-    prompt: spoken.text,
+    prompt: shown(spoken),
     display: '',
     spoken,
     answer,
@@ -300,9 +384,9 @@ function story(i: number, n: number, d: number, total: number): Exercise {
       hint(say('wp.fraction.hint1', { frac: w(n, d) })),
       {
         ...hint(say('hint.equation')),
-        example: { display: `${f(n, d)} × ${total} = ?`, spoken: say('hint.equation').text },
+        example: { display: `${total} ÷ ${d} × ${n} = ?`, spoken: say('hint.equation').text },
       },
-      exampleHint('2/3 × 12 = 8', say('ex.frac.of.solution', { frac: w(2, 3), whole: 12, r: 8 })),
+      ofExample(answer),
     ],
     solution: say('ex.frac.of.solution', { frac: w(n, d), whole: total, r: answer }),
   });

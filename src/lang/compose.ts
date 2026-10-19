@@ -21,6 +21,28 @@ export type Slot = number | { n: number; gender?: Gender; noun?: Noun } | string
 export interface Spoken {
   text: string;
   parts: string[];
+  /**
+   * The same sentence as it is written on screen: numbers in digits ("לסבא יש
+   * 523 שקלים", not "חמש מאות עשרים ושלושה שקלים"), so a child reads the numbers
+   * she has to work with. Absent for sentences not built by `compose`.
+   */
+  written?: string;
+}
+
+/** What to show for a sentence: digits when it has numbers. */
+export function shown(s: Spoken): string {
+  return s.written ?? s.text;
+}
+
+/** A slot as written: digits, with its noun. */
+function writtenSlot(slot: Slot): string {
+  if (typeof slot === 'string') return slot;
+  const n = typeof slot === 'number' ? slot : slot.n;
+  // Grouped (529,206) where it is shown, by groupDigits.
+  const digits = String(n);
+  if (typeof slot !== 'number' && slot.noun)
+    return `${digits} ${n === 1 ? slot.noun.singular : slot.noun.plural}`;
+  return digits;
 }
 
 interface Resolved {
@@ -71,6 +93,7 @@ const ONLY_PUNCTUATION = /^[\s.,:;!?()"'־-]*$/;
 export function compose(template: string, slots: Readonly<Record<string, Slot>> = {}): Spoken {
   const parts: string[] = [];
   let text = '';
+  let written = '';
   let buffer = '';
   const flush = () => {
     const piece = buffer.trim();
@@ -82,17 +105,22 @@ export function compose(template: string, slots: Readonly<Record<string, Slot>> 
     const m = /^\{(\w+)\}$/.exec(token);
     if (!m) {
       text += token;
+      written += token;
       buffer += token;
       continue;
     }
     const slot = slots[m[1] ?? ''];
     if (slot === undefined) {
       text += token;
+      written += token;
       buffer += token;
       continue;
     }
     const { words, clips, tail } = resolve(slot);
     text += words;
+    const w = writtenSlot(slot);
+    // A prefix letter right before a number takes a hyphen: "מ-20", "ב-5".
+    written += /[א-ת]$/.test(written) && /^\d/.test(w) ? `-${w}` : w;
     if (clips.length > 0) {
       // A number: everything before it is a clip of its own, then the number's clips.
       flush();
@@ -101,5 +129,5 @@ export function compose(template: string, slots: Readonly<Record<string, Slot>> 
     buffer += tail;
   }
   flush();
-  return { text, parts };
+  return { text, parts, written };
 }

@@ -1,9 +1,11 @@
 import { t } from '@/i18n';
+import { shown } from '@/lang/compose';
 import type { Noun } from '@/lang/hebrewNumbers';
 import {
   CHARACTERS,
   closed,
   defineTopic,
+  exampleAvoiding,
   exampleHint,
   exercise,
   hint,
@@ -44,13 +46,23 @@ function squares(w: number, h: number): Exercise {
     hints: [
       hint(say('ex.area.squares.hint1', { w: { n: w, noun: SQUARE } })),
       hint(say('ex.area.squares.hint2')),
-      exampleHint(
-        '3 × 4 = 12',
-        say('ex.area.squares.solution', {
-          h: 3,
-          w: { n: 4, noun: SQUARE },
-          r: { n: 12, noun: SQUARE },
-        }),
+      exampleAvoiding(
+        answer,
+        [
+          { h: 3, w: 4 },
+          { h: 3, w: 5 },
+        ].map((ex) => ({
+          answer: ex.h * ex.w,
+          hint: () =>
+            exampleHint(
+              `${ex.h} × ${ex.w} = ${ex.h * ex.w}`,
+              say('ex.area.squares.solution', {
+                h: ex.h,
+                w: { n: ex.w, noun: SQUARE },
+                r: { n: ex.h * ex.w, noun: SQUARE },
+              }),
+            ),
+        })),
       ),
     ],
     solution: say('ex.area.squares.solution', {
@@ -67,14 +79,17 @@ function measure(level: number, s: Shape, perimeter: boolean): Exercise {
   const square = s.w === s.h;
   const answer = perimeter ? 2 * (s.w + s.h) : s.w * s.h;
   const key = `${square ? 'ex.square' : 'ex.rect'}.${perimeter ? 'perimeter' : 'area'}` as const;
-  const ex: Shape = square
-    ? s.w === 5
-      ? { w: 4, h: 4 }
-      : { w: 5, h: 5 }
-    : s.w === 5 && s.h === 3
-      ? { w: 6, h: 2 }
-      : { w: 5, h: 3 };
-  const exAns = perimeter ? 2 * (ex.w + ex.h) : ex.w * ex.h;
+  // Two examples whose perimeters differ and whose areas differ: one of them
+  // never has this answer.
+  const examples: Shape[] = square
+    ? [
+        { w: 5, h: 5 },
+        { w: 4, h: 4 },
+      ]
+    : [
+        { w: 5, h: 3 },
+        { w: 6, h: 4 },
+      ];
   const unit = perimeter ? CM : SQCM;
   return exercise({
     factId: `${key}:${s.w}x${s.h}`,
@@ -100,11 +115,21 @@ function measure(level: number, s: Shape, perimeter: boolean): Exercise {
               : 'ex.rect.area.hint2',
         ),
       ),
-      exampleHint(
-        perimeter
-          ? `${ex.w} + ${ex.h} + ${ex.w} + ${ex.h} = ${exAns}`
-          : `${ex.w} × ${ex.h} = ${exAns}`,
-        say(`${key}.solution` as const, { r: { n: exAns, noun: unit } }),
+      exampleAvoiding(
+        answer,
+        examples.map((ex) => {
+          const exAns = perimeter ? 2 * (ex.w + ex.h) : ex.w * ex.h;
+          return {
+            answer: exAns,
+            hint: () =>
+              exampleHint(
+                perimeter
+                  ? `${ex.w} + ${ex.h} + ${ex.w} + ${ex.h} = ${exAns}`
+                  : `${ex.w} × ${ex.h} = ${exAns}`,
+                say(`${key}.solution` as const, { r: { n: exAns, noun: unit } }),
+              ),
+          };
+        }),
       ),
     ],
     solution: say(`${key}.solution` as const, { r: { n: answer, noun: unit } }),
@@ -146,9 +171,19 @@ function missingSide(level: 6 | 7, rng: Rng): Exercise {
     hints: [
       hint(say(`${key}.hint1` as const)),
       hint(say(`${key}.hint2` as const)),
-      exampleHint(
-        fromArea ? '24 ÷ 6 = 4' : '(20 − 6 − 6) ÷ 2 = 4',
-        say(`${key}.solution` as const, { r: { n: 4, noun: CM } }),
+      // A side of four, or of five when the missing side is four.
+      exampleAvoiding(
+        h,
+        [4, 5].map((side) => ({
+          answer: side,
+          hint: () =>
+            exampleHint(
+              fromArea
+                ? `${6 * side} ÷ 6 = ${side}`
+                : `(${2 * (6 + side)} − 6 − 6) ÷ 2 = ${side}`,
+              say(`${key}.solution` as const, { r: { n: side, noun: CM } }),
+            ),
+        })),
       ),
     ],
     solution: say(`${key}.solution` as const, { r: { n: h, noun: CM } }),
@@ -229,7 +264,7 @@ function story(rng: Rng): Exercise {
     factId: `pwp:${key}:${w}x${h}`,
     topicId: ID,
     level: 10,
-    prompt: spoken.text,
+    prompt: shown(spoken),
     display: '',
     spoken,
     visual: { type: 'rect', width: w, height: h, unit: t('unit.m') },
@@ -239,10 +274,26 @@ function story(rng: Rng): Exercise {
     hints: [
       hint(say(`${key}.hint1` as const)),
       hint(say(fence ? 'ex.rect.perimeter.hint2' : 'ex.rect.area.hint2')),
-      exampleHint(
-        fence ? '5 + 3 + 5 + 3 = 16' : '5 × 3 = 15',
-        say(fence ? 'ex.rect.perimeter.solution' : 'ex.rect.area.solution', {
-          r: { n: fence ? 16 : 15, noun: fence ? CM : SQCM },
+      exampleAvoiding(
+        answer,
+        [
+          { w: 5, h: 3 },
+          { w: 6, h: 4 },
+        ].map((ex) => {
+          const exAns = fence ? 2 * (ex.w + ex.h) : ex.w * ex.h;
+          return {
+            answer: exAns,
+            hint: () =>
+              exampleHint(
+                fence
+                  ? `${ex.w} + ${ex.h} + ${ex.w} + ${ex.h} = ${exAns}`
+                  : `${ex.w} × ${ex.h} = ${exAns}`,
+                say(fence ? 'ex.rect.perimeter.solution' : 'ex.rect.area.solution', {
+                  // In metres, like the story.
+                  r: { n: exAns, noun: unit },
+                }),
+              ),
+          };
         }),
       ),
     ],

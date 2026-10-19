@@ -1,5 +1,5 @@
 import { t, type TranslationKey } from '@/i18n';
-import { compose, type Slot, type Spoken } from '@/lang/compose';
+import { compose, shown, type Slot, type Spoken } from '@/lang/compose';
 import type { Gender } from '@/lang/gender';
 import type { MistakeKind } from '@/state/schema';
 import { pick, seededRng, shuffle } from './rng';
@@ -164,10 +164,20 @@ export function labelledChoices(labels: string[], rtl = false): Exercise['input'
 }
 
 /** Choices drawn as pictures (clocks, coins); `labels` name them for the reveal and screen readers. */
-export function pictureChoices(labels: string[], visuals: Visual[]): Exercise['input'] {
+export function pictureChoices(
+  labels: string[],
+  visuals: Visual[],
+  rtl = false,
+): Exercise['input'] {
   if (labels.length !== visuals.length)
     throw new RangeError('pictureChoices: one label per picture');
-  return { type: 'choices', choices: labels.map((_, i) => i), labels, visuals };
+  return {
+    type: 'choices',
+    choices: labels.map((_, i) => i),
+    labels,
+    visuals,
+    ...(rtl ? { rtl } : {}),
+  };
 }
 
 export function numpad(maxDigits: number, decimal = false): Exercise['input'] {
@@ -764,7 +774,8 @@ export function wordProblem(o: WordProblemOptions): Exercise {
     factId: `wp:${o.key}:${o.a}${o.op}${o.b}${o.askRemainder ? 'r' : ''}`,
     topicId: o.topicId,
     level: o.level,
-    prompt: story.text,
+    // On screen with digits; heard with words.
+    prompt: shown(story),
     display: '',
     spoken: story,
     answer: c,

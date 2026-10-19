@@ -1,5 +1,5 @@
 import { t, type TranslationKey } from '@/i18n';
-import { compose, type Slot } from '@/lang/compose';
+import { compose, shown, type Slot } from '@/lang/compose';
 import type { Gender } from '@/lang/gender';
 import type { Noun } from '@/lang/hebrewNumbers';
 import {
@@ -272,7 +272,7 @@ function enoughWith(rng: Rng, items: number[]): Exercise {
     factId: `menough:${plusAll(items)}:${price}`,
     topicId: ID,
     level: 5,
-    prompt: spoken.text,
+    prompt: shown(spoken),
     display: '',
     spoken,
     visual: money(items, price),
@@ -418,13 +418,7 @@ export function change(level: number, paids?: readonly number[]) {
       p: shekels(p),
       paid: PAID_WITH[paid] ?? '',
     });
-    const ex = small
-      ? p === 7 && paid === 10
-        ? { p: 6, paid: 10 }
-        : { p: 7, paid: 10 }
-      : p === 36 && paid === 50
-        ? { p: 64, paid: 100 }
-        : { p: 36, paid: 50 };
+    const ex = changeExample(small, paid, p);
     const hint2: Hint = small
       ? hint(say('ex.money.change.hint2'), {
           visual: { type: 'numberLine', from: p, to: paid, start: p, hops: 0, target: paid },
@@ -440,7 +434,7 @@ export function change(level: number, paids?: readonly number[]) {
       factId: `mchange:${p}/${paid}`,
       topicId: ID,
       level,
-      prompt: spoken.text,
+      prompt: shown(spoken),
       display: '',
       spoken,
       visual: money([paid], p),
@@ -459,6 +453,27 @@ export function change(level: number, paids?: readonly number[]) {
       diagnose: (v) => diagnoseArith(v, { a: paid, op: '-', b: p, answer: c }),
     });
   };
+}
+
+/**
+ * The worked example for change: never one with this exercise's change, nor
+ * this exercise turned around (10 − 7 = 3 for paying 3 out of 10), since either
+ * gives the answer away. Three examples, so one is always left.
+ */
+function changeExample(small: boolean, paid: number, p: number): { p: number; paid: number } {
+  const c = paid - p;
+  const options: [{ p: number; paid: number }, ...{ p: number; paid: number }[]] = small
+    ? [
+        { p: 7, paid: 10 },
+        { p: 6, paid: 10 },
+        { p: 8, paid: 10 },
+      ]
+    : [
+        { p: 36, paid: 50 },
+        { p: 64, paid: 100 },
+        { p: 27, paid: 50 },
+      ];
+  return options.find((o) => o.paid - o.p !== c && !(o.paid === paid && o.p === c)) ?? options[0];
 }
 
 /* ---------- Level 10: shopping ---------- */
@@ -480,12 +495,19 @@ function shopping(rng: Rng): Exercise {
     b: shekels(b),
     paid: PAID_WITH[paid] ?? '',
   });
-  const ex = a === 12 && b === 9 ? { a: 14, b: 8 } : { a: 12, b: 9 };
+  // Not an example whose sum is this exercise's answer, or its total before the change:
+  // either gives it away. Three examples, so one is always left.
+  const exs: [{ a: number; b: number }, ...{ a: number; b: number }[]] = [
+    { a: 12, b: 9 },
+    { a: 14, b: 8 },
+    { a: 13, b: 5 },
+  ];
+  const ex = exs.find((x) => x.a + x.b !== answer && x.a + x.b !== total) ?? exs[0];
   return exercise({
     factId: `mshop:${a}+${b}${withChange ? `/${paid}` : ''}`,
     topicId: ID,
     level: 10,
-    prompt: spoken.text,
+    prompt: shown(spoken),
     display: '',
     spoken,
     answer,

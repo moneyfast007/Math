@@ -1,3 +1,4 @@
+import { shown } from '@/lang/compose';
 import { t } from '@/i18n';
 import {
   displayFraction as f,
@@ -10,6 +11,7 @@ import {
   CHARACTERS,
   closed,
   defineTopic,
+  exampleAvoiding,
   exampleHint,
   exercise,
   hint,
@@ -46,7 +48,6 @@ const times = (k: number, n: number, d: number) => `${numberToWords(k)} כפול
 /** 3 × 2/5 = ?/5 */
 function wholeTimes(level: 1 | 2, k: number, n: number, d: number): Exercise {
   const answer = k * n;
-  const ex = k === 3 && n === 1 && d === 4 ? { k: 2, n: 1, d: 3 } : { k: 3, n: 1, d: 4 };
   return exercise({
     factId: `fwt:${k}x${n}/${d}`,
     topicId: ID,
@@ -61,9 +62,23 @@ function wholeTimes(level: 1 | 2, k: number, n: number, d: number): Exercise {
     hints: [
       hint(say('ex.fmul.wholeTimes.hint1', { a: w(n, d) })),
       hint(say('ex.fmul.wholeTimes.hint2')),
-      exampleHint(
-        `${ex.k} × ${f(ex.n, ex.d)} = ${f(ex.k * ex.n, ex.d)}`,
-        say('ex.frac.equal.solution', { a: times(ex.k, ex.n, ex.d), b: w(ex.k * ex.n, ex.d) }),
+      // The answer is the numerator: the example's numerator must not be it.
+      exampleAvoiding(
+        answer,
+        [
+          { k: 3, n: 1, d: 4 },
+          { k: 2, n: 1, d: 3 },
+        ].map((ex) => ({
+          answer: ex.k * ex.n,
+          hint: () =>
+            exampleHint(
+              `${ex.k} × ${f(ex.n, ex.d)} = ${f(ex.k * ex.n, ex.d)}`,
+              say('ex.frac.equal.solution', {
+                a: times(ex.k, ex.n, ex.d),
+                b: w(ex.k * ex.n, ex.d),
+              }),
+            ),
+        })),
       ),
     ],
     solution: say('ex.frac.equal.solution', { a: times(k, n, d), b: w(answer, d) }),
@@ -71,11 +86,33 @@ function wholeTimes(level: 1 | 2, k: number, n: number, d: number): Exercise {
   });
 }
 
+/**
+ * "1/4 × 20 = 5" solved. The hidden number is the whole, so when it is 20 the
+ * example is "1/3 × 12 = 4" instead.
+ */
+function findWholeExample(whole: number) {
+  return exampleAvoiding(
+    whole,
+    [
+      { n: 1, d: 4, part: 5 },
+      { n: 1, d: 3, part: 4 },
+    ].map((ex) => {
+      const exW = (ex.part / ex.n) * ex.d;
+      return {
+        answer: exW,
+        hint: () =>
+          exampleHint(
+            `${f(ex.n, ex.d)} × ${exW} = ${ex.part}`,
+            say('ex.fmul.findWhole.solution', { a: w(ex.n, ex.d), whole: exW, part: ex.part }),
+          ),
+      };
+    }),
+  );
+}
+
 /** 1/4 of ? is 5 (level 3), 3/4 of ? is 15 (level 4). */
 function findWhole(level: 3 | 4, n: number, d: number, part: number): Exercise {
   const whole = (part / n) * d;
-  const ex = n === 1 && d === 4 && part === 5 ? { n: 1, d: 3, part: 4 } : { n: 1, d: 4, part: 5 };
-  const exW = (ex.part / ex.n) * ex.d;
   return exercise({
     factId: `fwhole:${n}/${d}=${part}`,
     topicId: ID,
@@ -94,10 +131,7 @@ function findWhole(level: 3 | 4, n: number, d: number, part: number): Exercise {
           : say('ex.fmul.findWhole.hint1', { n, d }),
       ),
       hint(say('ex.fmul.findWhole.hint2')),
-      exampleHint(
-        `${f(ex.n, ex.d)} × ${exW} = ${ex.part}`,
-        say('ex.fmul.findWhole.solution', { a: w(ex.n, ex.d), whole: exW, part: ex.part }),
-      ),
+      findWholeExample(whole),
     ],
     solution: say('ex.fmul.findWhole.solution', { a: w(n, d), whole, part }),
     diagnose: (v) => (v === part * n || v === part / n ? 'other' : null),
@@ -113,12 +147,17 @@ function fracTimes(
   const num = a.n * b.n;
   const den = a.d * b.d;
   const askDen = level === 5;
-  const ex =
-    a.d === 2 && b.d === 3
-      ? { a: { n: 1, d: 2 }, b: { n: 1, d: 4 } }
-      : { a: { n: 1, d: 2 }, b: { n: 1, d: 3 } };
-  const exN = ex.a.n * ex.b.n;
-  const exD = ex.a.d * ex.b.d;
+  // Level 5 hides the denominator, level 6 the numerator: each level's two
+  // examples differ in the hidden part, so one of them is never this answer.
+  const examples = askDen
+    ? [
+        { a: { n: 1, d: 2 }, b: { n: 1, d: 3 } },
+        { a: { n: 1, d: 2 }, b: { n: 1, d: 4 } },
+      ]
+    : [
+        { a: { n: 2, d: 3 }, b: { n: 1, d: 3 } },
+        { a: { n: 1, d: 2 }, b: { n: 3, d: 4 } },
+      ];
   const q = `${w(a.n, a.d)} כפול ${w(b.n, b.d)}`;
   return exercise({
     factId: `fxf${level}:${a.n}/${a.d}x${b.n}/${b.d}`,
@@ -136,11 +175,22 @@ function fracTimes(
     hints: [
       hint(say('ex.fmul.fracTimes.hint1')),
       hint(say('ex.fmul.fracTimes.hint2', { a: w(b.n, b.d), b: w(a.n, a.d) })),
-      exampleHint(
-        `${f(ex.a.n, ex.a.d)} × ${f(ex.b.n, ex.b.d)} = ${f(exN, exD)}`,
-        say('ex.frac.equal.solution', {
-          a: `${w(ex.a.n, ex.a.d)} כפול ${w(ex.b.n, ex.b.d)}`,
-          b: w(exN, exD),
+      exampleAvoiding(
+        askDen ? den : num,
+        examples.map((ex) => {
+          const exN = ex.a.n * ex.b.n;
+          const exD = ex.a.d * ex.b.d;
+          return {
+            answer: askDen ? exD : exN,
+            hint: () =>
+              exampleHint(
+                `${f(ex.a.n, ex.a.d)} × ${f(ex.b.n, ex.b.d)} = ${f(exN, exD)}`,
+                say('ex.frac.equal.solution', {
+                  a: `${w(ex.a.n, ex.a.d)} כפול ${w(ex.b.n, ex.b.d)}`,
+                  b: w(exN, exD),
+                }),
+              ),
+          };
         }),
       ),
     ],
@@ -152,7 +202,6 @@ function fracTimes(
 /** 6/8 ÷ 3 = ?/8 */
 function fracDivWhole(n: number, d: number, k: number): Exercise {
   const answer = n / k;
-  const ex = n === 6 && d === 8 && k === 2 ? { n: 4, d: 5, k: 2 } : { n: 6, d: 8, k: 2 };
   const q = (x: number, y: number, z: number) => `${w(x, y)} חלקי ${numberToWords(z)}`;
   return exercise({
     factId: `fdw:${n}/${d}÷${k}`,
@@ -168,9 +217,19 @@ function fracDivWhole(n: number, d: number, k: number): Exercise {
     hints: [
       hint(say('ex.fmul.fracDiv.hint1', { k })),
       hint(say('ex.fmul.fracDiv.hint2')),
-      exampleHint(
-        `${f(ex.n, ex.d)} ÷ ${ex.k} = ${f(ex.n / ex.k, ex.d)}`,
-        say('ex.frac.equal.solution', { a: q(ex.n, ex.d, ex.k), b: w(ex.n / ex.k, ex.d) }),
+      exampleAvoiding(
+        answer,
+        [
+          { n: 6, d: 8, k: 2 },
+          { n: 4, d: 5, k: 2 },
+        ].map((ex) => ({
+          answer: ex.n / ex.k,
+          hint: () =>
+            exampleHint(
+              `${f(ex.n, ex.d)} ÷ ${ex.k} = ${f(ex.n / ex.k, ex.d)}`,
+              say('ex.frac.equal.solution', { a: q(ex.n, ex.d, ex.k), b: w(ex.n / ex.k, ex.d) }),
+            ),
+        })),
       ),
     ],
     solution: say('ex.frac.equal.solution', { a: q(n, d, k), b: w(answer, d) }),
@@ -181,7 +240,6 @@ function fracDivWhole(n: number, d: number, k: number): Exercise {
 /** 3 ÷ 1/4 = ?: how many quarters in three wholes. */
 function wholeDivUnit(k: number, d: number): Exercise {
   const answer = k * d;
-  const ex = k === 2 && d === 3 ? { k: 2, d: 4 } : { k: 2, d: 3 };
   const q = (x: number, y: number) => `${numberToWords(x)} חלקי ${w(1, y)}`;
   return exercise({
     factId: `fwdu:${k}÷1/${d}`,
@@ -202,9 +260,19 @@ function wholeDivUnit(k: number, d: number): Exercise {
         }),
       ),
       hint(say('ex.fmul.wholeDiv.hint2', { all: { n: d, noun: fractionNoun(d) } })),
-      exampleHint(
-        `${ex.k} ÷ ${f(1, ex.d)} = ${ex.k * ex.d}`,
-        say('ex.frac.equal.solution', { a: q(ex.k, ex.d), b: numberToWords(ex.k * ex.d) }),
+      exampleAvoiding(
+        answer,
+        [
+          { k: 2, d: 3 },
+          { k: 2, d: 4 },
+        ].map((ex) => ({
+          answer: ex.k * ex.d,
+          hint: () =>
+            exampleHint(
+              `${ex.k} ÷ ${f(1, ex.d)} = ${ex.k * ex.d}`,
+              say('ex.frac.equal.solution', { a: q(ex.k, ex.d), b: numberToWords(ex.k * ex.d) }),
+            ),
+        })),
       ),
     ],
     solution: say('ex.frac.equal.solution', { a: q(k, d), b: numberToWords(answer) }),
@@ -215,9 +283,6 @@ function wholeDivUnit(k: number, d: number): Exercise {
 /** (2 1/3) × 3 = ? — chosen so the answer is a whole number. */
 function mixedTimes(whole: number, n: number, d: number): Exercise {
   const answer = whole * d + n;
-  const ex =
-    whole === 1 && n === 1 && d === 2 ? { whole: 2, n: 1, d: 3 } : { whole: 1, n: 1, d: 2 };
-  const exA = ex.whole * ex.d + ex.n;
   const q = (x: number, y: number, z: number) =>
     `${numberToWords(x)} ו${w(y, z)} כפול ${numberToWords(z)}`;
   return exercise({
@@ -234,9 +299,25 @@ function mixedTimes(whole: number, n: number, d: number): Exercise {
     hints: [
       hint(say('ex.fmul.mixed.hint1')),
       hint(say('ex.fmul.mixed.hint2')),
-      exampleHint(
-        `${displayMixed(ex.whole, ex.n, ex.d)} × ${ex.d} = ${exA}`,
-        say('ex.frac.equal.solution', { a: q(ex.whole, ex.n, ex.d), b: numberToWords(exA) }),
+      exampleAvoiding(
+        answer,
+        [
+          { whole: 1, n: 1, d: 2 },
+          { whole: 2, n: 1, d: 3 },
+        ].map((ex) => {
+          const exA = ex.whole * ex.d + ex.n;
+          return {
+            answer: exA,
+            hint: () =>
+              exampleHint(
+                `${displayMixed(ex.whole, ex.n, ex.d)} × ${ex.d} = ${exA}`,
+                say('ex.frac.equal.solution', {
+                  a: q(ex.whole, ex.n, ex.d),
+                  b: numberToWords(exA),
+                }),
+              ),
+          };
+        }),
       ),
     ],
     solution: say('ex.frac.equal.solution', { a: q(whole, n, d), b: numberToWords(answer) }),
@@ -272,7 +353,7 @@ function story(i: number, n: number, d: number, total: number): Exercise {
     factId: `fwp2:${i}:${n}/${d}:${total}`,
     topicId: ID,
     level: 10,
-    prompt: spoken.text,
+    prompt: shown(spoken),
     display: '',
     spoken,
     answer,
@@ -288,13 +369,23 @@ function story(i: number, n: number, d: number, total: number): Exercise {
         },
       },
       findWholeStory
-        ? exampleHint(
-            '1/4 × 20 = 5',
-            say('ex.fmul.findWhole.solution', { a: w(1, 4), whole: 20, part: 5 }),
-          )
-        : exampleHint(
-            '2/3 × 12 = 8',
-            say('ex.frac.of.solution', { frac: w(2, 3), whole: 12, r: 8 }),
+        ? findWholeExample(answer)
+        : exampleAvoiding(
+            answer,
+            [
+              { n: 2, d: 3, total: 12 },
+              { n: 3, d: 4, total: 12 },
+            ].map((ex) => {
+              const r = (ex.total / ex.d) * ex.n;
+              return {
+                answer: r,
+                hint: () =>
+                  exampleHint(
+                    `${f(ex.n, ex.d)} × ${ex.total} = ${r}`,
+                    say('ex.frac.of.solution', { frac: w(ex.n, ex.d), whole: ex.total, r }),
+                  ),
+              };
+            }),
           ),
     ],
     solution: findWholeStory

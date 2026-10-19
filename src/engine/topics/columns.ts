@@ -1,3 +1,4 @@
+import { shown } from '@/lang/compose';
 import { t, type TranslationKey } from '@/i18n';
 import { groupDigits } from '@/lang/groupDigits';
 import type { Noun } from '@/lang/hebrewNumbers';
@@ -6,6 +7,7 @@ import {
   diagnoseArith,
   differentExample,
   displayEquation,
+  exampleAvoiding,
   exampleHint,
   exercise,
   hint,
@@ -112,7 +114,7 @@ export function columnExercise(o: ColumnOptions): Exercise {
     factId: `col:${o.guided ? 'g' : 'f'}:${o.a}${o.op}${o.b}`,
     topicId: o.topicId,
     level: o.level,
-    prompt: o.story ? o.story.text : t('col.prompt'),
+    prompt: o.story ? shown(o.story) : t('col.prompt'),
     display: displayEquation(o.a, o.op, o.b, '?'),
     spoken,
     answer: c,
@@ -268,8 +270,10 @@ export function estimate(topicId: string, level: number, rng: Rng): Exercise {
   // The right one is not always in the middle: three neighbours on the scale of tens.
   const shift = randInt(rng, 0, 2);
   const choices = [0, 1, 2].map((i) => (i < shift ? e / 10 ** (shift - i) : e * 10 ** (i - shift)));
-  const exA = a === 312 ? 689 : 312;
+  // Not this exercise's first number, and not its estimate: of the remaining
+  // examples (300, 700, 500 times 50) at least two are left, with different estimates.
   const exB = 47;
+  const examples = [312, 689, 451].filter((x) => x !== a);
   return exercise({
     factId: `colest:${a}×${b}`,
     topicId,
@@ -282,15 +286,22 @@ export function estimate(topicId: string, level: number, rng: Rng): Exercise {
     hints: [
       hint(say('col.estimate.hint1')),
       hint(say('col.estimate.hint2', { a, ra })),
-      exampleHint(
-        `${exA} × ${exB} ≈ ${lead(exA)} × ${lead(exB)} = ${groupDigits(String(lead(exA) * lead(exB)))}`,
-        say('col.estimate.solution', {
-          a: exA,
-          b: exB,
-          ra: lead(exA),
-          rb: lead(exB),
-          e: lead(exA) * lead(exB),
-        }),
+      exampleAvoiding(
+        e,
+        examples.map((exA) => ({
+          answer: lead(exA) * lead(exB),
+          hint: () =>
+            exampleHint(
+              `${exA} × ${exB} ≈ ${lead(exA)} × ${lead(exB)} = ${groupDigits(String(lead(exA) * lead(exB)))}`,
+              say('col.estimate.solution', {
+                a: exA,
+                b: exB,
+                ra: lead(exA),
+                rb: lead(exB),
+                e: lead(exA) * lead(exB),
+              }),
+            ),
+        })),
       ),
     ],
     solution: say('col.estimate.solution', { a, b, ra, rb, e }),

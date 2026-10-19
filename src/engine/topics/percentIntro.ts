@@ -1,5 +1,5 @@
+import { shown, type Slot } from '@/lang/compose';
 import { t, type TranslationKey } from '@/i18n';
-import type { Slot } from '@/lang/compose';
 import type { Gender } from '@/lang/gender';
 import type { Noun } from '@/lang/hebrewNumbers';
 import { displayFraction as f, fractionWords as w } from '@/lang/fractions';
@@ -7,6 +7,7 @@ import {
   CHARACTERS,
   closed,
   defineTopic,
+  exampleAvoiding,
   exampleHint,
   exercise,
   hint,
@@ -18,7 +19,7 @@ import {
   type Character,
 } from '../build';
 import { pick, randInt } from '../rng';
-import type { Exercise, Rng } from '../types';
+import type { Exercise, Hint, Rng } from '../types';
 
 /**
  * World 16, grade 5: "אחוזים: היכרות". A percent as part of a hundred, the
@@ -45,6 +46,38 @@ export function sayP(
   return say(key, out, gender);
 }
 const L = (n: number) => `level.percentIntro.${n}`;
+
+/**
+ * Hint 3 for "p% × base = ?": the first [p, base] whose result is not this
+ * exercise's answer, which the example would give away.
+ */
+export function percentOfExample(answer: number, options: readonly [number, number][]): Hint {
+  return exampleAvoiding(
+    answer,
+    options.map(([p, base]) => {
+      const r = (p * base) / 100;
+      return {
+        answer: r,
+        hint: () => exampleHint(`${p}% × ${base} = ${r}`, sayP('ex.pct.of.solution', { p, base, r })),
+      };
+    }),
+  );
+}
+
+/** Hint 3 for "part / base = ?%": the first [part, base] whose percent is not this answer. */
+export function whatPercentExample(answer: number, options: readonly [number, number][]): Hint {
+  return exampleAvoiding(
+    answer,
+    options.map(([part, base]) => {
+      const p = (part * 100) / base;
+      return {
+        answer: p,
+        hint: () =>
+          exampleHint(`${part} / ${base} = ${p}%`, sayP('ex.pct.what.solution', { part, base, p })),
+      };
+    }),
+  );
+}
 
 /** A bar of ten: what percent is coloured? */
 function shaded(k: number): Exercise {
@@ -191,13 +224,10 @@ function percentOf(level: 6 | 7, rng: Rng): Exercise {
       hint(say(level === 6 ? 'ex.pct.of.hint1familiar' : 'ex.pct.of.hint1tens')),
       // The shortcut for this percent: half, a quarter, or a tenth.
       hint(sayP(p === 50 ? 'ex.pct.of.hint2half' : p === 25 ? 'ex.pct.of.hint2quarter' : 'ex.pct.of.hint2', { base })),
-      exampleHint(
-        base === 80 && p === 30 ? '20% × 50 = 10' : '30% × 80 = 24',
-        sayP(
-          'ex.pct.of.solution',
-          base === 80 && p === 30 ? { p: 20, base: 50, r: 10 } : { p: 30, base: 80, r: 24 },
-        ),
-      ),
+      percentOfExample(answer, [
+        [30, 80],
+        [20, 50],
+      ]),
     ],
     solution: sayP('ex.pct.of.solution', { p, base, r: answer }),
     diagnose: (v) => (v === base - answer ? 'other' : null),
@@ -260,15 +290,10 @@ function whatPercent(rng: Rng): Exercise {
     hints: [
       hint(sayP('ex.pct.what.hint1')),
       hint(sayP('ex.pct.what.hint2', { base })),
-      exampleHint(
-        part === 15 && base === 60 ? '10 / 50 = 20%' : '15 / 60 = 25%',
-        sayP(
-          'ex.pct.what.solution',
-          part === 15 && base === 60
-            ? { part: 10, base: 50, p: 20 }
-            : { part: 15, base: 60, p: 25 },
-        ),
-      ),
+      whatPercentExample(p, [
+        [15, 60],
+        [10, 50],
+      ]),
     ],
     solution: sayP('ex.pct.what.solution', { part, base, p }),
     diagnose: (v) => (v === part ? 'other' : null),
@@ -286,7 +311,7 @@ function story(rng: Rng): Exercise {
     factId: `pwp:${price}:${p}`,
     topicId: ID,
     level: 10,
-    prompt: spoken.text,
+    prompt: shown(spoken),
     display: '',
     spoken,
     answer,
@@ -298,13 +323,10 @@ function story(rng: Rng): Exercise {
         ...hint(say('hint.equation')),
         example: { display: `${p}% × ${price} = ?`, spoken: say('hint.equation').text },
       },
-      exampleHint(
-        price === 80 && p === 25 ? '10% × 50 = 5' : '25% × 80 = 20',
-        sayP(
-          'ex.pct.of.solution',
-          price === 80 && p === 25 ? { p: 10, base: 50, r: 5 } : { p: 25, base: 80, r: 20 },
-        ),
-      ),
+      percentOfExample(answer, [
+        [25, 80],
+        [10, 50],
+      ]),
     ],
     solution: sayP('ex.pct.of.solution', { p, base: price, r: answer }),
     diagnose: (v) => (v === price - answer ? 'other' : null),
