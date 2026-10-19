@@ -54,12 +54,12 @@ const SENTENCES: readonly string[] =
   values.set === 'round6'
     ? ROUND6.map((r) => r.text)
     : values.set === 'bank'
-    ? BANK_CHECK
-    : values.set === 'probe'
-      ? PROBE
-      : values.set === 'words'
-        ? WORDS
-        : SAMPLE_SENTENCES;
+      ? BANK_CHECK
+      : values.set === 'probe'
+        ? PROBE
+        : values.set === 'words'
+          ? WORDS
+          : SAMPLE_SENTENCES;
 
 interface Variant {
   name: string;
