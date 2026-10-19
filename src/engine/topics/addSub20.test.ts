@@ -196,4 +196,3 @@ describe('add-sub-20: grade 1 levels', () => {
     expect(e?.hints[2].example?.display).toMatch(/^\d+ \+ \d+ = \d+ \+ \d+ \+ \d+ = \d+$/);
   });
 });
-});
