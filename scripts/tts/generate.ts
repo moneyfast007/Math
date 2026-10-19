@@ -5,6 +5,7 @@ import { parseArgs } from 'node:util';
 import {
   clipIdNode,
   DEFAULT_PROMPT,
+  QUICK_PROMPT,
   ensureDir,
   estimateCost,
   mapLimit,
@@ -22,13 +23,12 @@ import { vocalizeForTts } from './pronunciation';
  *   npm run tts:build                  # generate whatever is missing
  *   npm run tts:build -- --dry-run     # list what would be generated and the cost
  *
- * Two voices, chosen after five listening rounds (Oct 2026):
- *   - Exercise content and any phrase containing a number word is read by
- *     WaveNet A, Google's classic Hebrew voice. It was the only engine that read
- *     every number correctly, and sentences assembled from clips stay one voice.
- *   - Standalone UI phrases without numbers (encouragement, feedback) are read
- *     by Chirp 3 HD "Leda", which sounds warmer. A phrase's voice is recorded
- *     in the manifest, so changing the routing regenerates only what moved.
+ * One voice for everything: Gemini 3.1 Flash TTS, "Leda", at a quick
+ * conversational pace (QUICK_PROMPT). Chosen in listening rounds 6 and 7
+ * (Oct 19, 2026) over WaveNet A, Chirp 3 HD and Gemini 2.5 Pro, for whole
+ * sentences, lone numbers and the fragments sentences are assembled from.
+ * A phrase's voice is recorded in the manifest, so changing the voice or the
+ * pace regenerates every clip.
  *
  * Idempotent: a clip is regenerated only if its text or its voice changed,
  * because the file is named by the hash of the text and the manifest records
@@ -39,8 +39,9 @@ const ROOT = path.resolve(import.meta.dirname, '../..');
 const OUT_DIR = path.join(ROOT, 'public', 'audio');
 const MANIFEST = path.join(OUT_DIR, 'manifest.json');
 
-export const NUMBERS_VOICE: VoiceSpec = { engine: 'wavenet', voice: 'he-IL-Wavenet-A' };
-export const WARM_VOICE: VoiceSpec = { engine: 'chirp3-hd', voice: 'Leda' };
+export const VOICE: VoiceSpec = { engine: 'gemini-3.1-flash', voice: 'Leda', prompt: QUICK_PROMPT };
+/** Part of the manifest's voice key: a new pace must regenerate the clips too. */
+const PACE = 'quick';
 
 interface ClipRecord {
   text: string;
@@ -57,26 +58,17 @@ const { values } = parseArgs({
   options: {
     'dry-run': { type: 'boolean', default: false },
     concurrency: { type: 'string', default: '4' },
+    /** Stop starting new clips after this many minutes (a CI job has 6 hours); rerun to go on. */
+    'max-minutes': { type: 'string', default: '0' },
   },
 });
 
-/** Hebrew number words that mark a phrase as "numbers": read by the classic engine. */
-const NUMBER_WORD =
-  /(^|[\s,.:;!?()-])ו?ל?מ?ב?(אפס|אחת|אחד|שתיים|שניים|שתי|שני|שתים|שנים|שלוש|שלושה|שלושת|ארבע|ארבעה|ארבעת|חמש|חמישה|חמשת|שש|שישה|ששת|שבע|שבעה|שבעת|שמונה|שמונת|תשע|תשעה|תשעת|עשר|עשרה|עשרת|עשרים|שלושים|ארבעים|חמישים|שישים|שבעים|שמונים|תשעים|מאה|מאתיים|מאות|אלף|אלפיים|אלפים|מיליון|חצי|שליש|רבע|שלישים|רבעים|חמישיות|נקודה)(?=$|[\s,.:;!?()-])/;
-
-/**
- * Exercise content (whole sentences, the clips sentences are assembled from,
- * numbers) is read by WaveNet A, so an assembled sentence is one voice and not
- * two voices taking turns. The warm voice reads only standalone UI phrases
- * (encouragement, feedback) that contain no number words.
- */
-export function voiceFor(phrase: Phrase): VoiceSpec {
-  if (!phrase.id.startsWith('ui.') || phrase.id.includes('.piece')) return NUMBERS_VOICE;
-  return NUMBER_WORD.test(phrase.text) ? NUMBERS_VOICE : WARM_VOICE;
+export function voiceFor(): VoiceSpec {
+  return VOICE;
 }
 
 function voiceKey(v: VoiceSpec): string {
-  return `${v.engine}/${v.voice}`;
+  return v.engine.startsWith('gemini') ? `${v.engine}/${v.voice}/${PACE}` : `${v.engine}/${v.voice}`;
 }
 
 function textFor(phrase: string, spec: VoiceSpec): string {
@@ -101,7 +93,7 @@ async function main(): Promise<void> {
     throw new Error(`${withDigits.length} phrases contain digits; fix them before generating.`);
   }
   const work = phrases
-    .map((p) => ({ phrase: p, id: clipIdNode(p.text), spec: voiceFor(p) }))
+    .map((p) => ({ phrase: p, id: clipIdNode(p.text), spec: voiceFor() }))
     .filter(
       ({ id, spec }) =>
         !existsSync(path.join(OUT_DIR, `${id}.mp3`)) ||
@@ -115,7 +107,7 @@ async function main(): Promise<void> {
   }
   console.log(`${phrases.length} phrases in the bank, ${work.length} to generate.`);
   for (const [key, list] of byVoice) {
-    const engine = key.startsWith('wavenet') ? 'wavenet' : 'chirp3-hd';
+    const engine = work.find((w) => voiceKey(w.spec) === key)?.spec.engine ?? 'wavenet';
     console.log(
       `  ${key}: ${list.length} clips, ${estimateCost(
         list.map((p) => p.text),
@@ -130,10 +122,12 @@ async function main(): Promise<void> {
     return;
   }
 
-  // Chirp has a tighter per-minute quota on new projects: run it one request at a time.
-  const wavenetWork = work.filter((w) => w.spec.engine === 'wavenet');
-  const chirpWork = work.filter((w) => w.spec.engine !== 'wavenet');
+  // Short clips first: numbers and fragments are heard in many sentences.
+  work.sort((x, y) => x.phrase.text.length - y.phrase.text.length);
+  const deadline =
+    Number(values['max-minutes']) > 0 ? Date.now() + Number(values['max-minutes']) * 60_000 : Infinity;
   let done = 0;
+  let skipped = 0;
   const checkpoint = async () => {
     done++;
     if (done % 50 === 0 || done === work.length) {
@@ -141,17 +135,39 @@ async function main(): Promise<void> {
       await writeJson(MANIFEST, manifest);
     }
   };
+  /** Clips whose length is far off their text: an engine that added or dropped words. */
+  const sizes: { id: string; text: string; perChar: number }[] = [];
   const run = async (w: (typeof work)[number]) => {
+    if (Date.now() > deadline) {
+      skipped++;
+      return;
+    }
     const spec = w.spec.engine === 'chirp3-hd' ? { ...w.spec, prompt: DEFAULT_PROMPT } : w.spec;
     const mp3 = await synthesize(textFor(w.phrase.text, spec), spec);
     await writeFile(path.join(OUT_DIR, `${w.id}.mp3`), mp3);
     manifest.clips[w.id] = { text: w.phrase.text, voice: voiceKey(w.spec) };
+    sizes.push({ id: w.id, text: w.phrase.text, perChar: mp3.length / w.phrase.text.length });
     await checkpoint();
   };
+  // Chirp has a tighter per-minute quota on new projects: one request at a time.
+  const chirpWork = work.filter((w) => w.spec.engine === 'chirp3-hd');
+  const otherWork = work.filter((w) => w.spec.engine !== 'chirp3-hd');
   await Promise.all([
-    mapLimit(wavenetWork, Number(values.concurrency), run),
+    mapLimit(otherWork, Number(values.concurrency), run),
     mapLimit(chirpWork, 1, run),
   ]);
+  if (skipped > 0) console.log(`Time is up: ${skipped} clips left for the next run.`);
+
+  // For a listen: the clips longest and shortest for their text.
+  sizes.sort((x, y) => y.perChar - x.perChar);
+  const show = (list: typeof sizes) =>
+    list.forEach((c) => console.log(`    ${c.perChar.toFixed(0)} B/char  ${c.id}  ${c.text}`));
+  if (sizes.length > 40) {
+    console.log('  Longest for their text (added words or long silences?):');
+    show(sizes.slice(0, 20));
+    console.log('  Shortest for their text (dropped words?):');
+    show(sizes.slice(-20));
+  }
 
   await writeJson(MANIFEST, manifest);
   console.log(

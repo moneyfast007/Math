@@ -9,6 +9,10 @@ on:
         description: 'Only report what would be generated'
         required: false
         default: 'false'
+      max_minutes:
+        description: 'Stop starting new clips after this many minutes (rerun to continue)'
+        required: false
+        default: '320'
 
 permissions:
   contents: write
@@ -20,6 +24,7 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 350
     env:
       GOOGLE_CLOUD_PROJECT: ${{ secrets.GOOGLE_CLOUD_PROJECT }}
     steps:
@@ -34,16 +39,17 @@ jobs:
       - name: Generate
         run: |
           DRY="${{ inputs.dry_run }}"
-          if [ "$DRY" = "true" ]; then npm run tts:build -- --dry-run; else npm run tts:build; fi
+          if [ "$DRY" = "true" ]; then npm run tts:build -- --dry-run; else npm run tts:build -- --max-minutes "${{ inputs.max_minutes }}"; fi
       - name: Commit the audio bank
-        if: inputs.dry_run != 'true'
+        # Also after a failure: what was recorded before it is kept, and the next run goes on.
+        if: always() && inputs.dry_run != 'true'
         run: |
           rm -f gha-creds-*.json
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add public/audio
           if git diff --cached --quiet; then echo "nothing new"; exit 0; fi
-          git commit -m "audio: regenerate the bank (WaveNet A for numbers, Chirp Leda for the rest)"
+          git commit -m "audio: regenerate the bank (Gemini 3.1 Flash, Leda, quick pace)"
           git pull --rebase origin main
           # Another workflow may have pushed meanwhile: rebase and retry.
           for i in 1 2 3; do git pull --rebase origin main && git push origin HEAD:main && break; sleep 5; done
