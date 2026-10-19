@@ -12,7 +12,7 @@ on:
       max_minutes:
         description: 'Stop starting new clips after this many minutes (rerun to continue)'
         required: false
-        default: '320'
+        default: '300'
 
 permissions:
   contents: write
@@ -41,6 +41,11 @@ jobs:
           DRY="${{ inputs.dry_run }}"
           set -o pipefail
           if [ "$DRY" = "true" ]; then npm run tts:build -- --dry-run 2>&1 | tee tts-build.log; else npm run tts:build -- --max-minutes "${{ inputs.max_minutes }}" 2>&1 | tee tts-build.log; fi
+      - name: Trim the silence at both ends of each clip
+        if: always() && inputs.dry_run != 'true'
+        run: |
+          set -o pipefail
+          npm run tts:trim -- --max-minutes 25 2>&1 | tee -a tts-build.log
       - name: Commit the audio bank
         # Also after a failure: what was recorded before it is kept, and the next run goes on.
         if: always() && inputs.dry_run != 'true'

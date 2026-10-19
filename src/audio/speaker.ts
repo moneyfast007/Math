@@ -125,9 +125,10 @@ export class Speaker {
       const ids = await Promise.all(parts.map((p) => clipId(p)));
       if (generation === this.generation && ids.every((i) => clips.has(i))) {
         try {
-          await this.playClip(`/audio/${ids[0] ?? ''}.mp3`, slow, text, () =>
-            this.playRest(ids.slice(1), slow, text, generation),
-          );
+          // Every clip loaded before the first plays: no wait between them (a pause per clip).
+          const audios = await preload(ids.map((i) => `/audio/${i}.mp3`));
+          if (generation !== this.generation) return 'clip';
+          await this.playSequence(audios, slow, text, generation);
           return 'clip';
         } catch {
           // Same as above.
@@ -140,22 +141,35 @@ export class Speaker {
     return 'unavailable';
   }
 
-  /** Plays the remaining clips of a sequence one after another, unless stopped meanwhile. */
-  private playRest(ids: string[], slow: boolean, text: string, generation: number): void {
-    const next = ids[0];
-    if (next === undefined || generation !== this.generation) {
+  /** Plays loaded clips one right after another, unless stopped meanwhile. */
+  private playSequence(
+    audios: HTMLAudioElement[],
+    slow: boolean,
+    text: string,
+    generation: number,
+  ): Promise<void> {
+    const [first, ...rest] = audios;
+    if (!first || generation !== this.generation) {
       if (this.state.speaking === text && generation === this.generation) this.set(null);
-      return;
+      return Promise.resolve();
     }
-    this.playClip(`/audio/${next}.mp3`, slow, text, () =>
-      this.playRest(ids.slice(1), slow, text, generation),
-    ).catch(() => {
-      if (this.state.speaking === text) this.set(null);
+    return this.playAudio(first, slow, text, () => {
+      this.playSequence(rest, slow, text, generation).catch(() => {
+        if (this.state.speaking === text) this.set(null);
+      });
     });
   }
 
   private playClip(src: string, slow: boolean, text: string, then?: () => void): Promise<void> {
-    const audio = new Audio(src);
+    return this.playAudio(new Audio(src), slow, text, then);
+  }
+
+  private playAudio(
+    audio: HTMLAudioElement,
+    slow: boolean,
+    text: string,
+    then?: () => void,
+  ): Promise<void> {
     audio.playbackRate = slow ? SLOW_RATE : 1;
     // Keep the voice's pitch when slowed (Safari supports the standard property).
     (audio as HTMLAudioElement & { preservesPitch?: boolean }).preservesPitch = true;
@@ -182,6 +196,30 @@ export class Speaker {
     synth.speak(u);
     return true;
   }
+}
+
+/**
+ * Starts loading every clip of a sentence at once and waits until each can
+ * play (or a short time has passed: a slow network still gets its sentence).
+ */
+async function preload(srcs: string[], waitMs = 2500): Promise<HTMLAudioElement[]> {
+  const audios = srcs.map((src) => {
+    const a = new Audio(src);
+    a.preload = 'auto';
+    return a;
+  });
+  const ready = (a: HTMLAudioElement) =>
+    new Promise<void>((resolve) => {
+      if (typeof a.addEventListener !== 'function' || a.readyState >= 4) return resolve();
+      a.addEventListener('canplaythrough', () => resolve(), { once: true });
+      a.addEventListener('error', () => resolve(), { once: true });
+      a.load();
+    });
+  await Promise.race([
+    Promise.all(audios.map(ready)),
+    new Promise((resolve) => setTimeout(resolve, waitMs)),
+  ]);
+  return audios;
 }
 
 export async function defaultFetchIndex(name: IndexName): Promise<ClipIndex> {

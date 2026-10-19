@@ -77,17 +77,20 @@ describe('Speaker', () => {
 });
 
 describe('Speaker, assembled sentences', () => {
+  /** Audio elements in the order they were started (all are created up front, to preload). */
   function fakeAudio() {
     const created: { src: string; end: () => void }[] = [];
     vi.stubGlobal(
       'Audio',
       class {
         playbackRate = 1;
+        preload = '';
         onended: (() => void) | null = null;
-        constructor(public src: string) {
-          created.push({ src, end: () => this.onended?.() });
-        }
-        play = () => Promise.resolve();
+        constructor(public src: string) {}
+        play = () => {
+          created.push({ src: this.src, end: () => this.onended?.() });
+          return Promise.resolve();
+        };
         pause = vi.fn();
       },
     );
