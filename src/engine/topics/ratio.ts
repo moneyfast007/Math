@@ -1,24 +1,28 @@
 import { shown } from '@/lang/compose';
-import { t } from '@/i18n';
+import { t, type TranslationKey } from '@/i18n';
 import type { Noun } from '@/lang/hebrewNumbers';
 import {
   closed,
   defineTopic,
   exampleAvoiding,
   exampleHint,
-  exercise,
+  exercise as baseExercise,
   gcd,
   hint,
   numpad,
   range,
+  round,
   say,
+  type Said,
+  type ExerciseParts,
 } from '../build';
 import type { Exercise } from '../types';
 
 /**
  * World 19, grade 6: "יחס". Simplifying, equivalent ratios, dividing a
- * quantity in a ratio, the whole from a part, map scale, unit price,
- * proportion, distance from speed and time.
+ * quantity in a ratio, the whole from a part, scale on a plan and on a map
+ * (both ways, and finding the scale), unit price, proportion, and speed, time
+ * and distance.
  *
  * A ratio is read "שלוש לחמש": the ל belongs to the number, so these sentences
  * cannot be assembled from separate number clips. Every level is closed and
@@ -26,6 +30,19 @@ import type { Exercise } from '../types';
  */
 
 const ID = 'ratio';
+
+/**
+ * Every exercise here also hears "very close" for an answer one off; the
+ * typical slips of each question are diagnosed first.
+ */
+function exercise(p: ExerciseParts): Exercise {
+  return baseExercise({
+    ...p,
+    diagnose: (v) =>
+      p.diagnose?.(v) ??
+      (Number.isInteger(p.answer) && Math.abs(v - p.answer) === 1 ? 'offByOne' : null),
+  });
+}
 const L = (n: number) => `level.ratio.${n}`;
 const r = (a: number, b: number) => `${a} : ${b}`;
 
@@ -105,142 +122,315 @@ function equivalent(a: number, b: number, k: number): Exercise {
 }
 
 const PART: Noun = { singular: 'חלק', plural: 'חלקים', gender: 'm' };
-const BOYS: Noun = { singular: 'בן', plural: 'בנים', gender: 'm' };
 
-/** Boys to girls a : b, total n: how many boys (level 3) / girls (level 4)? */
+/**
+ * What is shared in a ratio: a class, a necklace, stickers, lemonade. Each has
+ * its question for the first and the second share (levels 3–4) and for the
+ * whole from the first share (level 5).
+ */
+interface Context {
+  id: string;
+  total: Noun;
+  first: Noun;
+  divide: [TranslationKey, TranslationKey];
+  whole: TranslationKey;
+  /** Only real-sized wholes: a class has 20 to 40 children. */
+  fits: (n: number) => boolean;
+}
+
+const CONTEXTS: readonly Context[] = [
+  {
+    id: 'class',
+    total: { singular: 'ילד', plural: 'ילדים', gender: 'm' },
+    first: { singular: 'בן', plural: 'בנים', gender: 'm' },
+    divide: ['r6.div.class.1', 'r6.div.class.2'],
+    whole: 'r6.whole.class',
+    fits: (n) => n >= 20 && n <= 40,
+  },
+  {
+    id: 'beads',
+    total: { singular: 'חרוז', plural: 'חרוזים', gender: 'm' },
+    first: { singular: 'חרוז אדום', plural: 'חרוזים אדומים', gender: 'm' },
+    divide: ['r6.div.beads.1', 'r6.div.beads.2'],
+    whole: 'r6.whole.beads',
+    fits: (n) => n >= 10,
+  },
+  {
+    id: 'stickers',
+    total: { singular: 'מדבקה', plural: 'מדבקות', gender: 'f' },
+    first: { singular: 'מדבקה', plural: 'מדבקות', gender: 'f' },
+    divide: ['r6.div.stickers.1', 'r6.div.stickers.2'],
+    whole: 'r6.whole.stickers',
+    fits: (n) => n >= 10,
+  },
+  {
+    id: 'lemonade',
+    total: { singular: 'כוס', plural: 'כוסות', gender: 'f' },
+    first: { singular: 'כוס', plural: 'כוסות', gender: 'f' },
+    divide: ['r6.div.lemonade.1', 'r6.div.lemonade.2'],
+    whole: 'r6.whole.lemonade',
+    fits: (n) => n <= 30,
+  },
+];
+
+/** The context of a fact follows from its numbers, so every sentence can be listed. */
+function contextOf(n: number, seed: number): Context {
+  const fitting = CONTEXTS.filter((c) => c.fits(n));
+  return fitting[seed % fitting.length] as Context;
+}
+
+/** "20, 2 : 3 → 20 ÷ 5 = 4 → 2 × 4 = 8": the whole way, for the worked example. */
+function divideSolution(a: number, b: number, n: number, first: boolean): Said {
+  const unit = n / (a + b);
+  const k = first ? a : b;
+  return say('r6.divide.solution', { parts: { n: a + b, noun: PART }, unit, k, ans: k * unit });
+}
+
+/** a : b, total n: how many in the first share (level 3) / in the second (level 4)? */
 function divide(level: 3 | 4, a: number, b: number, n: number): Exercise {
   const unit = n / (a + b);
-  const boys = a * unit;
-  const girls = b * unit;
-  const askBoys = level === 3;
-  // The example shows one part, the boys and the girls: none of them may be this answer.
-  const shares = (e: { a: number; b: number; n: number }) => {
-    const u = e.n / (e.a + e.b);
-    return [u, e.a * u, e.b * u];
-  };
-  const first = { a: 2, b: 3, n: 20 };
-  const ex = shares(first).includes(askBoys ? boys : girls) ? { a: 1, b: 3, n: 20 } : first;
-  const exU = ex.n / (ex.a + ex.b);
+  const first = level === 3;
+  const answer = (first ? a : b) * unit;
+  const ctx = contextOf(n, a * 5 + b * 3 + unit);
+  const spoken = say(ctx.divide[first ? 0 : 1], { a, b, n: { n, noun: ctx.total } });
   return exercise({
     factId: `rdiv${level}:${a}:${b}:${n}`,
     topicId: ID,
     level,
-    prompt: t(askBoys ? 'ex.ratio.divide.promptBoys' : 'ex.ratio.divide.promptGirls'),
+    // The data on screen too (with digits), not only heard.
+    prompt: shown(spoken),
     display: r(a, b),
-    spoken: say(askBoys ? 'ex.ratio.divide.spokenBoys' : 'ex.ratio.divide.spokenGirls', {
-      a,
-      b,
-      n: { n, noun: CHILD },
-    }),
-    answer: askBoys ? boys : girls,
+    spoken,
+    // The ratio as a bar of a + b equal parts, in two colours (a tape model).
+    visual: { type: 'fraction', parts: a + b, shaded: a, added: b },
+    answer,
     input: numpad(3),
     hints: [
-      hint(say('ex.ratio.divide.hint1', { a, b, parts: { n: a + b, noun: PART } })),
-      hint(say('ex.ratio.divide.hint2')),
-      exampleHint(
-        `${ex.n} ÷ ${ex.a + ex.b} = ${exU}`,
-        say('ex.ratio.divide.solution', {
-          boys: { n: ex.a * exU, noun: BOYS },
-          girls: { n: ex.b * exU, noun: GIRLS },
+      hint(say('r6.divide.hint1', { a, b, parts: { n: a + b, noun: PART } })),
+      hint(say('r6.divide.hint2', { n, sum: a + b })),
+      // The example's answer is never this one.
+      exampleAvoiding(
+        answer,
+        [
+          { a: 2, b: 3, n: 20 },
+          { a: 1, b: 3, n: 20 },
+          { a: 3, b: 4, n: 28 },
+        ].map((e) => {
+          const u = e.n / (e.a + e.b);
+          const k = first ? e.a : e.b;
+          return {
+            answer: k * u,
+            hint: () =>
+              exampleHint(
+                `${e.n}, ${r(e.a, e.b)} → ${e.n} ÷ ${e.a + e.b} = ${u} → ${k} × ${u} = ${k * u}`,
+                divideSolution(e.a, e.b, e.n, first),
+              ),
+          };
         }),
       ),
     ],
-    solution: say('ex.ratio.divide.solution', {
-      boys: { n: boys, noun: BOYS },
-      girls: { n: girls, noun: GIRLS },
-    }),
-    diagnose: (v) => (v === (askBoys ? girls : boys) ? 'other' : v === unit ? 'other' : null),
+    solution: divideSolution(a, b, n, first),
+    // The other share, one part only, or the whole divided by one number of the ratio.
+    diagnose: (v) =>
+      v === (first ? b : a) * unit || v === unit || v === n / (first ? a : b) ? 'other' : null,
   });
 }
 
-const GIRLS: Noun = { singular: 'בת', plural: 'בנות', gender: 'f' };
-const CHILD: Noun = { singular: 'ילד', plural: 'ילדים', gender: 'm' };
-
-/** a : b, and there are x boys: how many children altogether? */
+/** a : b, and the first share is x: how many altogether? */
 function wholeFromPart(a: number, b: number, unit: number): Exercise {
-  const boys = a * unit;
+  const part = a * unit;
   const total = (a + b) * unit;
-  // The example shows its boys and its total: neither may be this answer.
-  const first = { a: 2, b: 3, unit: 4 };
-  const ex =
-    first.a * first.unit === total || (first.a + first.b) * first.unit === total
-      ? { a: 1, b: 2, unit: 5 }
-      : first;
+  const ctx = contextOf(total, a * 3 + b + unit);
+  const spoken = say(ctx.whole, { a, b, first: { n: part, noun: ctx.first } });
+  const solved = (x: { a: number; b: number; unit: number }) =>
+    say('r6.whole.solution', {
+      a: x.a,
+      unit: x.unit,
+      sum: x.a + x.b,
+      total: x.unit * (x.a + x.b),
+    });
   return exercise({
     factId: `rwhole:${a}:${b}:${unit}`,
     topicId: ID,
     level: 5,
-    prompt: t('ex.ratio.whole.prompt'),
+    prompt: shown(spoken),
     display: r(a, b),
-    spoken: say('ex.ratio.whole.spoken', { a, b, boys: { n: boys, noun: BOYS } }),
+    spoken,
+    visual: { type: 'fraction', parts: a + b, shaded: a, added: b },
     answer: total,
     input: numpad(3),
     hints: [
-      hint(say('ex.ratio.whole.hint1', { a })),
+      hint(say('r6.whole.hint1', { a: { n: a, noun: PART }, part })),
       hint(say('ex.ratio.whole.hint2', { parts: { n: a + b, noun: PART } })),
-      exampleHint(
-        `${ex.a * ex.unit} → ${(ex.a + ex.b) * ex.unit}`,
-        say('ex.ratio.whole.solution', { total: { n: (ex.a + ex.b) * ex.unit, noun: CHILD } }),
+      // The example shows its part and its total: neither may be this answer.
+      exampleAvoiding(
+        total,
+        [
+          { a: 2, b: 3, unit: 4 },
+          { a: 1, b: 2, unit: 5 },
+          { a: 3, b: 4, unit: 3 },
+        ]
+          .filter((x) => x.a * x.unit !== total)
+          .map((x) => ({
+            answer: (x.a + x.b) * x.unit,
+            hint: () =>
+              exampleHint(
+                `${x.a * x.unit} ÷ ${x.a} = ${x.unit} → ${x.a + x.b} × ${x.unit} = ${(x.a + x.b) * x.unit}`,
+                solved(x),
+              ),
+          })),
       ),
     ],
-    solution: say('ex.ratio.whole.solution', { total: { n: total, noun: CHILD } }),
-    diagnose: (v) => (v === b * unit ? 'other' : null),
+    solution: solved({ a, b, unit }),
+    // The other share only, or the part added to the ratio's numbers.
+    diagnose: (v) => (v === b * unit || v === part + b ? 'other' : null),
   });
 }
 
 const CM: Noun = { singular: 'סנטימטר', plural: 'סנטימטרים', gender: 'm' };
 const M: Noun = { singular: 'מטר', plural: 'מטרים', gender: 'm' };
 
-/** On a 1 : 100 (level 6) or 1 : 1000 (level 7) map, x cm are ? m. */
-function scale(level: 6 | 7, x: number): Exercise {
-  const k = level === 6 ? 100 : 1000;
+/** On a plan at 1 : k (50, 100, 200), x cm are ? m. */
+function planScale(k: number, x: number): Exercise {
   const answer = (x * k) / 100;
-  const ex = x === 3 ? 4 : 3;
+  const ex = [4, 6].find((e) => (e * k) / 100 !== answer) as number;
+  const solved = (y: number) =>
+    say('r6.scale.solution', { x: y, k, cm: y * k, m: { n: (y * k) / 100, noun: M } });
   return exercise({
-    factId: `rscale${k}:${x}`,
+    factId: `rplan${k}:${x}`,
     topicId: ID,
-    level,
-    prompt: t('ex.ratio.scale.prompt'),
+    level: 6,
+    prompt: shown(say('r6.plan.spoken', { k, x: { n: x, noun: CM } })),
     display: `1 : ${k}`,
-    spoken: say(level === 6 ? 'ex.ratio.scale.spoken100' : 'ex.ratio.scale.spoken1000', {
-      x: { n: x, noun: CM },
-    }),
+    spoken: say('r6.plan.spoken', { k, x: { n: x, noun: CM } }),
     answer,
     input: numpad(3),
     hints: [
-      hint(say(level === 6 ? 'ex.ratio.scale.hint100' : 'ex.ratio.scale.hint1000')),
-      hint(say('ex.ratio.scale.hint2')),
-      exampleHint(
-        `${ex} → ${(ex * k) / 100}`,
-        say('ex.ratio.scale.solution', {
-          x: { n: ex, noun: CM },
-          m: { n: (ex * k) / 100, noun: M },
-        }),
-      ),
+      hint(say('r6.scale.hint1', { k })),
+      hint(say('r6.scale.hint2', { x, k, cm: x * k })),
+      exampleHint(`${ex} × ${k} = ${ex * k} → ${(ex * k) / 100}`, solved(ex)),
     ],
-    solution: say('ex.ratio.scale.solution', { x: { n: x, noun: CM }, m: { n: answer, noun: M } }),
-    diagnose: (v) => (v === x * k ? 'placeValue' : v === (x * k) / 1000 ? 'placeValue' : null),
+    solution: solved(x),
+    // Centimetres not turned into metres, or the plan's number itself.
+    diagnose: (v) => (v === x * k ? 'placeValue' : v === x ? 'other' : null),
   });
 }
 
-const NOTEBOOK: Noun = { singular: 'מחברת', plural: 'מחברות', gender: 'f' };
+type MapFact =
+  | { kind: 'toReal'; k: number; x: number }
+  | { kind: 'toMap'; k: number; m: number }
+  | { kind: 'findScale'; k: number; x: number };
 
-/** k notebooks cost c: one costs ? (level 8); m notebooks cost ? (level 9). */
+/** A map at 1 : k: to metres, back to centimetres on the plan, or the scale itself. */
+function mapScale(f: MapFact): Exercise {
+  if (f.kind === 'toReal') {
+    const answer = (f.x * f.k) / 100;
+    const ex = [3, 4].find((e) => (e * f.k) / 100 !== answer) as number;
+    const solved = (y: number) =>
+      say('r6.scale.solution', { x: y, k: f.k, cm: y * f.k, m: { n: (y * f.k) / 100, noun: M } });
+    const spoken = say('r6.map.spoken', { k: f.k, x: { n: f.x, noun: CM } });
+    return exercise({
+      factId: `rmap${f.k}:${f.x}`,
+      topicId: ID,
+      level: 7,
+      prompt: shown(spoken),
+      display: `1 : ${f.k}`,
+      spoken,
+      answer,
+      input: numpad(4),
+      hints: [
+        hint(say('r6.scale.hint1', { k: f.k })),
+        hint(say('r6.scale.hint2', { x: f.x, k: f.k, cm: f.x * f.k })),
+        exampleHint(`${ex} × ${f.k} = ${ex * f.k} → ${(ex * f.k) / 100}`, solved(ex)),
+      ],
+      solution: solved(f.x),
+      diagnose: (v) => (v === f.x * f.k ? 'placeValue' : null),
+    });
+  }
+  if (f.kind === 'toMap') {
+    // Real metres back to centimetres on the plan: divide by the scale.
+    const answer = (f.m * 100) / f.k;
+    const ex = [6, 8].find((e) => (e * 100) / f.k !== answer) as number;
+    const solved = (m: number) =>
+      say('r6.toMap.solution', { m: { n: m, noun: M }, cm: m * 100, k: f.k, x: { n: (m * 100) / f.k, noun: CM } });
+    const spoken = say('r6.toMap.spoken', { k: f.k, m: { n: f.m, noun: M } });
+    return exercise({
+      factId: `rtomap${f.k}:${f.m}`,
+      topicId: ID,
+      level: 7,
+      prompt: shown(spoken),
+      display: `1 : ${f.k}`,
+      spoken,
+      answer,
+      operation: 'div',
+      input: numpad(3),
+      hints: [
+        hint(say('r6.toMap.hint1', { k: f.k })),
+        hint(say('r6.toMap.hint2', { m: { n: f.m, noun: M }, cm: f.m * 100, k: f.k })),
+        exampleHint(`${ex * 100} ÷ ${f.k} = ${(ex * 100) / f.k}`, solved(ex)),
+      ],
+      solution: solved(f.m),
+      // Multiplied by the scale instead of dividing.
+      diagnose: (v) => (v === f.m * f.k ? 'wrongOperation' : v === f.m ? 'other' : null),
+    });
+  }
+  // x cm on the map are m metres: 1 : ?
+  const m = (f.x * f.k) / 100;
+  const ex = f.k === 500 ? { x: 3, k: 200 } : { x: 2, k: 500 };
+  const solved = (x: number, k: number) =>
+    say('r6.findScale.solution', { m: { n: (x * k) / 100, noun: M }, cm: x * k, x, k });
+  const spoken = say('r6.findScale.spoken', { x: { n: f.x, noun: CM }, m: { n: m, noun: M } });
+  return exercise({
+    factId: `rfind:${f.x}=${m}`,
+    topicId: ID,
+    level: 7,
+    prompt: shown(spoken),
+    display: '1 : ?',
+    spoken,
+    answer: f.k,
+    input: numpad(5),
+    hints: [
+      hint(say('r6.findScale.hint1', { m: { n: m, noun: M }, cm: m * 100 })),
+      hint(say('r6.findScale.hint2', { x: f.x })),
+      exampleHint(`${ex.x * ex.k} ÷ ${ex.x} = ${ex.k}`, solved(ex.x, ex.k)),
+    ],
+    solution: solved(f.x, f.k),
+    // The metres not turned into centimetres.
+    diagnose: (v) => (v === m / f.x || v * 100 === f.k ? 'placeValue' : null),
+  });
+}
+
+const SHEKEL_ITEMS: readonly { id: string; unit: TranslationKey; prop: TranslationKey; noun: Noun }[] = [
+  {
+    id: 'notebook',
+    unit: 'r6.unit.notebook',
+    prop: 'r6.prop.notebook',
+    noun: { singular: 'מחברת', plural: 'מחברות', gender: 'f' },
+  },
+  {
+    id: 'ticket',
+    unit: 'r6.unit.ticket',
+    prop: 'r6.prop.ticket',
+    noun: { singular: 'כרטיס', plural: 'כרטיסים', gender: 'm' },
+  },
+  {
+    id: 'apples',
+    unit: 'r6.unit.apples',
+    prop: 'r6.prop.apples',
+    noun: { singular: 'קילוגרם', plural: 'קילוגרמים', gender: 'm' },
+  },
+];
+
+/** k items cost c: one costs ? (level 8); m items cost ? (level 9). */
 function price(level: 8 | 9, k: number, each: number, m: number): Exercise {
-  const total = k * each;
-  const answer = level === 8 ? each : m * each;
-  // Not an example whose answer is this one: it would give it away.
-  const first = { k: 3, each: 4, m: 5 };
-  const e =
-    (level === 8 ? first.each : first.each * first.m) === answer ? { k: 4, each: 3, m: 6 } : first;
+  const total = round(k * each, 2);
+  const answer = level === 8 ? each : round(m * each, 2);
+  const item = SHEKEL_ITEMS[(k + m + Math.round(each * 2)) % SHEKEL_ITEMS.length] as (typeof SHEKEL_ITEMS)[number];
   const spoken =
     level === 8
-      ? say('ex.ratio.unit.spoken', { k: { n: k, noun: NOTEBOOK }, total })
-      : say('ex.ratio.prop.spoken', {
-          k: { n: k, noun: NOTEBOOK },
-          total,
-          m: { n: m, noun: NOTEBOOK },
-        });
+      ? say(item.unit, { k: { n: k, noun: item.noun }, total })
+      : say(item.prop, { k: { n: k, noun: item.noun }, total, m: { n: m, noun: item.noun } });
+  const examples = level === 8 ? [{ k: 3, each: 4, m: 0 }, { k: 4, each: 2.5, m: 0 }] : [{ k: 3, each: 4, m: 5 }, { k: 4, each: 6, m: 2 }];
   return exercise({
     factId: `rprice${level}:${k}:${each}:${m}`,
     topicId: ID,
@@ -251,67 +441,159 @@ function price(level: 8 | 9, k: number, each: number, m: number): Exercise {
     spoken,
     answer,
     operation: level === 8 ? 'div' : 'mul',
-    input: numpad(3),
+    input: numpad(level === 8 ? 4 : 5, !Number.isInteger(answer)),
     hints: [
       hint(say(level === 8 ? 'ex.ratio.unit.hint1' : 'ex.ratio.prop.hint1')),
-      hint(say('ex.ratio.unit.hint2')),
       level === 8
-        ? exampleHint(
-            `${e.k * e.each} ÷ ${e.k} = ${e.each}`,
-            say('ex.ratio.unit.solution', { each: e.each }),
-          )
-        : exampleHint(
-            `${e.k * e.each} ÷ ${e.k} × ${e.m} = ${e.each * e.m}`,
-            say('ex.ratio.prop.solution', { m: { n: e.m, noun: NOTEBOOK }, r: e.each * e.m }),
-          ),
+        ? hint(say('r6.unit.hint2', { k, total }))
+        : hint(say('r6.prop.hint2', { k, total, each, m })),
+      // Not an example whose answer is this one: it would give it away.
+      exampleAvoiding(
+        answer,
+        examples.map((e) => {
+          const eTotal = round(e.k * e.each, 2);
+          return level === 8
+            ? {
+                answer: e.each,
+                hint: () =>
+                  exampleHint(
+                    `${eTotal} ÷ ${e.k} = ${e.each}`,
+                    say('r6.unit.solution', { total: eTotal, k: e.k, each: e.each }),
+                  ),
+              }
+            : {
+                answer: round(e.each * e.m, 2),
+                hint: () =>
+                  exampleHint(
+                    `${eTotal} ÷ ${e.k} = ${e.each} → ${e.each} × ${e.m} = ${round(e.each * e.m, 2)}`,
+                    say('r6.prop.solution', { total: eTotal, k: e.k, each: e.each, m: e.m, r: round(e.each * e.m, 2) }),
+                  ),
+              };
+        }),
+      ),
     ],
     solution:
       level === 8
-        ? say('ex.ratio.unit.solution', { each })
-        : say('ex.ratio.prop.solution', { m: { n: m, noun: NOTEBOOK }, r: answer }),
-    diagnose: (v) => (level === 9 && v === total + (m - k) ? 'other' : null),
+        ? say('r6.unit.solution', { total, k, each })
+        : say('r6.prop.solution', { total, k, each, m, r: answer }),
+    // Level 8: multiplied instead of dividing. Level 9: the difference in items added to the price.
+    diagnose: (v) =>
+      level === 8
+        ? Math.abs(v - total * k) < 1e-9
+          ? 'wrongOperation'
+          : null
+        : Math.abs(v - (total + (m - k))) < 1e-9
+          ? 'other'
+          : null,
   });
 }
 
-const KM: Noun = { singular: 'קילומטר', plural: 'קילומטרים', gender: 'm' };
-const HOUR: Noun = { singular: 'שעה', plural: 'שעות', gender: 'f' };
+/** Hours as said: "שעתיים וחצי", "חצי שעה"; also shown so (no digits in a time span). */
+const HOURS: Record<string, string> = {
+  '0.5': 'חצי שעה',
+  '1': 'שעה אחת',
+  '1.5': 'שעה וחצי',
+  '2': 'שעתיים',
+  '2.5': 'שעתיים וחצי',
+  '3': 'שלוש שעות',
+  '4': 'ארבע שעות',
+  '5': 'חמש שעות',
+};
+const hours = (h: number) => HOURS[String(h)] as string;
 
-/** A car drives v km an hour for h hours. */
-function distance(v: number, h: number): Exercise {
-  const answer = v * h;
-  // Not an example whose distance is this answer: it would give it away.
-  const e = answer === 60 * 3 ? { v: 50, h: 2 } : { v: 60, h: 3 };
+type Trip = { kind: 'distance' | 'time' | 'speed'; v: number; h: number; vehicle: string };
+
+const KM: Noun = { singular: 'קילומטר', plural: 'קילומטרים', gender: 'm' };
+
+/** Distance from speed and time, the time from distance and speed, or the speed. */
+function trip(f: Trip): Exercise {
+  const d = f.v * f.h;
+  const answer = f.kind === 'distance' ? d : f.kind === 'time' ? f.h : f.v;
+  const key: TranslationKey = `r6.${f.kind}.spoken`;
+  const slots = { veh: f.vehicle, v: { n: f.v, noun: KM }, h: hours(f.h), d: { n: d, noun: KM } };
+  const spoken = say(key, slots);
+  const sol = (x: { v: number; h: number }): Said =>
+    f.kind === 'distance'
+      ? say('r6.distance.solution', { v: x.v, h: x.h, d: { n: x.v * x.h, noun: KM } })
+      : f.kind === 'time'
+        ? say('r6.time.solution', { d: x.v * x.h, v: x.v, h: hours(x.h) })
+        : say('r6.speed.solution', { d: x.v * x.h, h: x.h, v: { n: x.v, noun: KM } });
+  const show = (x: { v: number; h: number }) =>
+    f.kind === 'distance'
+      ? `${x.v} × ${x.h} = ${x.v * x.h}`
+      : f.kind === 'time'
+        ? `${x.v * x.h} ÷ ${x.v} = ${x.h}`
+        : `${x.v * x.h} ÷ ${x.h} = ${x.v}`;
+  const asked = (x: { v: number; h: number }) =>
+    f.kind === 'distance' ? x.v * x.h : f.kind === 'time' ? x.h : x.v;
   return exercise({
-    factId: `rdist:${v}x${h}`,
+    factId: `rtrip:${f.kind}:${f.v}x${f.h}`,
     topicId: ID,
     level: 10,
     // The data on screen too (with digits), not only heard.
-    prompt: shown(say('ex.ratio.dist.spoken', { v: { n: v, noun: KM }, h: { n: h, noun: HOUR } })),
+    prompt: shown(spoken),
     display: '',
-    spoken: say('ex.ratio.dist.spoken', { v: { n: v, noun: KM }, h: { n: h, noun: HOUR } }),
+    spoken,
     answer,
-    operation: 'mul',
-    input: numpad(4),
+    operation: f.kind === 'distance' ? 'mul' : 'div',
+    input: numpad(4, !Number.isInteger(answer)),
     hints: [
-      hint(say('ex.ratio.dist.hint1')),
-      hint(say('ex.ratio.dist.hint2')),
-      exampleHint(
-        `${e.v} × ${e.h} = ${e.v * e.h}`,
-        say('ex.ratio.dist.solution', { d: { n: e.v * e.h, noun: KM } }),
+      hint(say(`r6.${f.kind}.hint1`, { v: { n: f.v, noun: KM } })),
+      hint(say(`r6.${f.kind}.hint2`)),
+      exampleAvoiding(
+        answer,
+        [
+          { v: 60, h: 3 },
+          { v: 50, h: 2 },
+        ].map((x) => ({ answer: asked(x), hint: () => exampleHint(show(x), sol(x)) })),
       ),
     ],
-    solution: say('ex.ratio.dist.solution', { d: { n: answer, noun: KM } }),
-    diagnose: (v2) => (v2 === v + h ? 'wrongOperation' : null),
+    solution: sol(f),
+    // The two numbers added (distance), or multiplied when dividing (time, speed).
+    diagnose: (x) =>
+      f.kind === 'distance'
+        ? x === f.v + f.h
+          ? 'wrongOperation'
+          : null
+        : Math.abs(x - (f.kind === 'time' ? d * f.v : d * f.h)) < 1e-9
+          ? 'wrongOperation'
+          : null,
   });
 }
 
-const SMALL = range(1, 6);
+/** Ratios a : b (a ≠ b, so never 1 : 1) whose parts make at most ten. */
+const RATIOS = range(1, 7).flatMap((a) =>
+  range(1, 7)
+    .filter((b) => b !== a && gcd(a, b) === 1 && a + b <= 10)
+    .map((b) => ({ a, b })),
+);
+/** A ratio and a whole of 12 to 60 (a class: 20 to 40, see the contexts). */
+const SHARES = RATIOS.flatMap(({ a, b }) =>
+  range(2, 8)
+    .map((u) => ({ a, b, n: (a + b) * u }))
+    .filter((x) => x.n >= 12 && x.n <= 60),
+);
 
-/** k notebooks at `each` shekels. */
-const UNIT_FACTS = range(3, 6).flatMap((k) => range(2, 9).map((each) => ({ k, each })));
-/** k notebooks at `each` shekels, asked about m notebooks. */
-const PROPORTION_FACTS = range(3, 5).flatMap((k) =>
-  range(2, 9).flatMap((each) => [k + 2, k + 4].map((m) => ({ k, each, m }))),
+/** Unit prices: whole shekels and half shekels (7.5), for 3 to 8 items. */
+const UNIT_FACTS = range(3, 8).flatMap((k) =>
+  [...range(2, 12), 1.5, 2.5, 3.5, 4.5, 6.5, 7.5].map((each) => ({ k, each })),
+);
+/** k items at `each`, asked about m: fewer or more, and not a multiple (3 for 45, then 2). */
+const PROPORTION_FACTS = range(2, 6).flatMap((k) =>
+  range(3, 15).flatMap((each) =>
+    [k === 2 ? 3 : k - 1, k + 3].filter((m) => m !== k).map((m) => ({ k, each, m })),
+  ),
+);
+
+const TRIPS: Trip[] = [40, 50, 60, 70, 80, 90, 100, 120].flatMap((v, i) =>
+  [0.5, 1.5, 2, 2.5, 3, 4].flatMap((h) =>
+    (['distance', 'time', 'speed'] as const).map((kind) => ({
+      kind,
+      v,
+      h,
+      vehicle: (i + h * 2) % 2 === 0 ? 'מכונית' : 'רכבת',
+    })),
+  ),
 );
 
 export const ratio = defineTopic({
@@ -333,67 +615,51 @@ export const ratio = defineTopic({
     closed(
       L(2),
       () =>
-        SMALL.flatMap((a) =>
-          SMALL.filter((b) => b !== a && gcd(a, b) === 1).flatMap((b) =>
-            range(2, 6).map((k) => ({ a, b, k })),
-          ),
+        range(1, 6).flatMap((a) =>
+          range(1, 6)
+            .filter((b) => b !== a && gcd(a, b) === 1)
+            .flatMap((b) => range(2, 6).map((k) => ({ a, b, k }))),
         ),
       (x) => equivalent(x.a, x.b, x.k),
     ),
-    closed(
-      L(3),
-      () =>
-        SMALL.flatMap((a) =>
-          SMALL.filter((b) => gcd(a, b) === 1 && a + b <= 8).flatMap((b) =>
-            range(2, 6).map((u) => ({ a, b, n: (a + b) * u })),
-          ),
-        ),
-      (x) => divide(3, x.a, x.b, x.n),
-    ),
-    closed(
-      L(4),
-      () =>
-        SMALL.flatMap((a) =>
-          SMALL.filter((b) => gcd(a, b) === 1 && a + b <= 8).flatMap((b) =>
-            range(2, 6).map((u) => ({ a, b, n: (a + b) * u })),
-          ),
-        ),
-      (x) => divide(4, x.a, x.b, x.n),
-    ),
+    closed('level.ratio6.3', () => SHARES, (x) => divide(3, x.a, x.b, x.n)),
+    closed('level.ratio6.4', () => SHARES, (x) => divide(4, x.a, x.b, x.n)),
     closed(
       L(5),
       () =>
-        SMALL.flatMap((a) =>
-          SMALL.filter((b) => gcd(a, b) === 1 && a + b <= 8).flatMap((b) =>
-            range(2, 6).map((unit) => ({ a, b, unit })),
-          ),
-        ).filter((x) => x.a * x.unit >= 3),
+        RATIOS.flatMap(({ a, b }) =>
+          range(2, 8)
+            .map((unit) => ({ a, b, unit }))
+            .filter((x) => x.a * x.unit >= 3 && (x.a + x.b) * x.unit <= 60),
+        ),
       (x) => wholeFromPart(x.a, x.b, x.unit),
     ),
     closed(
-      L(6),
-      () => range(2, 12),
-      (x) => scale(6, x),
+      'level.ratio6.6',
+      // A plan of a flat: 1 : 50, 1 : 100, 1 : 200 (whole metres).
+      () => [
+        ...range(1, 8).map((x) => ({ k: 50, x: 2 * x })),
+        ...range(2, 12).map((x) => ({ k: 100, x })),
+        ...range(2, 9).map((x) => ({ k: 200, x })),
+      ],
+      (x) => planScale(x.k, x.x),
     ),
     closed(
-      L(7),
-      () => range(2, 12),
-      (x) => scale(7, x),
+      'level.ratio6.7',
+      // A map to metres, metres back to the plan, and the scale from both.
+      (): MapFact[] => [
+        ...[1000, 5000, 10000].flatMap((k) => range(2, 9).map((x) => ({ kind: 'toReal' as const, k, x }))),
+        ...[50, 100, 200].flatMap((k) =>
+          range(2, 9).map((m) => ({ kind: 'toMap' as const, k, m: k === 200 ? 2 * m : m })),
+        ),
+        ...[200, 500, 1000, 2000].flatMap((k) =>
+          range(2, 5).map((x) => ({ kind: 'findScale' as const, k, x })),
+        ),
+      ],
+      mapScale,
     ),
-    closed(
-      L(8),
-      () => UNIT_FACTS,
-      (x) => price(8, x.k, x.each, 0),
-    ),
-    closed(
-      L(9),
-      () => PROPORTION_FACTS,
-      (x) => price(9, x.k, x.each, x.m),
-    ),
-    closed(
-      L(10),
-      () => [40, 50, 60, 70, 80, 90, 100].flatMap((v) => range(2, 5).map((h) => ({ v, h }))),
-      (x) => distance(x.v, x.h),
-    ),
+    closed(L(8), () => UNIT_FACTS, (x) => price(8, x.k, x.each, 0)),
+    closed(L(9), () => PROPORTION_FACTS, (x) => price(9, x.k, x.each, x.m)),
+    closed(L(10), () => TRIPS, trip),
   ],
 });

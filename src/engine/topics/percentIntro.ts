@@ -1,8 +1,12 @@
 import { shown, type Slot } from '@/lang/compose';
 import { t, type TranslationKey } from '@/i18n';
 import type { Gender } from '@/lang/gender';
-import type { Noun } from '@/lang/hebrewNumbers';
-import { displayFraction as f, fractionWords as w } from '@/lang/fractions';
+import { numberToWords, type Noun } from '@/lang/hebrewNumbers';
+import {
+  displayFraction as f,
+  FRACTION_NOUNS,
+  fractionWords as w,
+} from '@/lang/fractions';
 import {
   CHARACTERS,
   closed,
@@ -10,22 +14,23 @@ import {
   exampleAvoiding,
   exampleHint,
   exercise,
+  gcd,
   hint,
   numpad,
   open,
   range,
   round,
   say,
-  type Character,
 } from '../build';
 import { pick, randInt } from '../rng';
-import type { Exercise, Hint, Rng } from '../types';
+import type { Exercise, Hint, Rng, Visual } from '../types';
 
 /**
- * World 16, grade 5: "אחוזים: היכרות". A percent as part of a hundred, the
- * familiar percents as fractions (50% = half, 25% = quarter, 10% = tenth),
- * fractions and decimals as percents, a percent of a quantity, what is left,
- * what percent one number is of another, a first discount story.
+ * Grades 5 and 6: "אחוזים: היכרות". A percent as part of a hundred (bars of
+ * 2 to 20 parts), the familiar percents as fractions (50% = half, 5% = 1/20),
+ * fractions and decimals as percents and back, all of them mixed, a percent
+ * of a quantity, what is left, what percent one number is of another, and
+ * discount stories (the discount, or what is paid).
  */
 
 const ID = 'percent-intro';
@@ -58,8 +63,7 @@ export function percentOfExample(answer: number, options: readonly [number, numb
       const r = (p * base) / 100;
       return {
         answer: r,
-        hint: () =>
-          exampleHint(`${p}% × ${base} = ${r}`, sayP('ex.pct.of.solution', { p, base, r })),
+        hint: () => exampleHint(`${p}% × ${base} = ${r}`, sayP('ex.pct.of.solution', { p, base, r })),
       };
     }),
   );
@@ -80,65 +84,91 @@ export function whatPercentExample(answer: number, options: readonly [number, nu
   );
 }
 
-/** A bar of ten: what percent is coloured? */
-function shaded(k: number): Exercise {
-  const answer = k * 10;
+/** A fraction read aloud: "שלושה רבעים", or "שלוש חלקי עשרים" when the denominator has no word. */
+function fracWords(n: number, d: number): string {
+  return FRACTION_NOUNS[d] ? w(n, d) : `${numberToWords(n)} חלקי ${numberToWords(d)}`;
+}
+
+/** A bar for a fraction, when it is not too fine to see (up to 20 parts). */
+function barOf(n: number, d: number): Visual | undefined {
+  return d <= 20 ? { type: 'fraction', parts: d, shaded: n } : undefined;
+}
+
+/* ---------- Level 1: what percent of the bar is coloured? ---------- */
+
+/** k of `parts` cells coloured: a bar of 2, 4, 5, 10 or 20, so not always tens. */
+function shaded(parts: number, k: number): Exercise {
+  const each = 100 / parts;
+  const answer = k * each;
+  const solved = (x: number, d: number) =>
+    sayP('pi.shaded.solution', {
+      k: { n: x, gender: 'm' },
+      parts: { n: d, gender: 'm' },
+      p: (x * 100) / d,
+    });
   return exercise({
-    factId: `pshade:${k}`,
+    factId: `pshade:${k}/${parts}`,
     topicId: ID,
     level: 1,
     prompt: t('ex.pct.shaded.prompt'),
     display: '?%',
     spoken: sayP('ex.pct.shaded.prompt'),
-    visual: { type: 'fraction', parts: 10, shaded: k },
+    visual: { type: 'fraction', parts, shaded: k },
     answer,
     input: numpad(3),
     hints: [
-      hint(sayP('ex.pct.shaded.hint1')),
-      hint(sayP('ex.pct.shaded.hint2')),
-      exampleHint(
-        k === 3 ? '7 → 70%' : '3 → 30%',
-        sayP('ex.pct.shaded.solution', { k: k === 3 ? 7 : 3, p: k === 3 ? 70 : 30 }),
+      hint(sayP('pi.shaded.hint1', { parts: { n: parts, noun: { singular: 'חלק', plural: 'חלקים', gender: 'm' } } })),
+      // What one part is worth, for this bar.
+      hint(sayP('pi.shaded.hint2', { p: each })),
+      exampleAvoiding(
+        answer,
+        [
+          [3, 10],
+          [1, 4],
+        ].map(([x, d]) => ({
+          answer: ((x as number) * 100) / (d as number),
+          hint: () =>
+            exampleHint(`${x}/${d} → ${((x as number) * 100) / (d as number)}%`, solved(x as number, d as number)),
+        })),
       ),
     ],
-    solution: sayP('ex.pct.shaded.solution', { k, p: answer }),
-    diagnose: (v) => (v === k ? 'placeValue' : null),
+    solution: solved(k, parts),
+    // The coloured cells counted, not turned into percents.
+    diagnose: (v) => (v === k ? (parts === 10 ? 'placeValue' : 'other') : null),
   });
 }
 
-const FAMILIAR: readonly [number, number][] = [
-  [50, 2],
-  [25, 4],
-  [20, 5],
-  [10, 10],
-];
+/* ---------- Level 2: the familiar ones, both ways ---------- */
 
-/** 25% = 1/? */
-function familiar(p: number, d: number): Exercise {
+/** 25% = 1/? (asks the denominator), or 1/4 = ?% (asks the percent). */
+function familiar(d: number, toFraction: boolean): Exercise {
+  const p = 100 / d;
+  const solved = (dd: number) => sayP('ex.pct.familiar.solution', { p: 100 / dd, frac: fracWords(1, dd) });
+  const exD = [4, 2].find((x) => x !== d) as number;
   return exercise({
-    factId: `pfam:${p}`,
+    factId: `pfam:${toFraction ? 'f' : 'p'}:${d}`,
     topicId: ID,
     level: 2,
-    prompt: t('ex.fmul.denominator.prompt'),
-    display: `${p}% = 1/?`,
-    spoken: sayP('ex.pct.familiar.spoken', { p }),
-    visual: { type: 'fraction', parts: d, shaded: 1 },
-    answer: d,
+    prompt: t(toFraction ? 'ex.fmul.denominator.prompt' : 'ex.pct.howMany.prompt'),
+    display: toFraction ? `${p}% = 1/?` : `${f(1, d)} = ?%`,
+    spoken: toFraction
+      ? sayP('ex.pct.familiar.spoken', { p })
+      : sayP('ex.pct.fromFrac.spoken', { frac: fracWords(1, d) }),
+    ...(barOf(1, d) ? { visual: barOf(1, d) as Visual } : {}),
+    answer: toFraction ? d : p,
     input: numpad(3),
     hints: [
-      hint(sayP('ex.pct.familiar.hint1', { p })),
-      hint(sayP('ex.pct.familiar.hint2')),
-      exampleHint(
-        p === 50 ? '25% = 1/4' : '50% = 1/2',
-        sayP(
-          'ex.pct.familiar.solution',
-          p === 50 ? { p: 25, frac: w(1, 4) } : { p: 50, frac: w(1, 2) },
-        ),
-      ),
+      hint(sayP(toFraction ? 'ex.pct.familiar.hint1' : 'ex.pct.fromFrac.hint1', { p })),
+      hint(sayP(toFraction ? 'ex.pct.familiar.hint2' : 'ex.pct.fromFrac.hint2', { d })),
+      exampleHint(toFraction ? `${100 / exD}% = 1/${exD}` : `1/${exD} = ${100 / exD}%`, solved(exD)),
     ],
-    solution: sayP('ex.pct.familiar.solution', { p, frac: w(1, d) }),
+    solution: solved(d),
+    // The denominator and the percent swapped.
+    diagnose: (v) => (v === (toFraction ? p : d) ? 'other' : null),
   });
 }
+
+/* ---------- Level 3: from a fraction to a percent ---------- */
 
 /** 3/4 = ?% */
 function fromFraction(n: number, d: number): Exercise {
@@ -150,8 +180,8 @@ function fromFraction(n: number, d: number): Exercise {
     level: 3,
     prompt: t('ex.pct.howMany.prompt'),
     display: `${f(n, d)} = ?%`,
-    spoken: sayP('ex.pct.fromFrac.spoken', { frac: w(n, d) }),
-    visual: { type: 'fraction', parts: d, shaded: n },
+    spoken: sayP('ex.pct.fromFrac.spoken', { frac: fracWords(n, d) }),
+    ...(barOf(n, d) ? { visual: barOf(n, d) as Visual } : {}),
     answer,
     input: numpad(3),
     hints: [
@@ -162,21 +192,24 @@ function fromFraction(n: number, d: number): Exercise {
         sayP('ex.pct.fromFrac.solution', { frac: w(ex.n, ex.d), p: (ex.n * 100) / ex.d }),
       ),
     ],
-    solution: sayP('ex.pct.fromFrac.solution', { frac: w(n, d), p: answer }),
+    solution: sayP('ex.pct.fromFrac.solution', { frac: fracWords(n, d), p: answer }),
+    // The numerator times ten: right only for tenths.
     diagnose: (v) => (v === n * 10 ? 'other' : null),
   });
 }
 
-/** 0.35 = ?% (level 4), 40% = ? as a decimal (level 5). */
-function decimal(level: 4 | 5, p: number): Exercise {
+/* ---------- Levels 4–5: decimals and percents, both ways; then everything mixed ---------- */
+
+/** 0.35 = ?% (to a percent), or 40% = ? as a decimal; the example and solution go the same way. */
+function decimal(level: 4 | 5, p: number, toPercent: boolean): Exercise {
   const x = round(p / 100, 2);
-  const toPercent = level === 4;
   const ex = p === 35 ? 60 : 35;
+  const exX = round(ex / 100, 2);
   return exercise({
-    factId: `pdec${level}:${p}`,
+    factId: `pdec${level}:${toPercent ? 'p' : 'd'}:${p}`,
     topicId: ID,
     level,
-    prompt: t(toPercent ? 'ex.pct.howMany.prompt' : 'ex.dec.fromFrac.prompt'),
+    prompt: t(toPercent ? 'ex.pct.howMany.prompt' : 'pi.toDec.prompt'),
     display: toPercent ? `${x} = ?%` : `${p}% = ?`,
     spoken: toPercent ? sayP('ex.pct.fromDec.spoken', { x }) : sayP('ex.pct.toDec.spoken', { p }),
     answer: toPercent ? p : x,
@@ -184,12 +217,13 @@ function decimal(level: 4 | 5, p: number): Exercise {
     hints: [
       hint(sayP('ex.pct.dec.hint1')),
       hint(say(toPercent ? 'ex.pct.dec.hint2to' : 'ex.pct.dec.hint2from')),
-      exampleHint(
-        `${round(ex / 100, 2)} = ${ex}%`,
-        sayP('ex.pct.dec.solution', { x: round(ex / 100, 2), p: ex }),
-      ),
+      toPercent
+        ? exampleHint(`${exX} = ${ex}%`, sayP('ex.pct.dec.solution', { x: exX, p: ex }))
+        : exampleHint(`${ex}% = ${exX}`, sayP('pi.toDec.solution', { x: exX, p: ex })),
     ],
-    solution: sayP('ex.pct.dec.solution', { x, p }),
+    solution: toPercent
+      ? sayP('ex.pct.dec.solution', { x, p })
+      : sayP('pi.toDec.solution', { x, p }),
     diagnose: (v) =>
       toPercent
         ? v === x || v === p / 10
@@ -200,6 +234,57 @@ function decimal(level: 4 | 5, p: number): Exercise {
           : null,
   });
 }
+
+/** 40% = ?/5: a percent as a fraction with this denominator (the numerator is asked). */
+function toFraction(n: number, d: number): Exercise {
+  const p = (n * 100) / d;
+  const ex = n === 3 && d === 4 ? { n: 2, d: 5 } : { n: 3, d: 4 };
+  const solved = (a: number, b: number) =>
+    sayP('ex.pct.familiar.solution', { p: (a * 100) / b, frac: fracWords(a, b) });
+  return exercise({
+    factId: `ptofrac:${n}/${d}`,
+    topicId: ID,
+    level: 5,
+    prompt: t('ex.frac.expand.prompt'),
+    display: `${p}% = ?/${d}`,
+    spoken: sayP('pi.toFrac.spoken', { p, plural: (FRACTION_NOUNS[d] as Noun).plural }),
+    ...(barOf(n, d) ? { visual: { type: 'fraction', parts: d, shaded: 0 } as Visual } : {}),
+    answer: n,
+    input: numpad(2),
+    hints: [
+      hint(sayP('pi.toFrac.hint1', { p })),
+      hint(sayP('pi.toFrac.hint2', { d, k: 100 / d }, 'f', ['k'])),
+      exampleHint(`${(ex.n * 100) / ex.d}% = ${f(ex.n, ex.d)}`, solved(ex.n, ex.d)),
+    ],
+    solution: solved(n, d),
+    diagnose: (v) => (v === p ? 'other' : null),
+  });
+}
+
+/** Proper fractions with a denominator that divides a hundred, in lowest terms. */
+const FRACTIONS: [number, number][] = [2, 4, 5, 10, 20, 25, 50].flatMap((d) =>
+  range(1, d - 1)
+    .filter((n) => gcd(n, d) === 1)
+    .map((n): [number, number] => [n, d]),
+);
+
+/** Level 5: any of the four ways between fractions, decimals and percents. */
+function mixed(rng: Rng): Exercise {
+  const way = pick(rng, ['fracToPct', 'pctToFrac', 'decToPct', 'pctToDec'] as const);
+  if (way === 'fracToPct' || way === 'pctToFrac') {
+    // Fractions with a word for the denominator, so the question can say "כמה חמישיות".
+    const [n, d] = pick(
+      rng,
+      FRACTIONS.filter(([, dd]) => way === 'fracToPct' || FRACTION_NOUNS[dd] !== undefined),
+    );
+    const e = way === 'fracToPct' ? fromFraction(n, d) : toFraction(n, d);
+    return { ...e, level: 5 };
+  }
+  const p = pick(rng, [...range(1, 9), ...range(10, 95, 5), 12, 48, 64, 85]);
+  return decimal(5, p, way === 'decToPct');
+}
+
+/* ---------- Levels 6–7: a percent of a quantity ---------- */
 
 /** 50%, 25%, 10% of a quantity (level 6); any ten-percent step (level 7). */
 function percentOf(level: 6 | 7, rng: Rng): Exercise {
@@ -226,23 +311,30 @@ function percentOf(level: 6 | 7, rng: Rng): Exercise {
       // The shortcut for this percent: half, a quarter, or a tenth.
       hint(
         sayP(
-          p === 50
-            ? 'ex.pct.of.hint2half'
-            : p === 25
-              ? 'ex.pct.of.hint2quarter'
-              : 'ex.pct.of.hint2',
+          p === 50 ? 'ex.pct.of.hint2half' : p === 25 ? 'ex.pct.of.hint2quarter' : 'ex.pct.of.hint2',
           { base },
         ),
       ),
-      percentOfExample(answer, [
-        [30, 80],
-        [20, 50],
-      ]),
+      // Level 6: an example with one of the level's own percents.
+      percentOfExample(
+        answer,
+        level === 6
+          ? [
+              [25, 60],
+              [50, 40],
+            ]
+          : [
+              [30, 80],
+              [20, 50],
+            ],
+      ),
     ],
     solution: sayP('ex.pct.of.solution', { p, base, r: answer }),
     diagnose: (v) => (v === base - answer ? 'other' : null),
   });
 }
+
+/* ---------- Level 8: what is left of a hundred ---------- */
 
 /** 100% − 35% = ?% */
 function rest(p: number): Exercise {
@@ -275,6 +367,8 @@ function rest(p: number): Exercise {
   });
 }
 
+/* ---------- Level 9: what percent is it? ---------- */
+
 /** 15 out of 60 is ?% */
 function whatPercent(rng: Rng): Exercise {
   const base = pick(rng, [20, 25, 50, 200, 10, 4, 5]);
@@ -298,7 +392,8 @@ function whatPercent(rng: Rng): Exercise {
     answer: p,
     input: numpad(3),
     hints: [
-      hint(sayP('ex.pct.what.hint1')),
+      // Reduce or expand: 6 of 200 does not expand to hundredths, it reduces.
+      hint(sayP('p6.what.hint1')),
       hint(sayP('ex.pct.what.hint2', { base })),
       whatPercentExample(p, [
         [15, 60],
@@ -310,87 +405,117 @@ function whatPercent(rng: Rng): Exercise {
   });
 }
 
-/** The discount in shekels. */
+/* ---------- Level 10: discount stories ---------- */
+
+/** The stories: the discount in shekels (a shirt, a book), or what is paid after it. */
+const STORIES: readonly { key: TranslationKey; pay: boolean }[] = [
+  { key: 'wp.pct.discount.story', pay: false },
+  { key: 'pi.wp.book', pay: false },
+  { key: 'pi.wp.pay', pay: true },
+];
+
+/** The discount, or what is paid after it. The character and story follow from the numbers. */
 function story(rng: Rng): Exercise {
   const p = pick(rng, [10, 20, 25, 50]);
   const price = p === 25 ? randInt(rng, 3, 30) * 4 : randInt(rng, 2, 40) * 10;
-  const who = CHARACTERS[price % CHARACTERS.length] as Character;
-  const answer = (price * p) / 100;
-  const spoken = sayP('wp.pct.discount.story', { name: who.name, price, p }, who.gender);
+  // Any character (the price is even, so price % 6 would pick only the girls).
+  const who = pick(rng, CHARACTERS);
+  const s = STORIES[(price / 2 + p) % STORIES.length] as (typeof STORIES)[number];
+  const discount = (price * p) / 100;
+  const answer = s.pay ? price - discount : discount;
+  const spoken = sayP(s.key, { name: who.name, price, p }, who.gender);
   return exercise({
-    factId: `pwp:${price}:${p}`,
+    factId: `pwp:${s.pay ? 'pay:' : ''}${price}:${p}`,
     topicId: ID,
     level: 10,
     prompt: shown(spoken),
     display: '',
     spoken,
     answer,
-    operation: 'mul',
+    operation: s.pay ? 'sub' : 'mul',
     input: numpad(3),
-    hints: [
-      hint(sayP('wp.pct.discount.hint1')),
-      {
-        ...hint(say('hint.equation')),
-        example: { display: `${p}% × ${price} = ?`, spoken: say('hint.equation').text },
-      },
-      percentOfExample(answer, [
-        [25, 80],
-        [10, 50],
-      ]),
-    ],
-    solution: sayP('ex.pct.of.solution', { p, base: price, r: answer }),
-    diagnose: (v) => (v === price - answer ? 'other' : null),
+    hints: s.pay
+      ? [
+          // Two ways: take the discount off, or pay what is left of a hundred percent.
+          hint(sayP('pi.wp.pay.hint1')),
+          hint(sayP('ex.pct6.discount.hint2', { p, q: 100 - p }, 'f', ['p', 'q'])),
+          exampleAvoiding(
+            answer,
+            [
+              { base: 80, p: 25 },
+              { base: 60, p: 10 },
+            ].map((e) => {
+              const r = e.base - (e.base * e.p) / 100;
+              return {
+                answer: r,
+                hint: () =>
+                  exampleHint(`${e.base} → ${r}`, sayP('ex.pct6.discount.solution', { ...e, r })),
+              };
+            }),
+          ),
+        ]
+      : [
+          hint(sayP('wp.pct.discount.hint1')),
+          {
+            ...hint(say('hint.equation')),
+            example: { display: `${p}% × ${price} = ?`, spoken: say('hint.equation').text },
+          },
+          percentOfExample(answer, [
+            [25, 80],
+            [10, 50],
+          ]),
+        ],
+    solution: s.pay
+      ? sayP('ex.pct6.discount.solution', { base: price, p, r: answer })
+      : sayP('ex.pct.of.solution', { p, base: price, r: answer }),
+    // The other one: what is paid when the discount was asked, or the other way round.
+    diagnose: (v) => (v === (s.pay ? discount : price - discount) ? 'other' : null),
   });
 }
 
 function storyBank(): string[] {
-  return CHARACTERS.flatMap(
-    (who) => sayP('wp.pct.discount.story', { name: who.name, price: 80, p: 25 }, who.gender).parts,
+  return CHARACTERS.flatMap((who) =>
+    STORIES.flatMap((s) => sayP(s.key, { name: who.name, price: 80, p: 25 }, who.gender).parts),
   );
 }
 
 export const percentIntro = defineTopic({
   id: ID,
   labelKey: 'topic.percentIntro',
-  grades: [5],
-  startLevel: () => 1,
+  // Grade 5 meets percent (levels 1–5); grade 6 goes on to a percent of a quantity (6–10).
+  grades: [5, 6],
+  startLevel: (grade) => (grade === 6 ? 6 : 1),
+  lastLevel: (grade) => (grade === 5 ? 5 : 10),
   extraBank: storyBank,
   levels: [
     closed(
       L(1),
-      () => range(1, 9),
-      (k) => shaded(k),
+      () => [2, 4, 5, 10, 20].flatMap((parts) => range(1, parts - 1).map((k) => ({ parts, k }))),
+      (x) => shaded(x.parts, x.k),
     ),
     closed(
-      L(2),
-      () => FAMILIAR,
-      ([p, d]) => familiar(p, d),
+      'level.percentIntro5.2',
+      // Percent to unit fraction for any divisor of a hundred; back only where the fraction has a word.
+      () => [
+        ...[2, 4, 5, 10, 20, 25, 50, 100].map((d) => ({ d, toFraction: true })),
+        ...[2, 4, 5, 10, 100].map((d) => ({ d, toFraction: false })),
+      ],
+      (x) => familiar(x.d, x.toFraction),
     ),
     closed(
       L(3),
-      () =>
-        [
-          [1, 2],
-          [1, 4],
-          [3, 4],
-          [1, 5],
-          [2, 5],
-          [3, 5],
-          [4, 5],
-          ...range(1, 9).map((n) => [n, 10]),
-        ] as [number, number][],
+      () => FRACTIONS,
       ([n, d]) => fromFraction(n, d),
     ),
     closed(
-      L(4),
-      () => range(1, 99).filter((p) => p % 5 === 0),
-      (p) => decimal(4, p),
+      'level.percentIntro5.4',
+      () =>
+        range(1, 99)
+          .filter((p) => p % 5 === 0 || p < 10)
+          .flatMap((p) => [true, false].map((toPercent) => ({ p, toPercent }))),
+      (x) => decimal(4, x.p, x.toPercent),
     ),
-    closed(
-      L(5),
-      () => range(1, 99).filter((p) => p % 5 === 0),
-      (p) => decimal(5, p),
-    ),
+    open('level.percentIntro5.5', mixed),
     open(L(6), (rng) => percentOf(6, rng)),
     open(L(7), (rng) => percentOf(7, rng)),
     closed(

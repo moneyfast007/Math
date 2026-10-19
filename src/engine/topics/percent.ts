@@ -5,37 +5,67 @@ import {
   defineTopic,
   exampleAvoiding,
   exampleHint,
-  exercise,
+  exercise as baseExercise,
+  gcd,
   hint,
   numpad,
   open,
   say,
   type Character,
+  type Said,
+  type ExerciseParts,
 } from '../build';
 import { pick, randInt } from '../rng';
-import type { Exercise, Rng } from '../types';
+import type { Exercise, Hint, Rng } from '../types';
 import { percentOfExample, sayP, whatPercentExample } from './percentIntro';
 
 /**
  * World 18, grade 6: "אחוזים". Any percent of a quantity, what percent a part
  * is, the whole from a percent, the price after a discount, an increase,
- * percent of percent-free stories (savings, a class survey).
+ * the discount percent, a survey, two discounts in a row, and mixed stories.
  * Answers are whole numbers by construction.
  */
 
 const ID = 'percent';
-const L = (n: number) => `level.percent.${n}`;
 
-/** p% of base with a whole-number answer. */
-function pctPair(rng: Rng, maxBase = 400): { p: number; base: number; part: number } {
-  const p = pick(rng, [5, 10, 15, 20, 25, 30, 40, 50, 60, 70, 75, 80, 90]);
+/**
+ * Every exercise here also hears "very close" for an answer one off; the
+ * typical slips of each question are diagnosed first.
+ */
+function exercise(p: ExerciseParts): Exercise {
+  return baseExercise({
+    ...p,
+    diagnose: (v) =>
+      p.diagnose?.(v) ??
+      (Number.isInteger(p.answer) && Math.abs(v - p.answer) === 1 ? 'offByOne' : null),
+  });
+}
+const L = (n: number) => `level.percent.${n}`;
+const PERCENTS = [5, 10, 15, 20, 25, 30, 40, 50, 60, 70, 75, 80, 90];
+
+/** p% of base with a whole-number answer, the base in [minBase, maxBase]. */
+function pctPair(rng: Rng, maxBase = 400, minBase = 1): { p: number; base: number; part: number } {
+  const p = pick(rng, PERCENTS);
   const step = p % 25 === 0 ? 4 : p % 10 === 0 ? 10 : 20;
-  const base = randInt(rng, 1, Math.floor(maxBase / step)) * step;
+  const base = randInt(rng, Math.ceil(minBase / step), Math.floor(maxBase / step)) * step;
   return { p, base, part: (base * p) / 100 };
 }
 
+/**
+ * The way to "what percent is part of base", for these numbers: with tens
+ * when ten percent is a whole number and the answer is tens of percent;
+ * otherwise reduce the fraction (34 of 136 is 1 of 4), then make it hundredths.
+ */
+function waysHint(part: number, base: number, p: number): Hint {
+  if (p % 10 === 0 && base % 10 === 0)
+    return hint(sayP('p6.what.tens', { base, ten: base / 10, part }));
+  const g = gcd(part, base);
+  return hint(sayP('p6.what.reduce', { part, base, n: part / g, d: base / g }));
+}
+
 function of(level: 1 | 2, rng: Rng): Exercise {
-  const { p, base, part } = level === 1 ? pctPair(rng, 200) : pctPair(rng, 1000);
+  // Level 2: big quantities only (from 200), not level 1 again.
+  const { p, base, part } = level === 1 ? pctPair(rng, 200) : pctPair(rng, 1000, 200);
   return exercise({
     factId: `p6of:${p}%${base}`,
     topicId: ID,
@@ -60,9 +90,16 @@ function of(level: 1 | 2, rng: Rng): Exercise {
   });
 }
 
+/** Wholes that divide a hundred, and their multiples: the fraction reduces to tenths, quarters, fifths. */
+const WHAT_BASES = [20, 25, 40, 50, 60, 80, 120, 150, 200, 250, 300, 400];
+
 function whatPercent(rng: Rng): Exercise {
-  const { p, base, part } = pctPair(rng, 400);
-  if (part === 0) return whatPercent(rng);
+  const base = pick(rng, WHAT_BASES);
+  const p = pick(
+    rng,
+    PERCENTS.filter((q) => Number.isInteger((base * q) / 100) && (base * q) / 100 >= 2),
+  );
+  const part = (base * p) / 100;
   return exercise({
     factId: `p6what:${part}/${base}`,
     topicId: ID,
@@ -73,23 +110,42 @@ function whatPercent(rng: Rng): Exercise {
     answer: p,
     input: numpad(3),
     hints: [
-      hint(sayP('ex.pct.what.hint1')),
-      hint(sayP('ex.pct6.what.hint2')),
+      hint(sayP('p6.what.hint1')),
+      waysHint(part, base, p),
+      // Not grade 5's example (15 of 60).
       whatPercentExample(p, [
-        [15, 60],
-        [12, 60],
+        [18, 120],
+        [14, 40],
       ]),
     ],
     solution: sayP('ex.pct.what.solution', { part, base, p }),
+    diagnose: (v) => (v === part ? 'other' : null),
   });
+}
+
+/** "20% = 12 → 10% = 6 → 100% = 60": the way from a part to the whole, as the worked example. */
+function wholePathExample(answer: number): Hint {
+  return exampleAvoiding(
+    answer,
+    [
+      { p: 20, part: 12, base: 60 },
+      { p: 30, part: 15, base: 50 },
+    ]
+      .filter((e) => e.part !== answer)
+      .map((e) => ({
+        answer: e.base,
+        hint: () =>
+          exampleHint(
+            `${e.p}% = ${e.part} → 10% = ${e.part / (e.p / 10)} → 100% = ${e.base}`,
+            sayP('p6.whole.path', { p: e.p, part: e.part, ten: e.part / (e.p / 10), base: e.base }),
+          ),
+      })),
+  );
 }
 
 function findWhole(rng: Rng): Exercise {
   const { p, base, part } = pctPair(rng, 400);
   if (part === 0) return findWhole(rng);
-  // Neither the example's whole nor its part may be this answer: either would give it away.
-  const first = { p: 20, part: 12, base: 60 };
-  const e = first.base !== base && first.part !== base ? first : { p: 25, part: 10, base: 40 };
   return exercise({
     factId: `p6whole:${p}%=${part}`,
     topicId: ID,
@@ -103,11 +159,57 @@ function findWhole(rng: Rng): Exercise {
     hints: [
       hint(sayP('ex.pct6.whole.hint1', { p })),
       hint(sayP('ex.pct6.whole.hint2')),
-      exampleHint(`${e.p}% × ${e.base} = ${e.part}`, sayP('ex.pct6.whole.solution', e)),
+      wholePathExample(base),
     ],
     solution: sayP('ex.pct6.whole.solution', { p, part, base }),
     diagnose: (v) => (v === part * p || v === (part * p) / 100 ? 'other' : null),
   });
+}
+
+/** Things with a price, for the discount and increase questions (all masculine: "הוא עולה"). */
+const ITEMS = ['ספר', 'משחק', 'תיק', 'כדור'];
+
+/** The question about a new price: the plain one, or about an item; it follows from the numbers. */
+function changeSpoken(up: boolean, base: number, p: number): Said {
+  const item = (base / 10 + p) % (ITEMS.length + 1);
+  const name = ITEMS[item];
+  if (name === undefined)
+    return sayP(up ? 'ex.pct6.increase.spoken' : 'ex.pct6.discount.spoken', { base, p });
+  return sayP(up ? 'p6.increase.item' : 'p6.discount.item', { base, p, item: name });
+}
+
+/** Hints 2 and 3 for a new price: what is paid as a percent of the price, and a solved example. */
+function changeHints(up: boolean, answer: number, p: number): [Hint, Hint] {
+  const key = up ? 'ex.pct6.increase' : 'ex.pct6.discount';
+  return [
+    // What is paid, as a percent of the price: 100 − p after a discount, 100 + p after an increase.
+    hint(
+      sayP(
+        up ? 'ex.pct6.increase.hint2' : 'ex.pct6.discount.hint2',
+        { p, q: up ? 100 + p : 100 - p },
+        'f',
+        ['p', 'q'],
+      ),
+    ),
+    // Not an example whose new price is this answer: it would give it away.
+    exampleAvoiding(
+      answer,
+      [
+        { base: 80, p: 25 },
+        { base: 60, p: 10 },
+      ].map((e) => {
+        const r = up ? e.base + (e.base * e.p) / 100 : e.base - (e.base * e.p) / 100;
+        return {
+          answer: r,
+          hint: () =>
+            exampleHint(
+              `${e.base} → ${r}`,
+              sayP(`${key}.solution` as 'ex.pct6.discount.solution', { ...e, r }),
+            ),
+        };
+      }),
+    ),
+  ];
 }
 
 /** Price after a discount (level 5) or after an increase (level 6). */
@@ -116,46 +218,20 @@ function change(level: 5 | 6, rng: Rng): Exercise {
   const up = level === 6;
   const answer = up ? base + part : base - part;
   const key = up ? 'ex.pct6.increase' : 'ex.pct6.discount';
+  const spoken = changeSpoken(up, base, p);
   return exercise({
     factId: `p6chg${level}:${base}:${p}`,
     topicId: ID,
     level,
     // The data on screen too (with digits), not only heard.
-    prompt: shown(sayP(`${key}.spoken` as 'ex.pct6.discount.spoken', { base, p })),
+    prompt: shown(spoken),
     display: '',
-    spoken: sayP(`${key}.spoken` as 'ex.pct6.discount.spoken', { base, p }),
+    spoken,
     answer,
+    // A discount is taken off, an increase added: doing the other is "read the question again".
+    operation: up ? 'add' : 'sub',
     input: numpad(4),
-    hints: [
-      hint(sayP(`${key}.hint1` as 'ex.pct6.discount.hint1')),
-      // What is paid, as a percent of the price: 100 − p after a discount, 100 + p after an increase.
-      hint(
-        sayP(
-          up ? 'ex.pct6.increase.hint2' : 'ex.pct6.discount.hint2',
-          { p, q: up ? 100 + p : 100 - p },
-          'f',
-          ['p', 'q'],
-        ),
-      ),
-      // Not an example whose new price is this answer: it would give it away.
-      exampleAvoiding(
-        answer,
-        [
-          { base: 80, p: 25 },
-          { base: 60, p: 10 },
-        ].map((e) => {
-          const r = up ? e.base + (e.base * e.p) / 100 : e.base - (e.base * e.p) / 100;
-          return {
-            answer: r,
-            hint: () =>
-              exampleHint(
-                `${e.base} → ${r}`,
-                sayP(`${key}.solution` as 'ex.pct6.discount.solution', { ...e, r }),
-              ),
-          };
-        }),
-      ),
-    ],
+    hints: [hint(sayP(`${key}.hint1` as 'ex.pct6.discount.hint1')), ...changeHints(up, answer, p)],
     solution: sayP(`${key}.solution` as 'ex.pct6.discount.solution', { base, p, r: answer }),
     diagnose: (v) =>
       v === part ? 'other' : v === (up ? base - part : base + part) ? 'wrongOperation' : null,
@@ -176,12 +252,13 @@ function discountPercent(rng: Rng): Exercise {
     level: 7,
     prompt: t('ex.pct.howMany.prompt'),
     display: `${base} → ${after}`,
-    spoken: sayP('ex.pct6.dp.spoken', { base, after }),
+    spoken: sayP('p6.dp.spoken', { base, after }),
     answer: p,
     input: numpad(3),
     hints: [
       hint(sayP('ex.pct6.dp.hint1')),
-      hint(sayP('ex.pct.what.hint1')),
+      // Out of the original price, not the new one.
+      hint(sayP('p6.dp.hint2', { d: part, base })),
       exampleHint(`${e.base} → ${e.after}: ${e.p}%`, sayP('ex.pct6.dp.solution', e)),
     ],
     solution: sayP('ex.pct6.dp.solution', { base, after, p }),
@@ -189,42 +266,49 @@ function discountPercent(rng: Rng): Exercise {
   });
 }
 
-/** A class survey: k of n children chose something; what percent? */
+const CHILD = { singular: 'ילד', plural: 'ילדים', gender: 'm' as const };
+const QUESTION = { singular: 'שאלה', plural: 'שאלות', gender: 'f' as const };
+
+/** What children chose in a survey. */
+const CHOICES = ['כדורגל', 'כדורסל', 'שחייה', 'ציור', 'מוזיקה'];
+
+/** A survey: k of n children chose something; what percent? A class up to 40, a whole grade above. */
 function survey(rng: Rng): Exercise {
-  const n = pick(rng, [20, 25, 40, 50]);
+  const n = pick(rng, [20, 25, 40, 50, 60, 80, 120, 150]);
   const p = pick(
     rng,
-    n === 25
-      ? [4, 8, 12, 20, 40, 60, 80]
-      : n === 40
-        ? [5, 10, 25, 30, 50, 75]
-        : [10, 20, 30, 40, 50, 60, 70, 80, 90],
+    PERCENTS.filter((q) => Number.isInteger((n * q) / 100) && (n * q) / 100 >= 3),
   );
   const k = (n * p) / 100;
-  if (!Number.isInteger(k) || k < 3) return survey(rng);
+  const what = CHOICES[(n + k) % CHOICES.length] as string;
+  const spoken = say('p6.survey.story', {
+    where: n <= 40 ? 'בכיתה' : 'בשכבה',
+    k: { n: k, noun: CHILD },
+    n: { n, noun: CHILD },
+    what,
+  });
   return exercise({
     factId: `p6survey:${k}/${n}`,
     topicId: ID,
     level: 8,
     // The data on screen too (with digits), not only heard.
-    prompt: shown(say('wp.pct6.survey.story', { k: { n: k, noun: CHILD }, n: { n, noun: CHILD } })),
+    prompt: shown(spoken),
     display: '',
-    spoken: say('wp.pct6.survey.story', { k: { n: k, noun: CHILD }, n: { n, noun: CHILD } }),
+    spoken,
     answer: p,
     input: numpad(3),
     hints: [
-      hint(sayP('ex.pct.what.hint1')),
-      hint(sayP('ex.pct6.what.hint2')),
+      hint(sayP('p6.what.hint1')),
+      waysHint(k, n, p),
       whatPercentExample(p, [
         [10, 40],
         [6, 20],
       ]),
     ],
     solution: sayP('ex.pct.what.solution', { part: k, base: n, p }),
+    diagnose: (v) => (v === k ? 'other' : null),
   });
 }
-
-const CHILD = { singular: 'ילד', plural: 'ילדים', gender: 'm' as const };
 
 /** Two discounts in a row are not one discount of the sum: 10% then 10% of 100 = 81. */
 function twoSteps(rng: Rng): Exercise {
@@ -253,10 +337,87 @@ function twoSteps(rng: Rng): Exercise {
   });
 }
 
-/** Savings with interest-free deposits: a percent of a sum, story form. */
+/**
+ * Level 10, mixed stories: a percent of savings, what is paid after a discount
+ * (two steps), a test score as a percent, and the whole from a part.
+ */
 function story(rng: Rng): Exercise {
-  const { p, base, part } = pctPair(rng, 1000);
-  const who = CHARACTERS[base % CHARACTERS.length] as Character;
+  const kind = pick(rng, ['donate', 'pay', 'score', 'whole'] as const);
+  if (kind === 'score') {
+    const n = pick(rng, [20, 25, 40, 50]);
+    const p = pick(
+      rng,
+      PERCENTS.filter((q) => Number.isInteger((n * q) / 100) && (n * q) / 100 >= 3),
+    );
+    const k = (n * p) / 100;
+    const who = CHARACTERS[(n + k) % CHARACTERS.length] as Character;
+    const spoken = say('p6.wp.score', { name: who.name, n: { n, noun: QUESTION }, k }, who.gender);
+    return exercise({
+      factId: `p6wp:score:${k}/${n}`,
+      topicId: ID,
+      level: 10,
+      prompt: shown(spoken),
+      display: '',
+      spoken,
+      answer: p,
+      input: numpad(3),
+      hints: [
+        hint(sayP('p6.what.hint1')),
+        waysHint(k, n, p),
+        whatPercentExample(p, [
+          [18, 120],
+          [14, 40],
+        ]),
+      ],
+      solution: sayP('ex.pct.what.solution', { part: k, base: n, p }),
+      diagnose: (v) => (v === k ? 'other' : null),
+    });
+  }
+  if (kind === 'whole') {
+    const { p, base, part } = pctPair(rng, 200, 20);
+    if (part < 3) return story(rng);
+    const spoken = sayP('p6.wp.whole', { p, k: { n: part, noun: CHILD } });
+    return exercise({
+      factId: `p6wp:whole:${p}%=${part}`,
+      topicId: ID,
+      level: 10,
+      prompt: shown(spoken),
+      display: '',
+      spoken,
+      answer: base,
+      operation: 'div',
+      input: numpad(4),
+      hints: [
+        hint(sayP('ex.pct6.whole.hint1', { p })),
+        hint(sayP('ex.pct6.whole.hint2')),
+        wholePathExample(base),
+      ],
+      solution: sayP('ex.pct6.whole.solution', { p, part, base }),
+      diagnose: (v) => (v === part * p || v === (part * p) / 100 ? 'other' : null),
+    });
+  }
+  const { p, base, part } = pctPair(rng, 1000, 40);
+  // Any character (the base is even, so base % 6 would pick only the girls).
+  const who = pick(rng, CHARACTERS);
+  if (kind === 'pay') {
+    const answer = base - part;
+    const spoken = sayP('p6.wp.pay', { name: who.name, base, p }, who.gender);
+    return exercise({
+      factId: `p6wp:pay:${base}:${p}`,
+      topicId: ID,
+      level: 10,
+      prompt: shown(spoken),
+      display: '',
+      spoken,
+      answer,
+      operation: 'sub',
+      input: numpad(4),
+      hints: [hint(sayP('ex.pct6.discount.hint1')), ...changeHints(false, answer, p)],
+      solution: sayP('ex.pct6.discount.solution', { base, p, r: answer }),
+      // The discount itself (one step only), or the discount added.
+      diagnose: (v) => (v === part ? 'other' : v === base + part ? 'wrongOperation' : null),
+    });
+  }
   const spoken = sayP('wp.pct6.save.story', { name: who.name, base, p }, who.gender);
   return exercise({
     factId: `p6wp:${base}:${p}`,
@@ -280,13 +441,35 @@ function story(rng: Rng): Exercise {
       ]),
     ],
     solution: sayP('ex.pct.of.solution', { p, base, r: part }),
+    diagnose: (v) => (v === base - part ? 'other' : null),
   });
 }
 
+/** Story and item pieces for the audio bank (sampling may miss a character or an item). */
 function storyBank(): string[] {
-  return CHARACTERS.flatMap(
-    (who) => sayP('wp.pct6.save.story', { name: who.name, base: 200, p: 25 }, who.gender).parts,
-  );
+  return [
+    ...CHARACTERS.flatMap((who) => [
+      ...sayP('wp.pct6.save.story', { name: who.name, base: 200, p: 25 }, who.gender).parts,
+      ...sayP('p6.wp.pay', { name: who.name, base: 200, p: 25 }, who.gender).parts,
+      ...say('p6.wp.score', { name: who.name, n: { n: 20, noun: QUESTION }, k: 15 }, who.gender)
+        .parts,
+    ]),
+    ...ITEMS.flatMap((item) => [
+      ...sayP('p6.discount.item', { base: 200, p: 25, item }).parts,
+      ...sayP('p6.increase.item', { base: 200, p: 25, item }).parts,
+    ]),
+    ...CHOICES.flatMap((what) =>
+      ['בכיתה', 'בשכבה'].flatMap(
+        (where) =>
+          say('p6.survey.story', {
+            where,
+            k: { n: 5, noun: CHILD },
+            n: { n: 20, noun: CHILD },
+            what,
+          }).parts,
+      ),
+    ),
+  ];
 }
 
 export const percent = defineTopic({
@@ -303,8 +486,8 @@ export const percent = defineTopic({
     open(L(5), (rng) => change(5, rng)),
     open(L(6), (rng) => change(6, rng)),
     open(L(7), discountPercent),
-    open(L(8), survey),
+    open('level.percent6.8', survey),
     open(L(9), twoSteps),
-    open(L(10), story),
+    open('level.percent6.10', story),
   ],
 });

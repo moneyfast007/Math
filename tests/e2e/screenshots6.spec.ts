@@ -157,6 +157,7 @@ test('money screens', async ({ page }, info) => {
   await level(page, 'באיזה ארנק', 'm-06-money-wallets');
   await level(page, 'משלמים בדיוק', 'm-07-money-pay');
   await level(page, 'עודף מ-10', 'm-08-money-change', 2);
+  await level(page, 'קונים כמה מאותו דבר', 'm-09-money-several');
   await level(page, 'בעיות קנייה', 'm-09-money-shopping');
 });
 
@@ -164,12 +165,12 @@ test('clock screens', async ({ page }, info) => {
   ipadOnly(info);
   await setup(page, 'רוני');
   await shot(page, 'c-01-journey-clock');
-  await level(page, 'שעות שלמות: איזה שעון?', 'c-02-clock-pick');
-  await level(page, 'חצאי שעה', 'c-03-clock-half', 3);
+  await level(page, 'שעות שלמות וחצאי שעה', 'c-02-clock-pick', 3);
   await level(page, 'שעון דיגיטלי', 'c-04-clock-digital');
   await level(page, 'רבע לפני', 'c-05-clock-quarter-to');
   await level(page, 'רבעי שעה: איזה שעון?', 'c-06-clock-quarters');
-  await level(page, 'כמה זמן עבר?', 'c-07-clock-elapsed');
+  await level(page, 'בעוד רבע שעה', 'c-07-clock-later-quarter');
+  await level(page, 'כמה זמן עבר? ברבעי שעה', 'c-07-clock-elapsed');
   await level(page, 'בעיות זמן', 'c-08-clock-story', 2);
 });
 

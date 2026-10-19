@@ -3,8 +3,9 @@ import { t } from '@/i18n';
 import {
   displayFraction as f,
   displayMixed,
+  FRACTION_NOUNS,
   fractionNoun,
-  fractionWords as w,
+  fractionWords,
 } from '@/lang/fractions';
 import { numberToWords, type Noun } from '@/lang/hebrewNumbers';
 import {
@@ -14,6 +15,7 @@ import {
   exampleAvoiding,
   exampleHint,
   exercise,
+  gcd,
   hint,
   numpad,
   range,
@@ -22,13 +24,14 @@ import {
   type Character,
   type WordNoun,
 } from '../build';
-import type { Exercise, Visual } from '../types';
+import type { Exercise, Hint, Visual } from '../types';
 
 /**
- * World 14, grade 5: "כפל וחילוק בשברים". A whole times a fraction, finding
+ * Grade 6: "כפל וחילוק בשברים". A whole times a fraction, finding
  * the whole from a part, a fraction times a fraction, dividing a fraction by
  * a whole and a whole by a unit fraction, a mixed number times a whole,
- * stories. Only denominators with a Hebrew word (2–10), so all can be read.
+ * stories. Fractions are read with their Hebrew word (2–10: "שלושה רבעים"),
+ * and a product with no word ("אחת חלקי שתים עשרה") with "חלקי".
  * All levels are closed, so every sentence is recorded whole.
  */
 
@@ -42,16 +45,64 @@ const bar = (n: number, d: number): Visual => ({
   shaded: Math.min(n, d),
 });
 
+/** A fraction read aloud: its word ("שלושה רבעים"), or "חמש חלקי שתים עשרה" when there is none. */
+const w = (n: number, d: number): string =>
+  FRACTION_NOUNS[d] ? fractionWords(n, d) : `${numberToWords(n)} חלקי ${numberToWords(d)}`;
+
 /** "שלוש כפול רבע" */
 const times = (k: number, n: number, d: number) => `${numberToWords(k)} כפול ${w(n, d)}`;
 
+/** 6 × 1/3 = ?: a whole number of unit fractions that makes whole numbers (the answer is not on screen). */
+function wholeTimesUnit(m: number, d: number): Exercise {
+  const k = m * d;
+  const noun = fractionNoun(d);
+  return exercise({
+    factId: `fwt1:${k}x1/${d}`,
+    topicId: ID,
+    level: 1,
+    prompt: t('ex.arith.prompt'),
+    display: `${k} × ${f(1, d)} = ?`,
+    spoken: say('ex.fmul.question', { q: times(k, 1, d) }),
+    visual: bar(1, d),
+    answer: m,
+    operation: 'mul',
+    input: numpad(2),
+    hints: [
+      // Repeated addition: k of these is k thirds; then how many wholes is that.
+      hint(say('fmd.unit.hint1', { k, unit: w(1, d), units: { n: k, noun } })),
+      hint(say('fmd.unit.hint2', { all: { n: d, noun }, units: { n: k, noun } })),
+      exampleAvoiding(
+        m,
+        [
+          { k: 6, d: 2 },
+          { k: 8, d: 4 },
+        ].map((ex) => ({
+          answer: ex.k / ex.d,
+          hint: () =>
+            exampleHint(
+              `${ex.k} × ${f(1, ex.d)} = ${ex.k / ex.d}`,
+              say('fmd.unit.solution', {
+                q: times(ex.k, 1, ex.d),
+                units: { n: ex.k, noun: fractionNoun(ex.d) },
+                r: ex.k / ex.d,
+              }),
+            ),
+        })),
+      ),
+    ],
+    solution: say('fmd.unit.solution', { q: times(k, 1, d), units: { n: k, noun }, r: m }),
+    // The numerator written (k thirds), not the wholes it makes.
+    diagnose: (v) => (v === k || v === k * d ? 'other' : null),
+  });
+}
+
 /** 3 × 2/5 = ?/5 */
-function wholeTimes(level: 1 | 2, k: number, n: number, d: number): Exercise {
+function wholeTimes(k: number, n: number, d: number): Exercise {
   const answer = k * n;
   return exercise({
     factId: `fwt:${k}x${n}/${d}`,
     topicId: ID,
-    level,
+    level: 2,
     prompt: t('ex.frac.expand.prompt'),
     display: `${k} × ${f(n, d)} = ?/${d}`,
     spoken: say('ex.fmul.question', { q: times(k, n, d) }),
@@ -60,14 +111,14 @@ function wholeTimes(level: 1 | 2, k: number, n: number, d: number): Exercise {
     operation: 'mul',
     input: numpad(2),
     hints: [
-      hint(say('ex.fmul.wholeTimes.hint1', { a: w(n, d) })),
+      hint(say('fmd.wholeTimes.hint1', { a: w(n, d), k })),
       hint(say('ex.fmul.wholeTimes.hint2')),
-      // The answer is the numerator: the example's numerator must not be it.
+      // A numerator other than one, as in the level; the example's numerator must not be the answer.
       exampleAvoiding(
         answer,
         [
-          { k: 3, n: 1, d: 4 },
-          { k: 2, n: 1, d: 3 },
+          { k: 2, n: 3, d: 5 },
+          { k: 4, n: 2, d: 9 },
         ].map((ex) => ({
           answer: ex.k * ex.n,
           hint: () =>
@@ -86,24 +137,41 @@ function wholeTimes(level: 1 | 2, k: number, n: number, d: number): Exercise {
   });
 }
 
+/** The way from a part to the whole: one part first, then all the parts. */
+function wholePath(n: number, d: number, part: number) {
+  const one = part / n;
+  return n === 1
+    ? say('fmd.whole.unitPath', { a: w(1, d), part, d, whole: one * d })
+    : say('fmd.whole.path', { a: w(n, d), part, n, one, d, whole: one * d });
+}
+
 /**
- * "1/4 × 20 = 5" solved. The hidden number is the whole, so when it is 20 the
- * example is "1/3 × 12 = 4" instead.
+ * Hint 3 for "n/d × ? = part": a solved one that shows the way (one part, then
+ * the whole), with a unit fraction or not, like the exercise; never this whole.
  */
-function findWholeExample(whole: number) {
+function findWholeExample(whole: number, unit: boolean): Hint {
   return exampleAvoiding(
     whole,
-    [
-      { n: 1, d: 4, part: 5 },
-      { n: 1, d: 3, part: 4 },
-    ].map((ex) => {
-      const exW = (ex.part / ex.n) * ex.d;
+    (unit
+      ? [
+          { n: 1, d: 4, part: 5 },
+          { n: 1, d: 3, part: 4 },
+        ]
+      : [
+          { n: 3, d: 4, part: 15 },
+          { n: 2, d: 3, part: 8 },
+        ]
+    ).map((ex) => {
+      const one = ex.part / ex.n;
+      const exW = one * ex.d;
       return {
         answer: exW,
         hint: () =>
           exampleHint(
-            `${f(ex.n, ex.d)} × ${exW} = ${ex.part}`,
-            say('ex.fmul.findWhole.solution', { a: w(ex.n, ex.d), whole: exW, part: ex.part }),
+            unit
+              ? `${f(ex.n, ex.d)} × ? = ${ex.part} → ${ex.d} × ${ex.part} = ${exW}`
+              : `${f(ex.n, ex.d)} × ? = ${ex.part} → ${ex.part} ÷ ${ex.n} = ${one} → ${ex.d} × ${one} = ${exW}`,
+            wholePath(ex.n, ex.d, ex.part),
           ),
       };
     }),
@@ -130,15 +198,16 @@ function findWhole(level: 3 | 4, n: number, d: number, part: number): Exercise {
           ? say('ex.fmul.findWhole.hint1unit', { d })
           : say('ex.fmul.findWhole.hint1', { n, d }),
       ),
-      hint(say('ex.fmul.findWhole.hint2')),
-      findWholeExample(whole),
+      // The first step with these numbers (one part), or the check for a unit fraction.
+      hint(n === 1 ? say('ex.fmul.findWhole.hint2') : say('fmd.whole.hint2', { part, n })),
+      findWholeExample(whole, n === 1),
     ],
-    solution: say('ex.fmul.findWhole.solution', { a: w(n, d), whole, part }),
+    solution: wholePath(n, d, part),
     diagnose: (v) => (v === part * n || v === part / n ? 'other' : null),
   });
 }
 
-/** 1/2 × 1/3 = 1/? (level 5, the denominator), 2/3 × 1/3 = ?/9 (level 6, the numerator). */
+/** 1/2 × 1/3 = 1/? (level 5, the denominator), 3/4 × 2/5 = ?/20 (level 6, the numerator). */
 function fracTimes(
   level: 5 | 6,
   a: { n: number; d: number },
@@ -155,8 +224,8 @@ function fracTimes(
         { a: { n: 1, d: 2 }, b: { n: 1, d: 4 } },
       ]
     : [
-        { a: { n: 2, d: 3 }, b: { n: 1, d: 3 } },
-        { a: { n: 1, d: 2 }, b: { n: 3, d: 4 } },
+        { a: { n: 3, d: 4 }, b: { n: 2, d: 5 } },
+        { a: { n: 2, d: 3 }, b: { n: 4, d: 5 } },
       ];
   const q = `${w(a.n, a.d)} כפול ${w(b.n, b.d)}`;
   return exercise({
@@ -171,7 +240,7 @@ function fracTimes(
     visual: bar(a.n, a.d),
     answer: askDen ? den : num,
     operation: 'mul',
-    input: numpad(2),
+    input: numpad(3),
     hints: [
       hint(say('ex.fmul.fracTimes.hint1')),
       hint(say('ex.fmul.fracTimes.hint2', { a: w(b.n, b.d), b: w(a.n, a.d) })),
@@ -195,7 +264,9 @@ function fracTimes(
       ),
     ],
     solution: say('ex.frac.equal.solution', { a: q, b: w(num, den) }),
-    diagnose: (v) => (askDen && v === a.d + b.d ? 'wrongOperation' : null),
+    // Denominators added instead of multiplied.
+    diagnose: (v) =>
+      askDen && v === a.d + b.d ? 'wrongOperation' : !askDen && v === a.n + b.n ? 'wrongOperation' : null,
   });
 }
 
@@ -280,39 +351,40 @@ function wholeDivUnit(k: number, d: number): Exercise {
   });
 }
 
-/** (2 1/3) × 3 = ? — chosen so the answer is a whole number. */
-function mixedTimes(whole: number, n: number, d: number): Exercise {
-  const answer = whole * d + n;
-  const q = (x: number, y: number, z: number) =>
-    `${numberToWords(x)} ו${w(y, z)} כפול ${numberToWords(z)}`;
+/** (2 1/3) × 6 = ?: times the denominator or twice it, so the answer is a whole number. */
+function mixedTimes(whole: number, n: number, d: number, m: number): Exercise {
+  const answer = whole * m + (n * m) / d;
+  const q = (x: number, y: number, z: number, k: number) =>
+    `${numberToWords(x)} ו${w(y, z)} כפול ${numberToWords(k)}`;
   return exercise({
-    factId: `fmt:${whole} ${n}/${d}x${d}`,
+    factId: `fmt:${whole} ${n}/${d}x${m}`,
     topicId: ID,
     level: 9,
     prompt: t('ex.arith.prompt'),
-    display: `${displayMixed(whole, n, d)} × ${d} = ?`,
-    spoken: say('ex.fmul.question', { q: q(whole, n, d) }),
+    display: `${displayMixed(whole, n, d)} × ${m} = ?`,
+    spoken: say('ex.fmul.question', { q: q(whole, n, d, m) }),
     visual: bar(n, d),
     answer,
     operation: 'mul',
     input: numpad(2),
     hints: [
       hint(say('ex.fmul.mixed.hint1')),
-      hint(say('ex.fmul.mixed.hint2')),
+      // The wholes with these numbers, then the fraction is left.
+      hint(say('fmd.mixed.hint2', { whole, m, wm: whole * m, frac: w(n, d) })),
       exampleAvoiding(
         answer,
         [
-          { whole: 1, n: 1, d: 2 },
-          { whole: 2, n: 1, d: 3 },
+          { whole: 1, n: 1, d: 2, m: 2 },
+          { whole: 2, n: 1, d: 3, m: 6 },
         ].map((ex) => {
-          const exA = ex.whole * ex.d + ex.n;
+          const exA = ex.whole * ex.m + (ex.n * ex.m) / ex.d;
           return {
             answer: exA,
             hint: () =>
               exampleHint(
-                `${displayMixed(ex.whole, ex.n, ex.d)} × ${ex.d} = ${exA}`,
+                `${displayMixed(ex.whole, ex.n, ex.d)} × ${ex.m} = ${exA}`,
                 say('ex.frac.equal.solution', {
-                  a: q(ex.whole, ex.n, ex.d),
+                  a: q(ex.whole, ex.n, ex.d, ex.m),
                   b: numberToWords(exA),
                 }),
               ),
@@ -320,8 +392,9 @@ function mixedTimes(whole: number, n: number, d: number): Exercise {
         }),
       ),
     ],
-    solution: say('ex.frac.equal.solution', { a: q(whole, n, d), b: numberToWords(answer) }),
-    diagnose: (v) => (v === whole * d ? 'other' : null),
+    solution: say('ex.frac.equal.solution', { a: q(whole, n, d, m), b: numberToWords(answer) }),
+    // The fraction forgotten, or its numerator added as it is.
+    diagnose: (v) => (v === whole * m || v === whole * m + n ? 'other' : null),
   });
 }
 
@@ -369,7 +442,7 @@ function story(i: number, n: number, d: number, total: number): Exercise {
         },
       },
       findWholeStory
-        ? findWholeExample(answer)
+        ? findWholeExample(answer, n === 1)
         : exampleAvoiding(
             answer,
             [
@@ -395,26 +468,28 @@ function story(i: number, n: number, d: number, total: number): Exercise {
 }
 
 const PROPER = DENS.flatMap((d) => range(1, d - 1).map((n) => ({ n, d })));
+/** Unit fractions times unit fractions: any two denominators (1/3 × 1/4 = 1/12, read "חלקי"). */
 const UNIT_PAIRS = DENS.flatMap((a) =>
-  DENS.filter((b) => b >= a && DENS.includes(a * b)).map((b) => ({
+  DENS.filter((b) => b >= a).map((b) => ({
     a: { n: 1, d: a },
     b: { n: 1, d: b },
   })),
 );
+/** Fraction times fraction, not both unit fractions, the product up to thirtieths. */
 const PAIRS = PROPER.flatMap((a) =>
-  PROPER.filter((b) => DENS.includes(a.d * b.d) && a.n * b.n < a.d * b.d).map((b) => ({ a, b })),
+  PROPER.filter((b) => a.d * b.d <= 30 && (a.n > 1 || b.n > 1)).map((b) => ({ a, b })),
 );
 
 export const fractionMulDiv = defineTopic({
   id: ID,
   labelKey: 'topic.fractionMulDiv',
-  grades: [5],
+  grades: [6],
   startLevel: () => 1,
   levels: [
     closed(
       L(1),
-      () => DENS.flatMap((d) => range(2, d - 1).map((k) => ({ k, d }))),
-      (x) => wholeTimes(1, x.k, 1, x.d),
+      () => DENS.flatMap((d) => range(1, 4).map((m) => ({ m, d }))),
+      (x) => wholeTimesUnit(x.m, x.d),
     ),
     closed(
       L(2),
@@ -424,7 +499,7 @@ export const fractionMulDiv = defineTopic({
             .filter((k) => k * x.n <= 40)
             .map((k) => ({ k, ...x })),
         ),
-      (x) => wholeTimes(2, x.k, x.n, x.d),
+      (x) => wholeTimes(x.k, x.n, x.d),
     ),
     closed(
       L(3),
@@ -464,17 +539,23 @@ export const fractionMulDiv = defineTopic({
     ),
     closed(
       L(9),
+      // Times the denominator, and for small denominators times twice it (1 2/3 × 6).
       () =>
         DENS.flatMap((d) =>
-          range(1, 4).flatMap((whole) => range(1, d - 1).map((n) => ({ whole, n, d }))),
+          range(1, 4).flatMap((whole) =>
+            range(1, d - 1).flatMap((n) =>
+              (d <= 5 ? [d, 2 * d] : [d]).map((m) => ({ whole, n, d, m })),
+            ),
+          ),
         ),
-      (x) => mixedTimes(x.whole, x.n, x.d),
+      (x) => mixedTimes(x.whole, x.n, x.d, x.m),
     ),
     closed(
       L(10),
       () =>
+        // Fractions in lowest terms only (not 2/4).
         [2, 3, 4, 5].flatMap((d) =>
-          range(1, d - 1).flatMap((n) =>
+          range(1, d - 1).filter((n) => gcd(n, d) === 1).flatMap((n) =>
             range(3, 6).map((k, j) => ({ i: d * 11 + n * 5 + j, n, d, total: d * k })),
           ),
         ),

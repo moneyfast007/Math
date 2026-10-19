@@ -114,7 +114,10 @@ const MANY: Name[] = ['triangle', 'rightTri', 'square', 'rectangle', 'quad', 'tr
 /** Levels 1–2: how many sides, how many vertices. */
 function count(level: 1 | 2) {
   return (rng: Rng): Exercise => {
-    const name = pick(rng, MANY);
+    // The number of sides first, then a shape: four-sided shapes are most of MANY,
+    // and the answer's button would mostly sit in the same place.
+    const sides = pick(rng, [3, 4, 5, 6]);
+    const name = pick(rng, MANY.filter((m) => SIDES[m] === sides));
     const n = SIDES[name];
     const key = level === 1 ? 'ex.poly.sides' : 'ex.poly.vertices';
     const ex: Name = n === 5 ? 'hexagon' : 'pentagon';
@@ -127,7 +130,7 @@ function count(level: 1 | 2) {
       spoken: say(`${key}.prompt`),
       visual: poly(name),
       answer: n,
-      input: { type: 'choices', choices: windowChoices(rng, [3, 4, 5, 6, 7], n) },
+      input: { type: 'choices', choices: windowChoices(rng, [2, 3, 4, 5, 6, 7, 8], n) },
       hints: [
         hint(say(`${key}.hint1`)),
         hint(say('ex.poly.hint2')),

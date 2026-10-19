@@ -1,5 +1,6 @@
 import { shown, type Slot, type Spoken } from '@/lang/compose';
 import { t, type TranslationKey } from '@/i18n';
+import type { Noun } from '@/lang/hebrewNumbers';
 import type { MistakeKind } from '@/state/schema';
 import {
   CHARACTERS,
@@ -12,8 +13,9 @@ import {
   open,
   say,
   type Character,
+  type Said,
 } from '../build';
-import { randInt } from '../rng';
+import { pick, randInt } from '../rng';
 import type { Exercise, Rng } from '../types';
 
 /**
@@ -22,8 +24,9 @@ import type { Exercise, Rng } from '../types';
  * a missing number inside an expression, two-step stories.
  *
  * Every expression is a shape with three or four numbers; its display, its
- * spoken form (brackets are read "פותחים סוגריים … סוגרים סוגריים"), its value
- * and the typical wrong value (the operations done in the wrong order).
+ * spoken form (brackets are read "פותחים סוגריים … סוגרים סוגריים"), its value,
+ * the typical wrong value (the operations done in the wrong order), and its
+ * first step with these numbers (the second hint).
  */
 
 const ID = 'order-ops';
@@ -35,6 +38,8 @@ interface Shape {
   slots: Record<string, Slot>;
   value: number;
   wrong: number;
+  /** What to work out first, with the numbers: "קודם נחשב 4 כפול 3. כמה זה?" */
+  first: Said;
 }
 
 type Gen = (rng: Rng) => Shape | null;
@@ -49,6 +54,7 @@ const plusTimes: Gen = (rng) => {
     slots: { a, b, c },
     value: a + b * c,
     wrong: (a + b) * c,
+    first: say('ord.step.mul', { x: b, y: c }),
   };
 };
 
@@ -65,6 +71,7 @@ const timesMinusDiv: Gen = (rng) => {
     slots: { a, b, c, d },
     value: a * b - q,
     wrong: Math.floor((a * b - c) / d),
+    first: say('ord.step.both', { a, b, c, d }),
   };
 };
 
@@ -78,6 +85,7 @@ const bracketTimes: Gen = (rng) => {
     slots: { a, b, c },
     value: (a + b) * c,
     wrong: a + b * c,
+    first: say('ord.step.add', { x: a, y: b }),
   };
 };
 
@@ -91,6 +99,7 @@ const timesBracket: Gen = (rng) => {
     slots: { a, b, c },
     value: a * (b - c),
     wrong: a * b - c,
+    first: say('ord.step.sub', { x: b, y: c }),
   };
 };
 
@@ -102,9 +111,11 @@ const twoBrackets: Gen = (rng) => {
   return {
     key: 'ex.ord.twoBrackets',
     display: `(${a} + ${b}) × (${c} − ${d})`,
-    slots: { a, b, c, d },
+    // s1, s2: the two brackets, for the solution that says the whole way.
+    slots: { a, b, c, d, s1: a + b, s2: c - d },
     value: (a + b) * (c - d),
     wrong: a + b * c - d,
+    first: say('ord.step.two', { a, b, c, d }),
   };
 };
 
@@ -120,6 +131,7 @@ const leftToRightAdd: Gen = (rng) => {
     slots: { a, b, c },
     value: a - b + c,
     wrong: a - (b + c),
+    first: say('ord.step.ltrSub', { x: a, y: b }),
   };
 };
 
@@ -135,8 +147,18 @@ const leftToRightMul: Gen = (rng) => {
     slots: { a, b, c },
     value: q * c,
     wrong: Number.isInteger(wrong) ? wrong : -1,
+    first: say('ord.step.ltrDiv', { x: a, y: b }),
   };
 };
+
+/** The solution of a shape; two brackets say both brackets and the product. */
+function solved(s: Shape): Spoken {
+  const key =
+    s.key === 'ex.ord.twoBrackets'
+      ? 'ord.twoBrackets.solution'
+      : (`${s.key}.solution` as TranslationKey);
+  return say(key, { ...s.slots, r: s.value });
+}
 
 function fromShape(level: number, gen: Gen, rng: Rng): Exercise {
   const s = gen(rng);
@@ -148,7 +170,8 @@ function fromShape(level: number, gen: Gen, rng: Rng): Exercise {
     .map((x) => gen(() => x))
     .find((e) => e && e.display !== s.display && e.value !== s.value);
   if (!example) return fromShape(level, gen, rng);
-  const diagnose = (v: number): MistakeKind | null => (v === s.wrong ? 'order' : null);
+  const diagnose = (v: number): MistakeKind | null =>
+    v === s.wrong ? 'order' : Math.abs(v - s.value) === 1 ? 'offByOne' : null;
   return exercise({
     factId: `ord:${s.display}`,
     topicId: ID,
@@ -168,7 +191,8 @@ function fromShape(level: number, gen: Gen, rng: Rng): Exercise {
               : 'hint.order.leftToRight',
         ),
       ),
-      hint(say('hint.order.rule')),
+      // The first step with these numbers, not the rule again.
+      hint(s.first),
       exampleHint(`${example.display} = ${example.value}`, solved(example)),
     ],
     solution: solved(s),
@@ -176,46 +200,64 @@ function fromShape(level: number, gen: Gen, rng: Rng): Exercise {
   });
 }
 
-/** Each shape has a matching solution template: "{a} ועוד {b} כפול {c} זה {r}." */
-function solved(s: Shape): Spoken {
-  return say(`${s.key}.solution` as TranslationKey, { ...s.slots, r: s.value });
-}
-
-/** 7 × 23 = 7 × 20 + 7 × ? */
+/**
+ * 7 × 23 = 7 × 20 + ?, or 7 × 98 = 7 × 100 − ?: the asked part is a product,
+ * not a digit already on the screen; both ways of breaking the number.
+ */
 function distributive(rng: Rng): Exercise {
   const a = randInt(rng, 3, 9);
-  const tens = randInt(rng, 1, 9) * 10;
-  const u = randInt(rng, 1, 9);
+  const minus = rng() < 0.5;
+  // Not u = 1: then the answer is a, already on the screen.
+  const u = minus ? randInt(rng, 2, 3) : randInt(rng, 2, 9);
+  const t10 = minus ? randInt(rng, 2, 10) * 10 : randInt(rng, 1, 9) * 10;
+  const n = minus ? t10 - u : t10 + u;
+  const sign = minus ? '−' : '+';
+  const answer = a * u;
+  const solvedOf = (x: { a: number; t: number; u: number }) =>
+    say(minus ? 'ord.dist.solution.minus' : 'ord.dist.solution.plus', {
+      a: x.a,
+      n: minus ? x.t - x.u : x.t + x.u,
+      t: x.t,
+      u: x.u,
+      r: x.a * x.u,
+    });
   return exercise({
-    factId: `dist:${a}x${tens + u}`,
+    factId: `dist:${a}x${n}${minus ? '-' : '+'}`,
     topicId: ID,
     level: 8,
     prompt: t('ex.missing.prompt'),
-    display: `${a} × ${tens + u} = ${a} × ${tens} + ${a} × ?`,
-    spoken: say('ex.ord.dist.spoken', { a, n: tens + u, t: tens }),
-    answer: u,
+    display: `${a} × ${n} = ${a} × ${t10} ${sign} ?`,
+    spoken: say(minus ? 'ord.dist.minus' : 'ord.dist.plus', { a, n, t: t10 }),
+    answer,
     input: numpad(2),
     hints: [
-      hint(say('ex.ord.dist.hint1', { n: tens + u, t: tens })),
-      hint(say('ex.ord.dist.hint2')),
+      hint(say(minus ? 'ord.dist.hint1.minus' : 'ord.dist.hint1.plus', { n, t: t10, u })),
+      hint(say('ord.dist.hint2', { a, t: t10, u })),
       // Not an example whose missing number is this answer: it would give it away.
       exampleAvoiding(
-        u,
-        [
-          { a: 4, tens: 20, u: 3 },
-          { a: 6, tens: 30, u: 2 },
-        ].map((ex) => ({
-          answer: ex.u,
+        answer,
+        (minus
+          ? [
+              { a: 4, t: 30, u: 2 },
+              { a: 6, t: 50, u: 3 },
+            ]
+          : [
+              { a: 4, t: 20, u: 3 },
+              { a: 6, t: 30, u: 4 },
+            ]
+        ).map((x) => ({
+          answer: x.a * x.u,
           hint: () =>
             exampleHint(
-              `${ex.a} × ${ex.tens + ex.u} = ${ex.a} × ${ex.tens} + ${ex.a} × ${ex.u}`,
-              say('ex.ord.dist.solution', { n: ex.tens + ex.u, t: ex.tens, u: ex.u }),
+              `${x.a} × ${minus ? x.t - x.u : x.t + x.u} = ${x.a} × ${x.t} ${sign} ${x.a * x.u}`,
+              solvedOf(x),
             ),
         })),
       ),
     ],
-    solution: say('ex.ord.dist.solution', { n: tens + u, t: tens, u }),
-    diagnose: (v) => (v === tens + u ? 'other' : null),
+    solution: solvedOf({ a, t: t10, u }),
+    // The units alone (not multiplied), or the whole product.
+    diagnose: (v) => (v === u || v === a * n ? 'other' : null),
   });
 }
 
@@ -225,9 +267,10 @@ function missingInside(rng: Rng): Exercise {
   const b = randInt(rng, 1, 9);
   const c = randInt(rng, 2, 9);
   const r = (x + b) * c;
-  // Neither the example's missing number nor its result may be this answer.
-  const first = { x: 3, b: 4, c: 3 };
-  const ex = x !== first.x && x !== (first.x + first.b) * first.c ? first : { x: 2, b: 5, c: 4 };
+  const said = (e: { x: number; b: number; c: number }) =>
+    say('ord.inside.solution', { r: (e.x + e.b) * e.c, c: e.c, s: e.x + e.b, b: e.b, x: e.x });
+  // Not an example whose missing number is this answer.
+  const ex = x !== 5 ? { x: 5, b: 4, c: 2 } : { x: 3, b: 5, c: 4 };
   return exercise({
     factId: `minside:${x}+${b}x${c}`,
     topicId: ID,
@@ -240,32 +283,47 @@ function missingInside(rng: Rng): Exercise {
     hints: [
       hint(say('ex.ord.inside.hint1', { c, r })),
       hint(say('ex.ord.inside.hint2', { b })),
-      exampleHint(
-        `(${ex.x} + ${ex.b}) × ${ex.c} = ${(ex.x + ex.b) * ex.c}`,
-        say('ex.ord.inside.solution', { x: ex.x }),
-      ),
+      // The way back, not the filled-in exercise: first undo the times, then the plus.
+      exampleHint(`(? + ${ex.b}) × ${ex.c} = ${(ex.x + ex.b) * ex.c} → ? = ${ex.x}`, said(ex)),
     ],
-    solution: say('ex.ord.inside.solution', { x }),
-    diagnose: (v) => (v === r / c ? 'other' : null),
+    solution: said({ x, b, c }),
+    // Stopped inside the brackets, or added the number instead of taking it away.
+    diagnose: (v) => (v === r / c || v === r / c + b ? 'other' : null),
   });
 }
 
-const NOTEBOOK = { singular: 'מחברת', plural: 'מחברות', gender: 'f' as const };
+const NOTEBOOK: Noun = { singular: 'מחברת', plural: 'מחברות', gender: 'f' };
+const TICKET: Noun = { singular: 'כרטיס', plural: 'כרטיסים', gender: 'm' };
 
-/** Two steps: k notebooks at a price, plus a pen. */
+/**
+ * Two steps: k things at a price plus one more thing (notebooks and a pen,
+ * cinema tickets and popcorn), or the change from a note.
+ */
 function story(rng: Rng): Exercise {
   const k = randInt(rng, 3, 8);
   const price = randInt(rng, 3, 15);
   const pen = randInt(rng, 3, 12);
+  const kind = pick(rng, ['shop', 'cinema', 'change'] as const);
   const who = CHARACTERS[(k + pen) % CHARACTERS.length] as Character;
-  const answer = k * price + pen;
+  const bill = [50, 100, 200].find((x) => x > k * price) as number;
+  const change = kind === 'change';
+  const answer = change ? bill - k * price : k * price + pen;
+  const key: TranslationKey =
+    kind === 'shop' ? 'wp.ord.shop.story' : kind === 'cinema' ? 'ord.wp.cinema' : 'ord.wp.change';
   const spoken = say(
-    'wp.ord.shop.story',
-    { name: who.name, k: { n: k, noun: NOTEBOOK }, price, pen },
+    key,
+    {
+      name: who.name,
+      k: { n: k, noun: kind === 'cinema' ? TICKET : NOTEBOOK },
+      price,
+      pen,
+      bill,
+    },
     who.gender,
   );
+  const shown2 = change ? `${bill} − ${k} × ${price} = ?` : `${k} × ${price} + ${pen} = ?`;
   return exercise({
-    factId: `owp:${k}x${price}+${pen}`,
+    factId: `owp:${kind}:${k}x${price}${change ? `:${bill}` : `+${pen}`}`,
     topicId: ID,
     level: 10,
     prompt: shown(spoken),
@@ -274,43 +332,66 @@ function story(rng: Rng): Exercise {
     answer,
     input: numpad(3),
     hints: [
-      hint(say('wp.ord.shop.hint1')),
+      hint(say(change ? 'ord.wp.change.hint1' : kind === 'cinema' ? 'ord.wp.cinema.hint1' : 'wp.ord.shop.hint1')),
       {
         ...hint(say('hint.equation')),
-        example: { display: `${k} × ${price} + ${pen} = ?`, spoken: say('hint.equation').text },
+        example: { display: shown2, spoken: say('hint.equation').text },
       },
       // Not an example whose total is this answer: it would give it away.
       exampleAvoiding(
         answer,
         [
-          { a: 3, b: 8, c: 5 },
-          { a: 4, b: 6, c: 3 },
+          { a: 3, b: 8, c: change ? 50 : 5 },
+          { a: 4, b: 6, c: change ? 100 : 3 },
         ].map((ex) => {
-          const r = ex.a * ex.b + ex.c;
+          const r = change ? ex.c - ex.a * ex.b : ex.a * ex.b + ex.c;
           return {
             answer: r,
             hint: () =>
               exampleHint(
-                `${ex.a} × ${ex.b} + ${ex.c} = ${r}`,
-                say('wp.ord.shop.solution', { ...ex, r }),
+                change ? `${ex.c} − ${ex.a} × ${ex.b} = ${r}` : `${ex.a} × ${ex.b} + ${ex.c} = ${r}`,
+                say(change ? 'ord.wp.change.solution' : 'wp.ord.shop.solution', { ...ex, r }),
               ),
           };
         }),
       ),
     ],
-    solution: say('wp.ord.shop.solution', { a: k, b: price, c: pen, r: answer }),
-    diagnose: (v) => (v === k * (price + pen) ? 'order' : null),
+    solution: say(change ? 'ord.wp.change.solution' : 'wp.ord.shop.solution', {
+      a: k,
+      b: price,
+      c: change ? bill : pen,
+      r: answer,
+    }),
+    // Adding before multiplying, or stopping after the first step (the cost, not the change).
+    diagnose: (v) =>
+      change
+        ? v === k * price
+          ? 'other'
+          : v === (bill - k) * price
+            ? 'order'
+            : null
+        : v === k * (price + pen)
+          ? 'order'
+          : null,
   });
 }
 
 function storyBank(): string[] {
-  return CHARACTERS.flatMap(
-    (who) =>
-      say(
-        'wp.ord.shop.story',
-        { name: who.name, k: { n: 3, noun: NOTEBOOK }, price: 8, pen: 5 },
-        who.gender,
-      ).parts,
+  return CHARACTERS.flatMap((who) =>
+    (['wp.ord.shop.story', 'ord.wp.cinema', 'ord.wp.change'] as const).flatMap(
+      (key) =>
+        say(
+          key,
+          {
+            name: who.name,
+            k: { n: 3, noun: key === 'ord.wp.cinema' ? TICKET : NOTEBOOK },
+            price: 8,
+            pen: 5,
+            bill: 50,
+          },
+          who.gender,
+        ).parts,
+    ),
   );
 }
 

@@ -1,6 +1,7 @@
 import { shown } from '@/lang/compose';
 import { t, type TranslationKey } from '@/i18n';
 import type { Noun } from '@/lang/hebrewNumbers';
+import type { MistakeKind } from '@/state/schema';
 import {
   closed,
   defineTopic,
@@ -82,6 +83,10 @@ interface AreaParts {
   example: Hint;
   solution: Said;
   digits?: number;
+  /** The typical slips for this shape (the rectangle's perimeter, a triangle not halved). */
+  slips?: (v: number) => MistakeKind | null;
+  /** What should be done, for "read the question again": multiply (rectangle) or halve (triangle). */
+  operation?: 'mul' | 'div';
 }
 
 /**
@@ -118,6 +123,15 @@ function areaExercise(p: AreaParts): Exercise {
       p.example,
     ],
     solution: p.solution,
+    ...(p.operation ? { operation: p.operation } : {}),
+    // The shape's own slips; otherwise a slip of one or of ten.
+    diagnose: (v) =>
+      p.slips?.(v) ??
+      (Math.abs(v - p.answer) === 1
+        ? 'offByOne'
+        : Math.abs(v - p.answer) === 10
+          ? 'offByTen'
+          : null),
   });
 }
 
@@ -125,8 +139,11 @@ function areaExercise(p: AreaParts): Exercise {
 
 function rectangle(rng: Rng): Exercise {
   const square = rng() < 0.3;
-  const a = randInt(rng, 3, 20);
-  const b = square ? a : randInt(rng, 3, 20);
+  const x = randInt(rng, 3, 20);
+  const y = square ? x : randInt(rng, 3, 20);
+  // The length is the longer side, as in school (and on the long side of the picture).
+  const a = Math.max(x, y);
+  const b = Math.min(x, y);
   const solved = (x: number, y: number) =>
     say('ex.areas.rect.solution', { a: x, b: y, s: cm2(x * y) });
   return areaExercise({
@@ -146,7 +163,11 @@ function rectangle(rng: Rng): Exercise {
     ),
     display: `${a} × ${b} = ?`,
     answer: a * b,
-    hints: [hint(say('ex.areas.rect.hint1')), hint(say('ex.areas.rect.hint2'))],
+    // A square: the side times itself; a rectangle: these two numbers.
+    hints: [
+      hint(say('ex.areas.rect.hint1')),
+      hint(square ? say('ex.areas.rect.hint2') : say('ar.rect.hint2', { a, b })),
+    ],
     example: avoiding(
       a * b,
       [
@@ -157,6 +178,9 @@ function rectangle(rng: Rng): Exercise {
       (e, v) => exampleHint(`${e.a} × ${e.b} = ${v}`, solved(e.a, e.b)),
     ),
     solution: solved(a, b),
+    // The perimeter instead of the area, or the two sides added.
+    slips: (v) => (v === 2 * (a + b) ? 'shapeFormula' : v === a + b ? 'wrongOperation' : null),
+    operation: 'mul',
   });
 }
 
@@ -196,6 +220,9 @@ function rightTriangle(rng: Rng): Exercise {
       (e, v) => exampleHint(`${e.a} × ${e.b} ÷ 2 = ${v}`, solved(e.a, e.b)),
     ),
     solution: solved(a, b),
+    // The whole rectangle, not halved.
+    slips: (v) => (v === a * b ? 'wrongOperation' : null),
+    operation: 'div',
   });
 }
 
@@ -206,23 +233,30 @@ function triangle(rng: Rng): Exercise {
     b = randInt(rng, 4, 20);
     h = randInt(rng, 3, 15);
   } while ((b * h) % 2 !== 0);
+  // Half the triangles are obtuse: the top is past the end of the base, and the height
+  // falls outside the triangle (the curriculum's case, not only the acute one).
+  const obtuse = rng() < 0.5;
+  const top = obtuse ? b * 1.4 : b * 0.35;
   const solved = (x: number, y: number) =>
     say('ex.areas.half.solution', { a: x, b: y, p: x * y, s: cm2((x * y) / 2) });
   return areaExercise({
     level: 3,
-    factId: `tri:${b}x${h}`,
+    factId: `tri${obtuse ? 'O' : ''}:${b}x${h}`,
     spoken: say('ex.areas.tri.spoken', { b: cm(b), h: cm(h) }),
     visual: drawn(
       [
         [0, h],
         [b, h],
-        [b * 0.35, 0],
+        [top, 0],
       ],
-      { sideLabels: [lab(b), null, null], height: { from: [b * 0.35, 0], to: [b * 0.35, h], label: lab(h) } },
+      { sideLabels: [lab(b), null, null], height: { from: [top, 0], to: [top, h], label: lab(h) } },
     ),
     display: `${b} × ${h} ÷ 2 = ?`,
     answer: (b * h) / 2,
-    hints: [hint(say('ex.areas.tri.hint1')), hint(say('ex.areas.half.hint2'))],
+    hints: [
+      hint(say(obtuse ? 'ar.tri.obtuse.hint1' : 'ex.areas.tri.hint1')),
+      hint(say('ex.areas.half.hint2')),
+    ],
     example: avoiding(
       (b * h) / 2,
       [
@@ -233,30 +267,48 @@ function triangle(rng: Rng): Exercise {
       (e, v) => exampleHint(`${e.a} × ${e.b} ÷ 2 = ${v}`, solved(e.a, e.b)),
     ),
     solution: solved(b, h),
+    slips: (v) => (v === b * h ? 'wrongOperation' : null),
+    operation: 'div',
   });
 }
 
 /* ---------- Levels 4–5: parallelogram, trapezoid ---------- */
 
+/** Height, sideways shift and slanted side of a parallelogram: whole numbers (3, 4, 5). */
+const SLANTS: readonly [number, number, number][] = [
+  [3, 4, 5],
+  [4, 3, 5],
+  [6, 8, 10],
+  [8, 6, 10],
+  [5, 12, 13],
+  [12, 5, 13],
+  [9, 12, 15],
+  [12, 9, 15],
+  [8, 15, 17],
+  [15, 8, 17],
+  [12, 16, 20],
+];
+
 function parallelogram(rng: Rng): Exercise {
   const b = randInt(rng, 4, 20);
-  const h = randInt(rng, 3, 15);
+  // The slanted side is given too, as in school: it is not the height.
+  const [h, off, slant] = pick(rng, SLANTS);
   const solved = (x: number, y: number) =>
     say('ex.areas.rect.solution', { a: x, b: y, s: cm2(x * y) });
   return areaExercise({
     level: 4,
-    factId: `para:${b}x${h}`,
-    spoken: say('ex.areas.para.spoken', { b: cm(b), h: cm(h) }),
+    factId: `para:${b}x${h}/${slant}`,
+    spoken: say('ar.para.spoken', { b: cm(b), s: cm(slant), h: cm(h) }),
     visual: drawn(
       [
-        [h * 0.6, 0],
-        [b + h * 0.6, 0],
+        [off, 0],
+        [b + off, 0],
         [b, h],
         [0, h],
       ],
       {
-        sideLabels: [null, null, lab(b), null],
-        height: { from: [h * 0.6, 0], to: [h * 0.6, h], label: lab(h) },
+        sideLabels: [null, null, lab(b), lab(slant)],
+        height: { from: [off, 0], to: [off, h], label: lab(h) },
       },
     ),
     display: `${b} × ${h} = ?`,
@@ -272,7 +324,8 @@ function parallelogram(rng: Rng): Exercise {
       (e, v) => exampleHint(`${e.a} × ${e.b} = ${v}`, solved(e.a, e.b)),
     ),
     solution: solved(b, h),
-    // The slanted side times the base is the usual slip; nothing to diagnose without it.
+    // The slanted side times the base: the usual slip (hint 2 says why not).
+    slips: (v) => (v === b * slant || v === (b * h) / 2 ? 'other' : null),
   });
 }
 
@@ -317,6 +370,9 @@ function trapezoid(rng: Rng): Exercise {
       (e, v) => exampleHint(`(${e.a} + ${e.b}) × ${e.h} ÷ 2 = ${v}`, solved(e.a, e.b, e.h)),
     ),
     solution: solved(a, b, h),
+    // Not halved, or all three multiplied.
+    slips: (v) => (v === (a + b) * h ? 'wrongOperation' : v === (a * b * h) / 2 ? 'other' : null),
+    operation: 'div',
   });
 }
 
@@ -368,6 +424,9 @@ function house(rng: Rng): Exercise {
       (e, v) => exampleHint(`${e.w} × ${e.h} + ${e.w} × ${e.r} ÷ 2 = ${v}`, solved(e.w, e.h, e.r)),
     ),
     solution: solved(w, hgt, roof),
+    // The roof not halved, only the wall, or one rectangle of the whole height.
+    slips: (v) =>
+      v === w * hgt + w * roof || v === w * hgt || v === w * (hgt + roof) ? 'other' : null,
   });
 }
 
@@ -400,11 +459,11 @@ function cubes({ l, w, h }: BoxFact): Exercise {
         (e, n) =>
           exampleHint(
             `${e.l} × ${e.w} × ${e.h} = ${n}`,
-            say('ex.areas.cubes.solution', { n: { n, noun: CUBE } }),
+            say('ar.cubes.solution', { n: { n, noun: CUBE } }),
           ),
       ),
     ],
-    solution: say('ex.areas.cubes.solution', { n: { n: v, noun: CUBE } }),
+    solution: say('ar.cubes.solution', { n: { n: v, noun: CUBE } }),
     diagnose: (x) => (x === l * w + w * h + l * h || x === l * w ? 'other' : null),
   });
 }
@@ -447,33 +506,31 @@ function boxVolume(rng: Rng): Exercise {
 
 /* ---------- Level 9: units ---------- */
 
-const UNITS: { key: TranslationKey; answer: number; choices: number[]; why: TranslationKey }[] = [
-  {
-    key: 'ex.areas.units.q1',
-    answer: 10000,
-    choices: [100, 1000, 10000],
-    why: 'ex.areas.units.a1',
-  },
-  {
-    key: 'ex.areas.units.q2',
-    answer: 1000,
-    choices: [1000, 10000, 100000],
-    why: 'ex.areas.units.a2',
-  },
-  { key: 'ex.areas.units.q3', answer: 3, choices: [3, 30, 300], why: 'ex.areas.units.a3' },
-  { key: 'ex.areas.units.q4', answer: 1000, choices: [10, 100, 1000], why: 'ex.areas.units.a4' },
-  { key: 'ex.areas.units.q5', answer: 1000, choices: [100, 1000, 10000], why: 'ex.areas.units.a5' },
-  { key: 'ex.areas.units.q6', answer: 100, choices: [10, 100, 1000], why: 'ex.areas.units.a6' },
-  { key: 'ex.areas.units.q7', answer: 5000, choices: [50, 500, 5000], why: 'ex.areas.units.a7' },
-  {
-    key: 'ex.areas.units.q8',
-    answer: 20000,
-    choices: [2000, 20000, 200000],
-    why: 'ex.areas.units.a8',
-  },
+/**
+ * Unit questions, each with a hint of its own. The choices are ascending, and the
+ * right one is first, in the middle or last about equally often (not always the biggest).
+ */
+const UNITS: {
+  key: TranslationKey;
+  answer: number;
+  choices: number[];
+  why: TranslationKey;
+  hint: TranslationKey;
+}[] = [
+  { key: 'ex.areas.units.q1', answer: 10000, choices: [1000, 10000, 100000], why: 'ex.areas.units.a1', hint: 'ar.units.h1' },
+  { key: 'ex.areas.units.q2', answer: 1000, choices: [1000, 10000, 100000], why: 'ex.areas.units.a2', hint: 'ar.units.h2' },
+  { key: 'ex.areas.units.q3', answer: 3, choices: [3, 30, 300], why: 'ex.areas.units.a3', hint: 'ar.units.h3' },
+  { key: 'ex.areas.units.q4', answer: 1000, choices: [10, 100, 1000], why: 'ex.areas.units.a4', hint: 'ar.units.h4' },
+  { key: 'ex.areas.units.q5', answer: 1000, choices: [100, 1000, 10000], why: 'ex.areas.units.a5', hint: 'ar.units.h5' },
+  { key: 'ex.areas.units.q6', answer: 100, choices: [10, 100, 1000], why: 'ex.areas.units.a6', hint: 'ar.units.h6' },
+  { key: 'ex.areas.units.q7', answer: 5000, choices: [500, 5000, 50000], why: 'ex.areas.units.a7', hint: 'ar.units.h7' },
+  { key: 'ex.areas.units.q8', answer: 20000, choices: [200, 2000, 20000], why: 'ex.areas.units.a8', hint: 'ar.units.h8' },
+  { key: 'ar.units.q9', answer: 5, choices: [5, 50, 500], why: 'ar.units.a9', hint: 'ar.units.h9' },
+  { key: 'ar.units.q10', answer: 900, choices: [9, 90, 900], why: 'ar.units.a10', hint: 'ar.units.h10' },
+  { key: 'ar.units.q11', answer: 500, choices: [500, 5000, 50000], why: 'ar.units.a11', hint: 'ar.units.h11' },
 ];
 
-function units({ key, answer, choices, why }: (typeof UNITS)[number]): Exercise {
+function units({ key, answer, choices, why, hint: own }: (typeof UNITS)[number]): Exercise {
   return exercise({
     factId: `units:${key}`,
     topicId: ID,
@@ -483,13 +540,11 @@ function units({ key, answer, choices, why }: (typeof UNITS)[number]): Exercise 
     spoken: say(key),
     answer,
     input: { type: 'choices', choices },
-    hints: [
-      hint(say('ex.areas.units.hint1')),
-      hint(say('ex.areas.units.hint2')),
-      hint(say('ex.areas.units.hint3')),
-    ],
+    // The rule, the units, then this question's own step.
+    hints: [hint(say('ex.areas.units.hint2')), hint(say('ex.areas.units.hint1')), hint(say(own))],
     solution: say(why),
-    diagnose: (v) => (v * 10 === answer || v === answer * 10 ? 'placeValue' : null),
+    // A factor of ten, a hundred or a thousand off: length, area and volume units mixed up.
+    diagnose: (v) => (v !== answer ? 'shapeFormula' : null),
   });
 }
 
@@ -584,8 +639,8 @@ export const areasTopic = defineTopic({
       L(7),
       () => {
         const out: BoxFact[] = [];
-        for (let l = 2; l <= 4; l++)
-          for (let w = 2; w <= 3; w++) for (let h = 2; h <= 3; h++) out.push({ l, w, h });
+        for (let l = 2; l <= 5; l++)
+          for (let w = 2; w <= 4; w++) for (let h = 2; h <= 3; h++) out.push({ l, w, h });
         return out;
       },
       (f: BoxFact) => cubes(f),

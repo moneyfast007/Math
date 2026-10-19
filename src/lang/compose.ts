@@ -54,6 +54,7 @@ const AGREES: Record<string, Noun> = Object.fromEntries(
       ['מטר', 'מטרים', 'm'],
       ['סנטימטר', 'סנטימטרים', 'm'],
       ['קילומטר', 'קילומטרים', 'm'],
+      ['אחוז', 'אחוזים', 'm'],
     ] as const
   ).map(([singular, plural, gender]) => [plural, { singular, plural, gender }]),
 );
