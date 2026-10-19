@@ -82,6 +82,11 @@ function simplify(a: number, b: number): Exercise {
       ),
     ],
     solution: say('ex.ratio.equal.solution', { a, b, c: a / g, d: answer }),
+    // Not divided at all, or the same number taken away from both sides (6 : 4 = 3 : 1).
+    diagnose: (v) => (v === b || v === b - (a - a / g) ? 'other' : null),
+    advice: [b, b - (a - a / g)]
+      .filter((v) => v >= 0)
+      .map((v) => ({ value: v, say: say('r6.adv.simp.both', { a, g, c: a / g, b }) })),
   });
 }
 
@@ -118,6 +123,7 @@ function equivalent(a: number, b: number, k: number): Exercise {
     ],
     solution: say('ex.ratio.equal.solution', { a, b, c: answer, d: b * k }),
     diagnose: (v) => (v === a + (b * k - b) ? 'other' : null),
+    advice: [{ value: a + (b * k - b), say: say('r6.adv.equiv.add', { a, b, d: b * k }) }],
   });
 }
 
@@ -233,6 +239,33 @@ function divide(level: 3 | 4, a: number, b: number, n: number): Exercise {
     // The other share, one part only, or the whole divided by one number of the ratio.
     diagnose: (v) =>
       v === (first ? b : a) * unit || v === unit || v === n / (first ? a : b) ? 'other' : null,
+    advice: [
+      {
+        value: (first ? b : a) * unit,
+        say: say(`r6.adv.other.${ctx.id}.${first ? 1 : 2}` as TranslationKey, {
+          w: (first ? b : a) * unit,
+          k: { n: first ? a : b, noun: PART },
+        }),
+      },
+      {
+        value: unit,
+        say: say('r6.adv.div.unit', { w: unit, k: { n: first ? a : b, noun: PART } }),
+      },
+      ...((first ? a : b) > 1 && Number.isInteger(n / (first ? a : b))
+        ? [
+            {
+              value: n / (first ? a : b),
+              say: say('r6.adv.div.one', {
+                n,
+                x: first ? a : b,
+                a,
+                b,
+                parts: { n: a + b, noun: PART },
+              }),
+            },
+          ]
+        : []),
+    ],
   });
 }
 
@@ -284,6 +317,10 @@ function wholeFromPart(a: number, b: number, unit: number): Exercise {
     solution: solved({ a, b, unit }),
     // The other share only, or the part added to the ratio's numbers.
     diagnose: (v) => (v === b * unit || v === part + b ? 'other' : null),
+    advice: [
+      { value: b * unit, say: say('r6.adv.whole.other', { w: b * unit }) },
+      { value: part + b, say: say('r6.adv.whole.addRatio', { part, k: { n: a, noun: PART } }) },
+    ],
   });
 }
 
@@ -313,6 +350,10 @@ function planScale(k: number, x: number): Exercise {
     solution: solved(x),
     // Centimetres not turned into metres, or the plan's number itself.
     diagnose: (v) => (v === x * k ? 'placeValue' : v === x ? 'other' : null),
+    advice: [
+      { value: x * k, say: say('r6.adv.scale.cm', { w: x * k }) },
+      { value: x, say: say('r6.adv.scale.same', { w: x, k }) },
+    ],
   });
 }
 
@@ -345,6 +386,7 @@ function mapScale(f: MapFact): Exercise {
       ],
       solution: solved(f.x),
       diagnose: (v) => (v === f.x * f.k ? 'placeValue' : null),
+      advice: [{ value: f.x * f.k, say: say('r6.adv.scale.cm', { w: f.x * f.k }) }],
     });
   }
   if (f.kind === 'toMap') {
@@ -375,8 +417,14 @@ function mapScale(f: MapFact): Exercise {
         exampleHint(`${ex * 100} ÷ ${f.k} = ${(ex * 100) / f.k}`, solved(ex)),
       ],
       solution: solved(f.m),
-      // Multiplied by the scale instead of dividing.
-      diagnose: (v) => (v === f.m * f.k ? 'wrongOperation' : v === f.m ? 'other' : null),
+      // Multiplied by the scale instead of dividing, the metres as they are, or not divided.
+      diagnose: (v) =>
+        v === f.m * f.k ? 'wrongOperation' : v === f.m || v === f.m * 100 ? 'other' : null,
+      advice: [
+        { value: f.m * f.k, say: say('r6.adv.toMap.times') },
+        { value: f.m, say: say('r6.adv.toMap.same', { m: { n: f.m, noun: M }, k: f.k }) },
+        { value: f.m * 100, say: say('r6.adv.toMap.cm', { w: f.m * 100, k: f.k }) },
+      ],
     });
   }
   // x cm on the map are m metres: 1 : ?
@@ -402,6 +450,9 @@ function mapScale(f: MapFact): Exercise {
     solution: solved(f.x, f.k),
     // The metres not turned into centimetres.
     diagnose: (v) => (v === m / f.x || v * 100 === f.k ? 'placeValue' : null),
+    advice: [m / f.x, f.k / 100]
+      .filter((v) => Number.isInteger(v) && v > 0)
+      .map((v) => ({ value: v, say: say('r6.adv.find.metres', { m: { n: m, noun: M } }) })),
   });
 }
 
@@ -503,7 +554,8 @@ function price(level: 8 | 9, k: number, each: number, m: number): Exercise {
       level === 8
         ? say('r6.unit.solution', { total, k, each })
         : say('r6.prop.solution', { total, k, each, m, r: answer }),
-    // Level 8: multiplied instead of dividing. Level 9: the difference in items added to the price.
+    // Level 8: multiplied instead of dividing. Level 9: the difference in items added to the
+    // price, the unit price only, or the whole price times the new number of items.
     diagnose: (v) =>
       level === 8
         ? Math.abs(v - total * k) < 1e-9
@@ -512,6 +564,23 @@ function price(level: 8 | 9, k: number, each: number, m: number): Exercise {
         : Math.abs(v - (total + (m - k))) < 1e-9
           ? 'other'
           : null,
+    advice:
+      level === 8
+        ? [
+            {
+              value: round(total * k, 2),
+              say: say('r6.adv.unit.times', { total, k }),
+              kind: 'wrongOperation',
+            },
+          ]
+        : [
+            { value: round(total + (m - k), 2), say: say('r6.adv.prop.add', { total, k }) },
+            { value: each, say: say('r6.adv.prop.unit', { w: each, m }) },
+            {
+              value: round(total * m, 2),
+              say: say('r6.adv.prop.totalTimes', { total, k: { n: k, noun: item.noun }, n: k }),
+            },
+          ],
   });
 }
 
@@ -576,6 +645,21 @@ function trip(f: Trip): Exercise {
       ),
     ],
     solution: sol(f),
+    advice: [
+      f.kind === 'distance'
+        ? {
+            value: f.v + f.h,
+            say: say('r6.adv.trip.add', { v: { n: f.v, noun: KM } }),
+            kind: 'wrongOperation',
+          }
+        : f.kind === 'time'
+          ? {
+              value: d * f.v,
+              say: say('r6.adv.trip.timeTimes', { v: { n: f.v, noun: KM }, d: { n: d, noun: KM } }),
+              kind: 'wrongOperation',
+            }
+          : { value: d * f.h, say: say('r6.adv.trip.speedTimes'), kind: 'wrongOperation' },
+    ],
     // The two numbers added (distance), or multiplied when dividing (time, speed).
     diagnose: (x) =>
       f.kind === 'distance'

@@ -41,6 +41,8 @@ const LITRE: Noun = { singular: 'ליטר', plural: 'ליטרים', gender: 'm' 
 interface Wrong {
   v: number;
   kind: MistakeKind;
+  /** What to say to it, for these numbers. */
+  say?: Said;
 }
 
 interface Spec {
@@ -101,6 +103,7 @@ function build(s: Spec): Exercise {
     diagnose: (v) =>
       s.wrong.find((w) => Math.abs(w.v - v) < 1e-9)?.kind ??
       (Number.isInteger(s.answer) && Math.abs(v - s.answer) === 1 ? 'offByOne' : null),
+    advice: s.wrong.flatMap((w) => (w.say ? [{ value: w.v, say: w.say, kind: w.kind }] : [])),
   });
 }
 
@@ -130,8 +133,13 @@ const radiusDiameter = (r: number, toD: boolean): Exercise =>
       r === 5
         ? { display: toD ? '3 → 6' : '6 → 3', slots: {}, r: toD ? 6 : 3 }
         : { display: toD ? '5 → 10' : '10 → 5', slots: {}, r: toD ? 10 : 5 },
-    // The radius given back (not doubled), or the diameter doubled instead of halved.
-    wrong: [{ v: toD ? r : 4 * r, kind: 'wrongOperation' }],
+    // The radius given back (not doubled), or the diameter doubled instead of halved or given back.
+    wrong: toD
+      ? [{ v: r, kind: 'wrongOperation', say: say('c6.adv.rd.toD', { w: r }) }]
+      : [
+          { v: 4 * r, kind: 'wrongOperation', say: say('c6.adv.rd.toR', { w: 4 * r }) },
+          { v: 2 * r, kind: 'wrongOperation', say: say('c6.adv.rd.same', { w: 2 * r }) },
+        ],
     operation: toD ? 'mul' : 'div',
   });
 
@@ -171,12 +179,28 @@ const circumference = (level: number, n: number, fromRadius: boolean): Exercise 
     // From the radius: forgot to double it, or the area. From the diameter: doubled it, or the area.
     wrong: fromRadius
       ? [
-          { v: round(PI * n, 2), kind: 'other' },
-          { v: round(PI * n * n, 2), kind: 'shapeFormula' },
+          {
+            v: round(PI * n, 2),
+            kind: 'other',
+            say: say('c6.adv.circ.radius', { w: round(PI * n, 2) }),
+          },
+          {
+            v: round(PI * n * n, 2),
+            kind: 'shapeFormula',
+            say: say('c6.adv.circ.area', { w: round(PI * n * n, 2) }),
+          },
         ]
       : [
-          { v: round(PI * 2 * n, 2), kind: 'other' },
-          { v: round(PI * (n / 2) * (n / 2), 2), kind: 'shapeFormula' },
+          {
+            v: round(PI * 2 * n, 2),
+            kind: 'other',
+            say: say('c6.adv.circ.doubled', { w: round(PI * 2 * n, 2) }),
+          },
+          {
+            v: round(PI * (n / 2) * (n / 2), 2),
+            kind: 'shapeFormula',
+            say: say('c6.adv.circ.area', { w: round(PI * (n / 2) * (n / 2), 2) }),
+          },
         ],
   });
 };
@@ -217,11 +241,23 @@ const area = (level: number, n: number, fromDiameter: boolean): Exercise => {
     },
     wrong: [
       // The circumference instead of the area.
-      { v: round(PI * 2 * r, 2), kind: 'shapeFormula' },
+      {
+        v: round(PI * 2 * r, 2),
+        kind: 'shapeFormula',
+        say: say('c6.adv.area.circ', { w: round(PI * 2 * r, 2) }),
+      },
       // π × r: the radius only once.
-      { v: round(PI * r, 2), kind: 'other' },
+      { v: round(PI * r, 2), kind: 'other', say: say('c6.adv.area.once', { w: round(PI * r, 2) }) },
       // From the diameter: the diameter taken for the radius.
-      ...(fromDiameter ? [{ v: round(PI * n * n, 2), kind: 'other' as const }] : []),
+      ...(fromDiameter
+        ? [
+            {
+              v: round(PI * n * n, 2),
+              kind: 'other' as const,
+              say: say('c6.adv.area.diam', { w: round(PI * n * n, 2) }),
+            },
+          ]
+        : []),
     ],
   });
 };
@@ -262,12 +298,32 @@ const boxVolume = (x: Box): Exercise => {
     example: { display: `${e.a} × ${e.b} × ${e.c} = ${eV}`, slots: steps(e), r: eV },
     wrong: cube
       ? [
-          { v: 3 * x.a, kind: 'shapeFormula' },
-          { v: x.a * x.a, kind: 'other' },
+          { v: 3 * x.a, kind: 'shapeFormula', say: say('c6.adv.cube.add', { w: 3 * x.a }) },
+          {
+            v: x.a * x.a,
+            kind: 'other',
+            say: say('c6.adv.cube.square', { w: x.a * x.a, a: x.a }),
+          },
         ]
       : [
-          { v: round(x.a + x.b + x.c, 2), kind: 'shapeFormula' },
-          { v: round(2 * (x.a * x.b + x.b * x.c + x.a * x.c), 2), kind: 'shapeFormula' },
+          {
+            v: round(x.a + x.b + x.c, 2),
+            kind: 'shapeFormula',
+            say: say('c6.adv.box.add', { w: round(x.a + x.b + x.c, 2) }),
+          },
+          {
+            v: round(2 * (x.a * x.b + x.b * x.c + x.a * x.c), 2),
+            kind: 'shapeFormula',
+            say: say('c6.adv.box.surface', {
+              w: round(2 * (x.a * x.b + x.b * x.c + x.a * x.c), 2),
+            }),
+          },
+          // The floor only: not yet times the height.
+          {
+            v: round(x.a * x.b, 2),
+            kind: 'other',
+            say: say('adv.box.floor', { w: round(x.a * x.b, 2), h: x.c }),
+          },
         ],
   });
 };
@@ -298,8 +354,8 @@ const missingEdge = (x: Box): Exercise => {
     },
     // Subtracted the edges instead of dividing, or divided by one edge only.
     wrong: [
-      { v: v - x.a - x.b, kind: 'wrongOperation' },
-      { v: v / x.a, kind: 'other' },
+      { v: v - x.a - x.b, kind: 'wrongOperation', say: say('c6.adv.edge.sub') },
+      { v: v / x.a, kind: 'other', say: say('c6.adv.edge.one', { w: v / x.a, a: x.a, b: x.b }) },
     ],
     operation: 'div',
   });
@@ -328,12 +384,12 @@ const litres = (k: number, toCm3: boolean): Exercise => {
     // A hundred or ten in a litre: the units mixed up.
     wrong: toCm3
       ? [
-          { v: k * 100, kind: 'placeValue' },
-          { v: k * 10, kind: 'placeValue' },
+          { v: k * 100, kind: 'placeValue', say: say('c6.adv.litre.few') },
+          { v: k * 10, kind: 'placeValue', say: say('c6.adv.litre.few') },
         ]
       : [
-          { v: v / 100, kind: 'placeValue' },
-          { v: v / 10, kind: 'placeValue' },
+          { v: v / 100, kind: 'placeValue', say: say('c6.adv.cm3.few') },
+          { v: v / 10, kind: 'placeValue', say: say('c6.adv.cm3.few') },
         ],
   });
 };
@@ -366,8 +422,8 @@ const aquarium = (x: Box): Exercise => {
       r: eV / 1000,
     },
     wrong: [
-      { v, kind: 'placeValue' },
-      { v: v / 100, kind: 'placeValue' },
+      { v, kind: 'placeValue', say: say('c6.adv.aqua.cm3', { w: v }) },
+      { v: v / 100, kind: 'placeValue', say: say('c6.adv.aqua.hundred') },
     ],
   });
 };

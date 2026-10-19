@@ -12,6 +12,7 @@ import {
   numpad,
   open,
   say,
+  type AdviceSpec,
   type Said,
 } from '../build';
 import { pick, randInt } from '../rng';
@@ -50,7 +51,11 @@ type Pt = [number, number];
  * are squashed to at most 3 : 1 so they stay readable, still longer the right way.
  */
 function drawn(points: Pt[], extra: Omit<Polygon, 'points'> = {}): Visual {
-  const all = [...points, ...(extra.height ? [extra.height.from, extra.height.to] : [])];
+  const all = [
+    ...points,
+    ...(extra.height ? [extra.height.from, extra.height.to] : []),
+    ...(extra.extend ? [extra.extend.from, extra.extend.to] : []),
+  ];
   const minX = Math.min(...all.map((p) => p[0]));
   const minY = Math.min(...all.map((p) => p[1]));
   const w = Math.max(...all.map((p) => p[0])) - minX || 1;
@@ -70,6 +75,9 @@ function drawn(points: Pt[], extra: Omit<Polygon, 'points'> = {}): Visual {
     ...(extra.height
       ? { height: { ...extra.height, from: map(extra.height.from), to: map(extra.height.to) } }
       : {}),
+    ...(extra.extend
+      ? { extend: { from: map(extra.extend.from), to: map(extra.extend.to) } }
+      : {}),
   });
 }
 
@@ -87,6 +95,8 @@ interface AreaParts {
   digits?: number;
   /** The typical slips for this shape (the rectangle's perimeter, a triangle not halved). */
   slips?: (v: number) => MistakeKind | null;
+  /** What to say to each of them, for these numbers. */
+  advice?: AdviceSpec[];
   /** What should be done, for "read the question again": multiply (rectangle) or halve (triangle). */
   operation?: 'mul' | 'div';
 }
@@ -126,6 +136,7 @@ function areaExercise(p: AreaParts): Exercise {
     ],
     solution: p.solution,
     ...(p.operation ? { operation: p.operation } : {}),
+    ...(p.advice ? { advice: p.advice } : {}),
     // The shape's own slips; otherwise a slip of one or of ten.
     diagnose: (v) =>
       p.slips?.(v) ??
@@ -182,6 +193,10 @@ function rectangle(rng: Rng): Exercise {
     solution: solved(a, b),
     // The perimeter instead of the area, or the two sides added.
     slips: (v) => (v === 2 * (a + b) ? 'shapeFormula' : v === a + b ? 'wrongOperation' : null),
+    advice: [
+      { value: 2 * (a + b), say: say('ar.adv.rect.perim', { w: 2 * (a + b) }) },
+      { value: a + b, say: say('ar.adv.rect.add', { w: a + b }) },
+    ],
     operation: 'mul',
   });
 }
@@ -224,6 +239,7 @@ function rightTriangle(rng: Rng): Exercise {
     solution: solved(a, b),
     // The whole rectangle, not halved.
     slips: (v) => (v === a * b ? 'wrongOperation' : null),
+    advice: [{ value: a * b, say: say('ar.adv.tri.half', { w: a * b }) }],
     operation: 'div',
   });
 }
@@ -251,7 +267,12 @@ function triangle(rng: Rng): Exercise {
         [b, h],
         [top, 0],
       ],
-      { sideLabels: [lab(b), null, null], height: { from: [top, 0], to: [top, h], label: lab(h) } },
+      {
+        sideLabels: [lab(b), null, null],
+        height: { from: [top, 0], to: [top, h], label: lab(h) },
+        // Obtuse: the base drawn on, dashed, out to the foot of the height.
+        ...(obtuse ? { extend: { from: [b, h] as Pt, to: [top, h] as Pt } } : {}),
+      },
     ),
     display: `${b} × ${h} ÷ 2 = ?`,
     answer: (b * h) / 2,
@@ -270,6 +291,7 @@ function triangle(rng: Rng): Exercise {
     ),
     solution: solved(b, h),
     slips: (v) => (v === b * h ? 'wrongOperation' : null),
+    advice: [{ value: b * h, say: say('ar.adv.tri.half', { w: b * h }) }],
     operation: 'div',
   });
 }
@@ -328,6 +350,10 @@ function parallelogram(rng: Rng): Exercise {
     solution: solved(b, h),
     // The slanted side times the base: the usual slip (hint 2 says why not).
     slips: (v) => (v === b * slant || v === (b * h) / 2 ? 'other' : null),
+    advice: [
+      { value: b * slant, say: say('ar.adv.para.slant', { w: b * slant, s: slant, h }) },
+      { value: (b * h) / 2, say: say('ar.adv.para.half') },
+    ],
   });
 }
 
@@ -374,6 +400,10 @@ function trapezoid(rng: Rng): Exercise {
     solution: solved(a, b, h),
     // Not halved, or all three multiplied.
     slips: (v) => (v === (a + b) * h ? 'wrongOperation' : v === (a * b * h) / 2 ? 'other' : null),
+    advice: [
+      { value: (a + b) * h, say: say('ar.adv.trap.half', { w: (a + b) * h }) },
+      { value: (a * b * h) / 2, say: say('ar.adv.trap.three') },
+    ],
     operation: 'div',
   });
 }
@@ -429,6 +459,11 @@ function house(rng: Rng): Exercise {
     // The roof not halved, only the wall, or one rectangle of the whole height.
     slips: (v) =>
       v === w * hgt + w * roof || v === w * hgt || v === w * (hgt + roof) ? 'other' : null,
+    advice: [
+      { value: w * hgt + w * roof, say: say('ar.adv.house.roof', { w, r: roof }) },
+      { value: w * hgt, say: say('ar.adv.house.wall', { w: w * hgt }) },
+      { value: w * (hgt + roof), say: say('ar.adv.house.tall', { w: w * (hgt + roof) }) },
+    ],
   });
 }
 
@@ -467,6 +502,10 @@ function cubes({ l, w, h }: BoxFact): Exercise {
     ],
     solution: say('ar.cubes.solution', { n: { n: v, noun: CUBE } }),
     diagnose: (x) => (x === l * w + w * h + l * h || x === l * w ? 'other' : null),
+    advice: [
+      { value: l * w + w * h + l * h, say: say('ar.adv.cubes.faces') },
+      { value: l * w, say: say('ar.adv.cubes.floor', { w: l * w }) },
+    ],
   });
 }
 
@@ -503,6 +542,10 @@ function boxVolume(rng: Rng): Exercise {
     solution: solved(l, w, h),
     // Adding the edges, or stopping at the floor's area: volume is length × width × height.
     diagnose: (x) => (x === l + w + h ? 'shapeFormula' : x === l * w ? 'other' : null),
+    advice: [
+      { value: l + w + h, say: say('c6.adv.box.add', { w: l + w + h }) },
+      { value: l * w, say: say('adv.box.floor', { w: l * w, h }) },
+    ],
   });
 }
 
@@ -645,6 +688,7 @@ function word(rng: Rng): Exercise {
       ],
       solution: solved(a, b),
       diagnose: (v) => (v === 2 * (a + b) ? 'other' : null),
+      advice: [{ value: 2 * (a + b), say: say('ar.adv.rect.perim', { w: 2 * (a + b) }) }],
     });
   }
   const side = pick(rng, [2, 3, 4, 5]);

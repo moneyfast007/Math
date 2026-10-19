@@ -21,6 +21,7 @@ import {
   range,
   say,
   WORD_NOUNS,
+  type AdviceSpec,
   type Character,
   type WordNoun,
 } from '../build';
@@ -93,6 +94,13 @@ function wholeTimesUnit(m: number, d: number): Exercise {
     solution: say('fmd.unit.solution', { q: times(k, 1, d), units: { n: k, noun }, r: m }),
     // The numerator written (k thirds), not the wholes it makes.
     diagnose: (v) => (v === k || v === k * d ? 'other' : null),
+    advice: [
+      {
+        value: k,
+        say: say('fmd.adv.unit.count', { w: k, plural: noun.plural, all: { n: d, noun } }),
+      },
+      { value: k * d, say: say('fmd.adv.unit.times', { w: k * d, k }) },
+    ],
   });
 }
 
@@ -133,7 +141,12 @@ function wholeTimes(k: number, n: number, d: number): Exercise {
       ),
     ],
     solution: say('ex.frac.equal.solution', { a: times(k, n, d), b: w(answer, d) }),
-    diagnose: (v) => (v === n ? 'other' : null),
+    // One fraction's numerator, or the whole added to it.
+    diagnose: (v) => (v === n || v === n + k ? 'other' : null),
+    advice: [
+      { value: n, say: say('fmd.adv.wholeTimes.num', { w: n, k }) },
+      { value: n + k, say: say('fmd.adv.wholeTimes.add', { a: w(n, d), k }) },
+    ],
   });
 }
 
@@ -178,6 +191,22 @@ function findWholeExample(whole: number, unit: boolean): Hint {
   );
 }
 
+/** The part itself, one part only, or the part times the numerator, for "n/d of ? is part". */
+function wholeAdvice(n: number, d: number, part: number): AdviceSpec[] {
+  if (n === 1) return [{ value: part, say: say('fmd.adv.whole.part', { w: part, a: w(1, d), d }) }];
+  return [
+    {
+      value: part / n,
+      say: say('fmd.adv.whole.one', {
+        w: part / n,
+        unit: w(1, d),
+        all: { n: d, noun: fractionNoun(d) },
+      }),
+    },
+    { value: part * n, say: say('fmd.adv.whole.times', { w: part * n, part, n, a: w(n, d) }) },
+  ];
+}
+
 /** 1/4 of ? is 5 (level 3), 3/4 of ? is 15 (level 4). */
 function findWhole(level: 3 | 4, n: number, d: number, part: number): Exercise {
   const whole = (part / n) * d;
@@ -204,6 +233,7 @@ function findWhole(level: 3 | 4, n: number, d: number, part: number): Exercise {
     ],
     solution: wholePath(n, d, part),
     diagnose: (v) => (v === part * n || v === part / n ? 'other' : null),
+    advice: wholeAdvice(n, d, part),
   });
 }
 
@@ -243,7 +273,10 @@ function fracTimes(
     input: numpad(3),
     hints: [
       hint(say('ex.fmul.fracTimes.hint1')),
-      hint(say('ex.fmul.fracTimes.hint2', { a: w(b.n, b.d), b: w(a.n, a.d) })),
+      // An area model: a.n of a.d columns and b.n of b.d rows; the product is where they meet.
+      hint(say('fmd.area.hint2', { a: w(a.n, a.d), b: w(b.n, b.d) }), {
+        visual: { type: 'grid', rows: b.d, cols: a.d, band: { cols: a.n, rows: b.n } },
+      }),
       exampleAvoiding(
         askDen ? den : num,
         examples.map((ex) => {
@@ -271,6 +304,11 @@ function fracTimes(
         : !askDen && v === a.n + b.n
           ? 'wrongOperation'
           : null,
+    advice: [
+      askDen
+        ? { value: a.d + b.d, say: say('fmd.adv.times.addDen') }
+        : { value: a.n + b.n, say: say('fmd.adv.times.addNum') },
+    ],
   });
 }
 
@@ -309,6 +347,7 @@ function fracDivWhole(n: number, d: number, k: number): Exercise {
     ],
     solution: say('ex.frac.equal.solution', { a: q(n, d, k), b: w(answer, d) }),
     diagnose: (v) => (v === n * k ? 'wrongOperation' : null),
+    advice: [{ value: n * k, say: say('fmd.adv.div.times', { n }) }],
   });
 }
 
@@ -352,6 +391,16 @@ function wholeDivUnit(k: number, d: number): Exercise {
     ],
     solution: say('ex.frac.equal.solution', { a: q(k, d), b: numberToWords(answer) }),
     diagnose: (v) => (v === k ? 'other' : null),
+    advice: [
+      {
+        value: k,
+        say: say('fmd.adv.wholeDiv.same', {
+          w: k,
+          plural: fractionNoun(d).plural,
+          all: { n: d, noun: fractionNoun(d) },
+        }),
+      },
+    ],
   });
 }
 
@@ -399,6 +448,10 @@ function mixedTimes(whole: number, n: number, d: number, m: number): Exercise {
     solution: say('ex.frac.equal.solution', { a: q(whole, n, d, m), b: numberToWords(answer) }),
     // The fraction forgotten, or its numerator added as it is.
     diagnose: (v) => (v === whole * m || v === whole * m + n ? 'other' : null),
+    advice: [
+      { value: whole * m, say: say('fmd.adv.mixed.whole', { w: whole * m, m, frac: w(n, d) }) },
+      { value: whole * m + n, say: say('fmd.adv.mixed.num', { frac: w(n, d), m }) },
+    ],
   });
 }
 
@@ -468,6 +521,21 @@ function story(i: number, n: number, d: number, total: number): Exercise {
     solution: findWholeStory
       ? say('ex.fmul.findWhole.solution', { a: w(n, d), whole: total, part })
       : say('ex.frac.of.solution', { frac: w(n, d), whole: total, r: part }),
+    // The whole: the part itself, one part, or the part times the numerator. A part: the
+    // whole itself, or one part only.
+    advice: findWholeStory
+      ? wholeAdvice(n, d, part)
+      : [
+          { value: total, say: say('fmd.adv.story.total', { w: total, frac: w(n, d) }) },
+          ...(n > 1
+            ? [
+                {
+                  value: total / d,
+                  say: say('fmd.adv.story.one', { w: total / d, unit: w(1, d), n }),
+                },
+              ]
+            : []),
+        ],
   });
 }
 

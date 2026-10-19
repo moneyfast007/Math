@@ -11,6 +11,7 @@ import {
   numpad,
   open,
   say,
+  type AdviceSpec,
   type Character,
   type Said,
   type ExerciseParts,
@@ -63,6 +64,42 @@ function waysHint(part: number, base: number, p: number): Hint {
   return hint(sayP('p6.what.reduce', { part, base, n: part / g, d: base / g }));
 }
 
+/* ---------- Advice for the typical wrong answers ---------- */
+
+/** What is left (base − part) when p% itself was asked. */
+function restAdvice(base: number, p: number, part: number): AdviceSpec {
+  return { value: base - part, say: sayP('p6.adv.rest', { w: base - part, base, p }) };
+}
+
+/** The part itself typed as the percent. */
+function partAdvice(part: number, base: number): AdviceSpec {
+  return { value: part, say: sayP('p6.adv.what.part', { w: part, base }) };
+}
+
+/** The whole from p% = part: p% of the part taken, or the part times p. */
+function wholeAdvice(p: number, part: number): AdviceSpec[] {
+  const ofPart = (part * p) / 100;
+  return [
+    ...(Number.isInteger(ofPart) && ofPart > 0
+      ? [{ value: ofPart, say: sayP('p6.adv.whole.ofPart', { w: ofPart, p, part }) }]
+      : []),
+    { value: part * p, say: sayP('p6.adv.whole.times', { w: part * p, p, part }) },
+  ];
+}
+
+/** A new price: the change alone, or the change made the other way. */
+function changeAdvice(up: boolean, base: number, part: number): AdviceSpec[] {
+  const other = up ? base - part : base + part;
+  return [
+    { value: part, say: sayP(up ? 'p6.adv.inc.part' : 'p6.adv.disc.part', { w: part, base }) },
+    {
+      value: other,
+      say: sayP(up ? 'p6.adv.inc.sub' : 'p6.adv.disc.added', { w: other, base }),
+      kind: 'wrongOperation',
+    },
+  ];
+}
+
 function of(level: 1 | 2, rng: Rng): Exercise {
   // Level 2: big quantities only (from 200), not level 1 again.
   const { p, base, part } = level === 1 ? pctPair(rng, 200) : pctPair(rng, 1000, 200);
@@ -87,6 +124,21 @@ function of(level: 1 | 2, rng: Rng): Exercise {
     solution: sayP('ex.pct.of.solution', { p, base, r: part }),
     diagnose: (v) =>
       v === base - part ? 'other' : v === part * 10 || v * 10 === part ? 'placeValue' : null,
+    advice: [
+      restAdvice(base, p, part),
+      // A tenth or ten times the part: the size checked through ten percent (not when that is the answer).
+      ...(base % 10 === 0 && p !== 10
+        ? [part * 10, part / 10]
+            .filter((v) => Number.isInteger(v) && v > 0)
+            .map(
+              (v): AdviceSpec => ({
+                value: v,
+                say: sayP('p6.adv.of.size', { base, ten: base / 10, p }),
+                kind: 'placeValue',
+              }),
+            )
+        : []),
+    ],
   });
 }
 
@@ -120,6 +172,7 @@ function whatPercent(rng: Rng): Exercise {
     ],
     solution: sayP('ex.pct.what.solution', { part, base, p }),
     diagnose: (v) => (v === part ? 'other' : null),
+    advice: [partAdvice(part, base)],
   });
 }
 
@@ -163,6 +216,7 @@ function findWhole(rng: Rng): Exercise {
     ],
     solution: sayP('ex.pct6.whole.solution', { p, part, base }),
     diagnose: (v) => (v === part * p || v === (part * p) / 100 ? 'other' : null),
+    advice: wholeAdvice(p, part),
   });
 }
 
@@ -235,6 +289,7 @@ function change(level: 5 | 6, rng: Rng): Exercise {
     solution: sayP(`${key}.solution` as 'ex.pct6.discount.solution', { base, p, r: answer }),
     diagnose: (v) =>
       v === part ? 'other' : v === (up ? base - part : base + part) ? 'wrongOperation' : null,
+    advice: changeAdvice(up, base, part),
   });
 }
 
@@ -263,6 +318,12 @@ function discountPercent(rng: Rng): Exercise {
     ],
     solution: sayP('ex.pct6.dp.solution', { base, after, p }),
     diagnose: (v) => (v === part ? 'other' : v === 100 - p ? 'other' : null),
+    // The discount in shekels, the percent that is paid, or the new price.
+    advice: [
+      { value: part, say: sayP('p6.adv.dp.shekels', { w: part, base }) },
+      { value: 100 - p, say: sayP('p6.adv.dp.paid', { w: 100 - p }) },
+      { value: after, say: sayP('p6.adv.dp.after', { w: after }) },
+    ],
   });
 }
 
@@ -307,6 +368,7 @@ function survey(rng: Rng): Exercise {
     ],
     solution: sayP('ex.pct.what.solution', { part: k, base: n, p }),
     diagnose: (v) => (v === k ? 'other' : null),
+    advice: [partAdvice(k, n)],
   });
 }
 
@@ -334,6 +396,14 @@ function twoSteps(rng: Rng): Exercise {
     ],
     solution: sayP('ex.pct6.two.solution', { base, mid, r: answer }),
     diagnose: (v) => (v === base - (base * (p1 + p2)) / 100 ? 'other' : null),
+    // The two discounts added into one, or only the first one taken.
+    advice: [
+      {
+        value: base - (base * (p1 + p2)) / 100,
+        say: sayP('p6.adv.two.sum', { s: p1 + p2, base }, 'f', ['s']),
+      },
+      { value: mid, say: sayP('p6.adv.two.mid', { w: mid, q: p2 }, 'f', ['q']) },
+    ],
   });
 }
 
@@ -371,6 +441,7 @@ function story(rng: Rng): Exercise {
       ],
       solution: sayP('ex.pct.what.solution', { part: k, base: n, p }),
       diagnose: (v) => (v === k ? 'other' : null),
+      advice: [partAdvice(k, n)],
     });
   }
   if (kind === 'whole') {
@@ -394,6 +465,7 @@ function story(rng: Rng): Exercise {
       ],
       solution: sayP('ex.pct6.whole.solution', { p, part, base }),
       diagnose: (v) => (v === part * p || v === (part * p) / 100 ? 'other' : null),
+      advice: wholeAdvice(p, part),
     });
   }
   const { p, base, part } = pctPair(rng, 1000, 40);
@@ -416,6 +488,7 @@ function story(rng: Rng): Exercise {
       solution: sayP('ex.pct6.discount.solution', { base, p, r: answer }),
       // The discount itself (one step only), or the discount added.
       diagnose: (v) => (v === part ? 'other' : v === base + part ? 'wrongOperation' : null),
+      advice: changeAdvice(false, base, part),
     });
   }
   const spoken = sayP('wp.pct6.save.story', { name: who.name, base, p }, who.gender);
@@ -442,6 +515,7 @@ function story(rng: Rng): Exercise {
     ],
     solution: sayP('ex.pct.of.solution', { p, base, r: part }),
     diagnose: (v) => (v === base - part ? 'other' : null),
+    advice: [restAdvice(base, p, part)],
   });
 }
 

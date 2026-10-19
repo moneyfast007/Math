@@ -7,6 +7,7 @@ import {
   CHARACTERS,
   closed,
   defineTopic,
+  diagnoseArith,
   exampleAvoiding,
   exampleHint,
   exercise,
@@ -16,7 +17,9 @@ import {
   open,
   range,
   round,
+  sameNumber,
   say,
+  type AdviceSpec,
 } from '../build';
 import { pick, randInt } from '../rng';
 import type { Exercise, Hint, Rng, Visual } from '../types';
@@ -31,6 +34,8 @@ import type { Exercise, Hint, Rng, Visual } from '../types';
 
 const ID = 'percent-intro';
 const PERCENT: Noun = { singular: 'אחוז', plural: 'אחוזים', gender: 'm' };
+const PART: Noun = { singular: 'חלק', plural: 'חלקים', gender: 'm' };
+const SQUARE: Noun = { singular: 'משבצת', plural: 'משבצות', gender: 'f' };
 
 /** Like `say`, but the percent slots are read as "עשרים וחמישה אחוזים" (masculine noun). */
 export function sayP(
@@ -139,6 +144,53 @@ function shaded(parts: number, k: number): Exercise {
     solution: solved(k, parts),
     // The coloured cells counted, not turned into percents.
     diagnose: (v) => (v === k ? (parts === 10 ? 'placeValue' : 'other') : null),
+    advice: [{ value: k, say: sayP('pi.adv.shaded.count', { each }, 'f', ['each']) }],
+  });
+}
+
+/** Hundred grids for level 1: k of the hundred squares coloured (whole rows, then the rest). */
+const GRID_SHADES = [6, 12, 25, 30, 37, 43, 50, 58, 64, 75, 81, 96];
+
+/** k of a hundred squares coloured: each square is one percent. */
+function grid(k: number): Exercise {
+  const solved = (x: number) => sayP('pi.grid.solution', { k: { n: x, noun: SQUARE }, p: x });
+  return exercise({
+    factId: `pgrid:${k}`,
+    topicId: ID,
+    level: 1,
+    prompt: t('pi.grid.prompt'),
+    display: '?%',
+    spoken: sayP('pi.grid.prompt'),
+    visual: { type: 'grid', rows: 10, cols: 10, shaded: k },
+    answer: k,
+    input: numpad(3),
+    hints: [
+      hint(sayP('pi.grid.hint1')),
+      hint(sayP('pi.grid.hint2')),
+      exampleAvoiding(
+        k,
+        [45, 28].map((x) => ({
+          answer: x,
+          hint: () => exampleHint(`${x}/100 → ${x}%`, solved(x)),
+        })),
+      ),
+    ],
+    solution: solved(k),
+    // The white squares counted, a row of ten missed or counted twice, or one square.
+    diagnose: (v) =>
+      v === 100 - k
+        ? 'other'
+        : Math.abs(v - k) === 10
+          ? 'offByTen'
+          : Math.abs(v - k) === 1
+            ? 'offByOne'
+            : null,
+    advice: [
+      { value: 100 - k, say: sayP('pi.adv.grid.rest', { w: 100 - k }) },
+      ...[k - 10, k + 10]
+        .filter((v) => v > 0 && v <= 100)
+        .map((v): AdviceSpec => ({ value: v, say: sayP('pi.adv.grid.row'), kind: 'offByTen' })),
+    ],
   });
 }
 
@@ -173,6 +225,11 @@ function familiar(d: number, toFraction: boolean): Exercise {
     solution: solved(d),
     // The denominator and the percent swapped.
     diagnose: (v) => (v === (toFraction ? p : d) ? 'other' : null),
+    advice: [
+      toFraction
+        ? { value: p, say: sayP('pi.adv.fam.toFrac', { w: p, p }) }
+        : { value: d, say: sayP('pi.adv.fam.toPct', { w: d, parts: { n: d, noun: PART } }) },
+    ],
   });
 }
 
@@ -203,6 +260,11 @@ function fromFraction(n: number, d: number): Exercise {
     solution: sayP('ex.pct.fromFrac.solution', { frac: fracWords(n, d), p: answer }),
     // The numerator times ten: right only for tenths.
     diagnose: (v) => (v === n * 10 ? 'other' : null),
+    // The numerator times ten, or the numerator as it is.
+    advice: [
+      { value: n * 10, say: sayP('pi.adv.frac.tens', { d }) },
+      { value: n, say: sayP('pi.adv.frac.num', { w: n }) },
+    ],
   });
 }
 
@@ -211,6 +273,7 @@ function fromFraction(n: number, d: number): Exercise {
 /** 0.35 = ?% (to a percent), or 40% = ? as a decimal; the example and solution go the same way. */
 function decimal(level: 4 | 5, p: number, toPercent: boolean): Exercise {
   const x = round(p / 100, 2);
+  const slips = pointSlips(p, x, toPercent);
   const ex = p === 35 ? 60 : 35;
   const exX = round(ex / 100, 2);
   return exercise({
@@ -232,15 +295,26 @@ function decimal(level: 4 | 5, p: number, toPercent: boolean): Exercise {
     solution: toPercent
       ? sayP('ex.pct.dec.solution', { x, p })
       : sayP('pi.toDec.solution', { x, p }),
-    diagnose: (v) =>
-      toPercent
-        ? v === x || v === p / 10
-          ? 'placeValue'
-          : null
-        : v === p || v === p / 10
-          ? 'placeValue'
-          : null,
+    // The right digits with the point moved too little, too far, or not at all.
+    diagnose: (v) => (slips.some((a) => sameNumber(a.value, v)) ? 'decimalPoint' : null),
+    advice: slips,
   });
+}
+
+/** The point moved one place only, three places, or not at all: what to say about each. */
+function pointSlips(p: number, x: number, toPercent: boolean): AdviceSpec[] {
+  const tooFar = sayP('pi.adv.dec.tooFar');
+  return toPercent
+    ? [
+        { value: round(p / 10, 4), say: sayP('pi.adv.dec.toOneStep') },
+        { value: x, say: sayP('pi.adv.dec.toSame', { x }) },
+        { value: p * 10, say: tooFar },
+      ]
+    : [
+        { value: round(p / 10, 4), say: sayP('pi.adv.dec.fromOneStep') },
+        { value: p, say: sayP('pi.adv.dec.fromSame', { p }) },
+        { value: round(p / 1000, 5), say: tooFar },
+      ];
 }
 
 /** 40% = ?/5: a percent as a fraction with this denominator (the numerator is asked). */
@@ -266,6 +340,9 @@ function toFraction(n: number, d: number): Exercise {
     ],
     solution: solved(n, d),
     diagnose: (v) => (v === p ? 'other' : null),
+    advice: [
+      { value: p, say: sayP('pi.adv.toFrac.pct', { w: p, d, k: 100 / d, p }, 'f', ['k', 'p']) },
+    ],
   });
 }
 
@@ -343,6 +420,13 @@ function percentOf(level: 6 | 7, rng: Rng): Exercise {
     ],
     solution: sayP('ex.pct.of.solution', { p, base, r: answer }),
     diagnose: (v) => (v === base - answer ? 'other' : null),
+    // What is left, or (level 7) ten percent found and not taken on to p.
+    advice: [
+      { value: base - answer, say: sayP('p6.adv.rest', { w: base - answer, base, p }) },
+      ...(level === 7 && p !== 10
+        ? [{ value: base / 10, say: sayP('pi.adv.of.ten', { w: base / 10, base, p }) }]
+        : []),
+    ],
   });
 }
 
@@ -376,6 +460,12 @@ function rest(p: number): Exercise {
           ),
     ],
     solution: sayP('ex.pct.rest.solution', { p, r: answer }, 'f', ['p', 'r']),
+    // Added, one off, a ten off, not borrowed: as in any subtraction from a hundred.
+    diagnose: (v) => diagnoseArith(v, { a: 100, op: '-', b: p, answer }),
+    advice: [
+      { value: p, say: sayP('pi.adv.rest.same', { w: p }) },
+      { value: 100 + p, say: sayP('pi.adv.rest.add', { p }), kind: 'wrongOperation' },
+    ],
   });
 }
 
@@ -414,6 +504,7 @@ function whatPercent(rng: Rng): Exercise {
     ],
     solution: sayP('ex.pct.what.solution', { part, base, p }),
     diagnose: (v) => (v === part ? 'other' : null),
+    advice: [{ value: part, say: sayP('p6.adv.what.part', { w: part, base }) }],
   });
 }
 
@@ -482,6 +573,11 @@ function story(rng: Rng): Exercise {
       : sayP('ex.pct.of.solution', { p, base: price, r: answer }),
     // The other one: what is paid when the discount was asked, or the other way round.
     diagnose: (v) => (v === (s.pay ? discount : price - discount) ? 'other' : null),
+    advice: [
+      s.pay
+        ? { value: discount, say: sayP('p6.adv.disc.part', { w: discount, base: price }) }
+        : { value: price - discount, say: sayP('pi.adv.story.paid', { w: price - discount }) },
+    ],
   });
 }
 
@@ -502,8 +598,12 @@ export const percentIntro = defineTopic({
   levels: [
     closed(
       L(1),
-      () => [2, 4, 5, 10, 20].flatMap((parts) => range(1, parts - 1).map((k) => ({ parts, k }))),
-      (x) => shaded(x.parts, x.k),
+      // Bars of 2 to 20 parts, and hundred grids (each square one percent).
+      () => [
+        ...[2, 4, 5, 10, 20].flatMap((parts) => range(1, parts - 1).map((k) => ({ parts, k }))),
+        ...GRID_SHADES.map((k) => ({ parts: 100, k })),
+      ],
+      (x) => (x.parts === 100 ? grid(x.k) : shaded(x.parts, x.k)),
     ),
     closed(
       'level.percentIntro5.2',

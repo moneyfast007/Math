@@ -40,6 +40,8 @@ interface Shape {
   wrong: number;
   /** What to work out first, with the numbers: "קודם נחשב 4 כפול 3. כמה זה?" */
   first: Said;
+  /** What to say to the wrong value: which operation comes first here (none when it is not a whole number). */
+  advice?: Said;
 }
 
 type Gen = (rng: Rng) => Shape | null;
@@ -55,6 +57,7 @@ const plusTimes: Gen = (rng) => {
     value: a + b * c,
     wrong: (a + b) * c,
     first: say('ord.step.mul', { x: b, y: c }),
+    advice: say('ord.adv.plusTimes', { w: (a + b) * c, a, b, c }),
   };
 };
 
@@ -72,6 +75,9 @@ const timesMinusDiv: Gen = (rng) => {
     value: a * b - q,
     wrong: Math.floor((a * b - c) / d),
     first: say('ord.step.both', { a, b, c, d }),
+    ...((a * b - c) % d === 0 && a * b - c >= 0
+      ? { advice: say('ord.adv.timesMinusDiv', { w: (a * b - c) / d, a, b, c, d }) }
+      : {}),
   };
 };
 
@@ -86,6 +92,7 @@ const bracketTimes: Gen = (rng) => {
     value: (a + b) * c,
     wrong: a + b * c,
     first: say('ord.step.add', { x: a, y: b }),
+    advice: say('ord.adv.bracketTimes', { w: a + b * c, a, b, c }),
   };
 };
 
@@ -100,6 +107,7 @@ const timesBracket: Gen = (rng) => {
     value: a * (b - c),
     wrong: a * b - c,
     first: say('ord.step.sub', { x: b, y: c }),
+    advice: say('ord.adv.timesBracket', { w: a * b - c, a, b, c }),
   };
 };
 
@@ -116,6 +124,7 @@ const twoBrackets: Gen = (rng) => {
     value: (a + b) * (c - d),
     wrong: a + b * c - d,
     first: say('ord.step.two', { a, b, c, d }),
+    advice: say('ord.adv.twoBrackets', { w: a + b * c - d }),
   };
 };
 
@@ -132,6 +141,7 @@ const leftToRightAdd: Gen = (rng) => {
     value: a - b + c,
     wrong: a - (b + c),
     first: say('ord.step.ltrSub', { x: a, y: b }),
+    advice: say('ord.adv.minusPlus', { w: a - (b + c), a, b }),
   };
 };
 
@@ -148,6 +158,7 @@ const leftToRightMul: Gen = (rng) => {
     value: q * c,
     wrong: Number.isInteger(wrong) ? wrong : -1,
     first: say('ord.step.ltrDiv', { x: a, y: b }),
+    ...(Number.isInteger(wrong) ? { advice: say('ord.adv.divTimes', { w: wrong, a, b }) } : {}),
   };
 };
 
@@ -197,6 +208,7 @@ function fromShape(level: number, gen: Gen, rng: Rng): Exercise {
     ],
     solution: solved(s),
     diagnose,
+    advice: s.advice && s.wrong >= 0 ? [{ value: s.wrong, say: s.advice, kind: 'order' }] : [],
   });
 }
 
@@ -256,8 +268,13 @@ function distributive(rng: Rng): Exercise {
       ),
     ],
     solution: solvedOf({ a, t: t10, u }),
-    // The units alone (not multiplied), or the whole product.
-    diagnose: (v) => (v === u || v === a * n ? 'other' : null),
+    // The units alone (not multiplied), or the whole product; otherwise one off.
+    diagnose: (v) =>
+      v === u || v === a * n ? 'other' : Math.abs(v - answer) === 1 ? 'offByOne' : null,
+    advice: [
+      { value: u, say: say('ord.adv.dist.units', { w: u, a }) },
+      { value: a * n, say: say('ord.adv.dist.whole', { w: a * n, a, t: t10 }) },
+    ],
   });
 }
 
@@ -287,8 +304,21 @@ function missingInside(rng: Rng): Exercise {
       exampleHint(`(? + ${ex.b}) × ${ex.c} = ${(ex.x + ex.b) * ex.c} → ? = ${ex.x}`, said(ex)),
     ],
     solution: said({ x, b, c }),
-    // Stopped inside the brackets, or added the number instead of taking it away.
-    diagnose: (v) => (v === r / c || v === r / c + b ? 'other' : null),
+    // Stopped inside the brackets, added the number instead of taking it away, or undid the
+    // plus before the times; otherwise one off.
+    diagnose: (v) =>
+      v === r / c || v === r / c + b || v === (r - b) / c
+        ? 'other'
+        : Math.abs(v - x) === 1
+          ? 'offByOne'
+          : null,
+    advice: [
+      { value: r / c, say: say('ord.adv.inside.bracket', { w: r / c, b }) },
+      { value: r / c + b, say: say('ord.adv.inside.added', { b, s: r / c }) },
+      ...(Number.isInteger((r - b) / c)
+        ? [{ value: (r - b) / c, say: say('ord.adv.inside.order', { c, r, b }), kind: 'order' as const }]
+        : []),
+    ],
   });
 }
 
@@ -372,17 +402,43 @@ function story(rng: Rng): Exercise {
       c: change ? bill : pen,
       r: answer,
     }),
-    // Adding before multiplying, or stopping after the first step (the cost, not the change).
+    // Adding before multiplying, or stopping after the first step (the cost, not the change;
+    // the notebooks or tickets without the pen or the popcorn); otherwise one off.
     diagnose: (v) =>
       change
         ? v === k * price
           ? 'other'
           : v === (bill - k) * price
             ? 'order'
-            : null
+            : Math.abs(v - answer) === 1
+              ? 'offByOne'
+              : null
         : v === k * (price + pen)
           ? 'order'
-          : null,
+          : v === k * price
+            ? 'other'
+            : Math.abs(v - answer) === 1
+              ? 'offByOne'
+              : null,
+    advice: change
+      ? [
+          { value: k * price, say: say('ord.adv.wp.cost', { w: k * price, bill }) },
+          ...(bill - k >= 0
+            ? [
+                {
+                  value: (bill - k) * price,
+                  say: say('ord.adv.wp.subFirst', { w: (bill - k) * price, k, price }),
+                },
+              ]
+            : []),
+        ]
+      : [
+          {
+            value: k * (price + pen),
+            say: say('ord.adv.wp.addFirst', { w: k * (price + pen), pen, k, price }),
+          },
+          { value: k * price, say: say('ord.adv.wp.forgot', { w: k * price, pen }) },
+        ],
   });
 }
 

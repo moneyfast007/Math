@@ -15,7 +15,9 @@ import {
   open,
   round,
   say,
+  type AdviceSpec,
   type Character,
+  type Said,
 } from '../build';
 import { pick, randInt } from '../rng';
 import type { Exercise, Hint, Rng } from '../types';
@@ -30,15 +32,35 @@ import type { Exercise, Hint, Rng } from '../types';
 const ID = 'decimal-ops';
 const L = (n: number) => `level.decimalOps.${n}`;
 
-/** Off by a factor of ten (the point in the wrong place). */
+/** Off by a factor of ten (the right digits, the point in the wrong place). */
 function pointSlip(answer: number): (v: number) => MistakeKind | null {
   return (v) => {
     for (const k of [10, 100, 1000]) {
       if (Math.abs(round(v * k, 6) - answer) < 1e-9 || Math.abs(round(v / k, 6) - answer) < 1e-9)
-        return 'placeValue';
+        return 'decimalPoint';
     }
     return null;
   };
+}
+
+/** The answer with the point moved one or two places either way, each with the same advice. */
+function pointAdvice(answer: number, said: Said): AdviceSpec[] {
+  return [answer * 10, answer * 100, answer / 10, answer / 100]
+    .map((v) => round(v, 6))
+    .filter((v) => v > 0)
+    .map((v) => ({ value: v, say: said, kind: 'decimalPoint' }));
+}
+
+const PLACE: Noun = { singular: 'מקום', plural: 'מקומות', gender: 'm' };
+
+/**
+ * No "count again slowly" for a decimal one off (7.2 for 8.2: a slip in the ones, said
+ * in general); the rest of the generic diagnosis stays.
+ */
+function noWholeSlips(e: Exercise): Exercise {
+  if (Number.isInteger(e.answer)) return e;
+  const diagnose = e.diagnose;
+  return { ...e, diagnose: (v) => (diagnose(v) === 'offByOne' ? null : diagnose(v)) };
 }
 
 function hints(a: string, b: string): [Hint, Hint] {
@@ -64,6 +86,7 @@ function byPower(level: 1 | 2, rng: Rng): Exercise {
       ? randInt(rng, 11, 9999)
       : round(randInt(rng, 11, 9999) / 10, 1);
   const answer = round(times ? x * k : x / k, 5);
+  const places = { n: Math.round(Math.log10(k)), noun: PLACE };
   return arith({
     topicId: ID,
     level,
@@ -76,6 +99,10 @@ function byPower(level: 1 | 2, rng: Rng): Exercise {
     example: times ? { a: 3.45, b: k } : { a: k === 1000 ? 345 : 34.5, b: k },
     input: numpad(6, true),
     diagnose: pointSlip(answer),
+    advice: pointAdvice(
+      answer,
+      say(times ? 'dop.adv.power.times' : 'dop.adv.power.div', { k, places }),
+    ),
   });
 }
 
@@ -87,11 +114,19 @@ function timesWholeHints(x: number, k: number, places: 1 | 2): [Hint, Hint] {
   ];
 }
 
+/** The point checked by an estimate: x is close to r, so x × k is close to r × k. */
+function estimateAdvice(x: number, k: number): AdviceSpec[] {
+  return pointAdvice(
+    round(x * k, 2),
+    say('dop.adv.point.estimate', { x, r: Math.max(1, Math.round(x)), k }),
+  );
+}
+
 function timesWhole(rng: Rng): Exercise {
   // Never a whole number (2.0 × 5 has no point to place).
   const x = trueDecimal(rng, 11, 99, 10);
   const k = randInt(rng, 2, 9);
-  return arith({
+  return noWholeSlips(arith({
     topicId: ID,
     level: 3,
     a: x,
@@ -101,14 +136,15 @@ function timesWhole(rng: Rng): Exercise {
     example: { a: 2.5, b: 4 },
     input: numpad(4, true),
     diagnose: pointSlip(round(x * k, 2)),
-  });
+    advice: estimateAdvice(x, k),
+  }));
 }
 
 function timesWhole2(rng: Rng): Exercise {
   // Real hundredths: not 2.00 or 2.50.
   const x = trueDecimal(rng, 101, 999, 100);
   const k = randInt(rng, 2, 9);
-  return arith({
+  return noWholeSlips(arith({
     topicId: ID,
     level: 4,
     a: x,
@@ -118,13 +154,14 @@ function timesWhole2(rng: Rng): Exercise {
     example: { a: 1.25, b: 4 },
     input: numpad(5, true),
     diagnose: pointSlip(round(x * k, 2)),
-  });
+    advice: estimateAdvice(x, k),
+  }));
 }
 
 function timesDecimal(rng: Rng): Exercise {
   const a = round(randInt(rng, 2, 9) / 10, 1);
   const b = trueDecimal(rng, 11, 99, 10);
-  return arith({
+  return noWholeSlips(arith({
     topicId: ID,
     level: 5,
     a: b,
@@ -134,7 +171,8 @@ function timesDecimal(rng: Rng): Exercise {
     example: { a: 1.5, b: 0.4 },
     input: numpad(4, true),
     diagnose: pointSlip(round(a * b, 2)),
-  });
+    advice: pointAdvice(round(a * b, 2), say('dop.adv.point.timesDec')),
+  }));
 }
 
 function divWhole(rng: Rng): Exercise {
@@ -143,7 +181,7 @@ function divWhole(rng: Rng): Exercise {
   const a = round(q * k, 1);
   // A whole number divided (8 ÷ 4) has no point to keep above: draw again.
   if (Number.isInteger(a)) return divWhole(rng);
-  return arith({
+  return noWholeSlips(arith({
     topicId: ID,
     level: 6,
     a,
@@ -153,7 +191,8 @@ function divWhole(rng: Rng): Exercise {
     example: { a: 7.5, b: 3 },
     input: numpad(4, true),
     diagnose: pointSlip(q),
-  });
+    advice: pointAdvice(q, say('dop.adv.point.divWhole', { k, a })),
+  }));
 }
 
 function divHalf(rng: Rng): Exercise {
@@ -180,7 +219,20 @@ function divHalf(rng: Rng): Exercise {
     ],
     example: { a: 3, b: 0.5 },
     input: numpad(3),
-    diagnose: (v) => (v === round(a * b, 2) ? 'wrongOperation' : null),
+    // Multiplied instead of dividing, or the number left as it is (not a moved point).
+    diagnose: (v) => (v === round(a * b, 2) ? 'wrongOperation' : v === a ? 'other' : null),
+    advice: [
+      {
+        value: round(a * b, 2),
+        say: say('dop.adv.divHalf.times', { w: round(a * b, 2), b, plural: fractionNoun(per).plural, a }),
+        kind: 'wrongOperation',
+      },
+      {
+        value: a,
+        say: say('dop.adv.divHalf.same', { w: a, per: { n: per, noun: fractionNoun(per) }, a }),
+        kind: 'other',
+      },
+    ],
   });
 }
 
@@ -253,7 +305,27 @@ function familiar(rng: Rng): Exercise {
       ),
     ],
     solution: solved({ x, n, d }),
+    // The decimal's digits as a whole number (twenty-five for a quarter's denominator, seventy-five for three quarters' numerator).
+    advice: [round(x * 10, 6), round(x * 100, 6)]
+      .filter((v) => Number.isInteger(v) && v > 1)
+      .map((v) => ({
+        value: v,
+        say: unit
+          ? say('dop.adv.fam.unit', { w: v, x })
+          : say('dop.adv.fam.num', { w: v, d, unit: w(1, d), ux: round(1 / d, 3), x }),
+      })),
   });
+}
+
+/** What to say to a whole number, to the number itself, and to the other tenth. */
+function roundAdvice(x: number, answer: number): AdviceSpec[] {
+  const d = Math.round(x * 100) % 10;
+  const other = round(d >= 5 ? answer - 0.1 : answer + 0.1, 1);
+  return [
+    { value: Math.round(x), say: say('dop.adv.round.whole', { w: Math.round(x) }) },
+    { value: x, say: say('dop.adv.round.same', { w: x, d }) },
+    { value: other, say: say(d >= 5 ? 'dop.adv.round.up' : 'dop.adv.round.down', { d }) },
+  ];
 }
 
 /** Rounding to the nearest tenth. */
@@ -288,7 +360,9 @@ function roundTenth(rng: Rng): Exercise {
       ),
     ],
     solution: say('ex.dop.round.solution', { x, r: answer }),
-    diagnose: (v) => (v === Math.round(x) ? 'placeValue' : null),
+    // Rounded to a whole number, not rounded at all, or rounded the wrong way.
+    diagnose: (v) => (v === Math.round(x) ? 'other' : null),
+    advice: roundAdvice(x, answer),
   });
 }
 
@@ -347,6 +421,10 @@ function story(rng: Rng): Exercise {
     ],
     solution: say('eq.times.solution', { a: k, b: price, c: answer }),
     diagnose: pointSlip(answer),
+    advice: pointAdvice(
+      answer,
+      say('dop.adv.point.story', { price, r: Math.max(1, Math.round(price)), k }),
+    ),
   });
 }
 
