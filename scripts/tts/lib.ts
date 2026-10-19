@@ -121,7 +121,8 @@ function buildBody(text: string, spec: VoiceSpec): SynthesizeBody {
 
 /** Calls the API once and returns MP3 bytes. Retries transient failures. */
 export async function synthesize(text: string, spec: VoiceSpec): Promise<Buffer> {
-  const body = buildBody(text, spec);
+  let body = buildBody(text, spec);
+  let refusals = 0;
   const project = await projectId();
   let lastError: unknown;
   for (let attempt = 1; attempt <= 8; attempt++) {
@@ -142,6 +143,22 @@ export async function synthesize(text: string, spec: VoiceSpec): Promise<Buffer>
     }
     const detail = await res.text();
     lastError = new Error(`TTS ${res.status} for "${text}": ${detail.slice(0, 300)}`);
+    // An expired token (long runs): get a new one and try again.
+    if (res.status === 401) {
+      cachedToken = undefined;
+      continue;
+    }
+    // Gemini's safety filter refuses harmless school sentences at random ("usage
+    // guidelines"): try again, the second time without the style prompt.
+    if (res.status === 400 && /usage guidelines/.test(detail) && refusals < 2) {
+      refusals++;
+      if (refusals === 2 && body.input.prompt) {
+        const { prompt: _drop, ...input } = body.input;
+        void _drop;
+        body = { ...body, input };
+      }
+      continue;
+    }
     // 429 / 5xx: back off and retry. 4xx otherwise: give up immediately.
     if (res.status !== 429 && res.status < 500) throw lastError;
     // A per-minute quota (429) needs a real pause; other transient errors a short one.
