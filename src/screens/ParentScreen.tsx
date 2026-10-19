@@ -368,7 +368,10 @@ function BackupSection() {
       {pending ? (
         <ConfirmDialog
           title={t('parent.backup.confirmTitle')}
-          body={t('parent.backup.confirmBody', { params: { count: pending.profiles.length } })}
+          // Linked to the family: the restore reaches the other devices too.
+          body={t(synced ? 'parent.backup.confirmBodySynced' : 'parent.backup.confirmBody', {
+            params: { count: pending.profiles.length },
+          })}
           confirmLabel={t('parent.backup.confirm')}
           danger
           onConfirm={() => {
@@ -462,7 +465,8 @@ function PinChooser({ onDone, onCancel }: { onDone: (pin: string) => void; onCan
         <p className="gate__error" role="alert">
           {mismatch ? t('parent.security.mismatch') : ' '}
         </p>
-        <NumberPad label={prompt} value={value} onChange={onChange} maxLength={PIN_LENGTH} />
+        {/* A code, not a number: a leading 0 counts. */}
+        <NumberPad label={prompt} value={value} onChange={onChange} maxLength={PIN_LENGTH} code />
       </div>
     </Dialog>
   );

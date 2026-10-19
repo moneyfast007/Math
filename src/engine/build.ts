@@ -390,6 +390,8 @@ export interface TopicDef {
   labelKey: string;
   grades: readonly number[];
   startLevel: (grade: number) => number;
+  /** The last level for a younger grade that shares the world (10 when absent). */
+  lastLevel?: (grade: number) => number;
   levels: readonly LevelDef[];
   /** Extra phrases for the audio bank (story pieces the sampling may not reach). */
   extraBank?: () => string[];
@@ -475,6 +477,7 @@ export function defineTopic(def: TopicDef): Topic & { enumerate: (level: number)
     grades: def.grades,
     levels,
     startLevel: def.startLevel,
+    ...(def.lastLevel ? { lastLevel: def.lastLevel } : {}),
     generate,
     spokenBank,
     enumerate,

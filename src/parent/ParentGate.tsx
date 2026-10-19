@@ -67,6 +67,8 @@ export function ParentGate({
           value={value}
           onChange={onChange}
           maxLength={hasPin ? PIN_LENGTH : 4}
+          // A PIN is a code, not a number: a leading 0 counts (0482).
+          code={hasPin}
           {...(hasPin ? {} : { onSubmit: () => void check(value) })}
         />
       </div>

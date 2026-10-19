@@ -14,6 +14,7 @@ import { heGan1 } from './extra/gan1';
 import { heGrade4 } from './extra/grade4';
 import { heGrades23 } from './extra/grades23';
 import { heGrades56 } from './extra/grades56';
+import { heWorlds } from './extra/worlds';
 
 export const he = {
   // App
@@ -91,6 +92,8 @@ export const he = {
   'parent.backup.confirmTitle': 'לשחזר מהגיבוי?',
   'parent.backup.confirmBody':
     'הנתונים שבמכשיר יוחלפו בנתונים מהקובץ ({count} פרופילים). אי אפשר לבטל את הפעולה.',
+  'parent.backup.confirmBodySynced':
+    'המכשיר מסונכרן עם המשפחה, ולכן השחזור יגיע גם לשאר המכשירים: ילדים שאינם בקובץ יימחקו גם שם, והתקדמות שכבר נשמרה במכשירים האחרים לא תרד. בקובץ יש {count} פרופילים. אי אפשר לבטל את הפעולה.',
   'parent.backup.confirm': 'שחזור',
   'parent.backup.imported': 'השחזור הושלם.',
   'parent.backup.importError': 'לא הצלחנו לקרוא את הקובץ: {reason}',
@@ -2048,6 +2051,7 @@ export const he = {
   ...heGrades23,
   ...heGrade4,
   ...heGrades56,
+  ...heWorlds,
 } as const;
 
 export type HebrewKey = keyof typeof he;
