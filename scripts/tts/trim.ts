@@ -61,12 +61,30 @@ async function main(): Promise<void> {
     try {
       // The source's own bitrate (32k for Gemini, 64k for WaveNet), mono, like the source.
       const { stdout } = await run('ffprobe', [
-        '-v', 'error', '-show_entries', 'format=bit_rate', '-of', 'csv=p=0', file,
+        '-v',
+        'error',
+        '-show_entries',
+        'format=bit_rate',
+        '-of',
+        'csv=p=0',
+        file,
       ]);
       const kbps = Math.max(24, Math.round(Number(stdout.trim()) / 8000) * 8 || 32);
       await run('ffmpeg', [
-        '-v', 'error', '-y', '-i', file, '-af', FILTER,
-        '-ac', '1', '-codec:a', 'libmp3lame', '-b:a', `${kbps}k`, tmp,
+        '-v',
+        'error',
+        '-y',
+        '-i',
+        file,
+        '-af',
+        FILTER,
+        '-ac',
+        '1',
+        '-codec:a',
+        'libmp3lame',
+        '-b:a',
+        `${kbps}k`,
+        tmp,
       ]);
       await rename(tmp, file);
       const clip = manifest.clips[id];
@@ -74,7 +92,8 @@ async function main(): Promise<void> {
     } catch (err) {
       await rm(tmp, { force: true });
       failed++;
-      if (failed <= 20) console.error(`  ${id}: ${err instanceof Error ? err.message : String(err)}`);
+      if (failed <= 20)
+        console.error(`  ${id}: ${err instanceof Error ? err.message : String(err)}`);
     }
     if (++done % 500 === 0) {
       console.log(`  ${done}/${todo.length}`);

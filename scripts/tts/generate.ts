@@ -68,7 +68,9 @@ export function voiceFor(): VoiceSpec {
 }
 
 function voiceKey(v: VoiceSpec): string {
-  return v.engine.startsWith('gemini') ? `${v.engine}/${v.voice}/${PACE}` : `${v.engine}/${v.voice}`;
+  return v.engine.startsWith('gemini')
+    ? `${v.engine}/${v.voice}/${PACE}`
+    : `${v.engine}/${v.voice}`;
 }
 
 function textFor(phrase: string, spec: VoiceSpec): string {
@@ -125,7 +127,9 @@ async function main(): Promise<void> {
   // Short clips first: numbers and fragments are heard in many sentences.
   work.sort((x, y) => x.phrase.text.length - y.phrase.text.length);
   let deadline =
-    Number(values['max-minutes']) > 0 ? Date.now() + Number(values['max-minutes']) * 60_000 : Infinity;
+    Number(values['max-minutes']) > 0
+      ? Date.now() + Number(values['max-minutes']) * 60_000
+      : Infinity;
   let done = 0;
   let skipped = 0;
   const checkpoint = async () => {

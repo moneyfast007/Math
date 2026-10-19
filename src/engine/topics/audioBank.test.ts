@@ -45,5 +45,8 @@ const NUMBER_CLIPS = new Set<string>([
 function isNumberClip(p: string): boolean {
   if (NUMBER_CLIPS.has(p)) return true;
   const plain = p.slice(1);
-  return (NUMBER_PREFIXES as readonly string[]).includes(p[0] ?? '') && (NUMBER_CLIPS.has(plain) || plain === 'אלף');
+  return (
+    (NUMBER_PREFIXES as readonly string[]).includes(p[0] ?? '') &&
+    (NUMBER_CLIPS.has(plain) || plain === 'אלף')
+  );
 }

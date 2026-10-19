@@ -80,7 +80,8 @@ export function numberPhrases(): Phrase[] {
   // The first clip of a number with a letter glued to it ("מעשר", "לשמונה"): see compose.ts.
   const plain = [...out.map((p) => p.text), 'אלף'];
   for (const prefix of NUMBER_PREFIXES)
-    for (const text of new Set(plain)) out.push({ id: `num.pre.${prefix}.${text}`, text: `${prefix}${text}` });
+    for (const text of new Set(plain))
+      out.push({ id: `num.pre.${prefix}.${text}`, text: `${prefix}${text}` });
   out.push({ id: 'num.word.elef', text: 'אלף' });
   out.push({ id: 'num.word.million', text: 'מיליון' });
   out.push({ id: 'num.word.twoMillion', text: 'שני מיליון' });
