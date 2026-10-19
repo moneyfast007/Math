@@ -273,8 +273,9 @@ function missing(rng: Rng): Exercise {
       : kind === 'a-'
         ? [
             hint(say('hint.missStart100')),
-            hint(say('ex.decompose.hint2'), {
-              example: { display: `? = ${c} + ${b}`, spoken: say('ex.decompose.hint2') },
+            // Adding back, shown as the exercise that does it.
+            hint(say('hint.addBack100'), {
+              example: { display: `? = ${c} + ${b}`, spoken: say('hint.addBack100') },
             }),
           ]
         : [

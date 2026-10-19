@@ -92,10 +92,11 @@ function divisibleBy(level: number, d: 2 | 5 | 10 | 3 | 9 | 6, lo: number, hi: n
 /** Which of these does the number divide by? Exactly one of the three does. */
 function whichDivisor(rng: Rng): Exercise {
   const set = pick(rng, [
+    // Only divisors taught in levels 1–5.
     [2, 5, 9],
-    [3, 5, 4],
-    [2, 9, 5],
-    [10, 3, 4],
+    [3, 5, 2],
+    [6, 5, 9],
+    [10, 3, 9],
   ]);
   let n = 0;
   let right = 0;

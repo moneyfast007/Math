@@ -345,8 +345,20 @@ function hundreds(rng: Rng): Exercise {
     a,
     op,
     b,
-    hints: [hint(say('ex.h3.hint1')), hint(say('ex.h3.hint2'))],
-    example: op === '+' ? { a: 200, b: 500 } : { a: 900, b: 300 },
+    // Hint 1 with this exercise's own numbers, counted in hundreds.
+    hints: [
+      hint(say(op === '+' ? 'ex.h3.hint1add' : 'ex.h3.hint1sub', { a, b })),
+      hint(say('ex.h3.hint2')),
+    ],
+    // Whole hundreds, and never this exercise's answer.
+    example:
+      op === '+'
+        ? a + b === 700
+          ? { a: 400, b: 400 }
+          : { a: 200, b: 500 }
+        : a - b === 600
+          ? { a: 800, b: 300 }
+          : { a: 900, b: 300 },
     input: numpad(4),
   });
 }

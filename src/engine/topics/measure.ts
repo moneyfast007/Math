@@ -596,8 +596,9 @@ function problem(rng: Rng): Exercise {
       factId: `ribbon:${a}:${b}`,
       topicId: ID,
       level: 10,
-      prompt: say('ex.measure.ribbon.story', { a: { n: a, noun: METER }, b: { n: b, noun: CM } })
-        .text,
+      prompt: shown(
+        say('ex.measure.ribbon.story', { a: { n: a, noun: METER }, b: { n: b, noun: CM } }),
+      ),
       display: '',
       spoken: say('ex.measure.ribbon.story', { a: { n: a, noun: METER }, b: { n: b, noun: CM } }),
       answer: left,

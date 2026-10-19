@@ -245,7 +245,8 @@ function average(level: 8 | 9) {
   return (rng: Rng): Exercise => {
     const n = level === 8 ? 3 : pick(rng, [4, 5]);
     for (;;) {
-      const s = survey(rng, n, 2, 18);
+      // Even values: the scale goes up in twos, so every bar ends on a line.
+      const s = survey(rng, n, 2, 18, 2);
       const sum = s.vals.reduce((x, y) => x + y, 0);
       if (sum % n !== 0) continue;
       const answer = sum / n;

@@ -55,6 +55,7 @@ const AGREES: Record<string, Noun> = Object.fromEntries(
       ['סנטימטר', 'סנטימטרים', 'm'],
       ['קילומטר', 'קילומטרים', 'm'],
       ['אחוז', 'אחוזים', 'm'],
+      ['מחלק', 'מחלקים', 'm'],
     ] as const
   ).map(([singular, plural, gender]) => [plural, { singular, plural, gender }]),
 );
@@ -89,6 +90,11 @@ function resolve(slot: Slot): Resolved {
   if (typeof slot === 'string') return { words: slot, clips: [], tail: slot };
   const n = typeof slot === 'number' ? slot : slot.n;
   const gender = typeof slot === 'number' ? 'f' : (slot.noun?.gender ?? slot.gender ?? 'f');
+  if (typeof slot !== 'number' && slot.noun && !Number.isInteger(n)) {
+    // A decimal with its unit: "שלוש נקודה חמש סנטימטרים" (the unit in the plural, as said).
+    const clips = decimalParts(n);
+    return { words: `${clips.join(' ')} ${slot.noun.plural}`, clips, tail: slot.noun.plural };
+  }
   if (typeof slot !== 'number' && slot.noun) {
     const words = countNoun(n, slot.noun);
     if (n <= 2) return { words, clips: [], tail: words };

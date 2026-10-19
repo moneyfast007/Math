@@ -313,12 +313,17 @@ function rightAngles(rng: Rng): Exercise {
     hints: [
       hint(say('ex.poly.rights.hint1')),
       hint(say('ex.poly.right.hint2')),
-      pictureExample(
-        say('ex.poly.rights.example'),
-        poly(shape === 'square' ? 'rectangle' : 'square', { rightAngles: [0, 1, 2, 3] }),
-      ),
+      // Never this shape's answer: a square (four) for the others, the trapezoid (two) for four.
+      n === 4
+        ? pictureExample(say('ex.poly.rights.exampleTwo'), poly('trapezoid', { rightAngles: [0, 3] }))
+        : pictureExample(say('ex.poly.rights.example'), poly('square', { rightAngles: [0, 1, 2, 3] })),
     ],
-    solution: say('ex.poly.rights.solution', { n }),
+    solution:
+      n === 0
+        ? say('ex.poly.rights.solution0')
+        : n === 1
+          ? say('ex.poly.rights.solution1')
+          : say('ex.poly.rights.solution', { n }),
   });
 }
 
@@ -386,7 +391,17 @@ function allEqual(rng: Rng): Exercise {
     hints: [
       hint(say('ex.poly.equal.hint1')),
       hint(say('ex.poly.equal.hint2')),
-      hint(say('ex.poly.equal.hint3')),
+      // A rhombus, which is never one of the choices: the same mark on every side.
+      pictureExample(say('ex.poly.equal.example'), {
+        type: 'polygon',
+        points: [
+          [50, 8],
+          [90, 50],
+          [50, 92],
+          [10, 50],
+        ],
+        ticks: [1, 1, 1, 1],
+      }),
     ],
     solution: say('ex.poly.equal.solution', { name: names[0] as string }),
   });

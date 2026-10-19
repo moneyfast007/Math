@@ -105,8 +105,9 @@ function build(s: Spec): Exercise {
 }
 
 /** Numbers in the sentence are plain numbers for decimals (compose reads them "נקודה"). */
+/** A length with its unit, whole or decimal ("שלוש נקודה חמש סנטימטרים"). */
 function slot(x: number, noun: Noun): Slot {
-  return Number.isInteger(x) ? { n: x, noun } : x;
+  return { n: x, noun };
 }
 
 /* ---------- Level 1: radius and diameter, both ways ---------- */
@@ -314,7 +315,7 @@ const litres = (k: number, toCm3: boolean): Exercise => {
     id: `${toCm3 ? 'litre' : 'cm3'}:${k}`,
     key: toCm3 ? 'c6.litre.spoken' : 'c6.cm3.spoken',
     slots: toCm3
-      ? { k: slot(k, LITRE), u: Number.isInteger(k) ? '' : ' ליטרים' }
+      ? { k: slot(k, LITRE), u: '' }
       : { v: { n: v, noun: CM3 } },
     solution: toCm3 ? 'c6.litre.solution' : 'c6.cm3.solution',
     solutionSlots: toCm3 ? { k } : { v },
