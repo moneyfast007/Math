@@ -244,8 +244,11 @@ function convert(n: number, c: (typeof CONVERSIONS)[number]): Exercise {
 
 function story(rng: Rng): Exercise {
   const fence = rng() < 0.5;
-  const w = randInt(rng, 3, 15);
-  const h = randInt(rng, 2, 12);
+  // The length is the longer side; and not a garden whose perimeter and area are the same number.
+  const x = randInt(rng, 3, 15);
+  const y = randInt(rng, 2, 12);
+  const [w, h] = [Math.max(x, y), Math.min(x, y)];
+  if (sameNumbers({ w, h })) return story(rng);
   const who = CHARACTERS[(w + h) % CHARACTERS.length] as Character;
   const key = fence ? ('wp.fence' as const) : ('wp.carpet' as const);
   const answer = fence ? 2 * (w + h) : w * h;
@@ -327,7 +330,10 @@ const RECTS: Shape[] = range(2, 12).flatMap((w) =>
     .filter((h) => h < w)
     .map((h) => ({ w, h })),
 );
-const SQUARES: Shape[] = range(2, 12).map((n) => ({ w: n, h: n }));
+const SQUARES: Shape[] = range(2, 15).map((n) => ({ w: n, h: n }));
+
+/** 4 × 4 and 6 × 3: perimeter and area are the same number, so "which one?" cannot be checked. */
+const sameNumbers = (s: Shape) => 2 * (s.w + s.h) === s.w * s.h;
 
 export const perimeterArea = defineTopic({
   id: ID,
@@ -372,10 +378,12 @@ export const perimeterArea = defineTopic({
     closed(
       L(9),
       () =>
-        [...RECTS, ...SQUARES].flatMap((sh) => [
-          { sh, p: true },
-          { sh, p: false },
-        ]),
+        [...RECTS, ...SQUARES]
+          .filter((sh) => !sameNumbers(sh))
+          .flatMap((sh) => [
+            { sh, p: true },
+            { sh, p: false },
+          ]),
       (x) => measure(9, x.sh, x.p),
     ),
     open(L(10), story),

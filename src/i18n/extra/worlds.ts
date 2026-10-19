@@ -240,4 +240,7 @@ export const heWorlds = {
   'ex.data.pct.hint1': 'קודם נמצא כמה ילדים ענו בסך הכל.',
   'ex.data.pct.hint2': 'בסך הכל ענו {s} ילדים. איזה חלק מהם זה?',
   'ex.data.pct.example': '{k} מתוך {s} זה {r} אחוזים.',
+
+  // Grade 1 clock: an hour earlier instead of half hours (grade 2).
+  'level.clockMoney1.hourEarlier': 'מה השעה לפני שעה?',
 } as const;

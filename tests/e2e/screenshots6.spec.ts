@@ -46,7 +46,10 @@ const backup = {
       profile('f', 'מאיה', 'tiger', 4),
     ],
     progress: {
-      a: { topics: { 'add-sub-100': done() }, streak: { count: 0, lastDay: null } },
+      a: {
+        topics: { 'add-sub-100': done(), 'numbers-1000': done() },
+        streak: { count: 0, lastDay: null },
+      },
       e: {
         topics: { 'mult-table': done(), 'numbers-10000': done(), 'fractions-1': done() },
         streak: { count: 0, lastDay: null },
@@ -55,8 +58,8 @@ const backup = {
         topics: {
           'big-numbers': done(),
           'long-mul-div': done(),
+          divisibility: done(),
           'fraction-ops': done(),
-          decimals: done(),
           'perimeter-area': done(),
         },
         streak: { count: 0, lastDay: null },
@@ -66,11 +69,16 @@ const backup = {
         streak: { count: 0, lastDay: null },
       },
       c: {
-        topics: { 'add-sub-20': done(), 'numbers-100': done() },
+        topics: { 'add-sub-20': done(), 'numbers-100': done(), polygons: done() },
         streak: { count: 0, lastDay: null },
       },
       b: {
-        topics: { 'add-sub-100': done(), money: done(), 'mult-intro': done() },
+        topics: {
+          'add-sub-100': done(),
+          'numbers-1000': done(),
+          money: done(),
+          'mult-intro': done(),
+        },
         streak: { count: 0, lastDay: null },
       },
     },
@@ -105,8 +113,8 @@ const backup5 = {
     progress: {
       g: {
         topics: {
-          'fraction-mul-div': done(),
-          'decimal-ops': done(),
+          'fraction-ops': done(),
+          decimals: done(),
           'percent-intro': done(),
           'order-ops': done(),
         },
@@ -182,8 +190,8 @@ test('gan shapes screens', async ({ page }, info) => {
   await level(page, 'כמה פינות?', 's-04-corners');
   await level(page, 'גדול וקטן', 's-05-size');
   await level(page, 'ארוך וקצר', 's-06-pencils');
-  await level(page, 'דפוס של צורות', 's-07-pattern', 1);
-  await level(page, 'מה חסר בדפוס?', 's-08-missing');
+  await level(page, 'דגם של צורות', 's-07-pattern', 1);
+  await level(page, 'מה חסר בדגם?', 's-08-missing');
   await level(page, 'כמה יש בתמונה?', 's-09-count');
 });
 

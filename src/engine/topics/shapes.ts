@@ -16,7 +16,7 @@ import { seededRng, shuffle } from '../rng';
 import type { Exercise, Hint, Rng, ShapeColor, ShapeItem, ShapeKind, Visual } from '../types';
 
 /**
- * World "צורות ודפוסים", gan hova (phase 6). Finding a circle, square,
+ * World "צורות ודגמים", gan hova (phase 6). Finding a circle, square,
  * triangle and rectangle; the same shape turned or in another colour;
  * corners; biggest and smallest; longest and shortest; colour and shape
  * patterns (what comes next, what is missing); counting one shape among others.
@@ -54,13 +54,11 @@ const COLOR_NAME: Record<ShapeColor, string> = {
   green: 'ירוק',
 };
 const COLORS: ShapeColor[] = ['red', 'blue', 'yellow', 'green'];
-/** In shape patterns each shape keeps one colour, so only the shape matters. */
-const SHAPE_COLOR: Record<ShapeKind, ShapeColor> = {
-  circle: 'red',
-  triangle: 'green',
-  square: 'blue',
-  rectangle: 'yellow',
-};
+/**
+ * In shape patterns every shape has the same colour: with a colour of its own,
+ * the pattern could be followed by colour alone, and the level would repeat level 7.
+ */
+const PATTERN_SHAPE_COLOR: ShapeColor = 'blue';
 const BASIC: ShapeKind[] = ['circle', 'square', 'triangle'];
 const ALL: ShapeKind[] = ['circle', 'square', 'triangle', 'rectangle'];
 
@@ -134,6 +132,8 @@ function where(level: number) {
     const right = item(target, colorOf(ALL.indexOf(target) + 1), 1, target === 'circle' ? 0 : turn);
     const wrong = others.map((o, i): [ShapeItem, string] => [item(o, colorOf(i + 2)), NAME[o]]);
     const name = NAME[target];
+    // The model is not a copy of the button: another colour and size.
+    const model = item(target, COLORS.find((c) => c !== right.color) as ShapeColor, 0.75);
     return pickExercise(
       level,
       `where${level}:${target}:${others.join(',')}:${turn}`,
@@ -142,8 +142,12 @@ function where(level: number) {
       [
         hint(say(ABOUT[target])),
         // Square and rectangle both have four corners: what tells them apart is the sides.
-        hint(say(level === 2 ? 'ex.shapes.sides.hint' : 'ex.shapes.corners.hint')),
-        pictureExample(say('ex.shapes.this', { name }), one(item(target, 'yellow'))),
+        hint(say(level === 2 ? 'ex.shapes.sides.hint' : 'ex.shapes.corners.countThem')),
+        // A model of the shape, not a solved exercise: titled so.
+        {
+          ...pictureExample(say('ex.shapes.this', { name }), one(model)),
+          text: t('ex.shapes.looksLike', { params: { name } }),
+        },
       ],
       say('ex.shapes.this', { name }),
     );
@@ -170,7 +174,7 @@ function same({ target, turn }: SameFact, rng: Rng): Exercise {
       hint(say('ex.shapes.same.hint1')),
       hint(say(ABOUT[target])),
       pictureExample(
-        say('ex.shapes.same.example', { names: NOUN[exShape].plural }),
+        say('ex.shapes.same.example2', { names: NOUN[exShape].plural }),
         row([item(exShape, 'green'), item(exShape, 'yellow', 0.7, 30)]),
       ),
     ],
@@ -202,9 +206,10 @@ function corners({ shape, turn }: CornerFact, rng: Rng): Exercise {
     answer: CORNERS[shape],
     // 0, 3, 4 or 5 corners, three of them in order, the answer at any place.
     input: { type: 'choices', choices: windowChoices(rng, [0, 3, 4, 5], CORNERS[shape]) },
+    // First what a corner is, then how to count them.
     hints: [
-      hint(say('ex.shapes.corners.hint1')),
       hint(say('ex.shapes.corners.hint2')),
+      hint(say('ex.shapes.corners.hint1')),
       pictureExample(cornersSaid(ex), one(item(ex, 'yellow'))),
     ],
     solution: cornersSaid(shape),
@@ -287,7 +292,10 @@ function pencils({ lengths, ask }: PencilFact, rng: Rng): Exercise {
     hints: [
       hint(say('ex.pencils.hint1')),
       hint(say(ask === 'long' ? 'ex.pencils.hintLong' : 'ex.pencils.hintShort')),
-      pictureExample(say('ex.pencils.example'), { type: 'pencils', lengths: [1, 5, 3] }),
+      pictureExample(say(ask === 'long' ? 'ex.pencils.example' : 'ex.pencils.exampleShort'), {
+        type: 'pencils',
+        lengths: [1, 5, 3],
+      }),
     ],
     solution: say(ask === 'long' ? 'ex.pencils.solutionLong' : 'ex.pencils.solutionShort'),
   });
@@ -316,7 +324,7 @@ type PatternFact = {
 function thingItem(kind: 'color' | 'shape', thing: string): ShapeItem {
   return kind === 'color'
     ? item('circle', thing as ShapeColor, 0.85)
-    : item(thing as ShapeKind, SHAPE_COLOR[thing as ShapeKind], 0.85);
+    : item(thing as ShapeKind, PATTERN_SHAPE_COLOR, 0.85);
 }
 
 function thingName(kind: 'color' | 'shape', thing: string): string {
@@ -367,29 +375,29 @@ function patternExercise(level: number) {
         .filter((c) => c !== rightThing)
         .map((c): [ShapeItem, string] => [thingItem(kind, c), thingName(kind, c)]),
     );
+    const said = (thing: string) =>
+      kind === 'color' ? COLOR_NAME[thing as ShapeColor] : NAME[thing as ShapeKind];
     const sayIt = seq
       .slice(0, length)
-      .map((k, i) =>
-        i === at
-          ? 'מה?'
-          : kind === 'color'
-            ? COLOR_NAME[things[k] as ShapeColor]
-            : NAME[things[k] as ShapeKind],
-      )
+      .map((k, i) => (i === at ? 'מה?' : said(things[k] as string)))
       .join(', ');
-    const exThings = kind === 'color' ? ['yellow', 'green'] : ['square', 'circle'];
+    // One repeat of the pattern (AB, AAB, ABB or ABC); the second one when the gap is in the first.
+    const unit = pattern.length;
+    const unitFrom = at < unit ? unit : 0;
     return pickExercise(
       level,
       `pattern${level}:${pattern}:${things.join(',')}:${gap}`,
-      say(gap === 'end' ? 'ex.pattern.next' : 'ex.pattern.missing'),
+      say(gap === 'end' ? 'ex.pattern.next' : 'ex.pattern.missing.model'),
       pick,
       [
-        hint(say('ex.pattern.sayIt', { seq: gap === 'end' ? `${sayIt}...` : sayIt })),
-        hint(say('ex.pattern.hint2')),
-        pictureExample(
-          say('ex.pattern.example'),
-          row(sequence('AB', 6).map((k) => thingItem(kind, exThings[k] as string))),
-        ),
+        hint(say('ex.pattern.sayIt.model', { seq: gap === 'end' ? `${sayIt}...` : sayIt })),
+        // The part that repeats, drawn once.
+        hint(say('ex.pattern.hint2'), {
+          visual: row(
+            seq.slice(unitFrom, unitFrom + unit).map((k) => thingItem(kind, things[k] as string)),
+          ),
+        }),
+        patternExample(kind, pattern, rightThing),
       ],
       say(gap === 'end' ? 'ex.pattern.solutionNext' : 'ex.pattern.solutionMissing', {
         thing: thingName(kind, rightThing),
@@ -397,6 +405,31 @@ function patternExercise(level: number) {
       row(shown),
     );
   };
+}
+
+/**
+ * Hint 3: a pattern solved, of another kind (AB for the others, ABC for AB) and
+ * in things whose answer is not this one's: "blue, green, blue, green, blue, what?
+ * Blue and green repeat, so now comes green."
+ */
+function patternExample(kind: 'color' | 'shape', pattern: Pattern, avoid: string): Hint {
+  const exPattern: Pattern = pattern === 'AB' ? 'ABC' : 'AB';
+  const size = exPattern.length;
+  const pool: string[] = (kind === 'color' ? COLORS : ALL).filter((p) => p !== avoid);
+  const things = pool.slice(0, size);
+  const seq = sequence(exPattern, 6).map((k) => things[k] as string);
+  const said = (thing: string) =>
+    kind === 'color' ? COLOR_NAME[thing as ShapeColor] : NAME[thing as ShapeKind];
+  const names = things.map(said);
+  const unit = `${names.slice(0, -1).join(', ')} ו${names.at(-1) ?? ''}`;
+  return pictureExample(
+    say('ex.pattern.exampleSolved', {
+      seq: seq.slice(0, 5).map(said).join(', '),
+      unit,
+      next: thingName(kind, seq[5] as string),
+    }),
+    row(seq.map((thing) => thingItem(kind, thing))),
+  );
 }
 
 /* ---------- Level 10: how many triangles? ---------- */
@@ -424,8 +457,10 @@ function scene(target: ShapeKind, n: number, seed: number): ShapeItem[] {
 
 function countShapes({ target, n }: CountFact, rng: Rng): Exercise {
   const noun = NOUN[target];
+  // Not this exercise's number: "three squares" would answer "how many circles?" with three.
+  const exN = n === 3 ? 4 : 3;
   const ex: CountFact =
-    target === 'circle' ? { target: 'square', n: 3 } : { target: 'circle', n: 3 };
+    target === 'circle' ? { target: 'square', n: exN } : { target: 'circle', n: exN };
   const choices = windowChoices(rng, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], n);
   return exercise({
     factId: `count:${target}:${n}`,
@@ -452,7 +487,7 @@ function countShapes({ target, n }: CountFact, rng: Rng): Exercise {
 
 export const shapesTopic = defineTopic({
   id: ID,
-  labelKey: 'topic.shapes',
+  labelKey: 'topic.shapes.patterns',
   grades: [0],
   startLevel: () => 1,
   levels: [
@@ -495,10 +530,11 @@ export const shapesTopic = defineTopic({
         TRIPLES.flatMap((lengths) => (['long', 'short'] as const).map((ask) => ({ lengths, ask }))),
       pencils,
     ),
-    closed(L(7), patternFacts('color', ['end']), patternExercise(7)),
-    closed(L(8), patternFacts('shape', ['end']), patternExercise(8)),
+    // "דגם", the curriculum's word, in the labels of the pattern levels.
+    closed('level.shapes.colorPattern', patternFacts('color', ['end']), patternExercise(7)),
+    closed('level.shapes.shapePattern', patternFacts('shape', ['end']), patternExercise(8)),
     closed(
-      L(9),
+      'level.shapes.missingInPattern',
       () => [...patternFacts('color', [2, 3])(), ...patternFacts('shape', [2, 4])()],
       patternExercise(9),
     ),

@@ -55,6 +55,11 @@ export type Visual =
       groups: number[];
       removed?: number;
       arranged?: boolean;
+      /**
+       * A five- or ten-frame: the objects of the first group fill its cells in rows
+       * of five, and the rest of the cells stay empty (how many are missing to ten?).
+       */
+      frame?: 5 | 10;
     }
   /**
    * A number line from `from` to `to`, marked at `start`, with `hops` steps of 1
@@ -73,6 +78,11 @@ export type Visual =
       step?: number;
       /** A tick whose number is the question: drawn as "?" (a hint that shows the way, not the answer). */
       hide?: number;
+      /**
+       * Numbers only under the multiples of this (10: only the tens), so a marked
+       * point has to be read from the ticks rather than from the number under it.
+       */
+      labelEvery?: number;
     }
   /**
    * Clocks: one, or two side by side (from, to: how much time passed). Analog
@@ -102,6 +112,8 @@ export type Visual =
   | { type: 'ruler'; from: number; to: number; length: number }
   /** A box drawn in perspective; `cubes` draws the unit cubes, `labels` its edges. */
   | { type: 'box'; l: number; w: number; h: number; cubes?: boolean; unit?: string }
+  /** A bar chart: one bar per answer of a survey, the scale on the left in steps of `step`. */
+  | { type: 'bars'; bars: { label: string; value: number }[]; step?: number; title?: string }
   /** A circle with its radius or diameter drawn and labelled. */
   | { type: 'circle'; mark: 'radius' | 'diameter'; label: string }
   /**

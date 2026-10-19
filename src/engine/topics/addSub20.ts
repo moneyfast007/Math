@@ -75,11 +75,12 @@ function factsFor(level: number): Fact[] {
         b,
       }));
     case 7:
-      return pairs(range(2, 10), range(1, 10), (a, b) => b <= a).map(([a, b]) => ({
-        kind: 'sub',
-        a,
-        b,
-      }));
+      // n − n only for even n: nine of them were one exercise in six.
+      return pairs(
+        range(2, 10),
+        range(1, 10),
+        (a, b) => b < a || (b === a && a % 2 === 0),
+      ).map(([a, b]) => ({ kind: 'sub', a, b }));
     case 8:
       // Up to 20 without crossing ten: 12 + 5, 17 − 4.
       return [
@@ -199,6 +200,7 @@ function countingSequence(n: number): string {
 }
 
 function exampleHint(sample: Fact): Hint {
+  if (sample.kind === 'missAdd' || sample.kind === 'missSub') return missingExample(sample);
   const ex = buildCore(sample, NOUNS[2] as CountableNoun);
   const display = ex.display ? ex.display.replace('?', String(answerOf(sample))) : '';
   return {
@@ -206,6 +208,46 @@ function exampleHint(sample: Fact): Hint {
     spoken: t('spoken.example', { params: { sentence: ex.solutionSpoken } }),
     example: { display, spoken: ex.solutionSpoken },
   };
+}
+
+/**
+ * A missing-number example in the shape of the question: the equation with its
+ * gap, then what goes in it ("3 + ? = 7, ? = 4"), said the way the question
+ * is asked. A plain "3 + 4 = 7" does not show what was missing.
+ */
+function missingExample(f: Extract<Fact, { kind: 'missAdd' | 'missSub' }>): Hint {
+  const gap = answerOf(f);
+  const display =
+    f.kind === 'missAdd'
+      ? `${f.a} + ? = ${f.c},   ? = ${gap}`
+      : `${f.c} − ? = ${f.b},   ? = ${gap}`;
+  const solved =
+    f.kind === 'missAdd'
+      ? t('ex.missAdd.exampleSolved', { params: { a: w(f.a), b: w(gap), c: w(f.c) } })
+      : t('ex.missSub.exampleSolved', { params: { c: w(f.c), a: w(gap), b: w(f.b) } });
+  return {
+    text: t('hint.example'),
+    spoken: t('spoken.example', { params: { sentence: solved } }),
+    example: { display, spoken: solved },
+  };
+}
+
+/** Whether a fact crosses ten (8 + 5, 14 − 6, 7 + ? = 12): its example should too, or not. */
+function crossesTen(f: Fact): boolean {
+  switch (f.kind) {
+    case 'add':
+    case 'objAdd':
+      return f.a < 10 && f.a + f.b > 10;
+    case 'sub':
+    case 'objSub':
+      return f.a > 10 && f.a - f.b < 10;
+    case 'missAdd':
+      return f.a < 10 && f.c > 10;
+    case 'missSub':
+      return f.c > 10 && f.b < 10;
+    case 'count':
+      return false;
+  }
 }
 
 interface Core {
@@ -384,7 +426,8 @@ function inputFor(level: number, answer: number, rng: Rng): Exercise['input'] {
   if (level <= 5)
     return {
       type: 'choices',
-      choices: choicesFor(answer, level <= 2 ? 1 : 0, 10, rng),
+      // Within the level's numbers: 7 among the buttons of "up to five" rules itself out.
+      choices: choicesFor(answer, level <= 2 ? 1 : 0, level === 3 ? 6 : 10, rng),
     };
   return { type: 'numpad', maxDigits: 2 };
 }
@@ -401,8 +444,23 @@ function build(f: Fact, level: number, noun: CountableNoun, rng: Rng): Exercise 
   const mirror = (x: Fact) =>
     'a' in x && 'a' in f && 'b' in x && 'b' in f && x.a === f.b && x.b === f.a;
   const around = sameKind.map((_, i) => sameKind[(index + step + i) % sameKind.length] as Fact);
+  // A missing-number example shows its whole equation: none of its numbers may be this answer.
+  const shows = (x: Fact) =>
+    x.kind === 'missAdd'
+      ? [x.c - x.a, x.c]
+      : x.kind === 'missSub'
+        ? [x.c - x.b, x.b]
+        : [answerOf(x)];
+  // Nor one that starts like the exercise (7 + ? = 15 for 7 + ? = 12): it reads as the same one.
+  const sameStart = (x: Fact) =>
+    (x.kind === 'missAdd' && f.kind === 'missAdd' && x.a === f.a) ||
+    (x.kind === 'missSub' && f.kind === 'missSub' && x.c === f.c);
+  const fair = (x: Fact) =>
+    factId(x) !== factId(f) && !shows(x).includes(answer) && !mirror(x) && !sameStart(x);
+  // Like the exercise: crossing ten when it does, not when it does not.
   const sample =
-    around.find((x) => factId(x) !== factId(f) && answerOf(x) !== answer && !mirror(x)) ??
+    around.find((x) => fair(x) && crossesTen(x) === crossesTen(f)) ??
+    around.find(fair) ??
     around[0] ??
     f;
   const core = buildCore(f, noun);
@@ -475,7 +533,8 @@ export function spokenBank(): string[] {
 export function startLevel(grade: number): number {
   // Gan hova arrives from world 1 (counting), so the counting levels are skipped.
   if (grade <= 0) return 3;
-  if (grade === 1) return 6;
+  // Grade 1 starts with adding and taking away pictures to ten (level 4), not past it.
+  if (grade === 1) return 4;
   if (grade === 2) return 8;
   return 9;
 }

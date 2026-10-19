@@ -1,7 +1,6 @@
 import { t, type TranslationKey } from '@/i18n';
 import { countNoun, numberToWords } from '@/lang/hebrewNumbers';
 import {
-  choicesAround,
   closed,
   defineTopic,
   exampleHint,
@@ -9,9 +8,11 @@ import {
   hint,
   labelledChoices,
   pictureChoices,
+  pictureExample,
   range,
   say,
   sayText,
+  spreadChoices,
   type Said,
 } from '../build';
 import { NOUNS, type CountableNoun } from '../nouns';
@@ -48,9 +49,29 @@ function k(key: string): TranslationKey {
   return key as TranslationKey;
 }
 
+/**
+ * Three buttons near the answer, within the level's numbers. Not ten away, as
+ * elsewhere: 0 next to 9 and 10 is no real choice for numbers up to ten.
+ */
+function near(rng: Rng, answer: number, min: number, max: number): number[] {
+  return spreadChoices(rng, answer, { deltas: [1, 2], min, max });
+}
+
+/** One too many or too few: counted something twice, or skipped one. */
+const offByOne = (answer: number) => (v: number) => (Math.abs(v - answer) === 1 ? 'offByOne' : null);
+
+/**
+ * A fact and a variant: the same numbers shown with other objects. Levels with
+ * only four or five numbers would otherwise repeat within a round of six.
+ */
+type Variant = { n: number; v: number };
+const variants = (ns: number[], count: number): Variant[] =>
+  ns.flatMap((n) => range(0, count - 1).map((v) => ({ n, v })));
+const variantId = (v: number) => (v === 0 ? '' : `:${v}`);
+
 /** Counting: "how many X?" */
-function count(level: number, n: number, rng: Rng): Exercise {
-  const noun = nounFor(n + level);
+function count(level: number, { n, v }: Variant, rng: Rng): Exercise {
+  const noun = nounFor(n + level + v * 3);
   const prompt = t('ex.count.prompt', { params: { plural: noun.plural } });
   const solved: Said = { text: `${countNoun(n, noun)}.`, parts: [`${countNoun(n, noun)}.`] };
   const k2 = n === 3 ? 4 : 3;
@@ -60,7 +81,7 @@ function count(level: number, n: number, rng: Rng): Exercise {
     .join(', ');
   const h3 = sayText(t('hint.count.3', { params: { phrase: countNoun(k2, star), sequence } }));
   return exercise({
-    factId: `count:${n}`,
+    factId: `count:${n}${variantId(v)}`,
     topicId: ID,
     level,
     prompt,
@@ -68,12 +89,15 @@ function count(level: number, n: number, rng: Rng): Exercise {
     spoken: { text: prompt, parts: [prompt] },
     visual: { type: 'objects', kind: noun, groups: [n] },
     answer: n,
-    input: { type: 'choices', choices: choicesAround(rng, n, 1, 10) },
+    input: { type: 'choices', choices: near(rng, n, 1, 10) },
     hints: [
       hint(say('hint.count.1')),
-      hint(say('hint.count.2'), {
-        visual: { type: 'objects', kind: noun, groups: [n], arranged: true },
-      }),
+      // "Rows of five" means nothing for one or two pictures.
+      n <= 2
+        ? hint(say('hint.count.2few'))
+        : hint(say('hint.count.2'), {
+            visual: { type: 'objects', kind: noun, groups: [n], arranged: true },
+          }),
       {
         text: h3.text,
         spoken: h3.text,
@@ -82,6 +106,7 @@ function count(level: number, n: number, rng: Rng): Exercise {
       },
     ],
     solution: solved,
+    diagnose: offByOne(n),
   });
 }
 
@@ -169,7 +194,7 @@ function oneStep(level: number, n: number, rng: Rng, more1: boolean): Exercise {
     visual,
     answer,
     operation: more1 ? 'add' : 'sub',
-    input: { type: 'choices', choices: choicesAround(rng, answer, 0, 10) },
+    input: { type: 'choices', choices: near(rng, answer, 0, 10) },
     hints: [
       hint(say(k(`${key}.hint1`))),
       hint(say('hint.numberLine'), {
@@ -185,12 +210,13 @@ function oneStep(level: number, n: number, rng: Rng, more1: boolean): Exercise {
       exampleHint(`${ex.n} ${more1 ? '+' : '−'} 1 = ${more1 ? ex.n + 1 : ex.n - 1}`, exSolved),
     ],
     solution: solved,
+    diagnose: offByOne(answer),
   });
 }
 
 /** Making five or ten: how many are missing from the frame? */
-function complete(level: number, n: number, rng: Rng, target: 5 | 10): Exercise {
-  const noun = nounFor(n + target);
+function complete(level: number, { n, v }: Variant, rng: Rng, target: 5 | 10): Exercise {
+  const noun = nounFor(n + target + v * 3);
   const answer = target - n;
   const prompt = t('ex.makeN.prompt', { params: { target, plural: noun.plural }, gender: noun.gender });
   const spoken = say(
@@ -207,18 +233,19 @@ function complete(level: number, n: number, rng: Rng, target: 5 | 10): Exercise 
   const exN = [2, 1, 3, 4].find((x) => x !== n && x !== answer && x < target) ?? 1;
   const exSolved = say('ex.makeN.solution', { a: exN, b: target - exN, target });
   return exercise({
-    factId: `make${target}:${n}`,
+    factId: `make${target}:${n}${variantId(v)}`,
     topicId: ID,
     level,
     prompt,
     display: '',
     spoken,
-    visual: { type: 'objects', kind: noun, groups: [n], arranged: true },
+    // A five- or ten-frame: what is missing are the empty cells, to be seen, not counted on in the head.
+    visual: { type: 'objects', kind: noun, groups: [n], frame: target },
     answer,
     operation: 'sub',
-    input: { type: 'choices', choices: choicesAround(rng, answer, 0, target) },
+    input: { type: 'choices', choices: near(rng, answer, 0, target) },
     hints: [
-      hint(say('ex.makeN.hint1', { target })),
+      hint(say('ex.makeN.hint1frame', { target })),
       hint(say('hint.numberLineGap'), {
         visual: { type: 'numberLine', from: 0, to: target, start: n, hops: 0, target },
       }),
@@ -226,6 +253,7 @@ function complete(level: number, n: number, rng: Rng, target: 5 | 10): Exercise 
       exampleHint(`${target} = ${exN} + ${target - exN}`, exSolved),
     ],
     solution: solved,
+    diagnose: offByOne(answer),
   });
 }
 
@@ -250,7 +278,7 @@ function neighbour(level: number, n: number, rng: Rng, after: boolean): Exercise
     display: String(n),
     spoken,
     answer,
-    input: { type: 'choices', choices: choicesAround(rng, answer, 0, 10) },
+    input: { type: 'choices', choices: near(rng, answer, 0, 10) },
     hints: [
       hint(say(k(`${key}.hint1`))),
       hint(say('hint.numberLine'), {
@@ -263,9 +291,17 @@ function neighbour(level: number, n: number, rng: Rng, after: boolean): Exercise
           hide: answer,
         },
       }),
-      exampleHint(`${exN} → ${after ? exN + 1 : exN - 1}`, exSolved),
+      // On the number line, not as "5 → 4": a hop backwards shows what "before" means.
+      pictureExample(exSolved, {
+        type: 'numberLine',
+        from: 0,
+        to: 10,
+        start: exN,
+        hops: after ? 1 : -1,
+      }),
     ],
     solution: solved,
+    diagnose: offByOne(answer),
   });
 }
 
@@ -276,7 +312,15 @@ function bigger(level: number, p: Pair): Exercise {
   const spoken = say('ex.bigger.spoken', { a: p.a, b: p.b });
   const answer = p.a > p.b ? 0 : 1;
   const solved = say('ex.bigger.solution', { w: Math.max(p.a, p.b), l: Math.min(p.a, p.b) });
-  const exSolved = say('ex.bigger.solution', { w: 6, l: 2 });
+  // An example with neither of this exercise's numbers (6 and 2 would answer "6 or 2?").
+  const [w, l] = (
+    [
+      [6, 2],
+      [7, 3],
+      [8, 4],
+    ] as const
+  ).find((x) => !x.some((y) => y === p.a || y === p.b)) ?? [9, 5];
+  const exSolved = say('ex.bigger.solution', { w, l });
   return exercise({
     factId: `bigger:${p.a},${p.b}`,
     topicId: ID,
@@ -291,7 +335,12 @@ function bigger(level: number, p: Pair): Exercise {
       hint(say('ex.bigger.hint2'), {
         visual: { type: 'objects', kind: noun, groups: [p.a, p.b], arranged: true },
       }),
-      exampleHint('6 > 2', exSolved),
+      // Two groups with their numbers, not "6 > 2": the sign comes later than gan.
+      pictureExample(
+        exSolved,
+        { type: 'objects', kind: noun, groups: [w, l], arranged: true },
+        `${w}     ${l}`,
+      ),
     ],
     solution: solved,
   });
@@ -313,13 +362,14 @@ export const count10 = defineTopic({
   levels: [
     closed(
       L(1),
-      () => range(1, 5),
-      (n, rng) => count(1, n, rng),
+      // Five numbers, each with two kinds of objects: a round of six never repeats one.
+      () => variants(range(1, 5), 2),
+      (f, rng) => count(1, f, rng),
     ),
     closed(
       L(2),
-      () => range(3, 10),
-      (n, rng) => count(2, n, rng),
+      () => variants(range(3, 10), 1),
+      (f, rng) => count(2, f, rng),
     ),
     closed(
       L(3),
@@ -343,13 +393,14 @@ export const count10 = defineTopic({
     ),
     closed(
       L(7),
-      () => range(0, 4),
-      (n, rng) => complete(7, n, rng, 5),
+      // From one: an empty plate ("there are zero cookies") is no way to say it in gan.
+      () => variants(range(1, 4), 2),
+      (f, rng) => complete(7, f, rng, 5),
     ),
     closed(
       L(8),
-      () => range(1, 9),
-      (n, rng) => complete(8, n, rng, 10),
+      () => variants(range(1, 9), 1),
+      (f, rng) => complete(8, f, rng, 10),
     ),
     closed(
       L(9),
@@ -361,7 +412,8 @@ export const count10 = defineTopic({
     ),
     closed(
       L(10),
-      () => pairs(10, (a, b) => a !== b),
+      // Mostly close numbers (1 to 3 apart), where comparing takes thought; some far apart.
+      () => pairs(10, (a, b) => a !== b && (Math.abs(a - b) <= 3 || (a + b) % 2 === 0)),
       (p) => bigger(10, p),
     ),
   ],

@@ -11,20 +11,21 @@ import { expect, test, type Page } from '@playwright/test';
 
 const WORLDS: Record<number, string[]> = {
   0: ['count-10', 'add-sub-20', 'shapes'],
-  1: ['add-sub-20', 'numbers-100', 'clock-money-1'],
-  2: ['add-sub-100', 'money', 'mult-intro', 'clock', 'vertical-2'],
-  3: ['mult-table', 'numbers-10000', 'fractions-1', 'measure', 'vertical-3'],
+  1: ['add-sub-20', 'numbers-100', 'polygons', 'clock-money-1'],
+  2: ['add-sub-100', 'numbers-1000', 'money', 'mult-intro', 'clock', 'polygons', 'vertical-2', 'data'],
+  3: ['mult-table', 'numbers-10000', 'fractions-1', 'measure', 'angles', 'vertical-3', 'data'],
   4: [
     'big-numbers',
     'long-mul-div',
+    'divisibility',
     'fraction-ops',
-    'decimals',
     'perimeter-area',
     'angles',
     'vertical-4',
+    'data',
   ],
-  5: ['fraction-mul-div', 'decimal-ops', 'percent-intro', 'order-ops', 'areas'],
-  6: ['percent', 'ratio', 'circle-volume'],
+  5: ['fraction-ops', 'decimals', 'percent-intro', 'order-ops', 'areas', 'data'],
+  6: ['fraction-mul-div', 'decimal-ops', 'percent-intro', 'percent', 'ratio', 'circle-volume', 'data'],
 };
 
 /** Smallest acceptable size of the exercise's digits, px. */

@@ -43,11 +43,13 @@ function decimalDiagnose(answer: number): (v: number) => MistakeKind | null {
   };
 }
 
-/** 0.7 = ?/10, 0.35 = ?/100 */
+/** 0.7 = ?/10, 1.3 = ?/10 (a whole is ten tenths), 0.35 = ?/100 */
 function toFraction(level: 1 | 2, n: number): Exercise {
   const den = level === 1 ? 10 : 100;
   const x = round(n / den, 2);
-  const ex = level === 1 ? (n === 3 ? 7 : 3) : n === 25 ? 75 : 25;
+  const overOne = n > den;
+  // Two examples, so the one shown never has this answer.
+  const ex = level === 1 ? (overOne ? (n === 14 ? 16 : 14) : n === 3 ? 7 : 3) : n === 25 ? 75 : 25;
   return exercise({
     factId: `dfrac:${x}`,
     topicId: ID,
@@ -57,20 +59,34 @@ function toFraction(level: 1 | 2, n: number): Exercise {
     spoken: sayText(`{x} ${t(level === 1 ? 'ex.dec.toFrac.tenths' : 'ex.dec.toFrac.hundredths')}`, {
       x,
     }),
-    // A bar of ten for tenths; a hundred cells would be too small to see, so no picture for hundredths.
-    ...(level === 1 ? { visual: { type: 'fraction' as const, parts: 10, shaded: n } } : {}),
+    // A bar of ten for tenths (a full row and the rest for more than one); a hundred
+    // cells would be too small to see, so no picture for hundredths.
+    ...(level === 1
+      ? {
+          visual: overOne
+            ? ({ type: 'array', rows: 1, cols: 10, squares: true, extra: n - 10 } as const)
+            : ({ type: 'fraction', parts: 10, shaded: n } as const),
+        }
+      : {}),
     answer: n,
     input: numpad(2),
     hints: [
-      hint(say(level === 1 ? 'ex.dec.tenths.hint1' : 'ex.dec.hundredths.hint1')),
-      hint(say('ex.dec.place.hint2')),
+      hint(
+        say(
+          overOne
+            ? 'g4.dec.tenthsWhole.hint1'
+            : level === 1
+              ? 'ex.dec.tenths.hint1'
+              : 'ex.dec.hundredths.hint1',
+        ),
+      ),
+      hint(say('g4.dec.place.hint2')),
       exampleHint(
         `${round(ex / den, 2)} = ${f(ex, den)}`,
         say('eq.isWords', { x: round(ex / den, 2), words: w(ex, den) }),
       ),
     ],
     solution: say('eq.isWords', { x, words: w(n, den) }),
-    diagnose: (v) => (level === 2 && v * 10 === n ? 'placeValue' : null),
   });
 }
 
@@ -96,7 +112,7 @@ function fromFraction(n: number, den: 10 | 100): Exercise {
     input: numpad(3, true),
     hints: [
       hint(say(den === 10 ? 'ex.dec.tenths.hint1' : 'ex.dec.hundredths.hint1')),
-      hint(say('ex.dec.place.hint2')),
+      hint(say('g4.dec.place.hint2')),
       exampleHint(
         `${f(ex.n, ex.den)} = ${round(ex.n / ex.den, 2)}`,
         say('eq.wordsIs', { words: w(ex.n, ex.den), x: round(ex.n / ex.den, 2) }),
@@ -120,10 +136,14 @@ function compareExercise(level: number, a: number, b: number): Exercise {
     hints: [
       hint(say('ex.dec.compare.hint1')),
       hint(say('ex.dec.compare.hint2')),
-      // Not this pair, in either order.
-      Math.max(a, b) === 0.5 && Math.min(a, b) === 0.45
-        ? exampleHint('0.6 > 0.58', say('ex.bigger.solution', { w: 0.6, l: 0.58 }))
-        : exampleHint('0.5 > 0.45', say('ex.bigger.solution', { w: 0.5, l: 0.45 })),
+      // Not this pair, in either order; the 0.5 / 0.45 trap only for the level about it.
+      level === 4
+        ? Math.max(a, b) === 2.35 && Math.min(a, b) === 2.31
+          ? exampleHint('3.48 > 3.44', say('ex.bigger.solution', { w: 3.48, l: 3.44 }))
+          : exampleHint('2.35 > 2.31', say('ex.bigger.solution', { w: 2.35, l: 2.31 }))
+        : Math.max(a, b) === 0.5 && Math.min(a, b) === 0.45
+          ? exampleHint('0.6 > 0.58', say('ex.bigger.solution', { w: 0.6, l: 0.58 }))
+          : exampleHint('0.5 > 0.45', say('ex.bigger.solution', { w: 0.5, l: 0.45 })),
     ],
     solution: say('ex.bigger.solution', { w: Math.max(a, b), l: Math.min(a, b) }),
   });
@@ -131,8 +151,10 @@ function compareExercise(level: number, a: number, b: number): Exercise {
 
 function compareSame(rng: Rng): Exercise {
   const whole = randInt(rng, 0, 9);
+  // Now and then the wholes differ: they are compared first.
+  const other = rng() < 0.25 ? (whole + randInt(rng, 1, 9)) % 10 : whole;
   const a = round(whole + randInt(rng, 1, 99) / 100, 2);
-  const b = round(whole + randInt(rng, 1, 99) / 100, 2);
+  const b = round(other + randInt(rng, 1, 99) / 100, 2);
   return a === b ? compareSame(rng) : compareExercise(4, a, b);
 }
 
@@ -159,7 +181,8 @@ function addSub(level: 6 | 7 | 8, rng: Rng): Exercise {
   if (op === '-' && a < b) [a, b] = [b, a];
   a = round(a, 2);
   b = round(b, 2);
-  if (a === b) return addSub(level, rng);
+  // At least one decimal: 3 + 5 is not this world's.
+  if (a === b || (Number.isInteger(a) && Number.isInteger(b))) return addSub(level, rng);
   const answer = round(op === '+' ? a + b : a - b, 2);
   return arith({
     topicId: ID,
@@ -181,8 +204,10 @@ function addSub(level: 6 | 7 | 8, rng: Rng): Exercise {
 }
 
 function roundToWhole(rng: Rng): Exercise {
+  // x.5 too, now and then: "five and up" rounds it up, as hint 2 says.
   const x = round(randInt(rng, 1, 999) / 10, 1);
-  if (Math.round(x * 10) % 10 === 5 || Number.isInteger(x)) return roundToWhole(rng);
+  if (Number.isInteger(x) || (Math.round(x * 10) % 10 === 5 && rng() < 0.6))
+    return roundToWhole(rng);
   const answer = Math.round(x);
   const lo = Math.floor(x);
   return exercise({
@@ -212,20 +237,37 @@ function roundToWhole(rng: Rng): Exercise {
   });
 }
 
+/**
+ * Measurement stories. The unit is said in the singular after a decimal
+ * ("שלוש נקודה שתיים מטר"), as people say it, so no number has to agree with it.
+ * `a` and `b` in tenths: the ranges of each story.
+ */
 const UNITS = [
-  { key: 'wp.dec.flour', op: '+' as const },
-  { key: 'wp.dec.ribbon', op: '-' as const },
-];
+  { key: 'wp.dec.flour', op: '+', a: [11, 99], b: [5, 50] },
+  { key: 'g4.wp.dec.run', op: '+', a: [11, 99], b: [5, 50] },
+  { key: 'g4.wp.dec.ribbon', op: '-', a: [11, 99], b: [5, 50] },
+  { key: 'g4.wp.dec.bottle', op: '-', a: [15, 30], b: [2, 12] },
+] as const;
+
+type StoryKey = (typeof UNITS)[number]['key'];
+
+/** A tenth that is not a whole number (2.0 would be read "שתיים", without the point). */
+function tenths(rng: Rng, lo: number, hi: number): number {
+  const n = randInt(rng, lo, hi);
+  return n % 10 === 0 ? tenths(rng, lo, hi) : round(n / 10, 1);
+}
 
 /** Measurement stories with decimals; the character follows from the numbers. */
 function story(rng: Rng): Exercise {
-  const { key, op } = pick(rng, UNITS);
-  let a = round(randInt(rng, 11, 99) / 10, 1);
-  let b = round(randInt(rng, 5, 50) / 10, 1);
-  if (op === '-' && a <= b) [a, b] = [round(b + 1, 1), a];
-  const who = CHARACTERS[Math.round(a * 10) % CHARACTERS.length] as Character;
+  const u = pick(rng, UNITS);
+  const { key, op } = u;
+  let a = tenths(rng, u.a[0], u.a[1]);
+  let b = tenths(rng, u.b[0], u.b[1]);
+  if (op === '-' && a < b) [a, b] = [b, a];
   const answer = round(op === '+' ? a + b : a - b, 1);
-  const spoken = say(`${key}.story` as 'wp.dec.flour.story', { name: who.name, a, b }, who.gender);
+  if (answer === 0 || Number.isInteger(answer)) return story(rng);
+  const who = CHARACTERS[Math.round(a * 10) % CHARACTERS.length] as Character;
+  const spoken = say(`${key}.story` as `${StoryKey}.story`, { name: who.name, a, b }, who.gender);
   const sentence = op === '+' ? '{a} ועוד {b} זה {c}.' : '{a} פחות {b} זה {c}.';
   return exercise({
     factId: `dwp:${key}:${a}:${b}`,
@@ -238,7 +280,7 @@ function story(rng: Rng): Exercise {
     operation: op === '+' ? 'add' : 'sub',
     input: numpad(3, true),
     hints: [
-      hint(say(`${key}.hint1` as 'wp.dec.flour.hint1')),
+      hint(say(`${key}.hint1` as `${StoryKey}.hint1`)),
       {
         ...hint(say('hint.equation')),
         example: {
@@ -250,12 +292,12 @@ function story(rng: Rng): Exercise {
         answer,
         (op === '+'
           ? [
-              { a: 1.5, b: 2.5 },
+              { a: 1.5, b: 2.4 },
               { a: 2.4, b: 1.3 },
             ]
           : [
               { a: 3.5, b: 1.2 },
-              { a: 4.6, b: 1.4 },
+              { a: 2.6, b: 1.4 },
             ]
         ).map((ex) => {
           const c = round(op === '+' ? ex.a + ex.b : ex.a - ex.b, 1);
@@ -282,12 +324,12 @@ function storyBank(): string[] {
     for (const who of CHARACTERS) {
       out.push(
         ...say(
-          `${key}.story` as 'wp.dec.flour.story',
+          `${key}.story` as `${StoryKey}.story`,
           { name: who.name, a: 1.5, b: 2.5 },
           who.gender,
         ).parts,
       );
-      out.push(say(`${key}.hint1` as 'wp.dec.flour.hint1').text);
+      out.push(say(`${key}.hint1` as `${StoryKey}.hint1`).text);
     }
   }
   return out;
@@ -296,13 +338,15 @@ function storyBank(): string[] {
 export const decimals = defineTopic({
   id: ID,
   labelKey: 'topic.decimals',
-  grades: [4],
+  // Grade 5 (moved from grade 4): kita4 has no decimals; the grade 5 program does.
+  grades: [5],
   startLevel: () => 1,
   extraBank: storyBank,
   levels: [
+    // Up to 1.9: more than one is ten tenths and more.
     closed(
       L(1),
-      () => range(1, 9),
+      () => [...range(1, 9), ...range(11, 19)],
       (n) => toFraction(1, n),
     ),
     closed(

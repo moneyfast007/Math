@@ -53,11 +53,27 @@ const SHAPES = {
     [97, 75],
     [3, 75],
   ],
+  // Angles of about 60° and 120°: clearly not a turned square.
   rhombus: [
     [50, 3],
-    [88, 50],
+    [77, 50],
     [50, 97],
-    [12, 50],
+    [23, 50],
+  ],
+  // Two pairs of equal neighbouring sides (top ones short, bottom ones long), no right angle.
+  kite: [
+    [50, 5],
+    [78, 38],
+    [50, 95],
+    [22, 38],
+  ],
+  // A pentagon with a right angle at each bottom corner.
+  house: [
+    [50, 5],
+    [95, 40],
+    [95, 95],
+    [5, 95],
+    [5, 40],
   ],
   parallelogram: [
     [28, 25],
@@ -204,6 +220,9 @@ const RIGHT_ANGLES: [ShapeName, number][] = [
   ['rhombus', 0],
   ['lShape', 5],
   ['parallelogram', 0],
+  ['house', 2],
+  ['kite', 0],
+  ['trapezoid', 0],
 ];
 
 /**
@@ -260,7 +279,7 @@ function linesKind({ kind, turn }: { kind: LinesKind; turn: number }, rng: Rng):
   return choiceExercise({
     level: 3,
     factId: `lines:${kind}:${turn}`,
-    promptKey: 'ex.angles.lines.prompt',
+    promptKey: 'g4.lines.prompt',
     visual: { type: 'lines', kind, turn },
     labels,
     answer,
@@ -367,9 +386,13 @@ function byAngles({ kind, angles }: (typeof ANGLE_FACTS)[number], rng: Rng): Exe
       hint(say('ex.angles.tri.hint2')),
       pictureExample(
         say(kind === 'right' ? 'ex.angles.tri.obtuse' : 'ex.angles.tri.right'),
+        // Drawn to the numbers on them, like the exercise.
         kind === 'right'
-          ? poly(SHAPES.obtuse, { angleLabels: ['20°', '40°', '120°'] })
-          : poly(SHAPES.right, { angleLabels: ['50°', '90°', '40°'], rightAngles: [1] }),
+          ? poly(triangleFromAngles(20, 40), { angleLabels: ['20°', '40°', '120°'] })
+          : poly(triangleFromAngles(50, 90), {
+              angleLabels: ['50°', '90°', '40°'],
+              rightAngles: [1],
+            }),
       ),
     ],
     solution: say(`ex.angles.tri.${kind}`),
@@ -378,13 +401,15 @@ function byAngles({ kind, angles }: (typeof ANGLE_FACTS)[number], rng: Rng): Exe
 
 /* ---------- Level 6: quadrilaterals ---------- */
 
-type Quad = 'square' | 'rectangle' | 'rhombus' | 'parallelogram' | 'trapezoid';
+type Quad = 'square' | 'rectangle' | 'rhombus' | 'parallelogram' | 'trapezoid' | 'kite';
 const QUAD_WORD: Record<Quad, string> = {
   square: 'ריבוע',
   rectangle: 'מלבן',
   rhombus: 'מעוין',
   parallelogram: 'מקבילית',
   trapezoid: 'טרפז',
+  // In the grade 4 list of quadrilaterals.
+  kite: 'דלתון',
 };
 /** The two names a child most often confuses each shape with. */
 /**
@@ -398,6 +423,8 @@ const QUAD_CONFUSED: Record<Quad, Quad[]> = {
   rhombus: ['rectangle', 'trapezoid'],
   parallelogram: ['rhombus', 'trapezoid'],
   trapezoid: ['parallelogram', 'rectangle'],
+  // A square and a rhombus are kites too, so they are never offered for a kite (nor a kite for them).
+  kite: ['parallelogram', 'trapezoid'],
 };
 const QUAD_MARKS: Record<Quad, Omit<Polygon, 'points'>> = {
   square: { ticks: [1, 1, 1, 1], rightAngles: [0, 1, 2, 3] },
@@ -405,6 +432,7 @@ const QUAD_MARKS: Record<Quad, Omit<Polygon, 'points'>> = {
   rhombus: { ticks: [1, 1, 1, 1] },
   parallelogram: { ticks: [1, 2, 1, 2] },
   trapezoid: {},
+  kite: { ticks: [1, 2, 2, 1] },
 };
 
 function quad({ shape }: { shape: Quad }, rng: Rng): Exercise {
@@ -427,7 +455,10 @@ function quad({ shape }: { shape: Quad }, rng: Rng): Exercise {
       hint(say('ex.angles.quad.ask')),
       pictureExample(say(`ex.angles.quad.about.${ex}`), poly(SHAPES[ex], QUAD_MARKS[ex])),
     ],
-    solution: say('ex.angles.quad.solution', { name: QUAD_WORD[shape] }),
+    // "זו מקבילית", "זה מלבן".
+    solution: say(shape === 'parallelogram' ? 'g4.quad.solution.f' : 'ex.angles.quad.solution', {
+      name: QUAD_WORD[shape],
+    }),
   });
 }
 
@@ -527,6 +558,9 @@ const DIAGONALS: [ShapeName, string, number][] = [
   ['trapezoid', 'טרפז', 2],
   ['pentagon', 'מחומש', 5],
   ['hexagon', 'משושה', 9],
+  ['rhombus', 'מעוין', 2],
+  ['parallelogram', 'מקבילית', 2],
+  ['kite', 'דלתון', 2],
 ];
 
 function diagonals([shape, name, n]: [ShapeName, string, number], rng: Rng): Exercise {
@@ -564,6 +598,9 @@ const SYMMETRY: [ShapeName, string, number, Omit<Polygon, 'points'>][] = [
   ['rhombus', 'מעוין', 2, { ticks: [1, 1, 1, 1] }],
   ['parallelogram', 'מקבילית', 0, {}],
   ['scalene', 'משולש שונה צלעות', 0, {}],
+  ['kite', 'דלתון', 1, { ticks: [1, 2, 2, 1] }],
+  ['trapezoid', 'טרפז שווה שוקיים', 1, { ticks: [0, 1, 0, 1] }],
+  ['hexagon', 'משושה משוכלל', 6, { ticks: [1, 1, 1, 1, 1, 1] }],
 ];
 
 function symmetry([shape, name, n, marks]: (typeof SYMMETRY)[number], rng: Rng): Exercise {
@@ -600,24 +637,36 @@ function symmetry([shape, name, n, marks]: (typeof SYMMETRY)[number], rng: Rng):
 
 /* ---------- Level 10: true or false ---------- */
 
-const STATEMENTS: { key: TranslationKey; truth: boolean; why?: TranslationKey }[] = [
-  { key: 'ex.angles.tf.s1', truth: true },
-  { key: 'ex.angles.tf.s2', truth: true },
-  { key: 'ex.angles.tf.s3', truth: false, why: 'ex.angles.tf.w3' },
-  { key: 'ex.angles.tf.s4', truth: true },
-  { key: 'ex.angles.tf.s5', truth: false, why: 'ex.angles.tf.w5' },
-  { key: 'ex.angles.tf.s6', truth: true },
-  { key: 'ex.angles.tf.s7', truth: false, why: 'ex.angles.tf.w7' },
-  { key: 'ex.angles.tf.s8', truth: true },
-  { key: 'ex.angles.tf.s9', truth: false, why: 'ex.angles.tf.w9' },
-  { key: 'ex.angles.tf.s10', truth: true },
-  { key: 'ex.angles.tf.s11', truth: true },
-  { key: 'ex.angles.tf.s12', truth: false, why: 'ex.angles.tf.w12' },
-  { key: 'ex.angles.tf.s13', truth: true },
-  { key: 'ex.angles.tf.s14', truth: false, why: 'ex.angles.tf.w14' },
+/** What a statement is about: its last hint pictures that (a shape, lines, angles). */
+type About = 'shape' | 'lines' | 'angles';
+
+const STATEMENTS: { key: TranslationKey; truth: boolean; why?: TranslationKey; about: About }[] = [
+  { key: 'ex.angles.tf.s1', truth: true, about: 'shape' },
+  { key: 'ex.angles.tf.s2', truth: true, about: 'shape' },
+  { key: 'ex.angles.tf.s3', truth: false, why: 'ex.angles.tf.w3', about: 'shape' },
+  { key: 'ex.angles.tf.s4', truth: true, about: 'shape' },
+  { key: 'ex.angles.tf.s5', truth: false, why: 'ex.angles.tf.w5', about: 'angles' },
+  { key: 'ex.angles.tf.s6', truth: true, about: 'angles' },
+  { key: 'ex.angles.tf.s7', truth: false, why: 'ex.angles.tf.w7', about: 'shape' },
+  { key: 'ex.angles.tf.s8', truth: true, about: 'shape' },
+  { key: 'ex.angles.tf.s9', truth: false, why: 'ex.angles.tf.w9', about: 'angles' },
+  { key: 'ex.angles.tf.s10', truth: true, about: 'angles' },
+  { key: 'ex.angles.tf.s11', truth: true, about: 'lines' },
+  { key: 'ex.angles.tf.s12', truth: false, why: 'ex.angles.tf.w12', about: 'lines' },
+  { key: 'ex.angles.tf.s13', truth: true, about: 'angles' },
+  { key: 'ex.angles.tf.s14', truth: false, why: 'ex.angles.tf.w14', about: 'shape' },
+  { key: 'g4.tf.s15', truth: true, about: 'shape' },
+  { key: 'g4.tf.s16', truth: false, why: 'g4.tf.w16', about: 'shape' },
+  { key: 'g4.tf.s17', truth: false, why: 'g4.tf.w17', about: 'angles' },
 ];
 
-function trueFalse({ key, truth, why }: (typeof STATEMENTS)[number]): Exercise {
+const TF_HINT3: Record<About, TranslationKey> = {
+  shape: 'ex.angles.tf.hint3',
+  lines: 'g4.tf.hint3.lines',
+  angles: 'g4.tf.hint3.angles',
+};
+
+function trueFalse({ key, truth, why, about }: (typeof STATEMENTS)[number]): Exercise {
   const statement = say(key);
   return exercise({
     factId: `tf:${key}`,
@@ -632,7 +681,7 @@ function trueFalse({ key, truth, why }: (typeof STATEMENTS)[number]): Exercise {
     hints: [
       hint(say('ex.angles.tf.hint1')),
       hint(say('ex.angles.tf.hint2')),
-      hint(say('ex.angles.tf.hint3')),
+      hint(say(TF_HINT3[about])),
     ],
     solution: truth ? say('ex.angles.tf.yes') : say(why ?? 'ex.angles.tf.no'),
   });
@@ -641,8 +690,11 @@ function trueFalse({ key, truth, why }: (typeof STATEMENTS)[number]): Exercise {
 export const anglesTopic = defineTopic({
   id: ID,
   labelKey: 'topic.angles',
-  grades: [4],
+  // Grade 3's geometry too (kinds of angles, perpendicular and parallel lines, triangles,
+  // quadrilaterals): levels 1–6. Grade 4 goes on to angles in degrees, diagonals, symmetry.
+  grades: [3, 4],
   startLevel: () => 1,
+  lastLevel: (grade) => (grade === 3 ? 6 : 10),
   levels: [
     closed(
       L(1),

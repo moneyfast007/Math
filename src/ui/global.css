@@ -880,6 +880,43 @@ ol.steps {
   line-height: 1.1;
 }
 
+/* A ten-frame (or five-frame): the empty cells are what is missing. */
+.tenframe {
+  display: inline-flex;
+  flex-direction: column;
+  border: 3px solid var(--color-text-muted);
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--color-surface-alt);
+}
+
+.tenframe__row {
+  display: flex;
+}
+
+.tenframe__row + .tenframe__row {
+  border-top: 2px solid var(--color-text-muted);
+}
+
+.tenframe__cell {
+  /* Five cells must fit a 360px phone. */
+  width: min(64px, 15vw);
+  height: min(64px, 15vw);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: min(calc(var(--text-math) * 0.55), 9vw);
+  line-height: 1;
+}
+
+.tenframe__cell + .tenframe__cell {
+  border-left: 2px solid var(--color-text-muted);
+}
+
+.tenframe__cell--empty {
+  background: var(--color-surface);
+}
+
 .obj--removed {
   position: relative;
   opacity: 0.35;
@@ -945,6 +982,15 @@ ol.steps {
 
 .nl-target {
   fill: var(--color-almost);
+}
+
+/* Numbers only at the tens: bigger and bolder, so they stay readable on a phone. */
+.numberline--sparse .nl-tick {
+  stroke-width: 3;
+}
+
+.numberline--sparse .nl-label {
+  font-size: 30px;
 }
 
 /* Answers */
@@ -2809,4 +2855,48 @@ ol.steps {
 .column-work__after {
   flex-wrap: wrap;
   gap: var(--space-1);
+}
+
+/* Bar charts (data world): the scale on the left, one bar per answer. */
+.bars {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 420px;
+}
+
+.bars__title {
+  text-align: center;
+  font-weight: 700;
+  margin-bottom: var(--space-1);
+}
+
+.bars__svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.bars__grid {
+  stroke: var(--color-border);
+  stroke-width: 1;
+}
+
+.bars__axis {
+  stroke: var(--color-text);
+  stroke-width: 2;
+}
+
+.bars__bar {
+  fill: var(--color-accent);
+}
+
+.bars__num {
+  font-size: 12px;
+  fill: var(--color-text-muted);
+}
+
+.bars__label {
+  font-size: 13px;
+  font-weight: 700;
+  fill: var(--color-text);
 }

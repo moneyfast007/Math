@@ -10,10 +10,12 @@ import {
   hint,
   labelledChoices,
   numpad,
+  pictureExample,
   range,
   say,
   shifted,
   splitTensUnits,
+  spreadChoices,
 } from '../build';
 import type { Exercise, Hint, Rng } from '../types';
 
@@ -41,7 +43,11 @@ function wholeTens(level: number, tens: number, rng: Rng): Exercise {
     spoken,
     visual: { type: 'array', rows: tens, cols: 10, squares: true },
     answer,
-    input: { type: 'choices', choices: choicesAround(rng, answer, 10, 100) },
+    // Whole tens only: next to 29 or 31, the one whole ten gives itself away.
+    input: {
+      type: 'choices',
+      choices: spreadChoices(rng, answer, { deltas: [10, 20], min: 10, max: 100 }),
+    },
     hints: [
       hint(say('ex.tens.hint1')),
       hint(say('ex.tens.hint2'), {
@@ -85,15 +91,21 @@ function build(level: number, n: number): Exercise {
     input: numpad(2),
     hints: [
       hint(say('ex.build.hint1', { tens, n: tens * 10 })),
-      hint(say('ex.build.hint2')),
+      // "The first digit" is ambiguous to a Hebrew reader: say which side.
+      hint(say('ex.build.hint2.sides')),
       exampleHint(
         `${ex.a * 10} + ${ex.b} = ${ex.a * 10 + ex.b}`,
         say('ex.build.solution', { tens: ex.a, units: ex.b, n: ex.a * 10 + ex.b }),
       ),
     ],
     solution: say('ex.build.solution', { tens, units, n }),
+    // 11 for 4 tens and 7 units, or only the tens (40) or only the units (7): tens and units mixed up.
     diagnose: (v) =>
-      v === tens + units ? 'placeValue' : v === units * 10 + tens ? 'digitReversal' : null,
+      v === tens + units || v === tens * 10 || v === units
+        ? 'placeValue'
+        : v === units * 10 + tens
+          ? 'digitReversal'
+          : null,
   });
 }
 
@@ -116,7 +128,7 @@ function decompose(level: number, n: number, askTens: boolean): Exercise {
     answer,
     input: numpad(1),
     hints: [
-      hint(say('ex.decompose.hint1')),
+      hint(say('ex.decompose.hint1.sides')),
       // Not "21 = 20 + 1": that would be the answer itself.
       hint(say('ex.decompose.hint2sticks')),
       exampleHint(
@@ -147,7 +159,8 @@ function compare(level: number, a: number, b: number): Exercise {
       hint(say('ex.compare100.hint1')),
       hint(say('ex.compare100.hint2'), {
         example: {
-          display: `${splitTensUnits(a)}   ${splitTensUnits(b)}`,
+          // Whole tens stay as they are (not "50 = 50 + 0").
+          display: `${a % 10 ? splitTensUnits(a) : a}   ${b % 10 ? splitTensUnits(b) : b}`,
           spoken: say('ex.compare100.hint2'),
         },
       }),
@@ -181,7 +194,16 @@ function neighbour(level: number, n: number, delta: 1 | -1 | 10 | -10): Exercise
     answer,
     input: numpad(3),
     hints: [
-      hint(say(`${key}.hint1` as 'ex.after.hint1')),
+      // Across a ten (39 → 40, 40 → 39) the units start again: not "count from the start".
+      hint(
+        say(
+          delta === 1
+            ? 'ex.after.hint1.tens'
+            : delta === -1
+              ? 'ex.before.hint1.tens'
+              : (`${key}.hint1` as 'ex.tenMore.hint1'),
+        ),
+      ),
       // Ten more or less: one hop of ten from the number, landing on "?" (not on the answer).
       Math.abs(delta) === 10
         ? hint(say('hint.numberLine10'), {
@@ -206,7 +228,9 @@ function neighbour(level: number, n: number, delta: 1 | -1 | 10 | -10): Exercise
             },
           }),
       exampleHint(
-        `${ex} → ${ex + delta}`,
+        Math.abs(delta) === 10
+          ? `${ex} ${delta > 0 ? '+' : '−'} 10 = ${ex + delta}`
+          : `${ex} → ${ex + delta}`,
         say(`${key}.solution` as 'ex.after.solution', { n: ex, c: ex + delta }),
       ),
     ],
@@ -215,11 +239,19 @@ function neighbour(level: number, n: number, delta: 1 | -1 | 10 | -10): Exercise
   });
 }
 
-/** Which number is marked on the number line? */
+/**
+ * Which number is marked on the number line? Twenty units, numbers only at the
+ * tens, long ticks at the tens and medium ones at the fives: the point is read
+ * from the ticks (with every number written, it would be read off the line).
+ */
 function marked(level: number, n: number, rng: Rng): Exercise {
   const prompt = t('ex.marked.prompt');
-  const from = Math.max(0, Math.floor(n / 10) * 10 - 10);
-  const to = Math.min(100, from + 30);
+  const tens = Math.floor(n / 10) * 10;
+  const from = Math.min(80, n % 10 >= 5 ? tens : Math.max(0, tens - 10));
+  const to = from + 20;
+  const line = (start: number) =>
+    ({ type: 'numberLine', from, to, start, hops: 0, step: 1, labelEvery: 10 }) as const;
+  const ex = [from + 3, from + 16, from + 7].find((x) => Math.abs(x - n) > 1) ?? from + 12;
   return exercise({
     factId: `marked:${n}`,
     topicId: ID,
@@ -227,13 +259,14 @@ function marked(level: number, n: number, rng: Rng): Exercise {
     prompt,
     display: '',
     spoken: say('ex.marked.spoken'),
-    visual: { type: 'numberLine', from, to, start: n, hops: 0, step: 1 },
+    visual: line(n),
     answer: n,
     input: { type: 'choices', choices: choicesAround(rng, n, 0, 100, 4) },
     hints: [
       hint(say('ex.marked.hint1')),
-      hint(say('ex.marked.hint2', { from: from, to: from + 10 })),
-      exampleHint(String(from + 3), say('ex.marked.solution', { n: from + 3 })),
+      hint(say('ex.marked.hint2.ticks', { from })),
+      // On a line like the exercise's, another point, read.
+      pictureExample(say('ex.marked.solution', { n: ex }), line(ex), String(ex)),
     ],
     solution: say('ex.marked.solution', { n }),
   });
@@ -254,7 +287,16 @@ function skip(level: number, step: 2 | 5 | 10, start: number, count: number, rng
     display: `${shown}, ?`,
     spoken: compose(t('ex.skip.spoken').replace('{seq}', spokenSeq), slots),
     answer,
-    input: { type: 'choices', choices: choicesAround(rng, answer, 0, 100, 4) },
+    // Wrong by a hop or two of the sequence: 7 among 2, 4, 6 is ruled out by the pattern.
+    input: {
+      type: 'choices',
+      choices: spreadChoices(rng, answer, {
+        deltas: [step, 2 * step, 3 * step],
+        min: 0,
+        max: 100,
+        count: 4,
+      }),
+    },
     hints: [
       hint(say('ex.skip.hint1', { step })),
       // The hops of the sequence so far; the next one is the child's, landing on "?".
@@ -282,9 +324,16 @@ function skip(level: number, step: 2 | 5 | 10, start: number, count: number, rng
   });
 }
 
-/** Whole tens: hops of ten from the first number, landing on "?". */
+/** Whole tens: the exercise's own tens (not a fixed 30 + 20), then hops of ten landing on "?". */
 const tensHints = (a: number, op: '+' | '-', b: number): [Hint, Hint] => [
-  hint(say('ex.tensAdd.hint1')),
+  hint(
+    say(op === '+' ? 'ex.tensAdd.hint1.add' : 'ex.tensAdd.hint1.sub', {
+      a,
+      b,
+      ta: a / 10,
+      tb: b / 10,
+    }),
+  ),
   hint(say('hint.numberLine10'), {
     visual: {
       type: 'numberLine',
@@ -329,7 +378,8 @@ export const numbers100 = defineTopic({
       L(4),
       () =>
         range(10, 99).flatMap((a) =>
-          [a + 1, a + 9, a + 10, a + 11, a - 1, a - 9, a - 10]
+          // As many bigger as smaller, so the bigger one is first in half of them.
+          [a + 1, a + 9, a + 10, a + 11, a - 1, a - 9, a - 10, a - 11]
             .filter((b) => b >= 10 && b <= 99 && b !== a)
             .map((b) => ({ a, b })),
         ),
@@ -337,11 +387,16 @@ export const numbers100 = defineTopic({
     ),
     closed(
       L(5),
+      // Every crossing of a ten (39 → 40, 40 → 39) and a quarter of the rest: about a third cross.
       () =>
-        range(10, 98).flatMap((n) => [
-          { n, d: 1 as const },
-          { n, d: -1 as const },
-        ]),
+        range(10, 98).flatMap((n) =>
+          [
+            { n, d: 1 as const, crosses: n % 10 === 9 },
+            { n, d: -1 as const, crosses: n % 10 === 0 },
+          ]
+            .filter((f) => f.crosses || f.n % 4 === 1)
+            .map(({ n: m, d }) => ({ n: m, d })),
+        ),
       (f) => neighbour(5, f.n, f.d),
     ),
     closed(
@@ -357,7 +412,8 @@ export const numbers100 = defineTopic({
     ),
     closed(
       L(7),
-      () => range(1, 99).filter((n) => n % 10 !== 0 || n % 5 === 0),
+      // Not the tens themselves: they are the numbers written under the line.
+      () => range(1, 99).filter((n) => n % 10 !== 0),
       (n, rng) => marked(7, n, rng),
     ),
     closed(

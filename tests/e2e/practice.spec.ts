@@ -18,6 +18,55 @@ async function setupChild(page: Page, name: string, grade: string) {
   await expect(page).toHaveURL(/\/practice$/);
 }
 
+/** A child of `grade` whose progress in `world` is at `level` (restored from a backup), on the round. */
+async function setupAtLevel(page: Page, grade: number, world: string, level: number) {
+  const stats = {
+    level,
+    attempts: 0,
+    correct: 0,
+    lastPracticedAt: 0,
+    recent: [],
+    mistakes: {},
+    completedLevels: [],
+    reviewPassed: false,
+  };
+  const backup = {
+    app: 'heshbon',
+    kind: 'backup',
+    schemaVersion: 3,
+    exportedAt: '2026-10-18T10:00:00.000Z',
+    data: {
+      schemaVersion: 3,
+      profiles: [
+        {
+          id: 'k',
+          name: 'נועה',
+          avatar: 'fox',
+          grade,
+          gender: 'f',
+          createdAt: 1,
+          settings: { allowLevelChange: false },
+        },
+      ],
+      progress: { k: { topics: { [world]: stats }, streak: { count: 0, lastDay: null }, days: {} } },
+      parent: { pin: null },
+      meta: { createdAt: 1, lastBackupAt: null },
+    },
+  };
+  await page.goto('/');
+  await page.getByRole('button', { name: 'יצירת פרופיל ראשון' }).click();
+  await page.getByTestId('backup-file').setInputFiles({
+    name: 'backup.json',
+    mimeType: 'application/json',
+    buffer: Buffer.from(JSON.stringify(backup)),
+  });
+  await page.getByRole('dialog', { name: 'לשחזר מהגיבוי?' }).getByRole('button', { name: 'שחזור' }).click();
+  await page.getByRole('button', { name: 'סיימתי, למסך הבית' }).first().click();
+  await page.getByRole('button', { name: 'נועה' }).click();
+  await page.getByRole('button', { name: 'יאללה, מתחילים!' }).click();
+  await expect(page).toHaveURL(/\/practice$/);
+}
+
 /** Reads the current exercise and returns its answer. */
 async function currentAnswer(page: Page): Promise<number> {
   const math = page.locator('.exercise [data-math]');
@@ -122,8 +171,8 @@ test.describe('practice', () => {
   });
 
   test('a child who is stuck drops a level without being asked', async ({ page }) => {
-    // Grade 1 starts at station 6, so there is an easier level to drop to.
-    await setupChild(page, 'נועה', 'כיתה א׳');
+    // A grade 1 child already at station 6 (typed answers), so there is an easier level to drop to.
+    await setupAtLevel(page, 1, 'add-sub-20', 6);
     for (let k = 0; k < 2; k++) {
       const answer = await currentAnswer(page);
       for (let i = 0; i < 3; i++) await submit(page, answer + 5);
@@ -186,18 +235,18 @@ test.describe('journey', () => {
   test('the map shows every station, the review, Plusi, the streak and the album', async ({
     page,
   }) => {
-    // Grade 1 starts world 1 (add-sub-20) at level 6: five stations already done.
+    // Grade 1 starts world 1 (add-sub-20) at level 4: three stations already done.
     await setupChild(page, 'נועה', 'כיתה א׳');
     await page.getByRole('button', { name: 'סיום' }).click();
     await expect(page).toHaveURL(/\/play$/);
 
     const map = page.getByRole('region', { name: 'מפת המסע' });
     await expect(map.locator('.node')).toHaveCount(11);
-    await expect(map.locator('.node--done')).toHaveCount(5);
+    await expect(map.locator('.node--done')).toHaveCount(3);
     await expect(map.getByRole('img', { name: 'סיום העולם, עדיין סגור' })).toBeVisible();
     await expect(map.locator('.plusi')).toBeVisible();
     await expect(page.getByText('עולם 1 · חיבור וחיסור עד 20')).toBeVisible();
-    await expect(page.getByText('תחנה 6 מתוך 11')).toBeVisible();
+    await expect(page.getByText('תחנה 4 מתוך 11')).toBeVisible();
     await expect(page.getByRole('img', { name: 'בלי רצף עדיין' })).toBeVisible();
 
     // A done station is a shortcut back to that level.

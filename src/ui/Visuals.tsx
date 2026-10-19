@@ -39,6 +39,8 @@ export function VisualView({ visual }: { visual: Visual }) {
       return <BoxView v={visual} />;
     case 'circle':
       return <CircleView v={visual} />;
+    case 'bars':
+      return <Bars v={visual} />;
     case 'vertical':
       return <VerticalView visual={visual} />;
   }
@@ -50,7 +52,34 @@ function rowsOfFive(n: number): number[] {
   return rows;
 }
 
+/** A five- or ten-frame: the objects fill the first cells, the empty cells are what is missing. */
+function Frame({ v, frame }: { v: Extract<Visual, { type: 'objects' }>; frame: 5 | 10 }) {
+  const count = v.groups[0] ?? 0;
+  return (
+    <div className="objects" dir="ltr" aria-hidden="true" data-visual="objects">
+      <div className="tenframe">
+        {Array.from({ length: frame / 5 }, (_, r) => (
+          <div key={r} className="tenframe__row">
+            {Array.from({ length: 5 }, (_, c) => {
+              const filled = r * 5 + c < count;
+              return (
+                <span
+                  key={c}
+                  className={filled ? 'tenframe__cell' : 'tenframe__cell tenframe__cell--empty'}
+                >
+                  {filled ? v.kind.emoji : null}
+                </span>
+              );
+            })}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function Objects({ v }: { v: Extract<Visual, { type: 'objects' }> }) {
+  if (v.frame) return <Frame v={v} frame={v.frame} />;
   const removed = v.removed ?? 0;
   return (
     <div className="objects" dir="ltr" aria-hidden="true" data-visual="objects">
@@ -94,9 +123,20 @@ function NumberLine({ v }: { v: Extract<Visual, { type: 'numberLine' }> }) {
     const dir = Math.sign(v.hops);
     return { from: v.start + dir * i * step, to: v.start + dir * (i + 1) * step };
   });
+  // Long ticks at the tens and medium ones at the fives, as on a classroom number line.
+  const tick = (k: number) => (k % 10 === 0 ? 14 : k % 5 === 0 ? 10 : 7);
+  const sparse = v.labelEvery !== undefined;
+  const labelled = (k: number) => !sparse || k % (v.labelEvery ?? 1) === 0 || k === v.hide;
+  // Few numbers, drawn bigger: they must stay readable when a long line shrinks to a phone.
+  const labelY = sparse ? baseY + 34 : baseY + 26;
+  const dot = sparse ? 12 : 8;
 
   return (
-    <div className="numberline" dir="ltr" data-visual="numberLine">
+    <div
+      className={sparse ? 'numberline numberline--sparse' : 'numberline'}
+      dir="ltr"
+      data-visual="numberLine"
+    >
       <svg
         viewBox={`0 0 ${width} 100`}
         role="img"
@@ -108,19 +148,21 @@ function NumberLine({ v }: { v: Extract<Visual, { type: 'numberLine' }> }) {
           <g key={k}>
             <line
               x1={x(k)}
-              y1={baseY - 7}
+              y1={baseY - tick(k)}
               x2={x(k)}
-              y2={baseY + 7}
+              y2={baseY + tick(k)}
               className={k === v.stopAt ? 'nl-tick nl-tick--stop' : 'nl-tick'}
             />
-            <text
-              x={x(k)}
-              y={baseY + 26}
-              textAnchor="middle"
-              className={k === v.stopAt ? 'nl-label nl-label--stop' : 'nl-label'}
-            >
-              {k === v.hide ? '?' : k}
-            </text>
+            {labelled(k) ? (
+              <text
+                x={x(k)}
+                y={labelY}
+                textAnchor="middle"
+                className={k === v.stopAt ? 'nl-label nl-label--stop' : 'nl-label'}
+              >
+                {k === v.hide ? '?' : k}
+              </text>
+            ) : null}
           </g>
         ))}
         {hops.map((h, i) => {
@@ -135,9 +177,9 @@ function NumberLine({ v }: { v: Extract<Visual, { type: 'numberLine' }> }) {
             />
           );
         })}
-        <circle cx={x(v.start)} cy={baseY} r={8} className="nl-start" />
+        <circle cx={x(v.start)} cy={baseY} r={dot} className="nl-start" />
         {v.target !== undefined ? (
-          <circle cx={x(v.target)} cy={baseY} r={8} className="nl-target" />
+          <circle cx={x(v.target)} cy={baseY} r={dot} className="nl-target" />
         ) : null}
       </svg>
     </div>
@@ -467,5 +509,60 @@ function Pencils({ v }: { v: Extract<Visual, { type: 'pencils' }> }) {
         );
       })}
     </div>
+  );
+}
+
+/** A bar chart of a survey: one bar per answer, the scale on the left in steps. */
+function Bars({ v }: { v: Extract<Visual, { type: 'bars' }> }) {
+  const step = v.step ?? 1;
+  const top = Math.max(...v.bars.map((b) => b.value));
+  const max = Math.ceil(top / step) * step + step;
+  const lines = max / step;
+  const W = 300;
+  const H = 180;
+  const left = 34;
+  const bottom = 26;
+  const plotH = H - bottom - 8;
+  const y = (n: number) => 8 + plotH - (n / max) * plotH;
+  const slot = (W - left - 6) / v.bars.length;
+  // Label the scale every line when there are few, every other line when there are many.
+  const labelEvery = lines > 10 ? 2 : 1;
+  return (
+    <figure
+      className="bars"
+      dir="ltr"
+      data-visual="bars"
+      role="img"
+      aria-label={v.bars.map((b) => `${b.label}: ${b.value}`).join(', ')}
+    >
+      {v.title ? (
+        <figcaption className="bars__title" dir="rtl">
+          {v.title}
+        </figcaption>
+      ) : null}
+      <svg viewBox={`0 0 ${W} ${H}`} className="bars__svg">
+        {Array.from({ length: lines + 1 }, (_, i) => i * step).map((n, i) => (
+          <g key={n}>
+            <line x1={left} y1={y(n)} x2={W - 4} y2={y(n)} className={n === 0 ? 'bars__axis' : 'bars__grid'} />
+            {i % labelEvery === 0 ? (
+              <text x={left - 6} y={y(n)} textAnchor="end" dominantBaseline="middle" className="bars__num">
+                {n}
+              </text>
+            ) : null}
+          </g>
+        ))}
+        {v.bars.map((b, i) => {
+          const x = left + i * slot + slot * 0.2;
+          return (
+            <g key={b.label}>
+              <rect x={x} y={y(b.value)} width={slot * 0.6} height={y(0) - y(b.value)} className="bars__bar" rx="3" />
+              <text x={x + slot * 0.3} y={H - 8} textAnchor="middle" className="bars__label">
+                {b.label}
+              </text>
+            </g>
+          );
+        })}
+      </svg>
+    </figure>
   );
 }

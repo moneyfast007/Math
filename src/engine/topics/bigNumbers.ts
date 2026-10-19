@@ -1,9 +1,11 @@
 import { t } from '@/i18n';
-import { compose } from '@/lang/compose';
+import { compose, shown } from '@/lang/compose';
 import { numberToWords } from '@/lang/hebrewNumbers';
 import {
   arith,
+  CHARACTERS,
   defineTopic,
+  diagnoseArith,
   exampleAvoiding,
   exampleHint,
   exercise,
@@ -14,6 +16,7 @@ import {
   say,
   SHEKELS,
   wordProblem,
+  type WordNoun,
 } from '../build';
 import { pick, randInt } from '../rng';
 import type { Exercise, Hint, Rng } from '../types';
@@ -28,14 +31,8 @@ import type { Exercise, Hint, Rng } from '../types';
 const ID = 'big-numbers';
 const L = (n: number) => `level.bigNumbers.${n}`;
 
-const PLACE_KEYS = [
-  'place.units',
-  'place.tens',
-  'place.hundreds',
-  'place.thousands',
-  'place.tenThousands',
-  'place.hundredThousands',
-] as const;
+/** "במקום מאות האלפים": the place of a digit (2–5: hundreds to hundred thousands), with the article Hebrew needs. */
+const placeAt = (i: number) => t(`g4.pv.at.${Math.min(5, Math.max(2, i))}` as 'g4.pv.at.2');
 
 /** A random number with `digits` digits, some of them zero, like real ones (340,205). */
 function bigNumber(rng: Rng, digits: 5 | 6): number {
@@ -96,8 +93,9 @@ function placeValue(rng: Rng): Exercise {
     answer,
     input: numpad(6),
     hints: [
-      hint(say('ex.placeValue.hint1', { d, place: t(PLACE_KEYS[i] ?? 'place.units') })),
-      hint(say('ex.placeValue.hint2'), {
+      // First how to find the place (counting from the right); the place itself only in hint 2.
+      hint(say('g4.pv.hint1', { d })),
+      hint(say('g4.pv.hint2', { d, place: placeAt(i) }), {
         visual: { type: 'placeValue', n: n === 352_418 ? 241_635 : 352_418 },
       }),
       // Not an example whose value is this exercise's answer: it would give it away.
@@ -147,7 +145,10 @@ function compare(rng: Rng): Exercise {
     answer: a > b ? 0 : 1,
     input: labelledChoices([String(a), String(b)]),
     hints: [
-      hint(say('ex.compareBig.hint1')),
+      // Counting digits decides only when the lengths differ; otherwise say so.
+      hint(
+        say(String(a).length === String(b).length ? 'g4.cmp.sameLength' : 'ex.compareBig.hint1'),
+      ),
       hint(say('ex.compareBig.place')),
       exampleHint('305,000 > 298,999', say('ex.bigger.solution', { w: 305_000, l: 298_999 })),
     ],
@@ -237,11 +238,31 @@ function columnHints(op: '+' | '-'): [Hint, Hint] {
   ];
 }
 
+/** How many columns carry (addition) or borrow (subtraction). */
+function regroupings(a: number, b: number, op: '+' | '-'): number {
+  let count = 0;
+  let carry = 0;
+  for (let x = a, y = b; x > 0 || y > 0; x = Math.floor(x / 10), y = Math.floor(y / 10)) {
+    const col = op === '+' ? (x % 10) + (y % 10) + carry : (x % 10) - (y % 10) - carry;
+    carry = op === '+' ? (col >= 10 ? 1 : 0) : col < 0 ? 1 : 0;
+    count += carry;
+  }
+  return count;
+}
+
+/**
+ * Typed on one line, so it is worked in the head or on paper: up to five digits and
+ * two carries (borrows). Six digits in columns are the vertical world's.
+ */
 function column(level: number, op: '+' | '-'): (rng: Rng) => Exercise {
   return (rng) => {
-    let a = randInt(rng, 10_000, 600_000);
-    let b = randInt(rng, 1000, 400_000);
-    if (op === '-' && a < b) [a, b] = [b, a];
+    let a: number;
+    let b: number;
+    do {
+      a = randInt(rng, 10_000, 99_999);
+      b = randInt(rng, 1000, 89_999);
+      if (op === '-' && a < b) [a, b] = [b, a];
+    } while (a === b || regroupings(a, b, op) > 2);
     return arith({
       topicId: ID,
       level,
@@ -249,8 +270,9 @@ function column(level: number, op: '+' | '-'): (rng: Rng) => Exercise {
       op,
       b,
       hints: columnHints(op),
-      example: op === '+' ? { a: 24_315, b: 13_472 } : { a: 52_400, b: 18_250 },
-      input: numpad(7),
+      // Examples that carry (borrow), like the exercises.
+      example: op === '+' ? { a: 24_358, b: 13_476 } : { a: 52_400, b: 18_250 },
+      input: numpad(6),
     });
   };
 }
@@ -276,44 +298,183 @@ function roundSums(rng: Rng): Exercise {
           unit: unit === 1000 ? t('place.thousands') : t('place.tenThousands'),
         }),
       ),
-      hint(say('hint.roundSums2')),
+      hint(say(op === '+' ? 'hint.roundSums2' : 'g4.roundSums2.sub')),
     ],
     example: op === '+' ? { a: 340_000, b: 25_000 } : { a: 500_000, b: 120_000 },
     input: numpad(7),
   });
 }
 
-function word(rng: Rng): Exercise {
-  if (rng() < 0.5) {
-    const a = randInt(rng, 10, 400) * 100;
-    const b = randInt(rng, 10, 400) * 100;
-    return wordProblem({
-      topicId: ID,
-      level: 10,
-      key: 'wp.save',
-      rng,
-      a,
-      op: '+',
-      b,
-      example: { a: 12_500, b: 4300 },
-      input: numpad(6),
-      nouns: SHEKELS,
-    });
+/** Things big numbers count in real life (no birthday money in the tens of thousands). */
+const FANS: WordNoun = { singular: 'צופה', plural: 'צופים', gender: 'm' };
+const PEOPLE: WordNoun = { singular: 'תושב', plural: 'תושבים', gender: 'm' };
+const KM: WordNoun = { singular: 'קילומטר', plural: 'קילומטרים', gender: 'm' };
+const SEAT: WordNoun = { singular: 'מקום', plural: 'מקומות', gender: 'm' };
+const TICKET: WordNoun = { singular: 'כרטיס', plural: 'כרטיסים', gender: 'm' };
+const BOOK: WordNoun = { singular: 'ספר', plural: 'ספרים', gender: 'm' };
+
+const hundreds = (rng: Rng, lo: number, hi: number) =>
+  randInt(rng, Math.ceil(lo / 100), Math.floor(hi / 100)) * 100;
+
+/** One step: a crowd, a city, a car, a flight. */
+function oneStep(rng: Rng): Exercise {
+  const kind = pick(rng, ['stadium', 'city', 'car', 'flight'] as const);
+  const common = { topicId: ID, level: 10, rng, input: numpad(6) };
+  switch (kind) {
+    case 'stadium':
+      return wordProblem({
+        ...common,
+        key: 'g4.wp.stadium',
+        a: hundreds(rng, 8000, 32_000),
+        op: '+',
+        b: hundreds(rng, 8000, 32_000),
+        example: { a: 23_500, b: 18_200 },
+        nouns: [FANS],
+      });
+    case 'city':
+      return wordProblem({
+        ...common,
+        key: 'g4.wp.city',
+        a: hundreds(rng, 50_000, 600_000),
+        op: '+',
+        b: hundreds(rng, 1000, 40_000),
+        example: { a: 125_000, b: 4300 },
+        nouns: [PEOPLE],
+      });
+    case 'car': {
+      const a = hundreds(rng, 90_000, 200_000);
+      return wordProblem({
+        ...common,
+        key: 'g4.wp.car',
+        a,
+        op: '-',
+        b: hundreds(rng, 45_000, a - 5000),
+        example: { a: 120_000, b: 86_500 },
+        nouns: SHEKELS,
+      });
+    }
+    case 'flight': {
+      const a = hundreds(rng, 4000, 15_000);
+      return wordProblem({
+        ...common,
+        key: 'g4.wp.flight',
+        a,
+        op: '-',
+        b: hundreds(rng, 2000, a - 500),
+        example: { a: 9200, b: 3800 },
+        nouns: [KM],
+      });
+    }
   }
-  const a = randInt(rng, 100, 900) * 100;
-  const b = randInt(rng, 10, Math.floor(a / 100) - 5) * 100;
-  return wordProblem({
+}
+
+/**
+ * Two steps (the curriculum asks for them): seats left after two sales, books after
+ * buying and giving away. The equation is the second hint, the solution has an answer sentence.
+ */
+function twoStep(rng: Rng): Exercise {
+  const tickets = rng() < 0.5;
+  let a: number;
+  let b: number;
+  let c: number;
+  if (tickets) {
+    a = hundreds(rng, 15_000, 35_000);
+    b = hundreds(rng, 5000, a / 2);
+    c = hundreds(rng, 1000, a - b - 1000);
+  } else {
+    a = hundreds(rng, 20_000, 90_000);
+    b = hundreds(rng, 1000, 9000);
+    c = hundreds(rng, 500, 5000);
+  }
+  const answer = tickets ? a - b - c : a + b - c;
+  const key = tickets ? ('g4.wp.tickets' as const) : ('g4.wp.library' as const);
+  const op2 = tickets ? '−' : '+';
+  const slots = (x: number, y: number, z: number) =>
+    tickets
+      ? { a: { n: x, noun: SEAT }, b: { n: y, noun: TICKET }, c: z }
+      : { a: { n: x, noun: BOOK }, b: { n: y, noun: BOOK }, c: { n: z, noun: BOOK } };
+  const solved = (x: number, y: number, z: number, r: number) =>
+    say(`${key}.solution` as const, {
+      a: x,
+      b: y,
+      c: z,
+      r,
+      left: { n: r, noun: tickets ? SEAT : BOOK },
+    });
+  const spoken = say(`${key}.story` as const, slots(a, b, c));
+  const examples = tickets
+    ? [
+        { a: 30_000, b: 12_500, c: 8000 },
+        { a: 40_000, b: 18_000, c: 9500 },
+      ]
+    : [
+        { a: 25_000, b: 3000, c: 1500 },
+        { a: 40_000, b: 2500, c: 1000 },
+      ];
+  return exercise({
+    factId: `wp2:${key}:${a}:${b}:${c}`,
     topicId: ID,
     level: 10,
-    key: pick(rng, ['wp.spend', 'wp.compare'] as const),
-    rng,
-    a,
-    op: '-',
-    b,
-    example: { a: 24_000, b: 8500 },
+    prompt: shown(spoken),
+    display: '',
+    spoken,
+    answer,
     input: numpad(6),
-    nouns: SHEKELS,
+    hints: [
+      hint(say(`${key}.hint1` as const)),
+      {
+        ...hint(say('hint.equation')),
+        example: { display: `${a} ${op2} ${b} − ${c} = ?`, spoken: say('hint.equation').text },
+      },
+      exampleAvoiding(
+        answer,
+        examples.map((ex) => {
+          const r = tickets ? ex.a - ex.b - ex.c : ex.a + ex.b - ex.c;
+          return {
+            answer: r,
+            hint: () =>
+              exampleHint(`${ex.a} ${op2} ${ex.b} − ${ex.c} = ${r}`, solved(ex.a, ex.b, ex.c, r)),
+          };
+        }),
+      ),
+    ],
+    solution: solved(a, b, c, answer),
+    // The usual slips of the last step (a forgotten borrow, a digit off).
+    diagnose: (v) => diagnoseArith(v, { a: tickets ? a - b : a + b, op: '-', b: c, answer }),
   });
+}
+
+function word(rng: Rng): Exercise {
+  return rng() < 0.6 ? oneStep(rng) : twoStep(rng);
+}
+
+/** The pieces of the two-step stories (the one-step ones register themselves). */
+function storyBank(): string[] {
+  const out: string[] = [];
+  for (const key of ['g4.wp.tickets', 'g4.wp.library'] as const) {
+    const tickets = key === 'g4.wp.tickets';
+    out.push(
+      ...say(
+        `${key}.story` as const,
+        tickets
+          ? { a: { n: 30_000, noun: SEAT }, b: { n: 12_500, noun: TICKET }, c: 8000 }
+          : {
+              a: { n: 25_000, noun: BOOK },
+              b: { n: 3000, noun: BOOK },
+              c: { n: 1500, noun: BOOK },
+            },
+      ).parts,
+      ...say(`${key}.solution` as const, {
+        a: 30_000,
+        b: 12_500,
+        c: 8000,
+        r: 9500,
+        left: { n: 9500, noun: tickets ? SEAT : BOOK },
+      }).parts,
+      say(`${key}.hint1` as const).text,
+    );
+  }
+  return out;
 }
 
 export const bigNumbers = defineTopic({
@@ -321,6 +482,7 @@ export const bigNumbers = defineTopic({
   labelKey: 'topic.bigNumbers',
   grades: [4],
   startLevel: () => 1,
+  extraBank: storyBank,
   levels: [
     open(L(1), dictation),
     open(L(2), placeValue),
