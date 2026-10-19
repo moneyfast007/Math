@@ -305,7 +305,10 @@ const STORIES: readonly { key: TranslationKey; noun: Noun }[] = [
 
 /** Shopping: k items at a decimal price. The character and the story follow from the numbers. */
 function story(rng: Rng): Exercise {
-  const price = round(randInt(rng, 11, 99) / 2 / 10, 2); // 0.55 .. 4.95, steps of 0.05
+  // 0.55 .. 4.95 in steps of 0.05, never a whole number of shekels (that is no decimal exercise).
+  let price = 0;
+  do price = round(randInt(rng, 11, 99) / 2 / 10, 2);
+  while (Number.isInteger(price));
   const k = randInt(rng, 3, 9);
   const who = CHARACTERS[k % CHARACTERS.length] as Character;
   const s = STORIES[(k + Math.round(price * 20)) % STORIES.length] as (typeof STORIES)[number];

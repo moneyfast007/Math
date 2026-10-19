@@ -1,6 +1,7 @@
 import { defineTopic, open } from '../build';
 import { pick, randInt } from '../rng';
 import type { Exercise, Rng } from '../types';
+import { borrowBank } from '../vertical';
 import {
   borrows,
   carries,
@@ -12,6 +13,8 @@ import {
   storyBank,
   storyColumn,
 } from './columns';
+
+const bank = () => [...storyBank(), ...borrowBank()];
 
 /**
  * Column arithmetic, one world per grade (see columns.ts for the exercises).
@@ -94,7 +97,7 @@ export const vertical2 = defineTopic({
       return storyColumn(G2, 10, op, a, b, rng);
     }),
   ],
-  extraBank: storyBank,
+  extraBank: bank,
 });
 
 /* ---------- Grade 3: up to 10,000 ---------- */
@@ -178,7 +181,7 @@ export const vertical3 = defineTopic({
       return storyColumn(G3, 10, op, a, b, rng);
     }),
   ],
-  extraBank: storyBank,
+  extraBank: bank,
 });
 
 /* ---------- Grade 4: up to a million, and multiplication ---------- */
@@ -254,5 +257,5 @@ export const vertical4 = defineTopic({
       return storyColumn(G4, 10, op, a, b, rng);
     }),
   ],
-  extraBank: storyBank,
+  extraBank: bank,
 });

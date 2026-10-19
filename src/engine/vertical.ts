@@ -58,6 +58,18 @@ const toPlace = (col: number): string => t(TO[Math.min(col + 1, TO.length - 1)] 
 /** "מהעשרות": where a borrow for this column comes from. */
 const fromPlace = (col: number): string => t(FROM[Math.min(col, FROM.length - 1)] ?? 'vert.from.1');
 
+/**
+ * The clips of every borrow sentence, for every column it can come from: a
+ * borrow through zeros from the far columns is too rare for the bank's sample.
+ */
+export function borrowBank(): string[] {
+  const out = new Set<string>();
+  for (const key of ['vert.sub.borrow', 'vert.sub.borrowZero', 'vert.sub.borrowZeros'] as const)
+    for (let j = 1; j <= FROM.length; j++)
+      for (const p of line(key, { x: 3, y: 5, from: fromPlace(j), x2: 13, d: 8 }).parts) out.add(p);
+  return [...out];
+}
+
 /** A sentence from a template: digits on screen, words (and clips) when read. */
 export function line(key: TranslationKey, slots: Record<string, number | string>): Line {
   const params: Record<string, string> = {};

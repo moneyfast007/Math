@@ -210,6 +210,7 @@ export const heWorlds = {
   'ex.data.scale.hint2': 'שימו לב למספרים בצד: כל קו הוא {step}, לא אחד.',
   'ex.data.read.hint3': 'ככל שהעמודה גבוהה יותר, יותר ילדים בחרו בה.',
   'ex.data.read.solution': '{n} ילדים בחרו {item}.',
+  'ex.data.read.solution1': 'ילד אחד בחר {item}.',
   'ex.data.most.prompt': 'לפי הגרף: מה בחרו הכי הרבה ילדים?',
   'ex.data.most.hint1': 'נחפש את העמודה הכי גבוהה.',
   'ex.data.most.solution': 'הכי הרבה ילדים בחרו {item}.',

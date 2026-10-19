@@ -25,7 +25,12 @@ function recentRate(recent: readonly boolean[] | undefined): number {
 export function dailyPool(grade: Grade, progress: ProfileProgress | undefined): DailyItem[] {
   const out: DailyItem[] = [];
   for (const world of worldsFor(grade, progress)) {
-    const done = world.stations.filter((s) => s.state === 'done').map((s) => s.level);
+    // Stations she passed herself: those below where her grade starts the world
+    // are shown as done, but she has not practised them here.
+    const passed = new Set(progress?.topics[world.topic.id]?.completedLevels ?? []);
+    const done = world.stations
+      .filter((s) => s.state === 'done' && passed.has(s.level))
+      .map((s) => s.level);
     if (done.length === 0) continue;
     const weight = 0.5 + 2 * (1 - recentRate(progress?.topics[world.topic.id]?.recent));
     for (const level of done) out.push({ topic: world.topic, level, weight: weight / done.length });

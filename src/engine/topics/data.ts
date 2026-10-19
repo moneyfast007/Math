@@ -89,7 +89,11 @@ function read(level: 1 | 5 | 6) {
         hint(say(step === 1 ? 'ex.data.read.hint2' : 'ex.data.scale.hint2', { step })),
         hint(say('ex.data.read.hint3')),
       ],
-      solution: say('ex.data.read.solution', { item, n: answer }),
+      // "ילד אחד בחר": one child takes the verb in the singular.
+      solution:
+        answer === 1
+          ? say('ex.data.read.solution1', { item })
+          : say('ex.data.read.solution', { item, n: answer }),
       // Counted the grid lines instead of reading the scale (6 for 12 when each line is 2).
       diagnose: (v) => (step > 1 && v === answer / step ? 'other' : null),
     });
@@ -328,6 +332,47 @@ function percentOf(rng: Rng): Exercise {
   }
 }
 
+/**
+ * The clips of every sentence that names a category: the categories and their
+ * pairs are too many for the bank's sample to meet them all. Numbers of 1 and 2
+ * are read with their noun inside the clip ("ילד אחד", "שני ילדים"), 3 stands
+ * for every larger number (its clips come from the number bank).
+ */
+function bank(): string[] {
+  const out = new Set<string>();
+  const add = (...said: { parts: readonly string[] }[]) => {
+    for (const x of said) for (const p of x.parts) out.add(p);
+  };
+  const ns = [1, 2, 3];
+  for (const theme of THEMES) {
+    for (const item of theme.items) {
+      add(
+        say('ex.data.read.prompt', { item }),
+        say('ex.data.read.hint1', { item }),
+        say('ex.data.read.solution1', { item }),
+        say('ex.data.most.solution', { item }),
+        say('ex.data.least.solution', { item }),
+        say('ex.data.pct.prompt', { item }),
+        say('ex.data.two.hint2', { c: item }),
+        ...ns.map((n) => say('ex.data.read.solution', { item, n })),
+        ...ns.map((r) => say('ex.data.two.solution', { s: 10, c: item, r })),
+      );
+      for (const b of theme.items) {
+        if (b === item) continue;
+        add(
+          say('ex.data.more.prompt', { a: item, b }),
+          say('ex.data.more.hint2', { a: item, b }),
+          say('ex.data.two.hint1', { a: item, b }),
+          ...ns.map((d) => say('ex.data.more.solution', { a: item, b, d })),
+        );
+        for (const c of theme.items)
+          if (c !== item && c !== b) add(say('ex.data.two.prompt', { a: item, b, c }));
+      }
+    }
+  }
+  return [...out];
+}
+
 export const data = defineTopic({
   id: ID,
   labelKey: 'topic.data',
@@ -347,4 +392,5 @@ export const data = defineTopic({
     open(L(9), average(9)),
     open(L(10), percentOf),
   ],
+  extraBank: bank,
 });

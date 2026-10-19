@@ -3,7 +3,6 @@ import { compose, shown } from '@/lang/compose';
 import { numberToWords } from '@/lang/hebrewNumbers';
 import {
   arith,
-  CHARACTERS,
   defineTopic,
   diagnoseArith,
   exampleAvoiding,

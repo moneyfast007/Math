@@ -142,7 +142,10 @@ function repeatedExample(a: number, b: number): Hint {
     ] as const
   ).find(([p, q]) => p * q !== answer && !(p === a && q === b)) ?? [3, 2];
   const terms = Array.from({ length: x }, () => y);
-  const slots = Object.fromEntries([...terms.map((v, i) => [`t${i}`, v]), ['c', x * y]]);
+  const slots: Record<string, number> = { c: x * y };
+  terms.forEach((v, i) => {
+    slots[`t${i}`] = v;
+  });
   const solved = compose(
     `${terms.map((_, i) => `{t${i}}`).join(` ${t('op.add')} `)} ${t('ex.repeated.is')} {c}.`,
     slots,

@@ -144,7 +144,7 @@ const circumference = (level: number, n: number, fromRadius: boolean): Exercise 
   const e = (fromRadius ? [5, 3] : [10, 20]).find((c) => c !== n) as number;
   const eD = fromRadius ? 2 * e : e;
   const eR = round(PI * eD, 2);
-  const steps = (dd: number) =>
+  const steps = (dd: number): Record<string, Slot> =>
     fromRadius ? { d: slot(dd, CM), x: dd, pi: PI } : { d: dd, pi: PI };
   return build({
     level,

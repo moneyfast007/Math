@@ -256,7 +256,7 @@ function toFraction(n: number, d: number): Exercise {
     prompt: t('ex.frac.expand.prompt'),
     display: `${p}% = ?/${d}`,
     spoken: sayP('pi.toFrac.spoken', { p, plural: (FRACTION_NOUNS[d] as Noun).plural }),
-    ...(barOf(n, d) ? { visual: { type: 'fraction', parts: d, shaded: 0 } as Visual } : {}),
+    ...(barOf(n, d) ? { visual: { type: 'fraction', parts: d, shaded: 0 } } : {}),
     answer: n,
     input: numpad(2),
     hints: [
