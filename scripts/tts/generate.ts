@@ -124,7 +124,7 @@ async function main(): Promise<void> {
 
   // Short clips first: numbers and fragments are heard in many sentences.
   work.sort((x, y) => x.phrase.text.length - y.phrase.text.length);
-  const deadline =
+  let deadline =
     Number(values['max-minutes']) > 0 ? Date.now() + Number(values['max-minutes']) * 60_000 : Infinity;
   let done = 0;
   let skipped = 0;
@@ -137,13 +137,25 @@ async function main(): Promise<void> {
   };
   /** Clips whose length is far off their text: an engine that added or dropped words. */
   const sizes: { id: string; text: string; perChar: number }[] = [];
+  const failures: string[] = [];
+  let inARow = 0;
   const run = async (w: (typeof work)[number]) => {
     if (Date.now() > deadline) {
       skipped++;
       return;
     }
     const spec = w.spec.engine === 'chirp3-hd' ? { ...w.spec, prompt: DEFAULT_PROMPT } : w.spec;
-    const mp3 = await synthesize(textFor(w.phrase.text, spec), spec);
+    let mp3: Buffer;
+    try {
+      mp3 = await synthesize(textFor(w.phrase.text, spec), spec);
+    } catch (err) {
+      // One phrase the engine refuses must not stop the other thousands: listed at the end.
+      failures.push(`${w.phrase.id}: ${err instanceof Error ? err.message : String(err)}`);
+      // Twenty in a row: the engine refuses everything (a quota, a setting). Stop and report.
+      if (++inARow >= 20) deadline = 0;
+      return;
+    }
+    inARow = 0;
     await writeFile(path.join(OUT_DIR, `${w.id}.mp3`), mp3);
     manifest.clips[w.id] = { text: w.phrase.text, voice: voiceKey(w.spec) };
     sizes.push({ id: w.id, text: w.phrase.text, perChar: mp3.length / w.phrase.text.length });
@@ -157,6 +169,10 @@ async function main(): Promise<void> {
     mapLimit(chirpWork, 1, run),
   ]);
   if (skipped > 0) console.log(`Time is up: ${skipped} clips left for the next run.`);
+  if (failures.length > 0) {
+    console.log(`${failures.length} clips failed:`);
+    for (const f of failures.slice(0, 50)) console.log(`    ${f}`);
+  }
 
   // For a listen: the clips longest and shortest for their text.
   sizes.sort((x, y) => y.perChar - x.perChar);
@@ -170,6 +186,7 @@ async function main(): Promise<void> {
   }
 
   await writeJson(MANIFEST, manifest);
+  if (failures.length > 0) process.exitCode = 1;
   console.log(
     `Done. ${Object.keys(manifest.clips).length} clips in ${path.relative(ROOT, OUT_DIR)}.`,
   );

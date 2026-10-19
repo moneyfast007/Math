@@ -39,7 +39,8 @@ jobs:
       - name: Generate
         run: |
           DRY="${{ inputs.dry_run }}"
-          if [ "$DRY" = "true" ]; then npm run tts:build -- --dry-run; else npm run tts:build -- --max-minutes "${{ inputs.max_minutes }}"; fi
+          set -o pipefail
+          if [ "$DRY" = "true" ]; then npm run tts:build -- --dry-run 2>&1 | tee tts-build.log; else npm run tts:build -- --max-minutes "${{ inputs.max_minutes }}" 2>&1 | tee tts-build.log; fi
       - name: Commit the audio bank
         # Also after a failure: what was recorded before it is kept, and the next run goes on.
         if: always() && inputs.dry_run != 'true'
@@ -53,3 +54,16 @@ jobs:
           git pull --rebase origin main
           # Another workflow may have pushed meanwhile: rebase and retry.
           for i in 1 2 3; do git pull --rebase origin main && git push origin HEAD:main && break; sleep 5; done
+      - name: Publish the log to the tts-log branch
+        if: always()
+        run: |
+          rm -f gha-creds-*.json
+          mkdir -p /tmp/ttslog && cp tts-build.log /tmp/ttslog/ 2>/dev/null || echo "no log" > /tmp/ttslog/tts-build.log
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -B tts-log
+          git rm -rq --cached . || true
+          cp /tmp/ttslog/tts-build.log tts-build.log
+          git add -f tts-build.log
+          git commit -m "tts build log ${{ github.run_id }}" || true
+          git push --force origin tts-log
