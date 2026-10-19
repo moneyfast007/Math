@@ -132,6 +132,14 @@ export function decimalParts(x: number): string[] {
 
 const ONLY_PUNCTUATION = /^[\s.,:;!?()"'־-]*$/;
 
+/**
+ * Letters glued to a number ("יותר מעשר", "השלם מחולק לשמונה", "ושלושה"). The
+ * letter goes into the number's first clip ("מעשר"), so it is never read alone
+ * as a clip of its own; the number bank records these prefixed forms.
+ */
+export const NUMBER_PREFIXES = ['ל', 'ב', 'מ', 'ו'] as const;
+const GLUED_PREFIX = new RegExp(`(^|[\\s,.:;!?()"'״])(${NUMBER_PREFIXES.join('|')})$`);
+
 export function compose(template: string, slots: Readonly<Record<string, Slot>> = {}): Spoken {
   const parts: string[] = [];
   let text = '';
@@ -175,8 +183,12 @@ export function compose(template: string, slots: Readonly<Record<string, Slot>> 
     written += /[א-ת]$/.test(written) && /^\d/.test(w) ? `-${w}` : w;
     if (clips.length > 0) {
       // A number: everything before it is a clip of its own, then the number's clips.
+      // A letter glued to it moves into its first clip ("יותר מ" + "עשר" → "יותר" + "מעשר").
+      const glued = GLUED_PREFIX.exec(buffer);
+      if (glued) buffer = buffer.slice(0, buffer.length - (glued[2] ?? '').length);
       flush();
-      parts.push(...clips);
+      const [first = '', ...rest] = clips;
+      parts.push(`${glued?.[2] ?? ''}${first}`, ...rest);
     }
     buffer += tail;
   }

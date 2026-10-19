@@ -1,5 +1,6 @@
 // @vitest-environment node
 import { describe, expect, it } from 'vitest';
+import { NUMBER_PREFIXES } from '@/lang/compose';
 import { numberToWords, vavForms } from '@/lang/hebrewNumbers';
 import { sayingsOf } from '../build';
 import { TOPICS } from '../registry';
@@ -40,6 +41,9 @@ const NUMBER_CLIPS = new Set<string>([
   'נקודה',
 ]);
 
+/** A number word, or one with a letter glued to it ("מעשר"): the bank records both. */
 function isNumberClip(p: string): boolean {
-  return NUMBER_CLIPS.has(p);
+  if (NUMBER_CLIPS.has(p)) return true;
+  const plain = p.slice(1);
+  return (NUMBER_PREFIXES as readonly string[]).includes(p[0] ?? '') && (NUMBER_CLIPS.has(plain) || plain === 'אלף');
 }

@@ -35,6 +35,15 @@ describe('compose', () => {
     expect(s.parts).toEqual(['שלושה', 'שלוש']);
   });
 
+  it('moves a letter glued to a number into the number clip, never alone', () => {
+    expect(compose('יותר מ{n}.', { n: 10 }).parts).toEqual(['יותר', 'מעשר']);
+    expect(compose('השלם מחולק ל{n} חלקים.', { n: 8 }).parts).toEqual([
+      'השלם מחולק',
+      'לשמונה',
+      'חלקים.',
+    ]);
+  });
+
   it('writes the same sentence with digits for the screen', () => {
     const s = compose('ל{name} יש {a}. כמה זה מ{b}?', {
       name: 'דנה',

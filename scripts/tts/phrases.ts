@@ -2,6 +2,7 @@ import { he } from '../../src/i18n/he';
 import { allSpokenTexts } from '../../src/engine/registry';
 import { numberToWords, vavForms } from '../../src/lang/hebrewNumbers';
 import { spokenLabel } from '../../src/lang/spokenLabel';
+import { NUMBER_PREFIXES } from '../../src/lang/compose';
 
 /**
  * The fixed phrase bank: everything the app can say that does not depend on a
@@ -76,6 +77,10 @@ export function numberPhrases(): Phrase[] {
   for (const k of [1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000]) {
     out.push({ id: `num.${k}`, text: numberToWords(k) });
   }
+  // The first clip of a number with a letter glued to it ("מעשר", "לשמונה"): see compose.ts.
+  const plain = [...out.map((p) => p.text), 'אלף'];
+  for (const prefix of NUMBER_PREFIXES)
+    for (const text of new Set(plain)) out.push({ id: `num.pre.${prefix}.${text}`, text: `${prefix}${text}` });
   out.push({ id: 'num.word.elef', text: 'אלף' });
   out.push({ id: 'num.word.million', text: 'מיליון' });
   out.push({ id: 'num.word.twoMillion', text: 'שני מיליון' });
