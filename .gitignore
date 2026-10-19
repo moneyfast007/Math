@@ -29,3 +29,6 @@ service-account*.json
 .idea/
 *.log
 .ci/
+
+# Audio clips of a recording run, uploaded to R2 and never committed.
+audio/clips/

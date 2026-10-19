@@ -1,12 +1,13 @@
 import { execFile } from 'node:child_process';
 import { existsSync } from 'node:fs';
-import { rename, rm } from 'node:fs/promises';
+import { rename, rm, stat } from 'node:fs/promises';
 import path from 'node:path';
 import { parseArgs, promisify } from 'node:util';
 import { mapLimit, readJson, writeJson } from './lib';
+import { CLIPS_DIR, MANIFEST } from './paths';
 
 /**
- * Trims the silence at both ends of every clip in public/audio/, so a
+ * Trims the silence at both ends of every new clip in audio/clips/, so a
  * sentence assembled from clips ("מה הערך של הספרה" + "שש" + "במספר" + …)
  * has no pause between them. Keeps a few hundredths of a second at each end.
  *
@@ -18,9 +19,7 @@ import { mapLimit, readJson, writeJson } from './lib';
  */
 
 const run = promisify(execFile);
-const ROOT = path.resolve(import.meta.dirname, '../..');
-const OUT_DIR = path.join(ROOT, 'public', 'audio');
-const MANIFEST = path.join(OUT_DIR, 'manifest.json');
+const OUT_DIR = CLIPS_DIR;
 
 /** Silence below this level counts as silence; a short pad stays so words are not clipped. */
 const FILTER = [
@@ -32,7 +31,7 @@ const FILTER = [
 
 interface Manifest {
   version: 2;
-  clips: Record<string, { text: string; voice: string; trimmed?: boolean }>;
+  clips: Record<string, { text: string; voice: string; trimmed?: boolean; bytes?: number }>;
 }
 
 const { values } = parseArgs({
@@ -88,7 +87,10 @@ async function main(): Promise<void> {
       ]);
       await rename(tmp, file);
       const clip = manifest.clips[id];
-      if (clip) clip.trimmed = true;
+      if (clip) {
+        clip.trimmed = true;
+        clip.bytes = (await stat(file)).size;
+      }
     } catch (err) {
       await rm(tmp, { force: true });
       failed++;

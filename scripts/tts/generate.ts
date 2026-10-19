@@ -1,4 +1,3 @@
-import { existsSync } from 'node:fs';
 import { writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { parseArgs } from 'node:util';
@@ -14,11 +13,14 @@ import {
   writeJson,
   type VoiceSpec,
 } from './lib';
+import { CLIPS_DIR, MANIFEST, ROOT } from './paths';
 import { allPhrases, type Phrase } from './phrases';
 import { vocalizeForTts } from './pronunciation';
 
 /**
- * Generates the app's audio bank into public/audio/.
+ * Generates the app's audio bank: new and changed clips into audio/clips/,
+ * recorded in audio/manifest.json; the workflow then trims them and uploads
+ * them to the R2 bucket the Worker serves /audio/ from (see paths.ts).
  *
  *   npm run tts:build                  # generate whatever is missing
  *   npm run tts:build -- --dry-run     # list what would be generated and the cost
@@ -35,9 +37,7 @@ import { vocalizeForTts } from './pronunciation';
  * the voice used.
  */
 
-const ROOT = path.resolve(import.meta.dirname, '../..');
-const OUT_DIR = path.join(ROOT, 'public', 'audio');
-const MANIFEST = path.join(OUT_DIR, 'manifest.json');
+const OUT_DIR = CLIPS_DIR;
 
 export const VOICE: VoiceSpec = { engine: 'gemini-3.1-flash', voice: 'Leda', prompt: QUICK_PROMPT };
 /** Part of the manifest's voice key: a new pace must regenerate the clips too. */
@@ -46,6 +46,9 @@ const PACE = 'quick';
 interface ClipRecord {
   text: string;
   voice: string;
+  /** Size in bytes (for the offline download the parents see); set again when trimmed. */
+  bytes?: number;
+  trimmed?: boolean;
 }
 
 interface Manifest {
@@ -83,7 +86,7 @@ async function main(): Promise<void> {
   const manifest = await readJson<Manifest>(MANIFEST, { version: 2, clips: {} });
   if ((manifest as { version: number }).version !== 2) {
     throw new Error(
-      'public/audio/manifest.json is from an older layout; delete public/audio first.',
+      'audio/manifest.json is from an older layout.',
     );
   }
 
@@ -98,7 +101,7 @@ async function main(): Promise<void> {
     .map((p) => ({ phrase: p, id: clipIdNode(p.text), spec: voiceFor() }))
     .filter(
       ({ id, spec }) =>
-        !existsSync(path.join(OUT_DIR, `${id}.mp3`)) ||
+        // Recorded in this voice already (the clip is in the bucket): nothing to do.
         manifest.clips[id]?.voice !== voiceKey(spec),
     );
 
@@ -161,7 +164,7 @@ async function main(): Promise<void> {
     }
     inARow = 0;
     await writeFile(path.join(OUT_DIR, `${w.id}.mp3`), mp3);
-    manifest.clips[w.id] = { text: w.phrase.text, voice: voiceKey(w.spec) };
+    manifest.clips[w.id] = { text: w.phrase.text, voice: voiceKey(w.spec), bytes: mp3.length };
     sizes.push({ id: w.id, text: w.phrase.text, perChar: mp3.length / w.phrase.text.length });
     await checkpoint();
   };

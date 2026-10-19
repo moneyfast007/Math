@@ -41,3 +41,19 @@ interface DurableObjectStub<T> {
 interface Fetcher {
   fetch(request: Request): Promise<Response>;
 }
+
+/** The R2 calls the worker makes (serving audio clips). */
+interface R2Object {
+  readonly size: number;
+  readonly httpEtag: string;
+  readonly range?: { offset?: number; length?: number; suffix?: number };
+}
+interface R2ObjectBody extends R2Object {
+  readonly body: ReadableStream;
+}
+interface R2Bucket {
+  get(
+    key: string,
+    options?: { range?: Headers; onlyIf?: Headers },
+  ): Promise<R2ObjectBody | R2Object | null>;
+}

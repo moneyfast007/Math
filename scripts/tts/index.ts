@@ -1,8 +1,9 @@
 import { existsSync } from 'node:fs';
-import { mkdir, readFile, stat, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { topicsForGrade } from '../../src/engine/registry';
 import { clipIdNode } from './lib';
+import { INDEX_DIR, MANIFEST } from './paths';
 import { numberPhrases, uiPhrases } from './phrases';
 
 /**
@@ -15,19 +16,14 @@ import { numberPhrases, uiPhrases } from './phrases';
  * Runs before every build, so the lists always match the code and the clips.
  */
 
-const ROOT = path.resolve(import.meta.dirname, '../..');
-const AUDIO = path.join(ROOT, 'public/audio');
-const OUT = path.join(AUDIO, 'index');
+const OUT = INDEX_DIR;
 
 async function main(): Promise<void> {
-  const manifestPath = path.join(AUDIO, 'manifest.json');
-  const recorded = existsSync(manifestPath)
-    ? new Set(
-        Object.keys(
-          (JSON.parse(await readFile(manifestPath, 'utf8')) as { clips?: object }).clips ?? {},
-        ),
-      )
-    : new Set<string>();
+  const clips: Record<string, { bytes?: number }> = existsSync(MANIFEST)
+    ? ((JSON.parse(await readFile(MANIFEST, 'utf8')) as { clips?: Record<string, { bytes?: number }> })
+        .clips ?? {})
+    : {};
+  const recorded = new Set(Object.keys(clips));
   const idsOf = (texts: Iterable<string>) => {
     const out = new Set<string>();
     for (const text of texts) {
@@ -39,15 +35,8 @@ async function main(): Promise<void> {
 
   const shared = idsOf([...uiPhrases(), ...numberPhrases()].map((p) => p.text));
   await mkdir(OUT, { recursive: true });
-  const sizes = new Map<string, number>();
-  const sizeOf = async (id: string) => {
-    let n = sizes.get(id);
-    if (n === undefined) {
-      n = (await stat(path.join(AUDIO, `${id}.mp3`)).catch(() => ({ size: 0 }))).size;
-      sizes.set(id, n);
-    }
-    return n;
-  };
+  // Sizes come from the manifest: the clips are in the bucket, not on this disk.
+  const sizeOf = async (id: string) => Promise.resolve(clips[id]?.bytes ?? 0);
   const write = async (name: string, ids: Set<string>) => {
     let bytes = 0;
     for (const id of ids) bytes += await sizeOf(id);
