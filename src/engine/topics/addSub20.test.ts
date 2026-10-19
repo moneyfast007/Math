@@ -105,7 +105,8 @@ describe('add-sub-20: Hebrew agreement in spoken sentences', () => {
   it('reads arithmetic in the feminine', () => {
     expect(bank).toContain('כמה זה שמונה ועוד חמש?');
     expect(bank).toContain('שמונה ועוד חמש זה שלוש עשרה.');
-    expect(bank).toContain('שבע ועוד כמה זה שתים עשרה?');
+    // Missing numbers now come as friends of ten (3 + ? = 10).
+    expect(bank).toContain('שלוש ועוד כמה זה עשר?');
   });
 
   it('is a manageable size for pre-generated audio', () => {
