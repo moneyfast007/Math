@@ -62,6 +62,8 @@ export type MistakeKind =
   | 'clockHands'
   /** Order of operations: worked left to right instead of multiplying (or the brackets) first. */
   | 'order'
+  /** Area, perimeter or volume mixed up (added the edges for a volume, the perimeter for an area). */
+  | 'shapeFormula'
   | 'other';
 
 export interface TopicStats {

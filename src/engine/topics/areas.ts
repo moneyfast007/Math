@@ -41,6 +41,35 @@ const poly = (points: [number, number][], extra: Omit<Polygon, 'points'> = {}): 
 });
 const lab = (n: number) => `${n} ס״מ`;
 
+type Pt = [number, number];
+
+/**
+ * A shape drawn to its own measures (the longer side looks longer), from points
+ * in centimetres (y down), fitted into the drawing box. Very long, thin shapes
+ * are squashed to at most 3 : 1 so they stay readable, still longer the right way.
+ */
+function drawn(points: Pt[], extra: Omit<Polygon, 'points'> = {}): Visual {
+  const all = [...points, ...(extra.height ? [extra.height.from, extra.height.to] : [])];
+  const minX = Math.min(...all.map((p) => p[0]));
+  const minY = Math.min(...all.map((p) => p[1]));
+  const w = Math.max(...all.map((p) => p[0])) - minX || 1;
+  const h = Math.max(...all.map((p) => p[1])) - minY || 1;
+  // Same scale both ways, except that the short side is drawn at least a third of the long one.
+  const k = 92 / Math.max(w, h);
+  const kx = h > 3 * w ? 92 / 3 / w : k;
+  const ky = w > 3 * h ? 92 / 3 / h : k;
+  const W = w * kx;
+  const H = h * ky;
+  const map = ([x, y]: Pt): Pt => [
+    Math.round((x - minX) * kx + (100 - W) / 2),
+    Math.round((y - minY) * ky + (100 - H) / 2),
+  ];
+  return poly(points.map(map), {
+    ...extra,
+    ...(extra.height ? { height: { ...extra.height, from: map(extra.height.from), to: map(extra.height.to) } } : {}),
+  });
+}
+
 interface AreaParts {
   level: number;
   factId: string;
@@ -106,25 +135,15 @@ function rectangle(rng: Rng): Exercise {
     spoken: square
       ? say('ex.areas.square.spoken', { a: cm(a) })
       : say('ex.areas.rect.spoken', { a: cm(a), b: cm(b) }),
-    visual: square
-      ? poly(
-          [
-            [15, 15],
-            [85, 15],
-            [85, 85],
-            [15, 85],
-          ],
-          { sideLabels: [lab(a), null, null, null], rightAngles: [0, 1, 2, 3] },
-        )
-      : poly(
-          [
-            [3, 25],
-            [97, 25],
-            [97, 75],
-            [3, 75],
-          ],
-          { sideLabels: [lab(a), lab(b), null, null], rightAngles: [0, 1, 2, 3] },
-        ),
+    visual: drawn(
+      [
+        [0, 0],
+        [a, 0],
+        [a, b],
+        [0, b],
+      ],
+      { sideLabels: [lab(a), square ? null : lab(b), null, null], rightAngles: [0, 1, 2, 3] },
+    ),
     display: `${a} × ${b} = ?`,
     answer: a * b,
     hints: [hint(say('ex.areas.rect.hint1')), hint(say('ex.areas.rect.hint2'))],
@@ -156,11 +175,11 @@ function rightTriangle(rng: Rng): Exercise {
     level: 2,
     factId: `rtri:${a}x${b}`,
     spoken: say('ex.areas.rtri.spoken', { a: cm(a), b: cm(b) }),
-    visual: poly(
+    visual: drawn(
       [
-        [10, 8],
-        [10, 92],
-        [90, 92],
+        [0, 0],
+        [0, a],
+        [b, a],
       ],
       { sideLabels: [lab(a), lab(b), null], rightAngles: [1] },
     ),
@@ -193,13 +212,13 @@ function triangle(rng: Rng): Exercise {
     level: 3,
     factId: `tri:${b}x${h}`,
     spoken: say('ex.areas.tri.spoken', { b: cm(b), h: cm(h) }),
-    visual: poly(
+    visual: drawn(
       [
-        [3, 90],
-        [97, 90],
-        [35, 10],
+        [0, h],
+        [b, h],
+        [b * 0.35, 0],
       ],
-      { sideLabels: [lab(b), null, null], height: { from: [35, 10], to: [35, 90], label: lab(h) } },
+      { sideLabels: [lab(b), null, null], height: { from: [b * 0.35, 0], to: [b * 0.35, h], label: lab(h) } },
     ),
     display: `${b} × ${h} ÷ 2 = ?`,
     answer: (b * h) / 2,
@@ -228,16 +247,16 @@ function parallelogram(rng: Rng): Exercise {
     level: 4,
     factId: `para:${b}x${h}`,
     spoken: say('ex.areas.para.spoken', { b: cm(b), h: cm(h) }),
-    visual: poly(
+    visual: drawn(
       [
-        [28, 20],
-        [97, 20],
-        [72, 80],
-        [3, 80],
+        [h * 0.6, 0],
+        [b + h * 0.6, 0],
+        [b, h],
+        [0, h],
       ],
       {
         sideLabels: [null, null, lab(b), null],
-        height: { from: [28, 20], to: [28, 80], label: lab(h) },
+        height: { from: [h * 0.6, 0], to: [h * 0.6, h], label: lab(h) },
       },
     ),
     display: `${b} × ${h} = ?`,
@@ -273,16 +292,16 @@ function trapezoid(rng: Rng): Exercise {
     level: 5,
     factId: `trap:${a}:${b}:${h}`,
     spoken: say('ex.areas.trap.spoken', { a: cm(a), b: cm(b), h: cm(h) }),
-    visual: poly(
+    visual: drawn(
       [
-        [30, 20],
-        [70, 20],
-        [97, 80],
-        [3, 80],
+        [(b - a) / 2, 0],
+        [(b + a) / 2, 0],
+        [b, h],
+        [0, h],
       ],
       {
         sideLabels: [lab(a), null, lab(b), null],
-        height: { from: [30, 20], to: [30, 80], label: lab(h) },
+        height: { from: [(b - a) / 2, 0], to: [(b - a) / 2, h], label: lab(h) },
       },
     ),
     display: `(${a} + ${b}) × ${h} ÷ 2 = ?`,
@@ -322,17 +341,17 @@ function house(rng: Rng): Exercise {
     level: 6,
     factId: `house:${w}:${hgt}:${roof}`,
     spoken: say('ex.areas.house.spoken', { w: cm(w), h: cm(hgt), r: cm(roof) }),
-    visual: poly(
+    visual: drawn(
       [
-        [5, 42],
-        [50, 6],
-        [95, 42],
-        [95, 95],
-        [5, 95],
+        [0, roof],
+        [w / 2, 0],
+        [w, roof],
+        [w, roof + hgt],
+        [0, roof + hgt],
       ],
       {
         sideLabels: [null, null, lab(hgt), lab(w), null],
-        height: { from: [50, 6], to: [50, 42], label: lab(roof) },
+        height: { from: [w / 2, 0], to: [w / 2, roof], label: lab(roof) },
         rightAngles: [3, 4],
       },
     ),
@@ -421,7 +440,8 @@ function boxVolume(rng: Rng): Exercise {
       ),
     ],
     solution: solved(l, w, h),
-    diagnose: (x) => (x === l + w + h ? 'wrongOperation' : x === l * w ? 'other' : null),
+    // Adding the edges, or stopping at the floor's area: volume is length × width × height.
+    diagnose: (x) => (x === l + w + h ? 'shapeFormula' : x === l * w ? 'other' : null),
   });
 }
 

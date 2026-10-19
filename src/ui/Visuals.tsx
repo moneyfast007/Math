@@ -1,7 +1,7 @@
 import type { ClockTime, ShapeItem, Visual } from '@/engine/types';
 import { t } from '@/i18n';
 import { digitalTime } from '@/lang/time';
-import { AngleView, BoxView, LinesView, PolygonView, RulerView } from './GeoVisuals';
+import { AngleView, BoxView, CircleView, LinesView, PolygonView, RulerView } from './GeoVisuals';
 import { VerticalView } from './Vertical';
 
 /** Renders an exercise or hint picture. Always left-to-right, like the arithmetic. */
@@ -37,6 +37,8 @@ export function VisualView({ visual }: { visual: Visual }) {
       return <RulerView v={visual} />;
     case 'box':
       return <BoxView v={visual} />;
+    case 'circle':
+      return <CircleView v={visual} />;
     case 'vertical':
       return <VerticalView visual={visual} />;
   }

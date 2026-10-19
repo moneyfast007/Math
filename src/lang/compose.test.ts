@@ -44,6 +44,13 @@ describe('compose', () => {
     expect(s.written).toBe('לדנה יש 523 תפוחים. כמה זה מ-20?');
   });
 
+  it('makes a bare number agree with the counted noun after it', () => {
+    expect(compose('{a} קבוצות של {b}.', { a: 2, b: 4 }).text).toBe('שתי קבוצות של ארבע.');
+    expect(compose('המחיר {p} שקלים.', { p: 7 }).text).toBe('המחיר שבעה שקלים.');
+    expect(compose('יש {t} עשרות.', { t: 1 }).text).toBe('יש עשרת אחת.');
+    expect(compose('יש {t} עשרות.', { t: 1 }).written).toBe('יש 1 עשרת.');
+  });
+
   it('leaves unknown placeholders alone', () => {
     expect(compose('שלום {x}', {}).text).toBe('שלום {x}');
   });

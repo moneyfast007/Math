@@ -29,6 +29,31 @@ export interface Spoken {
   written?: string;
 }
 
+/**
+ * Nouns a bare number in a template agrees with ("{n} קבוצות" → "שתי קבוצות",
+ * "{k} שקלים" → "שבעה שקלים", "{t} עשרות" → "עשרת אחת"). Without this, a bare
+ * number is read in the abstract (feminine) form: "שתיים קבוצות", "שבע שקלים".
+ */
+const AGREES: Record<string, Noun> = Object.fromEntries(
+  (
+    [
+      ['קבוצה', 'קבוצות', 'f'],
+      ['שורה', 'שורות', 'f'],
+      ['נקודה', 'נקודות', 'f'],
+      ['פעם', 'פעמים', 'f'],
+      ['עשרת', 'עשרות', 'f'],
+      ['יחידה', 'אחדות', 'f'],
+      ['משבצת', 'משבצות', 'f'],
+      ['חלק', 'חלקים', 'm'],
+      ['שקל', 'שקלים', 'm'],
+      ['ילד', 'ילדים', 'm'],
+      ['מטר', 'מטרים', 'm'],
+      ['סנטימטר', 'סנטימטרים', 'm'],
+      ['קילומטר', 'קילומטרים', 'm'],
+    ] as const
+  ).map(([singular, plural, gender]) => [plural, { singular, plural, gender }]),
+);
+
 /** What to show for a sentence: digits when it has numbers. */
 export function shown(s: Spoken): string {
   return s.written ?? s.text;
@@ -101,7 +126,8 @@ export function compose(template: string, slots: Readonly<Record<string, Slot>> 
     buffer = '';
   };
   const tokens = template.split(/(\{\w+\})/);
-  for (const token of tokens) {
+  for (let i = 0; i < tokens.length; i++) {
+    const token = tokens[i] ?? '';
     const m = /^\{(\w+)\}$/.exec(token);
     if (!m) {
       text += token;
@@ -109,7 +135,15 @@ export function compose(template: string, slots: Readonly<Record<string, Slot>> 
       buffer += token;
       continue;
     }
-    const slot = slots[m[1] ?? ''];
+    let slot = slots[m[1] ?? ''];
+    // A bare whole number followed by a counted noun agrees with it (the noun moves into the slot).
+    const n = typeof slot === 'number' ? slot : typeof slot === 'object' && !slot.noun ? slot.n : null;
+    const next = /^ ([א-ת]+)/.exec(tokens[i + 1] ?? '');
+    const noun = next ? AGREES[next[1] ?? ''] : undefined;
+    if (n !== null && Number.isInteger(n) && n >= 1 && noun && next) {
+      slot = { n, noun };
+      tokens[i + 1] = (tokens[i + 1] ?? '').slice(next[0].length);
+    }
     if (slot === undefined) {
       text += token;
       written += token;

@@ -1,6 +1,6 @@
-import { t, type TranslationKey } from '@/i18n';
+import type { TranslationKey } from '@/i18n';
 import type { Noun } from '@/lang/hebrewNumbers';
-import type { Slot } from '@/lang/compose';
+import { shown, type Slot } from '@/lang/compose';
 import {
   closed,
   defineTopic,
@@ -12,7 +12,7 @@ import {
   round,
   say,
 } from '../build';
-import type { Exercise } from '../types';
+import type { Exercise, Visual } from '../types';
 
 /**
  * World 20, grade 6: "מעגל ונפח". Radius and diameter, the circumference and
@@ -43,6 +43,8 @@ interface Spec {
   hints: [TranslationKey, TranslationKey];
   example: { display: string; slots: Record<string, Slot>; r: number };
   wrong?: number[];
+  /** The circle or the box, with the given measures on it. */
+  visual?: Visual;
 }
 
 /** Every exercise of this world has the same shape: a question, two hints, an example, a solution. */
@@ -61,9 +63,11 @@ function build(s: Spec): Exercise {
     factId: s.id,
     topicId: ID,
     level: s.level,
-    prompt: t(`${s.key}.prompt` as TranslationKey),
+    // The data on screen too (with digits), not only heard.
+    prompt: shown(say(`${s.key}.spoken` as TranslationKey, s.slots)),
     display: '',
     spoken: say(`${s.key}.spoken` as TranslationKey, s.slots),
+    ...(s.visual ? { visual: s.visual } : {}),
     answer: s.answer,
     input: numpad(s.maxDigits, s.decimal),
     hints: [
@@ -72,7 +76,9 @@ function build(s: Spec): Exercise {
       exampleHint(s.example.display, sol(s.example.r, s.example.slots)),
     ],
     solution: sol(s.answer, s.slots),
-    diagnose: (v) => (s.wrong?.some((w) => Math.abs(w - v) < 1e-9) ? 'wrongOperation' : null),
+    // Radius and diameter mixed up (levels 1–2), or circumference, area and volume.
+    diagnose: (v) =>
+      s.wrong?.some((w) => Math.abs(w - v) < 1e-9) ? (s.level <= 2 ? 'other' : 'shapeFormula') : null,
   });
 }
 
@@ -85,6 +91,7 @@ const radiusDiameter = (r: number, toD: boolean): Exercise =>
   build({
     level: toD ? 1 : 2,
     id: `${toD ? 'r2d' : 'd2r'}:${r}`,
+    visual: { type: 'circle', mark: toD ? 'radius' : 'diameter', label: `${toD ? r : 2 * r} ס״מ` },
     key: toD ? 'ex.circle.diameter' : 'ex.circle.radius',
     slots: toD ? { r: slot(r, CM) } : { d: slot(2 * r, CM) },
     answer: toD ? 2 * r : r,
@@ -115,6 +122,7 @@ const circumference = (n: number, fromRadius: boolean): Exercise => {
   return build({
     level: fromRadius ? 4 : 3,
     id: `circ${fromRadius ? 'R' : 'D'}:${n}`,
+    visual: { type: 'circle', mark: fromRadius ? 'radius' : 'diameter', label: `${n} ס״מ` },
     key: fromRadius ? 'ex.circle.circR' : 'ex.circle.circD',
     slots: fromRadius ? { r: slot(n, CM) } : { d: slot(n, CM) },
     answer,
@@ -140,6 +148,7 @@ const area = (r: number): Exercise => {
   return build({
     level: 5,
     id: `area:${r}`,
+    visual: { type: 'circle', mark: 'radius', label: `${r} ס״מ` },
     key: 'ex.circle.area',
     slots: { r: slot(r, CM) },
     answer,
@@ -165,6 +174,7 @@ const boxVolume = (x: Box): Exercise => {
   return build({
     level: 6,
     id: `box:${x.a}x${x.b}x${x.c}`,
+    visual: { type: 'box', l: x.a, w: x.b, h: x.c, unit: 'ס״מ' },
     key: 'ex.vol.box',
     slots: { a: slot(x.a, CM), b: slot(x.b, CM), c: slot(x.c, CM) },
     answer,
@@ -185,6 +195,7 @@ const cube = (a: number): Exercise =>
   build({
     level: 7,
     id: `cube:${a}`,
+    visual: { type: 'box', l: a, w: a, h: a, unit: 'ס״מ' },
     key: 'ex.vol.cube',
     slots: { a: slot(a, CM) },
     answer: a * a * a,
@@ -247,6 +258,7 @@ const aquarium = (x: Box): Exercise => {
   return build({
     level: 10,
     id: `aqua:${x.a}x${x.b}x${x.c}`,
+    visual: { type: 'box', l: x.a, w: x.b, h: x.c, unit: 'ס״מ' },
     key: 'ex.vol.aquarium',
     slots: { a: slot(x.a, CM), b: slot(x.b, CM), c: slot(x.c, CM) },
     answer,

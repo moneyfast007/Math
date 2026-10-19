@@ -135,9 +135,9 @@ function measure(level: number, s: Shape, perimeter: boolean): Exercise {
     solution: say(`${key}.solution` as const, { r: { n: answer, noun: unit } }),
     diagnose: (v) =>
       perimeter && v === s.w * s.h
-        ? 'wrongOperation'
+        ? 'shapeFormula'
         : !perimeter && v === 2 * (s.w + s.h)
-          ? 'wrongOperation'
+          ? 'shapeFormula'
           : !perimeter && v === s.w + s.h
             ? 'wrongOperation'
             : perimeter && v === s.w + s.h
@@ -300,9 +300,9 @@ function story(rng: Rng): Exercise {
     solution: say(`${key}.solution` as const, { r: { n: answer, noun: unit } }),
     diagnose: (v) =>
       fence && v === w * h
-        ? 'wrongOperation'
+        ? 'shapeFormula'
         : !fence && v === 2 * (w + h)
-          ? 'wrongOperation'
+          ? 'shapeFormula'
           : null,
   });
 }

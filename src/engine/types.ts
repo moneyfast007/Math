@@ -102,6 +102,8 @@ export type Visual =
   | { type: 'ruler'; from: number; to: number; length: number }
   /** A box drawn in perspective; `cubes` draws the unit cubes, `labels` its edges. */
   | { type: 'box'; l: number; w: number; h: number; cubes?: boolean; unit?: string }
+  /** A circle with its radius or diameter drawn and labelled. */
+  | { type: 'circle'; mark: 'radius' | 'diameter'; label: string }
   /**
    * A column (vertical) exercise, drawn as in the notebook: solved up to step
    * `upto` (all of it by default), with the carry and borrow marks. `wrong`

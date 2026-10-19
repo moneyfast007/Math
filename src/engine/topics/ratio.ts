@@ -1,3 +1,4 @@
+import { shown } from '@/lang/compose';
 import { t } from '@/i18n';
 import type { Noun } from '@/lang/hebrewNumbers';
 import {
@@ -232,20 +233,22 @@ function price(level: 8 | 9, k: number, each: number, m: number): Exercise {
   const first = { k: 3, each: 4, m: 5 };
   const e =
     (level === 8 ? first.each : first.each * first.m) === answer ? { k: 4, each: 3, m: 6 } : first;
+  const spoken =
+    level === 8
+      ? say('ex.ratio.unit.spoken', { k: { n: k, noun: NOTEBOOK }, total })
+      : say('ex.ratio.prop.spoken', {
+          k: { n: k, noun: NOTEBOOK },
+          total,
+          m: { n: m, noun: NOTEBOOK },
+        });
   return exercise({
     factId: `rprice${level}:${k}:${each}:${m}`,
     topicId: ID,
     level,
-    prompt: t(level === 8 ? 'ex.ratio.unit.prompt' : 'ex.ratio.prop.prompt'),
+    // The data on screen too (with digits), not only heard.
+    prompt: shown(spoken),
     display: '',
-    spoken:
-      level === 8
-        ? say('ex.ratio.unit.spoken', { k: { n: k, noun: NOTEBOOK }, total })
-        : say('ex.ratio.prop.spoken', {
-            k: { n: k, noun: NOTEBOOK },
-            total,
-            m: { n: m, noun: NOTEBOOK },
-          }),
+    spoken,
     answer,
     operation: level === 8 ? 'div' : 'mul',
     input: numpad(3),
@@ -282,7 +285,8 @@ function distance(v: number, h: number): Exercise {
     factId: `rdist:${v}x${h}`,
     topicId: ID,
     level: 10,
-    prompt: t('ex.ratio.dist.prompt'),
+    // The data on screen too (with digits), not only heard.
+    prompt: shown(say('ex.ratio.dist.spoken', { v: { n: v, noun: KM }, h: { n: h, noun: HOUR } })),
     display: '',
     spoken: say('ex.ratio.dist.spoken', { v: { n: v, noun: KM }, h: { n: h, noun: HOUR } }),
     answer,

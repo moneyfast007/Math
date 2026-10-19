@@ -294,11 +294,9 @@ const SIDE_FACTS: { kind: SideKind; sides: [number, number, number] }[] = [
 ];
 
 function bySides({ kind, sides }: (typeof SIDE_FACTS)[number], rng: Rng): Exercise {
-  const shape: ShapeName =
-    kind === 'equilateral' ? 'equilateral' : kind === 'isosceles' ? 'isosceles' : 'scalene';
-  // Side i joins point i to i+1: for the isosceles picture the equal legs are sides 0 and 2.
+  // Side i joins point i to i+1. The isosceles triangle stands on its unequal side.
   const order: [number, number, number] =
-    kind === 'isosceles' ? [sides[0], sides[2], sides[1]] : sides;
+    kind === 'isosceles' ? [sides[2], sides[0], sides[1]] : sides;
   const { labels, answer } = shuffledLabels(
     rng,
     SIDE_WORD[kind],
@@ -311,7 +309,8 @@ function bySides({ kind, sides }: (typeof SIDE_FACTS)[number], rng: Rng): Exerci
     level: 4,
     factId: `sides:${sides.join(',')}`,
     promptKey: 'ex.angles.sides.prompt',
-    visual: poly(SHAPES[shape], { sideLabels: order.map((n) => `${n} ס״מ`) }),
+    // Drawn to its own side lengths: the longest side is the one with the biggest number.
+    visual: poly(triangleFromSides(...order), { sideLabels: order.map((n) => `${n} ס״מ`) }),
     labels,
     answer,
     hints: [
@@ -347,8 +346,6 @@ const ANGLE_FACTS: { kind: AngleTriKind; angles: [number, number, number] }[] = 
 ];
 
 function byAngles({ kind, angles }: (typeof ANGLE_FACTS)[number], rng: Rng): Exercise {
-  // The right picture: the right angle at vertex 1, the obtuse one at vertex 2.
-  const shape: ShapeName = kind === 'right' ? 'right' : kind === 'obtuse' ? 'obtuse' : 'acute';
   const { labels, answer } = shuffledLabels(
     rng,
     TRI_WORD[kind],
@@ -358,7 +355,11 @@ function byAngles({ kind, angles }: (typeof ANGLE_FACTS)[number], rng: Rng): Exe
     level: 5,
     factId: `angles:${angles.join(',')}`,
     promptKey: 'ex.angles.tri.prompt',
-    visual: poly(SHAPES[shape], { angleLabels: angles.map((a) => `${a}°`) }),
+    // Drawn with its own angles, so the labels match the corners.
+    visual: poly(triangleFromAngles(angles[0], angles[1]), {
+      angleLabels: angles.map((a) => `${a}°`),
+      ...(kind === 'right' ? { rightAngles: [angles.indexOf(90)] } : {}),
+    }),
     labels,
     answer,
     hints: [
@@ -430,6 +431,46 @@ function quad({ shape }: { shape: Quad }, rng: Rng): Exercise {
   });
 }
 
+/**
+ * Triangles drawn to the numbers on them (a 120° label on a 120° corner):
+ * points in the drawing box (0–100, y down), base at the bottom, aspect kept.
+ */
+function fitTriangle(pts: [number, number][]): [number, number][] {
+  const xs = pts.map((p) => p[0]);
+  const ys = pts.map((p) => p[1]);
+  const w = Math.max(...xs) - Math.min(...xs);
+  const h = Math.max(...ys) - Math.min(...ys);
+  const k = 90 / Math.max(w, h);
+  const dx = (100 - w * k) / 2;
+  const dy = (100 - h * k) / 2;
+  return pts.map(([x, y]): [number, number] => [
+    Math.round((x - Math.min(...xs)) * k + dx),
+    Math.round(100 - ((y - Math.min(...ys)) * k + dy)),
+  ]);
+}
+
+/** Vertex 0 has angle a, vertex 1 angle b (degrees), vertex 2 the rest. */
+function triangleFromAngles(a: number, b: number): [number, number][] {
+  const rad = (d: number) => (d * Math.PI) / 180;
+  const c = 180 - a - b;
+  const l = Math.sin(rad(b)) / Math.sin(rad(c));
+  return fitTriangle([
+    [0, 0],
+    [1, 0],
+    [l * Math.cos(rad(a)), l * Math.sin(rad(a))],
+  ]);
+}
+
+/** Side i joins vertex i to i + 1: sides 0–1, 1–2, 2–0. */
+function triangleFromSides(s0: number, s1: number, s2: number): [number, number][] {
+  const x = (s0 * s0 + s2 * s2 - s1 * s1) / (2 * s0);
+  return fitTriangle([
+    [0, 0],
+    [s0, 0],
+    [x, Math.sqrt(Math.max(0, s2 * s2 - x * x))],
+  ]);
+}
+
 /* ---------- Level 7: the third angle ---------- */
 
 function thirdAngle(rng: Rng): Exercise {
@@ -448,7 +489,7 @@ function thirdAngle(rng: Rng): Exercise {
     prompt: t('ex.angles.third.prompt'),
     display: '',
     spoken: say('ex.angles.third.spoken', { a: deg(a), b: deg(b) }),
-    visual: poly(SHAPES.scalene, { angleLabels: [`${a}°`, `${b}°`, '?'] }),
+    visual: poly(triangleFromAngles(a, b), { angleLabels: [`${a}°`, `${b}°`, '?'] }),
     answer: c,
     input: numpad(3),
     hints: [

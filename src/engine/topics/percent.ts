@@ -120,7 +120,8 @@ function change(level: 5 | 6, rng: Rng): Exercise {
     factId: `p6chg${level}:${base}:${p}`,
     topicId: ID,
     level,
-    prompt: t(`${key}.prompt` as 'ex.pct6.discount.prompt'),
+    // The data on screen too (with digits), not only heard.
+    prompt: shown(sayP(`${key}.spoken` as 'ex.pct6.discount.spoken', { base, p })),
     display: '',
     spoken: sayP(`${key}.spoken` as 'ex.pct6.discount.spoken', { base, p }),
     answer,
@@ -200,7 +201,8 @@ function survey(rng: Rng): Exercise {
     factId: `p6survey:${k}/${n}`,
     topicId: ID,
     level: 8,
-    prompt: t('ex.pct.howMany.prompt'),
+    // The data on screen too (with digits), not only heard.
+    prompt: shown(say('wp.pct6.survey.story', { k: { n: k, noun: CHILD }, n: { n, noun: CHILD } })),
     display: '',
     spoken: say('wp.pct6.survey.story', { k: { n: k, noun: CHILD }, n: { n, noun: CHILD } }),
     answer: p,
@@ -230,7 +232,8 @@ function twoSteps(rng: Rng): Exercise {
     factId: `p6two:${base}:${p1}:${p2}`,
     topicId: ID,
     level: 9,
-    prompt: t('ex.pct6.discount.prompt'),
+    // The data on screen too (with digits), not only heard.
+    prompt: shown(sayP('ex.pct6.two.spoken', { base, p: p1, q: p2 }, 'f', ['p', 'q'])),
     display: '',
     spoken: sayP('ex.pct6.two.spoken', { base, p: p1, q: p2 }, 'f', ['p', 'q']),
     answer,

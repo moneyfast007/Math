@@ -144,8 +144,8 @@ function oneStep(level: number, n: number, rng: Rng, more1: boolean): Exercise {
   const noun = nounFor(n * 2 + (more1 ? 1 : 0));
   const key = more1 ? 'ex.oneMore' : 'ex.oneLess';
   const answer = more1 ? n + 1 : n - 1;
-  const prompt = t(k(`${key}.prompt`), { params: { plural: noun.plural } });
-  const spoken = say(k(`${key}.spoken`), { a: { n, noun }, plural: noun.plural });
+  const prompt = t(k(`${key}.prompt`), { params: { plural: noun.plural }, gender: noun.gender });
+  const spoken = say(k(`${key}.spoken`), { a: { n, noun }, plural: noun.plural }, noun.gender);
   const visual: Visual = more1
     ? { type: 'objects', kind: noun, groups: [n, 1] }
     : { type: 'objects', kind: noun, groups: [n], removed: 1 };
@@ -185,12 +185,16 @@ function oneStep(level: number, n: number, rng: Rng, more1: boolean): Exercise {
 function complete(level: number, n: number, rng: Rng, target: 5 | 10): Exercise {
   const noun = nounFor(n + target);
   const answer = target - n;
-  const prompt = t('ex.makeN.prompt', { params: { target, plural: noun.plural } });
-  const spoken = say('ex.makeN.spoken', {
-    a: { n, noun },
-    target: { n: target, gender: noun.gender },
-    plural: noun.plural,
-  });
+  const prompt = t('ex.makeN.prompt', { params: { target, plural: noun.plural }, gender: noun.gender });
+  const spoken = say(
+    'ex.makeN.spoken',
+    {
+      a: { n, noun },
+      target: { n: target, gender: noun.gender },
+      plural: noun.plural,
+    },
+    noun.gender,
+  );
   const solved = say('ex.makeN.solution', { a: n, b: answer, target });
   // Neither number of the example is this exercise's: 2 + 3 = 5 would answer 3 + ? = 5.
   const exN = [2, 1, 3, 4].find((x) => x !== n && x !== answer && x < target) ?? 1;

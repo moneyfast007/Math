@@ -592,6 +592,17 @@ function explanation(s: SessionState, tc: TC): string {
       ? tc(`explain.wrongOperation.${op}`)
       : tc(`explain.wrongOperation.story.${op}`);
   }
+  const e = s.exercise;
+  // The same slip, said for the numbers at hand: "count again slowly" means nothing for 352,418.
+  if (m === 'offByOne' && (e.answer >= 100 || !Number.isInteger(e.answer)))
+    return tc('explain.offByOne.big');
+  if (m === 'placeValue') {
+    if (/ס״מ|מ׳|מ״מ|ק״מ|ק״ג|גרם|ליטר/.test(`${e.prompt} ${e.display}`))
+      return tc('explain.placeValue.units');
+    if (!Number.isInteger(e.answer)) return tc('explain.placeValue.decimal');
+    if (e.answer < 100) return tc('explain.placeValue.small');
+  }
+  if (m === 'shapeFormula') return tc('explain.shapeFormula');
   if (
     m === 'offByOne' ||
     m === 'digitReversal' ||

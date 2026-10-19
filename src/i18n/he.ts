@@ -10,6 +10,11 @@
  * Adding a language later means adding `en.ts` with the same keys; the type
  * system will point out anything missing.
  */
+import { heGan1 } from './extra/gan1';
+import { heGrade4 } from './extra/grade4';
+import { heGrades23 } from './extra/grades23';
+import { heGrades56 } from './extra/grades56';
+
 export const he = {
   // App
   'app.name': 'פלוסי',
@@ -250,6 +255,7 @@ export const he = {
   'mistake.countedCoins': 'ספירת המטבעות במקום הערך שלהם',
   'mistake.clockHands': 'בלבול בין המחוג הקצר לארוך',
   'mistake.order': 'סדר פעולות (חישוב משמאל לימין)',
+  'mistake.shapeFormula': 'בלבול בין שטח, היקף ונפח',
   'mistake.other': 'אחר',
 
   // Topics
@@ -280,10 +286,10 @@ export const he = {
   'spoken.example': 'למשל, {sentence}',
 
   // Hints. Written in the first person plural ("נספור"), so they need no gender.
-  'hint.count.1': 'נספור לאט, ונגע בכל אחד פעם אחת.',
-  'hint.count.2': 'סידרנו אותם בשורות של חמש. ככה קל יותר לספור.',
+  'hint.count.1': 'נספור לאט, ונגע בכל ציור פעם אחת.',
+  'hint.count.2': 'סידרנו את הציורים בשורות של חמש. ככה קל יותר לספור.',
   'hint.count.3': 'למשל, כאן יש {phrase}: {sequence}.',
-  'hint.objAdd.1': 'נספור את כל ה{plural} ביחד, מהראשון ועד האחרון.',
+  'hint.objAdd.1': 'נספור את כל ה{plural} ביחד, מההתחלה ועד הסוף.',
   'hint.objSub.1': 'נספור רק את ה{plural} שנשארו, בלי אלה שלקחו.',
   'hint.objects.2': 'סידרנו את הציורים בשורות של חמש. ככה קל יותר לספור.',
   'hint.add.1': 'נתחיל מהמספר הגדול, ונספור קדימה.',
@@ -327,6 +333,26 @@ export const he = {
   },
   'explain.offByOne': { f: 'ממש קרוב! נסי לספור שוב לאט.', m: 'ממש קרוב! נסה לספור שוב לאט.' },
   'explain.offByTen': { f: 'קרוב! בדקי שוב את העשרות.', m: 'קרוב! בדוק שוב את העשרות.' },
+  'explain.offByOne.big': {
+    f: 'ממש קרוב! בדקי שוב את הספרה האחרונה.',
+    m: 'ממש קרוב! בדוק שוב את הספרה האחרונה.',
+  },
+  'explain.placeValue.small': {
+    f: 'כמעט. שימי לב לעשרות ולאחדות.',
+    m: 'כמעט. שים לב לעשרות ולאחדות.',
+  },
+  'explain.placeValue.decimal': {
+    f: 'כמעט. שימי לב לנקודה: אחדות, עשיריות ומאיות.',
+    m: 'כמעט. שים לב לנקודה: אחדות, עשיריות ומאיות.',
+  },
+  'explain.placeValue.units': {
+    f: 'כמעט. שימי לב ליחידות: כמה קטנות יש באחת גדולה?',
+    m: 'כמעט. שים לב ליחידות: כמה קטנות יש באחת גדולה?',
+  },
+  'explain.shapeFormula': {
+    f: 'בדקי מה השאלה שואלת: שטח, היקף או נפח? לכל אחד מחשבים אחרת.',
+    m: 'בדוק מה השאלה שואלת: שטח, היקף או נפח? לכל אחד מחשבים אחרת.',
+  },
   'explain.placeValue': {
     f: 'כמעט. שימי לב לערך של כל ספרה: אחדות, עשרות, מאות.',
     m: 'כמעט. שים לב לערך של כל ספרה: אחדות, עשרות, מאות.',
@@ -425,16 +451,29 @@ export const he = {
   'ex.fewer.solution': 'יש {a} ו{b}. יש פחות {w}.',
   'ex.fewer.hint1': 'נספור כל קבוצה לחוד. הקבוצה עם המספר הקטן יותר היא זו שיש בה פחות.',
   'ex.fewer.hint3': 'למשל, {b} זה פחות מ{a}, כי שתיים זה פחות מארבע.',
-  'ex.oneMore.prompt': 'עוד אחד! כמה {plural} יש עכשיו?',
-  'ex.oneMore.spoken': 'יש {a}. הגיע עוד אחד. כמה {plural} יש עכשיו?',
-  'ex.oneMore.solution': '{a} ועוד אחד זה {c}.',
-  'ex.oneMore.hint1': 'עוד אחד זה המספר הבא. נספור הלאה: המספר שאחרי.',
-  'ex.oneLess.prompt': 'אחד הלך. כמה {plural} נשארו?',
-  'ex.oneLess.spoken': 'היו {a}. אחד הלך. כמה {plural} נשארו?',
-  'ex.oneLess.solution': '{a} פחות אחד זה {c}.',
-  'ex.oneLess.hint1': 'אחד פחות זה המספר שלפני. נספור אחורה צעד אחד.',
-  'ex.makeN.prompt': 'כמה {plural} חסרים כדי שיהיו {target}?',
-  'ex.makeN.spoken': 'יש {a}. כמה {plural} חסרים כדי שיהיו {target}?',
+  // Gendered by the thing counted (עוגייה, תפוח), not by the child.
+  'ex.oneMore.prompt': { f: 'עוד אחת! כמה {plural} יש עכשיו?', m: 'עוד אחד! כמה {plural} יש עכשיו?' },
+  'ex.oneMore.spoken': {
+    f: 'יש {a}. הוסיפו עוד אחת. כמה {plural} יש עכשיו?',
+    m: 'יש {a}. הוסיפו עוד אחד. כמה {plural} יש עכשיו?',
+  },
+  'ex.oneMore.solution': '{a} ועוד אחת זה {c}.',
+  'ex.oneMore.hint1': 'עוד אחת זה המספר הבא. נספור הלאה: המספר שאחרי.',
+  'ex.oneLess.prompt': { f: 'לקחו אחת. כמה {plural} נשארו?', m: 'לקחו אחד. כמה {plural} נשארו?' },
+  'ex.oneLess.spoken': {
+    f: 'היו {a}. לקחו אחת. כמה {plural} נשארו?',
+    m: 'היו {a}. לקחו אחד. כמה {plural} נשארו?',
+  },
+  'ex.oneLess.solution': '{a} פחות אחת זה {c}.',
+  'ex.oneLess.hint1': 'אחת פחות זה המספר שלפני. נספור אחורה צעד אחד.',
+  'ex.makeN.prompt': {
+    f: 'כמה {plural} חסרות כדי שיהיו {target}?',
+    m: 'כמה {plural} חסרים כדי שיהיו {target}?',
+  },
+  'ex.makeN.spoken': {
+    f: 'יש {a}. כמה {plural} חסרות כדי שיהיו {target}?',
+    m: 'יש {a}. כמה {plural} חסרים כדי שיהיו {target}?',
+  },
   'ex.makeN.solution': '{a} ועוד {b} זה {target}.',
   'ex.makeN.hint1': 'נספור מהמספר שיש עד {target}: כמה צעדים?',
   'ex.after.prompt': 'איזה מספר בא אחרי {n}?',
@@ -1998,6 +2037,12 @@ export const he = {
   'playground.band.young': 'גן',
   'playground.band.middle': 'כיתות א׳–ג׳',
   'playground.band.older': 'כיתות ד׳–ו׳',
+
+  // Content fixes, batch 5: texts added per group of worlds (see ./extra).
+  ...heGan1,
+  ...heGrades23,
+  ...heGrade4,
+  ...heGrades56,
 } as const;
 
 export type HebrewKey = keyof typeof he;

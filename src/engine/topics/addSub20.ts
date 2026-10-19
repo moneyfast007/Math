@@ -403,7 +403,8 @@ function build(f: Fact, level: number, noun: CountableNoun, rng: Rng): Exercise 
   const around = sameKind.map((_, i) => sameKind[(index + step + i) % sameKind.length] as Fact);
   const sample =
     around.find((x) => factId(x) !== factId(f) && answerOf(x) !== answer && !mirror(x)) ??
-    (around[0] as Fact);
+    around[0] ??
+    f;
   const core = buildCore(f, noun);
   const [h1, h2] = firstHints(f, noun, level);
   const h3 = f.kind === 'count' ? countingExample(f.n) : exampleHint(sample);

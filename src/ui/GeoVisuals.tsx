@@ -280,6 +280,23 @@ export function RulerView({ v }: { v: Extract<Visual, { type: 'ruler' }> }) {
   );
 }
 
+/** A circle with its radius (centre to edge) or diameter (edge to edge) drawn and labelled. */
+export function CircleView({ v }: { v: Extract<Visual, { type: 'circle' }> }) {
+  const x1 = v.mark === 'radius' ? 50 : 10;
+  return (
+    <div className="geo" dir="ltr" data-visual="circle" aria-hidden="true">
+      <svg viewBox="-22 -18 144 136" className="geo__svg">
+        <circle cx="50" cy="50" r="40" className="geo__shape" />
+        <circle cx="50" cy="50" r="1.8" className="geo__dot" />
+        <line x1={x1} y1="50" x2="90" y2="50" className="geo__line" />
+        <text x={(x1 + 90) / 2} y="44" textAnchor="middle" className="geo__label">
+          {v.label}
+        </text>
+      </svg>
+    </div>
+  );
+}
+
 export function BoxView({ v }: { v: Extract<Visual, { type: 'box' }> }) {
   const k = 70 / Math.max(v.l, v.h, v.w * 0.6);
   const L = v.l * k;

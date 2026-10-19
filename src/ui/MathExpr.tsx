@@ -19,6 +19,11 @@ interface MathExprProps {
 export const MIN_FIT = 0.6;
 
 /** Splits a string before its " = ", where a long expression may break onto a second line. */
+/** As written in an Israeli classroom: 529,206 and 45 : 6. */
+function written(text: string): string {
+  return groupDigits(text).replace(/÷/g, ':');
+}
+
 function withBreak(text: string): ReactNode {
   const at = text.indexOf(' = ');
   if (at < 0) return text;
@@ -90,13 +95,14 @@ function useFit(block: boolean) {
  * It forces left-to-right order and bidi isolation so "3 + 5 = 8" stays in that
  * order inside an RTL Hebrew sentence, regardless of what surrounds it.
  * The e2e suite asserts that no expression appears outside this component.
- * Big numbers get thousands separators here (groupDigits).
+ * Big numbers get thousands separators here (groupDigits), and division is
+ * written ":" as in Israeli schools (45 : 6 = 7 (3)); the engine keeps "÷".
  */
 export function MathExpr({ children, block = false, label, className }: MathExprProps) {
   const cls = ['math', block ? 'math--block' : '', className ?? ''].filter(Boolean).join(' ');
   const { outer, line } = useFit(block);
   const content = Children.map(children, (c) =>
-    typeof c === 'string' ? (block ? withBreak(groupDigits(c)) : groupDigits(c)) : c,
+    typeof c === 'string' ? (block ? withBreak(written(c)) : written(c)) : c,
   );
   return (
     <span ref={outer} className={cls} dir="ltr" lang="und" aria-label={label} data-math="">
