@@ -32,6 +32,18 @@ export const DEFAULT_PROMPT =
   'Speak clearly and a little slowly, pronounce every number and every word precisely, ' +
   'with gentle, encouraging intonation. Do not add any words.';
 
+/** The same teacher a little quicker (round 7: the default read slightly slow). */
+export const BRISK_PROMPT =
+  'You are a warm, patient Hebrew-speaking teacher talking to a child. ' +
+  'Speak clearly at a natural, slightly brisk pace, not slow, ' +
+  'pronounce every number and every word precisely, with gentle, encouraging intonation. ' +
+  'Do not add any words.';
+
+export const QUICK_PROMPT =
+  'You are a warm Hebrew-speaking teacher talking to a child. ' +
+  'Speak clearly at an everyday conversational pace, a little faster than a teacher reading aloud, ' +
+  'pronounce every number and every word precisely, friendly intonation. Do not add any words.';
+
 export function clipIdNode(spokenText: string): string {
   return createHash('sha256')
     .update(normalizeSpokenText(spokenText), 'utf8')

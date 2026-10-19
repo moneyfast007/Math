@@ -2,7 +2,9 @@ import { writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { parseArgs } from 'node:util';
 import {
+  BRISK_PROMPT,
   DEFAULT_PROMPT,
+  QUICK_PROMPT,
   ensureDir,
   estimateCost,
   mapLimit,
@@ -15,6 +17,7 @@ import {
   NIKUD_PAIRS,
   PROBE,
   ROUND6,
+  ROUND7,
   SENTENCES as SAMPLE_SENTENCES,
   WORDS,
 } from './sample-sentences';
@@ -51,7 +54,9 @@ const { values } = parseArgs({
 });
 
 const SENTENCES: readonly string[] =
-  values.set === 'round6'
+  values.set === 'round7'
+    ? ROUND7
+    : values.set === 'round6'
     ? ROUND6.map((r) => r.text)
     : values.set === 'bank'
       ? BANK_CHECK
@@ -126,6 +131,17 @@ const ROUND6_VARIANTS: Variant[] = [
   },
 ];
 
+/** Round 7: Gemini 3.1 Flash at three paces. */
+const ROUND7_VARIANTS: Variant[] = [
+  ['pace-as-round6', DEFAULT_PROMPT],
+  ['pace-brisk', BRISK_PROMPT],
+  ['pace-quick', QUICK_PROMPT],
+].map(([name, prompt]) => ({
+  name: name as string,
+  spec: { engine: 'gemini-3.1-flash' as const, voice: 'Leda', prompt: prompt as string },
+  texts: [...SENTENCES],
+}));
+
 const only = values.only?.split(',').map((x) => x.trim());
 const takes = Math.max(1, Number(values.takes) || 1);
 const variants: Variant[] = values.voices
@@ -151,7 +167,12 @@ const variants: Variant[] = values.voices
           texts,
         }));
       })
-  : (values.set === 'round6' ? ROUND6_VARIANTS : ALL_VARIANTS).filter(
+  : (values.set === 'round7'
+      ? ROUND7_VARIANTS
+      : values.set === 'round6'
+        ? ROUND6_VARIANTS
+        : ALL_VARIANTS
+    ).filter(
       (v) => !only || only.includes(v.name),
     );
 
