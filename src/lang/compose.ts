@@ -111,12 +111,18 @@ function resolve(slot: Slot): Resolved {
  * A decimal read the way Israeli schools read it: the whole part, "נקודה", then
  * the digits after the point as a number, each leading zero read as "אפס".
  *   3.45 → שלוש נקודה ארבעים וחמש,  0.05 → אפס נקודה אפס חמש,  12.5 → שתים עשרה נקודה חמש
+ * With more than two digits after the point, digit by digit:
+ *   0.842 → אפס נקודה שמונה ארבע שתיים (not "שמונה מאות ארבעים ושתיים")
  */
 export function decimalParts(x: number): string[] {
   if (x < 0) throw new RangeError('decimalParts: negative numbers are not supported');
   // Up to six decimal places; String() of such a number never uses exponent notation.
   const [whole = '0', frac = ''] = String(Math.round(x * 1e6) / 1e6).split('.');
   const parts = [...numberParts(Number(whole)), 'נקודה'];
+  if (frac.length > 2) {
+    for (const d of frac) parts.push(...numberParts(Number(d)));
+    return parts;
+  }
   const zeros = /^0*/.exec(frac)?.[0].length ?? 0;
   for (let i = 0; i < zeros; i++) parts.push('אפס');
   const rest = frac.slice(zeros);

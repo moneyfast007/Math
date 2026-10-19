@@ -62,6 +62,9 @@ describe('decimals', () => {
     expect(decimalParts(0.05)).toEqual(['אפס', 'נקודה', 'אפס', 'חמש']);
     expect(decimalParts(12.5)).toEqual(['שתים עשרה', 'נקודה', 'חמש']);
     expect(decimalParts(0.1 + 0.2)).toEqual(['אפס', 'נקודה', 'שלוש']);
+    // More than two digits after the point: digit by digit.
+    expect(decimalParts(0.842)).toEqual(['אפס', 'נקודה', 'שמונה', 'ארבע', 'שתיים']);
+    expect(decimalParts(3.105)).toEqual(['שלוש', 'נקודה', 'אחת', 'אפס', 'חמש']);
   });
 
   it('a decimal slot in a sentence', () => {

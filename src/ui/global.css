@@ -2900,3 +2900,81 @@ ol.steps {
   font-weight: 700;
   fill: var(--color-text);
 }
+
+/* Several wholes of a fraction, and two fractions one under the other. */
+.fraction--wholes,
+.fraction--stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  max-width: 420px;
+  margin: 0 auto;
+}
+
+.fraction--wholes .fraction--bar,
+.fraction--stack .fraction--bar {
+  width: 100%;
+}
+
+/* A grid of squares: a hundred grid or an area model. */
+.grid {
+  display: grid;
+  gap: 2px;
+  width: min(100%, 260px);
+  aspect-ratio: 1;
+  margin: 0 auto;
+}
+
+.grid--fine {
+  gap: 1px;
+}
+
+.grid__cell {
+  border: 1px solid var(--color-accent-strong);
+  border-radius: 2px;
+  background: var(--color-surface);
+}
+
+.grid__cell--on,
+.grid__cell--col {
+  background: var(--color-accent);
+}
+
+.grid__cell--row {
+  background: var(--color-almost);
+}
+
+.grid__cell--both {
+  background: var(--color-accent-strong);
+}
+
+/* Shopping: things for sale with price tags. */
+.items {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-2);
+}
+
+.items__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-2);
+  border: 2px solid var(--color-border);
+  border-radius: 12px;
+  background: var(--color-surface);
+  min-width: 88px;
+}
+
+.items__label {
+  font-weight: 700;
+}
+
+.items__tag {
+  padding: 2px 10px;
+  border-radius: 999px;
+  background: var(--color-almost);
+  font-weight: 700;
+}

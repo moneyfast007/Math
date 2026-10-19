@@ -41,6 +41,10 @@ export function VisualView({ visual }: { visual: Visual }) {
       return <CircleView v={visual} />;
     case 'bars':
       return <Bars v={visual} />;
+    case 'grid':
+      return <Grid v={visual} />;
+    case 'items':
+      return <Items v={visual} />;
     case 'vertical':
       return <VerticalView visual={visual} />;
   }
@@ -210,6 +214,41 @@ function Fraction({ v }: { v: Extract<Visual, { type: 'fraction' }> }) {
             />
           ))}
         </svg>
+      </div>
+    );
+  }
+  if ((v.wholes ?? 1) > 1) {
+    // Several wholes, each its own bar of the same length.
+    return (
+      <div className="fraction fraction--wholes" dir="ltr" data-visual="fraction" aria-hidden="true">
+        {Array.from({ length: v.wholes ?? 1 }, (_, w) => (
+          <div key={w} className="fraction fraction--bar">
+            {Array.from({ length: v.parts }, (_, i) => (
+              <span
+                key={i}
+                className={w * v.parts + i < v.shaded ? 'frac-cell frac-cell--on' : 'frac-cell'}
+              />
+            ))}
+          </div>
+        ))}
+      </div>
+    );
+  }
+  if (v.below) {
+    // Two fractions of the same whole, one under the other: the lengths compare.
+    const rows = [
+      { parts: v.parts, shaded: v.shaded },
+      { parts: v.below.parts, shaded: v.below.shaded },
+    ];
+    return (
+      <div className="fraction fraction--stack" dir="ltr" data-visual="fraction" aria-hidden="true">
+        {rows.map((r, k) => (
+          <div key={k} className="fraction fraction--bar">
+            {Array.from({ length: r.parts }, (_, i) => (
+              <span key={i} className={i < r.shaded ? 'frac-cell frac-cell--on' : 'frac-cell'} />
+            ))}
+          </div>
+        ))}
       </div>
     );
   }
@@ -583,5 +622,54 @@ function Bars({ v }: { v: Extract<Visual, { type: 'bars' }> }) {
         })}
       </svg>
     </figure>
+  );
+}
+
+/** A grid of squares: a hundred grid (the first `shaded` coloured), or an area model (`band`). */
+function Grid({ v }: { v: Extract<Visual, { type: 'grid' }> }) {
+  const cells = Array.from({ length: v.rows * v.cols }, (_, i) => {
+    const r = Math.floor(i / v.cols);
+    const c = i % v.cols;
+    if (v.band) {
+      const inCol = c < v.band.cols;
+      const inRow = r < v.band.rows;
+      return inCol && inRow
+        ? 'grid__cell grid__cell--both'
+        : inCol
+          ? 'grid__cell grid__cell--col'
+          : inRow
+            ? 'grid__cell grid__cell--row'
+            : 'grid__cell';
+    }
+    return i < (v.shaded ?? 0) ? 'grid__cell grid__cell--on' : 'grid__cell';
+  });
+  return (
+    <div
+      className={v.rows * v.cols >= 100 ? 'grid grid--fine' : 'grid'}
+      dir="ltr"
+      data-visual="grid"
+      aria-hidden="true"
+      style={{ gridTemplateColumns: `repeat(${v.cols}, 1fr)` }}
+    >
+      {cells.map((c, i) => (
+        <span key={i} className={c} />
+      ))}
+    </div>
+  );
+}
+
+/** Things for sale with price tags (the name, and the price in shekels). */
+function Items({ v }: { v: Extract<Visual, { type: 'items' }> }) {
+  return (
+    <div className="items" data-visual="items" aria-hidden="true">
+      {v.items.map((it, i) => (
+        <div key={i} className="items__item">
+          <span className="items__label">{it.label}</span>
+          <span className="items__tag" dir="ltr">
+            {it.price} ₪
+          </span>
+        </div>
+      ))}
+    </div>
   );
 }

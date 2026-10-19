@@ -41,6 +41,13 @@ describe.each(TOPICS.map((t) => [t.id, t] as const))('topic %s', (_id, topic) =>
         for (const p of h.spokenParts ?? []) expect(p, e.factId).not.toMatch(/\d/);
       }
       for (const p of e.spokenParts ?? []) expect(p, e.factId).not.toMatch(/\d/);
+      // Advice is for wrong answers only, said in words, and counted as a mistake.
+      for (const a of e.advice ?? []) {
+        expect(Math.abs(a.value - e.answer), `${e.factId} advice`).toBeGreaterThan(1e-9);
+        expect(a.spoken, `${e.factId} advice`).not.toMatch(/\d/);
+        expect(a.text.length, `${e.factId} advice`).toBeGreaterThan(0);
+        expect(e.diagnose(a.value), `${e.factId} advice`).not.toBeNull();
+      }
       // The parts join back to the sentence (give or take punctuation).
       if (e.spokenParts && e.spokenParts.length > 0) {
         const strip = (s: string) => s.replace(/[\s.,:;!?()]/g, '');

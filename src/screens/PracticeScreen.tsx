@@ -567,6 +567,17 @@ function Feedback({ state: s, tc, slow }: { state: SessionState; tc: TC; slow: b
     );
   }
   if (s.phase === 'wrong') {
+    // Advice for this very mistake, said for the exercise's own numbers, when there is some.
+    const v = s.lastValue;
+    const advice = v === null ? undefined : e.advice?.find((a) => Math.abs(a.value - v) < 1e-9);
+    if (advice) {
+      return (
+        <div className="feedback feedback--almost" role="status">
+          <SpeakerButton text={advice.spoken} parts={advice.parts} slow={slow} />
+          <span>{advice.text}</span>
+        </div>
+      );
+    }
     const text = explanation(s, tc);
     return (
       <div className="feedback feedback--almost" role="status">
@@ -613,7 +624,8 @@ function explanation(s: SessionState, tc: TC): string {
     m === 'remainder' ||
     m === 'countedCoins' ||
     m === 'clockHands' ||
-    m === 'order'
+    m === 'order' ||
+    m === 'decimalPoint'
   ) {
     return tc(`explain.${m}`);
   }

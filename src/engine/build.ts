@@ -230,6 +230,9 @@ function wrongOperationValue(f: ArithFacts): number | null {
   }
 }
 
+/** Whether the exercise has a decimal number in it (then a moved point is a decimal-point slip). */
+const hasDecimal = (f: ArithFacts) => [f.a, f.b, f.answer].some((x) => !Number.isInteger(x));
+
 /** Classifies a wrong answer to an arithmetic exercise. */
 export function diagnoseArith(value: number, f: ArithFacts): MistakeKind | null {
   const answer = f.answer;
@@ -247,8 +250,16 @@ export function diagnoseArith(value: number, f: ArithFacts): MistakeKind | null 
   if (Math.abs(value - answer) === 10 || Math.abs(value - answer) === 100) return 'offByTen';
   // Place value only for a real factor-of-ten slip (40 for 4, 4 for 40), not any length difference.
   // Checked before swapped digits: 4 for 40 is about tens, not about order.
-  if (value > 0 && [10, 100].some((k) => value === answer * k || value * k === answer))
-    return 'placeValue';
+  // With a decimal on either side, the same digits with the point moved: the point's place.
+  if (
+    value > 0 &&
+    [10, 100, 1000].some(
+      (k) => sameNumber(value, answer * k) || sameNumber(value * k, answer),
+    )
+  )
+    return Number.isInteger(answer) && Number.isInteger(value) && !hasDecimal(f)
+      ? 'placeValue'
+      : 'decimalPoint';
   if (reversedDigits(answer) === value) return 'digitReversal';
   return null;
 }
@@ -269,6 +280,28 @@ export interface ExerciseParts {
   hints: [Hint, Hint, Hint];
   solution: Said;
   diagnose?: (value: number) => MistakeKind | null;
+  /** Advice for typical wrong answers; see `adviceFor`. */
+  advice?: readonly AdviceSpec[];
+}
+
+/**
+ * One typical wrong answer and what to say about it. `kind` is the mistake
+ * counted for the parent's report; without it, the exercise's own diagnosis
+ * (or 'other') is counted.
+ */
+export interface AdviceSpec {
+  value: number;
+  say: Said;
+  kind?: MistakeKind;
+}
+
+/** Only advice for real wrong answers, one per value (the first wins). */
+function adviceOf(answer: number, specs: readonly AdviceSpec[] = []): AdviceSpec[] {
+  const out: AdviceSpec[] = [];
+  for (const a of specs)
+    if (!sameNumber(a.value, answer) && !out.some((o) => sameNumber(o.value, a.value)))
+      out.push(a);
+  return out;
 }
 
 /** A typed answer matches: equal, give or take floating-point noise. */
@@ -278,6 +311,7 @@ export function sameNumber(a: number, b: number): boolean {
 
 /** Builds the final Exercise, filling the spoken-parts fields. */
 export function exercise(p: ExerciseParts): Exercise {
+  const advice = adviceOf(p.answer, p.advice);
   return {
     factId: p.factId,
     topicId: p.topicId,
@@ -294,7 +328,22 @@ export function exercise(p: ExerciseParts): Exercise {
     solutionSpoken: p.solution.text,
     solutionParts: p.solution.parts,
     // A right answer is never a mistake, whatever a topic's own diagnosis says.
-    diagnose: (value) => (sameNumber(value, p.answer) ? null : (p.diagnose?.(value) ?? null)),
+    diagnose: (value) => {
+      if (sameNumber(value, p.answer)) return null;
+      const known = p.diagnose?.(value) ?? null;
+      const a = advice.find((x) => sameNumber(x.value, value));
+      return a ? (a.kind ?? known ?? 'other') : known;
+    },
+    ...(advice.length > 0
+      ? {
+          advice: advice.map((a) => ({
+            value: a.value,
+            text: shown(a.say),
+            spoken: a.say.text,
+            parts: a.say.parts,
+          })),
+        }
+      : {}),
   };
 }
 
@@ -357,6 +406,7 @@ export function sayingsOf(e: Exercise): [string, string[] | undefined][] {
     [e.spokenText, e.spokenParts],
     [e.solutionSpoken, e.solutionParts],
     ...e.hints.map((h): [string, string[] | undefined] => [h.spoken, h.spokenParts]),
+    ...(e.advice ?? []).map((a): [string, string[] | undefined] => [a.spoken, a.parts]),
   ];
   if (e.input.type === 'vertical') {
     const { steps, rowIntro } = e.input.layout;
@@ -519,6 +569,8 @@ export interface ArithOptions {
   visual?: Visual;
   /** Extra diagnosis tried before the generic one. */
   diagnose?: (value: number) => MistakeKind | null;
+  /** Advice for typical wrong answers, said for these numbers. */
+  advice?: readonly AdviceSpec[];
 }
 
 /**
@@ -577,6 +629,7 @@ export function arith(o: ArithOptions): Exercise {
     ],
     solution: spokenEquationSolved(o.a, o.op, o.b, c),
     diagnose: (value) => o.diagnose?.(value) ?? diagnoseArith(value, facts),
+    ...(o.advice ? { advice: o.advice } : {}),
   });
 }
 
@@ -683,6 +736,8 @@ export interface WordProblemOptions {
   askRemainder?: boolean;
   /** Nouns to choose from (default: all). Big amounts read better as shekels. */
   nouns?: readonly WordNoun[];
+  /** Advice for typical wrong answers, said for these numbers. */
+  advice?: readonly AdviceSpec[];
 }
 
 /**
@@ -797,5 +852,6 @@ export function wordProblem(o: WordProblemOptions): Exercise {
       if (o.askRemainder && value === Math.floor(o.a / o.b)) return 'remainder';
       return diagnoseArith(value, facts);
     },
+    ...(o.advice ? { advice: o.advice } : {}),
   });
 }

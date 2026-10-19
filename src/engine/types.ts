@@ -33,6 +33,10 @@ export type Visual =
       shape?: 'bar' | 'circle';
       added?: number;
       crossed?: number;
+      /** Bars only: this many wholes side by side, each in `parts` (3 = ?/4: three bars of quarters). */
+      wholes?: number;
+      /** Bars only: a second fraction drawn under the first, the same length (comparing). */
+      below?: { parts: number; shaded: number };
     }
   /** Dots in rows × cols, for multiplication; `squares` draws cells (area). */
   /** Rows of `cols`; `extra`: single cells in a row of their own below (the units of 47). */
@@ -114,6 +118,21 @@ export type Visual =
   | { type: 'box'; l: number; w: number; h: number; cubes?: boolean; unit?: string }
   /** A bar chart: one bar per answer of a survey, the scale on the left in steps of `step`. */
   | { type: 'bars'; bars: { label: string; value: number }[]; step?: number; title?: string }
+  /**
+   * A grid of rows × cols squares. `shaded`: the first so many squares, row by
+   * row (a hundred grid: 37 of 100). `band`: an area model, the first `cols`
+   * columns in one colour and the first `rows` rows in another; where they meet
+   * is the product (2/3 × 3/4).
+   */
+  | {
+      type: 'grid';
+      rows: number;
+      cols: number;
+      shaded?: number;
+      band?: { cols: number; rows: number };
+    }
+  /** Things for sale, each with a price tag (a shopping story). */
+  | { type: 'items'; items: { label: string; price: number }[] }
   /** A circle with its radius or diameter drawn and labelled. */
   | { type: 'circle'; mark: 'radius' | 'diameter'; label: string }
   /**
@@ -199,6 +218,8 @@ export interface Polygon {
   angleLabels?: (string | null)[];
   /** A dashed height from a vertex to the base, with an optional label. */
   height?: { from: [number, number]; to: [number, number]; label?: string };
+  /** A dashed extension of a side (the base of an obtuse triangle, out to the height's foot). */
+  extend?: { from: [number, number]; to: [number, number] };
   /** Draw every diagonal. */
   diagonals?: boolean;
 }
@@ -278,6 +299,22 @@ export interface Exercise {
   solutionParts?: string[];
   /** Classifies a wrong answer, or null when there is nothing specific to say. */
   diagnose: (value: number) => MistakeKind | null;
+  /**
+   * Advice for the typical wrong answers of this exercise, said for its own
+   * numbers ("חישבת כמה משלמים. השאלה כמה אחוזי הנחה"); shown instead of the
+   * general explanation of the mistake's kind.
+   */
+  advice?: readonly Advice[];
+}
+
+/** What to say for one expected wrong answer (a number, or a button's index). */
+export interface Advice {
+  value: number;
+  /** As shown: numbers in digits. */
+  text: string;
+  /** As heard, and its clips. */
+  spoken: string;
+  parts?: string[];
 }
 
 export type Rng = () => number;

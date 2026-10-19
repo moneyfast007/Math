@@ -121,6 +121,15 @@ export function PolygonView({ v }: { v: Polygon }) {
               ),
             )
           : null}
+        {v.extend ? (
+          <line
+            x1={v.extend.from[0]}
+            y1={v.extend.from[1]}
+            x2={v.extend.to[0]}
+            y2={v.extend.to[1]}
+            className="geo__height"
+          />
+        ) : null}
         {v.height ? (
           <>
             <line

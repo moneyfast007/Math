@@ -64,6 +64,8 @@ export type MistakeKind =
   | 'order'
   /** Area, perimeter or volume mixed up (added the edges for a volume, the perimeter for an area). */
   | 'shapeFormula'
+  /** The right digits with the decimal point in the wrong place (2.4 × 0.5 → 12 or 0.12). */
+  | 'decimalPoint'
   | 'other';
 
 export interface TopicStats {
