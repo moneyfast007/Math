@@ -14,6 +14,7 @@ import {
   BANK_CHECK,
   NIKUD_PAIRS,
   PROBE,
+  ROUND6,
   SENTENCES as SAMPLE_SENTENCES,
   WORDS,
 } from './sample-sentences';
@@ -50,7 +51,9 @@ const { values } = parseArgs({
 });
 
 const SENTENCES: readonly string[] =
-  values.set === 'bank'
+  values.set === 'round6'
+    ? ROUND6.map((r) => r.text)
+    : values.set === 'bank'
     ? BANK_CHECK
     : values.set === 'probe'
       ? PROBE
@@ -63,6 +66,8 @@ interface Variant {
   spec: VoiceSpec;
   /** Text sent to the engine, aligned to SENTENCES; null where the variant has no version. */
   texts: (string | null)[];
+  /** Assemble each sentence from these clips, as the app does (null: one request). */
+  parts?: (readonly string[] | null)[];
 }
 
 /** The fully vocalized subset, aligned to SENTENCES. */
@@ -91,6 +96,36 @@ const ALL_VARIANTS: Variant[] = [
     : [{ name: 'chirp3-hd-nikud', spec: chirp, texts: nikudAligned() }]),
 ];
 
+/**
+ * Round 6: today's voice as the app plays it (assembled from clips) and read
+ * whole, against the warmer and newer engines reading the whole sentence.
+ */
+const WAVENET_A: VoiceSpec = { engine: 'wavenet', voice: 'he-IL-Wavenet-A' };
+const ROUND6_VARIANTS: Variant[] = [
+  {
+    name: 'today-wavenet-a-clips',
+    spec: WAVENET_A,
+    texts: [...SENTENCES],
+    parts: ROUND6.map((r) => r.parts),
+  },
+  { name: 'wavenet-a-whole', spec: WAVENET_A, texts: [...SENTENCES] },
+  {
+    name: 'chirp-leda-whole',
+    spec: { engine: 'chirp3-hd', voice: 'Leda' },
+    texts: SENTENCES.map(vocalizeForTts),
+  },
+  {
+    name: 'gemini-2.5-pro-leda',
+    spec: { engine: 'gemini-pro', voice: 'Leda', prompt: DEFAULT_PROMPT },
+    texts: [...SENTENCES],
+  },
+  {
+    name: 'gemini-3.1-flash-leda',
+    spec: { engine: 'gemini-3.1-flash', voice: 'Leda', prompt: DEFAULT_PROMPT },
+    texts: [...SENTENCES],
+  },
+];
+
 const only = values.only?.split(',').map((x) => x.trim());
 const takes = Math.max(1, Number(values.takes) || 1);
 const variants: Variant[] = values.voices
@@ -116,7 +151,9 @@ const variants: Variant[] = values.voices
           texts,
         }));
       })
-  : ALL_VARIANTS.filter((v) => !only || only.includes(v.name));
+  : (values.set === 'round6' ? ROUND6_VARIANTS : ALL_VARIANTS).filter(
+      (v) => !only || only.includes(v.name),
+    );
 
 const HTML_ESCAPES: Record<string, string> = {
   '&': '&amp;',
@@ -147,10 +184,15 @@ async function main(): Promise<void> {
       .filter((x): x is { text: string; i: number } => x.text !== null);
     try {
       // Gemini TTS starts with a low per-minute quota on new projects: one request at a time.
-      const concurrency = v.spec.engine === 'chirp3-hd' ? 3 : 1;
+      const concurrency = v.spec.engine === 'chirp3-hd' || v.spec.engine === 'wavenet' ? 3 : 1;
       await mapLimit(items, concurrency, async ({ text, i }) => {
         const n = String(i + 1).padStart(2, '0');
-        await writeFile(path.join(dir, `${n}.mp3`), await synthesize(text, v.spec));
+        const clips = v.parts?.[i];
+        // As the app plays it: one MP3 per clip, back to back.
+        const audio = clips
+          ? Buffer.concat(await Promise.all(clips.map((c) => synthesize(c, v.spec))))
+          : await synthesize(text, v.spec);
+        await writeFile(path.join(dir, `${n}.mp3`), audio);
         console.log(`  ${n} ${text}`);
       });
     } catch (err) {

@@ -21,7 +21,7 @@ on:
         required: false
         default: ''
       set:
-        description: 'Sentence set: sample (the original 40) or bank (round 4, from today''s exercises)'
+        description: 'Sentence set: sample (the original 40), bank (round 4), probe, words, or round6 (today''s app: clips vs whole, newer engines)'
         required: false
         default: 'sample'
       voices:
