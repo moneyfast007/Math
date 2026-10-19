@@ -6,6 +6,7 @@ import { JourneyScreen } from '@/screens/JourneyScreen';
 import { ParentScreen } from '@/screens/ParentScreen';
 import { PlaygroundScreen } from '@/screens/PlaygroundScreen';
 import { PracticeScreen } from '@/screens/PracticeScreen';
+import { WorldsScreen } from '@/screens/WorldsScreen';
 import { useEffect } from 'react';
 import { t } from '@/i18n';
 import { useApp } from '@/state/store';
@@ -20,6 +21,7 @@ const TITLES = {
   replay: 'pageTitle.practice',
   daily: 'pageTitle.practice',
   album: 'pageTitle.album',
+  worlds: 'pageTitle.worlds',
   parents: 'pageTitle.parents',
   install: 'pageTitle.install',
   info: 'pageTitle.info',
@@ -51,6 +53,8 @@ export function App() {
       return <PracticeScreen mode="daily" />;
     case 'album':
       return <AlbumScreen />;
+    case 'worlds':
+      return <WorldsScreen />;
     case 'parents':
       return <ParentScreen />;
     case 'install':

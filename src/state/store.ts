@@ -73,6 +73,8 @@ export interface AppState {
   setTopicLevel: (profileId: string, topicId: string, level: number) => void;
   /** The day's review finished: the streak and the day's record. */
   completeDaily: (profileId: string) => void;
+  /** The journey's first-time explainer was shown: it does not open by itself again. */
+  markJourneyIntroSeen: (profileId: string) => void;
 }
 
 export type AppStore = StoreApi<AppState>;
@@ -234,6 +236,17 @@ export function createAppStore(storage: StorageAdapter, clock: () => number = Da
         if (!data.profiles.some((p) => p.id === profileId)) return;
         const progress = finishDaily(data.progress[profileId] ?? emptyProgress(), clock());
         commit({ ...data, progress: { ...data.progress, [profileId]: progress } });
+      },
+
+      markJourneyIntroSeen: (profileId) => {
+        const { data } = get();
+        const profile = data.profiles.find((p) => p.id === profileId);
+        if (!profile || profile.journeyIntroSeenAt !== undefined) return;
+        const seen: Profile = { ...profile, journeyIntroSeenAt: clock() };
+        commit({
+          ...data,
+          profiles: data.profiles.map((p) => (p.id === profileId ? seen : p)),
+        });
       },
 
       setTopicLevel: (profileId, topicId, level) => {

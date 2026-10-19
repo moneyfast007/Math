@@ -96,3 +96,31 @@ export function nextStop(world: World): NextStop {
 export function stickersEarned(worlds: readonly World[]): number {
   return worlds.filter((w) => w.completed).length;
 }
+
+/** Where a world stands on the map of all the child's worlds. */
+export type WorldMapState = 'done' | 'current' | 'locked';
+
+export interface WorldMapEntry {
+  world: World;
+  state: WorldMapState;
+  /** A locked world opens once this one (the closest unfinished world before it) is finished. */
+  after: World | null;
+}
+
+/**
+ * All the child's worlds in order, for the map of worlds: the finished ones,
+ * the one the journey shows now (the first unfinished), and the locked ones
+ * after it. Worlds open in curriculum order only; there is no skipping ahead.
+ */
+export function worldsMap(grade: Grade, progress: ProfileProgress | undefined): WorldMapEntry[] {
+  let open: World | null = null;
+  return worldsFor(grade, progress).map((world): WorldMapEntry => {
+    if (world.completed) return { world, state: 'done', after: null };
+    const entry: WorldMapEntry =
+      open === null
+        ? { world, state: 'current', after: null }
+        : { world, state: 'locked', after: open };
+    open = world;
+    return entry;
+  });
+}

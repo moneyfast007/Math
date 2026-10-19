@@ -1,7 +1,14 @@
 // @vitest-environment node
 import { describe, expect, it } from 'vitest';
 import { emptyProgress, emptyTopicStats, type ProfileProgress } from '@/state/schema';
-import { activeWorld, nextStop, stickersEarned, worldFor, worldsFor } from './journey';
+import {
+  activeWorld,
+  nextStop,
+  stickersEarned,
+  worldFor,
+  worldsFor,
+  worldsMap,
+} from './journey';
 import { addSub20 } from './topics/addSub20';
 
 function progressAt(
@@ -113,5 +120,45 @@ describe('worldsFor', () => {
 
   it('a grade-4 child starts in big numbers, not in counting', () => {
     expect(activeWorld(4, undefined)?.topic.id).toBe('big-numbers');
+  });
+});
+
+describe('worldsMap', () => {
+  it('a new child: the first world is open, every other one waits for the one before it', () => {
+    const map = worldsMap(1, undefined);
+    expect(map.map((e) => e.state)).toEqual(['current', 'locked', 'locked', 'locked']);
+    expect(map[0]?.after).toBeNull();
+    expect(map.slice(1).map((e) => e.after?.index)).toEqual([1, 2, 3]);
+  });
+
+  it('finished worlds are done wherever they are; a locked one waits for the closest unfinished', () => {
+    const p = progressAt(10, [10], true); // world 1 (add-sub-20) finished
+    p.topics['polygons'] = { ...emptyTopicStats(5), completedLevels: [5], reviewPassed: true };
+    const map = worldsMap(1, p);
+    expect(map.map((e) => [e.world.topic.id, e.state])).toEqual([
+      ['add-sub-20', 'done'],
+      ['numbers-100', 'current'],
+      ['polygons', 'done'],
+      ['clock-money-1', 'locked'],
+    ]);
+    // World 3 is already done, so world 4 opens after world 2.
+    expect(map[3]?.after?.topic.id).toBe('numbers-100');
+    // The current world is the one the journey shows.
+    expect(map.find((e) => e.state === 'current')?.world.topic.id).toBe(
+      activeWorld(1, p)?.topic.id,
+    );
+  });
+
+  it('everything finished: every world is done, none current', () => {
+    const p = emptyProgress();
+    for (const w of worldsFor(0, undefined)) {
+      const last = w.stations.at(-1)?.level ?? 1;
+      p.topics[w.topic.id] = {
+        ...emptyTopicStats(last),
+        completedLevels: [last],
+        reviewPassed: true,
+      };
+    }
+    expect(worldsMap(0, p).every((e) => e.state === 'done')).toBe(true);
   });
 });

@@ -75,6 +75,8 @@ function parseProfile(value: unknown, index: number): Profile {
   if (!isAvatarId(avatar)) fail(`${where}: דמות לא מוכרת`);
   if (gender !== 'f' && gender !== 'm') fail(`${where}: פנייה לא חוקית`);
   if (typeof allowLevelChange !== 'boolean') fail(`${where}: הגדרה לא חוקית`);
+  // Added later and optional: absent in older data.
+  const introSeen = p['journeyIntroSeenAt'];
   return {
     id: nonEmptyString(p['id'], 64, `${where}, מזהה`),
     name: nonEmptyString(p['name'], MAX_NAME_LENGTH, `${where}, שם`),
@@ -83,6 +85,9 @@ function parseProfile(value: unknown, index: number): Profile {
     gender,
     createdAt: finiteNumber(p['createdAt'], `${where}, תאריך`),
     settings: { allowLevelChange },
+    ...(introSeen === undefined
+      ? {}
+      : { journeyIntroSeenAt: finiteNumber(introSeen, `${where}, הסבר המסע`) }),
   };
 }
 

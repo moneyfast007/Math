@@ -2978,3 +2978,356 @@ ol.steps {
   background: var(--color-almost);
   font-weight: 700;
 }
+
+/* ---------- The map of all worlds, and the journey's first-time explainer ---------- */
+
+/* Journey: the world's name on one side, "כל העולמות" on the other. */
+.journey__world {
+  align-items: center;
+}
+
+.journey__world-text {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  column-gap: var(--space-2);
+  min-width: 0;
+}
+
+.journey__all {
+  min-height: var(--tap-min);
+  margin-inline-start: auto;
+  gap: var(--space-1);
+}
+
+.journey__all svg {
+  width: 22px;
+  height: 22px;
+  flex: none;
+}
+
+/* The first-time card: three steps, each with a small picture. */
+.intro {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  border: 2px solid var(--color-accent-soft);
+  animation: intro-in var(--dur-med) var(--ease);
+}
+
+@keyframes intro-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+.intro__head {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.intro__title {
+  flex: 1;
+  min-width: 0;
+  font-size: var(--text-lg);
+}
+
+.intro__steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-2);
+}
+
+.intro__step {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+}
+
+.intro__step p {
+  font-size: var(--text-sm);
+  line-height: 1.5;
+  min-width: 0;
+}
+
+.intro__icon {
+  flex: none;
+  display: inline-grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-sm);
+  background: var(--color-accent-soft);
+  color: var(--color-accent-strong);
+}
+
+.intro__icon svg {
+  width: 58%;
+  height: 58%;
+}
+
+.intro__icon--path {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+}
+
+.intro__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--color-surface);
+  border: 2px dashed var(--color-border);
+}
+
+.intro__dot--done {
+  background: var(--color-accent);
+  border: 0;
+}
+
+.intro__dot--current {
+  border: 2px solid var(--color-accent);
+}
+
+.intro__icon--star {
+  background: var(--color-almost-soft);
+  color: var(--color-almost);
+  border: 2px dashed var(--color-almost);
+}
+
+.intro__ok {
+  align-self: center;
+  min-width: min(100%, 14rem);
+}
+
+.intro--dialog {
+  border: 0;
+  animation: none;
+}
+
+.intro--dialog .intro__head {
+  justify-content: space-between;
+}
+
+:root[data-age='young'] .intro__icon {
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-md);
+}
+
+:root[data-age='young'] .intro__dot {
+  width: 14px;
+  height: 14px;
+}
+
+/* A tablet: the three steps side by side, so the map stays in view. */
+@media (min-width: 760px) {
+  .intro__steps {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-3);
+  }
+
+  .intro__step {
+    flex-direction: column;
+  }
+}
+
+/* The map of all worlds */
+.worlds__header {
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+.worlds__heading {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-1);
+  flex: 1 1 16rem;
+  min-width: 0;
+}
+
+.worlds__how {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  min-height: 44px;
+  color: var(--color-accent-strong);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.worlds__how-mark {
+  display: inline-grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--color-accent-soft);
+  text-decoration: none;
+  font-weight: 800;
+}
+
+.worlds__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.world-row {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--space-2) var(--space-3);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  border: 2px solid transparent;
+  box-shadow: var(--shadow-sm);
+}
+
+.world-row--current {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 4px var(--color-accent-soft);
+}
+
+.world-row--locked {
+  background: var(--color-surface-alt);
+  border: 2px dashed var(--color-border);
+  box-shadow: none;
+}
+
+.world-row__badge {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+}
+
+.world-row__badge > svg {
+  width: 100%;
+  height: 100%;
+}
+
+.world-row--locked .world-row__badge {
+  background: var(--color-surface);
+  color: var(--color-text-muted);
+}
+
+.world-row--locked .world-row__badge > svg {
+  width: 50%;
+  height: 50%;
+}
+
+.world-row__text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.world-row__name {
+  font-size: var(--text-md);
+  line-height: 1.25;
+}
+
+.world-row--locked .world-row__name {
+  color: var(--color-text-muted);
+}
+
+.world-row__state {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-1) var(--space-2);
+  font-size: var(--text-sm);
+}
+
+.world-row__chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 12px;
+  border-radius: var(--radius-pill);
+  font-weight: 700;
+  font-size: var(--text-sm);
+}
+
+.world-row__chip--done {
+  background: var(--color-success-soft);
+  color: var(--color-text);
+}
+
+.world-row__chip--current {
+  background: var(--color-accent-soft);
+  color: var(--color-text);
+}
+
+.world-row__chip--locked {
+  background: var(--color-surface);
+  color: var(--color-text-muted);
+}
+
+.world-row__count {
+  color: var(--color-text-muted);
+}
+
+.world-row__bar {
+  display: block;
+  width: 100%;
+  max-width: 240px;
+  height: 10px;
+  border-radius: var(--radius-pill);
+  background: var(--color-border);
+  overflow: hidden;
+}
+
+.world-row__bar > span {
+  display: block;
+  height: 100%;
+  min-width: 10px;
+  border-radius: var(--radius-pill);
+  background: var(--color-accent);
+}
+
+.world-row__why {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+
+.world-row__action {
+  min-height: var(--tap-min);
+  white-space: nowrap;
+}
+
+:root[data-age='young'] .world-row__badge {
+  width: 72px;
+  height: 72px;
+}
+
+:root[data-age='young'] .world-row__bar {
+  height: 14px;
+}
+
+/* Phones: the button goes under the world's name, across the card. */
+@media (max-width: 560px) {
+  .world-row {
+    grid-template-columns: auto minmax(0, 1fr);
+    padding: var(--space-2);
+  }
+
+  .world-row__action {
+    grid-column: 1 / -1;
+    width: 100%;
+  }
+}

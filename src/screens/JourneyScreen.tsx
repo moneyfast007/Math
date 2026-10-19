@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { navigate } from '@/app/router';
 import { dailyPool } from '@/engine/daily';
 import { activeWorld, nextStop, type World, type WorldStation } from '@/engine/journey';
@@ -13,6 +13,7 @@ import { Avatar } from '@/ui/Avatar';
 import { Dialog } from '@/ui/Dialog';
 import { Plusi } from '@/ui/Plusi';
 import { SpeakerButton } from '@/ui/SpeakerButton';
+import { JourneyIntroCard, WorldsIcon } from './JourneyIntro';
 import { layoutStations, pathThrough, type Point } from './journeyLayout';
 
 /**
@@ -20,6 +21,10 @@ import { layoutStations, pathThrough, type Point } from './journeyLayout';
  * stations (the topic's levels), the next one marked with Plusi waiting beside
  * it, the world's final station (a mixed review) at the end, and one big
  * button that starts the next stop. A five-year-old never faces a menu.
+ *
+ * "כל העולמות" opens the map of all the grade's worlds (WorldsScreen). The
+ * first time a child opens the journey, a short card explains how the worlds
+ * open; it is remembered per child and never blocks the start button.
  */
 export function JourneyScreen() {
   const profile = useActiveProfile();
@@ -34,7 +39,15 @@ export function JourneyScreen() {
 function Journey({ profile }: { profile: Profile }) {
   const progress = useApp((s) => s.data.progress[profile.id]);
   const setTopicLevel = useApp((s) => s.setTopicLevel);
+  const markIntroSeen = useApp((s) => s.markJourneyIntroSeen);
   const [picking, setPicking] = useState(false);
+  // Decided when the journey opens: the card stays for this visit, once it is remembered.
+  const [intro, setIntro] = useState(() => profile.journeyIntroSeenAt === undefined);
+  const startRef = useRef<HTMLButtonElement>(null);
+  const firstVisit = profile.journeyIntroSeenAt === undefined;
+  useEffect(() => {
+    if (firstVisit) markIntroSeen(profile.id);
+  }, [firstVisit, markIntroSeen, profile.id]);
   const tc = makeT(profile.gender);
   const young = ageBandForGrade(profile.grade) === 'young';
 
@@ -98,24 +111,44 @@ function Journey({ profile }: { profile: Profile }) {
         </div>
       </header>
 
+      {intro ? (
+        <JourneyIntroCard
+          gender={profile.gender}
+          onDone={() => {
+            setIntro(false);
+            startRef.current?.focus({ preventScroll: true });
+          }}
+        />
+      ) : null}
+
       <div className="journey__body">
         <div className="journey__mapcol">
-          {!young ? (
-            <div className="journey__world">
-              <h2 className="journey__world-name">
-                {t('journey.world', {
-                  params: { index: world.index, name: t(world.topic.labelKey as TranslationKey) },
-                })}
-              </h2>
-              <span className="muted">
-                {world.completed
-                  ? t('journey.worldDone')
-                  : t('journey.stationOf', {
-                      params: { n: Math.min(world.done + 1, world.total), total: world.total },
-                    })}
-              </span>
-            </div>
-          ) : null}
+          <div className="journey__world">
+            {!young ? (
+              <div className="journey__world-text">
+                <h2 className="journey__world-name">
+                  {t('journey.world', {
+                    params: { index: world.index, name: t(world.topic.labelKey as TranslationKey) },
+                  })}
+                </h2>
+                <span className="muted">
+                  {world.completed
+                    ? t('journey.worldDone')
+                    : t('journey.stationOf', {
+                        params: { n: Math.min(world.done + 1, world.total), total: world.total },
+                      })}
+                </span>
+              </div>
+            ) : null}
+            <button
+              type="button"
+              className="btn btn--secondary btn--small journey__all"
+              onClick={() => navigate({ name: 'worlds' })}
+            >
+              <WorldsIcon />
+              <span>{t('worlds.open')}</span>
+            </button>
+          </div>
 
           <WorldMap
             world={world}
@@ -139,7 +172,12 @@ function Journey({ profile }: { profile: Profile }) {
             </div>
             <SpeakerButton text={spokenLabel(stopName)} />
           </div>
-          <button type="button" className="btn btn--hero journey__start" onClick={start}>
+          <button
+            ref={startRef}
+            type="button"
+            className="btn btn--hero journey__start"
+            onClick={start}
+          >
             {startLabel}
           </button>
           {hasDaily ? (

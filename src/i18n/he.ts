@@ -14,6 +14,7 @@ import { heGan1 } from './extra/gan1';
 import { heGrade4 } from './extra/grade4';
 import { heGrades23 } from './extra/grades23';
 import { heGrades56 } from './extra/grades56';
+import { heJourney } from './extra/journey';
 import { heWorlds } from './extra/worlds';
 
 export const he = {
@@ -2069,6 +2070,7 @@ export const he = {
   ...heGrade4,
   ...heGrades56,
   ...heWorlds,
+  ...heJourney,
 } as const;
 
 export type HebrewKey = keyof typeof he;

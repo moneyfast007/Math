@@ -190,4 +190,26 @@ describe('app store', () => {
     store.getState().recordAttempt('ghost', { topicId: 't', level: 1, correct: true, at: 1 });
     expect(store.getState().data.progress['ghost']).toBeUndefined();
   });
+
+  it('remembers once per child that the journey explainer was shown', async () => {
+    const { store, storage, now } = setup();
+    await store.getState().hydrate();
+    const p = store.getState().addProfile(input);
+    const other = store.getState().addProfile({ ...input, name: 'איתי' });
+    expect(p.journeyIntroSeenAt).toBeUndefined();
+    now.t = 2_000;
+    store.getState().markJourneyIntroSeen(p.id);
+    now.t = 3_000;
+    store.getState().markJourneyIntroSeen(p.id); // a second time changes nothing
+    const profiles = () => store.getState().data.profiles;
+    expect(profiles().find((x) => x.id === p.id)?.journeyIntroSeenAt).toBe(2_000);
+    expect(profiles().find((x) => x.id === other.id)?.journeyIntroSeenAt).toBeUndefined();
+    // A parent editing the profile keeps it.
+    store.getState().updateProfile(p.id, { ...input, name: 'נועה ל.' });
+    expect(profiles().find((x) => x.id === p.id)?.journeyIntroSeenAt).toBe(2_000);
+    await flush();
+    expect((storage.peek() as AppData).profiles[0]?.journeyIntroSeenAt).toBe(2_000);
+    store.getState().markJourneyIntroSeen('ghost');
+    expect(profiles()).toHaveLength(2);
+  });
 });

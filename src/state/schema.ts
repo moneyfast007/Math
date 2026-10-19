@@ -37,6 +37,12 @@ export interface Profile {
   gender: Gender;
   createdAt: number;
   settings: ProfileSettings;
+  /**
+   * When the journey's first-time explainer ("how the worlds open") was shown
+   * to this child. Absent until then. Optional, so data and backups saved
+   * before it existed stay valid without a schema change.
+   */
+  journeyIntroSeenAt?: number;
 }
 
 /** What a parent fills in; id and timestamps are added by the store. */

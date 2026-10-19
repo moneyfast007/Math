@@ -106,6 +106,17 @@ describe('parseAppData', () => {
     expect(dup.ok && dup.data.progress['p1']?.topics['t']?.completedLevels).toEqual([1, 3]);
   });
 
+  it('keeps when the journey explainer was seen; older profiles without it stay valid', () => {
+    const seen = makeProfile({ journeyIntroSeenAt: 1_700_000_200_000 });
+    const result = parseAppData(clone(makeData({ profiles: [seen, makeProfile({ id: 'p2' })] })));
+    expect(result.ok).toBe(true);
+    if (!result.ok) return;
+    expect(result.data.profiles[0]?.journeyIntroSeenAt).toBe(1_700_000_200_000);
+    expect(result.data.profiles[1]).not.toHaveProperty('journeyIntroSeenAt');
+    const bad = { ...seen, journeyIntroSeenAt: 'yesterday' } as never;
+    expect(parseAppData(makeData({ profiles: [bad] })).ok).toBe(false);
+  });
+
   it('trims names', () => {
     const result = parseAppData(makeData({ profiles: [makeProfile({ name: '  נועה  ' })] }));
     expect(result.ok && result.data.profiles[0]?.name).toBe('נועה');
