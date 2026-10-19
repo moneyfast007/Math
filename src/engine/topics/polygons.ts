@@ -315,8 +315,14 @@ function rightAngles(rng: Rng): Exercise {
       hint(say('ex.poly.right.hint2')),
       // Never this shape's answer: a square (four) for the others, the trapezoid (two) for four.
       n === 4
-        ? pictureExample(say('ex.poly.rights.exampleTwo'), poly('trapezoid', { rightAngles: [0, 3] }))
-        : pictureExample(say('ex.poly.rights.example'), poly('square', { rightAngles: [0, 1, 2, 3] })),
+        ? pictureExample(
+            say('ex.poly.rights.exampleTwo'),
+            poly('trapezoid', { rightAngles: [0, 3] }),
+          )
+        : pictureExample(
+            say('ex.poly.rights.example'),
+            poly('square', { rightAngles: [0, 1, 2, 3] }),
+          ),
     ],
     solution:
       n === 0

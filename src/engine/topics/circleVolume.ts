@@ -314,9 +314,7 @@ const litres = (k: number, toCm3: boolean): Exercise => {
     level: 9,
     id: `${toCm3 ? 'litre' : 'cm3'}:${k}`,
     key: toCm3 ? 'c6.litre.spoken' : 'c6.cm3.spoken',
-    slots: toCm3
-      ? { k: slot(k, LITRE), u: '' }
-      : { v: { n: v, noun: CM3 } },
+    slots: toCm3 ? { k: slot(k, LITRE), u: '' } : { v: { n: v, noun: CM3 } },
     solution: toCm3 ? 'c6.litre.solution' : 'c6.cm3.solution',
     solutionSlots: toCm3 ? { k } : { v },
     answer: toCm3 ? v : k,
