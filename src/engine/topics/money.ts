@@ -16,6 +16,7 @@ import {
   pictureExample,
   say,
   spokenEquationSolved,
+  type AdviceSpec,
   type Character,
   type Said,
 } from '../build';
@@ -499,8 +500,34 @@ export function change(level: number, paids?: readonly number[]) {
       ],
       solution: spokenEquationSolved(paid, '-', p, c),
       diagnose: (v) => diagnoseArith(v, { a: paid, op: '-', b: p, answer: c }),
+      advice: changeAdvice(p, paid),
     });
   };
+}
+
+/**
+ * Advice for the typical slips in change from `paid` for `p`: a check that the
+ * price and the change make what was paid (a change ten or one off), the price
+ * itself, and the price added instead of taken away. From ten or twenty a change
+ * ten too big is no forgotten borrowing, only ten off.
+ */
+function changeAdvice(p: number, paid: number): AdviceSpec[] {
+  const c = paid - p;
+  const check = (v: number): AdviceSpec => ({
+    value: v,
+    say: say(v > c ? 'ex.money.change.adviceOver' : 'ex.money.change.adviceUnder', {
+      p,
+      v,
+      s: p + v,
+      paid,
+    }),
+    ...(paid <= 20 && Math.abs(v - c) === 10 ? { kind: 'offByTen' as const } : {}),
+  });
+  return [
+    ...[c + 10, c - 10, c + 1, c - 1].filter((v) => v > 0).map(check),
+    { value: p, say: say('ex.money.change.advicePrice', { p, paid }) },
+    { value: paid + p, say: say('ex.money.change.adviceAdded'), kind: 'wrongOperation' },
+  ];
 }
 
 /**
@@ -620,6 +647,14 @@ function shopping(rng: Rng): Exercise {
     prompt: shown(spoken),
     display: '',
     spoken,
+    // The two things with their price tags: the prices are read off them, not only heard.
+    visual: {
+      type: 'items',
+      items: [
+        { label: item, price: a },
+        { label: item2, price: b },
+      ],
+    },
     answer,
     operation: withChange ? 'sub' : 'add',
     input: numpad(2),
@@ -663,6 +698,17 @@ function shopping(rng: Rng): Exercise {
             v,
             withChange ? { a: paid, op: '-', b: total, answer } : { a, op: '+', b, answer },
           ),
+    // The total given as the change, or the change for one thing only: the second step,
+    // or one price, left out. Then the change checks of a one-step change problem.
+    advice: withChange
+      ? [
+          { value: total, say: say('ex.money.totalChange.adviceTotal', { v: total, paid }) },
+          ...[paid - a, paid - b].map(
+            (v): AdviceSpec => ({ value: v, say: say('ex.money.totalChange.adviceOne', { v }) }),
+          ),
+          ...changeAdvice(total, paid),
+        ]
+      : [],
   });
 }
 

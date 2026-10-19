@@ -16,6 +16,7 @@ import { shuffle } from '../rng';
 import type { Exercise, Rng, Visual } from '../types';
 
 const WHOLE: Noun = { singular: 'שלם', plural: 'שלמים', gender: 'm' };
+const PART: Noun = { singular: 'חלק', plural: 'חלקים', gender: 'm' };
 
 /**
  * World 8, grade 3: "שברים: היכרות". Following the curriculum (grade 3: unit
@@ -132,6 +133,11 @@ function numerator(level: number, num: number, den: number): Exercise {
     ],
     solution: coloured(num, den),
     diagnose: (v) => (v === den - num ? 'other' : v === den ? 'other' : null),
+    // All the parts counted, or the parts left white.
+    advice: [
+      { value: den, say: say('ex.frac.advice.countedAll', { v: den }) },
+      { value: den - num, say: say('ex.frac.advice.unshaded', { v: den - num }) },
+    ],
   });
 }
 
@@ -200,6 +206,26 @@ function ofQuantity(level: number, num: number, den: number, whole: number): Exe
     solution: say('ex.frac.of.solution', { frac: w(num, den), whole, r: answer }),
     diagnose: (v) =>
       v === part && num !== 1 ? 'other' : v === whole * num ? 'wrongOperation' : null,
+    advice: [
+      // One part found, the numerator's parts not yet taken ("found a third, now take two").
+      ...(num !== 1
+        ? [
+            {
+              value: part,
+              say: say(
+                'ex.frac.advice.onePart',
+                { unit: w(1, den), whole, part, frac: w(num, den) },
+                fractionNoun(den).gender,
+              ),
+            },
+          ]
+        : []),
+      // The number of parts given as the answer: the whole still to be split.
+      {
+        value: den,
+        say: say('ex.frac.advice.partsCount', { parts: { n: den, noun: PART }, whole }),
+      },
+    ],
   });
 }
 
@@ -213,6 +239,21 @@ function compare(
   const big = answer === 0 ? a : b;
   const small = answer === 0 ? b : a;
   const sameDen = a.d === b.d;
+  const both: Visual = {
+    type: 'fraction',
+    parts: a.d,
+    shaded: a.n,
+    below: { parts: b.d, shaded: b.n },
+  };
+  // The smaller one chosen: in unit fractions, more parts taken for a bigger part;
+  // with the same parts, fewer of them coloured.
+  const wrongPick = 1 - answer;
+  const advice = sameDen
+    ? say('ex.frac.advice.sameDen')
+    : say('ex.frac.advice.unitBigger', {
+        more: { n: small.d, noun: PART },
+        fewer: { n: big.d, noun: PART },
+      });
   return exercise({
     factId: `fcmp:${a.n}/${a.d},${b.n}/${b.d}`,
     topicId: ID,
@@ -220,19 +261,20 @@ function compare(
     prompt: t('ex.frac.bigger.prompt'),
     display: `${f(a.n, a.d)}   ${f(b.n, b.d)}`,
     spoken: say('ex.frac.bigger.spoken', { a: w(a.n, a.d), b: w(b.n, b.d) }),
-    // Both fractions as bars of the same length (the main picture and hint 2):
-    // a circle beside a bar is no comparison.
-    visual: bar(a.n, a.d),
+    // Both fractions as bars of the same length, one under the other, in the main
+    // picture: a circle beside a bar is no comparison.
+    visual: both,
     answer,
     input: labelledChoices([f(a.n, a.d), f(b.n, b.d)]),
     hints: [
       hint(say(sameDen ? 'ex.frac.bigger.hintSame' : 'ex.frac.bigger.hintUnit')),
-      hint(say('ex.frac.bigger.hint2'), { visual: bar(b.n, b.d) }),
+      hint(say('ex.frac.bigger.hint2both'), { visual: both }),
       sameDen
         ? exampleHint('3/5 > 2/5', say('ex.frac.bigger.solution2', { w: w(3, 5), l: w(2, 5) }))
         : exampleHint('1/3 > 1/6', say('ex.frac.bigger.solution2', { w: w(1, 3), l: w(1, 6) })),
     ],
     solution: say('ex.frac.bigger.solution2', { w: w(big.n, big.d), l: w(small.n, small.d) }),
+    advice: [{ value: wrongPick, say: advice }],
   });
 }
 
@@ -300,6 +342,13 @@ function equalParts(level: number, x: Equal): Exercise {
     solution: solved(x),
     // The whole's parts, or the numerator copied: not yet the same amount.
     diagnose: (v) => (v === den || v === num ? 'other' : null),
+    advice: [
+      {
+        value: den,
+        say: say('ex.frac.advice.equalWhole', { all: w(den, den), frac: w(num, small) }),
+      },
+      { value: num, say: say('ex.frac.advice.equalNum') },
+    ],
   });
 }
 
@@ -337,7 +386,11 @@ function wholes(level: number, den: number, count: 1 | 2 | 3): Exercise {
     prompt: t('ex.frac.wholes.prompt', { params: { plural, wholes: wholesWords(count) } }),
     display: `${count} = ?/${den}`,
     spoken: say('ex.frac.wholes.prompt', { plural, wholes: wholesWords(count) }),
-    visual: { type: 'fraction', parts: den, shaded: den },
+    // As many wholes as asked about, all coloured: one whole drawn for three counts as one.
+    visual:
+      count === 1
+        ? { type: 'fraction', parts: den, shaded: den }
+        : { type: 'fraction', parts: den, shaded: den * count, wholes: count },
     answer,
     input: numpad(2),
     hints: [
@@ -354,6 +407,18 @@ function wholes(level: number, den: number, count: 1 | 2 | 3): Exercise {
     ],
     solution: solved(count, den),
     diagnose: (v) => (count > 1 && v === den ? 'other' : null),
+    advice:
+      count > 1
+        ? [
+            {
+              value: den,
+              say: say('ex.frac.advice.oneWhole', {
+                all: w(den, den),
+                wholes: wholesWords(count),
+              }),
+            },
+          ]
+        : [],
   });
 }
 

@@ -20,6 +20,7 @@ import {
   pictureExample,
   range,
   say,
+  type AdviceSpec,
   type Character,
   type Said,
 } from '../build';
@@ -59,26 +60,27 @@ interface ChoiceSet {
   answer: number;
   /** Which wrong options mean a particular mistake. */
   mistakes: Map<number, MistakeKind>;
+  /** What to say when a particular wrong option is chosen (by its button). */
+  advice: AdviceSpec[];
 }
 
+/** A wrong time among the choices: the mistake it stands for, and what to say when it is chosen. */
+type Wrong = { time: ClockTime; mistake?: MistakeKind; advice?: TranslationKey };
+
 /** The right time and its distractors, in a shuffled order. */
-function choiceSet(
-  rng: Rng,
-  right: ClockTime,
-  wrong: { time: ClockTime; mistake?: MistakeKind }[],
-): ChoiceSet {
+function choiceSet(rng: Rng, right: ClockTime, wrong: Wrong[]): ChoiceSet {
   const unique = wrong.filter(
     (w, i) => !same(w.time, right) && wrong.findIndex((x) => same(x.time, w.time)) === i,
   );
   const options = shuffle(rng, [right, ...unique.map((w) => w.time)]);
   const mistakes = new Map<number, MistakeKind>();
-  for (const w of unique)
-    if (w.mistake)
-      mistakes.set(
-        options.findIndex((o) => same(o, w.time)),
-        w.mistake,
-      );
-  return { options, answer: options.findIndex((o) => same(o, right)), mistakes };
+  const advice: AdviceSpec[] = [];
+  for (const w of unique) {
+    const at = options.findIndex((o) => same(o, w.time));
+    if (w.mistake) mistakes.set(at, w.mistake);
+    if (w.advice) advice.push({ value: at, say: say(w.advice) });
+  }
+  return { options, answer: options.findIndex((o) => same(o, right)), mistakes, advice };
 }
 
 function solution(time: ClockTime): Said {
@@ -93,7 +95,7 @@ function example(time: ClockTime): Hint {
 function readClock(
   level: number,
   time: ClockTime,
-  wrong: { time: ClockTime; mistake?: MistakeKind }[],
+  wrong: Wrong[],
   hints: [TranslationKey, TranslationKey],
   ex: ClockTime,
   rng: Rng,
@@ -112,6 +114,7 @@ function readClock(
     hints: [hint(say(hints[0])), hint(say(hints[1])), example(ex)],
     solution: solution(time),
     diagnose: (v) => set.mistakes.get(v) ?? null,
+    advice: set.advice,
   });
 }
 
@@ -119,7 +122,7 @@ function readClock(
 function pickClock(
   level: number,
   time: ClockTime,
-  wrong: { time: ClockTime; mistake?: MistakeKind }[],
+  wrong: Wrong[],
   hints: [TranslationKey, TranslationKey],
   ex: ClockTime,
   rng: Rng,
@@ -141,6 +144,7 @@ function pickClock(
     hints: [hint(say(hints[0])), hint(say(hints[1])), example(ex)],
     solution: solution(time),
     diagnose: (v) => set.mistakes.get(v) ?? null,
+    advice: set.advice,
   });
 }
 
@@ -153,7 +157,10 @@ export function level1(time: ClockTime, rng: Rng): Exercise {
   return readClock(
     1,
     time,
-    [{ time: at(time.h - 1, 0) }, { time: at(time.h + 1, 0) }],
+    [
+      { time: at(time.h - 1, 0), advice: 'ex.clock.advice.hourNumber' },
+      { time: at(time.h + 1, 0), advice: 'ex.clock.advice.hourNumber' },
+    ],
     ['ex.clock.hour.hint1', 'ex.clock.hour.hint2'],
     exampleTime(time, at(8, 0), at(4, 0)),
     rng,
@@ -181,7 +188,10 @@ export function level3(time: ClockTime, rng: Rng): Exercise {
     3,
     time,
     // The hour hand is past the hour: reading the next number is the usual slip.
-    [{ time: at(time.h + 1, 30), mistake: 'clockHands' }, { time: at(time.h, 0) }],
+    [
+      { time: at(time.h + 1, 30), mistake: 'clockHands', advice: 'ex.clock.advice.halfNext' },
+      { time: at(time.h, 0), advice: 'ex.clock.advice.halfNotWhole' },
+    ],
     ['ex.clock.half.hint1', 'ex.clock.half.hint2'],
     exampleTime(time, at(7, 30), at(2, 30)),
     rng,
@@ -230,7 +240,10 @@ function level5(time: ClockTime, rng: Rng): Exercise {
     time,
     // One more "quarter past" (another hour) and one "quarter to": the right one is not
     // simply the only "quarter past" among the three.
-    [{ time: at(time.h + 1, 15), mistake: 'clockHands' }, { time: at(time.h, 45) }],
+    [
+      { time: at(time.h + 1, 15), mistake: 'clockHands', advice: 'ex.clock.advice.pastNext' },
+      { time: at(time.h, 45), advice: 'ex.clock.advice.pastNotTo' },
+    ],
     ['ex.clock.past.hint1', 'ex.clock.past.hint2'],
     exampleTime(time, at(4, 15), at(9, 15)),
     rng,
@@ -241,7 +254,10 @@ function level6(time: ClockTime, rng: Rng): Exercise {
   return readClock(
     6,
     time,
-    [{ time: at(time.h, 15) }, { time: at(time.h - 1, 45), mistake: 'clockHands' }],
+    [
+      { time: at(time.h, 15), advice: 'ex.clock.advice.toNotPast' },
+      { time: at(time.h - 1, 45), mistake: 'clockHands', advice: 'ex.clock.advice.toHour' },
+    ],
     ['ex.clock.to.hint1', 'ex.clock.to.hint2'],
     exampleTime(time, at(5, 45), at(10, 45)),
     rng,
@@ -251,8 +267,18 @@ function level6(time: ClockTime, rng: Rng): Exercise {
 function level7(time: ClockTime, rng: Rng): Exercise {
   const wrong =
     time.m === 45
-      ? [{ time: at(time.h + 1, 45), mistake: 'clockHands' as const }, { time: at(time.h + 1, 15) }]
-      : [{ time: at(time.h, 45) }, { time: at(time.h - 1, 45) }];
+      ? [
+          {
+            time: at(time.h + 1, 45),
+            mistake: 'clockHands' as const,
+            advice: 'ex.clock.advice.pickToHour' as const,
+          },
+          { time: at(time.h + 1, 15), advice: 'ex.clock.advice.pickPastNotTo' as const },
+        ]
+      : [
+          { time: at(time.h, 45), advice: 'ex.clock.advice.pickToNotPast' as const },
+          { time: at(time.h - 1, 45), advice: 'ex.clock.advice.pickToNotPast' as const },
+        ];
   return pickClock(
     7,
     time,

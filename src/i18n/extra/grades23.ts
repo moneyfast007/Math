@@ -57,6 +57,16 @@ export const heGrades23 = {
   'ex.money.totalChange.hint2': 'שני תרגילים, זה אחרי זה: קודם המחיר של שניהם ביחד, ואחר כך העודף.',
   'ex.money.totalChange.example': '{a} ועוד {b} זה {total}. {paid} פחות {total} זה {c}.',
   'ex.money.totalChange.solution2': 'הכול ביחד עולה {total}, והעודף הוא {c}.',
+  'ex.money.change.adviceOver':
+    'המחיר ועוד העודף הם מה ששילמנו. אבל {p} ועוד {v} זה {s}, יותר מ{paid}. כמה חסר מ{p} עד {paid}?',
+  'ex.money.change.adviceUnder':
+    'המחיר ועוד העודף הם מה ששילמנו. אבל {p} ועוד {v} זה {s}, פחות מ{paid}. כמה חסר מ{p} עד {paid}?',
+  'ex.money.change.advicePrice': '{p} זה המחיר. העודף הוא מה שחוזר אלינו: כמה חסר מ{p} עד {paid}?',
+  'ex.money.change.adviceAdded': 'העודף קטן ממה ששילמנו: את המחיר לא מוסיפים, מורידים.',
+  'ex.money.totalChange.adviceTotal':
+    '{v} זה המחיר של שניהם ביחד. עכשיו העודף: כמה חסר מ{v} עד {paid}?',
+  'ex.money.totalChange.adviceOne':
+    '{v} זה העודף על דבר אחד בלבד. קודם מחברים את שני המחירים, ואחר כך מחשבים את העודף.',
 
   /* ---------- Grade 2: the clock ---------- */
   'level.clock.review': 'שעות שלמות וחצאי שעה',
@@ -77,6 +87,25 @@ export const heGrades23 = {
   'ex.clock.quarterElapsed.hint1': 'כל רבע סיבוב של המחוג הארוך הוא רבע שעה, וסיבוב שלם הוא שעה.',
   'ex.clock.quarterElapsed.hint2':
     'נספור ברבעי שעה: מהשעון הראשון לשני, כמה פעמים זז המחוג הארוך שלושה מספרים?',
+  // Advice for a wrong time chosen: what that choice mixed up.
+  'ex.clock.advice.hourNumber': 'נסתכל שוב על המחוג הקצר: על איזה מספר בדיוק הוא מצביע? זו השעה.',
+  'ex.clock.advice.halfNext':
+    'בחצי שעה המחוג הקצר כבר עבר את השעה, אבל עוד לא הגיע למספר הבא. אומרים את המספר שהוא כבר עבר.',
+  'ex.clock.advice.halfNotWhole': 'המחוג הארוך על שש, לא על שתים עשרה: עברה חצי שעה. אומרים ״וחצי״.',
+  'ex.clock.advice.pastNext':
+    'ב״ורבע״ המחוג הקצר רק עבר קצת את השעה, והוא עוד רחוק מהמספר הבא. אומרים את המספר שהוא עבר.',
+  'ex.clock.advice.pastNotTo':
+    'המחוג הארוך על שלוש, ולכן אומרים ״ורבע״. ״רבע ל...״ אומרים כשהמחוג הארוך על תשע.',
+  'ex.clock.advice.toNotPast':
+    'המחוג הארוך על תשע, ולכן אומרים ״רבע ל...״. ״ורבע״ אומרים כשהמחוג הארוך על שלוש.',
+  'ex.clock.advice.toHour':
+    'ב״רבע ל...״ אומרים את השעה שהמחוג הקצר מתקרב אליה, את המספר הבא, ולא את המספר שהוא כבר עבר.',
+  'ex.clock.advice.pickPastNotTo':
+    'בשעון הזה המחוג הארוך על שלוש, וזה ״ורבע״. ב״רבע ל...״ המחוג הארוך על תשע.',
+  'ex.clock.advice.pickToNotPast':
+    'בשעון הזה המחוג הארוך על תשע, וזה ״רבע ל...״. ב״ורבע״ המחוג הארוך על שלוש.',
+  'ex.clock.advice.pickToHour':
+    'בשעון הזה המחוג הקצר מתקרב למספר אחר. ב״רבע ל...״ המחוג הקצר כמעט הגיע לשעה שאומרים.',
 
   /* ---------- Grade 3: the multiplication table ---------- */
   'hint.mul.missingRows': 'יש {b} שורות, ובסך הכול {c} נקודות. כמה נקודות יש בכל שורה?',
@@ -122,6 +151,22 @@ export const heGrades23 = {
   'ex.frac.whole.hint2many': 'בשלם אחד יש {all}. כמה יש ב{wholes}?',
   'ex.frac.whole.solution.one': 'בשלם אחד יש {frac}.',
   'ex.frac.whole.solution.many': 'ב{wholes} יש {frac}.',
+  'ex.frac.bigger.hint2both': 'בציור, השבר הראשון למעלה והשני מתחתיו, באותו אורך. איזה מהם צבוע יותר?',
+  'ex.frac.advice.countedAll': '{v} הם כל החלקים של השלם. נספור רק את החלקים הצבועים.',
+  'ex.frac.advice.unshaded': '{v} הם החלקים שלא צבועים. נספור את החלקים הצבועים.',
+  'ex.frac.advice.onePart': {
+    f: 'מצאנו {unit} אחת מ{whole}: {part}. עכשיו ניקח {frac}.',
+    m: 'מצאנו {unit} אחד מ{whole}: {part}. עכשיו ניקח {frac}.',
+  },
+  'ex.frac.advice.partsCount': 'מחלקים את {whole} ל{parts} שווים. כמה יש בכל חלק?',
+  'ex.frac.advice.unitBigger':
+    'כשמחלקים את השלם ל{more}, כל חלק קטן יותר מאשר כשמחלקים ל{fewer}. נשווה את הפסים בציור.',
+  'ex.frac.advice.sameDen':
+    'החלקים בשני השברים באותו גודל. נספור כמה חלקים צבועים בכל פס: איפה יש יותר?',
+  'ex.frac.advice.equalWhole': 'בשלם כולו יש {all}. אבל צריך רק {frac}, חלק מהשלם.',
+  'ex.frac.advice.equalNum':
+    'החלקים החדשים קטנים יותר, ולכן צריך יותר מהם כדי למלא אותו גודל. נסתכל בציור של הרמז.',
+  'ex.frac.advice.oneWhole': 'בשלם אחד יש {all}. אבל יש כאן {wholes}: כמה יש בכולם?',
 
   /* ---------- Grade 3: clock and measures ---------- */
   'ex.measure.hours.q9': 'כמה דקות יש בשעה ורבע?',
@@ -159,4 +204,20 @@ export const heGrades23 = {
     'שני מטרים הם מאתיים סנטימטרים, ועוד שלושים זה מאתיים ושלושים סנטימטרים.',
   'ex.measure.kg.mixedExample':
     'שני קילוגרמים הם אלפיים גרמים, ועוד שלוש מאות זה אלפיים ושלוש מאות גרמים.',
+  'ex.measure.ruler.adviceEnd':
+    '{to} הוא הסימן שבו העיפרון נגמר. אבל העיפרון לא מתחיל באפס, הוא מתחיל ב{from}. כמה סנטימטרים יש מ{from} עד {to}?',
+  'ex.measure.ruler.adviceMarks':
+    'נספור את הרווחים בין הסימנים, מהקצה האחד של העיפרון עד הקצה השני, ולא את הסימנים עצמם.',
+  'ex.measure.elapsed.adviceNumbers':
+    'זה מספר הקפיצות של המחוג הארוך ממספר למספר. כל קפיצה כזאת היא חמש דקות.',
+  'ex.measure.hours.adviceHundred': 'בשעה יש שישים דקות, לא מאה. נספור שישים לכל שעה.',
+  'ex.measure.adviceExtra': '{v} זה רק {b}. עכשיו נוסיף עוד {e}.',
+  'ex.measure.cmp.adviceUnit':
+    'המספר גדול יותר, אבל היחידה קטנה יותר. נהפוך את {big} ל{unit}, ואז נשווה.',
+  'ex.measure.adviceMeter': 'במטר יש מאה סנטימטרים, לא עשרה. כמה סנטימטרים הם {a}?',
+  'ex.measure.adviceKg': 'בקילוגרם יש אלף גרמים, לא מאה. כמה גרמים הם {a}?',
+  'ex.measure.clock.adviceFives':
+    'המחוג הארוך מצביע על מספר, אבל כל מספר בשעון שווה חמש דקות. נספור בחמש.',
+  'ex.measure.clock.adviceHour':
+    'המחוג הקצר עוד לא הגיע למספר הבא. השעה היא המספר שהוא כבר עבר.',
 } as const;

@@ -88,6 +88,15 @@ function readClock(level: 1 | 2) {
         : [{ time: misread, mistake: 'clockHands' }, { time: near }],
     );
     const { options, answer } = set;
+    // The number the long hand points at read as minutes; the next hour read from the short hand.
+    const adviceAt = (tm: ClockTime, key: TranslationKey) => {
+      const i = options.findIndex((o) => same(o, tm));
+      return i < 0 ? [] : [{ value: i, say: say(key) }];
+    };
+    const advice = [
+      ...adviceAt(misread, 'ex.measure.clock.adviceFives'),
+      ...(level === 1 ? adviceAt(at(time.h + 1, time.m), 'ex.measure.clock.adviceHour') : []),
+    ];
     // The example is of the level's kind (8:40, or 8:37 to the minute), and none of the buttons.
     const exs = level === 1 ? [at(8, 40), at(2, 10), at(5, 25)] : [at(8, 37), at(2, 12), at(5, 48)];
     const ex = exs.find((x) => !options.some((o) => same(o, x))) ?? at(8, 40);
@@ -108,6 +117,7 @@ function readClock(level: 1 | 2) {
       ],
       solution: say('ex.clock.solution', { time: words(time) }),
       diagnose: (v) => set.mistakes.get(v) ?? null,
+      advice,
     });
   };
 }
@@ -139,6 +149,7 @@ function elapsed(rng: Rng): Exercise {
     ],
     solution: say('ex.measure.elapsed.solution', { d: min(d) }),
     diagnose: (v) => (v === d / 5 ? 'clockHands' : Math.abs(v - d) === 5 ? 'offByOne' : null),
+    advice: [{ value: d / 5, say: say('ex.measure.elapsed.adviceNumbers') }],
   });
 }
 
@@ -362,6 +373,12 @@ function hours(fact: HourFact, rng: Rng): Exercise {
     }),
     // 100 for an hour: thinking in hundreds, as with metres.
     diagnose: (v) => (v % 100 === 0 && answer % 60 === 0 ? 'other' : null),
+    advice:
+      answer % 60 === 0 && fact.unit === 'minutes'
+        ? choices
+            .filter((v) => v % 100 === 0)
+            .map((value) => ({ value, say: say('ex.measure.hours.adviceHundred') }))
+        : [],
   });
 }
 
@@ -454,6 +471,16 @@ function convert(level: 5 | 7) {
             ),
       ],
       solution,
+      // The big unit turned, the rest not added yet.
+      advice:
+        kind === 'mixed'
+          ? [
+              {
+                value: a * k,
+                say: say('ex.measure.adviceExtra', { v: a * k, b: { n: a, noun: big }, e: extra }),
+              },
+            ]
+          : [],
       diagnose: (v) =>
         kind === 'mixed' && v === a * k
           ? 'other'
@@ -494,6 +521,13 @@ function ruler(rng: Rng): Exercise {
     solution: say('ex.measure.ruler.solution', { to, from, len: { n: len, noun: CM } }),
     // Reading the end mark when the pencil does not start at zero.
     diagnose: (v) => (from > 0 && v === to ? 'other' : null),
+    advice: [
+      ...(from > 0
+        ? [{ value: to, say: say('ex.measure.ruler.adviceEnd', { to, from }) }]
+        : []),
+      // The marks counted instead of the spaces between them.
+      { value: len + 1, say: say('ex.measure.ruler.adviceMarks'), kind: 'offByOne' },
+    ],
   });
 }
 
@@ -553,6 +587,15 @@ function compare(rng: Rng): Exercise {
     solution: say('ex.measure.cmp.solution', { w: winner.slot, l: loser.slot }),
     // The bigger number in the smaller unit is the classic trap.
     diagnose: (v) => (v !== answer && (v === 0 ? x : y) === small ? 'placeValue' : null),
+    advice: [
+      {
+        value: x === small ? 0 : 1,
+        say: say('ex.measure.cmp.adviceUnit', {
+          big: big.slot,
+          unit: length ? 'סנטימטרים' : 'גרמים',
+        }),
+      },
+    ],
   });
 }
 
@@ -613,6 +656,16 @@ function problem(rng: Rng): Exercise {
       ],
       solution: say('ex.measure.ribbon.solution', { all: a * 100, b, left: { n: left, noun: CM } }),
       diagnose: (v) => (v === a - b || v === a * 10 - b ? 'placeValue' : null),
+      // A metre taken as ten centimetres.
+      advice:
+        a * 10 - b > 0
+          ? [
+              {
+                value: a * 10 - b,
+                say: say('ex.measure.adviceMeter', { a: { n: a, noun: METER } }),
+              },
+            ]
+          : [],
     });
   }
   const a = randInt(rng, 3, 5);
@@ -639,6 +692,10 @@ function problem(rng: Rng): Exercise {
     ],
     solution: say('ex.measure.flour.solution', { all: a * 1000, b, left: { n: left, noun: GRAM } }),
     diagnose: (v) => (v === a * 100 - b ? 'placeValue' : null),
+    advice:
+      a * 100 - b > 0
+        ? [{ value: a * 100 - b, say: say('ex.measure.adviceKg', { a: { n: a, noun: KG } }) }]
+        : [],
   });
 }
 
