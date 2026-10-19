@@ -15,10 +15,12 @@ import {
   say,
   SHEKELS,
   wordProblem,
+  type AdviceSpec,
   type WordNoun,
 } from '../build';
 import { pick, randInt } from '../rng';
 import type { Exercise, Hint, Rng } from '../types';
+import type { TranslationKey } from '@/i18n';
 
 /**
  * World 9, grade 4: "מספרים גדולים", up to a million. Reading numbers (a
@@ -63,7 +65,25 @@ function dictation(rng: Rng): Exercise {
     solution: say('ex.dictation.solution', { n }),
     // Missing zeros (40,250 typed as 4,250) is the classic slip.
     diagnose: (v) => (String(v).length !== String(n).length ? 'placeValue' : null),
+    advice: dictationSlips(n).map((v) => ({
+      value: v,
+      say: say('g4.big.dict.digits', { got: String(v).length, len: String(n).length }),
+    })),
   });
+}
+
+/**
+ * The usual ways of writing a dictated number short: a placeholder zero left out
+ * (40,250 → 4,250), or the thousands and the rest written side by side without
+ * their zeros (40,050 → 4,050; 302,017 → 30,217).
+ */
+function dictationSlips(n: number): number[] {
+  const s = String(n);
+  const out = new Set<number>();
+  for (let i = 1; i < s.length; i++) if (s[i] === '0') out.add(Number(s.slice(0, i) + s.slice(i + 1)));
+  out.add(Number(`${Math.floor(n / 1000)}${n % 1000}`));
+  out.delete(n);
+  return [...out].filter((v) => v > 0);
 }
 
 function placeValue(rng: Rng): Exercise {
@@ -120,6 +140,17 @@ function placeValue(rng: Rng): Exercise {
     solution: say('ex.placeValue.solution', { d, n, v: answer }),
     diagnose: (v) =>
       [0, 1, 2, 3, 4, 5].some((k) => k !== i && v === d * 10 ** k) ? 'placeValue' : null,
+    // The digit itself, or the right digit with too few or too many zeros after it.
+    advice: [0, 1, 2, 3, 4, 5]
+      .filter((k) => k !== i)
+      .map((k) => ({
+        value: d * 10 ** k,
+        say:
+          k === 0
+            ? say('g4.big.pv.digit', { d })
+            : say(k < i ? 'g4.big.pv.small' : 'g4.big.pv.big', { d }),
+        kind: 'placeValue' as const,
+      })),
   });
 }
 
@@ -152,7 +183,27 @@ function compare(rng: Rng): Exercise {
       exampleHint('305,000 > 298,999', say('ex.bigger.solution', { w: 305_000, l: 298_999 })),
     ],
     solution: say('ex.bigger.solution', { w: Math.max(a, b), l: Math.min(a, b) }),
+    // The other button: what decides is the number of digits, or the first digit that differs.
+    advice: [{ value: a > b ? 1 : 0, say: compareAdvice(a, b), kind: 'placeValue' }],
   });
+}
+
+/** Where two numbers first differ, counting places from the right (0: the units). */
+function firstDifference(a: number, b: number): number {
+  const x = String(a);
+  const y = String(b);
+  for (let i = 0; i < x.length; i++) if (x[i] !== y[i]) return x.length - 1 - i;
+  return 0;
+}
+
+/** "במקום האחדות" … "במקום מאות האלפים". */
+const placeAtAll = (i: number): string =>
+  i <= 1 ? t(`g4.big.at.${i}` as 'g4.big.at.0') : placeAt(i);
+
+function compareAdvice(a: number, b: number) {
+  return String(a).length !== String(b).length
+    ? say('g4.big.cmp.len')
+    : say('g4.big.cmp.first', { place: placeAtAll(firstDifference(a, b)) });
 }
 
 const ROUND_PLACES = [
@@ -194,6 +245,13 @@ function rounding(rng: Rng): Exercise {
       ),
     ],
     solution: say('ex.roundTo.solution', { n, place, r: answer }),
+    // Rounded the other way: the halfway number decides.
+    advice: [
+      {
+        value: answer === lower ? lower + to : lower,
+        say: say('g4.big.round.other', { half: lower + to / 2, n }),
+      },
+    ],
   });
 }
 
@@ -212,6 +270,7 @@ function timesPower(rng: Rng): Exercise {
     hints: [hint(say(`hint.timesPower.${power(k)}`)), hint(say('hint.timesPower2'))],
     example: { a: 37, b: k },
     input: numpad(7),
+    advice: zerosAdvice(a * k, k, 'g4.big.times.more', 'g4.big.times.less', 'g4.big.times.last'),
   });
 }
 
@@ -227,7 +286,29 @@ function dividePower(rng: Rng): Exercise {
     hints: [hint(say(`hint.dividePower.${power(k)}`)), hint(say('hint.dividePower2'))],
     example: { a: 37 * k, b: k },
     input: numpad(6),
+    advice: zerosAdvice(q, k, 'g4.big.div.more', 'g4.big.div.less', 'g4.big.div.last'),
   });
+}
+
+/**
+ * Multiplying or dividing by 10, 100, 1,000: a zero or two too many or too few at
+ * the end (placeValue), and a digit off by one, which a power of ten never makes.
+ */
+function zerosAdvice(
+  answer: number,
+  k: number,
+  more: TranslationKey,
+  less: TranslationKey,
+  last: TranslationKey,
+): AdviceSpec[] {
+  const out: AdviceSpec[] = [];
+  for (const j of [10, 100]) {
+    out.push({ value: answer * j, say: say(more, { k }), kind: 'placeValue' });
+    if (answer % j === 0) out.push({ value: answer / j, say: say(less, { k }), kind: 'placeValue' });
+  }
+  for (const v of [answer - 1, answer + 1])
+    if (v > 0) out.push({ value: v, say: say(last, { k }), kind: 'offByOne' });
+  return out;
 }
 
 function columnHints(op: '+' | '-'): [Hint, Hint] {
@@ -272,8 +353,40 @@ function column(level: number, op: '+' | '-'): (rng: Rng) => Exercise {
       // Examples that carry (borrow), like the exercises.
       example: op === '+' ? { a: 24_358, b: 13_476 } : { a: 52_400, b: 18_250 },
       input: numpad(6),
+      advice: regroupSlips(a, b, op),
     });
   };
+}
+
+/** "את העשרות" … "את מאות האלפים": the place a carry goes to (1–5). */
+const placeObj = (i: number): string =>
+  t(`g4.big.place.${Math.min(5, Math.max(1, i))}` as 'g4.big.place.1');
+
+/**
+ * A carry forgotten (the sum short by a ten, a hundred, …) or a borrow not taken
+ * off the next place (the difference over by as much), said for the place it was forgotten in.
+ */
+function regroupSlips(a: number, b: number, op: '+' | '-'): AdviceSpec[] {
+  const answer = op === '+' ? a + b : a - b;
+  const out: AdviceSpec[] = [];
+  let carry = 0;
+  let place = 0;
+  for (let x = a, y = b; x > 0 || y > 0; x = Math.floor(x / 10), y = Math.floor(y / 10), place++) {
+    const col = op === '+' ? (x % 10) + (y % 10) + carry : (x % 10) - (y % 10) - carry;
+    carry = op === '+' ? (col >= 10 ? 1 : 0) : col < 0 ? 1 : 0;
+    if (carry === 0) continue;
+    const k = 10 ** (place + 1);
+    out.push(
+      op === '+'
+        ? { value: answer - k, say: say('g4.big.carry', { place: placeObj(place + 1) }), kind: 'carry' }
+        : {
+            value: answer + k,
+            say: say('g4.big.borrow', { place: placeObj(place + 1) }),
+            kind: 'borrow',
+          },
+    );
+  }
+  return out;
 }
 
 function roundSums(rng: Rng): Exercise {
@@ -301,6 +414,12 @@ function roundSums(rng: Rng): Exercise {
     ],
     example: op === '+' ? { a: 340_000, b: 25_000 } : { a: 500_000, b: 120_000 },
     input: numpad(7),
+    // The second number written a place off: 34,000 + 5,000 worked as 34,000 + 50,000.
+    advice: [b * 10, b / 10]
+      .filter((x) => Number.isInteger(x))
+      .map((x) => (op === '+' ? a + x : a - x))
+      .filter((v) => v > 0)
+      .map((v) => ({ value: v, say: say('g4.big.sum.align', { b }), kind: 'placeValue' as const })),
   });
 }
 
@@ -450,6 +569,12 @@ function word(rng: Rng): Exercise {
 /** The pieces of the two-step stories (the one-step ones register themselves). */
 function storyBank(): string[] {
   const out: string[] = [];
+  // Advice with a place in it: every place, also the ones the sample may not reach.
+  for (const i of [0, 1, 2, 3, 4, 5])
+    out.push(...say('g4.big.cmp.first', { place: placeAtAll(i) }).parts);
+  for (const i of [1, 2, 3, 4, 5])
+    for (const key of ['g4.big.carry', 'g4.big.borrow'] as const)
+      out.push(...say(key, { place: placeObj(i) }).parts);
   for (const key of ['g4.wp.tickets', 'g4.wp.library'] as const) {
     const tickets = key === 'g4.wp.tickets';
     out.push(

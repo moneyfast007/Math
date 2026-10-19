@@ -18,10 +18,19 @@ import {
   round,
   say,
   sayText,
+  type AdviceSpec,
   type Character,
 } from '../build';
 import { pick, randInt } from '../rng';
 import type { Exercise, Rng } from '../types';
+import type { Noun } from '@/lang/hebrewNumbers';
+
+const TENTH: Noun = { singular: 'עשירית', plural: 'עשיריות', gender: 'f' };
+
+/** Digits after the point: 3.25 → 2. */
+const places = (x: number): number => String(x).split('.')[1]?.length ?? 0;
+/** The hundredths after the point, as a whole number: 8.7 → 70, 8.68 → 68. */
+const hundredthsOf = (x: number): number => Math.round((x - Math.floor(x)) * 100);
 
 /**
  * World 12, grade 4: "שברים עשרוניים". Tenths and hundredths as fractions and
@@ -59,8 +68,9 @@ function toFraction(level: 1 | 2, n: number): Exercise {
     spoken: sayText(`{x} ${t(level === 1 ? 'ex.dec.toFrac.tenths' : 'ex.dec.toFrac.hundredths')}`, {
       x,
     }),
-    // A bar of ten for tenths (a full row and the rest for more than one); a hundred
-    // cells would be too small to see, so no picture for hundredths.
+    // A bar of ten for tenths (a full row and the rest for more than one). Hundredths
+    // have no picture of their own (the grid would be the answer, counted); a hundred
+    // grid comes as hint 2.
     ...(level === 1
       ? {
           visual: overOne
@@ -80,13 +90,37 @@ function toFraction(level: 1 | 2, n: number): Exercise {
               : 'ex.dec.hundredths.hint1',
         ),
       ),
-      hint(say('g4.dec.place.hint2')),
+      level === 1 ? hint(say('g4.dec.place.hint2')) : gridHint(n),
       exampleHint(
         `${round(ex / den, 2)} = ${f(ex, den)}`,
         say('eq.isWords', { x: round(ex / den, 2), words: w(ex, den) }),
       ),
     ],
     solution: say('eq.isWords', { x, words: w(n, den) }),
+    advice:
+      level === 1
+        ? // 1.3 = 3/10: the whole left out.
+          overOne
+          ? [{ value: n - 10, say: say('g4.dec.adv.whole', { v: n - 10 }), kind: 'placeValue' }]
+          : []
+        : n < 10
+          ? // 0.05 = 50/100: the zero tenths read as tenths.
+            [{ value: n * 10, say: say('g4.dec.adv.zeroTenth'), kind: 'placeValue' }]
+          : // 0.37 = 3/100: only the tenths.
+            [
+              {
+                value: Math.floor(n / 10),
+                say: say('g4.dec.adv.tenthsOnly', { v: Math.floor(n / 10) }),
+                kind: 'placeValue',
+              },
+            ],
+  });
+}
+
+/** Hint 2 for hundredths: a hundred grid, `n` squares shaded (each a hundredth, a row a tenth). */
+function gridHint(n: number) {
+  return hint(say('g4.dec.grid.hint2'), {
+    visual: { type: 'grid', rows: 10, cols: 10, shaded: n },
   });
 }
 
@@ -112,7 +146,7 @@ function fromFraction(n: number, den: 10 | 100): Exercise {
     input: numpad(3, true),
     hints: [
       hint(say(den === 10 ? 'ex.dec.tenths.hint1' : 'ex.dec.hundredths.hint1')),
-      hint(say('g4.dec.place.hint2')),
+      den === 100 ? gridHint(n) : hint(say('g4.dec.place.hint2')),
       exampleHint(
         `${f(ex.n, ex.den)} = ${round(ex.n / ex.den, 2)}`,
         say('eq.wordsIs', { words: w(ex.n, ex.den), x: round(ex.n / ex.den, 2) }),
@@ -120,6 +154,19 @@ function fromFraction(n: number, den: 10 | 100): Exercise {
     ],
     solution: say('eq.wordsIs', { words: w(n, den), x }),
     diagnose: decimalDiagnose(x),
+    // The right digits with the point moved: a whole number, too few or too many places.
+    advice: [100, 10, 0.1, 0.01].map((k): AdviceSpec => {
+      const v = round(x * k, 6);
+      return {
+        value: v,
+        say: Number.isInteger(v)
+          ? say('g4.dec.adv.int', { v, frac: w(n, den) })
+          : places(v) < (den === 10 ? 1 : 2)
+            ? say('g4.dec.adv.oneDigit', { v })
+            : say('g4.dec.adv.manyDigits', { v }),
+        kind: 'decimalPoint',
+      };
+    }),
   });
 }
 
@@ -146,7 +193,69 @@ function compareExercise(level: number, a: number, b: number): Exercise {
           : exampleHint('0.5 > 0.45', say('ex.bigger.solution', { w: 0.5, l: 0.45 })),
     ],
     solution: say('ex.bigger.solution', { w: Math.max(a, b), l: Math.min(a, b) }),
+    // The smaller one picked: the wholes first, then after the point, in hundredths (8.7 is 8.70).
+    advice: [{ value: a > b ? 1 : 0, say: compareAdvice(a, b), kind: 'placeValue' }],
   });
+}
+
+function compareAdvice(a: number, b: number) {
+  if (Math.floor(a) !== Math.floor(b))
+    return say('g4.dec.adv.wholes', { x: Math.floor(a), y: Math.floor(b) });
+  if (places(a) !== places(b)) {
+    const [s, o] = places(a) < places(b) ? [a, b] : [b, a];
+    const t = hundredthsOf(s) / 10;
+    return say('g4.dec.adv.pad', {
+      s,
+      t: { n: t, noun: TENTH },
+      tt: hundredthsOf(s),
+      h: hundredthsOf(o),
+    });
+  }
+  return say('g4.dec.adv.hundredths', { x: hundredthsOf(a), y: hundredthsOf(b) });
+}
+
+/**
+ * Adding or subtracting decimals: the numbers written with their last digits under
+ * each other rather than point under point (1.25 + 2.5 → 1.5), and a carry (borrow)
+ * forgotten between the hundredths and the tenths or the tenths and the wholes.
+ */
+function decimalSlips(a: number, op: '+' | '-', b: number, answer: number): AdviceSpec[] {
+  const out: AdviceSpec[] = [];
+  const pa = places(a);
+  const pb = places(b);
+  if (pa !== pb) {
+    const m = Math.max(pa, pb);
+    const A = Math.round(a * 10 ** pa);
+    const B = Math.round(b * 10 ** pb);
+    const v = round((op === '+' ? A + B : A - B) / 10 ** m, 2);
+    if (v > 0) out.push({ value: v, say: say('g4.dec.adv.align'), kind: 'decimalPoint' });
+  }
+  const scale = Math.max(pa, pb) === 2 ? 100 : 10;
+  let x = Math.round(a * scale);
+  let y = Math.round(b * scale);
+  let carry = 0;
+  // Place 0 is the last digit after the point; carries into the wholes and no further.
+  for (let p = 0; 10 ** p < scale; p++, x = Math.floor(x / 10), y = Math.floor(y / 10)) {
+    const col = op === '+' ? (x % 10) + (y % 10) + carry : (x % 10) - (y % 10) - carry;
+    carry = op === '+' ? (col >= 10 ? 1 : 0) : col < 0 ? 1 : 0;
+    if (carry === 0) continue;
+    const k = 10 ** (p + 1) / scale;
+    const intoWholes = k === 1;
+    out.push(
+      op === '+'
+        ? {
+            value: round(answer - k, 2),
+            say: say(intoWholes ? 'g4.dec.adv.carry' : 'g4.dec.adv.carry100'),
+            kind: 'carry',
+          }
+        : {
+            value: round(answer + k, 2),
+            say: say(intoWholes ? 'g4.dec.adv.borrow' : 'g4.dec.adv.borrow100'),
+            kind: 'borrow',
+          },
+    );
+  }
+  return out.filter((x) => x.value >= 0);
 }
 
 function compareSame(rng: Rng): Exercise {
@@ -200,6 +309,7 @@ function addSub(level: 6 | 7 | 8, rng: Rng): Exercise {
         : { a: 4.2, b: 1.6 },
     input: numpad(4, true),
     diagnose: decimalDiagnose(answer),
+    advice: decimalSlips(a, op, b, answer),
   });
 }
 
@@ -234,6 +344,13 @@ function roundToWhole(rng: Rng): Exercise {
       ),
     ],
     solution: say('ex.dec.round.solution', { x, r: answer }),
+    // Rounded the wrong way: the tenths digit decides.
+    advice: [
+      {
+        value: answer === lo ? lo + 1 : lo,
+        say: say('g4.dec.adv.round', { x, t: Math.round(x * 10) % 10 }),
+      },
+    ],
   });
 }
 
@@ -312,12 +429,15 @@ function story(rng: Rng): Exercise {
     ],
     solution: sayText(sentence, { a, b, c: answer }),
     diagnose: decimalDiagnose(answer),
+    advice: decimalSlips(a, op, b, answer),
   });
 }
 
 /** Every literal piece of the stories, for every character. */
 function storyBank(): string[] {
   const out: string[] = [];
+  // "שתי עשיריות" is said with the words around it, one clip: every tenth, to be sure.
+  for (let t = 1; t <= 9; t++) out.push(...compareAdvice(round(3 + t / 10, 1), 3.45).parts);
   for (const { key } of UNITS) {
     for (const who of CHARACTERS) {
       out.push(...say(`${key}.story`, { name: who.name, a: 1.5, b: 2.5 }, who.gender).parts);

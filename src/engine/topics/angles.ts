@@ -1,4 +1,4 @@
-import { shown } from '@/lang/compose';
+import { shown, type Slot } from '@/lang/compose';
 import { t, type TranslationKey } from '@/i18n';
 import type { Noun } from '@/lang/hebrewNumbers';
 import {
@@ -14,6 +14,8 @@ import {
   open,
   pictureExample,
   say,
+  sayText,
+  type AdviceSpec,
   type Said,
 } from '../build';
 import { randInt, shuffle } from '../rng';
@@ -154,6 +156,7 @@ function choiceExercise(o: {
   answer: number;
   hints: [Hint, Hint, Hint];
   solution: Said;
+  advice?: AdviceSpec[];
 }): Exercise {
   return exercise({
     factId: o.factId,
@@ -167,8 +170,34 @@ function choiceExercise(o: {
     input: labelledChoices(o.labels),
     hints: o.hints,
     solution: o.solution,
+    ...(o.advice ? { advice: o.advice } : {}),
   });
 }
+
+/**
+ * Advice for every wrong name on the buttons: what that name means, then what
+ * to check in the picture (never the right name itself).
+ */
+function nameAdvice(
+  labels: string[],
+  answer: number,
+  meaning: (label: string) => TranslationKey | null,
+  check: TranslationKey,
+  slots: Record<string, Slot> = {},
+): AdviceSpec[] {
+  return labels.flatMap((label, i) => {
+    const key = i === answer ? null : meaning(label);
+    return key ? [{ value: i, say: sayText(`${t(key)} ${t(check)}`, slots) }] : [];
+  });
+}
+
+/** The key of the label's kind, by its word. */
+const byWord =
+  <K extends string>(words: Record<K, string>, prefix: string) =>
+  (label: string): TranslationKey | null => {
+    const k = (Object.keys(words) as K[]).find((x) => words[x] === label);
+    return k ? (`${prefix}.${k}` as TranslationKey) : null;
+  };
 
 /** Labels shuffled with the right one tracked. */
 function shuffledLabels(rng: Rng, right: string, wrong: string[]) {
@@ -206,6 +235,7 @@ function angleKind({ deg, turn }: { deg: number; turn: number }, rng: Rng): Exer
       }),
     ],
     solution: say(`ex.angles.kind.${kind}`),
+    advice: nameAdvice(labels, answer, byWord(ANGLE_WORD, 'g4.ang.adv.is'), 'g4.ang.adv.check'),
   });
 }
 
@@ -289,6 +319,7 @@ function linesKind({ kind, turn }: { kind: LinesKind; turn: number }, rng: Rng):
       pictureExample(say(`ex.angles.lines.${ex}`), { type: 'lines', kind: ex }),
     ],
     solution: say(`ex.angles.lines.${kind}`),
+    advice: nameAdvice(labels, answer, byWord(LINES_WORD, 'g4.lines.adv'), 'g4.lines.adv.check'),
   });
 }
 
@@ -343,6 +374,7 @@ function bySides({ kind, sides }: (typeof SIDE_FACTS)[number], rng: Rng): Exerci
       ),
     ],
     solution: say(`ex.angles.sides.${kind}`),
+    advice: nameAdvice(labels, answer, byWord(SIDE_WORD, 'g4.sides.adv'), 'g4.sides.adv.check'),
   });
 }
 
@@ -396,6 +428,13 @@ function byAngles({ kind, angles }: (typeof ANGLE_FACTS)[number], rng: Rng): Exe
       ),
     ],
     solution: say(`ex.angles.tri.${kind}`),
+    advice: nameAdvice(
+      labels,
+      answer,
+      byWord(TRI_WORD, 'g4.tri.adv'),
+      'g4.tri.adv.check',
+      { m: { n: Math.max(...angles), noun: DEGREE } },
+    ),
   });
 }
 
@@ -459,6 +498,12 @@ function quad({ shape }: { shape: Quad }, rng: Rng): Exercise {
     solution: say(shape === 'parallelogram' ? 'g4.quad.solution.f' : 'ex.angles.quad.solution', {
       name: QUAD_WORD[shape],
     }),
+    advice: nameAdvice(
+      labels,
+      answer,
+      byWord(QUAD_WORD, 'ex.angles.quad.about'),
+      'g4.quad.adv.check',
+    ),
   });
 }
 

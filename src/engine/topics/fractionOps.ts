@@ -20,6 +20,7 @@ import {
   numpad,
   range,
   say,
+  type AdviceSpec,
   type Said,
   WORD_NOUNS,
 } from '../build';
@@ -234,7 +235,35 @@ function compare(a: Frac, b: Frac): Exercise {
       ),
     ],
     solution: say('ex.frac.bigger.solution', { w: w(big.n, big.d), l: w(small.n, small.d) }),
+    // The smaller one picked: what decides, for this way of comparing.
+    advice: [{ value: 1 - answer, say: compareAdvice(way, small, big) }],
   });
+}
+
+/** Why the picked fraction is the smaller: against a half, a whole, the size of the parts. */
+function compareAdvice(way: CompareWay, small: Frac, big: Frac): Said {
+  const s = w(small.n, small.d);
+  switch (way) {
+    case 'half':
+      return say(
+        2 * small.n === small.d
+          ? 'g4.frac.adv.isHalf'
+          : 2 * big.n === big.d
+            ? 'g4.frac.adv.lessThanHalf'
+            : 'g4.frac.adv.lessHalf',
+        { s, o: w(big.n, big.d) },
+      );
+    case 'sameNum':
+      return say('g4.frac.adv.sameNum', { s });
+    case 'nearOne':
+      return say('g4.frac.adv.nearOne', { s, miss: w(1, small.d) });
+    case 'related': {
+      // The one with the bigger parts, renamed in the smaller ones.
+      const [x, y] = small.d < big.d ? [small, big] : [big, small];
+      const k = y.d / x.d;
+      return say('g4.frac.adv.related', { x: w(x.n, x.d), y: w(x.n * k, y.d) });
+    }
+  }
 }
 
 function gcdOf(a: number, b: number): number {
@@ -292,6 +321,16 @@ function relatedSum(level: 4 | 5, a: number, d: number, b: number, D: number): E
     ],
     solution: solved(a, d, b, D, answer),
     diagnose: (v) => (v === (add ? a + b : Math.abs(a - b)) ? 'other' : null),
+    // The numerators added (taken away) as they are: first the parts must be the same size.
+    advice: [
+      {
+        value: add ? a + b : Math.abs(a - b),
+        say: say(add ? 'g4.frac.adv.addNums' : 'g4.frac.adv.subNums', {
+          x: w(a, d),
+          plural: fractionNoun(D).plural,
+        }),
+      },
+    ],
   });
 }
 
@@ -442,6 +481,18 @@ function mixedToImproper(whole: number, n: number, d: number): Exercise {
     ],
     solution: say('ex.frac.equal.solution', { a: mixedWords(whole, n, d), b: w(answer, d) }),
     diagnose: (v) => (v === whole + n ? 'other' : null),
+    // The wholes counted as single parts.
+    advice: [
+      {
+        value: whole + n,
+        say: say('g4.frac.adv.mixed', {
+          all: { n: d, noun: fractionNoun(d) },
+          plural: fractionNoun(d).plural,
+          wholes: { n: whole, noun: WHOLE },
+          rest: w(n, d),
+        }),
+      },
+    ],
   });
 }
 
@@ -490,7 +541,26 @@ function ofQuantity(n: number, d: number, total: number): Exercise {
     ],
     solution: say('ex.frac.of.solution', { frac: w(n, d), whole: total, r: answer }),
     diagnose: (v) => (v === total / d ? 'other' : null),
+    advice: ofAdvice(n, d, total),
   });
+}
+
+/**
+ * A part of a quantity: one part found and not taken n times (6/8 of 16 → 2), or
+ * the part that was not taken (6/8 of 16 → 4).
+ */
+function ofAdvice(n: number, d: number, total: number): AdviceSpec[] {
+  const one = total / d;
+  return [
+    {
+      value: one,
+      say: say('g4.frac.adv.ofOne', { v: one, one: w(1, d), total, n }),
+    },
+    {
+      value: total - one * n,
+      say: say('g4.frac.adv.ofRest', { v: total - one * n, frac: w(n, d), total }),
+    },
+  ];
 }
 
 type StoryKind = 'give' | 'left' | 'eatAdd' | 'eatSub';
@@ -524,6 +594,7 @@ function story(x: StoryFact): Exercise {
   let hint1: Said;
   let solution: Said;
   let example: Hint;
+  let advice: AdviceSpec[] = [];
   if (kind === 'give' || kind === 'left') {
     const total = m;
     const part = (total / d) * n;
@@ -546,6 +617,12 @@ function story(x: StoryFact): Exercise {
       kind === 'give'
         ? say('g4.wp.fraction.hint1', { frac: w(n, d), d, total, n })
         : say('g4.wp.frac.left.hint1', { frac: w(n, d), plural: noun.plural });
+    advice =
+      kind === 'give'
+        ? n > 1
+          ? ofAdvice(n, d, total).slice(0, 1)
+          : []
+        : [{ value: part, say: say('g4.frac.adv.leftPart', { v: part }) }];
     solution =
       kind === 'give'
         ? say('ex.frac.of.solution', { frac: w(n, d), whole: total, r: answer })
@@ -638,6 +715,7 @@ function story(x: StoryFact): Exercise {
       example,
     ],
     solution,
+    advice,
   });
 }
 
