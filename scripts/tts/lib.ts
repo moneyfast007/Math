@@ -12,7 +12,14 @@ import { CLIP_ID_LENGTH, normalizeSpokenText } from '../../src/audio/hash';
  * gcloud default). Nothing here is ever imported by the browser bundle.
  */
 
-export type Engine = 'gemini-flash' | 'gemini-pro' | 'gemini-3.1-flash' | 'chirp3-hd' | 'wavenet';
+export type Engine =
+  | 'gemini-flash'
+  | 'gemini-pro'
+  | 'gemini-3.1-flash'
+  | 'gemini-3.8-flash'
+  | 'gemini-3.8-flash-lite'
+  | 'chirp3-hd'
+  | 'wavenet';
 
 export interface VoiceSpec {
   engine: Engine;
@@ -82,7 +89,9 @@ function buildBody(text: string, spec: VoiceSpec): SynthesizeBody {
   switch (spec.engine) {
     case 'gemini-flash':
     case 'gemini-pro':
-    case 'gemini-3.1-flash': {
+    case 'gemini-3.1-flash':
+    case 'gemini-3.8-flash':
+    case 'gemini-3.8-flash-lite': {
       const body: SynthesizeBody = {
         input: { text, prompt: spec.prompt ?? DEFAULT_PROMPT },
         voice: {
@@ -93,7 +102,11 @@ function buildBody(text: string, spec: VoiceSpec): SynthesizeBody {
               ? 'gemini-2.5-flash-tts'
               : spec.engine === 'gemini-pro'
                 ? 'gemini-2.5-pro-tts'
-                : 'gemini-3.1-flash-tts-preview',
+                : spec.engine === 'gemini-3.8-flash'
+                  ? 'gemini-3.8-flash-tts'
+                  : spec.engine === 'gemini-3.8-flash-lite'
+                    ? 'gemini-3.8-flash-lite-tts'
+                    : 'gemini-3.1-flash-tts-preview',
         },
         audioConfig: { audioEncoding: 'MP3' },
       };
@@ -212,6 +225,10 @@ export function estimateCost(texts: readonly string[], engine: Engine): string {
       return `${(seconds * 25 * (10 / 1_000_000)).toFixed(2)} USD (Gemini 2.5 Flash, ~${Math.round(seconds / 60)} min audio)`;
     case 'gemini-pro':
       return `${(seconds * 25 * (20 / 1_000_000)).toFixed(2)} USD (Gemini 2.5 Pro, ~${Math.round(seconds / 60)} min audio)`;
+    case 'gemini-3.8-flash':
+      return `~${(seconds * 25 * (9 / 1_000_000)).toFixed(2)} USD (Gemini 3.8 Flash TTS preview)`;
+    case 'gemini-3.8-flash-lite':
+      return `~${(seconds * 25 * (6 / 1_000_000)).toFixed(2)} USD (Gemini 3.8 Flash-Lite TTS preview)`;
     case 'gemini-3.1-flash':
       return `~${(seconds * 25 * (10 / 1_000_000)).toFixed(2)} USD (Gemini 3.1 Flash TTS preview, ~${Math.round(seconds / 60)} min audio)`;
     case 'wavenet':

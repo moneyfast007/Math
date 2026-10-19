@@ -18,6 +18,7 @@ import {
   PROBE,
   ROUND6,
   ROUND7,
+  ROUND8,
   SENTENCES as SAMPLE_SENTENCES,
   WORDS,
 } from './sample-sentences';
@@ -54,7 +55,9 @@ const { values } = parseArgs({
 });
 
 const SENTENCES: readonly string[] =
-  values.set === 'round7'
+  values.set === 'round8'
+    ? ROUND8
+    : values.set === 'round7'
     ? ROUND7
     : values.set === 'round6'
       ? ROUND6.map((r) => r.text)
@@ -142,6 +145,21 @@ const ROUND7_VARIANTS: Variant[] = [
   texts: [...SENTENCES],
 }));
 
+/** Round 8: the quick pace, whole sentences; the cheaper 3.8 models and the voice Sulafat. */
+const ROUND8_VARIANTS: Variant[] = (
+  [
+    ['3.1-leda', 'gemini-3.1-flash', 'Leda'],
+    ['3.1-sulafat', 'gemini-3.1-flash', 'Sulafat'],
+    ['3.8-leda', 'gemini-3.8-flash', 'Leda'],
+    ['3.8-sulafat', 'gemini-3.8-flash', 'Sulafat'],
+    ['3.8-lite-leda', 'gemini-3.8-flash-lite', 'Leda'],
+  ] as const
+).map(([name, engine, voice]) => ({
+  name,
+  spec: { engine, voice, prompt: QUICK_PROMPT },
+  texts: [...SENTENCES],
+}));
+
 const only = values.only?.split(',').map((x) => x.trim());
 const takes = Math.max(1, Number(values.takes) || 1);
 const variants: Variant[] = values.voices
@@ -167,7 +185,9 @@ const variants: Variant[] = values.voices
           texts,
         }));
       })
-  : (values.set === 'round7'
+  : (values.set === 'round8'
+      ? ROUND8_VARIANTS
+      : values.set === 'round7'
       ? ROUND7_VARIANTS
       : values.set === 'round6'
         ? ROUND6_VARIANTS
@@ -203,7 +223,7 @@ async function main(): Promise<void> {
       .filter((x): x is { text: string; i: number } => x.text !== null);
     try {
       // Gemini TTS starts with a low per-minute quota on new projects: one request at a time.
-      const concurrency = v.spec.engine === 'chirp3-hd' || v.spec.engine === 'wavenet' ? 3 : 1;
+      const concurrency = v.spec.engine === 'chirp3-hd' || v.spec.engine === 'wavenet' ? 3 : 2;
       await mapLimit(items, concurrency, async ({ text, i }) => {
         const n = String(i + 1).padStart(2, '0');
         const clips = v.parts?.[i];
