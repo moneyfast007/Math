@@ -106,6 +106,19 @@ describe('completeRound', () => {
     expect(out.progress.streak).toEqual({ count: 1, lastDay: '2026-10-14' });
   });
 
+  it('does not move past the last level of a world that ends early for this grade', () => {
+    const out = completeRound(base(5), {
+      topicId: 't',
+      station: 5,
+      firstTry: 9,
+      length: 10,
+      at: day,
+      lastLevel: 5,
+    });
+    expect(out.advancedTo).toBeNull();
+    expect(out.progress.topics['t']).toMatchObject({ level: 5, completedLevels: [5] });
+  });
+
   it('a round below the pass rate changes only the streak', () => {
     const out = completeRound(base(3), {
       topicId: 't',

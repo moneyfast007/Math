@@ -4,7 +4,7 @@ import { navigate } from '@/app/router';
 import { dailyPool, pickDaily, type DailyItem } from '@/engine/daily';
 import { activeWorld, nextStop, worldsFor } from '@/engine/journey';
 import { pick } from '@/engine/rng';
-import { currentLevel, topicById } from '@/engine/registry';
+import { currentLevel, levelsFor, topicById } from '@/engine/registry';
 import {
   completedExercise,
   reduce,
@@ -84,7 +84,7 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
       }
       const replay = mode === 'replay' ? replayableTopic(profile) : undefined;
       if (replay) {
-        const last = replay.levels.at(-1)?.level ?? 1;
+        const last = levelsFor(replay, profile.grade).at(-1)?.level ?? 1;
         return { topic: replay, level: last, stored: last };
       }
       const world = activeWorld(profile.grade, progress);
@@ -106,7 +106,9 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
   const replaying = mode === 'replay';
   const daily = mode === 'daily';
   const pool = 'pool' in station ? station.pool : [];
-  const levels = topic.levels.map((l) => l.level);
+  /** This child's levels of the world (a younger grade may end earlier). */
+  const gradeLevels = levelsFor(topic, profile.grade);
+  const levels = gradeLevels.map((l) => l.level);
   /** Exercises already given in this round: none comes again while the level has others. */
   const seen = useRef<string[]>([]);
   const generate = (level: number): Exercise => {
@@ -127,7 +129,7 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
       level,
       // The review never suggests a level change: every exercise is from a different one.
       minLevel: review ? level : (topic.levels[0]?.level ?? 1),
-      maxLevel: review ? level : (topic.levels.at(-1)?.level ?? 10),
+      maxLevel: review ? level : (gradeLevels.at(-1)?.level ?? 10),
       band,
       exercise: generate(level),
     });
@@ -174,6 +176,7 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
           firstTry: after.firstTryCount,
           length: after.length,
           at: Date.now(),
+          lastLevel: gradeLevels.at(-1)?.level ?? 10,
         }),
       );
     }
@@ -598,7 +601,8 @@ function explanation(s: SessionState, tc: TC): string {
     m === 'offByTen' ||
     m === 'remainder' ||
     m === 'countedCoins' ||
-    m === 'clockHands'
+    m === 'clockHands' ||
+    m === 'order'
   ) {
     return tc(`explain.${m}`);
   }

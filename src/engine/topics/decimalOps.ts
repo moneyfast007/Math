@@ -188,7 +188,8 @@ function roundTenth(rng: Rng): Exercise {
     input: numpad(4, true),
     hints: [
       hint(say('ex.dop.round.hint1')),
-      hint(say('ex.dec.round.hint2')),
+      // Rounding to tenths looks at the hundredths (the grade 4 hint was about whole numbers).
+      hint(say('ex.dop.round.hint2', { x, d: Math.round(x * 100) % 10 })),
       x === 3.47
         ? exampleHint('2.81 → 2.8', say('ex.dop.round.solution', { x: 2.81, r: 2.8 }))
         : exampleHint('3.47 → 3.5', say('ex.dop.round.solution', { x: 3.47, r: 3.5 })),

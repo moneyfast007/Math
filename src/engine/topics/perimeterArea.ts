@@ -131,13 +131,15 @@ function missingSide(level: 6 | 7, rng: Rng): Exercise {
     factId: `${key}:${w}:${h}`,
     topicId: ID,
     level,
-    prompt: t(`${key}.prompt` as const),
+    // The given total is on screen too, not only heard.
+    prompt: t(`${key}.prompt` as const, { params: { total } }),
     display: '',
     spoken: say(`${key}.spoken` as const, {
       total: { n: total, noun: fromArea ? SQCM : CM },
       w: { n: w, noun: CM },
     }),
-    visual: { type: 'rect', width: w, height: h },
+    // The missing side is the question: drawn as "?", never with its length.
+    visual: { type: 'rect', width: w, height: h, hide: 'height' },
     answer: h,
     operation: fromArea ? 'div' : 'sub',
     input: numpad(2),
@@ -166,6 +168,9 @@ const UNIT_NOUNS = {
   km: { singular: 'קילומטר', plural: 'קילומטרים', gender: 'm' },
 } as const satisfies Record<string, Noun>;
 
+/** Written units: "9 מ׳ = ? ס״מ", never the false "9 = 900". */
+const ABBR = { m: 'מ׳', cm: 'ס״מ', mm: 'מ״מ', km: 'ק״מ' } as const;
+
 const CONVERSIONS = [
   { from: 'm', to: 'cm', k: 100 },
   { from: 'cm', to: 'mm', k: 10 },
@@ -183,7 +188,7 @@ function convert(n: number, c: (typeof CONVERSIONS)[number]): Exercise {
     topicId: ID,
     level: 8,
     prompt: t('ex.convert.prompt', { params: { to: to.plural, amount: `${n} ${from.plural}` } }),
-    display: `${n} = ?`,
+    display: `${n} ${ABBR[c.from]} = ? ${ABBR[c.to]}`,
     spoken: say('ex.convert.spoken', { to: to.plural, amount: { n, noun: from } }),
     answer,
     operation: 'mul',
@@ -192,7 +197,7 @@ function convert(n: number, c: (typeof CONVERSIONS)[number]): Exercise {
       hint(say('ex.convert.hint1', { one: from.singular, k: { n: c.k, noun: to } })),
       hint(say('ex.convert.hint2', { k: c.k })),
       exampleHint(
-        `${exN} → ${exN * c.k}`,
+        `${exN} ${ABBR[c.from]} = ${exN * c.k} ${ABBR[c.to]}`,
         say('ex.convert.solution', {
           amount: { n: exN, noun: from },
           r: { n: exN * c.k, noun: to },

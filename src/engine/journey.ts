@@ -1,6 +1,6 @@
 import type { ProfileProgress } from '@/state/schema';
 import type { Grade } from '@/ui/ageBand';
-import { currentLevel, topicsForGrade } from './registry';
+import { currentLevel, levelsFor, topicsForGrade } from './registry';
 import type { Topic } from './types';
 
 /**
@@ -48,7 +48,7 @@ export function worldFor(
   const stats = progress?.topics[topic.id];
   const level = currentLevel(topic, grade, progress);
   const completed = new Set(stats?.completedLevels ?? []);
-  const stations: WorldStation[] = topic.levels.map((l) => ({
+  const stations: WorldStation[] = levelsFor(topic, grade).map((l) => ({
     level: l.level,
     labelKey: l.labelKey,
     state:

@@ -135,7 +135,14 @@ function oneStep(level: number, n: number, rng: Rng, more1: boolean): Exercise {
     ? { type: 'objects', kind: noun, groups: [n, 1] }
     : { type: 'objects', kind: noun, groups: [n], removed: 1 };
   const solved = say(k(`${key}.solution`), { a: n, c: answer });
-  const ex = more1 ? { n: n === 3 ? 5 : 3 } : { n: n === 4 ? 6 : 4 };
+  // The example shares no number with the exercise.
+  const exStep = (x: number) => (more1 ? x + 1 : x - 1);
+  const ex = {
+    n:
+      (more1 ? [3, 5, 6, 2] : [4, 6, 7, 3]).find(
+        (x) => ![n, answer].includes(x) && ![n, answer].includes(exStep(x)),
+      ) ?? 3,
+  };
   const exSolved = say(k(`${key}.solution`), { a: ex.n, c: more1 ? ex.n + 1 : ex.n - 1 });
   return exercise({
     factId: `${more1 ? 'oneMore' : 'oneLess'}:${n}`,
@@ -151,7 +158,7 @@ function oneStep(level: number, n: number, rng: Rng, more1: boolean): Exercise {
     hints: [
       hint(say(k(`${key}.hint1`))),
       hint(say('hint.numberLine'), {
-        visual: { type: 'numberLine', from: 0, to: 10, start: n, hops: more1 ? 1 : -1 },
+        visual: { type: 'numberLine', from: 0, to: 10, start: n, hops: more1 ? 1 : -1, hide: answer },
       }),
       exampleHint(`${ex.n} ${more1 ? '+' : '−'} 1 = ${more1 ? ex.n + 1 : ex.n - 1}`, exSolved),
     ],
@@ -170,7 +177,8 @@ function complete(level: number, n: number, rng: Rng, target: 5 | 10): Exercise 
     plural: noun.plural,
   });
   const solved = say('ex.makeN.solution', { a: n, b: answer, target });
-  const exN = n === 2 ? 3 : 2;
+  // Neither number of the example is this exercise's: 2 + 3 = 5 would answer 3 + ? = 5.
+  const exN = [2, 1, 3, 4].find((x) => x !== n && x !== answer && x < target) ?? 1;
   const exSolved = say('ex.makeN.solution', { a: exN, b: target - exN, target });
   return exercise({
     factId: `make${target}:${n}`,
@@ -201,7 +209,9 @@ function neighbour(level: number, n: number, rng: Rng, after: boolean): Exercise
   const prompt = t(k(`${key}.prompt`), { params: { n } });
   const spoken = say(k(`${key}.spoken`), { n });
   const solved = say(k(`${key}.solution`), { n, c: answer });
-  const exN = n === 5 ? 7 : 5;
+  // The example shares no number with the exercise (6 → 7 would answer "after 5").
+  const exN =
+    [5, 7, 2, 8, 3].find((x) => ![n, answer].includes(x) && ![n, answer].includes(after ? x + 1 : x - 1)) ?? 5;
   const exSolved = say(k(`${key}.solution`), { n: exN, c: after ? exN + 1 : exN - 1 });
   return exercise({
     factId: `${after ? 'after' : 'before'}:${n}`,
@@ -215,7 +225,7 @@ function neighbour(level: number, n: number, rng: Rng, after: boolean): Exercise
     hints: [
       hint(say(k(`${key}.hint1`))),
       hint(say('hint.numberLine'), {
-        visual: { type: 'numberLine', from: 0, to: 10, start: n, hops: after ? 1 : -1 },
+        visual: { type: 'numberLine', from: 0, to: 10, start: n, hops: after ? 1 : -1, hide: answer },
       }),
       exampleHint(`${exN} → ${after ? exN + 1 : exN - 1}`, exSolved),
     ],

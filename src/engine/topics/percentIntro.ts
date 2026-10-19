@@ -189,7 +189,8 @@ function percentOf(level: 6 | 7, rng: Rng): Exercise {
     input: numpad(3),
     hints: [
       hint(say(level === 6 ? 'ex.pct.of.hint1familiar' : 'ex.pct.of.hint1tens')),
-      hint(sayP('ex.pct.of.hint2', { base })),
+      // The shortcut for this percent: half, a quarter, or a tenth.
+      hint(sayP(p === 50 ? 'ex.pct.of.hint2half' : p === 25 ? 'ex.pct.of.hint2quarter' : 'ex.pct.of.hint2', { base })),
       exampleHint(
         base === 80 && p === 30 ? '20% × 50 = 10' : '30% × 80 = 24',
         sayP(

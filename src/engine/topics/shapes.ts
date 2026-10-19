@@ -140,7 +140,8 @@ function where(level: number) {
       shuffled(rng, right, name, wrong),
       [
         hint(say(ABOUT[target])),
-        hint(say('ex.shapes.corners.hint')),
+        // Square and rectangle both have four corners: what tells them apart is the sides.
+        hint(say(level === 2 ? 'ex.shapes.sides.hint' : 'ex.shapes.corners.hint')),
         pictureExample(say('ex.shapes.this', { name }), one(item(target, 'yellow'))),
       ],
       say('ex.shapes.this', { name }),
@@ -461,10 +462,19 @@ export const shapesTopic = defineTopic({
     ),
     closed(
       L(2),
-      whereFacts(['square', 'rectangle'], (t) => [
-        [t === 'square' ? 'rectangle' : 'square', 'circle'],
-        [t === 'square' ? 'rectangle' : 'square', 'triangle'],
-      ]),
+      // A square is also a rectangle: "where is the rectangle?" never offers a square,
+      // so there is one right answer; "where is the square?" sets it against a long rectangle.
+      whereFacts(['square', 'rectangle'], (t) =>
+        t === 'square'
+          ? [
+              ['rectangle', 'circle'],
+              ['rectangle', 'triangle'],
+            ]
+          : [
+              ['circle', 'triangle'],
+              ['triangle', 'circle'],
+            ],
+      ),
       where(2),
     ),
     closed(L(3), () => ALL.flatMap((target) => [30, 90].map((turn) => ({ target, turn }))), same),

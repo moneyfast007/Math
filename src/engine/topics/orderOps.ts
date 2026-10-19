@@ -144,7 +144,7 @@ function fromShape(level: number, gen: Gen, rng: Rng): Exercise {
   const exS = gen(() => 0.37);
   const example = exS && exS.display !== s.display ? exS : (gen(() => 0.71) ?? exS);
   if (!example || example.display === s.display) return fromShape(level, gen, rng);
-  const diagnose = (v: number): MistakeKind | null => (v === s.wrong ? 'wrongOperation' : null);
+  const diagnose = (v: number): MistakeKind | null => (v === s.wrong ? 'order' : null);
   return exercise({
     factId: `ord:${s.display}`,
     topicId: ID,
@@ -267,7 +267,7 @@ function story(rng: Rng): Exercise {
       exampleHint('3 × 8 + 5 = 29', say('wp.ord.shop.solution', { a: 3, b: 8, c: 5, r: 29 })),
     ],
     solution: say('wp.ord.shop.solution', { a: k, b: price, c: pen, r: answer }),
-    diagnose: (v) => (v === k * (price + pen) ? 'wrongOperation' : null),
+    diagnose: (v) => (v === k * (price + pen) ? 'order' : null),
   });
 }
 

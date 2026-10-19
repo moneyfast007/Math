@@ -25,7 +25,8 @@ export type Visual =
   /** Dots in rows × cols, for multiplication; `squares` draws cells (area). */
   | { type: 'array'; rows: number; cols: number; squares?: boolean }
   /** A rectangle with labelled sides, for perimeter and area. */
-  | { type: 'rect'; width: number; height: number; unit?: string }
+  /** `hide`: that side is the question, drawn as "?". */
+  | { type: 'rect'; width: number; height: number; unit?: string; hide?: 'height' }
   /** A number broken into thousands, hundreds, tens and units. */
   | { type: 'placeValue'; n: number }
   /**
@@ -57,6 +58,8 @@ export type Visual =
       target?: number;
       /** Tick spacing (default 1); a hop is one tick. */
       step?: number;
+      /** A tick whose number is the question: drawn as "?" (a hint that shows the way, not the answer). */
+      hide?: number;
     }
   /**
    * Clocks: one, or two side by side (from, to: how much time passed). Analog
@@ -267,6 +270,12 @@ export interface Topic {
   levels: readonly LevelInfo[];
   /** Where a child of this grade starts. */
   startLevel: (grade: number) => number;
+  /**
+   * The last level for a child of this grade (10 when absent): a world shared
+   * with an older grade ends earlier for the younger one, so she is not
+   * stopped by the older grade's content.
+   */
+  lastLevel?: (grade: number) => number;
   /**
    * A new exercise. `avoid`: facts already seen in this round (the last one
    * last); none of them comes again while the level has others to give.

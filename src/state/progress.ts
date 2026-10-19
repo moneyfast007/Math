@@ -87,6 +87,8 @@ export interface RoundResult {
   firstTry: number;
   length: number;
   at: number;
+  /** The world's last level for this child (a younger grade may end earlier); 10 when absent. */
+  lastLevel?: number;
 }
 
 export interface RoundOutcome {
@@ -142,7 +144,9 @@ export function completeRound(progress: ProfileProgress, r: RoundResult): RoundO
     : prev.completedLevels;
   // Move on only from the level she is at now; a revisit of an old station stays put.
   const advancedTo =
-    passed && prev.level === r.station && r.station < MAX_LEVEL ? r.station + 1 : null;
+    passed && prev.level === r.station && r.station < Math.min(MAX_LEVEL, r.lastLevel ?? MAX_LEVEL)
+      ? r.station + 1
+      : null;
   const stats: TopicStats = {
     ...prev,
     level: advancedTo ?? prev.level,

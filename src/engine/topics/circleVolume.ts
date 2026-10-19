@@ -54,6 +54,9 @@ function build(s: Spec): Exercise {
       r: Number.isInteger(r) ? { n: r, noun: s.unit } : r,
       u: Number.isInteger(r) ? '' : ` ${s.unit.plural}`,
     });
+  // A typical mistake that gives the right number would be praised: such an exercise is a bug.
+  if (s.wrong?.some((w) => Math.abs(w - s.answer) < 1e-9))
+    throw new Error(`${s.id}: a typical mistake gives the answer`);
   return exercise({
     factId: s.id,
     topicId: ID,
@@ -124,7 +127,10 @@ const circumference = (n: number, fromRadius: boolean): Exercise => {
       slots: fromRadius ? { r: slot(e, CM) } : { d: slot(e, CM) },
       r: round(PI * eD, 2),
     },
-    wrong: [round(PI * n, 2), round(PI * n * n, 2)].filter((w) => w !== answer),
+    // From the radius: forgot to double it, or the area. From the diameter: doubled it, or the area.
+    wrong: fromRadius
+      ? [round(PI * n, 2), round(PI * n * n, 2)]
+      : [round(PI * 2 * n, 2), round(PI * (n / 2) * (n / 2), 2)],
   });
 };
 
@@ -255,9 +261,12 @@ const aquarium = (x: Box): Exercise => {
   });
 };
 
-const BOXES: Box[] = range(2, 9).flatMap((a) =>
-  range(2, a).flatMap((b) => range(2, 6).map((c) => ({ a, b, c }))),
-);
+/** Boxes whose volume is not also the sum of the edges or the surface (6 × 6 × 6: both 216). */
+const BOXES: Box[] = range(2, 9)
+  .flatMap((a) => range(2, a).flatMap((b) => range(2, 6).map((c) => ({ a, b, c }))))
+  .filter(
+    ({ a, b, c }) => a * b * c !== a + b + c && a * b * c !== 2 * (a * b + b * c + a * c),
+  );
 const AQUARIUMS: Box[] = [20, 25, 30, 40, 50, 60]
   .flatMap((a) => [10, 20, 25, 30].flatMap((b) => [10, 20, 30, 40].map((c) => ({ a, b, c }))))
   .filter((x) => (x.a * x.b * x.c) % 1000 === 0);
@@ -280,15 +289,22 @@ export const circleVolume = defineTopic({
     ),
     closed(
       L(3),
-      () => range(1, 30),
+      // Not d = 4 (r = 2): there the area and the circumference are the same number,
+      // so a child who mixes them up would be told she is right.
+      () => range(1, 30).filter((d) => d !== 4),
       (d) => circumference(d, false),
     ),
     closed(
       L(4),
-      () => range(1, 15),
+      () => range(1, 15).filter((r) => r !== 2),
       (r) => circumference(r, true),
     ),
-    closed(L(5), () => range(1, 12), area),
+    closed(
+      L(5),
+      // Not r = 1 or 2: there the area equals π × r or the circumference.
+      () => range(3, 12),
+      area,
+    ),
     closed(L(6), () => BOXES, boxVolume),
     closed(L(7), () => range(2, 12), cube),
     closed(L(8), () => BOXES, missingEdge),

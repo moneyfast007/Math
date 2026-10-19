@@ -89,6 +89,17 @@ describe.each(TOPICS.map((t) => [t.id, t] as const))('topic %s', (_id, topic) =>
         expect(typed.replace('.', '').length, e.factId).toBeLessThanOrEqual(e.input.maxDigits);
         if (typed.includes('.')) expect(e.input.decimal, e.factId).toBe(true);
       }
+      // The worked example's answer is not this one's (when the exercise asks for a result).
+      const shown =
+        e.input.type === 'choices' && e.input.labels
+          ? e.input.labels[e.input.choices.indexOf(e.answer)]
+          : String(e.answer);
+      const asksResult = !e.display.includes('?') || /[=≈]\s*\?$/.test(e.display);
+      const exampleEnd = /(?:=|→)\s*([^=→]+)$/.exec(e.hints[2].example?.display ?? '')?.[1];
+      if (asksResult && exampleEnd !== undefined && shown !== undefined)
+        expect(exampleEnd.replace(/[\s,]/g, ''), `${e.factId}: hint 3 gives the answer`).not.toBe(
+          shown.replace(/[\s,]/g, ''),
+        );
       // The worked example is not the exercise itself.
       const example = e.hints[2].example;
       if (example && e.display)

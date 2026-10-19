@@ -314,6 +314,19 @@ export function exampleHint(display: string, solved: Said): Hint {
   };
 }
 
+/**
+ * Hint 3 from the first of these examples whose answer is not this exercise's:
+ * a worked example with the same answer gives it away. Give two or more.
+ */
+export function exampleAvoiding(
+  answer: number,
+  options: readonly { answer: number; hint: () => Hint }[],
+): Hint {
+  const chosen = options.find((o) => !sameNumber(o.answer, answer)) ?? options[0];
+  if (!chosen) throw new RangeError('exampleAvoiding: no examples');
+  return chosen.hint();
+}
+
 /** Hint 3 with a picture: a similar exercise, solved, shown as a picture (coins, a clock). */
 export function pictureExample(solved: Said, visual: Visual, display?: string): Hint {
   return {
@@ -527,7 +540,7 @@ export function arith(o: ArithOptions): Exercise {
     missing === 'b' ? '?' : o.b,
     missing === 'c' ? '?' : c,
   );
-  const example = differentExample(o.a, o.op, o.b, o.example);
+  const example = differentExample(o.a, o.op, o.b, o.example, missing);
   const exC = result(example.a, o.op, example.b);
   const facts: ArithFacts = { a: o.a, op: o.op, b: o.b, answer, missing };
   return exercise({
@@ -555,32 +568,46 @@ export function arith(o: ArithOptions): Exercise {
 }
 
 /**
- * The worked example must never be the exercise itself (it would give the
- * answer away). When the suggested example happens to match, nudge it while
- * keeping it valid: still non-negative for subtraction, still exact for division
- * (and with the same remainder, for remainder problems).
+ * The worked example must never give the answer away: not the exercise itself
+ * (nor its mirror, 5 + 3 for 3 + 5), and not an exercise with the same answer
+ * (the asked part: the result, or the missing number). When the suggested
+ * example does, nudge it while keeping it valid: still non-negative for
+ * subtraction, still exact for division (with the same remainder, for
+ * remainder problems).
  */
 export function differentExample(
   a: number,
   op: Op,
   b: number,
   ex: { a: number; b: number },
+  missing: 'a' | 'b' | 'c' = 'c',
 ): { a: number; b: number } {
   const commutes = op === '+' || op === '×';
-  const same = (x: { a: number; b: number }) =>
-    (x.a === a && x.b === b) || (commutes && x.a === b && x.b === a);
-  if (!same(ex)) return ex;
+  const asked = (x: { a: number; b: number }) =>
+    missing === 'a' ? x.a : missing === 'b' ? x.b : result(x.a, op, x.b);
+  const answer = asked({ a, b });
+  const valid = (x: { a: number; b: number }) =>
+    x.a > 0 && x.b > 0 && (op !== '-' || x.a >= x.b) && (op !== '÷' || x.a % x.b === a % b);
+  const bad = (x: { a: number; b: number }) =>
+    (x.a === a && x.b === b) || (commutes && x.a === b && x.b === a) || asked(x) === answer;
+  if (!bad(ex)) return ex;
   const candidates =
     op === '÷'
       ? [
           { a: ex.a + ex.b, b: ex.b },
           { a: ex.a + 2 * ex.b, b: ex.b },
+          { a: ((ex.a - (ex.a % ex.b)) / ex.b) * (ex.b + 1) + (ex.a % ex.b), b: ex.b + 1 },
+          { a: Math.max(1, ex.a - ex.b), b: ex.b },
         ]
       : [
           { a: ex.a + 1, b: ex.b },
+          { a: ex.a, b: ex.b + 1 },
           { a: ex.a + 2, b: ex.b + 1 },
+          { a: ex.a + 1, b: ex.b + 2 },
+          { a: Math.max(1, ex.a - 1), b: ex.b },
+          { a: ex.a + 3, b: ex.b },
         ];
-  return candidates.find((x) => !same(x)) ?? { a: ex.a + 3, b: ex.b };
+  return candidates.find((x) => valid(x) && !bad(x)) ?? { a: ex.a + 3, b: ex.b };
 }
 
 /** A different pair of the same shape, for the worked example: shifted, kept in range. */

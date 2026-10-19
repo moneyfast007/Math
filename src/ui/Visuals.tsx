@@ -117,7 +117,7 @@ function NumberLine({ v }: { v: Extract<Visual, { type: 'numberLine' }> }) {
               textAnchor="middle"
               className={k === v.stopAt ? 'nl-label nl-label--stop' : 'nl-label'}
             >
-              {k}
+              {k === v.hide ? '?' : k}
             </text>
           </g>
         ))}
@@ -213,7 +213,7 @@ function Rect({ v }: { v: Extract<Visual, { type: 'rect' }> }) {
           dominantBaseline="middle"
           className="rect__label"
         >
-          {v.height} {unit}
+          {v.hide === 'height' ? '?' : v.height} {unit}
         </text>
       </svg>
     </div>

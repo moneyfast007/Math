@@ -297,10 +297,16 @@ function compare(rng: Rng): Exercise {
     hints: [
       hint(say('ex.measure.cmp.hint1')),
       hint(say(length ? 'ex.measure.m.hint1' : 'ex.measure.kg.hint1')),
-      exampleHint(
-        length ? '2 מ׳ = 200 ס״מ > 150 ס״מ' : '2 ק״ג = 2000 גרם > 1500 גרם',
-        say('ex.measure.cmp.example'),
-      ),
+      // A spoken example in the same units as the question, never the question itself.
+      a === 2 && (b === 150 || b === 1500)
+        ? exampleHint(
+            length ? '3 מ׳ = 300 ס״מ > 250 ס״מ' : '3 ק״ג = 3000 גרם > 2500 גרם',
+            say(length ? 'ex.measure.cmp.example3' : 'ex.measure.cmp.exampleKg3'),
+          )
+        : exampleHint(
+            length ? '2 מ׳ = 200 ס״מ > 150 ס״מ' : '2 ק״ג = 2000 גרם > 1500 גרם',
+            say(length ? 'ex.measure.cmp.example' : 'ex.measure.cmp.exampleKg'),
+          ),
     ],
     solution: say('ex.measure.cmp.solution', { w: winner.slot, l: loser.slot }),
     // The bigger number in the smaller unit is the classic trap.

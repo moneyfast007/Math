@@ -1,6 +1,6 @@
 import { t } from '@/i18n';
 import { compose } from '@/lang/compose';
-import { numberToWords, type Noun } from '@/lang/hebrewNumbers';
+import { numberToWords } from '@/lang/hebrewNumbers';
 import {
   arith,
   defineTopic,
@@ -25,7 +25,6 @@ import type { Exercise, Hint, Rng } from '../types';
  */
 
 const ID = 'big-numbers';
-const ZERO: Noun = { singular: 'אפס', plural: 'אפסים', gender: 'm' };
 const L = (n: number) => `level.bigNumbers.${n}`;
 
 const PLACE_KEYS = [
@@ -133,7 +132,7 @@ function compare(rng: Rng): Exercise {
     input: labelledChoices([String(a), String(b)]),
     hints: [
       hint(say('ex.compareBig.hint1')),
-      hint(say('ex.compare4.hint1')),
+      hint(say('ex.compareBig.place')),
       exampleHint('305,000 > 298,999', say('ex.bigger.solution', { w: 305_000, l: 298_999 })),
     ],
     solution: say('ex.bigger.solution', { w: Math.max(a, b), l: Math.min(a, b) }),
@@ -173,6 +172,9 @@ function rounding(rng: Rng): Exercise {
   });
 }
 
+/** The multiplier, for its own hint sentence (by ten: one zero; by a hundred: two; …). */
+const power = (k: number): 10 | 100 | 1000 => (k >= 1000 ? 1000 : k >= 100 ? 100 : 10);
+
 function timesPower(rng: Rng): Exercise {
   const k = pick(rng, [10, 100, 1000]);
   const a = randInt(rng, 2, k === 1000 ? 999 : 9999);
@@ -183,7 +185,7 @@ function timesPower(rng: Rng): Exercise {
     op: '×',
     b: k,
     hints: [
-      hint(say('hint.timesPower', { z: { n: String(k).length - 1, noun: ZERO } })),
+      hint(say(`hint.timesPower.${power(k)}`)),
       hint(say('hint.timesPower2')),
     ],
     example: { a: 37, b: k },
@@ -201,7 +203,7 @@ function dividePower(rng: Rng): Exercise {
     op: '÷',
     b: k,
     hints: [
-      hint(say('hint.dividePower', { z: { n: String(k).length - 1, noun: ZERO } })),
+      hint(say(`hint.dividePower.${power(k)}`)),
       hint(say('hint.dividePower2')),
     ],
     example: { a: 37 * k, b: k },

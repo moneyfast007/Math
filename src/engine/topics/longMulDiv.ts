@@ -164,7 +164,7 @@ function remainderExercise(
 
 /** a + b × c, (a + b) × c, a × b − c: the order of operations. */
 function order(rng: Rng): Exercise {
-  const kind = pick(rng, ['a+bc', '(a+b)c', 'ab-c', 'a-b:c'] as const);
+  const kind = pick(rng, ['a+bc', '(a+b)c', 'a-bc', 'a-b:c'] as const);
   const a = randInt(rng, 2, 20);
   const b = randInt(rng, 2, 9);
   const c = randInt(rng, 2, 9);
@@ -189,13 +189,13 @@ function order(rng: Rng): Exercise {
         c,
       });
       break;
-    case 'ab-c': {
-      display = `${b} × ${c} − ${a} = ?`;
-      const prod = b * c;
-      answer = prod - a;
-      wrong = b * (c - a);
-      if (answer < 0) return order(rng);
-      spoken = say('ex.ord.bcMinusA', { a, b, c });
+    case 'a-bc': {
+      // Left to right gives (x − b) × c: the order changes the result, so the level tests it.
+      const x = b * c + randInt(rng, 1, 20);
+      display = `${x} − ${b} × ${c} = ?`;
+      answer = x - b * c;
+      wrong = (x - b) * c;
+      spoken = say('ex.ord.aMinusBC', { a: x, b, c });
       break;
     }
     case 'a-b:c': {
@@ -225,7 +225,7 @@ function order(rng: Rng): Exercise {
         : exampleHint('2 + 3 × 4 = 14', say('ex.ord.example', { a: 2, b: 3, c: 4, r: 14 })),
     ],
     solution: say('eq.answerIs', { r: answer }),
-    diagnose: (v) => (v === wrong ? 'wrongOperation' : null),
+    diagnose: (v) => (v === wrong ? 'order' : null),
   });
 }
 

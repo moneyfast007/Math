@@ -125,7 +125,11 @@ for (const [grade, worlds] of Object.entries(WORLDS)) {
       await setup(page, Number(grade), world);
       await expect(page.getByRole('button', { name: 'שלב אחר' })).toBeVisible();
 
-      for (let i = 0; i < 10; i++) {
+      // A world can end earlier for a younger grade (gan stops at level 5 of world 2).
+      await page.getByRole('button', { name: 'שלב אחר' }).click();
+      const count = await page.getByRole('dialog').getByRole('listitem').count();
+      await page.keyboard.press('Escape');
+      for (let i = 0; i < count; i++) {
         await page.getByRole('button', { name: 'שלב אחר' }).click();
         await page.getByRole('dialog').getByRole('listitem').nth(i).click();
         await page.getByRole('button', { name: 'יאללה, מתחילים!' }).click();

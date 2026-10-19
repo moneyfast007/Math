@@ -139,7 +139,10 @@ function change(level: 5 | 6, rng: Rng): Exercise {
     input: numpad(4),
     hints: [
       hint(sayP(`${key}.hint1` as 'ex.pct6.discount.hint1')),
-      hint(sayP('ex.pct6.change.hint2')),
+      // What is paid, as a percent of the price: 100 − p after a discount, 100 + p after an increase.
+      hint(
+        sayP(up ? 'ex.pct6.increase.hint2' : 'ex.pct6.discount.hint2', { p, q: up ? 100 + p : 100 - p }, 'f', ['p', 'q']),
+      ),
       exampleHint(
         `${e.base} → ${eAns}`,
         sayP(`${key}.solution` as 'ex.pct6.discount.solution', { base: e.base, p: e.p, r: eAns }),

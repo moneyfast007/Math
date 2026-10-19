@@ -15,6 +15,15 @@ function progressAt(
 }
 
 describe('worldFor', () => {
+  it('gan stops world 2 at level 5; a gan child already past it goes to the review', () => {
+    const fresh = worldFor(addSub20, 2, 0, undefined);
+    expect(fresh.stations.map((s) => s.level)).toEqual([1, 2, 3, 4, 5]);
+    expect(fresh.total).toBe(6);
+    const past = worldFor(addSub20, 2, 0, progressAt(8));
+    expect(past.stations.every((s) => s.state === 'done')).toBe(true);
+    expect(nextStop(past)).toEqual({ kind: 'review' });
+  });
+
   it('a new grade-2 child starts at her grade level with earlier stations done', () => {
     const w = worldFor(addSub20, 1, 2, undefined);
     expect(w.stations.map((s) => s.state)).toEqual([

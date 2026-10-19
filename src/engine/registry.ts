@@ -28,7 +28,7 @@ import { percentIntro } from './topics/percentIntro';
 import { ratio } from './topics/ratio';
 import { shapesTopic } from './topics/shapes';
 import { vertical2, vertical3, vertical4 } from './topics/vertical';
-import type { Topic } from './types';
+import type { LevelInfo, Topic } from './types';
 
 /** All topics (worlds), in curriculum order (Ministry of Education, 2006/2024). */
 export const TOPICS: readonly Topic[] = [
@@ -71,6 +71,12 @@ export function topicById(id: string): Topic | undefined {
 /** The worlds of the child's grade, in curriculum order (every grade has some). */
 export function topicsForGrade(grade: Grade): Topic[] {
   return TOPICS.filter((t) => t.grades.includes(grade));
+}
+
+/** The levels of a world for a child of this grade (a younger grade may end earlier). */
+export function levelsFor(topic: Topic, grade: Grade): readonly LevelInfo[] {
+  const last = topic.lastLevel?.(grade) ?? Infinity;
+  return topic.levels.filter((l) => l.level <= last);
 }
 
 export function currentLevel(

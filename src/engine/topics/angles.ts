@@ -244,7 +244,8 @@ type LinesKind = 'parallel' | 'perpendicular' | 'crossing';
 const LINES_WORD: Record<LinesKind, string> = {
   parallel: 'מקבילים',
   perpendicular: 'מאונכים',
-  crossing: 'נחתכים',
+  // Perpendicular lines cross too: the label says it is the other kind of crossing.
+  crossing: 'נחתכים, לא בזווית ישרה',
 };
 
 function linesKind({ kind, turn }: { kind: LinesKind; turn: number }, rng: Rng): Exercise {
@@ -299,7 +300,10 @@ function bySides({ kind, sides }: (typeof SIDE_FACTS)[number], rng: Rng): Exerci
   const { labels, answer } = shuffledLabels(
     rng,
     SIDE_WORD[kind],
-    (Object.keys(SIDE_WORD) as SideKind[]).filter((k) => k !== kind).map((k) => SIDE_WORD[k]),
+    // An equilateral triangle is also isosceles: that name is right too, so it is not offered.
+    (Object.keys(SIDE_WORD) as SideKind[])
+      .filter((k) => k !== kind && !(kind === 'equilateral' && k === 'isosceles'))
+      .map((k) => SIDE_WORD[k]),
   );
   return choiceExercise({
     level: 4,
@@ -380,10 +384,15 @@ const QUAD_WORD: Record<Quad, string> = {
   trapezoid: 'טרפז',
 };
 /** The two names a child most often confuses each shape with. */
-const QUAD_CONFUSED: Record<Quad, [Quad, Quad]> = {
-  square: ['rhombus', 'rectangle'],
-  rectangle: ['square', 'parallelogram'],
-  rhombus: ['square', 'parallelogram'],
+/**
+ * Wrong names only: a square is also a rectangle, a rhombus and a parallelogram;
+ * a rectangle and a rhombus are parallelograms. So each shape is offered only
+ * names that are not true of it.
+ */
+const QUAD_CONFUSED: Record<Quad, Quad[]> = {
+  square: ['trapezoid'],
+  rectangle: ['rhombus', 'trapezoid'],
+  rhombus: ['rectangle', 'trapezoid'],
   parallelogram: ['rhombus', 'trapezoid'],
   trapezoid: ['parallelogram', 'rectangle'],
 };

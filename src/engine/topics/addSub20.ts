@@ -395,9 +395,16 @@ function build(f: Fact, level: number, noun: CountableNoun, rng: Rng): Exercise 
   const sameKind = factsFor(level).filter((x) => x.kind === f.kind);
   const index = sameKind.findIndex((x) => factId(x) === factId(f));
   const step = Math.max(1, Math.floor(sameKind.length / 3));
-  const sample = sameKind[(index + step) % sameKind.length] as Fact;
-  const core = buildCore(f, noun);
   const answer = answerOf(f);
+  // Never the same answer, nor the same two numbers the other way round (3 + 1 for 1 + 3):
+  // the example would give the answer away.
+  const mirror = (x: Fact) =>
+    'a' in x && 'a' in f && 'b' in x && 'b' in f && x.a === f.b && x.b === f.a;
+  const around = sameKind.map((_, i) => sameKind[(index + step + i) % sameKind.length] as Fact);
+  const sample =
+    around.find((x) => factId(x) !== factId(f) && answerOf(x) !== answer && !mirror(x)) ??
+    (around[0] as Fact);
+  const core = buildCore(f, noun);
   const [h1, h2] = firstHints(f, noun, level);
   const h3 = f.kind === 'count' ? countingExample(f.n) : exampleHint(sample);
 
@@ -478,6 +485,8 @@ export const addSub20: Topic = {
   grades: [0, 1],
   levels: LEVELS,
   startLevel,
+  // Gan stops before the symbols and the crossing of ten (levels 6–10 are grade 1).
+  lastLevel: (grade) => (grade === 0 ? 5 : 10),
   generate,
   spokenBank,
 };

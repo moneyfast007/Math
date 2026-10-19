@@ -165,7 +165,7 @@ function Journey({ profile }: { profile: Profile }) {
       {picking ? (
         <Dialog title={t('child.pickLevel')} onClose={() => setPicking(false)}>
           <div className="level-list" role="list">
-            {world.topic.levels.map((l) => (
+            {world.stations.map((l) => (
               <button
                 key={l.level}
                 type="button"

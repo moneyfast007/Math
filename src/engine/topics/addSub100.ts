@@ -26,14 +26,17 @@ const L = (n: number) => `level.addSub100.${n}`;
 type Gen = (rng: Rng) => { a: number; b: number };
 
 function strategyHints(a: number, op: '+' | '-', b: number, carry: boolean): [Hint, Hint] {
+  // Without carrying, what stays depends on what is added: units (the tens stay),
+  // whole tens (the units stay), or both (units with units, tens with tens).
+  const shape = b < 10 ? 'plain' : b % 10 === 0 ? 'tens' : 'two';
   const key =
     op === '+'
       ? carry
         ? 'hint.add100.carry'
-        : 'hint.add100.plain'
+        : (`hint.add100.${shape}` as const)
       : carry
         ? 'hint.sub100.borrow'
-        : 'hint.sub100.plain';
+        : (`hint.sub100.${shape}` as const);
   return [
     hint(say(key)),
     hint(say('ex.decompose.hint2'), {

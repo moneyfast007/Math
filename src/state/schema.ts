@@ -60,6 +60,8 @@ export type MistakeKind =
   | 'countedCoins'
   /** Read the hour from the minute hand, or the other way round (phase 6). */
   | 'clockHands'
+  /** Order of operations: worked left to right instead of multiplying (or the brackets) first. */
+  | 'order'
   | 'other';
 
 export interface TopicStats {

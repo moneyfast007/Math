@@ -170,16 +170,29 @@ function neighbour(level: number, n: number, delta: 1 | -1 | 10 | -10): Exercise
     input: numpad(3),
     hints: [
       hint(say(`${key}.hint1` as 'ex.after.hint1')),
-      hint(say('hint.numberLine'), {
-        visual: {
-          type: 'numberLine',
-          from: Math.max(0, Math.floor(n / 10) * 10 - 10),
-          to: Math.min(100, Math.floor(n / 10) * 10 + 20),
-          start: n,
-          hops: Math.abs(delta) === 10 ? 0 : delta,
-          ...(Math.abs(delta) === 10 ? { target: answer } : {}),
-        },
-      }),
+      // Ten more or less: one hop of ten from the number, landing on "?" (not on the answer).
+      Math.abs(delta) === 10
+        ? hint(say('hint.numberLine10'), {
+            visual: {
+              type: 'numberLine',
+              from: Math.max(0, Math.min(n, answer) - 10),
+              to: Math.min(100, Math.max(n, answer) + 10),
+              start: n,
+              hops: delta / 10,
+              step: 10,
+              hide: answer,
+            },
+          })
+        : hint(say('hint.numberLine'), {
+            visual: {
+              type: 'numberLine',
+              from: Math.max(0, Math.floor(n / 10) * 10 - 10),
+              to: Math.min(100, Math.floor(n / 10) * 10 + 20),
+              start: n,
+              hops: delta,
+              hide: answer,
+            },
+          }),
       exampleHint(
         `${ex} → ${ex + delta}`,
         say(`${key}.solution` as 'ex.after.solution', { n: ex, c: ex + delta }),
@@ -232,14 +245,16 @@ function skip(level: number, step: 2 | 5 | 10, start: number, count: number, rng
     input: { type: 'choices', choices: choicesAround(rng, answer, 0, 100, 4) },
     hints: [
       hint(say('ex.skip.hint1', { step })),
-      hint(say('hint.numberLine'), {
+      // The hops of the sequence so far; the next one is the child's, landing on "?".
+      hint(say('hint.numberLineStep', { step }), {
         visual: {
           type: 'numberLine',
           from: Math.max(0, start - step),
           to: Math.min(100, answer + step),
-          start: seq.at(-1) ?? start,
-          hops: 1,
+          start,
+          hops: count - 1,
           step,
+          hide: answer,
         },
       }),
       // A different step from the exercise, so the example never gives the answer away.
@@ -255,10 +270,19 @@ function skip(level: number, step: 2 | 5 | 10, start: number, count: number, rng
   });
 }
 
-const tensHints = (): [Hint, Hint] => [
+/** Whole tens: hops of ten from the first number, landing on "?". */
+const tensHints = (a: number, op: '+' | '-', b: number): [Hint, Hint] => [
   hint(say('ex.tensAdd.hint1')),
-  hint(say('hint.numberLine'), {
-    visual: { type: 'numberLine', from: 0, to: 100, start: 0, hops: 0, step: 10 },
+  hint(say('hint.numberLine10'), {
+    visual: {
+      type: 'numberLine',
+      from: 0,
+      to: 100,
+      start: a,
+      hops: (op === '+' ? b : -b) / 10,
+      step: 10,
+      hide: op === '+' ? a + b : a - b,
+    },
   }),
 ];
 
@@ -345,7 +369,7 @@ export const numbers100 = defineTopic({
           a: f.a,
           op: f.op,
           b: f.b,
-          hints: tensHints(),
+          hints: tensHints(f.a, f.op, f.b),
           example:
             f.a === 30 && f.b === 20
               ? { a: 40, b: 20 }
