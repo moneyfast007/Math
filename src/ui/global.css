@@ -3331,3 +3331,1191 @@ ol.steps {
     width: 100%;
   }
 }
+
+/* ==========================================================================
+   Redesign of the screens around the game: welcome, child picker, parent
+   area, album, and the information pages. Phone first (360–430px), then
+   tablet. The exercise screens are not touched here.
+   ========================================================================== */
+
+/* The grown-up screens use the app's teal, one shade darker, so that small
+   white text on a button still reads well (4.5:1). */
+[data-screen='parents'],
+[data-screen='parents-locked'],
+[data-screen='info'],
+[data-screen='install'] {
+  --color-accent: #2a7f74;
+  --color-accent-strong: #1f655c;
+  --color-accent-soft: #d8efec;
+}
+
+.icon {
+  display: block;
+  flex: none;
+}
+
+/* A 16px side gutter on phones. */
+@media (max-width: 560px) {
+  .screen.welcome,
+  .screen.home,
+  .screen.parent-locked,
+  .screen.album,
+  .screen.info,
+  .screen[data-screen='install'],
+  .screen[data-screen='playground'] {
+    padding-inline: 16px;
+    padding-block: var(--space-3);
+    gap: var(--space-3);
+  }
+}
+
+/* Headers with a title and one button: the button never wraps, the title gives way. */
+.album .screen__header,
+.info .screen__header,
+[data-screen='install'] .screen__header,
+[data-screen='playground'] .screen__header {
+  align-items: flex-start;
+}
+
+.album .screen__header > div,
+.info .screen__header > h1,
+[data-screen='install'] .screen__header > h1,
+[data-screen='playground'] .screen__header > h1 {
+  flex: 1 1 0;
+  min-width: 0;
+  overflow-wrap: break-word;
+}
+
+.album__back,
+.info .screen__header > .btn,
+[data-screen='install'] .screen__header > .btn,
+[data-screen='playground'] .screen__header > .btn {
+  flex: none;
+  white-space: nowrap;
+}
+
+@media (max-width: 560px) {
+  .album .screen__header h1,
+  .info .screen__header > h1,
+  [data-screen='install'] .screen__header > h1,
+  [data-screen='playground'] .screen__header > h1 {
+    font-size: min(var(--text-lg), 8vw);
+  }
+
+  .album__back,
+  .info .screen__header > .btn,
+  [data-screen='install'] .screen__header > .btn,
+  [data-screen='playground'] .screen__header > .btn {
+    padding-inline: var(--space-3);
+    font-size: var(--text-sm);
+  }
+}
+
+/* ---------- Speech bubble (Plusi talking) ---------- */
+
+.bubble {
+  position: relative;
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: var(--space-3);
+}
+
+/* The tail points up, at Plusi above the bubble. */
+.bubble--up::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  width: 22px;
+  height: 22px;
+  background: var(--color-surface);
+  border-radius: 4px;
+  transform: translateX(-50%) rotate(45deg);
+}
+
+/* ---------- Welcome (first launch) ---------- */
+
+.welcome {
+  align-items: center;
+  text-align: center;
+}
+
+.welcome__hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+  width: 100%;
+  max-width: 34rem;
+  margin-top: auto;
+}
+
+.welcome__plusi {
+  transform-origin: 50% 85%;
+  filter: drop-shadow(0 8px 10px rgb(58 47 42 / 14%));
+  animation:
+    welcome-pop 700ms var(--ease) both,
+    welcome-wave 1000ms ease-in-out 700ms 2,
+    welcome-float 3.6s ease-in-out 2.8s infinite;
+}
+
+@keyframes welcome-pop {
+  0% {
+    transform: translateY(40px) scale(0.4);
+    opacity: 0;
+  }
+  55% {
+    transform: translateY(-14px) scale(1.08);
+    opacity: 1;
+  }
+  75% {
+    transform: translateY(4px) scale(0.97);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+/* A wave: the whole plus rocks from side to side, like an arm waving hello. */
+@keyframes welcome-wave {
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+  25% {
+    transform: rotate(-14deg);
+  }
+  60% {
+    transform: rotate(11deg);
+  }
+  85% {
+    transform: rotate(-4deg);
+  }
+}
+
+@keyframes welcome-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.welcome__name {
+  font-size: var(--text-xl);
+  margin-top: var(--space-1);
+}
+
+.welcome__tagline {
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+}
+
+.welcome__bubble {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  width: 100%;
+  margin-top: var(--space-3);
+  text-align: start;
+  animation: welcome-bubble 420ms var(--ease) 550ms both;
+}
+
+@keyframes welcome-bubble {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.welcome__greeting {
+  flex: 1;
+  min-width: 0;
+  font-size: var(--text-md);
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+/* Not typed yet: in place but invisible, so the bubble never changes size. */
+.welcome__rest {
+  visibility: hidden;
+}
+
+/* The caret, where the typing is. Zero net width: the lines never re-wrap. */
+.welcome__bubble[data-typing] .welcome__rest::before {
+  content: '';
+  display: inline-block;
+  width: 2px;
+  height: 1.05em;
+  margin-inline-end: -2px;
+  vertical-align: -0.2em;
+  background: var(--color-accent);
+  visibility: visible;
+  animation: welcome-caret 900ms steps(1) infinite;
+}
+
+@keyframes welcome-caret {
+  50% {
+    opacity: 0;
+  }
+}
+
+.welcome__actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  width: 100%;
+  max-width: 28rem;
+}
+
+.welcome__cta {
+  width: 100%;
+}
+
+.welcome__note {
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+}
+
+/* Quiet actions: the one big button above is the way in. */
+.welcome__link {
+  color: var(--color-accent-strong);
+  gap: var(--space-1);
+}
+
+.welcome__link .icon {
+  width: 20px;
+  height: 20px;
+}
+
+.welcome__restore {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0 var(--space-1);
+  max-width: none;
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+}
+
+.welcome__footer {
+  margin-top: auto;
+}
+
+@media (max-width: 560px) {
+  .welcome__plusi {
+    width: 112px;
+    height: 112px;
+  }
+
+  .welcome__cta {
+    padding-inline: var(--space-3);
+    font-size: var(--text-md);
+  }
+
+  .welcome__bubble {
+    padding: var(--space-2) var(--space-3);
+  }
+}
+
+/* ---------- Home: who is playing? ---------- */
+
+.home__center {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  width: 100%;
+  margin-block: auto;
+}
+
+.home__header {
+  gap: var(--space-1);
+}
+
+.home__ask {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  max-width: 100%;
+}
+
+.home__plusi {
+  animation: plusi-in var(--dur-med) var(--ease);
+}
+
+.home__bubble {
+  min-width: 0;
+  padding: var(--space-2) var(--space-3);
+}
+
+/* The tail points at Plusi, on the start side. */
+.home__bubble::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  inset-inline-start: -8px;
+  width: 18px;
+  height: 18px;
+  background: var(--color-surface);
+  border-radius: 3px;
+  transform: translateY(-50%) rotate(45deg);
+}
+
+.home .home__title {
+  font-size: clamp(22px, 6vw, var(--text-xl));
+  line-height: 1.2;
+}
+
+.home__hint {
+  text-align: center;
+  max-width: none;
+}
+
+.home .home__profiles {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+  max-width: 1000px;
+  grid-template-columns: repeat(auto-fit, minmax(min(140px, 100%), 230px));
+  justify-content: center;
+}
+
+.home .profile-card {
+  width: 100%;
+  min-height: 200px;
+  border: 3px solid transparent;
+  transition:
+    transform var(--dur-fast) var(--ease),
+    box-shadow var(--dur-fast) var(--ease);
+}
+
+.home .profile-card .avatar--lg {
+  font-size: 96px;
+}
+
+.profile-card__name {
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+}
+
+@media (hover: hover) {
+  .home .profile-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+  }
+}
+
+@media (max-width: 560px) {
+  .home__center {
+    gap: var(--space-3);
+  }
+
+  .home__ask {
+    gap: var(--space-2);
+  }
+
+  .home__plusi {
+    width: 64px;
+    height: 64px;
+  }
+
+  .home .profile-card {
+    min-height: 164px;
+  }
+
+  .home .profile-card .avatar--lg {
+    font-size: 72px;
+  }
+}
+
+@media (min-width: 760px) {
+  .home .profile-card {
+    min-height: 240px;
+  }
+
+  .home .profile-card .avatar--lg {
+    font-size: 104px;
+  }
+}
+
+.home__footer {
+  gap: var(--space-2);
+  margin-top: 0;
+}
+
+/* The way into the parent area: a padlock and words, held down to open. */
+.parent-entry {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  min-height: var(--tap-min);
+  padding: 6px var(--space-3);
+  padding-inline-start: 6px;
+  border-radius: var(--radius-pill);
+  border: 2px solid var(--color-border);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+  color: var(--color-text);
+}
+
+.parent-entry .long-press__label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  text-align: start;
+}
+
+.parent-entry__icon {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--color-accent-soft);
+  color: var(--color-accent-strong);
+  flex: none;
+}
+
+.parent-entry__icon .icon {
+  width: 22px;
+  height: 22px;
+}
+
+.parent-entry__text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25;
+}
+
+.parent-entry__label {
+  font-weight: 700;
+  font-size: var(--text-sm);
+}
+
+.parent-entry__hint {
+  font-size: 14px;
+  color: var(--color-text-muted);
+}
+
+/* ---------- Parent area ---------- */
+
+.parent {
+  --gutter: var(--space-4);
+  gap: var(--space-3);
+  padding-top: 0;
+  padding-inline: var(--gutter);
+}
+
+/* Title, the one way out, and (on a tablet) the sections: always in sight. */
+.parent__top {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin-inline: calc(-1 * var(--gutter));
+  padding: var(--space-2) var(--gutter);
+  background: color-mix(in srgb, var(--color-bg) 95%, transparent);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.parent__titlebar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  min-height: 48px;
+}
+
+.parent__title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  min-width: 0;
+  font-size: var(--text-lg);
+}
+
+.parent__title-icon {
+  width: 26px;
+  height: 26px;
+  color: var(--color-accent);
+}
+
+.parent__exit {
+  flex: none;
+  white-space: nowrap;
+}
+
+/* Sections as a segmented control (tablet, desktop). */
+.parent-tabs {
+  display: flex;
+  align-self: center;
+  gap: 4px;
+  padding: 4px;
+  border-radius: var(--radius-pill);
+  background: var(--color-surface-alt);
+}
+
+.parent-tabs__tab {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+  min-height: 44px;
+  padding: 0 var(--space-3);
+  border-radius: var(--radius-pill);
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  font-weight: 700;
+}
+
+.parent-tabs__tab[aria-selected='true'] {
+  background: var(--color-surface);
+  color: var(--color-accent-strong);
+  box-shadow: var(--shadow-sm);
+}
+
+.parent-tabs__icon {
+  width: 22px;
+  height: 22px;
+}
+
+.parent__panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.parent__panel[hidden] {
+  display: none;
+}
+
+.parent__heading {
+  font-size: var(--text-lg);
+}
+
+/* Phones: the sections are a tab bar at the bottom, in reach of the thumb. */
+@media (max-width: 760px) {
+  .parent {
+    padding-bottom: calc(84px + env(safe-area-inset-bottom));
+  }
+
+  .parent-tabs {
+    position: fixed;
+    z-index: 30;
+    inset-inline: 0;
+    bottom: 0;
+    border-radius: 0;
+    padding: 6px 8px max(6px, env(safe-area-inset-bottom));
+    background: var(--color-surface);
+    border-top: 1px solid var(--color-border);
+    box-shadow: 0 -4px 16px rgb(58 47 42 / 8%);
+  }
+
+  .parent-tabs__tab {
+    flex: 1;
+    flex-direction: column;
+    gap: 2px;
+    min-height: 58px;
+    padding: 4px;
+    border-radius: var(--radius-md);
+    font-size: 14px;
+  }
+
+  .parent-tabs__tab[aria-selected='true'] {
+    background: var(--color-accent-soft);
+    box-shadow: none;
+  }
+}
+
+@media (max-width: 560px) {
+  .parent {
+    --gutter: 16px;
+  }
+}
+
+/* Narrow phones: the title gives up its padlock so the exit button fits beside it. */
+@media (max-width: 420px) {
+  .parent__title {
+    font-size: 22px;
+  }
+
+  .parent__title-icon {
+    display: none;
+  }
+
+  .parent__exit {
+    padding-inline: 14px;
+    font-size: 15px;
+  }
+}
+
+/* Children: one card each, and a dashed card to add one more. */
+.child-cards {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
+  gap: var(--space-2);
+}
+
+.child-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+}
+
+.child-card__head {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.child-card__avatar {
+  display: grid;
+  place-items: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  flex: none;
+  background: #fde3d2;
+}
+
+.child-card__avatar .avatar--md {
+  font-size: 38px;
+}
+
+.child-card--c1 .child-card__avatar {
+  background: #d8efec;
+}
+.child-card--c2 .child-card__avatar {
+  background: #e2e3f8;
+}
+.child-card--c3 .child-card__avatar {
+  background: #fbeccf;
+}
+.child-card--c4 .child-card__avatar {
+  background: #e6f2dc;
+}
+.child-card--c5 .child-card__avatar {
+  background: #f6e1ec;
+}
+
+.child-card__who {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25;
+}
+
+.child-card__who .child-row__name {
+  overflow-wrap: anywhere;
+}
+
+.child-card__world {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: var(--space-2);
+  border-radius: var(--radius-md);
+  background: var(--color-bg);
+}
+
+.child-card__world-name {
+  font-weight: 700;
+  font-size: var(--text-sm);
+}
+
+.meter {
+  display: block;
+  height: 8px;
+  margin-top: 4px;
+  border-radius: var(--radius-pill);
+  background: var(--color-border);
+  overflow: hidden;
+}
+
+.meter > span {
+  display: block;
+  height: 100%;
+  min-width: 8px;
+  border-radius: var(--radius-pill);
+  background: var(--color-accent);
+}
+
+.child-card__tip {
+  font-size: var(--text-sm);
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-sm);
+  background: var(--color-almost-soft);
+}
+
+.child-add {
+  width: 100%;
+  height: 100%;
+  min-height: 96px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  border-radius: var(--radius-lg);
+  border: 2px dashed var(--color-accent);
+  background: color-mix(in srgb, var(--color-accent-soft) 50%, var(--color-bg));
+  color: var(--color-accent-strong);
+  font-size: var(--text-md);
+  font-weight: 700;
+  transition: transform var(--dur-fast) var(--ease);
+}
+
+.child-add:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.child-add:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.child-add__icon {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--color-accent-strong);
+  color: var(--color-text-on-accent);
+}
+
+.parent-empty {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3);
+}
+
+.parent-empty__text {
+  gap: var(--space-1);
+}
+
+.parent-empty__text h3 {
+  margin: 0;
+  font-size: var(--text-md);
+}
+
+.parent-empty__more {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0 var(--space-1);
+  max-width: none;
+}
+
+.parent-empty__more .btn {
+  color: var(--color-accent-strong);
+}
+
+/* Progress: a card per child, the numbers as chips, the details folded. */
+.progress-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(400px, 100%), 1fr));
+  align-items: start;
+  gap: var(--space-3);
+}
+
+.progress-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-3);
+}
+
+.progress-card__head {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.progress-card__head h3 {
+  margin: 0;
+  font-size: var(--text-md);
+  overflow-wrap: anywhere;
+}
+
+.stat-chips {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.stat-chips li {
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
+  background: var(--color-accent-soft);
+  color: var(--color-accent-strong);
+  font-size: var(--text-sm);
+  font-weight: 700;
+}
+
+.fact {
+  font-size: var(--text-sm);
+}
+
+.fact--work,
+.fact--strong {
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-sm);
+  background: var(--color-almost-soft);
+}
+
+.fact--strong {
+  background: var(--color-success-soft);
+}
+
+details.report {
+  display: block;
+}
+
+details.report .report__worlds {
+  margin-top: var(--space-1);
+}
+
+@media (max-width: 560px) {
+  .report__world {
+    grid-template-columns: 1fr 72px;
+  }
+
+  .report__bar {
+    width: 72px;
+  }
+}
+
+/* "More details": long explanations, folded. */
+.more > summary {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  min-height: 44px;
+  cursor: pointer;
+  list-style: none;
+  color: var(--color-accent-strong);
+  font-size: var(--text-sm);
+  font-weight: 700;
+}
+
+.more > summary::-webkit-details-marker {
+  display: none;
+}
+
+.more > summary::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  margin-block-end: 4px;
+  border-inline-end: 2px solid currentColor;
+  border-block-end: 2px solid currentColor;
+  transform: rotate(45deg);
+  transition: transform var(--dur-fast) var(--ease);
+}
+
+.more[open] > summary::before {
+  margin-block: 4px 0;
+  transform: rotate(-135deg);
+}
+
+.more__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  font-size: var(--text-sm);
+}
+
+/* Settings: a card per subject, two columns on a wide screen. */
+.settings-grid {
+  display: grid;
+  gap: var(--space-3);
+  align-items: start;
+}
+
+@media (min-width: 900px) {
+  .settings-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.settings-card {
+  gap: var(--space-2);
+  padding: var(--space-3);
+  min-width: 0;
+}
+
+.settings-card__title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-md);
+}
+
+.settings-card__icon {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-sm);
+  background: var(--color-accent-soft);
+  color: var(--color-accent-strong);
+  flex: none;
+}
+
+.settings-card__icon .icon {
+  width: 22px;
+  height: 22px;
+}
+
+@media (max-width: 560px) {
+  .settings-card .row > .btn:not(.btn--ghost) {
+    flex: 1 1 100%;
+  }
+}
+
+/* A direct visit to /parents: a padlock behind the gate. */
+.parent-locked {
+  align-items: center;
+  justify-content: center;
+}
+
+.parent-locked__art {
+  display: grid;
+  place-items: center;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: var(--color-accent-soft);
+  color: var(--color-accent-strong);
+}
+
+.parent-locked__art .icon {
+  width: 56px;
+  height: 56px;
+}
+
+/* Dialogs opened from these screens, on a phone: more room for the content. */
+@media (max-width: 560px) {
+  [data-screen='parents'] .dialog,
+  [data-screen='parents-locked'] .dialog,
+  [data-screen='home'] .dialog {
+    padding: var(--space-3);
+  }
+
+  [data-screen='parents'] .dialog__actions > .btn {
+    flex: 1 1 auto;
+  }
+}
+
+/* The profile form: a live preview of the card, and delete set apart. */
+.profile-form__preview {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+}
+
+.profile-form__preview-name {
+  min-width: 0;
+  font-size: var(--text-md);
+  font-weight: 800;
+  overflow-wrap: anywhere;
+}
+
+.profile-form__delete {
+  margin-inline-end: auto;
+}
+
+@media (max-width: 560px) {
+  .profile-form__delete {
+    order: 3;
+    flex-basis: 100%;
+    margin-inline-end: 0;
+  }
+}
+
+/* ---------- Album: empty sticker slots ---------- */
+
+.sticker-card {
+  background: color-mix(in srgb, var(--color-surface-alt) 55%, var(--color-bg));
+}
+
+.sticker-card__slot {
+  position: relative;
+  background: none;
+  border-radius: 0;
+}
+
+.sticker-card__empty {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.sticker-card__ring {
+  fill: var(--color-surface);
+  stroke: var(--color-border);
+  stroke-width: 3;
+  stroke-dasharray: 7 6;
+}
+
+.sticker-card__spark {
+  fill: var(--color-almost-soft);
+  stroke: var(--color-almost);
+  stroke-width: 2;
+  stroke-linejoin: round;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.sticker-card__dot {
+  fill: var(--color-almost);
+  opacity: 0.5;
+}
+
+/* The next sticker to earn: a livelier slot and a label. */
+.sticker-card--next {
+  background: var(--color-surface);
+  border-color: var(--color-accent);
+}
+
+.sticker-card--next .sticker-card__ring {
+  stroke: var(--color-accent);
+}
+
+.sticker-card--next .sticker-card__spark {
+  animation: sticker-spark 2.4s ease-in-out infinite;
+}
+
+.sticker-card--next .sticker-card__name {
+  color: var(--color-text);
+}
+
+@keyframes sticker-spark {
+  0%,
+  100% {
+    transform: scale(1) rotate(0);
+  }
+  50% {
+    transform: scale(1.18) rotate(15deg);
+  }
+}
+
+.sticker-card__next {
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  padding: 2px 10px;
+  border-radius: var(--radius-pill);
+  background: var(--color-accent-soft);
+  color: var(--color-text);
+  font-size: 14px;
+  font-weight: 700;
+  box-shadow: var(--shadow-sm);
+}
+
+@media (max-width: 560px) {
+  .album__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-2);
+  }
+
+  .sticker-card {
+    padding: var(--space-2);
+  }
+
+  .album__status {
+    padding: var(--space-2);
+  }
+}
+
+/* ---------- Install guide and information page ---------- */
+
+.install__why {
+  max-width: none;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-md);
+  background: var(--color-accent-soft);
+}
+
+[data-screen='install'] ol.steps {
+  list-style: none;
+  padding: 0;
+  counter-reset: step;
+}
+
+[data-screen='install'] ol.steps > li {
+  counter-increment: step;
+  display: grid;
+  grid-template-columns: 32px minmax(0, 1fr);
+  align-items: start;
+  gap: var(--space-2);
+}
+
+[data-screen='install'] ol.steps > li::before {
+  content: counter(step);
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--color-accent-soft);
+  color: var(--color-accent-strong);
+  font-family: var(--font-math);
+  font-weight: 800;
+  font-size: var(--text-sm);
+}
+
+@media (max-width: 560px) {
+  .info .card,
+  [data-screen='install'] .card {
+    padding: var(--space-3);
+  }
+
+  .info__nav ul,
+  .info__doc ul {
+    padding-inline-start: var(--space-3);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .welcome__plusi,
+  .welcome__bubble,
+  .welcome__bubble .welcome__rest::before,
+  .home__plusi,
+  .sticker-card--next .sticker-card__spark {
+    animation: none !important;
+  }
+}

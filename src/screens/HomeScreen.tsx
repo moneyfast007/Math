@@ -2,16 +2,25 @@ import { useEffect, useState } from 'react';
 import { navigate } from '@/app/router';
 import { t } from '@/i18n';
 import { ParentGate } from '@/parent/ParentGate';
+import { requestParentTab } from '@/parent/tab';
+import { isStandalone } from '@/pwa/standalone';
 import { useApp } from '@/state/store';
 import { applyAgeBand } from '@/ui/ageBand';
 import { Avatar } from '@/ui/Avatar';
-import { Plusi } from '@/ui/Plusi';
+import { Icon } from '@/ui/Icon';
 import { LongPressButton } from '@/ui/LongPressButton';
+import { Plusi } from '@/ui/Plusi';
+import { SpeakerButton } from '@/ui/SpeakerButton';
+import { useTypewriter } from '@/ui/useTypewriter';
+import { whoIsPlayingTitle } from './homeTitle';
+
+/** When the greeting starts typing: once Plusi has popped in and waved (global.css). */
+const GREETING_DELAY_MS = 900;
 
 /**
  * Home: "who is playing today?". Each child taps her own card. The parent
  * entry needs a long press followed by the gate. On first run there is nothing
- * to protect, so setup starts directly.
+ * to protect, so setup starts directly from the welcome.
  */
 export function HomeScreen() {
   const profiles = useApp((s) => s.data.profiles);
@@ -36,77 +45,65 @@ export function HomeScreen() {
 
   if (profiles.length === 0) {
     return (
-      <main className="screen" data-screen="home">
-        <header className="stack" style={{ alignItems: 'center', textAlign: 'center' }}>
-          <Plusi size={120} mood="cheering" decorative />
-          <h1>{t('app.name')}</h1>
-          <p className="muted">{t('app.tagline')}</p>
-        </header>
-        <section className="card stack" aria-labelledby="welcome">
-          <h2 id="welcome">{t('home.firstRun.title')}</h2>
-          <p>{t('home.firstRun.body')}</p>
-          <div className="row">
-            <button type="button" className="btn" onClick={openParents}>
-              {t('home.firstRun.cta')}
-            </button>
-            <button
-              type="button"
-              className="btn btn--secondary"
-              onClick={() => navigate({ name: 'install' })}
-            >
-              {t('install.title')}
-            </button>
-          </div>
-        </section>
-        <InfoLink />
-      </main>
+      <Welcome
+        onStart={openParents}
+        onConnect={() => {
+          requestParentTab('settings');
+          openParents();
+        }}
+      />
     );
   }
 
-  const addressAs = profiles.every((p) => p.gender === 'f') ? 'f' : 'm';
-
   return (
     <main className="screen home" data-screen="home">
-      <header className="home__header">
-        <div className="brand" aria-hidden="true">
-          <Plusi size={72} decorative />
-          <span className="brand__name">{t('app.name')}</span>
-        </div>
-        <h1 className="home__title">{t('home.whoIsPlaying', { gender: addressAs })}</h1>
-      </header>
+      <div className="home__center">
+        <header className="home__header">
+          <div className="home__ask">
+            <Plusi size={84} decorative className="home__plusi" />
+            <div className="bubble home__bubble">
+              <h1 className="home__title">{whoIsPlayingTitle(profiles.map((p) => p.gender))}</h1>
+            </div>
+          </div>
+          <p className="muted home__hint">{t('home.pickHint')}</p>
+        </header>
 
-      <ul className="profiles" role="list" style={{ listStyle: 'none', padding: 0 }}>
-        {profiles.map((p, i) => (
-          <li key={p.id}>
-            <button
-              type="button"
-              className={`profile-card profile-card--c${i % 6}`}
-              style={{ width: '100%' }}
-              onClick={() => {
-                selectProfile(p.id);
-                navigate({ name: 'play' });
-              }}
-            >
-              <Avatar id={p.avatar} size="lg" decorative />
-              <span>{p.name}</span>
-            </button>
-          </li>
-        ))}
-      </ul>
+        <ul className="profiles home__profiles" role="list">
+          {profiles.map((p, i) => (
+            <li key={p.id}>
+              <button
+                type="button"
+                className={`profile-card profile-card--c${i % 6}`}
+                onClick={() => {
+                  selectProfile(p.id);
+                  navigate({ name: 'play' });
+                }}
+              >
+                <Avatar id={p.avatar} size="lg" decorative />
+                <span className="profile-card__name">{p.name}</span>
+              </button>
+            </li>
+          ))}
+        </ul>
+      </div>
 
       <footer className="home__footer">
-        <div className="parent-entry">
-          <LongPressButton
-            className="btn btn--ghost"
-            onLongPress={() => setGateOpen(true)}
-            aria-describedby="parents-hold"
-          >
-            {t('home.parents')}
-          </LongPressButton>
-          <span className="muted" id="parents-hold">
-            {t('home.parentsHoldHint')}
+        <LongPressButton
+          className="parent-entry"
+          onLongPress={() => setGateOpen(true)}
+          aria-label={t('parent.title')}
+          aria-describedby="parents-hold"
+        >
+          <span className="parent-entry__icon">
+            <Icon name="lock" />
           </span>
-        </div>
+          <span className="parent-entry__text">
+            <span className="parent-entry__label">{t('parent.title')}</span>
+            <span className="parent-entry__hint" id="parents-hold">
+              {t('home.parentsHold')}
+            </span>
+          </span>
+        </LongPressButton>
         <InfoLink />
       </footer>
 
@@ -121,6 +118,78 @@ export function HomeScreen() {
           onCancel={() => setGateOpen(false)}
         />
       ) : null}
+    </main>
+  );
+}
+
+/**
+ * First launch: Plusi pops in, waves, and says hello in a speech bubble that
+ * types itself out (all at once with reduced motion). The greeting is read
+ * aloud only from the speaker button: audio never starts by itself.
+ */
+function Welcome({ onStart, onConnect }: { onStart: () => void; onConnect: () => void }) {
+  const greeting = t('welcome.greeting');
+  const shown = useTypewriter(greeting, { startMs: GREETING_DELAY_MS });
+  const done = shown >= greeting.length;
+
+  return (
+    <main className="screen welcome" data-screen="home">
+      <section className="welcome__hero" aria-labelledby="welcome-title">
+        <Plusi
+          size={132}
+          mood={done ? 'cheering' : 'happy'}
+          decorative
+          className="welcome__plusi"
+        />
+        <h1 id="welcome-title" className="welcome__name">
+          {t('app.name')}
+        </h1>
+        <p className="welcome__tagline">{t('app.tagline')}</p>
+        <div className="bubble bubble--up welcome__bubble" data-typing={done ? undefined : ''}>
+          {/* A screen reader gets the whole greeting at once. On screen, the untyped rest
+              is in place but hidden, so the bubble never changes size as it fills. */}
+          <p className="welcome__greeting">
+            <span className="visually-hidden">{greeting}</span>
+            <span className="welcome__typed" aria-hidden="true">
+              {greeting.slice(0, shown)}
+              <span className="welcome__rest">{greeting.slice(shown)}</span>
+            </span>
+          </p>
+          <SpeakerButton text={greeting} />
+        </div>
+      </section>
+
+      <div className="welcome__actions">
+        <button type="button" className="btn btn--hero welcome__cta" onClick={onStart}>
+          {t('home.firstRun.cta')}
+        </button>
+        <p className="welcome__note">{t('welcome.forParents')}</p>
+        {isStandalone() ? null : (
+          <button
+            type="button"
+            className="btn btn--ghost btn--small welcome__link"
+            onClick={() => navigate({ name: 'install' })}
+          >
+            <Icon name="home" />
+            {t('install.title')}
+          </button>
+        )}
+        <p className="welcome__restore">
+          <span>{t('welcome.haveData')}</span>
+          <button
+            type="button"
+            className="btn btn--ghost btn--small welcome__link"
+            onClick={onConnect}
+          >
+            <Icon name="sync" />
+            {t('welcome.connect')}
+          </button>
+        </p>
+      </div>
+
+      <footer className="welcome__footer">
+        <InfoLink />
+      </footer>
     </main>
   );
 }

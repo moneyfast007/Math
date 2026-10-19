@@ -8,15 +8,16 @@ import { isStandalone } from '@/pwa/standalone';
  */
 export function InstallGuideScreen() {
   const installed = isStandalone();
+  // Back to where the guide was opened from: the welcome, or the parent area.
+  const back = () => {
+    if (window.history.length > 1) window.history.back();
+    else navigate({ name: 'home' });
+  };
   return (
     <main className="screen" data-screen="install">
       <header className="screen__header">
         <h1>{t('install.title')}</h1>
-        <button
-          type="button"
-          className="btn btn--secondary"
-          onClick={() => navigate({ name: 'home' })}
-        >
+        <button type="button" className="btn btn--secondary" onClick={back}>
           {t('action.back')}
         </button>
       </header>
@@ -27,7 +28,7 @@ export function InstallGuideScreen() {
         </section>
       ) : (
         <>
-          <p>{t('install.why')}</p>
+          <p className="install__why">{t('install.why')}</p>
 
           <section className="card stack" aria-labelledby="ios">
             <h2 id="ios">{t('install.ios.title')}</h2>

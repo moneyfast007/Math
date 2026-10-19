@@ -32,6 +32,12 @@ async function addChild(
   await expect(added).toBeHidden();
 }
 
+/** The welcome greeting has finished typing itself out. */
+async function welcomeTyped(page: Page) {
+  await expect(page.locator('.welcome__bubble')).toBeVisible();
+  await expect(page.locator('.welcome__bubble[data-typing]')).toHaveCount(0, { timeout: 15_000 });
+}
+
 async function shot(page: Page, name: string) {
   await page.waitForTimeout(400); // let animations settle
   await page.screenshot({ path: `${OUT}/${name}.png`, fullPage: false });
@@ -45,13 +51,18 @@ for (const orientation of ['landscape', 'portrait'] as const) {
     const o = orientation === 'portrait' ? 'p' : 'l';
 
     await page.goto('/');
+    await welcomeTyped(page);
     await shot(page, `${o}-01-welcome`);
     await page.getByRole('button', { name: 'יצירת פרופיל ראשון' }).click();
     await addChild(page, 'תמר', 'גן חובה', 'ארנב', 'בלשון נקבה', `${o}-01b-child-added`);
     await addChild(page, 'נועה', 'כיתה ב׳', 'שועל');
     await addChild(page, 'מאיה', 'כיתה ד׳', 'חתול');
     await shot(page, `${o}-02-parents`);
-    await page.getByRole('button', { name: 'סיימתי, למסך הבית' }).first().click();
+    await page.getByRole('tab', { name: 'התקדמות' }).click();
+    await shot(page, `${o}-02b-parents-progress`);
+    await page.getByRole('tab', { name: 'הגדרות' }).click();
+    await shot(page, `${o}-02c-parents-settings`);
+    await page.getByRole('button', { name: 'סיימתי, למסך הבית' }).click();
     await shot(page, `${o}-03-home`);
 
     // Gan
@@ -92,3 +103,28 @@ for (const orientation of ['landscape', 'portrait'] as const) {
     await shot(page, `${o}-12-practice-grade4`);
   });
 }
+
+/** The screens around the game on a phone (390×844), for the mobile-first review. */
+test('phone screens around the game', async ({ page }, info) => {
+  test.skip(info.project.name !== 'ipad', 'iPad project, phone-sized viewport');
+  test.setTimeout(120_000);
+  await page.setViewportSize({ width: 390, height: 844 });
+
+  await page.goto('/');
+  await welcomeTyped(page);
+  await shot(page, 'ph-01-welcome');
+  await page.getByRole('button', { name: 'יצירת פרופיל ראשון' }).click();
+  await shot(page, 'ph-02-parents-empty');
+  await addChild(page, 'תמר', 'גן חובה', 'ארנב', 'בלשון נקבה', 'ph-02b-child-added');
+  await addChild(page, 'איתי', 'כיתה ב׳', 'אריה', 'בלשון זכר');
+  await shot(page, 'ph-03-parents-children');
+  await page.getByRole('tab', { name: 'התקדמות' }).click();
+  await shot(page, 'ph-04-parents-progress');
+  await page.getByRole('tab', { name: 'הגדרות' }).click();
+  await shot(page, 'ph-05-parents-settings');
+  await page.getByRole('button', { name: 'סיימתי, למסך הבית' }).click();
+  await shot(page, 'ph-06-home');
+  await page.getByRole('button', { name: 'איתי' }).click();
+  await page.getByRole('button', { name: 'האלבום' }).click();
+  await shot(page, 'ph-07-album');
+});

@@ -44,6 +44,11 @@ async function addChild(page: Page, name: string, grade: string) {
     .click();
 }
 
+/** The parent area's sections: ילדים, התקדמות, הגדרות. */
+async function openTab(page: Page, name: string) {
+  await page.getByRole('tab', { name }).click();
+}
+
 const children = (page: Page) => page.locator('[data-screen="parents"] .child-row__name');
 
 test('two devices: create a family, link with a code, see each other’s changes, unlink', async ({
@@ -59,6 +64,7 @@ test('two devices: create a family, link with a code, see each other’s changes
   await a.goto('/');
   await a.getByRole('button', { name: 'יצירת פרופיל ראשון' }).click();
   await addChild(a, 'נועה', 'כיתה ב׳');
+  await openTab(a, 'הגדרות');
   await a.getByRole('button', { name: 'זה המכשיר הראשון: יצירת משפחה' }).click();
   await expect(a.getByText(/^מסונכרן · /)).toBeVisible();
   await expect(
@@ -88,6 +94,7 @@ test('two devices: create a family, link with a code, see each other’s changes
   const b = await bContext.newPage();
   await b.goto('/');
   await b.getByRole('button', { name: 'יצירת פרופיל ראשון' }).click();
+  await openTab(b, 'הגדרות');
   await b.getByRole('button', { name: 'חיבור למשפחה קיימת' }).click();
   const join = b.getByRole('dialog', { name: 'חיבור למשפחה קיימת' });
   for (const d of code) await join.getByRole('button', { name: d, exact: true }).click();
@@ -99,7 +106,9 @@ test('two devices: create a family, link with a code, see each other’s changes
   await expect(children(b)).toHaveText([/נועה/]);
 
   // B adds a child; A sees her after syncing.
+  await openTab(b, 'ילדים');
   await addChild(b, 'מאיה', 'גן חובה');
+  await openTab(b, 'הגדרות');
   await b.getByRole('button', { name: 'סנכרון עכשיו' }).click();
   await expect(b.getByText(/^מסונכרן · /)).toBeVisible();
   await pairing.getByRole('button', { name: 'סגירה' }).click();
@@ -130,6 +139,7 @@ test('a wrong code is explained, and nothing changes', async ({ page, context })
   await serve(context, memoryServices());
   await page.goto('/');
   await page.getByRole('button', { name: 'יצירת פרופיל ראשון' }).click();
+  await openTab(page, 'הגדרות');
   await page.getByRole('button', { name: 'חיבור למשפחה קיימת' }).click();
   const join = page.getByRole('dialog', { name: 'חיבור למשפחה קיימת' });
   for (const d of '012345') await join.getByRole('button', { name: d, exact: true }).click();

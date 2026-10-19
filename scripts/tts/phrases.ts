@@ -33,6 +33,7 @@ const SPOKEN_PREFIXES = [
   'audio.',
   'explain.',
   'practice.',
+  'welcome.greeting',
 ] as const;
 
 function isSpoken(key: string): boolean {

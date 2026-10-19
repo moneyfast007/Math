@@ -15,6 +15,7 @@ import { heGrade4 } from './extra/grade4';
 import { heGrades23 } from './extra/grades23';
 import { heGrades56 } from './extra/grades56';
 import { heJourney } from './extra/journey';
+import { heScreens } from './extra/screens';
 import { heWorlds } from './extra/worlds';
 
 export const he = {
@@ -23,12 +24,8 @@ export const he = {
   'app.tagline': 'תרגול מתמטיקה, מגן חובה ועד כיתה ו׳',
 
   // Home
-  // Gendered by the profiles on the device: feminine only if every profile is feminine.
+  // Gendered by the profiles on the device: all girls, all boys (mixed: home.whoIsPlaying.mixed).
   'home.whoIsPlaying': { f: 'מי משחקת היום?', m: 'מי משחק היום?' },
-  'home.parents': 'הורים',
-  'home.parentsHoldHint': 'לחיצה ארוכה',
-  'home.firstRun.title': 'ברוכים הבאים!',
-  'home.firstRun.body': 'כדי להתחיל, הורה יוצר פרופיל לכל ילד או ילדה. זה לוקח דקה.',
   'home.firstRun.cta': 'יצירת פרופיל ראשון',
 
   // Child home (the exercise engine replaces the placeholder in phase 3)
@@ -126,7 +123,7 @@ export const he = {
   'sync.join': 'חיבור למשפחה קיימת',
   'sync.join.title': 'חיבור למשפחה קיימת',
   'sync.join.how':
-    'במכשיר שכבר מחובר: אזור הורים ← סנכרון בין מכשירים ← חיבור מכשיר נוסף. מקלידים כאן את הקוד שמופיע שם.',
+    'במכשיר שכבר מחובר: אזור הורים ← הגדרות ← חיבור מכשיר נוסף. מקלידים כאן את הקוד שמופיע שם.',
   'sync.join.code': 'קוד חיבור',
   'sync.join.submit': 'חיבור',
   'sync.join.busy': 'מתחברים…',
@@ -144,8 +141,7 @@ export const he = {
   'sync.now': 'סנכרון עכשיו',
   'sync.addDevice': 'חיבור מכשיר נוסף',
   'sync.pair.title': 'חיבור מכשיר נוסף',
-  'sync.pair.how':
-    'במכשיר החדש: אזור הורים ← סנכרון בין מכשירים ← חיבור למשפחה קיימת, ושם מקלידים את הקוד:',
+  'sync.pair.how': 'במכשיר החדש: אזור הורים ← הגדרות ← חיבור למשפחה קיימת, ושם מקלידים את הקוד:',
   'sync.pair.valid': 'הקוד תקף לחיבור של מכשיר אחד, עוד {time} דקות.',
   'sync.pair.loading': 'מכינים קוד…',
   'sync.pair.expired': 'פג תוקף הקוד. אפשר לסגור ולבקש קוד חדש.',
@@ -2071,6 +2067,7 @@ export const he = {
   ...heGrades56,
   ...heWorlds,
   ...heJourney,
+  ...heScreens,
 } as const;
 
 export type HebrewKey = keyof typeof he;

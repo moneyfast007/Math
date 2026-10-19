@@ -139,6 +139,7 @@ test.describe('practice', () => {
     const gateAnswer = String(Number(q?.[1]) * Number(q?.[2]));
     for (const d of gateAnswer) await gate.getByRole('button', { name: d, exact: true }).click();
     await gate.getByRole('button', { name: 'אישור' }).click();
+    await page.getByRole('tab', { name: 'התקדמות' }).click();
     const row = page.getByRole('article', { name: 'נועה' });
     await expect(row).toContainText('תרגלה נושא אחד');
     await expect(row).toContainText('10 תרגילים');

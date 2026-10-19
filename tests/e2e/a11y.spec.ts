@@ -91,10 +91,16 @@ test.describe('accessibility (WCAG 2.0 AA)', () => {
 
   test('parent area, its dialogs, and home', async ({ page }) => {
     await restore(page);
-    await check(page, 'parent area');
+    // The restore left the parent area on its settings.
+    await check(page, 'parent area: settings');
+    await page.getByRole('tab', { name: 'התקדמות' }).click();
+    await check(page, 'parent area: progress');
+    await page.getByRole('tab', { name: 'ילדים' }).click();
+    await check(page, 'parent area: children');
     await page.getByRole('button', { name: 'הוספת ילד או ילדה' }).click();
     await check(page, 'new profile dialog');
     await page.keyboard.press('Escape');
+    await page.getByRole('tab', { name: 'הגדרות' }).click();
     await page.getByRole('button', { name: 'חיבור למשפחה קיימת' }).click();
     await check(page, 'join family dialog');
     await page.keyboard.press('Escape');

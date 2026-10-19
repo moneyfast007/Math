@@ -62,8 +62,7 @@ export function ProfileForm({ profile, onSave, onDelete, onClose }: ProfileFormP
           {profile && onDelete ? (
             <button
               type="button"
-              className="btn btn--ghost"
-              style={{ marginInlineEnd: 'auto' }}
+              className="btn btn--ghost profile-form__delete"
               onClick={() => setConfirmDelete(true)}
             >
               {t('profile.delete')}
@@ -78,7 +77,12 @@ export function ProfileForm({ profile, onSave, onDelete, onClose }: ProfileFormP
         </>
       }
     >
-      <form className="stack" onSubmit={submit} noValidate>
+      <form className="stack profile-form" onSubmit={submit} noValidate>
+        {/* What the child will see on her card, as it is being chosen. */}
+        <div className="profile-form__preview" aria-hidden="true">
+          <Avatar id={avatar} size="md" decorative />
+          <span className="profile-form__preview-name">{name.trim() || ' '}</span>
+        </div>
         <div className="field">
           <label htmlFor={nameId}>{t('profile.name')}</label>
           <input

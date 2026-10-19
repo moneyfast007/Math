@@ -6,6 +6,7 @@ import type { JoinResult, Snapshot, SyncProblem } from '@/sync/client';
 import { syncEngine, useSync } from '@/sync';
 import { ConfirmDialog, Dialog } from '@/ui/Dialog';
 import { NumberPad } from '@/ui/NumberPad';
+import { More, SettingsCard } from './parts';
 
 /**
  * Sync between the family's devices, in the parent area: create the family on
@@ -66,8 +67,7 @@ export function SyncSection() {
   }, [linked]);
 
   return (
-    <section className="card stack" aria-labelledby="sync">
-      <h2 id="sync">{t('sync.title')}</h2>
+    <SettingsCard id="sync" icon="sync" title={t('sync.title')}>
       {removed ? (
         <div className="notice row">
           <span>{t('sync.removed')}</span>
@@ -83,7 +83,7 @@ export function SyncSection() {
       {linked ? <Linked /> : <NotLinked onJoined={setJoined} />}
       {joined ? <JoinedDialog result={joined} onClose={() => setJoined(null)} /> : null}
       {snapshots.length > 0 ? <Snapshots snapshots={snapshots} /> : null}
-    </section>
+    </SettingsCard>
   );
 }
 
@@ -106,7 +106,9 @@ function NotLinked({ onJoined }: { onJoined: (result: JoinResult) => void }) {
   return (
     <>
       <p>{t('sync.intro')}</p>
-      <p className="muted">{t('sync.privacy')}</p>
+      <More>
+        <p>{t('sync.privacy')}</p>
+      </More>
       <div className="row">
         <button type="button" className="btn" disabled={busy} onClick={() => void create()}>
           {busy ? t('sync.creating') : t('sync.create')}

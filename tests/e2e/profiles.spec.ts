@@ -34,6 +34,12 @@ async function addChild(
   await expect(added).toBeHidden();
 }
 
+/** The parent area's sections: ילדים, התקדמות, הגדרות. */
+async function openTab(page: Page, name: string) {
+  await page.getByRole('tab', { name }).click();
+  await expect(page.getByRole('tab', { name })).toHaveAttribute('aria-selected', 'true');
+}
+
 async function exitParents(page: Page) {
   await page.getByRole('button', { name: 'סיימתי, למסך הבית' }).first().click();
   await expect(page).toHaveURL(/\/$/);
@@ -99,11 +105,14 @@ test.describe('profiles', () => {
     await expect(page.getByRole('button', { name: 'יאללה, מתחילים!' })).toBeVisible();
   });
 
-  test('the way home stays in reach at the bottom of a long parent area', async ({ page }) => {
+  test('the way home stays in reach, however far down the parent area', async ({ page }) => {
     await startSetup(page);
     await addChild(page, { name: 'נועה', grade: 'כיתה ב׳' });
+    await openTab(page, 'הגדרות');
     await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
-    const done = page.getByRole('button', { name: 'סיימתי, למסך הבית' }).last();
+    // One exit only, pinned at the top with the title.
+    await expect(page.getByRole('button', { name: 'סיימתי, למסך הבית' })).toHaveCount(1);
+    const done = page.getByRole('button', { name: 'סיימתי, למסך הבית' });
     await expect(done).toBeInViewport();
     await done.click();
     await expect(page).toHaveURL(/\/$/);
@@ -116,8 +125,8 @@ test.describe('profiles', () => {
     await addChild(page, { name: 'איתי', grade: 'כיתה ד׳', gender: 'בלשון זכר', avatar: 'אריה' });
     await exitParents(page);
 
-    // A boy among the profiles: the question switches to the masculine.
-    await expect(page.getByRole('heading', { name: 'מי משחק היום?' })).toBeVisible();
+    // Girls and a boy: the question takes a form that is the same for both.
+    await expect(page.getByRole('heading', { name: 'מי רוצה לשחק היום?' })).toBeVisible();
 
     const cases: [string, string][] = [
       ['נועה', 'middle'],
@@ -182,6 +191,7 @@ test.describe('parent gate', () => {
     await longPress(page, 'הורים');
     await answerGate(page);
 
+    await openTab(page, 'הגדרות');
     await page.getByRole('button', { name: 'הגדרת קוד' }).click();
     const chooser = page.getByRole('dialog', { name: 'נעילת אזור ההורים' });
     for (const d of '25802580') await chooser.getByRole('button', { name: d, exact: true }).click();
@@ -212,6 +222,7 @@ test.describe('backup', () => {
     await startSetup(page);
     await addChild(page, { name: 'נועה', grade: 'כיתה ב׳' });
 
+    await openTab(page, 'הגדרות');
     const downloadPromise = page.waitForEvent('download');
     await page.getByRole('button', { name: 'שמירת גיבוי' }).click();
     const download = await downloadPromise;
@@ -287,13 +298,22 @@ test.describe('backup', () => {
     await expect(confirm).toContainText('2 פרופילים');
     await confirm.getByRole('button', { name: 'שחזור' }).click();
 
+    // The chosen file opened the settings, where the confirmation and the result are.
     await expect(page.getByText('השחזור הושלם.')).toBeVisible();
+    await openTab(page, 'התקדמות');
     await expect(page.getByRole('article', { name: 'תמר' })).toContainText('הצלחה: 80%');
     await expect(page.getByRole('article', { name: 'תמר' })).toContainText(
       'נושאים לחיזוק: חיבור וחיסור עד 20',
     );
     await expect(page.getByRole('article', { name: 'תמר' })).toContainText('פעולה לא נכונה');
     await expect(page.getByRole('article', { name: 'נועה' })).toHaveCount(0);
+
+    // The child's card: where she is, and what to strengthen.
+    await openTab(page, 'ילדים');
+    const card = page.getByRole('article', { name: 'תמר' });
+    await expect(card).toContainText('כיתה ה׳');
+    await expect(card).toContainText(/תחנה \d+ מתוך \d+/);
+    await expect(card).toContainText('נושאים לחיזוק: חיבור וחיסור עד 20');
   });
 
   test('a file that is not a backup is rejected with a reason', async ({ page }) => {

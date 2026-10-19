@@ -12,7 +12,8 @@ import { Sticker } from '@/ui/Sticker';
 import { stickerForWorld, stickerLabel } from '@/ui/stickers';
 
 /**
- * One sticker per completed world; the rest are shown as numbered, closed slots.
+ * One sticker per completed world; the rest are empty sticker slots waiting to
+ * be filled (the next one to earn is marked).
  * Touching a sticker plays that world again (a mixed round, like its review).
  */
 export function AlbumScreen() {
@@ -27,6 +28,8 @@ export function AlbumScreen() {
 
   const worlds = worldsFor(profile.grade, progress);
   const earned = stickersEarned(worlds);
+  // The first world not finished yet: its slot invites the next sticker.
+  const nextIndex = worlds.find((w) => !w.completed)?.index ?? null;
   const total = worlds.length;
   const line =
     earned === 0
@@ -52,7 +55,7 @@ export function AlbumScreen() {
         </div>
         <button
           type="button"
-          className="btn btn--secondary"
+          className="btn btn--secondary album__back"
           onClick={() => navigate({ name: 'play' })}
         >
           {t('album.back')}
@@ -72,7 +75,13 @@ export function AlbumScreen() {
           return (
             <li
               key={w.topic.id}
-              className={w.completed ? 'sticker-card sticker-card--earned' : 'sticker-card'}
+              className={
+                w.completed
+                  ? 'sticker-card sticker-card--earned'
+                  : w.index === nextIndex
+                    ? 'sticker-card sticker-card--next'
+                    : 'sticker-card'
+              }
             >
               {w.completed ? (
                 <button
@@ -95,7 +104,12 @@ export function AlbumScreen() {
                   role="img"
                   aria-label={t('album.sticker.locked', { params: { name: stickerLabel(id) } })}
                 >
-                  {w.index}
+                  <EmptySlot />
+                  {w.index === nextIndex ? (
+                    <span className="sticker-card__next" aria-hidden="true">
+                      {t('stickerSlot.next')}
+                    </span>
+                  ) : null}
                 </div>
               )}
               <span className="sticker-card__name">
@@ -106,5 +120,17 @@ export function AlbumScreen() {
         })}
       </ul>
     </main>
+  );
+}
+
+/** An empty place for a sticker: a dashed outline with a little sparkle, nothing to press. */
+function EmptySlot() {
+  return (
+    <svg viewBox="0 0 100 100" className="sticker-card__empty" aria-hidden="true" focusable="false">
+      <circle cx="50" cy="50" r="44" className="sticker-card__ring" />
+      <path d="M50 30l5 13 13 5-13 5-5 13-5-13-13-5 13-5z" className="sticker-card__spark" />
+      <circle cx="70" cy="30" r="3.5" className="sticker-card__dot" />
+      <circle cx="31" cy="69" r="2.5" className="sticker-card__dot" />
+    </svg>
   );
 }

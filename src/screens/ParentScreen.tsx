@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, type KeyboardEvent, type ReactNode } from 'react';
 import { navigate } from '@/app/router';
 import {
   countCached,
@@ -12,19 +12,23 @@ import { formatDate, formatPercent, gradeLabel, mistakeLabel, topicLabel } from 
 import { ParentGate } from '@/parent/ParentGate';
 import { ProfileForm } from '@/parent/ProfileForm';
 import { SyncSection } from '@/parent/SyncSection';
+import { More, SettingsCard } from '@/parent/parts';
+import { PARENT_TABS, takeParentTab, type ParentTab } from '@/parent/tab';
 import { useSync } from '@/sync';
 import { isStandalone } from '@/pwa/standalone';
 import { backupFileName, deliverFile, readBackupFile, serializeBackup } from '@/state/backup';
 import { PIN_LENGTH } from '@/state/pin';
 import { summarizeProgress, weekSummary } from '@/state/progress';
-import { worldsFor } from '@/engine/journey';
+import { activeWorld, worldsFor } from '@/engine/journey';
 import { MAX_PROFILES, type AppData, type Profile } from '@/state/schema';
 import type { Grade } from '@/ui/ageBand';
 import { useApp } from '@/state/store';
 import { applyAgeBand } from '@/ui/ageBand';
 import { Avatar } from '@/ui/Avatar';
 import { ConfirmDialog, Dialog } from '@/ui/Dialog';
+import { Icon, type IconName } from '@/ui/Icon';
 import { NumberPad } from '@/ui/NumberPad';
+import { Plusi } from '@/ui/Plusi';
 
 const BACKUP_STALE_MS = 14 * 24 * 60 * 60 * 1000;
 
@@ -43,7 +47,10 @@ export function ParentScreen() {
 
   if (!unlocked && !noProfiles) {
     return (
-      <main className="screen" data-screen="parents-locked">
+      <main className="screen parent-locked" data-screen="parents-locked">
+        <div className="parent-locked__art" aria-hidden="true">
+          <Icon name="lock" />
+        </div>
         <ParentGate
           hasPin={hasPin}
           verifyPin={verifyPin}
@@ -56,9 +63,29 @@ export function ParentScreen() {
   return <ParentArea />;
 }
 
+const TAB_ICON: Record<ParentTab, IconName> = {
+  children: 'children',
+  progress: 'progress',
+  settings: 'settings',
+};
+
+const TAB_LABEL = {
+  children: 'parentArea.tab.children',
+  progress: 'parentArea.tab.progress',
+  settings: 'parentArea.tab.settings',
+} as const satisfies Record<ParentTab, string>;
+
+/**
+ * Three sections: the children, their progress, and the settings. Every
+ * section stays mounted (hidden when not shown), so a download, a dialog or a
+ * half-done form survives a switch. On a phone the sections are a tab bar at
+ * the bottom, in thumb reach; on a tablet, a segmented control under the title.
+ */
 function ParentArea() {
   const lockParent = useApp((s) => s.lockParent);
   const unlockParent = useApp((s) => s.unlockParent);
+  const [tab, setTab] = useState<ParentTab>(() => takeParentTab() ?? 'children');
+
   // The area locks itself after a while, but not under a parent who is using it (WCAG 2.2.1).
   useEffect(() => {
     let last = 0;
@@ -75,49 +102,142 @@ function ParentArea() {
       window.removeEventListener('keydown', keepOpen);
     };
   }, [unlockParent]);
+
   const exit = () => {
     lockParent();
     navigate({ name: 'home' });
   };
+
+  const show = (next: ParentTab) => {
+    if (next === tab) return;
+    setTab(next);
+    window.scrollTo(0, 0);
+  };
+
   return (
-    <main className="screen screen--with-footer" data-screen="parents">
-      <header className="screen__header">
-        <h1>{t('parent.title')}</h1>
-        <button type="button" className="btn" onClick={exit}>
-          {t('parent.exit')}
-        </button>
+    <main className="screen parent" data-screen="parents">
+      <header className="parent__top">
+        <div className="parent__titlebar">
+          <h1 className="parent__title">
+            <Icon name="lock" className="parent__title-icon" />
+            {t('parent.title')}
+          </h1>
+          <button type="button" className="btn btn--small parent__exit" onClick={exit}>
+            {t('parent.exit')}
+          </button>
+        </div>
+        <ParentTabs tab={tab} onChange={show} />
       </header>
-      <ChildrenSection />
-      <SyncSection />
-      <BackupSection />
-      <SecuritySection />
-      <DeviceSection />
-      <OfflineSection />
-      <p className="info-link-row">
-        <a
-          className="info-link"
-          href="/info"
-          onClick={(e) => {
-            e.preventDefault();
-            navigate({ name: 'info' });
-          }}
-        >
-          {t('info.link')}
-        </a>
-      </p>
-      {/* Always in reach at the bottom, however long the page gets. */}
-      <footer className="screen__footer">
-        <button type="button" className="btn btn--wide" onClick={exit}>
-          {t('parent.exit')}
-        </button>
-      </footer>
+
+      <TabPanel tab="children" current={tab}>
+        <ChildrenSection onSettings={() => show('settings')} />
+      </TabPanel>
+      <TabPanel tab="progress" current={tab}>
+        <ProgressSection />
+      </TabPanel>
+      <TabPanel tab="settings" current={tab}>
+        <h2 className="visually-hidden">{t('parentArea.settings.title')}</h2>
+        <div className="settings-grid">
+          <SyncSection />
+          {/* A chosen backup file opens its confirmation here, wherever the parent was. */}
+          <BackupSection onShow={() => show('settings')} />
+          <SecuritySection />
+          <OfflineSection />
+          <DeviceSection />
+        </div>
+        <p className="info-link-row">
+          <a
+            className="info-link"
+            href="/info"
+            onClick={(e) => {
+              e.preventDefault();
+              navigate({ name: 'info' });
+            }}
+          >
+            {t('info.link')}
+          </a>
+        </p>
+      </TabPanel>
     </main>
   );
 }
 
-/* ---------- Children and their progress ---------- */
+const tabId = (tab: ParentTab) => `parent-tab-${tab}`;
+const panelId = (tab: ParentTab) => `parent-panel-${tab}`;
 
-function ChildrenSection() {
+/** WAI-ARIA tabs: arrow keys move between them (right is "previous" in RTL), Home/End jump. */
+function ParentTabs({ tab, onChange }: { tab: ParentTab; onChange: (tab: ParentTab) => void }) {
+  const onKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
+    const i = PARENT_TABS.indexOf(tab);
+    const n = PARENT_TABS.length;
+    const next =
+      e.key === 'ArrowLeft'
+        ? PARENT_TABS[(i + 1) % n]
+        : e.key === 'ArrowRight'
+          ? PARENT_TABS[(i - 1 + n) % n]
+          : e.key === 'Home'
+            ? PARENT_TABS[0]
+            : e.key === 'End'
+              ? PARENT_TABS[n - 1]
+              : undefined;
+    if (!next) return;
+    e.preventDefault();
+    onChange(next);
+    document.getElementById(tabId(next))?.focus();
+  };
+
+  return (
+    <div
+      className="parent-tabs"
+      role="tablist"
+      aria-label={t('parentArea.tabs')}
+      onKeyDown={onKeyDown}
+    >
+      {PARENT_TABS.map((name) => (
+        <button
+          key={name}
+          type="button"
+          role="tab"
+          id={tabId(name)}
+          className="parent-tabs__tab"
+          aria-selected={tab === name}
+          aria-controls={panelId(name)}
+          tabIndex={tab === name ? 0 : -1}
+          onClick={() => onChange(name)}
+        >
+          <Icon name={TAB_ICON[name]} className="parent-tabs__icon" />
+          <span>{t(TAB_LABEL[name])}</span>
+        </button>
+      ))}
+    </div>
+  );
+}
+
+function TabPanel({
+  tab,
+  current,
+  children,
+}: {
+  tab: ParentTab;
+  current: ParentTab;
+  children: ReactNode;
+}) {
+  return (
+    <section
+      className="parent__panel"
+      role="tabpanel"
+      id={panelId(tab)}
+      aria-labelledby={tabId(tab)}
+      hidden={tab !== current}
+    >
+      {children}
+    </section>
+  );
+}
+
+/* ---------- Children ---------- */
+
+function ChildrenSection({ onSettings }: { onSettings: () => void }) {
   const profiles = useApp((s) => s.data.profiles);
   const addProfile = useApp((s) => s.addProfile);
   const updateProfile = useApp((s) => s.updateProfile);
@@ -129,21 +249,54 @@ function ChildrenSection() {
   const full = profiles.length >= MAX_PROFILES;
 
   return (
-    <section className="card stack" aria-labelledby="children">
-      <h2 id="children">{t('parent.children')}</h2>
-      {profiles.map((p) => (
-        <ChildRow key={p.id} profile={p} onEdit={() => setEditing(p)} />
-      ))}
-      <div className="row">
-        <button type="button" className="btn" disabled={full} onClick={() => setEditing('new')}>
-          {t('parent.addChild')}
-        </button>
-        {full ? (
-          <span className="muted">
-            {t('parent.limitReached', { params: { max: MAX_PROFILES } })}
-          </span>
-        ) : null}
-      </div>
+    <div className="stack">
+      <h2 id="children" className="parent__heading">
+        {t('parent.children')}
+      </h2>
+
+      {profiles.length === 0 ? (
+        <div className="card parent-empty">
+          <Plusi size={72} mood="happy" decorative />
+          <div className="stack parent-empty__text">
+            <h3>{t('parentArea.empty.title')}</h3>
+            <p>{t('parentArea.empty.body')}</p>
+          </div>
+        </div>
+      ) : null}
+
+      <ul className="child-cards" role="list">
+        {profiles.map((p, i) => (
+          <li key={p.id}>
+            <ChildCard profile={p} index={i} onEdit={() => setEditing(p)} />
+          </li>
+        ))}
+        <li>
+          <button
+            type="button"
+            className="child-add"
+            disabled={full}
+            onClick={() => setEditing('new')}
+          >
+            <span className="child-add__icon">
+              <Icon name="plus" />
+            </span>
+            {t('parent.addChild')}
+          </button>
+        </li>
+      </ul>
+      {full ? (
+        <p className="muted">{t('parent.limitReached', { params: { max: MAX_PROFILES } })}</p>
+      ) : null}
+
+      {profiles.length === 0 ? (
+        <p className="parent-empty__more">
+          <span className="muted">{t('parentArea.empty.haveData')}</span>
+          <button type="button" className="btn btn--ghost btn--small" onClick={onSettings}>
+            <Icon name="sync" />
+            {t('parentArea.empty.toSettings')}
+          </button>
+        </p>
+      ) : null}
 
       {editing === 'new' ? (
         <ProfileForm
@@ -184,7 +337,7 @@ function ChildrenSection() {
           onClose={() => setAdded(null)}
         />
       ) : null}
-    </section>
+    </div>
   );
 }
 
@@ -228,75 +381,157 @@ function ChildAdded({
   );
 }
 
-function ChildRow({ profile, onEdit }: { profile: Profile; onEdit: () => void }) {
+/** One child at a glance: who, where in the journey, and what to strengthen. */
+function ChildCard({
+  profile,
+  index,
+  onEdit,
+}: {
+  profile: Profile;
+  index: number;
+  onEdit: () => void;
+}) {
+  const progress = useApp((s) => s.data.progress[profile.id]);
+  const summary = summarizeProgress(progress);
+  const world = activeWorld(profile.grade, progress);
+  const tc = makeT(profile.gender);
+  const share = world ? Math.round((world.done / world.total) * 100) : 0;
+
+  return (
+    <article className={`child-card child-card--c${index % 6}`} aria-label={profile.name}>
+      <div className="child-card__head">
+        <span className="child-card__avatar">
+          <Avatar id={profile.avatar} size="md" decorative />
+        </span>
+        <span className="child-card__who">
+          <span className="child-row__name">{profile.name}</span>
+          <span className="muted">{gradeLabel(profile.grade)}</span>
+        </span>
+        <button type="button" className="btn btn--secondary btn--small" onClick={onEdit}>
+          {t('parent.edit')}
+          <span className="visually-hidden"> {profile.name}</span>
+        </button>
+      </div>
+
+      {world ? (
+        <div className="child-card__world">
+          <span className="child-card__world-name">
+            {t('journey.world', {
+              params: { index: world.index, name: topicLabel(world.topic.id) },
+            })}
+          </span>
+          <span className="muted">
+            {world.completed
+              ? tc('parentArea.allWorldsDone')
+              : t('journey.stationOf', {
+                  params: { n: Math.min(world.done + 1, world.total), total: world.total },
+                })}
+          </span>
+          <span className="meter" aria-hidden="true">
+            <span style={{ width: `${share}%` }} />
+          </span>
+        </div>
+      ) : null}
+
+      {summary.attempts === 0 ? (
+        <p className="muted">{tc('parent.noPracticeYet')}</p>
+      ) : summary.struggling.length > 0 ? (
+        <p className="child-card__tip">
+          <strong>{t('parent.struggling')}</strong> {summary.struggling.map(topicLabel).join(', ')}
+        </p>
+      ) : null}
+    </article>
+  );
+}
+
+/* ---------- Progress, per child ---------- */
+
+function ProgressSection() {
+  const profiles = useApp((s) => s.data.profiles);
+  return (
+    <div className="stack">
+      <h2 id="progress" className="parent__heading">
+        {t('parentArea.progress.title')}
+      </h2>
+      {profiles.length === 0 ? (
+        <p className="card muted">{t('parentArea.progress.empty')}</p>
+      ) : (
+        <div className="progress-cards">
+          {profiles.map((p) => (
+            <ProgressCard key={p.id} profile={p} />
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+function ProgressCard({ profile }: { profile: Profile }) {
   const progress = useApp((s) => s.data.progress[profile.id]);
   const summary = summarizeProgress(progress);
   const tc = makeT(profile.gender);
 
   return (
-    <article className="child-row" aria-label={profile.name}>
-      <Avatar id={profile.avatar} size="md" decorative />
-      <div className="child-row__main">
-        <span className="child-row__name">
-          {profile.name} <span className="muted">· {gradeLabel(profile.grade)}</span>
-        </span>
-        {summary.attempts === 0 ? (
-          <span className="muted">{tc('parent.noPracticeYet')}</span>
-        ) : (
-          <>
-            <span>
+    <article className="card progress-card" aria-label={profile.name}>
+      <header className="progress-card__head">
+        <Avatar id={profile.avatar} size="sm" decorative />
+        <h3>{profile.name}</h3>
+        <span className="muted">{gradeLabel(profile.grade)}</span>
+      </header>
+      {summary.attempts === 0 ? (
+        <p className="muted">{tc('parent.noPracticeYet')}</p>
+      ) : (
+        <>
+          <ul className="stat-chips" role="list">
+            <li>
               {summary.topicsPracticed === 1
                 ? tc('parent.topicsPracticedOne')
                 : tc('parent.topicsPracticed', { count: summary.topicsPracticed })}
-              {' · '}
-              {t('parent.attempts', { params: { count: summary.attempts } })}
-              {summary.successRate !== null ? (
-                <>
-                  {' · '}
-                  {t('parent.successRate', {
-                    params: { percent: formatPercent(summary.successRate) },
-                  })}
-                </>
-              ) : null}
-            </span>
-            {summary.lastPracticedAt !== null ? (
-              <span className="muted">
-                {t('parent.lastPracticed', {
-                  params: { date: formatDate(summary.lastPracticedAt) },
+            </li>
+            <li>{t('parent.attempts', { params: { count: summary.attempts } })}</li>
+            {summary.successRate !== null ? (
+              <li>
+                {t('parent.successRate', {
+                  params: { percent: formatPercent(summary.successRate) },
                 })}
-              </span>
+              </li>
             ) : null}
-            {summary.struggling.length > 0 ? (
-              <span>
-                {t('parent.struggling')} {summary.struggling.map(topicLabel).join(', ')}
-              </span>
-            ) : null}
-            {summary.strong.length > 0 ? (
-              <span>
-                {t('parent.strong')} {summary.strong.map(topicLabel).join(', ')}
-              </span>
-            ) : null}
-            {summary.topMistakes.length > 0 ? (
-              <span>
-                {t('parent.commonMistakes')}{' '}
-                {summary.topMistakes.map((m) => mistakeLabel(m.kind)).join(', ')}
-              </span>
-            ) : null}
-            <WeekReport profile={profile} />
-            <JourneyReport profile={profile} />
-          </>
-        )}
-      </div>
-      <button type="button" className="btn btn--secondary btn--small" onClick={onEdit}>
-        {t('parent.edit')}
-      </button>
+          </ul>
+          {summary.lastPracticedAt !== null ? (
+            <p className="muted">
+              {t('parent.lastPracticed', {
+                params: { date: formatDate(summary.lastPracticedAt) },
+              })}
+            </p>
+          ) : null}
+          {summary.struggling.length > 0 ? (
+            <p className="fact fact--work">
+              <strong>{t('parent.struggling')}</strong>{' '}
+              {summary.struggling.map(topicLabel).join(', ')}
+            </p>
+          ) : null}
+          {summary.strong.length > 0 ? (
+            <p className="fact fact--strong">
+              <strong>{t('parent.strong')}</strong> {summary.strong.map(topicLabel).join(', ')}
+            </p>
+          ) : null}
+          {summary.topMistakes.length > 0 ? (
+            <p className="fact">
+              <strong>{t('parent.commonMistakes')}</strong>{' '}
+              {summary.topMistakes.map((m) => mistakeLabel(m.kind)).join(', ')}
+            </p>
+          ) : null}
+          <WeekReport profile={profile} />
+          <JourneyReport profile={profile} />
+        </>
+      )}
     </article>
   );
 }
 
 /* ---------- Backup and restore ---------- */
 
-function BackupSection() {
+function BackupSection({ onShow }: { onShow: () => void }) {
   const data = useApp((s) => s.data);
   const markBackedUp = useApp((s) => s.markBackedUp);
   const replaceData = useApp((s) => s.replaceData);
@@ -319,6 +554,7 @@ function BackupSection() {
 
   const onFile = async (file: File | undefined) => {
     if (!file) return;
+    onShow();
     const parsed = await readBackupFile(file);
     if (fileInput.current) fileInput.current.value = '';
     if (parsed.ok) {
@@ -330,8 +566,7 @@ function BackupSection() {
   };
 
   return (
-    <section className="card stack" aria-labelledby="backup">
-      <h2 id="backup">{t('parent.backup.title')}</h2>
+    <SettingsCard id="backup" icon="backup" title={t('parent.backup.title')}>
       <p>{synced ? t('parent.backup.bodySynced') : t('parent.backup.body')}</p>
       <p className="muted">
         {lastBackupAt === null
@@ -382,7 +617,7 @@ function BackupSection() {
           onCancel={() => setPending(null)}
         />
       ) : null}
-    </section>
+    </SettingsCard>
   );
 }
 
@@ -395,8 +630,7 @@ function SecuritySection() {
   const [saved, setSaved] = useState(false);
 
   return (
-    <section className="card stack" aria-labelledby="security">
-      <h2 id="security">{t('parent.security.title')}</h2>
+    <SettingsCard id="security" icon="lock" title={t('parent.security.title')}>
       <p>{hasPin ? t('parent.security.hasPin') : t('parent.security.noPin')}</p>
       <div className="row">
         <button
@@ -429,7 +663,7 @@ function SecuritySection() {
           onCancel={() => setChoosing(false)}
         />
       ) : null}
-    </section>
+    </SettingsCard>
   );
 }
 
@@ -460,10 +694,10 @@ function PinChooser({ onDone, onCancel }: { onDone: (pin: string) => void; onCan
       <div className="gate stack">
         <p>{prompt}</p>
         <output className="gate__value" dir="ltr">
-          {'•'.repeat(value.length) || ' '}
+          {'•'.repeat(value.length) || ' '}
         </output>
         <p className="gate__error" role="alert">
-          {mismatch ? t('parent.security.mismatch') : ' '}
+          {mismatch ? t('parent.security.mismatch') : ' '}
         </p>
         {/* A code, not a number: a leading 0 counts. */}
         <NumberPad label={prompt} value={value} onChange={onChange} maxLength={PIN_LENGTH} code />
@@ -480,8 +714,7 @@ function DeviceSection() {
   const standalone = isStandalone();
 
   return (
-    <section className="card stack" aria-labelledby="device">
-      <h2 id="device">{t('parent.device.title')}</h2>
+    <SettingsCard id="device" icon="device" title={t('parent.device.title')}>
       {storageIssue === 'unavailable' ? (
         <p className="notice">{t('parent.device.unavailable')}</p>
       ) : null}
@@ -493,9 +726,9 @@ function DeviceSection() {
       ) : null}
       <p>{standalone ? t('parent.device.installed') : t('parent.device.notInstalled')}</p>
       {storageIssue !== 'unavailable' ? (
-        <p className="muted">
-          {persisted ? t('parent.device.persisted') : t('parent.device.notPersisted')}
-        </p>
+        <More>
+          <p>{persisted ? t('parent.device.persisted') : t('parent.device.notPersisted')}</p>
+        </More>
       ) : null}
       <div className="row">
         <button
@@ -513,7 +746,7 @@ function DeviceSection() {
           {t('parent.device.playground')}
         </button>
       </div>
-    </section>
+    </SettingsCard>
   );
 }
 
@@ -524,15 +757,17 @@ function OfflineSection() {
   const grades = [...new Set(profiles.map((p) => p.grade))].sort((a, b) => a - b);
   if (grades.length === 0) return null;
   return (
-    <section className="card stack" aria-labelledby="offline">
-      <h2 id="offline">{t('parent.offline.title')}</h2>
-      <p className="muted">{t('parent.offline.intro')}</p>
+    <SettingsCard id="offline" icon="headphones" title={t('parent.offline.title')}>
+      <p>{t('parentArea.offline.short')}</p>
+      <More>
+        <p>{t('parent.offline.intro')}</p>
+      </More>
       {offlineSupported() ? (
         grades.map((g) => <OfflineGrade key={g} grade={g} />)
       ) : (
         <p className="notice">{t('parent.offline.unsupported')}</p>
       )}
-    </section>
+    </SettingsCard>
   );
 }
 
@@ -659,12 +894,13 @@ function WeekReport({ profile }: { profile: Profile }) {
   );
 }
 
+/** Every world and its stations, folded: the child card already shows the current one. */
 function JourneyReport({ profile }: { profile: Profile }) {
   const progress = useApp((s) => s.data.progress[profile.id]);
   const worlds = worldsFor(profile.grade, progress);
   return (
-    <div className="report" aria-label={t('parent.journey.title')}>
-      <strong className="report__title">{t('parent.journey.title')}</strong>
+    <details className="report more">
+      <summary>{t('parent.journey.title')}</summary>
       <ul className="report__worlds">
         {worlds.map((w) => (
           <li key={w.topic.id} className="report__world">
@@ -679,6 +915,6 @@ function JourneyReport({ profile }: { profile: Profile }) {
           </li>
         ))}
       </ul>
-    </div>
+    </details>
   );
 }
