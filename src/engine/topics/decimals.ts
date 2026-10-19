@@ -249,7 +249,6 @@ const UNITS = [
   { key: 'g4.wp.dec.bottle', op: '-', a: [15, 30], b: [2, 12] },
 ] as const;
 
-
 /** A tenth that is not a whole number (2.0 would be read "שתיים", without the point). */
 function tenths(rng: Rng, lo: number, hi: number): number {
   const n = randInt(rng, lo, hi);
@@ -321,13 +320,7 @@ function storyBank(): string[] {
   const out: string[] = [];
   for (const { key } of UNITS) {
     for (const who of CHARACTERS) {
-      out.push(
-        ...say(
-          `${key}.story`,
-          { name: who.name, a: 1.5, b: 2.5 },
-          who.gender,
-        ).parts,
-      );
+      out.push(...say(`${key}.story`, { name: who.name, a: 1.5, b: 2.5 }, who.gender).parts);
       out.push(say(`${key}.hint1`).text);
     }
   }
