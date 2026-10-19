@@ -13,6 +13,7 @@ import {
   say,
   sayText,
   spreadChoices,
+  type AdviceSpec,
   type Said,
 } from '../build';
 import { NOUNS, type CountableNoun } from '../nouns';
@@ -61,6 +62,12 @@ function near(rng: Rng, answer: number, min: number, max: number): number[] {
 const offByOne = (answer: number) => (v: number) =>
   Math.abs(v - answer) === 1 ? 'offByOne' : null;
 
+/** Counted one twice (one too many) or skipped one (one too few). */
+const countAdvice = (n: number): AdviceSpec[] => [
+  { value: n + 1, say: say('adv.count.twice') },
+  ...(n > 1 ? [{ value: n - 1, say: say('adv.count.skipped') }] : []),
+];
+
 /**
  * A fact and a variant: the same numbers shown with other objects. Levels with
  * only four or five numbers would otherwise repeat within a round of six.
@@ -108,6 +115,7 @@ function count(level: number, { n, v }: Variant, rng: Rng): Exercise {
     ],
     solution: solved,
     diagnose: offByOne(n),
+    advice: countAdvice(n),
   });
 }
 
@@ -162,6 +170,16 @@ function more(level: number, p: Pair, fewer: boolean): Exercise {
       }),
     ],
     solution: solved,
+    // The other group: for "fewer", most often the bigger one (more and fewer mixed up).
+    advice: [
+      {
+        value: 1 - winner,
+        say: say(k(fewer ? 'adv.fewer.check' : 'adv.more.check'), {
+          a: { n: p.a, noun: x },
+          b: { n: p.b, noun: y },
+        }),
+      },
+    ],
   });
 }
 
@@ -212,6 +230,17 @@ function oneStep(level: number, n: number, rng: Rng, more1: boolean): Exercise {
     ],
     solution: solved,
     diagnose: offByOne(answer),
+    // The number shown, as if nothing was added or taken; or one counted twice.
+    advice: [
+      {
+        value: n,
+        say: say(k(`adv.${more1 ? 'oneMore' : 'oneLess'}.same`), { a: { n, noun } }, noun.gender),
+      },
+      {
+        value: more1 ? n + 2 : n - 2,
+        say: say(k(more1 ? 'adv.oneMore.over' : 'adv.oneLess.under'), {}, noun.gender),
+      },
+    ].filter((a) => a.value >= 0 && a.value <= 10),
   });
 }
 
@@ -258,6 +287,17 @@ function complete(level: number, { n, v }: Variant, rng: Rng, target: 5 | 10): E
     ],
     solution: solved,
     diagnose: offByOne(answer),
+    // Counted what is there instead of what is missing; or one empty cell too many or too few.
+    advice: [
+      { value: n, say: say('adv.makeN.counted', { a: { n, noun }, target }) },
+      ...[answer - 1, answer + 1]
+        .filter((v) => v >= 0)
+        .map((v) => ({
+          value: v,
+          say: say('adv.makeN.near', { a: n, v, s: n + v, target }),
+          kind: 'offByOne' as const,
+        })),
+    ],
   });
 }
 
@@ -306,6 +346,21 @@ function neighbour(level: number, n: number, rng: Rng, after: boolean): Exercise
     ],
     solution: solved,
     diagnose: offByOne(answer),
+    // The other way (before for after), the number itself, or one number skipped.
+    advice: [
+      {
+        value: after ? n - 1 : n + 1,
+        say: say(k(after ? 'adv.after.before' : 'adv.before.after'), {
+          v: after ? n - 1 : n + 1,
+          n,
+        }),
+      },
+      { value: n, say: say(k(`adv.${after ? 'after' : 'before'}.self`), { n }) },
+      {
+        value: after ? n + 2 : n - 2,
+        say: say(k(`adv.${after ? 'after' : 'before'}.skip`), { n }),
+      },
+    ].filter((a) => a.value >= 0 && a.value <= 10),
   });
 }
 
@@ -347,6 +402,7 @@ function bigger(level: number, p: Pair): Exercise {
       ),
     ],
     solution: solved,
+    advice: [{ value: 1 - answer, say: say('adv.bigger.check', { a: p.a, b: p.b }) }],
   });
 }
 

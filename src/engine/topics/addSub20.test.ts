@@ -38,6 +38,7 @@ describe('add-sub-20: every exercise it can produce', () => {
       expect(e.spokenText, e.factId).not.toMatch(/\d/);
       expect(e.solutionSpoken, e.factId).not.toMatch(/\d/);
       for (const h of e.hints) expect(h.spoken, e.factId).not.toMatch(/\d/);
+      for (const a of e.advice ?? []) expect(a.spoken, e.factId).not.toMatch(/\d/);
     }
   });
 
@@ -145,6 +146,54 @@ describe('add-sub-20: generation and diagnosis', () => {
     expect(startLevel(0)).toBe(3);
     expect(startLevel(1)).toBe(4);
     expect(startLevel(2)).toBe(8);
-    expect(startLevel(4)).toBe(9);
+    expect(startLevel(4)).toBe(10);
   });
+
+  it('gives advice for the typical slips, counted as mistakes', () => {
+    for (const e of exercises)
+      for (const a of e.advice ?? []) {
+        expect(a.value, e.factId).not.toBe(e.answer);
+        expect(e.diagnose(a.value), e.factId).not.toBeNull();
+      }
+    const flip = exercises.find((x) => x.factId === 'sub:14-6' && x.level === 10);
+    expect(flip?.diagnose(12)).toBe('borrow');
+    expect(flip?.advice?.find((a) => a.value === 12)?.text).toContain('4 מ-6');
+    const friends = exercises.find((x) => x.factId === 'missAdd:7+?=10');
+    expect(friends?.diagnose(17)).toBe('wrongOperation');
+    const tenPlus = exercises.find((x) => x.factId === 'add:10+6' && x.level === 8);
+    expect(tenPlus?.diagnose(7)).toBe('placeValue');
+  });
+});
+
+describe('add-sub-20: grade 1 levels', () => {
+  const at = (level: number) => exercises.filter((e) => e.level === level);
+
+  it('has unique level labels', () => {
+    expect(new Set(LEVELS.map((l) => l.labelKey)).size).toBe(LEVELS.length);
+  });
+
+  it('practises friends of ten before ten-plus, and both before crossing ten', () => {
+    for (const e of at(7)) {
+      // The other number and the answer make ten: 3 + ? = 10, 10 − 3 = ?.
+      const other = (e.display.match(/\d+/g) ?? []).map(Number).find((n) => n !== 10) ?? 0;
+      expect(other + e.answer, e.factId).toBe(10);
+    }
+    // Ten and some ones: 10 + 6, 16 − 10, or back to ten: 16 − 6.
+    for (const e of at(8))
+      expect((e.display.match(/\d+/g) ?? []).map(Number).concat(e.answer), e.factId).toContain(10);
+    for (const e of at(10)) {
+      const [a, b] = (e.display.match(/\d+/g) ?? []).map(Number);
+      const crosses = e.display.includes('+')
+        ? (a ?? 0) + (b ?? 0) > 10
+        : (a ?? 0) > 10 && e.answer < 10;
+      expect(crosses, e.factId).toBe(true);
+    }
+  });
+
+  it('breaks crossing ten up openly through ten (9 + 5 = 9 + 1 + 4)', () => {
+    const e = at(10).find((x) => x.factId === 'add:9+5');
+    expect(e?.hints[1].text).toContain('9 ועוד 1 זה עשר');
+    expect(e?.hints[2].example?.display).toMatch(/^\d+ \+ \d+ = \d+ \+ \d+ \+ \d+ = \d+$/);
+  });
+});
 });
