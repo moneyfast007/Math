@@ -445,7 +445,34 @@ export interface TopicDef {
 }
 
 /** How many exercises per level the bank samples from open levels to collect their pieces. */
-const BANK_SAMPLES = 400;
+/**
+ * Open levels play from a fixed pool of exercises, so that every sentence a
+ * child can hear is recorded whole (no sentence assembled from clips). The
+ * pool size follows what the level practises: arithmetic fluency, where an
+ * answer is easy to remember, gets the biggest; word problems, long and hard
+ * to remember, the smallest. A level with fewer exercises keeps all of them.
+ */
+export const POOL_SIZE = { fluency: 200, sense: 120, story: 100 } as const;
+
+const OPERATION_SIGN = /[+−×÷:]/;
+
+function poolKind(e: Exercise): keyof typeof POOL_SIZE {
+  if (e.input.type === 'vertical' || OPERATION_SIGN.test(e.display)) return 'fluency';
+  return !e.display && e.prompt.length > 45 ? 'story' : 'sense';
+}
+
+/** A stable number for a string (FNV-1a), to seed a level's pool. */
+function hashString(s: string): number {
+  let h = 0x811c9dc5;
+  for (let i = 0; i < s.length; i++) h = Math.imul(h ^ s.charCodeAt(i), 0x01000193);
+  return h >>> 0;
+}
+
+/** One exercise of a pool: the seed that builds it (in either gender) and its fact. */
+interface PoolEntry {
+  seed: number;
+  factId: string;
+}
 
 export function defineTopic(def: TopicDef): Topic & { enumerate: (level: number) => Exercise[] } {
   const levels: LevelInfo[] = def.levels.map((l, i) => ({ level: i + 1, labelKey: l.labelKey }));
@@ -453,6 +480,32 @@ export function defineTopic(def: TopicDef): Topic & { enumerate: (level: number)
     const l = def.levels[level - 1];
     if (!l) throw new RangeError(`${def.id} has no level ${level}`);
     return l;
+  };
+
+  /**
+   * The fixed pool of an open level, built once on first use: distinct
+   * exercises from seeds derived from the topic and level, so the same pool on
+   * every device and in the audio build.
+   */
+  const pools = new Map<number, PoolEntry[]>();
+  const poolOf = (level: number): PoolEntry[] => {
+    const cached = pools.get(level);
+    if (cached) return cached;
+    const l = levelDef(level);
+    if (!('gen' in l)) return [];
+    const base = hashString(`${def.id}:${level}`);
+    const size = POOL_SIZE[poolKind(l.gen(seededRng(base), 'f'))];
+    const out: PoolEntry[] = [];
+    const ids = new Set<string>();
+    for (let k = 0; k < size * 8 && out.length < size; k++) {
+      const seed = (base + k * 7919) >>> 0;
+      const factId = l.gen(seededRng(seed), 'f').factId;
+      if (ids.has(factId)) continue;
+      ids.add(factId);
+      out.push({ seed, factId });
+    }
+    pools.set(level, out);
+    return out;
   };
 
   const generate = (
@@ -465,14 +518,13 @@ export function defineTopic(def: TopicDef): Topic & { enumerate: (level: number)
     const seen = new Set(avoid === undefined ? [] : typeof avoid === 'string' ? [avoid] : avoid);
     const last = typeof avoid === 'string' ? avoid : avoid?.at(-1);
     if ('gen' in l) {
-      // Nothing seen in this round when the generator can help it; at least never the same twice running.
-      let fallback: Exercise | null = null;
-      for (let i = 0; i < 40; i++) {
-        const e = l.gen(rng, gender);
-        if (!seen.has(e.factId)) return e;
-        if (e.factId !== last) fallback ??= e;
-      }
-      return fallback ?? l.gen(rng, gender);
+      // From the level's pool: nothing seen in this round, at least never the same twice running.
+      const pool = poolOf(level);
+      const fresh = pool.filter((p) => !seen.has(p.factId));
+      const notLast = pool.filter((p) => p.factId !== last);
+      const from = fresh.length > 0 ? fresh : notLast.length > 0 ? notLast : pool;
+      const entry = from.length > 0 ? pick(rng, from) : undefined;
+      return entry ? l.gen(seededRng(entry.seed), gender) : l.gen(rng, gender);
     }
     const facts = l.facts() as readonly never[];
     const build = l.build;
@@ -483,13 +535,16 @@ export function defineTopic(def: TopicDef): Topic & { enumerate: (level: number)
     return build(pick(rng, pool), rng, gender);
   };
 
-  /** Every exercise of a closed level (one noun choice each), or a sample of an open one. */
+  /** Every exercise a level can give: a closed level's facts, an open level's pool; both genders. */
   const enumerate = (level: number): Exercise[] => {
     const l = levelDef(level);
     const fixed: Rng = () => 0;
     if ('gen' in l) {
-      const rng = seededRng(level * 7919);
-      return Array.from({ length: BANK_SAMPLES }, () => l.gen(rng, pick(rng, ['f', 'm'])));
+      const gen = l.gen;
+      return poolOf(level).flatMap((p) => [
+        gen(seededRng(p.seed), 'f'),
+        gen(seededRng(p.seed), 'm'),
+      ]);
     }
     return (l.facts() as readonly never[]).flatMap((f) => [
       l.build(f, fixed, 'f'),
@@ -499,20 +554,18 @@ export function defineTopic(def: TopicDef): Topic & { enumerate: (level: number)
 
   let bankCache: string[] | null = null;
   const spokenBank = (): string[] => {
-    // Computed once: every exercise of closed levels and a fixed sample of open ones.
+    // Computed once: every sentence of every exercise a child can get, recorded whole.
     if (bankCache) return bankCache;
     const out = new Set<string>();
-    // Word problems used by this topic register their stories while being sampled below.
     for (const { level } of levels) {
-      const l = levelDef(level);
-      for (const e of enumerate(level)) {
-        const sayings = sayingsOf(e);
-        // Closed levels record whole sentences; open levels only the clips sentences are assembled from.
-        if (!('gen' in l)) for (const [text] of sayings) out.add(text);
-        for (const [, parts] of sayings) for (const p of parts ?? []) out.add(p);
-      }
+      const closedLevel = !('gen' in levelDef(level));
+      for (const e of enumerate(level))
+        for (const [text, parts] of sayingsOf(e)) {
+          out.add(text);
+          // A closed level's choices (a noun, an order) can vary at play time: its clips stay too.
+          if (closedLevel) for (const p of parts ?? []) out.add(p);
+        }
     }
-    for (const p of storyPieces()) out.add(p);
     for (const p of def.extraBank?.() ?? []) out.add(p);
     bankCache = [...out];
     return bankCache;

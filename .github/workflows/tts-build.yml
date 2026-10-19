@@ -11,6 +11,10 @@ on:
         description: 'Only report what would be generated'
         required: false
         default: 'false'
+      concurrency:
+        description: 'Requests at a time'
+        required: false
+        default: '8'
       max_minutes:
         description: 'Stop starting new clips after this many minutes (rerun to continue)'
         required: false
@@ -42,7 +46,7 @@ jobs:
         run: |
           DRY="${{ inputs.dry_run }}"
           set -o pipefail
-          if [ "$DRY" = "true" ]; then npm run tts:build -- --dry-run 2>&1 | tee tts-build.log; else npm run tts:build -- --max-minutes "${{ inputs.max_minutes }}" 2>&1 | tee tts-build.log; fi
+          if [ "$DRY" = "true" ]; then npm run tts:build -- --dry-run 2>&1 | tee tts-build.log; else npm run tts:build -- --max-minutes "${{ inputs.max_minutes }}" --concurrency "${{ inputs.concurrency }}" 2>&1 | tee tts-build.log; fi
       - name: Trim the silence at both ends of each clip
         if: always() && inputs.dry_run != 'true'
         run: |
