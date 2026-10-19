@@ -53,19 +53,27 @@ export type KnowFact = { kind: 'value' | 'pick'; v: number };
 
 export function know({ kind, v }: KnowFact): Exercise {
   const isNote = v >= 20;
-  const family: readonly number[] = isNote ? NOTES : COINS;
-  const others = family.filter((x) => x !== v);
-  // Deterministic distractors (closed level): the neighbours in the family.
-  const i = family.indexOf(v);
-  const near = [family[i - 1], family[i + 1], ...others].filter(
-    (x): x is number => x !== undefined,
-  );
-  const options = [v, ...[...new Set(near)].slice(0, 2)].sort((a, b) => a - b);
+  // Deterministic distractors (closed level): three neighbours in the family. For the four
+  // coins the window differs between the two kinds, so the answer is not mostly the middle button.
+  const low = [1, 2, 5];
+  const high = [2, 5, 10];
+  const options = isNote
+    ? [...NOTES]
+    : kind === 'value'
+      ? v <= 2
+        ? low
+        : high
+      : v === 1 || v === 5
+        ? low
+        : high;
   const exV = v === 5 ? 10 : 5;
   const solved = say('ex.money.value.solution', { v: shekelsWhole(v) });
   const hints: [Hint, Hint, Hint] = [
     hint(say('ex.money.value.hint1')),
-    hint(say('ex.money.value.hint2'), { visual: money([...COINS]) }),
+    // The family asked about: the coins for a coin, the notes for a note.
+    isNote
+      ? hint(say('ex.money.value.hint2notes'), { visual: money([...NOTES]) })
+      : hint(say('ex.money.value.hint2coins'), { visual: money([...COINS]) }),
     pictureExample(say('ex.money.value.solution', { v: shekelsWhole(exV) }), money([exV])),
   ];
   if (kind === 'value') {
@@ -137,7 +145,12 @@ const COUNT_SETS: Record<2 | 3 | 4, () => number[][]> = {
       [10, 5, 2, 1],
       [3, 2, 1, 2],
       (xs) =>
-        xs.length >= 2 && xs.length <= 6 && xs.some((x) => x >= 5) && sum(xs) <= 50 && sum(xs) >= 6,
+        // A ten, or more than twelve shekels: not the small sums of grade 1 again.
+        xs.length >= 2 &&
+        xs.length <= 6 &&
+        xs.some((x) => x >= 5) &&
+        (xs.includes(10) || sum(xs) > 12) &&
+        sum(xs) <= 50,
     ),
   4: () =>
     handfuls(
@@ -175,6 +188,9 @@ export function count(level: number, from: () => number[][] = countSets[level as
     const n = sum(items);
     const sets = from();
     const ex = sets.find((s) => sum(s) !== n && s.length === items.length) ?? sets[0] ?? [5, 2];
+    // As many digits as the level's biggest sum, whatever this handful holds.
+    const digits = String(Math.max(...sets.map(sum))).length;
+    const withNote = items.some((x) => x >= 20);
     return exercise({
       factId: `mcount${level}:${plusAll(items)}`,
       topicId: ID,
@@ -184,9 +200,9 @@ export function count(level: number, from: () => number[][] = countSets[level as
       spoken: say('ex.money.count.prompt'),
       visual: money(items),
       answer: n,
-      input: numpad(level === 4 ? 3 : 2),
+      input: numpad(digits),
       hints: [
-        hint(say('ex.money.count.hint1')),
+        hint(say(withNote ? 'ex.money.count.hint1notes' : 'ex.money.count.hint1')),
         hint(say('ex.money.count.hint2'), {
           example: { display: `${plusAll(items)} = ?`, spoken: say('ex.money.count.hint2') },
         }),
@@ -208,6 +224,22 @@ export function count(level: number, from: () => number[][] = countSets[level as
 
 const ITEMS = ['מחברת', 'כדור', 'ספר', 'בובה', 'משחק'] as const;
 
+/** What can cost this much: no notebook for 89 shekels, no book for 5. */
+const PRICE_RANGE: Record<(typeof ITEMS)[number], [number, number]> = {
+  מחברת: [3, 20],
+  כדור: [10, 60],
+  ספר: [20, 90],
+  בובה: [15, 99],
+  משחק: [20, 99],
+};
+
+function itemFor(rng: Rng, price: number, except?: string): string {
+  const fits = ITEMS.filter(
+    (i) => i !== except && price >= PRICE_RANGE[i][0] && price <= PRICE_RANGE[i][1],
+  );
+  return pick(rng, fits.length > 0 ? fits : ITEMS.filter((i) => i !== except));
+}
+
 /** How a child paid: the literal phrase, so the story's pieces stay a finite list. */
 const PAID_WITH: Record<number, string> = {
   10: 'במטבע של עשרה שקלים',
@@ -226,7 +258,7 @@ export function storyBank(): string[] {
   const keys: TranslationKey[] = [
     'ex.money.enough.story',
     'ex.money.change.story',
-    'ex.money.total.story',
+    'ex.money.total.story2',
     'ex.money.totalChange.story',
   ];
   for (const who of CHARACTERS)
@@ -244,6 +276,15 @@ export function storyBank(): string[] {
             });
             for (const p of s.parts) out.add(p);
           }
+  for (const who of CHARACTERS)
+    for (const thing of SAME_ITEMS) {
+      const s = story('ex.money.same.story', who, {
+        k: { n: 3, noun: thing },
+        singular: thing.singular,
+        p: shekels(3),
+      });
+      for (const p of s.parts) out.add(p);
+    }
   for (const g of ['f', 'm'] as Gender[]) {
     out.add(say('ex.money.enough.hint1', {}, g).text);
     out.add(say('ex.money.change.hint1', {}, g).text);
@@ -253,25 +294,31 @@ export function storyBank(): string[] {
 
 /* ---------- Level 5: is there enough money? ---------- */
 
-export const enough = enoughFrom(() => countSets[3]());
-
-/** "Is there enough money?" with handfuls from `sets`. */
-export function enoughFrom(sets: () => number[][]) {
-  return (rng: Rng): Exercise => enoughWith(rng, pick(rng, sets()));
+/** "Is there enough money?" with handfuls from `sets`, at `level` of this world. */
+export function enoughFrom(sets: () => number[][], level = 4) {
+  return (rng: Rng): Exercise => enoughWith(rng, pick(rng, sets()), level);
 }
 
-function enoughWith(rng: Rng, items: number[]): Exercise {
+function enoughWith(rng: Rng, items: number[], level: number): Exercise {
   const have = sum(items);
   const price = Math.max(3, have + pick(rng, [-5, -3, -2, -1, 0, 1, 2, 3, 5]));
   const yes = have >= price;
   const who = pick(rng, CHARACTERS);
-  const item = pick(rng, ITEMS);
+  const item = itemFor(rng, price);
   const spoken = story('ex.money.enough.story', who, { item, p: shekels(price) });
-  const exHave = have === 20 && price === 15 ? 30 : 20;
+  // Sometimes enough, sometimes not: the example must not teach "always yes".
+  const exYes = rng() < 0.5;
+  const exHave = exYes
+    ? have === 20 && price === 15
+      ? 30
+      : 20
+    : have === 12 && price === 15
+      ? 9
+      : 12;
   return exercise({
     factId: `menough:${plusAll(items)}:${price}`,
     topicId: ID,
-    level: 5,
+    level,
     prompt: shown(spoken),
     display: '',
     spoken,
@@ -285,8 +332,11 @@ function enoughWith(rng: Rng, items: number[]): Exercise {
         example: { display: `${plusAll(items)} = ?`, spoken: say('ex.money.count.hint2') },
       }),
       exampleHint(
-        `${exHave} > 15`,
-        say('ex.money.enough.example', { have: shekels(exHave), p: shekels(15) }),
+        `${exHave} ${exYes ? '>' : '<'} 15`,
+        say(exYes ? 'ex.money.enough.example' : 'ex.money.enough.exampleNo', {
+          have: shekels(exHave),
+          p: shekels(15),
+        }),
       ),
     ],
     solution: say(yes ? 'ex.money.enough.yes' : 'ex.money.enough.no', {
@@ -298,14 +348,12 @@ function enoughWith(rng: Rng, items: number[]): Exercise {
 
 /* ---------- Level 6: which wallet has more? ---------- */
 
-const wallets = walletsWith([5, 10, 10, 20]);
-
-/** Which wallet has more: many small coins against one or two of `big`. */
-export function walletsWith(big: readonly number[]) {
-  return (rng: Rng): Exercise => walletPair(rng, big);
+/** Which wallet has more: many small coins against one or two of `big`, at `level` of this world. */
+export function walletsWith(big: readonly number[], level = 5) {
+  return (rng: Rng): Exercise => walletPair(rng, big, level);
 }
 
-function walletPair(rng: Rng, bigValues: readonly number[]): Exercise {
+function walletPair(rng: Rng, bigValues: readonly number[], level: number): Exercise {
   // One wallet of many small coins, one of a few big ones: more coins is not more money.
   let small: number[];
   let big: number[];
@@ -322,7 +370,7 @@ function walletPair(rng: Rng, bigValues: readonly number[]): Exercise {
   return exercise({
     factId: `mwallet:${plusAll(a)}|${plusAll(b)}`,
     topicId: ID,
-    level: 6,
+    level,
     prompt: t('ex.money.wallet.prompt'),
     display: '',
     spoken: say('ex.money.wallet.prompt'),
@@ -380,7 +428,7 @@ function payExactly(rng: Rng): Exercise {
   return exercise({
     factId: `mpay:${n}:${plusAll(right)}`,
     topicId: ID,
-    level: 7,
+    level: 6,
     prompt: t('ex.money.pay.prompt', { params: { n } }),
     display: '',
     spoken: say('ex.money.pay.spoken', { n: shekels(n) }),
@@ -412,7 +460,7 @@ export function change(level: number, paids?: readonly number[]) {
     const p = small ? randInt(rng, 3, paid - 1) : randInt(rng, paid === 50 ? 12 : 23, paid - 3);
     const c = paid - p;
     const who = pick(rng, CHARACTERS);
-    const item = pick(rng, ITEMS);
+    const item = itemFor(rng, p);
     const spoken = story('ex.money.change.story', who, {
       item,
       p: shekels(p),
@@ -476,19 +524,76 @@ function changeExample(small: boolean, paid: number, p: number): { p: number; pa
   return options.find((o) => o.paid - o.p !== c && !(o.paid === paid && o.p === c)) ?? options[0];
 }
 
+/* ---------- Level 9: several of the same thing ---------- */
+
+/** Things bought several at a time, cheap enough for a handful of coins. */
+const SAME_ITEMS: readonly Noun[] = [
+  { singular: 'מחברת', plural: 'מחברות', gender: 'f' },
+  { singular: 'עיפרון', plural: 'עפרונות', gender: 'm' },
+  { singular: 'כרטיס', plural: 'כרטיסים', gender: 'm' },
+  { singular: 'מדבקה', plural: 'מדבקות', gender: 'f' },
+  { singular: 'כדור', plural: 'כדורים', gender: 'm' },
+];
+
+/** The same thing bought several times: the price again and again (the curriculum's way into multiplication). */
+function sameItems(rng: Rng): Exercise {
+  const who = pick(rng, CHARACTERS);
+  const thing = pick(rng, SAME_ITEMS);
+  // At least three of each, so every count is read from clips with its noun.
+  const k = randInt(rng, 3, 6);
+  const p = randInt(rng, 3, 10);
+  const total = k * p;
+  const spoken = story('ex.money.same.story', who, {
+    k: { n: k, noun: thing },
+    singular: thing.singular,
+    p: shekels(p),
+  });
+  const sumOf = (n: number, v: number) => Array.from({ length: n }, () => v).join(' + ');
+  const exs: [{ k: number; p: number }, ...{ k: number; p: number }[]] = [
+    { k: 3, p: 5 },
+    { k: 4, p: 3 },
+    { k: 3, p: 4 },
+  ];
+  const ex = exs.find((x) => x.k * x.p !== total && !(x.k === k && x.p === p)) ?? exs[0];
+  const solved = (n: number, v: number) =>
+    say('ex.money.same.solution', { k: n, p: shekels(v), total: shekels(n * v) });
+  return exercise({
+    factId: `msame:${k}x${p}`,
+    topicId: ID,
+    level: 9,
+    prompt: shown(spoken),
+    display: '',
+    spoken,
+    answer: total,
+    operation: 'mul',
+    input: numpad(2),
+    hints: [
+      hint(say('ex.money.same.hint1')),
+      {
+        ...hint(say('ex.money.same.hint2')),
+        example: { display: `${sumOf(k, p)} = ?`, spoken: say('ex.money.same.hint2').text },
+      },
+      exampleHint(`${sumOf(ex.k, ex.p)} = ${ex.k * ex.p}`, solved(ex.k, ex.p)),
+    ],
+    solution: solved(k, p),
+    diagnose: (v) => diagnoseArith(v, { a: k, op: '×', b: p, answer: total }),
+  });
+}
+
 /* ---------- Level 10: shopping ---------- */
 
 function shopping(rng: Rng): Exercise {
   const who = pick(rng, CHARACTERS);
-  const [item, item2] = shuffle(rng, [...ITEMS]) as [string, string];
   const withChange = rng() < 0.5;
   const a = randInt(rng, 3, 30);
   const b = randInt(rng, 3, 30);
+  const item = itemFor(rng, a);
+  const item2 = itemFor(rng, b, item);
   const total = a + b;
   // The change is at least three shekels, so it is always read with the noun from clips.
   const paid = total <= 47 && rng() < 0.6 ? 50 : 100;
   const answer = withChange ? paid - total : total;
-  const spoken = story(withChange ? 'ex.money.totalChange.story' : 'ex.money.total.story', who, {
+  const spoken = story(withChange ? 'ex.money.totalChange.story' : 'ex.money.total.story2', who, {
     item,
     item2,
     a: shekels(a),
@@ -502,7 +607,12 @@ function shopping(rng: Rng): Exercise {
     { a: 14, b: 8 },
     { a: 13, b: 5 },
   ];
-  const ex = exs.find((x) => x.a + x.b !== answer && x.a + x.b !== total) ?? exs[0];
+  const ex =
+    exs.find(
+      (x) =>
+        x.a + x.b !== answer && x.a + x.b !== total && (!withChange || 50 - x.a - x.b !== answer),
+    ) ?? exs[0];
+  const exTotal = ex.a + ex.b;
   return exercise({
     factId: `mshop:${a}+${b}${withChange ? `/${paid}` : ''}`,
     topicId: ID,
@@ -512,23 +622,36 @@ function shopping(rng: Rng): Exercise {
     spoken,
     answer,
     operation: withChange ? 'sub' : 'add',
-    input: numpad(withChange ? 2 : 2),
+    input: numpad(2),
     hints: [
       hint(say(withChange ? 'ex.money.totalChange.hint1' : 'ex.money.total.hint1')),
       {
-        ...hint(say('hint.equation')),
+        ...hint(say(withChange ? 'ex.money.totalChange.hint2' : 'hint.equation')),
+        // Two steps on two lines, not brackets: first the total, then the change.
         example: {
-          display: withChange ? `${paid} − (${a} + ${b}) = ?` : `${a} + ${b} = ?`,
-          spoken: say('hint.equation').text,
+          display: withChange ? `${a} + ${b} = ?   →   ${paid} − ? = ?` : `${a} + ${b} = ?`,
+          spoken: say(withChange ? 'ex.money.totalChange.hint2' : 'hint.equation').text,
         },
       },
-      exampleHint(
-        `${ex.a} + ${ex.b} = ${ex.a + ex.b}`,
-        spokenEquationSolved(ex.a, '+', ex.b, ex.a + ex.b),
-      ),
+      // A change problem gets a worked change problem, in its two steps.
+      withChange
+        ? exampleHint(
+            `${ex.a} + ${ex.b} = ${exTotal}   →   50 − ${exTotal} = ${50 - exTotal}`,
+            say('ex.money.totalChange.example', {
+              a: ex.a,
+              b: ex.b,
+              total: exTotal,
+              paid: 50,
+              c: 50 - exTotal,
+            }),
+          )
+        : exampleHint(
+            `${ex.a} + ${ex.b} = ${exTotal}`,
+            spokenEquationSolved(ex.a, '+', ex.b, exTotal),
+          ),
     ],
     solution: withChange
-      ? say('ex.money.totalChange.solution', {
+      ? say('ex.money.totalChange.solution2', {
           total: shekels(total),
           c: shekels(answer),
         })
@@ -558,14 +681,18 @@ export const moneyTopic = defineTopic({
         ]),
       know,
     ),
-    closed(L(2), countSets[2], count(2)),
-    closed(L(3), countSets[3], count(3)),
-    closed(L(4), countSets[4], count(4)),
-    open(L(5), enough),
-    open(L(6), wallets),
+    // Counting ones and twos is grade 1 (its own world): this one starts with the bigger coins.
+    closed(L(3), countSets[3], count(2, countSets[3])),
+    closed(L(4), countSets[4], count(3, countSets[4])),
+    open(
+      L(5),
+      enoughFrom(() => countSets[3](), 4),
+    ),
+    open(L(6), walletsWith([5, 10, 10, 20], 5)),
     open(L(7), payExactly),
-    open(L(8), change(8)),
-    open(L(9), change(9)),
+    open(L(8), change(7, [10, 20])),
+    open(L(9), change(8, [50, 100])),
+    open('level.money.same', sameItems),
     open(L(10), shopping),
   ],
   extraBank: storyBank,

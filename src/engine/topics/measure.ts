@@ -6,6 +6,7 @@ import type { MistakeKind } from '@/state/schema';
 import {
   closed,
   defineTopic,
+  exampleAvoiding,
   exampleHint,
   exercise,
   hint,
@@ -71,13 +72,25 @@ function readClock(level: 1 | 2) {
   return (time: ClockTime, rng: Rng): Exercise => {
     // Reading the number the long hand points at as the minutes: 3:20 read as 3:04.
     const misread = at(time.h, Math.round(time.m / 5));
-    const set = clockChoices(rng, time, [
-      { time: misread, mistake: 'clockHands' },
-      { time: at(time.h + 1, time.m), mistake: 'clockHands' },
-      { time: at(time.h, (time.m + 5) % 60) },
-    ]);
+    // To the minute (level 2), a time a minute or two off: counting the small marks matters.
+    const nearMinute =
+      [time.m + 2, time.m - 2].find((m) => m >= 0 && m < 60 && m !== misread.m) ?? time.m + 1;
+    const near = at(time.h, nearMinute);
+    const set = clockChoices(
+      rng,
+      time,
+      level === 1
+        ? [
+            { time: misread, mistake: 'clockHands' },
+            { time: at(time.h + 1, time.m), mistake: 'clockHands' },
+            { time: at(time.h, (time.m + 5) % 60) },
+          ]
+        : [{ time: misread, mistake: 'clockHands' }, { time: near }],
+    );
     const { options, answer } = set;
-    const ex = same(time, at(8, 40)) ? at(2, 10) : at(8, 40);
+    // The example is of the level's kind (8:40, or 8:37 to the minute), and none of the buttons.
+    const exs = level === 1 ? [at(8, 40), at(2, 10), at(5, 25)] : [at(8, 37), at(2, 12), at(5, 48)];
+    const ex = exs.find((x) => !options.some((o) => same(o, x))) ?? at(8, 40);
     return exercise({
       factId: `mclock${level}:${time.h}:${time.m}`,
       topicId: ID,
@@ -131,34 +144,222 @@ function elapsed(rng: Rng): Exercise {
 
 /* ---------- Level 4: hours and minutes ---------- */
 
-const HOUR_FACTS: { key: TranslationKey; answer: number; choices: number[] }[] = [
-  { key: 'ex.measure.hours.q1', answer: 60, choices: [10, 60, 100] },
-  { key: 'ex.measure.hours.q2', answer: 30, choices: [30, 50, 60] },
-  { key: 'ex.measure.hours.q3', answer: 15, choices: [15, 25, 45] },
-  { key: 'ex.measure.hours.q4', answer: 90, choices: [90, 130, 150] },
-  { key: 'ex.measure.hours.q5', answer: 120, choices: [100, 120, 200] },
-  { key: 'ex.measure.hours.q6', answer: 180, choices: [130, 180, 300] },
-  { key: 'ex.measure.hours.q7', answer: 45, choices: [30, 45, 75] },
-  { key: 'ex.measure.hours.q8', answer: 150, choices: [150, 210, 250] },
+const HOUR: Noun = { singular: 'שעה', plural: 'שעות', gender: 'f' };
+
+type HourHint =
+  | 'one'
+  | 'halfHour'
+  | 'quarterHour'
+  | 'threeQuarters'
+  | 'whole'
+  | 'half'
+  | 'quarter'
+  | 'twenty'
+  | 'back'
+  | 'halves'
+  | 'quarters';
+
+interface HourFact {
+  key: TranslationKey;
+  answer: number;
+  choices: number[];
+  /** Hint 1, for this question (one hint for all would give "sixty" for "how many minutes in an hour"). */
+  hint: HourHint;
+  /** The time it is about, in minutes: drawn as two clocks (hint 2). */
+  minutes: number;
+  /** What the answer counts. */
+  unit: 'minutes' | 'hours' | 'plain';
+  /** The question has a number of minutes in it (shown with digits). */
+  m?: number;
+}
+
+/** Minutes in an hour and its parts, both ways (90 minutes are how many half hours?). */
+const HOUR_FACTS: HourFact[] = [
+  {
+    key: 'ex.measure.hours.q1',
+    answer: 60,
+    choices: [30, 60, 100],
+    hint: 'one',
+    minutes: 60,
+    unit: 'minutes',
+  },
+  {
+    key: 'ex.measure.hours.q2',
+    answer: 30,
+    choices: [30, 50, 60],
+    hint: 'halfHour',
+    minutes: 30,
+    unit: 'minutes',
+  },
+  {
+    key: 'ex.measure.hours.q3',
+    answer: 15,
+    choices: [15, 25, 45],
+    hint: 'quarterHour',
+    minutes: 15,
+    unit: 'minutes',
+  },
+  {
+    key: 'ex.measure.hours.q4',
+    answer: 90,
+    choices: [90, 130, 150],
+    hint: 'half',
+    minutes: 90,
+    unit: 'minutes',
+  },
+  {
+    key: 'ex.measure.hours.q5',
+    answer: 120,
+    choices: [100, 120, 200],
+    hint: 'whole',
+    minutes: 120,
+    unit: 'minutes',
+  },
+  {
+    key: 'ex.measure.hours.q6',
+    answer: 180,
+    choices: [130, 180, 300],
+    hint: 'whole',
+    minutes: 180,
+    unit: 'minutes',
+  },
+  {
+    key: 'ex.measure.hours.q7',
+    answer: 45,
+    choices: [30, 45, 75],
+    hint: 'threeQuarters',
+    minutes: 45,
+    unit: 'minutes',
+  },
+  {
+    key: 'ex.measure.hours.q8',
+    answer: 150,
+    choices: [150, 210, 250],
+    hint: 'half',
+    minutes: 150,
+    unit: 'minutes',
+  },
+  {
+    key: 'ex.measure.hours.q9',
+    answer: 75,
+    choices: [65, 75, 115],
+    hint: 'quarter',
+    minutes: 75,
+    unit: 'minutes',
+  },
+  {
+    key: 'ex.measure.hours.q10',
+    answer: 80,
+    choices: [70, 80, 120],
+    hint: 'twenty',
+    minutes: 80,
+    unit: 'minutes',
+  },
+  {
+    key: 'ex.measure.hours.q11',
+    answer: 240,
+    choices: [200, 240, 400],
+    hint: 'whole',
+    minutes: 240,
+    unit: 'minutes',
+  },
+  {
+    key: 'ex.measure.hours.q12',
+    answer: 135,
+    choices: [125, 135, 215],
+    hint: 'quarter',
+    minutes: 135,
+    unit: 'minutes',
+  },
+  {
+    key: 'ex.measure.hours.back',
+    answer: 2,
+    choices: [1, 2, 3],
+    hint: 'back',
+    minutes: 120,
+    unit: 'hours',
+    m: 120,
+  },
+  {
+    key: 'ex.measure.hours.back',
+    answer: 3,
+    choices: [2, 3, 4],
+    hint: 'back',
+    minutes: 180,
+    unit: 'hours',
+    m: 180,
+  },
+  {
+    key: 'ex.measure.hours.halves',
+    answer: 3,
+    choices: [2, 3, 4],
+    hint: 'halves',
+    minutes: 90,
+    unit: 'plain',
+  },
+  {
+    key: 'ex.measure.hours.quarters',
+    answer: 4,
+    choices: [3, 4, 6],
+    hint: 'quarters',
+    minutes: 60,
+    unit: 'plain',
+  },
 ];
 
-function hours({ key, answer, choices }: (typeof HOUR_FACTS)[number], rng: Rng): Exercise {
+/** Worked examples: minutes in hours, and hours in minutes. */
+const HOUR_EXAMPLES: Record<
+  'minutes' | 'back',
+  { answer: number; display: string; key: TranslationKey }[]
+> = {
+  minutes: [
+    { answer: 90, display: '60 + 30 = 90', key: 'ex.measure.hours.ex90' },
+    { answer: 75, display: '60 + 15 = 75', key: 'ex.measure.hours.ex75' },
+    { answer: 120, display: '60 + 60 = 120', key: 'ex.measure.hours.ex120' },
+  ],
+  back: [
+    { answer: 4, display: '60 + 60 + 60 + 60 = 240', key: 'ex.measure.hours.ex240' },
+    { answer: 2, display: '60 + 60 = 120', key: 'ex.measure.hours.ex120back' },
+  ],
+};
+
+function hours(fact: HourFact, rng: Rng): Exercise {
+  const { key, answer, choices } = fact;
+  const asked = fact.m === undefined ? say(key) : say(key, { m: { n: fact.m, noun: MINUTE } });
+  const noon = at(12, 0);
+  const examples = HOUR_EXAMPLES[fact.unit === 'minutes' ? 'minutes' : 'back'];
   return exercise({
-    factId: `mhours:${key}`,
+    factId: `mhours:${key}:${answer}`,
     topicId: ID,
     level: 4,
-    prompt: t(key),
+    prompt: shown(asked),
     display: '',
-    spoken: say(key),
+    spoken: asked,
     answer,
     // Not in order: the facts' distractors sit mostly on one side of the answer.
     input: { type: 'choices', choices: shuffle(rng, choices) },
     hints: [
-      hint(say('ex.measure.hours.hint1')),
-      hint(say('ex.measure.hours.hint2')),
-      hint(say('ex.measure.hours.hint3')),
+      hint(say(`ex.measure.hours.hint.${fact.hint}` as TranslationKey)),
+      // The time itself on two clocks: from twelve, the long hand going round.
+      hint(say('ex.measure.hours.hintClock'), {
+        visual: clock(noon, fromMinutes(fact.minutes)),
+      }),
+      exampleAvoiding(
+        answer,
+        examples.map((x) => ({
+          answer: x.answer,
+          hint: () => exampleHint(x.display, say(x.key)),
+        })),
+      ),
     ],
-    solution: say('ex.measure.hours.solution', { n: { n: answer, noun: MINUTE } }),
+    solution: say('ex.measure.hours.solution', {
+      n:
+        fact.unit === 'minutes'
+          ? { n: answer, noun: MINUTE }
+          : fact.unit === 'hours'
+            ? { n: answer, noun: HOUR }
+            : answer,
+    }),
     // 100 for an hour: thinking in hundreds, as with metres.
     diagnose: (v) => (v % 100 === 0 && answer % 60 === 0 ? 'other' : null),
   });
@@ -174,7 +375,16 @@ function convert(level: 5 | 7) {
   return (rng: Rng): Exercise => {
     const kind = pick(rng, ['whole', 'mixed', 'back'] as const);
     const a = randInt(rng, 3, 9);
-    const extra = level === 5 ? randInt(rng, 1, 19) * 5 : randInt(rng, 1, 19) * 50;
+    // About a third with a zero inside the answer (305 ס״מ, 3050 גרם), not only 3 + 45 side by side.
+    const zero = rng() < 0.3;
+    const extra =
+      level === 5
+        ? zero
+          ? randInt(rng, 1, 9)
+          : randInt(rng, 2, 19) * 5
+        : zero
+          ? randInt(rng, 1, 9) * 10
+          : randInt(rng, 1, 19) * 50;
     const answer = kind === 'back' ? a : kind === 'whole' ? a * k : a * k + extra;
     const bigU = level === 5 ? 'מ׳' : 'ק״ג';
     const smallU = level === 5 ? 'ס״מ' : 'גרם';
@@ -193,10 +403,19 @@ function convert(level: 5 | 7) {
               b: { n: a, noun: big },
               s: { n: extra, noun: small },
             });
-    const solution = say(`${keyBase}.solution` as TranslationKey, {
-      b: { n: a, noun: big },
-      s: { n: a * k, noun: small },
-    });
+    // Mixed: the whole way to the answer ("three metres are 300 cm, and 45 more is 345").
+    const solution =
+      kind === 'mixed'
+        ? say('ex.measure.mixed.solution', {
+            b: { n: a, noun: big },
+            s: { n: a * k, noun: small },
+            e: extra,
+            r: { n: answer, noun: small },
+          })
+        : say(`${keyBase}.solution` as TranslationKey, {
+            b: { n: a, noun: big },
+            s: { n: a * k, noun: small },
+          });
     return exercise({
       factId: `mconv${level}:${kind}:${a}:${kind === 'mixed' ? extra : 0}`,
       topicId: ID,
@@ -208,14 +427,31 @@ function convert(level: 5 | 7) {
       input: numpad(4),
       hints: [
         hint(say(`${keyBase}.hint1` as TranslationKey)),
-        hint(say(kind === 'back' ? 'ex.measure.convert.hintBack' : 'ex.measure.convert.hint2')),
-        exampleHint(
-          level === 5 ? '2 מ׳ = 200 ס״מ' : '2 ק״ג = 2000 גרם',
-          say(`${keyBase}.solution` as TranslationKey, {
-            b: 'שני ' + big.plural,
-            s: { n: 2 * k, noun: small },
-          }),
+        hint(
+          say(
+            kind === 'back'
+              ? 'ex.measure.convert.hintBack'
+              : kind === 'whole'
+                ? level === 5
+                  ? 'ex.measure.m.hintWhole'
+                  : 'ex.measure.kg.hintWhole'
+                : 'ex.measure.convert.hint2',
+            { a },
+          ),
         ),
+        // An example of the same kind: both units for a mixed one.
+        kind === 'mixed'
+          ? exampleHint(
+              level === 5 ? '2 מ׳ + 30 ס״מ = 230 ס״מ' : '2 ק״ג + 300 גרם = 2300 גרם',
+              say(level === 5 ? 'ex.measure.m.mixedExample' : 'ex.measure.kg.mixedExample'),
+            )
+          : exampleHint(
+              level === 5 ? '2 מ׳ = 200 ס״מ' : '2 ק״ג = 2000 גרם',
+              say(`${keyBase}.solution` as TranslationKey, {
+                b: 'שני ' + big.plural,
+                s: { n: 2 * k, noun: small },
+              }),
+            ),
       ],
       solution,
       diagnose: (v) =>
@@ -420,7 +656,7 @@ export const measureTopic = defineTopic({
     closed(
       L(4),
       () => HOUR_FACTS,
-      (f: (typeof HOUR_FACTS)[number], rng) => hours(f, rng),
+      (f: HourFact, rng) => hours(f, rng),
     ),
     open(L(5), convert(5)),
     open(L(6), ruler),

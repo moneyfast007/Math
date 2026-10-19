@@ -20,7 +20,8 @@ const WHOLE: Noun = { singular: 'שלם', plural: 'שלמים', gender: 'm' };
 /**
  * World 8, grade 3: "שברים: היכרות". Following the curriculum (grade 3: unit
  * fractions with concrete models, a fraction of a quantity, intuitive
- * comparison, adding and subtracting with the same denominator).
+ * comparison, simple equal fractions such as two quarters and a half). Adding
+ * and subtracting fractions is grade 4 (fractionOps).
  * Denominators 2–10. All levels are closed, so every sentence is recorded whole.
  */
 
@@ -39,6 +40,23 @@ function picture(num: number, den: number): Visual {
 const w = fractionWords;
 const f = displayFraction;
 
+/** A bar: the same shape and length whatever the denominator, for comparing. */
+function bar(num: number, den: number): Visual {
+  return { type: 'fraction', parts: den, shaded: num };
+}
+
+/**
+ * "צבועות שתי חמישיות", "צבוע רבע": the verb agrees with the fraction noun
+ * (its gender picks the form) and with one or more.
+ */
+function coloured(num: number, den: number) {
+  return say(
+    num === 1 ? 'ex.frac.numerator.solution1' : 'ex.frac.numerator.solution2',
+    { frac: w(num, den) },
+    fractionNoun(den).gender,
+  );
+}
+
 /** "What part is coloured?" with three fraction buttons. */
 function name(level: number, num: number, den: number, rng: Rng): Exercise {
   const others =
@@ -52,7 +70,15 @@ function name(level: number, num: number, den: number, rng: Rng): Exercise {
   const distinct = [...new Map(others.map((x) => [`${x.n}/${x.d}`, x])).values()];
   const options = shuffle(rng, [{ n: num, d: den }, ...shuffle(rng, distinct).slice(0, 2)]);
   const answer = options.findIndex((x) => x.n === num && x.d === den);
-  const ex = den === 4 ? { n: 1, d: 3 } : { n: 1, d: 4 };
+  // An example of the level's own kind: a unit fraction, or one with more parts coloured.
+  const ex =
+    num === 1
+      ? den === 4
+        ? { n: 1, d: 3 }
+        : { n: 1, d: 4 }
+      : den === 5
+        ? { n: 2, d: 3 }
+        : { n: 3, d: 5 };
   return exercise({
     factId: `fname:${num}/${den}`,
     topicId: ID,
@@ -66,45 +92,45 @@ function name(level: number, num: number, den: number, rng: Rng): Exercise {
     hints: [
       hint(say('ex.frac.name.hint1')),
       hint(say('ex.frac.name.hint2')),
-      exampleHint(
-        f(ex.n, ex.d),
-        say('ex.frac.name.solution', {
-          parts: { n: ex.d, gender: 'm' },
-          shaded: { n: ex.n, gender: 'm' },
-          frac: w(ex.n, ex.d),
-        }),
-      ),
+      exampleHint(f(ex.n, ex.d), nameSolution(ex.n, ex.d)),
     ],
-    solution: say('ex.frac.name.solution', {
-      parts: { n: den, gender: 'm' },
-      shaded: { n: num, gender: 'm' },
-      frac: w(num, den),
-    }),
+    solution: nameSolution(num, den),
   });
+}
+
+/** "Split into five parts, and two of them are coloured": "one of them is coloured" for one. */
+function nameSolution(num: number, den: number) {
+  return num === 1
+    ? say('ex.frac.name.solution1', { parts: den, frac: w(num, den) })
+    : say('ex.frac.name.solution', {
+        parts: den,
+        shaded: { n: num, gender: 'm' },
+        frac: w(num, den),
+      });
 }
 
 /** "?/8 is coloured": the numerator. */
 function numerator(level: number, num: number, den: number): Exercise {
   const plural = fractionNoun(den).plural;
+  // The texts agree with the fraction noun: "כמה חמישיות צבועות", "כמה רבעים צבועים".
+  const g = fractionNoun(den).gender;
+  const exD = den === 5 ? 4 : 5;
   return exercise({
     factId: `fnum:${num}/${den}`,
     topicId: ID,
     level,
-    prompt: t('ex.frac.numerator.prompt', { params: { plural } }),
+    prompt: t('ex.frac.numerator.prompt2', { gender: g, params: { plural } }),
     display: `?/${den}`,
-    spoken: say('ex.frac.numerator.prompt', { plural }),
+    spoken: say('ex.frac.numerator.prompt2', { plural }, g),
     visual: picture(num, den),
     answer: num,
     input: numpad(2),
     hints: [
       hint(say('ex.frac.numerator.hint1')),
       hint(say('ex.frac.numerator.hint2', { d: den })),
-      exampleHint(
-        f(3, den === 5 ? 4 : 5),
-        say('ex.frac.numerator.solution', { frac: w(3, den === 5 ? 4 : 5) }),
-      ),
+      exampleHint(f(3, exD), coloured(3, exD)),
     ],
-    solution: say('ex.frac.numerator.solution', { frac: w(num, den) }),
+    solution: coloured(num, den),
     diagnose: (v) => (v === den - num ? 'other' : v === den ? 'other' : null),
   });
 }
@@ -121,14 +147,27 @@ function ofQuantity(level: number, num: number, den: number, whole: number): Exe
   // The example gives the answer away if it ends in this exercise's answer, or
   // splits the same whole (1/3 × 12 = 4 for 1/4 × 12); in the exercise's own
   // denominator it is too close. Four examples, so one is always left.
-  const exs: [Ex, ...Ex[]] = [
-    { n: 1, d: 3, whole: 9 },
-    { n: 1, d: 4, whole: 8 },
-    { n: 1, d: 5, whole: 20 },
-    { n: 1, d: 2, whole: 12 },
-  ];
+  // With more than one part, the example takes more than one part too (2/5 of 10).
+  const exs: [Ex, ...Ex[]] =
+    num === 1
+      ? [
+          { n: 1, d: 3, whole: 9 },
+          { n: 1, d: 4, whole: 8 },
+          { n: 1, d: 5, whole: 20 },
+          { n: 1, d: 2, whole: 12 },
+        ]
+      : [
+          { n: 2, d: 5, whole: 10 },
+          { n: 2, d: 3, whole: 9 },
+          { n: 3, d: 4, whole: 8 },
+          { n: 3, d: 5, whole: 15 },
+        ];
+  const exAnswer = (x: Ex) => (x.whole / x.d) * x.n;
   const ex =
-    exs.find((x) => x.d !== den && x.whole !== whole && x.whole / x.d !== answer) ?? exs[0];
+    exs.find(
+      (x) => x.d !== den && x.whole !== whole && x.whole / x.d !== answer && exAnswer(x) !== answer,
+    ) ?? exs[0];
+  const exPart = ex.whole / ex.d;
   return exercise({
     factId: `fof:${num}/${den}:${whole}`,
     topicId: ID,
@@ -150,9 +189,12 @@ function ofQuantity(level: number, num: number, den: number, whole: number): Exe
       ),
       hint(say('ex.frac.of.hint2', { d: den })),
       // Shown as what is done: split the whole into equal parts.
+      // One part, then as many parts as the numerator says: added, not multiplied.
       exampleHint(
-        `${ex.whole} ÷ ${ex.d} = ${ex.whole / ex.d}`,
-        say('ex.frac.of.solution', { frac: w(ex.n, ex.d), whole: ex.whole, r: ex.whole / ex.d }),
+        ex.n === 1
+          ? `${ex.whole} ÷ ${ex.d} = ${exPart}`
+          : `${ex.whole} ÷ ${ex.d} = ${exPart} → ${Array.from({ length: ex.n }, () => exPart).join(' + ')} = ${exAnswer(ex)}`,
+        say('ex.frac.of.solution', { frac: w(ex.n, ex.d), whole: ex.whole, r: exAnswer(ex) }),
       ),
     ],
     solution: say('ex.frac.of.solution', { frac: w(num, den), whole, r: answer }),
@@ -178,90 +220,139 @@ function compare(
     prompt: t('ex.frac.bigger.prompt'),
     display: `${f(a.n, a.d)}   ${f(b.n, b.d)}`,
     spoken: say('ex.frac.bigger.spoken', { a: w(a.n, a.d), b: w(b.n, b.d) }),
-    visual: picture(a.n, a.d),
+    // Both fractions as bars of the same length (the main picture and hint 2):
+    // a circle beside a bar is no comparison.
+    visual: bar(a.n, a.d),
     answer,
     input: labelledChoices([f(a.n, a.d), f(b.n, b.d)]),
     hints: [
       hint(say(sameDen ? 'ex.frac.bigger.hintSame' : 'ex.frac.bigger.hintUnit')),
-      hint(say('ex.frac.bigger.hint2'), { visual: picture(b.n, b.d) }),
+      hint(say('ex.frac.bigger.hint2'), { visual: bar(b.n, b.d) }),
       sameDen
-        ? exampleHint('3/5 > 2/5', say('ex.frac.bigger.solution', { w: w(3, 5), l: w(2, 5) }))
-        : exampleHint('1/3 > 1/6', say('ex.frac.bigger.solution', { w: w(1, 3), l: w(1, 6) })),
+        ? exampleHint('3/5 > 2/5', say('ex.frac.bigger.solution2', { w: w(3, 5), l: w(2, 5) }))
+        : exampleHint('1/3 > 1/6', say('ex.frac.bigger.solution2', { w: w(1, 3), l: w(1, 6) })),
     ],
-    solution: say('ex.frac.bigger.solution', { w: w(big.n, big.d), l: w(small.n, small.d) }),
+    solution: say('ex.frac.bigger.solution2', { w: w(big.n, big.d), l: w(small.n, small.d) }),
   });
 }
 
-/** 2/7 + 3/7 = ?/7, 5/8 − 2/8 = ?/8. */
-function sameDen(level: number, a: number, op: '+' | '-', b: number, den: number): Exercise {
-  const answer = op === '+' ? a + b : a - b;
-  const opWord = op === '+' ? 'ועוד' : 'פחות';
-  const display = `${f(a, den)} ${op === '+' ? '+' : '−'} ${f(b, den)} = ?/${den}`;
-  // Same denominator as the exercise would be too close; fifths, or sevenths when the exercise is in fifths.
-  const exD = den === 5 ? 7 : 5;
-  const ex = op === '+' ? { a: 1, b: 2, d: exD } : { a: 4, b: 1, d: exD };
-  const exR = 3;
-  const solvedText = (x: number, y: number, d: number, r: number) =>
-    say('ex.frac.same.solution', { a: w(x, d), op: opWord, b: w(y, d), r: w(r, d) });
+const GROUP: Noun = { singular: 'קבוצה', plural: 'קבוצות', gender: 'f' };
+
+type Equal = { num: number; small: number; den: number };
+
+/** Simple equal fractions, drawn: a half is two quarters, a third is three ninths. */
+const EQUALS: readonly [Equal, ...Equal[]] = [
+  { num: 1, small: 2, den: 4 },
+  { num: 1, small: 2, den: 6 },
+  { num: 1, small: 2, den: 8 },
+  { num: 1, small: 2, den: 10 },
+  { num: 1, small: 4, den: 8 },
+  { num: 3, small: 4, den: 8 },
+  { num: 1, small: 3, den: 6 },
+  { num: 2, small: 3, den: 6 },
+  { num: 1, small: 3, den: 9 },
+  { num: 1, small: 5, den: 10 },
+  { num: 2, small: 5, den: 10 },
+];
+
+const equalAnswer = (x: Equal) => (x.den / x.small) * x.num;
+
+/**
+ * "כמה שמיניות הן חצי?": a fraction and the same amount in smaller parts
+ * (the curriculum's "two quarters are a half"). The hint splits the whole
+ * into equal groups and takes as many as the numerator.
+ */
+function equalParts(level: number, x: Equal): Exercise {
+  const { num, small, den } = x;
+  const answer = equalAnswer(x);
+  const noun = fractionNoun(den);
+  const g = noun.gender;
+  const params = { plural: noun.plural, frac: w(num, small) };
+  // Another fact: another denominator and another answer.
+  const ex = EQUALS.find((e) => e.den !== den && equalAnswer(e) !== answer) ?? EQUALS[0];
+  const solved = (e: Equal) =>
+    say(
+      'ex.frac.halfq.solution',
+      { a: w(equalAnswer(e), e.den), b: w(e.num, e.small) },
+      fractionNoun(e.den).gender,
+    );
   return exercise({
-    factId: `fsame:${a}${op}${b}/${den}`,
+    factId: `fequal:${num}/${small}=?/${den}`,
     topicId: ID,
     level,
-    prompt: t('ex.frac.same.prompt'),
-    display,
-    spoken: say('ex.frac.same.spoken', { a: w(a, den), op: opWord, b: w(b, den) }),
-    visual: { type: 'fraction', parts: den, shaded: a },
+    prompt: t('ex.frac.halfq.prompt', { gender: g, params }),
+    display: `${f(num, small)} = ?/${den}`,
+    spoken: say('ex.frac.halfq.prompt', params, g),
+    visual: bar(num, small),
     answer,
-    operation: op === '+' ? 'add' : 'sub',
     input: numpad(2),
     hints: [
+      hint(say('ex.frac.halfq.hint1', { all: w(den, den) })),
       hint(
-        say(op === '+' ? 'ex.frac.same.hintAdd' : 'ex.frac.same.hintSub', {
-          plural: fractionNoun(den).plural,
+        say('ex.frac.halfq.hint2', {
+          groups: { n: small, noun: GROUP },
+          take: num === 1 ? 'קבוצה אחת' : countNoun(num, GROUP),
         }),
+        { visual: { type: 'fraction', parts: den, shaded: 0 } },
       ),
-      // The two fractions apart (two colours), or the part taken away crossed out:
-      // the way to the answer, not the answer already coloured in.
-      hint(say('ex.frac.same.hint2'), {
-        visual:
-          op === '+'
-            ? { type: 'fraction', parts: den, shaded: a, added: b }
-            : { type: 'fraction', parts: den, shaded: a, crossed: b },
-      }),
-      exampleHint(
-        `${f(ex.a, ex.d)} ${op === '+' ? '+' : '−'} ${f(ex.b, ex.d)} = ${f(exR, ex.d)}`,
-        solvedText(ex.a, ex.b, ex.d, exR),
-      ),
+      exampleHint(`${f(ex.num, ex.small)} = ${f(equalAnswer(ex), ex.den)}`, solved(ex)),
     ],
-    solution: solvedText(a, b, den, answer),
-    diagnose: (v) => (v === (op === '+' ? a - b : a + b) ? 'wrongOperation' : null),
+    solution: solved(x),
+    // The whole's parts, or the numerator copied: not yet the same amount.
+    diagnose: (v) => (v === den || v === num ? 'other' : null),
   });
 }
 
 /** How many quarters in a whole, in two wholes. */
 function wholes(level: number, den: number, count: 1 | 2 | 3): Exercise {
   const answer = den * count;
-  const plural = fractionNoun(den).plural;
-  const wholesWords = count === 1 ? 'שלם אחד' : countNoun(count, WHOLE);
+  const noun = fractionNoun(den);
+  const plural = noun.plural;
+  const wholesWords = (c: number) => (c === 1 ? 'שלם אחד' : countNoun(c, WHOLE));
+  // An example of the same kind (one whole, or several), in another denominator and with another answer.
+  const exs =
+    count === 1
+      ? [
+          [1, 4],
+          [1, 3],
+          [1, 5],
+        ]
+      : [
+          [2, 3],
+          [2, 4],
+          [3, 2],
+          [2, 5],
+        ];
+  const [exC, exD] = (exs.find(([c, d]) => d !== den && (c ?? 0) * (d ?? 0) !== answer) ?? [
+    1, 4,
+  ]) as [number, number];
+  const solved = (c: number, d: number) =>
+    c === 1
+      ? say('ex.frac.whole.solution.one', { frac: w(d, d) })
+      : say('ex.frac.whole.solution.many', { wholes: wholesWords(c), frac: w(c * d, d) });
   return exercise({
     factId: `fwhole:${den}x${count}`,
     topicId: ID,
     level,
-    prompt: t('ex.frac.wholes.prompt', { params: { plural, wholes: wholesWords } }),
+    prompt: t('ex.frac.wholes.prompt', { params: { plural, wholes: wholesWords(count) } }),
     display: `${count} = ?/${den}`,
-    spoken: say('ex.frac.wholes.prompt', { plural, wholes: wholesWords }),
+    spoken: say('ex.frac.wholes.prompt', { plural, wholes: wholesWords(count) }),
     visual: { type: 'fraction', parts: den, shaded: den },
     answer,
     input: numpad(2),
     hints: [
-      hint(say('ex.frac.whole.hint1', { plural })),
-      hint(say('ex.frac.whole.hint2'), { visual: { type: 'fraction', parts: den, shaded: den } }),
-      exampleHint(
-        den === 4 ? '1 = 3/3' : '1 = 4/4',
-        say('ex.frac.whole.solution', { frac: den === 4 ? w(3, 3) : w(4, 4) }),
-      ),
+      hint(say('ex.frac.whole.hint1b', { plural }, noun.gender)),
+      // For several wholes, the step between: so many in one whole, and in all of them?
+      count === 1
+        ? hint(say('ex.frac.whole.hint2'), {
+            visual: { type: 'fraction', parts: den, shaded: den },
+          })
+        : hint(say('ex.frac.whole.hint2many', { all: w(den, den), wholes: wholesWords(count) }), {
+            visual: { type: 'fraction', parts: den, shaded: den },
+          }),
+      exampleHint(`${exC} = ${exC * exD}/${exD}`, solved(exC, exD)),
     ],
-    solution: say('ex.frac.whole.solution', { frac: w(answer, den) }),
+    solution: solved(count, den),
     diagnose: (v) => (count > 1 && v === den ? 'other' : null),
   });
 }
@@ -276,7 +367,8 @@ export const fractions1 = defineTopic({
   startLevel: () => 1,
   levels: [
     closed(
-      L(1),
+      // Halves to tenths: "unit fractions", not only "half, third, quarter".
+      'level.fractions1.unit',
       () => DENS.map((d) => ({ n: 1, d })),
       (x, rng) => name(1, x.n, x.d, rng),
     ),
@@ -328,20 +420,15 @@ export const fractions1 = defineTopic({
       (x) => compare(7, { n: x.a, d: x.d }, { n: x.b, d: x.d }),
     ),
     closed(
-      L(8),
-      () =>
-        DENS.filter((d) => d > 2).flatMap((d) =>
-          range(1, d - 2).flatMap((a) => range(1, d - 1 - a).map((b) => ({ a, b, d }))),
-        ),
-      (x) => sameDen(8, x.a, '+', x.b, x.d),
+      'level.fractions1.equal',
+      () => EQUALS,
+      (x) => equalParts(8, x),
     ),
     closed(
-      L(9),
-      () =>
-        DENS.filter((d) => d > 2).flatMap((d) =>
-          range(2, d - 1).flatMap((a) => range(1, a - 1).map((b) => ({ a, b, d }))),
-        ),
-      (x) => sameDen(9, x.a, '-', x.b, x.d),
+      // Sevenths and ninths: unit fractions and more parts, in the denominators not met yet.
+      'level.fractions1.sevenths',
+      () => properFractions([7, 9]),
+      (x, rng) => name(9, x.n, x.d, rng),
     ),
     closed(
       L(10),

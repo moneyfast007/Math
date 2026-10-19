@@ -5,6 +5,7 @@ import {
   choicesAround,
   closed,
   defineTopic,
+  diagnoseArith,
   exampleAvoiding,
   exampleHint,
   exercise,
@@ -18,6 +19,7 @@ import {
 } from '../build';
 import { pick, randInt } from '../rng';
 import type { Exercise, Hint, Rng } from '../types';
+import { missingExample, withExample } from './addSub100';
 
 /**
  * World 5, grade 2: "כפל וחילוק: היכרות". Multiplication as equal groups and
@@ -51,7 +53,7 @@ function groups(level: number, a: number, b: number, rng: Rng): Exercise {
     visual: { type: 'array', rows: a, cols: b },
     answer,
     operation: 'mul',
-    input: { type: 'choices', choices: choicesAround(rng, answer, 1, 30) },
+    input: { type: 'choices', choices: groupChoices(rng, a, b) },
     hints: [
       hint(say('hint.mul.countRows', { b: { n: b, gender: 'f' } })),
       hint(say('hint.mul.repeated'), {
@@ -67,7 +69,25 @@ function groups(level: number, a: number, b: number, rng: Rng): Exercise {
       ]),
     ],
     solution: spokenEquationSolved(a, '×', b, answer),
+    // Adding the two numbers (3 + 4 for 3 rows of 4) and counting one dot off.
+    diagnose: (v) => diagnoseArith(v, { a, op: '×', b, answer }),
   });
+}
+
+/** The product, often the sum of the two numbers (the classic slip), and one more near it. */
+function groupChoices(rng: Rng, a: number, b: number): number[] {
+  const answer = a * b;
+  const sum = a + b;
+  // The sum is almost always below the product: only in half the exercises, or the
+  // answer would never be the first button.
+  if (sum === answer || rng() < 0.5) return choicesAround(rng, answer, 1, 30);
+  const near = pick(
+    rng,
+    [answer - 1, answer + 1, (a + 1) * b, (a - 1) * b].filter(
+      (x) => x >= 1 && x !== sum && x !== answer,
+    ),
+  );
+  return [answer, sum, near].sort((x, y) => x - y);
 }
 
 /** Hint 3: the first of these products that is not `answer`, solved. */
@@ -104,16 +124,43 @@ function repeated(level: number, a: number, b: number): Exercise {
     hints: [
       hint(say('hint.mul.sameNumber', { a: { n: a, gender: 'f' }, b })),
       hint(say('hint.mul.arraySkip', { b }), { visual: { type: 'array', rows: a, cols: b } }),
-      mulExample(answer, [
-        [3, 2],
-        [2, 5],
-      ]),
+      repeatedExample(a, b),
     ],
     solution: spokenEquationSolved(a, '×', b, answer),
   });
 }
 
-function table(level: number, a: number, b: number): Exercise {
+/** Hint 3 in the level's own form, a sum of the same number: "2 + 2 + 2 = 6". */
+function repeatedExample(a: number, b: number): Hint {
+  const answer = a * b;
+  const [x, y] = (
+    [
+      [3, 2],
+      [2, 5],
+      [4, 3],
+      [3, 5],
+    ] as const
+  ).find(([p, q]) => p * q !== answer && !(p === a && q === b)) ?? [3, 2];
+  const terms = Array.from({ length: x }, () => y);
+  const slots = Object.fromEntries([...terms.map((v, i) => [`t${i}`, v]), ['c', x * y]]);
+  const solved = compose(
+    `${terms.map((_, i) => `{t${i}}`).join(` ${t('op.add')} `)} ${t('ex.repeated.is')} {c}.`,
+    slots,
+  );
+  return exampleHint(`${terms.join(' + ')} = ${x * y}`, solved);
+}
+
+type TableFact = { a: number; b: number; factor: number };
+
+/**
+ * A fact of the table of `factor`. The worked example comes from the same
+ * table, with the factor in the same place (2 × 7 → 2 × 4), not from a table
+ * not learnt yet (3 × 7 for the table of 2).
+ */
+function table(level: number, { a, b, factor }: TableFact, rng: Rng): Exercise {
+  const other = a === factor ? b : a;
+  const choices = range(2, 10).filter((k) => k !== other && k * factor !== a * b);
+  const k = choices.length > 0 ? pick(rng, choices) : other === 3 ? 4 : 3;
   return arith({
     topicId: ID,
     level,
@@ -121,7 +168,7 @@ function table(level: number, a: number, b: number): Exercise {
     op: '×',
     b,
     hints: arrayHints(a, b),
-    example: a === 3 ? { a: 4, b } : { a: 3, b },
+    example: a === factor ? { a: factor, b: k } : { a: k, b: factor },
     input: numpad(3),
   });
 }
@@ -139,7 +186,8 @@ function share(level: number, a: number, b: number): Exercise {
       hint(say('hint.div.share', { a, b: { n: b, gender: 'f' } })),
       hint(say('hint.div.array'), { visual: { type: 'array', rows: b, cols: q } }),
     ],
-    example: a === 12 ? { a: 15, b: 3 } : { a: 12, b: 3 },
+    // Sharing among as many groups, with another number in each.
+    example: { a: b * (q === 3 ? 4 : 3), b },
     input: numpad(2),
   });
 }
@@ -148,7 +196,7 @@ function missingFactor(rng: Rng): Exercise {
   const b = pick(rng, [2, 3, 4, 5, 10]);
   const a = randInt(rng, 2, 10);
   const asA = rng() < 0.5;
-  return arith({
+  const e = arith({
     topicId: ID,
     level: 9,
     a: asA ? a : b,
@@ -165,6 +213,11 @@ function missingFactor(rng: Rng): Exercise {
     example: { a: 3, b: 5 },
     input: numpad(2),
   });
+  // Hint 3 in the same shape ("3 × ? = 15 → 5"), with another missing number and product.
+  const pairs = [2, 3, 4, 5, 10].flatMap((x) => range(2, 10).map((y) => [x, y] as const));
+  const fresh = pairs.filter(([x, y]) => y !== a && x * y !== a * b);
+  const [x, y] = pick(rng, fresh.length > 0 ? fresh : pairs);
+  return withExample(e, asA ? missingExample(y, '×', x, 'a') : missingExample(x, '×', y, 'b'));
 }
 
 function word(rng: Rng): Exercise {
@@ -199,12 +252,16 @@ function word(rng: Rng): Exercise {
   });
 }
 
-/** Both orientations: 2 × 7 and 7 × 2. */
-const tableFacts = (factor: number) =>
-  range(1, 10).flatMap((other) => [
-    { a: other, b: factor },
-    { a: factor, b: other },
-  ]);
+/** Both orientations: 2 × 7 and 7 × 2; 2 × 2 once, not twice as often as the others. */
+const tableFacts = (factor: number): TableFact[] =>
+  range(1, 10).flatMap((other) =>
+    other === factor
+      ? [{ a: factor, b: factor, factor }]
+      : [
+          { a: other, b: factor, factor },
+          { a: factor, b: other, factor },
+        ],
+  );
 
 export const multIntro = defineTopic({
   id: ID,
@@ -225,22 +282,22 @@ export const multIntro = defineTopic({
     closed(
       L(3),
       () => tableFacts(2),
-      (f) => table(3, f.a, f.b),
+      (f, rng) => table(3, f, rng),
     ),
     closed(
       L(4),
       () => [...tableFacts(10), ...tableFacts(5)],
-      (f) => table(4, f.a, f.b),
+      (f, rng) => table(4, f, rng),
     ),
     closed(
       L(5),
       () => tableFacts(3),
-      (f) => table(5, f.a, f.b),
+      (f, rng) => table(5, f, rng),
     ),
     closed(
       L(6),
       () => tableFacts(4),
-      (f) => table(6, f.a, f.b),
+      (f, rng) => table(6, f, rng),
     ),
     closed(
       L(7),
@@ -249,7 +306,13 @@ export const multIntro = defineTopic({
     ),
     closed(
       L(8),
-      () => [2, 3, 4, 5, 10].flatMap((b) => range(2, 10).map((q) => ({ a: b * q, b }))),
+      // Beyond the facts of level 7 (up to 5 × 5): those are not asked again here.
+      () =>
+        [2, 3, 4, 5, 10].flatMap((b) =>
+          range(2, 10)
+            .filter((q) => b > 5 || q > 5)
+            .map((q) => ({ a: b * q, b })),
+        ),
       (f) => share(8, f.a, f.b),
     ),
     open(L(9), missingFactor),

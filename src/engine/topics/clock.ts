@@ -27,9 +27,11 @@ import { shuffle } from '../rng';
 import type { ClockTime, Exercise, Hint, Rng, Visual } from '../types';
 
 /**
- * World "שעון", grade 2 (phase 6). Whole hours, half hours, quarter past and
- * quarter to, digital and analog clocks, an hour later or earlier, how much
- * time passed, time stories. No single minutes: that is grade 3.
+ * World "שעון", grade 2 (phase 6). Whole and half hours (one opening level:
+ * they are grade 1), digital and analog clocks, quarter past and quarter to,
+ * an hour later or earlier, in a quarter or half an hour, how much time
+ * passed (in half and in quarter hours), time stories. No single minutes:
+ * that is grade 3.
  *
  * Times are said the way children hear them ("שלוש וחצי", "רבע לשלוש"); the ל
  * and ו belong to the words, so every level is closed and every sentence is
@@ -267,7 +269,11 @@ export function level8({ time, dir }: ShiftFact, rng: Rng): Exercise {
   const k = dir === 'later' ? 60 : -60;
   const right = plus(time, k);
   const set = choiceSet(rng, right, [{ time: plus(time, -k) }, { time: plus(time, 2 * k) }]);
-  const ex = same(time, at(2, 0)) ? at(6, 30) : at(2, 0);
+  // An example of the same kind: a whole hour for a whole hour, a half hour for a half hour.
+  const ex =
+    time.m === 0
+      ? same(time, at(2, 0)) ? at(4, 0) : at(2, 0)
+      : same(time, at(6, 30)) ? at(9, 30) : at(6, 30);
   const solved = (from: ClockTime) =>
     say(dir === 'later' ? 'ex.clock.later.solution' : 'ex.clock.earlier.solution', {
       from: timeWords(from),
@@ -286,7 +292,8 @@ export function level8({ time, dir }: ShiftFact, rng: Rng): Exercise {
     input: labelledChoices(set.options.map(timeWords)),
     hints: [
       hint(say(dir === 'later' ? 'ex.clock.later.hint1' : 'ex.clock.earlier.hint1')),
-      hint(say('ex.clock.shift.hint2')),
+      // Looking ahead or back: "where will it be", "where was it" (near a number, at a half hour).
+      hint(say(dir === 'later' ? 'ex.clock.later.hint2' : 'ex.clock.earlier.hint2')),
       pictureExample(solved(ex), dir === 'later' ? clock(ex, plus(ex, k)) : clock(plus(ex, k), ex)),
     ],
     solution: solved(time),
@@ -330,8 +337,13 @@ function elapsedSaid(from: ClockTime, d: number): Said {
 function level9({ from, d }: ElapsedFact, rng: Rng): Exercise {
   const to = plus(from, d);
   const set = durationChoices(rng, d);
-  const ex =
-    same(from, at(3, 0)) && d === 120 ? { from: at(1, 30), d: 90 } : { from: at(3, 0), d: 120 };
+  // Examples with half hours too, never with this exercise's duration.
+  const ex = [
+    { from: at(3, 30), d: 90 },
+    { from: at(3, 0), d: 120 },
+    { from: at(1, 30), d: 60 },
+    { from: at(4, 0), d: 150 },
+  ].find((x) => x.d !== d && !(same(x.from, from) && x.d === d)) ?? { from: at(3, 0), d: 120 };
   return exercise({
     factId: `clock9:${key(from)}+${d}`,
     topicId: ID,
@@ -344,10 +356,115 @@ function level9({ from, d }: ElapsedFact, rng: Rng): Exercise {
     input: labelledChoices(set.options.map(durationWords)),
     hints: [
       hint(say('ex.clock.elapsed.hint1')),
-      hint(say('ex.clock.elapsed.hint2')),
+      // Not "from which number to which": with half hours the short hand is between numbers.
+      hint(say('ex.clock.elapsed.hint2b')),
       pictureExample(elapsedSaid(ex.from, ex.d), clock(ex.from, plus(ex.from, ex.d))),
     ],
     solution: elapsedSaid(from, d),
+  });
+}
+
+/* ---------- In a quarter or half an hour ---------- */
+
+const QUARTER_TIMES = () => HOURS.flatMap((h) => [0, 15, 30, 45].map((m) => at(h, m)));
+
+export type SoonFact = { time: ClockTime; k: 15 | 30 };
+
+/** "What time will it be in half an hour?", "in a quarter of an hour?" */
+function soon({ time, k }: SoonFact, rng: Rng): Exercise {
+  const right = plus(time, k);
+  // The hour not moved on when the long hand passes twelve, and twice as far.
+  const set = choiceSet(rng, right, [{ time: plus(time, k - 60) }, { time: plus(time, 2 * k) }]);
+  const half = k === 30;
+  const ex =
+    same(time, at(2, 30)) || same(time, at(2, 45)) ? at(5, 15) : half ? at(2, 45) : at(2, 30);
+  const solved = (from: ClockTime) =>
+    say(half ? 'ex.clock.inHalf.solution' : 'ex.clock.inQuarter.solution', {
+      from: timeWords(from),
+      to: timeWords(plus(from, k)),
+    });
+  const promptKey = half ? 'ex.clock.inHalf.prompt' : 'ex.clock.inQuarter.prompt';
+  return exercise({
+    factId: `clockSoon:${k}:${key(time)}`,
+    topicId: ID,
+    level: 7,
+    prompt: t(promptKey),
+    display: '',
+    spoken: say(promptKey),
+    visual: clock(time),
+    answer: set.answer,
+    input: labelledChoices(set.options.map(timeWords)),
+    hints: [
+      hint(say(half ? 'ex.clock.inHalf.hint1' : 'ex.clock.inQuarter.hint1')),
+      hint(say('ex.clock.soon.hint2')),
+      pictureExample(solved(ex), clock(ex, plus(ex, k))),
+    ],
+    solution: solved(time),
+  });
+}
+
+/* ---------- How much time passed, in quarter hours ---------- */
+
+/** A duration in quarter hours, as said: "רבע שעה", "שלושה רבעי שעה", "שעה ורבע". */
+const QUARTER_DURATIONS: Record<number, { words: string; passed: string }> = {
+  15: { words: 'רבע שעה', passed: 'עבר' },
+  30: { words: 'חצי שעה', passed: 'עברה' },
+  45: { words: 'שלושה רבעי שעה', passed: 'עברו' },
+  60: { words: 'שעה', passed: 'עברה' },
+  75: { words: 'שעה ורבע', passed: 'עברה' },
+  90: { words: 'שעה וחצי', passed: 'עברה' },
+  105: { words: 'שעה ושלושה רבעים', passed: 'עברו' },
+  120: { words: 'שעתיים', passed: 'עברו' },
+};
+
+const quarterWords = (d: number) => QUARTER_DURATIONS[d]?.words ?? durationWords(d);
+
+/** From any quarter of an hour, a duration where a quarter is part of the reading. */
+const quarterElapsedFacts = (): ElapsedFact[] =>
+  QUARTER_TIMES()
+    .filter((from) => from.h !== 12)
+    .flatMap((from) =>
+      (from.m % 30 === 0 ? [15, 45, 75, 105] : [15, 30, 45, 60, 75, 90])
+        .filter((d) => toMinutes(from) + d <= 12 * 60)
+        .map((d) => ({ from, d })),
+    );
+
+function quarterSaid(from: ClockTime, d: number): Said {
+  return say('ex.clock.elapsed.solution', {
+    from: timeWords(from),
+    to: timeWords(plus(from, d)),
+    passed: QUARTER_DURATIONS[d]?.passed ?? passed(d),
+    d: quarterWords(d),
+  });
+}
+
+function quarterElapsed({ from, d }: ElapsedFact, rng: Rng): Exercise {
+  const to = plus(from, d);
+  const near = [d - 15, d + 15, d + 30, d - 30].filter(
+    (x) => x > 0 && x !== d && QUARTER_DURATIONS[x] !== undefined,
+  );
+  const options = shuffle(rng, [d, ...near.slice(0, 2)]);
+  const ex = [
+    { from: at(2, 15), d: 45 },
+    { from: at(4, 0), d: 75 },
+    { from: at(6, 45), d: 30 },
+  ].find((x) => x.d !== d && !same(x.from, from)) ?? { from: at(2, 15), d: 45 };
+  return exercise({
+    factId: `clockQ:${key(from)}+${d}`,
+    topicId: ID,
+    level: 9,
+    prompt: t('ex.clock.elapsed.prompt'),
+    display: '',
+    spoken: say('ex.clock.elapsed.prompt'),
+    visual: clock(from, to),
+    answer: options.indexOf(d),
+    input: labelledChoices(options.map(quarterWords)),
+    hints: [
+      hint(say('ex.clock.quarterElapsed.hint1')),
+      hint(say('ex.clock.quarterElapsed.hint2')),
+      pictureExample(quarterSaid(ex.from, ex.d), clock(ex.from, plus(ex.from, ex.d))),
+    ],
+    solution: quarterSaid(from, d),
   });
 }
 
@@ -415,15 +532,35 @@ function level10({ kind, who, from, d }: StoryFact, rng: Rng): Exercise {
   });
 }
 
+type ReviewFact = { time: ClockTime; kind: 'read' | 'pick' | 'half' };
+
+/** An exercise built for one station, filed under another (the levels shared with grade 1). */
+const relevel = (level: number, e: Exercise): Exercise => ({ ...e, level });
+
 export const clockTopic = defineTopic({
   id: ID,
   labelKey: 'topic.clock',
   grades: [2],
   startLevel: () => 1,
   levels: [
-    closed(L(1), wholeHours, (f: ClockTime, rng) => level1(f, rng)),
-    closed(L(2), wholeHours, (f: ClockTime, rng) => level2(f, rng)),
-    closed(L(3), halfHours, (f: ClockTime, rng) => level3(f, rng)),
+    // Whole and half hours are grade 1 (its own world): here one opening level for both.
+    closed(
+      'level.clock.review',
+      (): ReviewFact[] => [
+        ...wholeHours().map((time) => ({ time, kind: 'read' as const })),
+        ...wholeHours().map((time) => ({ time, kind: 'pick' as const })),
+        ...halfHours().map((time) => ({ time, kind: 'half' as const })),
+      ],
+      (f: ReviewFact, rng) =>
+        relevel(
+          1,
+          f.kind === 'read'
+            ? level1(f.time, rng)
+            : f.kind === 'pick'
+              ? level2(f.time, rng)
+              : level3(f.time, rng),
+        ),
+    ),
     closed(
       L(4),
       () =>
@@ -431,22 +568,22 @@ export const clockTopic = defineTopic({
           { time, to: 'analog' },
           { time, to: 'digital' },
         ]),
-      (f: DigitalFact, rng) => level4(f, rng),
+      (f: DigitalFact, rng) => relevel(2, level4(f, rng)),
     ),
     closed(
       L(5),
       () => HOURS.map((h) => at(h, 15)),
-      (f: ClockTime, rng) => level5(f, rng),
+      (f: ClockTime, rng) => relevel(3, level5(f, rng)),
     ),
     closed(
       L(6),
       () => HOURS.map((h) => at(h, 45)),
-      (f: ClockTime, rng) => level6(f, rng),
+      (f: ClockTime, rng) => relevel(4, level6(f, rng)),
     ),
     closed(
       L(7),
       () => HOURS.flatMap((h) => [at(h, 15), at(h, 45)]),
-      (f: ClockTime, rng) => level7(f, rng),
+      (f: ClockTime, rng) => relevel(5, level7(f, rng)),
     ),
     closed(
       L(8),
@@ -455,9 +592,21 @@ export const clockTopic = defineTopic({
           { time, dir: 'later' },
           { time, dir: 'earlier' },
         ]),
-      (f: ShiftFact, rng) => level8(f, rng),
+      (f: ShiftFact, rng) => relevel(6, level8(f, rng)),
     ),
-    closed(L(9), elapsedFacts, (f: ElapsedFact, rng) => level9(f, rng)),
+    closed(
+      'level.clock.soon',
+      () =>
+        QUARTER_TIMES().flatMap((time): SoonFact[] => [
+          { time, k: 15 },
+          { time, k: 30 },
+        ]),
+      (f: SoonFact, rng) => soon(f, rng),
+    ),
+    closed(L(9), elapsedFacts, (f: ElapsedFact, rng) => relevel(8, level9(f, rng))),
+    closed('level.clock.quarterElapsed', quarterElapsedFacts, (f: ElapsedFact, rng) =>
+      quarterElapsed(f, rng),
+    ),
     closed(L(10), storyFacts, (f: StoryFact, rng) => level10(f, rng)),
   ],
 });

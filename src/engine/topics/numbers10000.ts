@@ -93,8 +93,10 @@ function placeValue(rng: Rng): Exercise {
     answer,
     input: numpad(4),
     hints: [
-      hint(say('ex.placeValue.hint1', { d, place: t(placeKey) })),
-      hint(say('ex.placeValue.hint2'), {
+      // A question first (where is the digit?), then the answer to it, with another
+      // number taken apart (this one's picture would show the value asked).
+      hint(say('ex.placeValue.hint1q', { d })),
+      hint(say('ex.placeValue.hint2place', { d, place: t(placeKey) }), {
         visual: { type: 'placeValue', n: n === 3452 ? 2715 : 3452 },
       }),
       // Not an example whose value is this exercise's answer: it would give it away.
@@ -194,13 +196,20 @@ function columnHints(op: '+' | '-'): [Hint, Hint] {
 }
 
 function column(level: number, op: '+' | '-', lo: number, hi: number): (rng: Rng) => Exercise {
-  return (rng) => {
+  const pair = (rng: Rng) => {
     let a = randInt(rng, lo, hi);
     let b = randInt(rng, lo, hi);
     if (op === '+' && a + b > 9999) [a, b] = [Math.floor(a / 2), Math.floor(b / 2)];
     if (op === '-' && a < b) [a, b] = [b, a];
     if (op === '-' && a === b) b = Math.max(lo, b - 7);
-    const ex = op === '+' ? { a: 1234, b: 2345 } : { a: 5432, b: 1234 };
+    return { a, b };
+  };
+  return (rng) => {
+    const { a, b } = pair(rng);
+    // The worked example from the same generator: it carries and borrows like the
+    // exercises do (not 234 + 345, with nothing to carry).
+    let ex = pair(rng);
+    for (let i = 0; i < 20 && ex.a === a && ex.b === b; i++) ex = pair(rng);
     return arith({
       topicId: ID,
       level,
@@ -208,7 +217,7 @@ function column(level: number, op: '+' | '-', lo: number, hi: number): (rng: Rng
       op,
       b,
       hints: columnHints(op),
-      example: lo < 1000 ? (op === '+' ? { a: 234, b: 345 } : { a: 543, b: 234 }) : ex,
+      example: ex,
       input: numpad(4),
     });
   };
@@ -242,13 +251,44 @@ function estimate(rng: Rng): Exercise {
     input: labelledChoices(labels),
     hints: [
       hint(say('ex.estimate.hint1')),
-      hint(say('ex.estimate.hint2', { a: rx, b: ry }), {
+      // "a plus b" or "a minus b": the rounded numbers with the operation, not just "a and b".
+      hint(say(op === '+' ? 'ex.estimate.hint2add' : 'ex.estimate.hint2sub', { a: rx, b: ry }), {
         example: {
           display: `${rx} ${op === '-' ? '−' : '+'} ${ry}`,
-          spoken: say('ex.estimate.hint2', { a: rx, b: ry }),
+          spoken: say(op === '+' ? 'ex.estimate.hint2add' : 'ex.estimate.hint2sub', {
+            a: rx,
+            b: ry,
+          }),
         },
       }),
-      exampleHint('398 + 203 ≈ 600', say('ex.estimate.solution', { a: 400, b: 200, r: 600 })),
+      // A worked example with the same operation and four-digit numbers, never this answer.
+      exampleAvoiding(
+        answer,
+        (op === '+'
+          ? [
+              { x: 2380, y: 1640, rx: 2400, ry: 1600 },
+              { x: 3120, y: 2790, rx: 3100, ry: 2800 },
+            ]
+          : [
+              { x: 4820, y: 1790, rx: 4800, ry: 1800 },
+              { x: 6150, y: 2940, rx: 6200, ry: 2900 },
+            ]
+        ).map((e) => {
+          const r = op === '+' ? e.rx + e.ry : e.rx - e.ry;
+          return {
+            answer: r,
+            hint: () =>
+              exampleHint(
+                `${e.x} ${op === '+' ? '+' : '−'} ${e.y} ≈ ${r}`,
+                say(op === '+' ? 'ex.estimate.solution' : 'ex.estimate.solutionSub', {
+                  a: e.rx,
+                  b: e.ry,
+                  r,
+                }),
+              ),
+          };
+        }),
+      ),
     ],
     solution: say(op === '+' ? 'ex.estimate.solution' : 'ex.estimate.solutionSub', {
       a: rx,
@@ -281,7 +321,7 @@ function word(rng: Rng): Exercise {
   return wordProblem({
     topicId: ID,
     level: 10,
-    key: pick(rng, ['wp.spend', 'wp.compare'] as const),
+    key: pick(rng, ['wp.spend', 'wp.compare2'] as const),
     rng,
     a,
     op: '-',
