@@ -231,6 +231,8 @@ export interface Exercise {
         labels?: string[];
         /** A picture on each button (clocks, coins); the label is then its spoken name. */
         visuals?: Visual[];
+        /** Words read right to left (column names): laid out from the right, like the columns. */
+        rtl?: boolean;
       }
     | { type: 'numpad'; maxDigits: number; decimal?: boolean }
     /**
@@ -265,7 +267,11 @@ export interface Topic {
   levels: readonly LevelInfo[];
   /** Where a child of this grade starts. */
   startLevel: (grade: number) => number;
-  generate: (level: number, rng: Rng, gender: Gender, avoidFactId?: string) => Exercise;
+  /**
+   * A new exercise. `avoid`: facts already seen in this round (the last one
+   * last); none of them comes again while the level has others to give.
+   */
+  generate: (level: number, rng: Rng, gender: Gender, avoid?: string | readonly string[]) => Exercise;
   /**
    * Everything this topic can ever say, for pre-generating audio: whole
    * sentences when the topic is finite, otherwise the literal pieces of its

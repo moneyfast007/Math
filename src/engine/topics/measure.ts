@@ -141,7 +141,7 @@ const HOUR_FACTS: { key: TranslationKey; answer: number; choices: number[] }[] =
   { key: 'ex.measure.hours.q8', answer: 150, choices: [150, 210, 250] },
 ];
 
-function hours({ key, answer, choices }: (typeof HOUR_FACTS)[number]): Exercise {
+function hours({ key, answer, choices }: (typeof HOUR_FACTS)[number], rng: Rng): Exercise {
   return exercise({
     factId: `mhours:${key}`,
     topicId: ID,
@@ -150,7 +150,8 @@ function hours({ key, answer, choices }: (typeof HOUR_FACTS)[number]): Exercise 
     display: '',
     spoken: say(key),
     answer,
-    input: { type: 'choices', choices },
+    // Not in order: the facts' distractors sit mostly on one side of the answer.
+    input: { type: 'choices', choices: shuffle(rng, choices) },
     hints: [
       hint(say('ex.measure.hours.hint1')),
       hint(say('ex.measure.hours.hint2')),
@@ -405,7 +406,7 @@ export const measureTopic = defineTopic({
     closed(
       L(4),
       () => HOUR_FACTS,
-      (f: (typeof HOUR_FACTS)[number]) => hours(f),
+      (f: (typeof HOUR_FACTS)[number], rng) => hours(f, rng),
     ),
     open(L(5), convert(5)),
     open(L(6), ruler),

@@ -295,7 +295,7 @@ export const he = {
   'hint.missSub.1.spoken': 'כמה צריך להוריד מ{c} כדי להגיע ל{b}?',
   'hint.numberLine': 'נקפוץ על ישר המספרים. כל קפיצה היא אחד.',
   'hint.numberLineGap': 'על ישר המספרים: כמה קפיצות יש מהנקודה הראשונה עד השנייה?',
-  'hint.example': 'הנה תרגיל דומה, פתור:',
+  'hint.example': 'הנה תרגיל דומה שכבר פתרנו:',
 
   // Explanations after a wrong answer (gendered: they address the child)
   'explain.wrongOperation.add': { f: 'שימי לב לסימן: כאן מחברים.', m: 'שים לב לסימן: כאן מחברים.' },
@@ -305,6 +305,23 @@ export const he = {
     m: 'שים לב לסימן: כאן מכפילים.',
   },
   'explain.wrongOperation.div': { f: 'שימי לב לסימן: כאן מחלקים.', m: 'שים לב לסימן: כאן מחלקים.' },
+  // The same, when no sign is shown (a word problem): what the question asks for.
+  'explain.wrongOperation.story.add': {
+    f: 'קראי שוב את השאלה: כאן צריך לחבר.',
+    m: 'קרא שוב את השאלה: כאן צריך לחבר.',
+  },
+  'explain.wrongOperation.story.sub': {
+    f: 'קראי שוב את השאלה: כאן צריך לחסר.',
+    m: 'קרא שוב את השאלה: כאן צריך לחסר.',
+  },
+  'explain.wrongOperation.story.mul': {
+    f: 'קראי שוב את השאלה: כאן צריך לכפול.',
+    m: 'קרא שוב את השאלה: כאן צריך לכפול.',
+  },
+  'explain.wrongOperation.story.div': {
+    f: 'קראי שוב את השאלה: כאן צריך לחלק.',
+    m: 'קרא שוב את השאלה: כאן צריך לחלק.',
+  },
   'explain.offByOne': { f: 'ממש קרוב! נסי לספור שוב לאט.', m: 'ממש קרוב! נסה לספור שוב לאט.' },
   'explain.offByTen': { f: 'קרוב! בדקי שוב את העשרות.', m: 'קרוב! בדוק שוב את העשרות.' },
   'explain.placeValue': {
@@ -316,8 +333,8 @@ export const he = {
     m: 'כמעט. כשיש יותר מתשע באחדות, מעבירים עשרת הלאה.',
   },
   'explain.borrow': {
-    f: 'כמעט. כשהספרה למעלה קטנה מהספרה למטה, פורטים מהעמודה הבאה.',
-    m: 'כמעט. כשהספרה למעלה קטנה מהספרה למטה, פורטים מהעמודה הבאה.',
+    f: 'כמעט. כשאין מספיק אחדות, פורטים עשרת לעשר אחדות. אז נשארת עשרת אחת פחות.',
+    m: 'כמעט. כשאין מספיק אחדות, פורטים עשרת לעשר אחדות. אז נשארת עשרת אחת פחות.',
   },
   'explain.remainder': {
     f: 'כמעט. בדקי מה נשאר אחרי החלוקה.',
@@ -357,6 +374,7 @@ export const he = {
   // Feedback (never a red X, never a failure sound)
   'feedback.correct': { f: 'נכון! כל הכבוד', m: 'נכון! כל הכבוד' },
   'feedback.almost': { f: 'כמעט. בואי ננסה ביחד', m: 'כמעט. בוא ננסה ביחד' },
+  'feedback.notQuite': { f: 'לא בדיוק. בואי נבדוק ביחד', m: 'לא בדיוק. בוא נבדוק ביחד' },
   'feedback.keepGoing': { f: 'את בדרך הנכונה', m: 'אתה בדרך הנכונה' },
 
   // Audio

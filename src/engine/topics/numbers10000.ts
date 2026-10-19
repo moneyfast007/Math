@@ -11,6 +11,7 @@ import {
   say,
   SHEKELS,
   wordProblem,
+  spreadChoices,
 } from '../build';
 import { pick, randInt } from '../rng';
 import type { Exercise, Hint, Rng } from '../types';
@@ -63,9 +64,19 @@ function build(rng: Rng): Exercise {
 
 /** "What is the value of the digit 4 in 3,452?" */
 function placeValue(rng: Rng): Exercise {
-  const n = randInt(rng, 1000, 9999);
-  const digits = digitsOf(n);
-  const candidates = digits.map((d, i) => ({ d, i })).filter((x) => x.d !== 0);
+  // The digit asked about appears once in the number: "the 4 in 4,214" would have two answers.
+  let n = randInt(rng, 1000, 9999);
+  let digits = digitsOf(n);
+  let candidates = digits
+    .map((d, i) => ({ d, i }))
+    .filter((x) => x.d !== 0 && digits.filter((y) => y === x.d).length === 1);
+  while (candidates.length === 0) {
+    n = randInt(rng, 1000, 9999);
+    digits = digitsOf(n);
+    candidates = digits
+      .map((d, i) => ({ d, i }))
+      .filter((x) => x.d !== 0 && digits.filter((y) => y === x.d).length === 1);
+  }
   const { d, i } = pick(rng, candidates);
   const answer = d * 10 ** i;
   const prompt = t('ex.placeValue.prompt', { params: { d, n } });
@@ -193,16 +204,7 @@ function estimate(rng: Rng): Exercise {
     op === '+'
       ? Math.round(x / 100) * 100 + Math.round(y / 100) * 100
       : Math.round(x / 100) * 100 - Math.round(y / 100) * 100;
-  const options = [answer - 200, answer - 100, answer, answer + 100, answer + 200].filter(
-    (v) => v >= 0,
-  );
-  const chosen = [
-    answer,
-    ...options
-      .filter((v) => v !== answer)
-      .sort(() => rng() - 0.5)
-      .slice(0, 2),
-  ].sort((p, q) => p - q);
+  const chosen = spreadChoices(rng, answer, { deltas: [100, 200], min: 0, mix: true });
   const labels = chosen.map((v) => String(v));
   const prompt = t('ex.estimate.prompt');
   const rx = Math.round(x / 100) * 100;

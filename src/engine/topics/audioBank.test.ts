@@ -1,3 +1,4 @@
+// @vitest-environment node
 import { describe, expect, it } from 'vitest';
 import { numberToWords, vavForms } from '@/lang/hebrewNumbers';
 import { sayingsOf } from '../build';

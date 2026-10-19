@@ -1,3 +1,4 @@
+// @vitest-environment node
 import { describe, expect, it } from 'vitest';
 import { emptyProgress, emptyTopicStats, type ProfileProgress } from '@/state/schema';
 import { activeWorld, nextStop, stickersEarned, worldFor, worldsFor } from './journey';

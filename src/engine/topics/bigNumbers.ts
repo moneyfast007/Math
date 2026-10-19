@@ -71,9 +71,19 @@ function dictation(rng: Rng): Exercise {
 }
 
 function placeValue(rng: Rng): Exercise {
-  const n = bigNumber(rng, 6);
-  const digits = String(n).split('').map(Number).reverse();
-  const candidates = digits.map((d, i) => ({ d, i })).filter((x) => x.d !== 0 && x.i >= 2);
+  // The digit asked about appears once in the number: "the 4 in 203,424" would have two answers.
+  const once = (digits: number[]) =>
+    digits
+      .map((d, i) => ({ d, i }))
+      .filter((x) => x.d !== 0 && x.i >= 2 && digits.filter((y) => y === x.d).length === 1);
+  let n = bigNumber(rng, 6);
+  let digits = String(n).split('').map(Number).reverse();
+  let candidates = once(digits);
+  while (candidates.length === 0) {
+    n = bigNumber(rng, 6);
+    digits = String(n).split('').map(Number).reverse();
+    candidates = once(digits);
+  }
   const { d, i } = pick(rng, candidates);
   const answer = d * 10 ** i;
   return exercise({

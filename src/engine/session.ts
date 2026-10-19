@@ -140,7 +140,8 @@ export function reduce(s: SessionState, a: SessionAction): SessionState {
   switch (a.type) {
     case 'answer': {
       if (s.phase !== 'answering' && s.phase !== 'wrong') return s;
-      if (a.value === s.exercise.answer) {
+      // Equal give or take floating-point noise (0.1 + 0.2), so a typed 0.3 is right.
+      if (Math.abs(a.value - s.exercise.answer) < 1e-9) {
         const outcome = s.tries === 0 ? 'first' : s.assisted ? 'revealed' : 'later';
         return complete(s, outcome, 'correct');
       }

@@ -107,16 +107,22 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
   const daily = mode === 'daily';
   const pool = 'pool' in station ? station.pool : [];
   const levels = topic.levels.map((l) => l.level);
-  const generate = (level: number, avoid?: string): Exercise => {
-    if (daily) {
-      const item = pickDaily(pool, rng);
-      return item.topic.generate(item.level, rng, profile.gender, avoid);
-    }
-    return topic.generate(review ? pick(rng, levels) : level, rng, profile.gender, avoid);
+  /** Exercises already given in this round: none comes again while the level has others. */
+  const seen = useRef<string[]>([]);
+  const generate = (level: number): Exercise => {
+    const e = daily
+      ? (() => {
+          const item = pickDaily(pool, rng);
+          return item.topic.generate(item.level, rng, profile.gender, seen.current);
+        })()
+      : topic.generate(review ? pick(rng, levels) : level, rng, profile.gender, seen.current);
+    seen.current = [...seen.current, e.factId];
+    return e;
   };
 
-  const newRound = (level: number): SessionState =>
-    startSession({
+  const newRound = (level: number): SessionState => {
+    seen.current = [];
+    return startSession({
       topicId: topic.id,
       level,
       // The review never suggests a level change: every exercise is from a different one.
@@ -125,6 +131,7 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
       band,
       exercise: generate(level),
     });
+  };
 
   const [s, setS] = useState<SessionState>(() => newRound(station.level));
   const [outcome, setOutcome] = useState<RoundOutcome | null>(null);
@@ -189,7 +196,7 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
       return;
     }
     setNotice(null);
-    apply({ type: 'next', exercise: generate(cur.level, cur.exercise.factId) });
+    apply({ type: 'next', exercise: generate(cur.level) });
   };
 
   // A correct answer moves on by itself after a short celebration.
@@ -384,7 +391,7 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
               className="choices-big"
               role="group"
               aria-label={t('practice.choicesLabel')}
-              dir="ltr"
+              dir={e.input.rtl ? 'rtl' : 'ltr'}
             >
               {e.input.choices.map((c, i) => {
                 const label = e.input.type === 'choices' ? e.input.labels?.[i] : undefined;
@@ -568,11 +575,19 @@ function Feedback({ state: s, tc, slow }: { state: SessionState; tc: TC; slow: b
   return <div className="feedback feedback--empty" aria-hidden="true" />;
 }
 
+/** An operation sign the child can see in the exercise. */
+const SIGN = /[+−×÷:]|\s-\s/;
+
 function explanation(s: SessionState, tc: TC): string {
   const m = s.lastMistake;
   if (m === 'wrongOperation') {
-    const op = s.exercise.operation ?? 'add';
-    return tc(`explain.wrongOperation.${op}`);
+    const op = s.exercise.operation;
+    // No operation known (order of operations, volume): never guess "add" — a general nudge.
+    if (!op) return nudge(s, tc);
+    // "Look at the sign" only when there is a sign to look at; a story says what to do instead.
+    return SIGN.test(s.exercise.display)
+      ? tc(`explain.wrongOperation.${op}`)
+      : tc(`explain.wrongOperation.story.${op}`);
   }
   if (
     m === 'offByOne' ||
@@ -588,5 +603,16 @@ function explanation(s: SessionState, tc: TC): string {
     return tc(`explain.${m}`);
   }
   // Other kinds have no specific advice yet: a gentle, general nudge.
-  return tc('feedback.almost');
+  return nudge(s, tc);
+}
+
+/** "Almost" only for an answer that really is close; otherwise "not quite". */
+function nudge(s: SessionState, tc: TC): string {
+  const e = s.exercise;
+  const v = s.lastValue;
+  // Labelled buttons (words, fractions, yes/no) answer with an index: nothing is "close".
+  const numeric = !(e.input.type === 'choices' && e.input.labels);
+  const close =
+    numeric && v !== null && Math.abs(v - e.answer) <= Math.max(1, Math.abs(e.answer) * 0.1);
+  return tc(close ? 'feedback.almost' : 'feedback.notQuite');
 }

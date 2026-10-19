@@ -101,7 +101,34 @@ export function spokenEquationSolved(a: number, op: Op, b: number, c: number): S
 
 /* ---------- Answers and choices ---------- */
 
-/** Three or four choices around the answer, distinct, within [min, max], sorted. */
+/**
+ * Ascending choices around the answer, with the answer at a random place among
+ * them (first, middle or last): sorted buttons must not give it away by always
+ * putting it in the middle. Distractors are `answer ± delta`, kept in [min, max].
+ * `mix`: pick the distractors at random among the deltas; otherwise the nearest.
+ */
+export function spreadChoices(
+  rng: Rng,
+  answer: number,
+  o: { deltas?: readonly number[]; min?: number; max?: number; count?: number; mix?: boolean } = {},
+): number[] {
+  const { deltas = [1, 2, 3], min = -Infinity, max = Infinity, count = 3, mix = false } = o;
+  const below = deltas.map((d) => answer - d).filter((v) => v >= min);
+  const above = deltas.map((d) => answer + d).filter((v) => v <= max);
+  const places = Array.from({ length: count }, (_, k) => k).filter(
+    (k) => below.length >= k && above.length >= count - 1 - k,
+  );
+  const take = (xs: number[], n: number) => (mix ? shuffle(rng, xs) : xs).slice(0, n);
+  if (places.length === 0) {
+    // Too little room in range: the nearest values on either side.
+    const near = [...below, ...above].sort((x, y) => Math.abs(x - answer) - Math.abs(y - answer));
+    return [answer, ...near.slice(0, count - 1)].sort((x, y) => x - y);
+  }
+  const k = pick(rng, places);
+  return [...take(below, k), answer, ...take(above, count - 1 - k)].sort((x, y) => x - y);
+}
+
+/** Three or four choices around the answer (near it, or ten away), distinct, within [min, max], sorted. */
 export function choicesAround(
   rng: Rng,
   answer: number,
@@ -109,16 +136,31 @@ export function choicesAround(
   max: number,
   count = 3,
 ): number[] {
-  const near = [answer - 2, answer - 1, answer + 1, answer + 2, answer + 10, answer - 10].filter(
-    (v) => v >= min && v <= max && v !== answer,
+  return spreadChoices(rng, answer, { deltas: [1, 2, 10], min, max, count, mix: true });
+}
+
+/**
+ * A run of `count` neighbouring values from an ordered list (0, 3, 4, 5 corners),
+ * containing the answer at a random place.
+ */
+export function windowChoices(
+  rng: Rng,
+  ladder: readonly number[],
+  answer: number,
+  count = 3,
+): number[] {
+  const i = ladder.indexOf(answer);
+  if (i < 0) throw new RangeError('windowChoices: the answer is not on the ladder');
+  const starts = Array.from({ length: count }, (_, k) => i - k).filter(
+    (s) => s >= 0 && s + count <= ladder.length,
   );
-  const picked = shuffle(rng, [...new Set(near)]).slice(0, count - 1);
-  return [answer, ...picked].sort((x, y) => x - y);
+  const s = starts.length > 0 ? pick(rng, starts) : 0;
+  return ladder.slice(s, s + count);
 }
 
 /** Choices shown as labels (fractions, signs); the answer is the index of the right one. */
-export function labelledChoices(labels: string[]): Exercise['input'] {
-  return { type: 'choices', choices: labels.map((_, i) => i), labels };
+export function labelledChoices(labels: string[], rtl = false): Exercise['input'] {
+  return { type: 'choices', choices: labels.map((_, i) => i), labels, ...(rtl ? { rtl } : {}) };
 }
 
 /** Choices drawn as pictures (clocks, coins); `labels` name them for the reveal and screen readers. */
@@ -135,7 +177,8 @@ export function numpad(maxDigits: number, decimal = false): Exercise['input'] {
 /* ---------- Mistake diagnosis ---------- */
 
 function reversedDigits(n: number): number | null {
-  if (n < 10 || n > 99) return null;
+  // 40 → 4 is a place-value slip, not two digits swapped.
+  if (n < 10 || n > 99 || n % 10 === 0) return null;
   const r = Number(String(n).split('').reverse().join(''));
   return r === n ? null : r;
 }
@@ -187,13 +230,16 @@ export function diagnoseArith(value: number, f: ArithFacts): MistakeKind | null 
   if (f.op === '÷' && value === f.a % f.b && f.a % f.b !== 0) return 'remainder';
   if ((f.op === '+' || f.op === '-') && f.missing !== 'a' && f.missing !== 'b') {
     const carried = f.op === '+' ? (f.a % 10) + (f.b % 10) >= 10 : f.a % 10 < f.b % 10;
-    if (carried && value === (f.op === '+' ? answer - 10 : answer + 10)) return 'carry';
+    // Forgot to carry (addition) or to borrow (subtraction): each has its own advice.
+    if (carried && value === (f.op === '+' ? answer - 10 : answer + 10))
+      return f.op === '+' ? 'carry' : 'borrow';
   }
   if (Math.abs(value - answer) === 10 || Math.abs(value - answer) === 100) return 'offByTen';
-  if (reversedDigits(answer) === value) return 'digitReversal';
   // Place value only for a real factor-of-ten slip (40 for 4, 4 for 40), not any length difference.
+  // Checked before swapped digits: 4 for 40 is about tens, not about order.
   if (value > 0 && [10, 100].some((k) => value === answer * k || value * k === answer))
     return 'placeValue';
+  if (reversedDigits(answer) === value) return 'digitReversal';
   return null;
 }
 
@@ -215,6 +261,11 @@ export interface ExerciseParts {
   diagnose?: (value: number) => MistakeKind | null;
 }
 
+/** A typed answer matches: equal, give or take floating-point noise. */
+export function sameNumber(a: number, b: number): boolean {
+  return Math.abs(a - b) < 1e-9;
+}
+
 /** Builds the final Exercise, filling the spoken-parts fields. */
 export function exercise(p: ExerciseParts): Exercise {
   return {
@@ -227,13 +278,13 @@ export function exercise(p: ExerciseParts): Exercise {
     spokenParts: p.spoken.parts,
     ...(p.visual ? { visual: p.visual } : {}),
     ...(p.operation ? { operation: p.operation } : {}),
-    answer: p.answer,
+    answer: exact(p.answer),
     input: p.input,
     hints: p.hints,
     solutionSpoken: p.solution.text,
     solutionParts: p.solution.parts,
     // A right answer is never a mistake, whatever a topic's own diagnosis says.
-    diagnose: (value) => (value === p.answer ? null : (p.diagnose?.(value) ?? null)),
+    diagnose: (value) => (sameNumber(value, p.answer) ? null : (p.diagnose?.(value) ?? null)),
   };
 }
 
@@ -332,23 +383,32 @@ export function defineTopic(def: TopicDef): Topic & { enumerate: (level: number)
     return l;
   };
 
-  const generate = (level: number, rng: Rng, gender: Gender, avoidFactId?: string): Exercise => {
+  const generate = (
+    level: number,
+    rng: Rng,
+    gender: Gender,
+    avoid?: string | readonly string[],
+  ): Exercise => {
     const l = levelDef(level);
+    const seen = new Set(avoid === undefined ? [] : typeof avoid === 'string' ? [avoid] : avoid);
+    const last = typeof avoid === 'string' ? avoid : avoid?.at(-1);
     if ('gen' in l) {
-      // Avoid an immediate repeat when the generator happens to produce one.
-      for (let i = 0; i < 6; i++) {
+      // Nothing seen in this round when the generator can help it; at least never the same twice running.
+      let fallback: Exercise | null = null;
+      for (let i = 0; i < 40; i++) {
         const e = l.gen(rng, gender);
-        if (e.factId !== avoidFactId) return e;
+        if (!seen.has(e.factId)) return e;
+        if (e.factId !== last) fallback ??= e;
       }
-      return l.gen(rng, gender);
+      return fallback ?? l.gen(rng, gender);
     }
     const facts = l.facts() as readonly never[];
     const build = l.build;
-    const pool =
-      facts.length > 1
-        ? facts.filter((f) => build(f, () => 0, gender).factId !== avoidFactId)
-        : facts;
-    return build(pick(rng, pool.length > 0 ? pool : facts), rng, gender);
+    const ids = facts.map((f) => build(f, () => 0, gender).factId);
+    const fresh = facts.filter((_, i) => !seen.has(ids[i] ?? ''));
+    const notLast = facts.filter((_, i) => ids[i] !== last);
+    const pool = fresh.length > 0 ? fresh : notLast.length > 0 ? notLast : facts;
+    return build(pick(rng, pool), rng, gender);
   };
 
   /** Every exercise of a closed level (one noun choice each), or a sample of an open one. */
@@ -435,16 +495,24 @@ export interface ArithOptions {
   diagnose?: (value: number) => MistakeKind | null;
 }
 
+/**
+ * Drops binary floating-point noise: 26.099999999999998 → 26.1, 0.6000000000000001 → 0.6.
+ * Every answer the engine computes goes through this (a typed 26.1 must match).
+ */
+export function exact(x: number): number {
+  return Number.isInteger(x) ? x : Number(x.toFixed(9));
+}
+
 export function result(a: number, op: Op, b: number): number {
   switch (op) {
     case '+':
-      return a + b;
+      return exact(a + b);
     case '-':
-      return a - b;
+      return exact(a - b);
     case '×':
-      return a * b;
+      return exact(a * b);
     case '÷':
-      return a / b;
+      return exact(a / b);
   }
 }
 

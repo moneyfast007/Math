@@ -3,6 +3,7 @@ import type { Noun } from '@/lang/hebrewNumbers';
 import {
   closed,
   defineTopic,
+  windowChoices,
   exampleHint,
   exercise,
   hint,
@@ -203,11 +204,15 @@ const RIGHT_ANGLES: [ShapeName, number][] = [
   ['parallelogram', 0],
 ];
 
-function numberChoices(n: number): number[] {
-  return (n === 0 ? [0, 1, 2] : [n - 1, n, n + 1]).sort((a, b) => a - b);
+/**
+ * Three neighbouring counts, not in order: many answers are 0, which in order
+ * would always be the first button.
+ */
+function numberChoices(n: number, rng: Rng): number[] {
+  return shuffle(rng, windowChoices(rng, [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], n));
 }
 
-function rightAngles([shape, n]: [ShapeName, number]): Exercise {
+function rightAngles([shape, n]: [ShapeName, number], rng: Rng): Exercise {
   return exercise({
     factId: `right:${shape}`,
     topicId: ID,
@@ -217,7 +222,7 @@ function rightAngles([shape, n]: [ShapeName, number]): Exercise {
     spoken: say('ex.angles.rights.prompt'),
     visual: poly(SHAPES[shape]),
     answer: n,
-    input: { type: 'choices', choices: numberChoices(n) },
+    input: { type: 'choices', choices: numberChoices(n, rng) },
     hints: [
       hint(say('ex.angles.rights.hint1')),
       hint(say('ex.angles.rights.hint2')),
@@ -461,7 +466,7 @@ const DIAGONALS: [ShapeName, string, number][] = [
   ['hexagon', 'משושה', 9],
 ];
 
-function diagonals([shape, name, n]: [ShapeName, string, number]): Exercise {
+function diagonals([shape, name, n]: [ShapeName, string, number], rng: Rng): Exercise {
   const ex: [ShapeName, string] = shape === 'square' ? ['pentagon', 'מחומש'] : ['square', 'ריבוע'];
   return exercise({
     factId: `diag:${shape}`,
@@ -472,7 +477,7 @@ function diagonals([shape, name, n]: [ShapeName, string, number]): Exercise {
     spoken: say('ex.angles.diag.prompt', { name }),
     visual: poly(SHAPES[shape]),
     answer: n,
-    input: { type: 'choices', choices: numberChoices(n) },
+    input: { type: 'choices', choices: numberChoices(n, rng) },
     hints: [
       hint(say('ex.angles.diag.hint1')),
       hint(say('ex.angles.diag.hint2')),
@@ -498,7 +503,7 @@ const SYMMETRY: [ShapeName, string, number, Omit<Polygon, 'points'>][] = [
   ['scalene', 'משולש שונה צלעות', 0, {}],
 ];
 
-function symmetry([shape, name, n, marks]: (typeof SYMMETRY)[number]): Exercise {
+function symmetry([shape, name, n, marks]: (typeof SYMMETRY)[number], rng: Rng): Exercise {
   return exercise({
     factId: `sym:${shape}`,
     topicId: ID,
@@ -508,7 +513,7 @@ function symmetry([shape, name, n, marks]: (typeof SYMMETRY)[number]): Exercise 
     spoken: say('ex.angles.sym.prompt', { name }),
     visual: poly(SHAPES[shape], marks),
     answer: n,
-    input: { type: 'choices', choices: numberChoices(n) },
+    input: { type: 'choices', choices: numberChoices(n, rng) },
     hints: [
       hint(say('ex.angles.sym.hint1')),
       hint(say('ex.angles.sym.hint2')),
@@ -581,7 +586,7 @@ export const anglesTopic = defineTopic({
     closed(
       L(2),
       () => RIGHT_ANGLES,
-      (f: [ShapeName, number]) => rightAngles(f),
+      (f: [ShapeName, number], rng) => rightAngles(f, rng),
     ),
     closed(
       L(3),
@@ -598,12 +603,12 @@ export const anglesTopic = defineTopic({
     closed(
       L(8),
       () => DIAGONALS,
-      (f: [ShapeName, string, number]) => diagonals(f),
+      (f: [ShapeName, string, number], rng) => diagonals(f, rng),
     ),
     closed(
       L(9),
       () => SYMMETRY,
-      (f: (typeof SYMMETRY)[number]) => symmetry(f),
+      (f: (typeof SYMMETRY)[number], rng) => symmetry(f, rng),
     ),
     closed(
       L(10),

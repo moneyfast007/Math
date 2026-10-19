@@ -1,3 +1,4 @@
+// @vitest-environment node
 import { describe, expect, it } from 'vitest';
 import { seededRng } from './rng';
 import {
@@ -34,7 +35,13 @@ describe('practice session', () => {
     expect(start(9, 'older').length).toBe(ROUND_LENGTH.older);
   });
 
-  it('counts a first-try answer and moves on', () => {
+  it('accepts an answer equal give or take floating-point noise', () => {
+    const s0 = start();
+    const noisy = { ...s0, exercise: { ...s0.exercise, answer: 26.1 } };
+    expect(reduce(noisy, { type: 'answer', value: 26.099999999999998 }).phase).toBe('correct');
+  });
+
+    it('counts a first-try answer and moves on', () => {
     const s1 = right(start());
     expect(s1.phase).toBe('correct');
     expect(s1.firstTryCount).toBe(1);

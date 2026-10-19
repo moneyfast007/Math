@@ -1,3 +1,4 @@
+// @vitest-environment node
 import { describe, expect, it } from 'vitest';
 import { emptyProgress, emptyTopicStats } from '@/state/schema';
 import { dailyPool, pickDaily } from './daily';

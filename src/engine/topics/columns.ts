@@ -234,7 +234,8 @@ export function findMistake(
     spoken: say('col.mistake.spoken'),
     visual,
     answer,
-    input: labelledChoices(labels),
+    // Units first, from the right, like the columns above them.
+    input: labelledChoices(labels, true),
     hints: [
       hint(say('col.mistake.hint1')),
       hint(say(op === '-' ? 'col.mistake.hint2.sub' : 'col.mistake.hint2.carry')),

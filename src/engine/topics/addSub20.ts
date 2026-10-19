@@ -3,8 +3,9 @@ import type { Gender } from '@/lang/gender';
 import { countNoun, numberToWords } from '@/lang/hebrewNumbers';
 import { spokenEquation, spokenQuestion, displayBinary } from '@/lang/spoken';
 import type { MistakeKind } from '@/state/schema';
+import { spreadChoices } from '../build';
 import { NOUNS, type CountableNoun } from '../nouns';
-import { pick, shuffle } from '../rng';
+import { pick } from '../rng';
 import type { Exercise, Hint, LevelInfo, Rng, Topic, Visual } from '../types';
 
 /**
@@ -165,14 +166,14 @@ function key(k: string): TranslationKey {
 
 const w = (n: number) => numberToWords(n);
 
-/** Three ascending choices around the answer, all distinct and in range. */
-function choicesFor(answer: number, min: number, rng: Rng): number[] {
-  const near = [answer - 2, answer - 1, answer + 1, answer + 2].filter((v) => v >= min);
-  return [answer, ...shuffle(rng, near).slice(0, 2)].sort((x, y) => x - y);
+/** Three ascending choices around the answer, distinct, within the level's numbers, the answer at any place. */
+function choicesFor(answer: number, min: number, max: number, rng: Rng): number[] {
+  return spreadChoices(rng, answer, { deltas: [1, 2], min, max });
 }
 
 function reversedDigits(n: number): number | null {
-  if (n < 10 || n > 99) return null;
+  // 10 → 1, 20 → 2: a place-value slip, not two digits swapped.
+  if (n < 10 || n > 99 || n % 10 === 0) return null;
   const r = Number(String(n).split('').reverse().join(''));
   return r === n ? null : r;
 }
@@ -380,7 +381,11 @@ function usesNoun(f: Fact): boolean {
 }
 
 function inputFor(level: number, answer: number, rng: Rng): Exercise['input'] {
-  if (level <= 5) return { type: 'choices', choices: choicesFor(answer, level <= 2 ? 1 : 0, rng) };
+  if (level <= 5)
+    return {
+      type: 'choices',
+      choices: choicesFor(answer, level <= 2 ? 1 : 0, 10, rng),
+    };
   return { type: 'numpad', maxDigits: 2 };
 }
 
@@ -419,9 +424,19 @@ function build(f: Fact, level: number, noun: CountableNoun, rng: Rng): Exercise 
   };
 }
 
-export function generate(level: number, rng: Rng, _gender: Gender, avoidFactId?: string): Exercise {
+export function generate(
+  level: number,
+  rng: Rng,
+  _gender: Gender,
+  avoid?: string | readonly string[],
+): Exercise {
   const facts = factsFor(level);
-  const pool = facts.length > 1 ? facts.filter((f) => factId(f) !== avoidFactId) : facts;
+  const seen = new Set(avoid === undefined ? [] : typeof avoid === 'string' ? [avoid] : avoid);
+  const last = typeof avoid === 'string' ? avoid : avoid?.at(-1);
+  // Nothing seen in this round while there are others; at least never the same twice running.
+  const fresh = facts.filter((f) => !seen.has(factId(f)));
+  const notLast = facts.filter((f) => factId(f) !== last);
+  const pool = fresh.length > 0 ? fresh : notLast.length > 0 ? notLast : facts;
   const fact = pick(rng, pool);
   const noun = usesNoun(fact) ? pick(rng, NOUNS) : (NOUNS[0] as CountableNoun);
   return build(fact, level, noun, rng);

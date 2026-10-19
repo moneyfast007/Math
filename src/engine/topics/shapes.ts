@@ -9,6 +9,7 @@ import {
   pictureExample,
   say,
   type Said,
+  windowChoices,
 } from '../build';
 import { seededRng, shuffle } from '../rng';
 import type { Exercise, Hint, Rng, ShapeColor, ShapeItem, ShapeKind, Visual } from '../types';
@@ -186,7 +187,7 @@ function cornersSaid(shape: ShapeKind): Said {
     : say('ex.shapes.corners.solution', { name: NAME[shape], n: CORNERS[shape] });
 }
 
-function corners({ shape, turn }: CornerFact): Exercise {
+function corners({ shape, turn }: CornerFact, rng: Rng): Exercise {
   const ex: ShapeKind = shape === 'triangle' ? 'square' : 'triangle';
   return exercise({
     factId: `corners:${shape}:${turn}`,
@@ -197,7 +198,8 @@ function corners({ shape, turn }: CornerFact): Exercise {
     spoken: say('ex.shapes.corners.prompt'),
     visual: one(item(shape, colorOf(turn / 15), 1, shape === 'circle' ? 0 : turn)),
     answer: CORNERS[shape],
-    input: { type: 'choices', choices: [0, 3, 4] },
+    // 0, 3, 4 or 5 corners, three of them in order, the answer at any place.
+    input: { type: 'choices', choices: windowChoices(rng, [0, 3, 4, 5], CORNERS[shape]) },
     hints: [
       hint(say('ex.shapes.corners.hint1')),
       hint(say('ex.shapes.corners.hint2')),
@@ -418,11 +420,11 @@ function scene(target: ShapeKind, n: number, seed: number): ShapeItem[] {
   return shuffle(rng, items);
 }
 
-function countShapes({ target, n }: CountFact): Exercise {
+function countShapes({ target, n }: CountFact, rng: Rng): Exercise {
   const noun = NOUN[target];
   const ex: CountFact =
     target === 'circle' ? { target: 'square', n: 3 } : { target: 'circle', n: 3 };
-  const choices = (n === 1 ? [1, 2, 3] : [n - 1, n, n + 1]).sort((a, b) => a - b);
+  const choices = windowChoices(rng, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], n);
   return exercise({
     factId: `count:${target}:${n}`,
     topicId: ID,
@@ -469,7 +471,7 @@ export const shapesTopic = defineTopic({
     closed(
       L(4),
       () => ALL.flatMap((shape) => [0, 30].map((turn) => ({ shape, turn }))),
-      (f: CornerFact) => corners(f),
+      (f: CornerFact, rng) => corners(f, rng),
     ),
     closed(
       L(5),
@@ -495,7 +497,7 @@ export const shapesTopic = defineTopic({
         (['triangle', 'circle', 'square'] as ShapeKind[]).flatMap((target) =>
           [2, 3, 4, 5, 6].map((n) => ({ target, n })),
         ),
-      (f: CountFact) => countShapes(f),
+      (f: CountFact, rng) => countShapes(f, rng),
     ),
   ],
 });

@@ -1,3 +1,4 @@
+// @vitest-environment node
 import { describe, expect, it } from 'vitest';
 import { TOPICS } from '../registry';
 import { seededRng } from '../rng';
@@ -73,10 +74,58 @@ describe.each(TOPICS.map((t) => [t.id, t] as const))('topic %s', (_id, topic) =>
       }
       // A right answer is never diagnosed as a mistake.
       expect(e.diagnose(e.answer), e.factId).toBeNull();
+      // No floating-point noise: a typed 26.1 must match, and nothing shows 0.6000000000000001.
+      expect(e.answer, e.factId).toBe(Number(e.answer.toFixed(9)));
+      const noisy = /\d\.\d{7,}/;
+      for (const text of [e.display, e.prompt, e.spokenText, e.solutionSpoken])
+        expect(text, e.factId).not.toMatch(noisy);
+      for (const h of e.hints) {
+        expect(h.text, e.factId).not.toMatch(noisy);
+        expect(h.example?.display ?? '', e.factId).not.toMatch(noisy);
+      }
+      // The answer can be typed on the pad given: all its digits fit, and a point when it has one.
+      if (e.input.type === 'numpad') {
+        const typed = String(e.answer);
+        expect(typed.replace('.', '').length, e.factId).toBeLessThanOrEqual(e.input.maxDigits);
+        if (typed.includes('.')) expect(e.input.decimal, e.factId).toBe(true);
+      }
       // The worked example is not the exercise itself.
       const example = e.hints[2].example;
       if (example && e.display)
         expect(example.display, e.factId).not.toBe(e.display.replace('?', String(e.answer)));
+    }
+  });
+
+  it('puts the answer at different places among the buttons', () => {
+    for (const l of topic.levels) {
+      const rng = seededRng(l.level * 97 + 3);
+      const places = new Map<number, number>();
+      let n = 0;
+      for (let i = 0; i < 300; i++) {
+        const e = topic.generate(l.level, rng, 'f');
+        if (e.input.type !== 'choices' || e.input.choices.length < 3) continue;
+        const k = e.input.choices.indexOf(e.answer);
+        places.set(k, (places.get(k) ?? 0) + 1);
+        n++;
+      }
+      if (n < 100) continue;
+      // Always pressing the same button must not pass: no place takes more than about half.
+      const most = Math.max(...places.values()) / n;
+      expect(most, `level ${l.level}: ${JSON.stringify([...places])}`).toBeLessThanOrEqual(0.55);
+    }
+  });
+
+  it('does not repeat an exercise within a round while the level has others', () => {
+    for (const l of topic.levels) {
+      const rng = seededRng(l.level * 13 + 1);
+      const distinct = new Set<string>();
+      for (let i = 0; i < 300; i++) distinct.add(topic.generate(l.level, rng, 'f').factId);
+      if (distinct.size < 14) continue;
+      for (let round = 0; round < 5; round++) {
+        const seen: string[] = [];
+        for (let i = 0; i < 10; i++) seen.push(topic.generate(l.level, rng, 'f', seen).factId);
+        expect(new Set(seen).size, `level ${l.level}: ${seen.join(' ')}`).toBe(seen.length);
+      }
     }
   });
 
@@ -114,5 +163,51 @@ describe('differentExample', () => {
     const s = differentExample(50, '-', 20, { a: 50, b: 20 });
     expect(s.a - s.b).toBeGreaterThanOrEqual(0);
     expect(s).not.toEqual({ a: 50, b: 20 });
+  });
+});
+
+describe('diagnoseArith', () => {
+  it('tells a forgotten borrow from a forgotten carry', async () => {
+    const { diagnoseArith } = await import('../build');
+    expect(diagnoseArith(81, { a: 72, op: '-', b: 9, answer: 63 })).not.toBe('carry');
+    expect(diagnoseArith(73, { a: 72, op: '-', b: 9, answer: 63 })).toBe('borrow');
+    expect(diagnoseArith(71, { a: 47, op: '+', b: 34, answer: 81 })).toBe('carry');
+  });
+
+  it('calls 4 for 40 a place-value slip, not swapped digits', async () => {
+    const { diagnoseArith } = await import('../build');
+    expect(diagnoseArith(4, { a: 60, op: '+', b: 40, answer: 40, missing: 'b' })).toBe(
+      'placeValue',
+    );
+    expect(diagnoseArith(4, { a: 20, op: '+', b: 20, answer: 40 })).toBe('placeValue');
+    expect(diagnoseArith(42, { a: 12, op: '+', b: 12, answer: 24 })).toBe('digitReversal');
+  });
+});
+
+describe('answers without floating-point noise', () => {
+  it('rounds results and compares typed answers exactly', async () => {
+    const { result, sameNumber } = await import('../build');
+    expect(result(26, '+', 0.1)).toBe(26.1);
+    expect(result(1.5, '×', 0.4)).toBe(0.6);
+    expect(result(0.7, '÷', 0.1)).toBe(7);
+    expect(sameNumber(0.1 + 0.2, 0.3)).toBe(true);
+  });
+});
+
+describe('choices', () => {
+  it('keeps the answer and the range, in order, at any place', async () => {
+    const { spreadChoices, windowChoices } = await import('../build');
+    const rng = seededRng(1);
+    const places = new Set<number>();
+    for (let i = 0; i < 200; i++) {
+      const c = spreadChoices(rng, 5, { deltas: [1, 2], min: 0, max: 10 });
+      expect(c).toContain(5);
+      expect([...c].sort((x, y) => x - y)).toEqual(c);
+      for (const v of c) expect(v >= 0 && v <= 10).toBe(true);
+      places.add(c.indexOf(5));
+    }
+    expect(places.size).toBe(3);
+    expect(spreadChoices(rng, 10, { deltas: [1, 2], min: 0, max: 10 })).toEqual([8, 9, 10]);
+    expect(windowChoices(rng, [0, 3, 4, 5], 0)).toEqual([0, 3, 4]);
   });
 });
