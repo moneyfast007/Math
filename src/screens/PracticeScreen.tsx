@@ -607,6 +607,13 @@ function explanation(s: SessionState, tc: TC): string {
   // The same slip, said for the numbers at hand: "count again slowly" means nothing for 352,418.
   if (m === 'offByOne' && (e.answer >= 100 || !Number.isInteger(e.answer)))
     return tc('explain.offByOne.big');
+  // By the operation: a times-table fact, or the units of a sum or difference (not counting).
+  if (m === 'offByOne' && (e.operation === 'mul' || e.operation === 'div'))
+    return tc('explain.offByOne.mul');
+  if (m === 'offByOne' && (e.operation === 'add' || e.operation === 'sub') && e.answer >= 10)
+    return tc('explain.offByOne.add');
+  // "Check the tens" only where there are tens to check.
+  if (m === 'offByTen' && e.answer < 10) return nudge(s, tc);
   if (m === 'placeValue') {
     if (/ס״מ|מ׳|מ״מ|ק״מ|ק״ג|גרם|ליטר/.test(`${e.prompt} ${e.display}`))
       return tc('explain.placeValue.units');
