@@ -41,7 +41,7 @@ describe('practice session', () => {
     expect(reduce(noisy, { type: 'answer', value: 26.099999999999998 }).phase).toBe('correct');
   });
 
-    it('counts a first-try answer and moves on', () => {
+  it('counts a first-try answer and moves on', () => {
     const s1 = right(start());
     expect(s1.phase).toBe('correct');
     expect(s1.firstTryCount).toBe(1);

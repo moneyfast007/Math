@@ -271,7 +271,12 @@ export interface Topic {
    * A new exercise. `avoid`: facts already seen in this round (the last one
    * last); none of them comes again while the level has others to give.
    */
-  generate: (level: number, rng: Rng, gender: Gender, avoid?: string | readonly string[]) => Exercise;
+  generate: (
+    level: number,
+    rng: Rng,
+    gender: Gender,
+    avoid?: string | readonly string[],
+  ) => Exercise;
   /**
    * Everything this topic can ever say, for pre-generating audio: whole
    * sentences when the topic is finite, otherwise the literal pieces of its
