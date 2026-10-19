@@ -58,16 +58,16 @@ const SENTENCES: readonly string[] =
   values.set === 'round8'
     ? ROUND8
     : values.set === 'round7'
-    ? ROUND7
-    : values.set === 'round6'
-      ? ROUND6.map((r) => r.text)
-      : values.set === 'bank'
-        ? BANK_CHECK
-        : values.set === 'probe'
-          ? PROBE
-          : values.set === 'words'
-            ? WORDS
-            : SAMPLE_SENTENCES;
+      ? ROUND7
+      : values.set === 'round6'
+        ? ROUND6.map((r) => r.text)
+        : values.set === 'bank'
+          ? BANK_CHECK
+          : values.set === 'probe'
+            ? PROBE
+            : values.set === 'words'
+              ? WORDS
+              : SAMPLE_SENTENCES;
 
 interface Variant {
   name: string;
@@ -188,10 +188,10 @@ const variants: Variant[] = values.voices
   : (values.set === 'round8'
       ? ROUND8_VARIANTS
       : values.set === 'round7'
-      ? ROUND7_VARIANTS
-      : values.set === 'round6'
-        ? ROUND6_VARIANTS
-        : ALL_VARIANTS
+        ? ROUND7_VARIANTS
+        : values.set === 'round6'
+          ? ROUND6_VARIANTS
+          : ALL_VARIANTS
     ).filter((v) => !only || only.includes(v.name));
 
 const HTML_ESCAPES: Record<string, string> = {

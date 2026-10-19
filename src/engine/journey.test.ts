@@ -1,14 +1,7 @@
 // @vitest-environment node
 import { describe, expect, it } from 'vitest';
 import { emptyProgress, emptyTopicStats, type ProfileProgress } from '@/state/schema';
-import {
-  activeWorld,
-  nextStop,
-  stickersEarned,
-  worldFor,
-  worldsFor,
-  worldsMap,
-} from './journey';
+import { activeWorld, nextStop, stickersEarned, worldFor, worldsFor, worldsMap } from './journey';
 import { addSub20 } from './topics/addSub20';
 
 function progressAt(

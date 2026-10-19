@@ -59,7 +59,9 @@ export function WorldsScreen() {
             {t('worlds.intro', { params: { grade: gradeLabel(profile.grade) } })}
           </p>
           <button type="button" className="worlds__how" onClick={() => setHow(true)}>
-            <span aria-hidden="true" className="worlds__how-mark">?</span>
+            <span aria-hidden="true" className="worlds__how-mark">
+              ?
+            </span>
             {t('worlds.how')}
           </button>
         </div>

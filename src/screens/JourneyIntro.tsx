@@ -60,7 +60,9 @@ export function JourneyIntroCard({ gender, onDone }: { gender: Gender; onDone: (
     <section className="card intro" aria-labelledby={titleId} data-intro="">
       <div className="intro__head">
         <Plusi mood="happy" size={56} decorative />
-        <h2 id={titleId} className="intro__title">{title}</h2>
+        <h2 id={titleId} className="intro__title">
+          {title}
+        </h2>
         <IntroSpeaker title={title} />
       </div>
       <JourneySteps />
