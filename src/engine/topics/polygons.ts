@@ -478,7 +478,8 @@ export const polygons = defineTopic({
   id: ID,
   labelKey: 'topic.polygons',
   grades: [1, 2],
-  startLevel: () => 1,
+  // Grade 2 goes on where grade 1 stopped (levels 1–5 stay open in the picker).
+  startLevel: (grade) => (grade === 2 ? 6 : 1),
   lastLevel: (grade) => (grade === 1 ? 5 : 10),
   levels: [
     open(L(1), count(1)),

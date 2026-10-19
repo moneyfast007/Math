@@ -112,7 +112,7 @@ function whichDivisor(rng: Rng): Exercise {
   return exercise({
     factId: `which:${n}:${order.join(',')}`,
     topicId: ID,
-    level: 6,
+    level: 7,
     prompt: t('ex.div.which.prompt', { params: { n } }),
     display: String(n),
     spoken: say('ex.div.which.spoken', { n }),
@@ -148,7 +148,7 @@ function prime(rng: Rng): Exercise {
   return exercise({
     factId: `prime:${n}`,
     topicId: ID,
-    level: 7,
+    level: 8,
     prompt: t('ex.prime.prompt', { params: { n } }),
     display: String(n),
     spoken: say('ex.prime.spoken', { n }),
@@ -175,7 +175,7 @@ function howManyDivisors(rng: Rng): Exercise {
   return exercise({
     factId: `divs:${n}`,
     topicId: ID,
-    level: 8,
+    level: 9,
     prompt: t('ex.divs.prompt', { params: { n } }),
     display: String(n),
     spoken: say('ex.divs.spoken', { n }),
@@ -218,7 +218,7 @@ function power(rng: Rng): Exercise {
   return exercise({
     factId: `pow:${b}^${e}`,
     topicId: ID,
-    level: 9,
+    level: 10,
     prompt: t('ex.arith.prompt'),
     display: `${b}${SUP[e] ?? ''} = ?`,
     spoken: say('ex.pow.spoken', { b, e }),
@@ -276,7 +276,7 @@ function zeroOne(rng: Rng): Exercise {
   return exercise({
     factId: `zo:${kind}:${n}`,
     topicId: ID,
-    level: 10,
+    level: 3,
     prompt: t('ex.arith.prompt'),
     display,
     spoken: say(`${rule[kind]}.spoken`, { n }),
@@ -305,13 +305,14 @@ export const divisibility = defineTopic({
   levels: [
     open(L(1), divisibleBy(1, 2, 10, 300)),
     open(L(2), divisibleBy(2, 5, 10, 500)),
-    open(L(3), divisibleBy(3, 3, 20, 999)),
-    open(L(4), divisibleBy(4, 9, 20, 999)),
-    open(L(5), divisibleBy(5, 6, 20, 300)),
-    open(L(6), whichDivisor),
-    open(L(7), prime),
-    open(L(8), howManyDivisors),
-    open(L(9), power),
-    open(L(10), zeroOne),
+    // What 0 and 1 do: the easiest, early, before the digit-sum rules.
+    open(L(3), zeroOne),
+    open(L(4), divisibleBy(4, 3, 20, 999)),
+    open(L(5), divisibleBy(5, 9, 20, 999)),
+    open(L(6), divisibleBy(6, 6, 20, 300)),
+    open(L(7), whichDivisor),
+    open(L(8), prime),
+    open(L(9), howManyDivisors),
+    open(L(10), power),
   ],
 });

@@ -693,7 +693,8 @@ export const anglesTopic = defineTopic({
   // Grade 3's geometry too (kinds of angles, perpendicular and parallel lines, triangles,
   // quadrilaterals): levels 1–6. Grade 4 goes on to angles in degrees, diagonals, symmetry.
   grades: [3, 4],
-  startLevel: () => 1,
+  // Grade 4 goes on where grade 3 stopped (levels 1–6 stay open in the picker).
+  startLevel: (grade) => (grade === 4 ? 7 : 1),
   lastLevel: (grade) => (grade === 3 ? 6 : 10),
   levels: [
     closed(
