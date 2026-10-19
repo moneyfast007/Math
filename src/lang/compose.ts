@@ -142,7 +142,8 @@ export function compose(template: string, slots: Readonly<Record<string, Slot>> 
     }
     let slot = slots[m[1] ?? ''];
     // A bare whole number followed by a counted noun agrees with it (the noun moves into the slot).
-    const n = typeof slot === 'number' ? slot : typeof slot === 'object' && !slot.noun ? slot.n : null;
+    const n =
+      typeof slot === 'number' ? slot : typeof slot === 'object' && !slot.noun ? slot.n : null;
     const next = /^ ([א-ת]+)/.exec(tokens[i + 1] ?? '');
     const noun = next ? AGREES[next[1] ?? ''] : undefined;
     if (n !== null && Number.isInteger(n) && n >= 1 && noun && next) {

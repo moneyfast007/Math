@@ -272,8 +272,12 @@ export function level8({ time, dir }: ShiftFact, rng: Rng): Exercise {
   // An example of the same kind: a whole hour for a whole hour, a half hour for a half hour.
   const ex =
     time.m === 0
-      ? same(time, at(2, 0)) ? at(4, 0) : at(2, 0)
-      : same(time, at(6, 30)) ? at(9, 30) : at(6, 30);
+      ? same(time, at(2, 0))
+        ? at(4, 0)
+        : at(2, 0)
+      : same(time, at(6, 30))
+        ? at(9, 30)
+        : at(6, 30);
   const solved = (from: ClockTime) =>
     say(dir === 'later' ? 'ex.clock.later.solution' : 'ex.clock.earlier.solution', {
       from: timeWords(from),

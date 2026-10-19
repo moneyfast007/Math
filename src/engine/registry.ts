@@ -90,7 +90,16 @@ export function topicById(id: string): Topic | undefined {
  */
 const ORDER: Partial<Record<Grade, readonly Topic[]>> = {
   2: [addSub100, numbers1000, moneyTopic, multIntro, clockTopic, polygons, vertical2, data],
-  4: [bigNumbers, longMulDiv, divisibility, fractionOps, perimeterArea, anglesTopic, vertical4, data],
+  4: [
+    bigNumbers,
+    longMulDiv,
+    divisibility,
+    fractionOps,
+    perimeterArea,
+    anglesTopic,
+    vertical4,
+    data,
+  ],
   5: [fractionOps, decimals, percentIntro, orderOps, areasTopic, data],
   6: [fractionMulDiv, decimalOps, percentIntro, percent, ratio, circleVolume, data],
 };

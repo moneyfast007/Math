@@ -76,11 +76,9 @@ function factsFor(level: number): Fact[] {
       }));
     case 7:
       // n − n only for even n: nine of them were one exercise in six.
-      return pairs(
-        range(2, 10),
-        range(1, 10),
-        (a, b) => b < a || (b === a && a % 2 === 0),
-      ).map(([a, b]) => ({ kind: 'sub', a, b }));
+      return pairs(range(2, 10), range(1, 10), (a, b) => b < a || (b === a && a % 2 === 0)).map(
+        ([a, b]) => ({ kind: 'sub', a, b }),
+      );
     case 8:
       // Up to 20 without crossing ten: 12 + 5, 17 − 4.
       return [

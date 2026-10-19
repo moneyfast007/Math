@@ -12,7 +12,16 @@ import { expect, test, type Page } from '@playwright/test';
 const WORLDS: Record<number, string[]> = {
   0: ['count-10', 'add-sub-20', 'shapes'],
   1: ['add-sub-20', 'numbers-100', 'polygons', 'clock-money-1'],
-  2: ['add-sub-100', 'numbers-1000', 'money', 'mult-intro', 'clock', 'polygons', 'vertical-2', 'data'],
+  2: [
+    'add-sub-100',
+    'numbers-1000',
+    'money',
+    'mult-intro',
+    'clock',
+    'polygons',
+    'vertical-2',
+    'data',
+  ],
   3: ['mult-table', 'numbers-10000', 'fractions-1', 'measure', 'angles', 'vertical-3', 'data'],
   4: [
     'big-numbers',
@@ -25,7 +34,15 @@ const WORLDS: Record<number, string[]> = {
     'data',
   ],
   5: ['fraction-ops', 'decimals', 'percent-intro', 'order-ops', 'areas', 'data'],
-  6: ['fraction-mul-div', 'decimal-ops', 'percent-intro', 'percent', 'ratio', 'circle-volume', 'data'],
+  6: [
+    'fraction-mul-div',
+    'decimal-ops',
+    'percent-intro',
+    'percent',
+    'ratio',
+    'circle-volume',
+    'data',
+  ],
 };
 
 /** Smallest acceptable size of the exercise's digits, px. */

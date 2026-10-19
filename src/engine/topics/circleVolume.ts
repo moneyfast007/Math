@@ -144,7 +144,8 @@ const circumference = (level: number, n: number, fromRadius: boolean): Exercise 
   const e = (fromRadius ? [5, 3] : [10, 20]).find((c) => c !== n) as number;
   const eD = fromRadius ? 2 * e : e;
   const eR = round(PI * eD, 2);
-  const steps = (dd: number) => (fromRadius ? { d: slot(dd, CM), x: dd, pi: PI } : { d: dd, pi: PI });
+  const steps = (dd: number) =>
+    fromRadius ? { d: slot(dd, CM), x: dd, pi: PI } : { d: dd, pi: PI };
   return build({
     level,
     id: `circ${fromRadius ? 'R' : 'D'}:${n}`,
@@ -375,9 +376,7 @@ const aquarium = (x: Box): Exercise => {
 /** Small boxes for the missing edge: the volume is not also the sum of the edges or the surface. */
 const BOXES: Box[] = range(2, 9)
   .flatMap((a) => range(2, a).flatMap((b) => range(2, 6).map((c) => ({ a, b, c }))))
-  .filter(
-    ({ a, b, c }) => a * b * c !== a + b + c && a * b * c !== 2 * (a * b + b * c + a * c),
-  );
+  .filter(({ a, b, c }) => a * b * c !== a + b + c && a * b * c !== 2 * (a * b + b * c + a * c));
 /**
  * Volume in grade 6: bigger boxes than grade 5's, some with a half centimetre
  * (2.5 × 8 × 5), and cubes; never a volume that is also the sum of the edges
@@ -385,11 +384,11 @@ const BOXES: Box[] = range(2, 9)
  */
 const BIG_BOXES: Box[] = [
   ...range(6, 15).flatMap((a) =>
-    [4, 5, 6, 8, 10]
-      .filter((b) => b < a)
-      .flatMap((b) => [3, 5, 7].map((c) => ({ a, b, c }))),
+    [4, 5, 6, 8, 10].filter((b) => b < a).flatMap((b) => [3, 5, 7].map((c) => ({ a, b, c }))),
   ),
-  ...[1.5, 2.5, 3.5, 4.5].flatMap((a) => [4, 6, 8].flatMap((b) => [3, 5].map((c) => ({ a, b, c })))),
+  ...[1.5, 2.5, 3.5, 4.5].flatMap((a) =>
+    [4, 6, 8].flatMap((b) => [3, 5].map((c) => ({ a, b, c }))),
+  ),
   ...range(2, 12).map((a) => ({ a, b: a, c: a })),
 ].filter(
   ({ a, b, c }) =>
@@ -418,8 +417,16 @@ export const circleVolume = defineTopic({
       () => range(1, 25).flatMap((r) => [true, false].map((toD) => ({ r, toD }))),
       (x) => radiusDiameter(x.r, x.toD),
     ),
-    closed(L(3), () => FRIENDLY_D, (d) => circumference(2, d, false)),
-    closed(L(4), () => FRIENDLY_R, (r) => circumference(3, r, true)),
+    closed(
+      L(3),
+      () => FRIENDLY_D,
+      (d) => circumference(2, d, false),
+    ),
+    closed(
+      L(4),
+      () => FRIENDLY_R,
+      (r) => circumference(3, r, true),
+    ),
     closed(
       'level.circleVolume6.4',
       // Any diameter or radius. Not d = 4 or r = 2: there the area and the circumference are
@@ -435,7 +442,11 @@ export const circleVolume = defineTopic({
       (x) => circumference(4, x.n, x.fromRadius),
     ),
     // Not r = 1 or 2: there the area equals π × r or the circumference.
-    closed(L(5), () => FRIENDLY_AREA, (r) => area(5, r, false)),
+    closed(
+      L(5),
+      () => FRIENDLY_AREA,
+      (r) => area(5, r, false),
+    ),
     closed(
       'level.circleVolume6.6',
       () => [

@@ -45,12 +45,27 @@ function build(rng: Rng): Exercise {
       hint(say('ex.build3.hint1')),
       hint(say('ex.build3.hint2'), { visual: { type: 'placeValue', n: n === 352 ? 471 : 352 } }),
       exampleAvoiding(n, [
-        { answer: 352, hint: () => exampleHint('300 + 50 + 2 = 352', say('ex.build3.solution', { h: 3, te: 5, u: 2, n: 352 })) },
-        { answer: 471, hint: () => exampleHint('400 + 70 + 1 = 471', say('ex.build3.solution', { h: 4, te: 7, u: 1, n: 471 })) },
+        {
+          answer: 352,
+          hint: () =>
+            exampleHint(
+              '300 + 50 + 2 = 352',
+              say('ex.build3.solution', { h: 3, te: 5, u: 2, n: 352 }),
+            ),
+        },
+        {
+          answer: 471,
+          hint: () =>
+            exampleHint(
+              '400 + 70 + 1 = 471',
+              say('ex.build3.solution', { h: 4, te: 7, u: 1, n: 471 }),
+            ),
+        },
       ]),
     ],
     solution: say('ex.build3.solution', { h, te, u, n }),
-    diagnose: (v) => (v === u * 100 + te * 10 + h ? 'digitReversal' : v === h + te + u ? 'placeValue' : null),
+    diagnose: (v) =>
+      v === u * 100 + te * 10 + h ? 'digitReversal' : v === h + te + u ? 'placeValue' : null,
   });
 }
 
@@ -61,7 +76,9 @@ function placeValue(rng: Rng): Exercise {
   do {
     n = randInt(rng, 101, 999);
     const ds = String(n).split('').reverse().map(Number);
-    pos = ds.map((d, i) => (d !== 0 && ds.filter((x) => x === d).length === 1 ? i : -1)).filter((i) => i >= 0);
+    pos = ds
+      .map((d, i) => (d !== 0 && ds.filter((x) => x === d).length === 1 ? i : -1))
+      .filter((i) => i >= 0);
   } while (pos.length === 0);
   const i = pick(rng, pos);
   const d = Number(String(n).split('').reverse()[i]);
@@ -78,10 +95,20 @@ function placeValue(rng: Rng): Exercise {
     hints: [
       // Where to look, not the answer: counting places from the right.
       hint(say('ex.pv3.hint1')),
-      hint(say('ex.placeValue.hint2'), { visual: { type: 'placeValue', n: n === 352 ? 471 : 352 } }),
+      hint(say('ex.placeValue.hint2'), {
+        visual: { type: 'placeValue', n: n === 352 ? 471 : 352 },
+      }),
       exampleAvoiding(answer, [
-        { answer: 50, hint: () => exampleHint('352: 5 → 50', say('ex.placeValue.solution', { d: 5, n: 352, v: 50 })) },
-        { answer: 400, hint: () => exampleHint('471: 4 → 400', say('ex.placeValue.solution', { d: 4, n: 471, v: 400 })) },
+        {
+          answer: 50,
+          hint: () =>
+            exampleHint('352: 5 → 50', say('ex.placeValue.solution', { d: 5, n: 352, v: 50 })),
+        },
+        {
+          answer: 400,
+          hint: () =>
+            exampleHint('471: 4 → 400', say('ex.placeValue.solution', { d: 4, n: 471, v: 400 })),
+        },
       ]),
     ],
     solution: say('ex.placeValue.solution', { d, n, v: answer }),
@@ -114,8 +141,22 @@ function compare(rng: Rng): Exercise {
 
 /** After, before, ten more, a hundred more. */
 function neighbour(rng: Rng): Exercise {
-  const kind = pick(rng, ['after', 'before', 'tenMore', 'tenLess', 'hundredMore', 'hundredLess'] as const);
-  const delta = { after: 1, before: -1, tenMore: 10, tenLess: -10, hundredMore: 100, hundredLess: -100 }[kind];
+  const kind = pick(rng, [
+    'after',
+    'before',
+    'tenMore',
+    'tenLess',
+    'hundredMore',
+    'hundredLess',
+  ] as const);
+  const delta = {
+    after: 1,
+    before: -1,
+    tenMore: 10,
+    tenLess: -10,
+    hundredMore: 100,
+    hundredLess: -100,
+  }[kind];
   // Crossing a hundred half the time: 399 → 400, 400 → 399, 395 → 405, 704 → 694.
   const h = randInt(rng, 2, 8) * 100;
   const crossing: Record<typeof kind, () => number> = {
@@ -139,22 +180,38 @@ function neighbour(rng: Rng): Exercise {
     answer,
     input: numpad(4),
     hints: [
-      hint(say(Math.abs(delta) === 1 ? 'ex.n1000.hint1' : Math.abs(delta) === 10 ? 'ex.n1000.hint10' : 'ex.n1000.hint100')),
+      hint(
+        say(
+          Math.abs(delta) === 1
+            ? 'ex.n1000.hint1'
+            : Math.abs(delta) === 10
+              ? 'ex.n1000.hint10'
+              : 'ex.n1000.hint100',
+        ),
+      ),
       hint(say('ex.n1000.hint2')),
       exampleAvoiding(answer, [
-        { answer: 400, hint: () => exampleHint('399 → 400', say('ex.after.solution', { n: 399, c: 400 })) },
-        { answer: 600, hint: () => exampleHint('599 → 600', say('ex.after.solution', { n: 599, c: 600 })) },
+        {
+          answer: 400,
+          hint: () => exampleHint('399 → 400', say('ex.after.solution', { n: 399, c: 400 })),
+        },
+        {
+          answer: 600,
+          hint: () => exampleHint('599 → 600', say('ex.after.solution', { n: 599, c: 600 })),
+        },
       ]),
     ],
     solution: say(`${key}.solution`, { n: m, c: answer }),
-    diagnose: (v) => (Math.abs(v - answer) === 10 || Math.abs(v - answer) === 100 ? 'offByTen' : null),
+    diagnose: (v) =>
+      Math.abs(v - answer) === 10 || Math.abs(v - answer) === 100 ? 'offByTen' : null,
   });
 }
 
 /** Counting in tens or hundreds: "230, 240, 250, ?" */
 function skip(rng: Rng): Exercise {
   const step = pick(rng, [10, 100, 50, 5] as const);
-  const start = step === 100 ? randInt(rng, 1, 5) * 100 + pick(rng, [0, 20, 50]) : randInt(rng, 10, 80) * 10;
+  const start =
+    step === 100 ? randInt(rng, 1, 5) * 100 + pick(rng, [0, 20, 50]) : randInt(rng, 10, 80) * 10;
   const seq = [0, 1, 2].map((k) => start + k * step);
   const answer = start + 3 * step;
   return exercise({
@@ -165,13 +222,35 @@ function skip(rng: Rng): Exercise {
     display: `${seq.join(', ')}, ?`,
     spoken: say('ex.skip3.spoken' as const, Object.fromEntries(seq.map((v, k) => [`n${k}`, v]))),
     answer,
-    input: { type: 'choices', choices: spreadChoices(rng, answer, { deltas: [step, 1, 2 * step], min: 0, max: 1200, mix: true }) },
+    input: {
+      type: 'choices',
+      choices: spreadChoices(rng, answer, {
+        deltas: [step, 1, 2 * step],
+        min: 0,
+        max: 1200,
+        mix: true,
+      }),
+    },
     hints: [
       hint(say('ex.skip.hint1', { step })),
       hint(say('ex.skip3.hint2')),
       exampleAvoiding(answer, [
-        { answer: 400, hint: () => exampleHint('100, 200, 300, 400', say('ex.skip.solution', { last: 300, step: 100, next: 400 })) },
-        { answer: 160, hint: () => exampleHint('130, 140, 150, 160', say('ex.skip.solution', { last: 150, step: 10, next: 160 })) },
+        {
+          answer: 400,
+          hint: () =>
+            exampleHint(
+              '100, 200, 300, 400',
+              say('ex.skip.solution', { last: 300, step: 100, next: 400 }),
+            ),
+        },
+        {
+          answer: 160,
+          hint: () =>
+            exampleHint(
+              '130, 140, 150, 160',
+              say('ex.skip.solution', { last: 150, step: 10, next: 160 }),
+            ),
+        },
       ]),
     ],
     solution: say('ex.skip.solution', { last: seq[2] ?? start, step, next: answer }),
@@ -200,8 +279,22 @@ function decompose(rng: Rng): Exercise {
       hint(say('ex.dec3.hint1')),
       hint(say('ex.build3.hint2'), { visual: { type: 'placeValue', n: n === 352 ? 471 : 352 } }),
       exampleAvoiding(answer, [
-        { answer: 50, hint: () => exampleHint('352 = 300 + 50 + 2', say('ex.dec3.solution', { n: 352, a: 300, b: 50, c: 2 })) },
-        { answer: 70, hint: () => exampleHint('471 = 400 + 70 + 1', say('ex.dec3.solution', { n: 471, a: 400, b: 70, c: 1 })) },
+        {
+          answer: 50,
+          hint: () =>
+            exampleHint(
+              '352 = 300 + 50 + 2',
+              say('ex.dec3.solution', { n: 352, a: 300, b: 50, c: 2 }),
+            ),
+        },
+        {
+          answer: 70,
+          hint: () =>
+            exampleHint(
+              '471 = 400 + 70 + 1',
+              say('ex.dec3.solution', { n: 471, a: 400, b: 70, c: 1 }),
+            ),
+        },
       ]),
     ],
     solution: say('ex.dec3.solution', { n, a: parts.h, b: parts.te, c: parts.u }),
@@ -211,7 +304,10 @@ function decompose(rng: Rng): Exercise {
 
 /** Which number is marked on a line from 0 to 1,000 (hundreds and fifties)? */
 function marked(rng: Rng): Exercise {
-  const n = pick(rng, [100, 200, 300, 400, 500, 600, 700, 800, 900, 150, 250, 350, 450, 550, 650, 750, 850]);
+  const n = pick(
+    rng,
+    [100, 200, 300, 400, 500, 600, 700, 800, 900, 150, 250, 350, 450, 550, 650, 750, 850],
+  );
   return exercise({
     factId: `mark3:${n}`,
     topicId: ID,
@@ -221,7 +317,10 @@ function marked(rng: Rng): Exercise {
     spoken: say('ex.marked.spoken'),
     visual: { type: 'numberLine', from: 0, to: 1000, start: n, hops: 0, step: 100, hide: n },
     answer: n,
-    input: { type: 'choices', choices: spreadChoices(rng, n, { deltas: [50, 100, 10], min: 0, max: 1000, mix: true }) },
+    input: {
+      type: 'choices',
+      choices: spreadChoices(rng, n, { deltas: [50, 100, 10], min: 0, max: 1000, mix: true }),
+    },
     hints: [
       hint(say('ex.mark3.hint1')),
       hint(say('ex.mark3.hint2')),

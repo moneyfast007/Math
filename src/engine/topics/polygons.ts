@@ -27,7 +27,16 @@ const ID = 'polygons';
 const L = (n: number) => `level.polygons.${n}`;
 
 type P = [number, number];
-type Name = 'triangle' | 'square' | 'rectangle' | 'quad' | 'pentagon' | 'hexagon' | 'rightTri' | 'trapezoid' | 'parallelogram';
+type Name =
+  | 'triangle'
+  | 'square'
+  | 'rectangle'
+  | 'quad'
+  | 'pentagon'
+  | 'hexagon'
+  | 'rightTri'
+  | 'trapezoid'
+  | 'parallelogram';
 
 /** Shapes in a 100 × 100 box (y down). */
 const SHAPES: Record<Name, P[]> = {
@@ -109,7 +118,16 @@ const SIDES: Record<Name, number> = {
 /** The polygon's name by its number of sides. */
 const NAME_BY_SIDES: Record<number, string> = { 3: 'משולש', 4: 'מרובע', 5: 'מחומש', 6: 'משושה' };
 
-const MANY: Name[] = ['triangle', 'rightTri', 'square', 'rectangle', 'quad', 'trapezoid', 'pentagon', 'hexagon'];
+const MANY: Name[] = [
+  'triangle',
+  'rightTri',
+  'square',
+  'rectangle',
+  'quad',
+  'trapezoid',
+  'pentagon',
+  'hexagon',
+];
 
 /** Levels 1–2: how many sides, how many vertices. */
 function count(level: 1 | 2) {
@@ -117,7 +135,10 @@ function count(level: 1 | 2) {
     // The number of sides first, then a shape: four-sided shapes are most of MANY,
     // and the answer's button would mostly sit in the same place.
     const sides = pick(rng, [3, 4, 5, 6]);
-    const name = pick(rng, MANY.filter((m) => SIDES[m] === sides));
+    const name = pick(
+      rng,
+      MANY.filter((m) => SIDES[m] === sides),
+    );
     const n = SIDES[name];
     const key = level === 1 ? 'ex.poly.sides' : 'ex.poly.vertices';
     const ex: Name = n === 5 ? 'hexagon' : 'pentagon';
@@ -145,7 +166,10 @@ function count(level: 1 | 2) {
 function name(rng: Rng): Exercise {
   const shape = pick(rng, MANY);
   const n = SIDES[shape];
-  const labels = shuffle(rng, [3, 4, 5, 6].map((k) => NAME_BY_SIDES[k] as string));
+  const labels = shuffle(
+    rng,
+    [3, 4, 5, 6].map((k) => NAME_BY_SIDES[k] as string),
+  );
   const right = NAME_BY_SIDES[n] as string;
   return exercise({
     factId: `pname:${shape}`,
@@ -160,7 +184,10 @@ function name(rng: Rng): Exercise {
     hints: [
       hint(say('ex.poly.name.hint1')),
       hint(say('ex.poly.name.hint2')),
-      pictureExample(say(n === 5 ? 'ex.poly.name.exampleHex' : 'ex.poly.name.examplePent'), poly(n === 5 ? 'hexagon' : 'pentagon')),
+      pictureExample(
+        say(n === 5 ? 'ex.poly.name.exampleHex' : 'ex.poly.name.examplePent'),
+        poly(n === 5 ? 'hexagon' : 'pentagon'),
+      ),
     ],
     solution: say('ex.poly.name.solution', { name: right }),
   });
@@ -169,8 +196,15 @@ function name(rng: Rng): Exercise {
 /** Level 4: where is the quadrilateral / triangle / pentagon? Three pictures. */
 function where(rng: Rng): Exercise {
   const want = pick(rng, [3, 4, 5, 6]);
-  const pickOf = (k: number) => pick(rng, MANY.filter((s) => SIDES[s] === k));
-  const others = shuffle(rng, [3, 4, 5, 6].filter((k) => k !== want)).slice(0, 2);
+  const pickOf = (k: number) =>
+    pick(
+      rng,
+      MANY.filter((s) => SIDES[s] === k),
+    );
+  const others = shuffle(
+    rng,
+    [3, 4, 5, 6].filter((k) => k !== want),
+  ).slice(0, 2);
   const shapes = shuffle(rng, [want, ...others]).map((k) => ({ k, s: pickOf(k) }));
   const wanted = NAME_BY_SIDES[want] as string;
   return exercise({
@@ -197,8 +231,14 @@ function where(rng: Rng): Exercise {
 /** Level 5: which of two has more sides? */
 function moreSides(rng: Rng): Exercise {
   const [a, b] = shuffle(rng, [3, 4, 5, 6]).slice(0, 2) as [number, number];
-  const sa = pick(rng, MANY.filter((s) => SIDES[s] === a));
-  const sb = pick(rng, MANY.filter((s) => SIDES[s] === b));
+  const sa = pick(
+    rng,
+    MANY.filter((s) => SIDES[s] === a),
+  );
+  const sb = pick(
+    rng,
+    MANY.filter((s) => SIDES[s] === b),
+  );
   return exercise({
     factId: `pmore:${sa},${sb}`,
     topicId: ID,
@@ -207,8 +247,15 @@ function moreSides(rng: Rng): Exercise {
     display: '',
     spoken: say('ex.poly.more.prompt'),
     answer: a > b ? 0 : 1,
-    input: pictureChoices([NAME_BY_SIDES[a] as string, NAME_BY_SIDES[b] as string], [poly(sa), poly(sb)]),
-    hints: [hint(say('ex.poly.sides.hint1')), hint(say('ex.poly.more.hint2')), hint(say('ex.poly.more.hint3'))],
+    input: pictureChoices(
+      [NAME_BY_SIDES[a] as string, NAME_BY_SIDES[b] as string],
+      [poly(sa), poly(sb)],
+    ),
+    hints: [
+      hint(say('ex.poly.sides.hint1')),
+      hint(say('ex.poly.more.hint2')),
+      hint(say('ex.poly.more.hint3')),
+    ],
     solution: say('ex.poly.more.solution', { name: NAME_BY_SIDES[Math.max(a, b)] as string }),
   });
 }
@@ -266,7 +313,10 @@ function rightAngles(rng: Rng): Exercise {
     hints: [
       hint(say('ex.poly.rights.hint1')),
       hint(say('ex.poly.right.hint2')),
-      pictureExample(say('ex.poly.rights.example'), poly(shape === 'square' ? 'rectangle' : 'square', { rightAngles: [0, 1, 2, 3] })),
+      pictureExample(
+        say('ex.poly.rights.example'),
+        poly(shape === 'square' ? 'rectangle' : 'square', { rightAngles: [0, 1, 2, 3] }),
+      ),
     ],
     solution: say('ex.poly.rights.solution', { n }),
   });
@@ -284,10 +334,20 @@ function whichRight(rng: Rng): Exercise {
     spoken: say('ex.poly.whichRight.prompt'),
     answer: degs.indexOf(90),
     input: pictureChoices(
-      degs.map((d) => (d === 90 ? t('ex.poly.angleRight') : d < 90 ? t('ex.poly.angleSmall') : t('ex.poly.angleBig'))),
+      degs.map((d) =>
+        d === 90
+          ? t('ex.poly.angleRight')
+          : d < 90
+            ? t('ex.poly.angleSmall')
+            : t('ex.poly.angleBig'),
+      ),
       degs.map((d): Visual => ({ type: 'angle', deg: d, turn: 0 })),
     ),
-    hints: [hint(say('ex.poly.right.hint1')), hint(say('ex.poly.right.hint2')), hint(say('ex.poly.whichRight.hint3'))],
+    hints: [
+      hint(say('ex.poly.right.hint1')),
+      hint(say('ex.poly.right.hint2')),
+      hint(say('ex.poly.whichRight.hint3')),
+    ],
     solution: say('ex.poly.right.yes'),
   });
 }
@@ -298,7 +358,15 @@ function allEqual(rng: Rng): Exercise {
   const rightVisual =
     right === 'square'
       ? poly('square', { ticks: [1, 1, 1, 1] })
-      : ({ type: 'polygon', points: [[10, 88], [90, 88], [50, 18]], ticks: [1, 1, 1] } as Visual);
+      : ({
+          type: 'polygon',
+          points: [
+            [10, 88],
+            [90, 88],
+            [50, 18],
+          ],
+          ticks: [1, 1, 1],
+        } as Visual);
   const wrong: Visual[] = [poly('rectangle', { ticks: [1, 2, 1, 2] }), poly('rightTri')];
   const order = shuffle(rng, [0, 1, 2]);
   const visuals = [rightVisual, ...wrong];
@@ -315,7 +383,11 @@ function allEqual(rng: Rng): Exercise {
       order.map((i) => names[i] as string),
       order.map((i) => visuals[i] as Visual),
     ),
-    hints: [hint(say('ex.poly.equal.hint1')), hint(say('ex.poly.equal.hint2')), hint(say('ex.poly.equal.hint3'))],
+    hints: [
+      hint(say('ex.poly.equal.hint1')),
+      hint(say('ex.poly.equal.hint2')),
+      hint(say('ex.poly.equal.hint3')),
+    ],
     solution: say('ex.poly.equal.solution', { name: names[0] as string }),
   });
 }
@@ -355,8 +427,22 @@ function perimeter(rng: Rng): Exercise {
         example: { display: `${sides.join(' + ')} = ?`, spoken: say('ex.poly.perim.hint2') },
       }),
       exampleAvoiding(total, [
-        { answer: 12, hint: () => exampleHint('3 + 4 + 5 = 12', say('ex.poly.perim.solution', { r: { n: 12, noun: CM } })) },
-        { answer: 14, hint: () => exampleHint('5 + 2 + 5 + 2 = 14', say('ex.poly.perim.solution', { r: { n: 14, noun: CM } })) },
+        {
+          answer: 12,
+          hint: () =>
+            exampleHint(
+              '3 + 4 + 5 = 12',
+              say('ex.poly.perim.solution', { r: { n: 12, noun: CM } }),
+            ),
+        },
+        {
+          answer: 14,
+          hint: () =>
+            exampleHint(
+              '5 + 2 + 5 + 2 = 14',
+              say('ex.poly.perim.solution', { r: { n: 14, noun: CM } }),
+            ),
+        },
       ]),
     ],
     solution: say('ex.poly.perim.solution', { r: { n: total, noun: CM } }),

@@ -266,7 +266,11 @@ function fracTimes(
     solution: say('ex.frac.equal.solution', { a: q, b: w(num, den) }),
     // Denominators added instead of multiplied.
     diagnose: (v) =>
-      askDen && v === a.d + b.d ? 'wrongOperation' : !askDen && v === a.n + b.n ? 'wrongOperation' : null,
+      askDen && v === a.d + b.d
+        ? 'wrongOperation'
+        : !askDen && v === a.n + b.n
+          ? 'wrongOperation'
+          : null,
   });
 }
 
@@ -555,9 +559,11 @@ export const fractionMulDiv = defineTopic({
       () =>
         // Fractions in lowest terms only (not 2/4).
         [2, 3, 4, 5].flatMap((d) =>
-          range(1, d - 1).filter((n) => gcd(n, d) === 1).flatMap((n) =>
-            range(3, 6).map((k, j) => ({ i: d * 11 + n * 5 + j, n, d, total: d * k })),
-          ),
+          range(1, d - 1)
+            .filter((n) => gcd(n, d) === 1)
+            .flatMap((n) =>
+              range(3, 6).map((k, j) => ({ i: d * 11 + n * 5 + j, n, d, total: d * k })),
+            ),
         ),
       (x) => story(x.i, x.n, x.d, x.total),
     ),

@@ -300,11 +300,7 @@ function story(rng: Rng): Exercise {
     ],
     solution: say(`${key}.solution` as const, { r: { n: answer, noun: unit } }),
     diagnose: (v) =>
-      fence && v === w * h
-        ? 'shapeFormula'
-        : !fence && v === 2 * (w + h)
-          ? 'shapeFormula'
-          : null,
+      fence && v === w * h ? 'shapeFormula' : !fence && v === 2 * (w + h) ? 'shapeFormula' : null,
   });
 }
 

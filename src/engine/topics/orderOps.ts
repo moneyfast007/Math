@@ -332,7 +332,15 @@ function story(rng: Rng): Exercise {
     answer,
     input: numpad(3),
     hints: [
-      hint(say(change ? 'ord.wp.change.hint1' : kind === 'cinema' ? 'ord.wp.cinema.hint1' : 'wp.ord.shop.hint1')),
+      hint(
+        say(
+          change
+            ? 'ord.wp.change.hint1'
+            : kind === 'cinema'
+              ? 'ord.wp.cinema.hint1'
+              : 'wp.ord.shop.hint1',
+        ),
+      ),
       {
         ...hint(say('hint.equation')),
         example: { display: shown2, spoken: say('hint.equation').text },
@@ -349,7 +357,9 @@ function story(rng: Rng): Exercise {
             answer: r,
             hint: () =>
               exampleHint(
-                change ? `${ex.c} − ${ex.a} × ${ex.b} = ${r}` : `${ex.a} × ${ex.b} + ${ex.c} = ${r}`,
+                change
+                  ? `${ex.c} − ${ex.a} × ${ex.b} = ${r}`
+                  : `${ex.a} × ${ex.b} + ${ex.c} = ${r}`,
                 say(change ? 'ord.wp.change.solution' : 'wp.ord.shop.solution', { ...ex, r }),
               ),
           };

@@ -58,7 +58,8 @@ function near(rng: Rng, answer: number, min: number, max: number): number[] {
 }
 
 /** One too many or too few: counted something twice, or skipped one. */
-const offByOne = (answer: number) => (v: number) => (Math.abs(v - answer) === 1 ? 'offByOne' : null);
+const offByOne = (answer: number) => (v: number) =>
+  Math.abs(v - answer) === 1 ? 'offByOne' : null;
 
 /**
  * A fact and a variant: the same numbers shown with other objects. Levels with
@@ -218,7 +219,10 @@ function oneStep(level: number, n: number, rng: Rng, more1: boolean): Exercise {
 function complete(level: number, { n, v }: Variant, rng: Rng, target: 5 | 10): Exercise {
   const noun = nounFor(n + target + v * 3);
   const answer = target - n;
-  const prompt = t('ex.makeN.prompt', { params: { target, plural: noun.plural }, gender: noun.gender });
+  const prompt = t('ex.makeN.prompt', {
+    params: { target, plural: noun.plural },
+    gender: noun.gender,
+  });
   const spoken = say(
     'ex.makeN.spoken',
     {

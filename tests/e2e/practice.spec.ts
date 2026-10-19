@@ -48,7 +48,9 @@ async function setupAtLevel(page: Page, grade: number, world: string, level: num
           settings: { allowLevelChange: false },
         },
       ],
-      progress: { k: { topics: { [world]: stats }, streak: { count: 0, lastDay: null }, days: {} } },
+      progress: {
+        k: { topics: { [world]: stats }, streak: { count: 0, lastDay: null }, days: {} },
+      },
       parent: { pin: null },
       meta: { createdAt: 1, lastBackupAt: null },
     },
@@ -60,7 +62,10 @@ async function setupAtLevel(page: Page, grade: number, world: string, level: num
     mimeType: 'application/json',
     buffer: Buffer.from(JSON.stringify(backup)),
   });
-  await page.getByRole('dialog', { name: 'לשחזר מהגיבוי?' }).getByRole('button', { name: 'שחזור' }).click();
+  await page
+    .getByRole('dialog', { name: 'לשחזר מהגיבוי?' })
+    .getByRole('button', { name: 'שחזור' })
+    .click();
   await page.getByRole('button', { name: 'סיימתי, למסך הבית' }).first().click();
   await page.getByRole('button', { name: 'נועה' }).click();
   await page.getByRole('button', { name: 'יאללה, מתחילים!' }).click();

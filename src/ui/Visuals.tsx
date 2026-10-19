@@ -543,9 +543,21 @@ function Bars({ v }: { v: Extract<Visual, { type: 'bars' }> }) {
       <svg viewBox={`0 0 ${W} ${H}`} className="bars__svg">
         {Array.from({ length: lines + 1 }, (_, i) => i * step).map((n, i) => (
           <g key={n}>
-            <line x1={left} y1={y(n)} x2={W - 4} y2={y(n)} className={n === 0 ? 'bars__axis' : 'bars__grid'} />
+            <line
+              x1={left}
+              y1={y(n)}
+              x2={W - 4}
+              y2={y(n)}
+              className={n === 0 ? 'bars__axis' : 'bars__grid'}
+            />
             {i % labelEvery === 0 ? (
-              <text x={left - 6} y={y(n)} textAnchor="end" dominantBaseline="middle" className="bars__num">
+              <text
+                x={left - 6}
+                y={y(n)}
+                textAnchor="end"
+                dominantBaseline="middle"
+                className="bars__num"
+              >
                 {n}
               </text>
             ) : null}
@@ -555,7 +567,14 @@ function Bars({ v }: { v: Extract<Visual, { type: 'bars' }> }) {
           const x = left + i * slot + slot * 0.2;
           return (
             <g key={b.label}>
-              <rect x={x} y={y(b.value)} width={slot * 0.6} height={y(0) - y(b.value)} className="bars__bar" rx="3" />
+              <rect
+                x={x}
+                y={y(b.value)}
+                width={slot * 0.6}
+                height={y(0) - y(b.value)}
+                className="bars__bar"
+                rx="3"
+              />
               <text x={x + slot * 0.3} y={H - 8} textAnchor="middle" className="bars__label">
                 {b.label}
               </text>

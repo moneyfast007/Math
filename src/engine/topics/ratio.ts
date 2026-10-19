@@ -352,7 +352,12 @@ function mapScale(f: MapFact): Exercise {
     const answer = (f.m * 100) / f.k;
     const ex = [6, 8].find((e) => (e * 100) / f.k !== answer) as number;
     const solved = (m: number) =>
-      say('r6.toMap.solution', { m: { n: m, noun: M }, cm: m * 100, k: f.k, x: { n: (m * 100) / f.k, noun: CM } });
+      say('r6.toMap.solution', {
+        m: { n: m, noun: M },
+        cm: m * 100,
+        k: f.k,
+        x: { n: (m * 100) / f.k, noun: CM },
+      });
     const spoken = say('r6.toMap.spoken', { k: f.k, m: { n: f.m, noun: M } });
     return exercise({
       factId: `rtomap${f.k}:${f.m}`,
@@ -400,7 +405,12 @@ function mapScale(f: MapFact): Exercise {
   });
 }
 
-const SHEKEL_ITEMS: readonly { id: string; unit: TranslationKey; prop: TranslationKey; noun: Noun }[] = [
+const SHEKEL_ITEMS: readonly {
+  id: string;
+  unit: TranslationKey;
+  prop: TranslationKey;
+  noun: Noun;
+}[] = [
   {
     id: 'notebook',
     unit: 'r6.unit.notebook',
@@ -425,12 +435,23 @@ const SHEKEL_ITEMS: readonly { id: string; unit: TranslationKey; prop: Translati
 function price(level: 8 | 9, k: number, each: number, m: number): Exercise {
   const total = round(k * each, 2);
   const answer = level === 8 ? each : round(m * each, 2);
-  const item = SHEKEL_ITEMS[(k + m + Math.round(each * 2)) % SHEKEL_ITEMS.length] as (typeof SHEKEL_ITEMS)[number];
+  const item = SHEKEL_ITEMS[
+    (k + m + Math.round(each * 2)) % SHEKEL_ITEMS.length
+  ] as (typeof SHEKEL_ITEMS)[number];
   const spoken =
     level === 8
       ? say(item.unit, { k: { n: k, noun: item.noun }, total })
       : say(item.prop, { k: { n: k, noun: item.noun }, total, m: { n: m, noun: item.noun } });
-  const examples = level === 8 ? [{ k: 3, each: 4, m: 0 }, { k: 4, each: 2.5, m: 0 }] : [{ k: 3, each: 4, m: 5 }, { k: 4, each: 6, m: 2 }];
+  const examples =
+    level === 8
+      ? [
+          { k: 3, each: 4, m: 0 },
+          { k: 4, each: 2.5, m: 0 },
+        ]
+      : [
+          { k: 3, each: 4, m: 5 },
+          { k: 4, each: 6, m: 2 },
+        ];
   return exercise({
     factId: `rprice${level}:${k}:${each}:${m}`,
     topicId: ID,
@@ -466,7 +487,13 @@ function price(level: 8 | 9, k: number, each: number, m: number): Exercise {
                 hint: () =>
                   exampleHint(
                     `${eTotal} ÷ ${e.k} = ${e.each} → ${e.each} × ${e.m} = ${round(e.each * e.m, 2)}`,
-                    say('r6.prop.solution', { total: eTotal, k: e.k, each: e.each, m: e.m, r: round(e.each * e.m, 2) }),
+                    say('r6.prop.solution', {
+                      total: eTotal,
+                      k: e.k,
+                      each: e.each,
+                      m: e.m,
+                      r: round(e.each * e.m, 2),
+                    }),
                   ),
               };
         }),
@@ -622,8 +649,16 @@ export const ratio = defineTopic({
         ),
       (x) => equivalent(x.a, x.b, x.k),
     ),
-    closed('level.ratio6.3', () => SHARES, (x) => divide(3, x.a, x.b, x.n)),
-    closed('level.ratio6.4', () => SHARES, (x) => divide(4, x.a, x.b, x.n)),
+    closed(
+      'level.ratio6.3',
+      () => SHARES,
+      (x) => divide(3, x.a, x.b, x.n),
+    ),
+    closed(
+      'level.ratio6.4',
+      () => SHARES,
+      (x) => divide(4, x.a, x.b, x.n),
+    ),
     closed(
       L(5),
       () =>
@@ -648,7 +683,9 @@ export const ratio = defineTopic({
       'level.ratio6.7',
       // A map to metres, metres back to the plan, and the scale from both.
       (): MapFact[] => [
-        ...[1000, 5000, 10000].flatMap((k) => range(2, 9).map((x) => ({ kind: 'toReal' as const, k, x }))),
+        ...[1000, 5000, 10000].flatMap((k) =>
+          range(2, 9).map((x) => ({ kind: 'toReal' as const, k, x })),
+        ),
         ...[50, 100, 200].flatMap((k) =>
           range(2, 9).map((m) => ({ kind: 'toMap' as const, k, m: k === 200 ? 2 * m : m })),
         ),
@@ -658,8 +695,16 @@ export const ratio = defineTopic({
       ],
       mapScale,
     ),
-    closed(L(8), () => UNIT_FACTS, (x) => price(8, x.k, x.each, 0)),
-    closed(L(9), () => PROPORTION_FACTS, (x) => price(9, x.k, x.each, x.m)),
+    closed(
+      L(8),
+      () => UNIT_FACTS,
+      (x) => price(8, x.k, x.each, 0),
+    ),
+    closed(
+      L(9),
+      () => PROPORTION_FACTS,
+      (x) => price(9, x.k, x.each, x.m),
+    ),
     closed(L(10), () => TRIPS, trip),
   ],
 });

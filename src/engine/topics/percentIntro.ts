@@ -2,11 +2,7 @@ import { shown, type Slot } from '@/lang/compose';
 import { t, type TranslationKey } from '@/i18n';
 import type { Gender } from '@/lang/gender';
 import { numberToWords, type Noun } from '@/lang/hebrewNumbers';
-import {
-  displayFraction as f,
-  FRACTION_NOUNS,
-  fractionWords as w,
-} from '@/lang/fractions';
+import { displayFraction as f, FRACTION_NOUNS, fractionWords as w } from '@/lang/fractions';
 import {
   CHARACTERS,
   closed,
@@ -63,7 +59,8 @@ export function percentOfExample(answer: number, options: readonly [number, numb
       const r = (p * base) / 100;
       return {
         answer: r,
-        hint: () => exampleHint(`${p}% × ${base} = ${r}`, sayP('ex.pct.of.solution', { p, base, r })),
+        hint: () =>
+          exampleHint(`${p}% × ${base} = ${r}`, sayP('ex.pct.of.solution', { p, base, r })),
       };
     }),
   );
@@ -117,7 +114,11 @@ function shaded(parts: number, k: number): Exercise {
     answer,
     input: numpad(3),
     hints: [
-      hint(sayP('pi.shaded.hint1', { parts: { n: parts, noun: { singular: 'חלק', plural: 'חלקים', gender: 'm' } } })),
+      hint(
+        sayP('pi.shaded.hint1', {
+          parts: { n: parts, noun: { singular: 'חלק', plural: 'חלקים', gender: 'm' } },
+        }),
+      ),
       // What one part is worth, for this bar.
       hint(sayP('pi.shaded.hint2', { p: each })),
       exampleAvoiding(
@@ -128,7 +129,10 @@ function shaded(parts: number, k: number): Exercise {
         ].map(([x, d]) => ({
           answer: ((x as number) * 100) / (d as number),
           hint: () =>
-            exampleHint(`${x}/${d} → ${((x as number) * 100) / (d as number)}%`, solved(x as number, d as number)),
+            exampleHint(
+              `${x}/${d} → ${((x as number) * 100) / (d as number)}%`,
+              solved(x as number, d as number),
+            ),
         })),
       ),
     ],
@@ -143,7 +147,8 @@ function shaded(parts: number, k: number): Exercise {
 /** 25% = 1/? (asks the denominator), or 1/4 = ?% (asks the percent). */
 function familiar(d: number, toFraction: boolean): Exercise {
   const p = 100 / d;
-  const solved = (dd: number) => sayP('ex.pct.familiar.solution', { p: 100 / dd, frac: fracWords(1, dd) });
+  const solved = (dd: number) =>
+    sayP('ex.pct.familiar.solution', { p: 100 / dd, frac: fracWords(1, dd) });
   const exD = [4, 2].find((x) => x !== d) as number;
   return exercise({
     factId: `pfam:${toFraction ? 'f' : 'p'}:${d}`,
@@ -160,7 +165,10 @@ function familiar(d: number, toFraction: boolean): Exercise {
     hints: [
       hint(sayP(toFraction ? 'ex.pct.familiar.hint1' : 'ex.pct.fromFrac.hint1', { p })),
       hint(sayP(toFraction ? 'ex.pct.familiar.hint2' : 'ex.pct.fromFrac.hint2', { d })),
-      exampleHint(toFraction ? `${100 / exD}% = 1/${exD}` : `1/${exD} = ${100 / exD}%`, solved(exD)),
+      exampleHint(
+        toFraction ? `${100 / exD}% = 1/${exD}` : `1/${exD} = ${100 / exD}%`,
+        solved(exD),
+      ),
     ],
     solution: solved(d),
     // The denominator and the percent swapped.
@@ -311,7 +319,11 @@ function percentOf(level: 6 | 7, rng: Rng): Exercise {
       // The shortcut for this percent: half, a quarter, or a tenth.
       hint(
         sayP(
-          p === 50 ? 'ex.pct.of.hint2half' : p === 25 ? 'ex.pct.of.hint2quarter' : 'ex.pct.of.hint2',
+          p === 50
+            ? 'ex.pct.of.hint2half'
+            : p === 25
+              ? 'ex.pct.of.hint2quarter'
+              : 'ex.pct.of.hint2',
           { base },
         ),
       ),

@@ -144,12 +144,19 @@ function more(rng: Rng): Exercise {
       hint(say('ex.data.more.hint1')),
       hint(say('ex.data.more.hint2', { a: A, b: B })),
       exampleAvoiding(answer, [
-        { answer: 3, hint: () => exampleHint('8 − 5 = 3', say('ex.data.more.example', { x: 8, y: 5, d: 3 })) },
-        { answer: 4, hint: () => exampleHint('9 − 5 = 4', say('ex.data.more.example', { x: 9, y: 5, d: 4 })) },
+        {
+          answer: 3,
+          hint: () => exampleHint('8 − 5 = 3', say('ex.data.more.example', { x: 8, y: 5, d: 3 })),
+        },
+        {
+          answer: 4,
+          hint: () => exampleHint('9 − 5 = 4', say('ex.data.more.example', { x: 9, y: 5, d: 4 })),
+        },
       ]),
     ],
     solution: say('ex.data.more.solution', { a: A, b: B, d: answer }),
-    diagnose: (v) => (v === (s.vals[a] as number) + (s.vals[b] as number) ? 'wrongOperation' : null),
+    diagnose: (v) =>
+      v === (s.vals[a] as number) + (s.vals[b] as number) ? 'wrongOperation' : null,
   });
 }
 
@@ -174,8 +181,14 @@ function total(rng: Rng): Exercise {
         example: { display: `${s.vals.join(' + ')} = ?`, spoken: say('ex.data.total.hint2') },
       }),
       exampleAvoiding(answer, [
-        { answer: 15, hint: () => exampleHint('4 + 6 + 5 = 15', say('ex.data.total.example', { r: 15 })) },
-        { answer: 18, hint: () => exampleHint('7 + 6 + 5 = 18', say('ex.data.total.example', { r: 18 })) },
+        {
+          answer: 15,
+          hint: () => exampleHint('4 + 6 + 5 = 15', say('ex.data.total.example', { r: 15 })),
+        },
+        {
+          answer: 18,
+          hint: () => exampleHint('7 + 6 + 5 = 18', say('ex.data.total.example', { r: 18 })),
+        },
       ]),
     ],
     solution: say('ex.data.total.solution', { r: answer }),
@@ -205,8 +218,16 @@ function twoSteps(rng: Rng): Exercise {
         hint(say('ex.data.two.hint1', { a: A, b: B })),
         hint(say('ex.data.two.hint2', { c: C })),
         exampleAvoiding(answer, [
-          { answer: 2, hint: () => exampleHint('6 + 4 − 8 = 2', say('ex.data.two.example', { s: 10, c: 8, r: 2 })) },
-          { answer: 4, hint: () => exampleHint('8 + 6 − 10 = 4', say('ex.data.two.example', { s: 14, c: 10, r: 4 })) },
+          {
+            answer: 2,
+            hint: () =>
+              exampleHint('6 + 4 − 8 = 2', say('ex.data.two.example', { s: 10, c: 8, r: 2 })),
+          },
+          {
+            answer: 4,
+            hint: () =>
+              exampleHint('8 + 6 − 10 = 4', say('ex.data.two.example', { s: 14, c: 10, r: 4 })),
+          },
         ]),
       ],
       solution: say('ex.data.two.solution', { s: a + b, c: C, r: answer }),
@@ -239,8 +260,22 @@ function average(level: 8 | 9) {
           hint(say('ex.data.avg.hint1')),
           hint(say('ex.data.avg.hint2', { s: sum, n })),
           exampleAvoiding(answer, [
-            { answer: 6, hint: () => exampleHint('(4 + 6 + 8) ÷ 3 = 6', say('ex.data.avg.example', { s: 18, n: 3, r: 6 })) },
-            { answer: 7, hint: () => exampleHint('(5 + 7 + 9) ÷ 3 = 7', say('ex.data.avg.example', { s: 21, n: 3, r: 7 })) },
+            {
+              answer: 6,
+              hint: () =>
+                exampleHint(
+                  '(4 + 6 + 8) ÷ 3 = 6',
+                  say('ex.data.avg.example', { s: 18, n: 3, r: 6 }),
+                ),
+            },
+            {
+              answer: 7,
+              hint: () =>
+                exampleHint(
+                  '(5 + 7 + 9) ÷ 3 = 7',
+                  say('ex.data.avg.example', { s: 21, n: 3, r: 7 }),
+                ),
+            },
           ]),
         ],
         solution: say('ex.data.avg.example', { s: sum, n, r: answer }),
@@ -275,8 +310,16 @@ function percentOf(rng: Rng): Exercise {
         hint(say('ex.data.pct.hint1')),
         hint(say('ex.data.pct.hint2', { s: sum })),
         exampleAvoiding(answer, [
-          { answer: 25, hint: () => exampleHint('5 ÷ 20 × 100 = 25', say('ex.data.pct.example', { k: 5, s: 20, r: 25 })) },
-          { answer: 40, hint: () => exampleHint('8 ÷ 20 × 100 = 40', say('ex.data.pct.example', { k: 8, s: 20, r: 40 })) },
+          {
+            answer: 25,
+            hint: () =>
+              exampleHint('5 ÷ 20 × 100 = 25', say('ex.data.pct.example', { k: 5, s: 20, r: 25 })),
+          },
+          {
+            answer: 40,
+            hint: () =>
+              exampleHint('8 ÷ 20 × 100 = 40', say('ex.data.pct.example', { k: 8, s: 20, r: 40 })),
+          },
         ]),
       ],
       solution: say('ex.data.pct.example', { k: s.vals[i] as number, s: sum, r: answer }),

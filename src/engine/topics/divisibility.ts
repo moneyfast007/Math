@@ -32,7 +32,8 @@ const isPrime = (n: number) => {
   for (let k = 2; k * k <= n; k++) if (n % k === 0) return false;
   return true;
 };
-const divisorsOf = (n: number) => Array.from({ length: n }, (_, i) => i + 1).filter((k) => n % k === 0);
+const divisorsOf = (n: number) =>
+  Array.from({ length: n }, (_, i) => i + 1).filter((k) => n % k === 0);
 
 /** "Yes" on the right, where a Hebrew reader starts; the answer is the index. */
 const yesNo = () => labelledChoices([t('ex.div.no'), t('ex.div.yes')]);
@@ -121,8 +122,14 @@ function whichDivisor(rng: Rng): Exercise {
       hint(say('ex.div.which.hint2', { s: digitSum(n), u: n % 10 })),
       // Each example divides by exactly one of 2, 3, 5 and 9; never this answer.
       exampleAvoiding(right, [
-        { answer: 2, hint: () => exampleHint('134 → 2', say('ex.div.solutionYes', { n: 134, d: 2 })) },
-        { answer: 5, hint: () => exampleHint('125 → 5', say('ex.div.solutionYes', { n: 125, d: 5 })) },
+        {
+          answer: 2,
+          hint: () => exampleHint('134 → 2', say('ex.div.solutionYes', { n: 134, d: 2 })),
+        },
+        {
+          answer: 5,
+          hint: () => exampleHint('125 → 5', say('ex.div.solutionYes', { n: 125, d: 5 })),
+        },
       ]),
     ],
     solution: say('ex.div.solutionYes', { n, d: right }),
@@ -226,8 +233,15 @@ function power(rng: Rng): Exercise {
         },
       }),
       exampleAvoiding(answer, [
-        { answer: 8, hint: () => exampleHint('2³ = 2 × 2 × 2 = 8', say('ex.pow.example', { b: 2, e: 3, r: 8 })) },
-        { answer: 9, hint: () => exampleHint('3² = 3 × 3 = 9', say('ex.pow.example', { b: 3, e: 2, r: 9 })) },
+        {
+          answer: 8,
+          hint: () =>
+            exampleHint('2³ = 2 × 2 × 2 = 8', say('ex.pow.example', { b: 2, e: 3, r: 8 })),
+        },
+        {
+          answer: 9,
+          hint: () => exampleHint('3² = 3 × 3 = 9', say('ex.pow.example', { b: 3, e: 2, r: 9 })),
+        },
       ]),
     ],
     solution: say('ex.pow.example', { b, e, r: answer }),

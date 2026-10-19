@@ -455,7 +455,10 @@ export const he = {
   'ex.fewer.hint1': 'נספור כל קבוצה לחוד. הקבוצה עם המספר הקטן יותר היא זו שיש בה פחות.',
   'ex.fewer.hint3': 'למשל, {b} זה פחות מ{a}, כי שתיים זה פחות מארבע.',
   // Gendered by the thing counted (עוגייה, תפוח), not by the child.
-  'ex.oneMore.prompt': { f: 'עוד אחת! כמה {plural} יש עכשיו?', m: 'עוד אחד! כמה {plural} יש עכשיו?' },
+  'ex.oneMore.prompt': {
+    f: 'עוד אחת! כמה {plural} יש עכשיו?',
+    m: 'עוד אחד! כמה {plural} יש עכשיו?',
+  },
   'ex.oneMore.spoken': {
     f: 'יש {a}. הוסיפו עוד אחת. כמה {plural} יש עכשיו?',
     m: 'יש {a}. הוסיפו עוד אחד. כמה {plural} יש עכשיו?',

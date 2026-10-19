@@ -67,7 +67,9 @@ function drawn(points: Pt[], extra: Omit<Polygon, 'points'> = {}): Visual {
   ];
   return poly(points.map(map), {
     ...extra,
-    ...(extra.height ? { height: { ...extra.height, from: map(extra.height.from), to: map(extra.height.to) } } : {}),
+    ...(extra.height
+      ? { height: { ...extra.height, from: map(extra.height.from), to: map(extra.height.to) } }
+      : {}),
   });
 }
 
@@ -517,17 +519,77 @@ const UNITS: {
   why: TranslationKey;
   hint: TranslationKey;
 }[] = [
-  { key: 'ex.areas.units.q1', answer: 10000, choices: [1000, 10000, 100000], why: 'ex.areas.units.a1', hint: 'ar.units.h1' },
-  { key: 'ex.areas.units.q2', answer: 1000, choices: [1000, 10000, 100000], why: 'ex.areas.units.a2', hint: 'ar.units.h2' },
-  { key: 'ex.areas.units.q3', answer: 3, choices: [3, 30, 300], why: 'ex.areas.units.a3', hint: 'ar.units.h3' },
-  { key: 'ex.areas.units.q4', answer: 1000, choices: [10, 100, 1000], why: 'ex.areas.units.a4', hint: 'ar.units.h4' },
-  { key: 'ex.areas.units.q5', answer: 1000, choices: [100, 1000, 10000], why: 'ex.areas.units.a5', hint: 'ar.units.h5' },
-  { key: 'ex.areas.units.q6', answer: 100, choices: [10, 100, 1000], why: 'ex.areas.units.a6', hint: 'ar.units.h6' },
-  { key: 'ex.areas.units.q7', answer: 5000, choices: [500, 5000, 50000], why: 'ex.areas.units.a7', hint: 'ar.units.h7' },
-  { key: 'ex.areas.units.q8', answer: 20000, choices: [200, 2000, 20000], why: 'ex.areas.units.a8', hint: 'ar.units.h8' },
+  {
+    key: 'ex.areas.units.q1',
+    answer: 10000,
+    choices: [1000, 10000, 100000],
+    why: 'ex.areas.units.a1',
+    hint: 'ar.units.h1',
+  },
+  {
+    key: 'ex.areas.units.q2',
+    answer: 1000,
+    choices: [1000, 10000, 100000],
+    why: 'ex.areas.units.a2',
+    hint: 'ar.units.h2',
+  },
+  {
+    key: 'ex.areas.units.q3',
+    answer: 3,
+    choices: [3, 30, 300],
+    why: 'ex.areas.units.a3',
+    hint: 'ar.units.h3',
+  },
+  {
+    key: 'ex.areas.units.q4',
+    answer: 1000,
+    choices: [10, 100, 1000],
+    why: 'ex.areas.units.a4',
+    hint: 'ar.units.h4',
+  },
+  {
+    key: 'ex.areas.units.q5',
+    answer: 1000,
+    choices: [100, 1000, 10000],
+    why: 'ex.areas.units.a5',
+    hint: 'ar.units.h5',
+  },
+  {
+    key: 'ex.areas.units.q6',
+    answer: 100,
+    choices: [10, 100, 1000],
+    why: 'ex.areas.units.a6',
+    hint: 'ar.units.h6',
+  },
+  {
+    key: 'ex.areas.units.q7',
+    answer: 5000,
+    choices: [500, 5000, 50000],
+    why: 'ex.areas.units.a7',
+    hint: 'ar.units.h7',
+  },
+  {
+    key: 'ex.areas.units.q8',
+    answer: 20000,
+    choices: [200, 2000, 20000],
+    why: 'ex.areas.units.a8',
+    hint: 'ar.units.h8',
+  },
   { key: 'ar.units.q9', answer: 5, choices: [5, 50, 500], why: 'ar.units.a9', hint: 'ar.units.h9' },
-  { key: 'ar.units.q10', answer: 900, choices: [9, 90, 900], why: 'ar.units.a10', hint: 'ar.units.h10' },
-  { key: 'ar.units.q11', answer: 500, choices: [500, 5000, 50000], why: 'ar.units.a11', hint: 'ar.units.h11' },
+  {
+    key: 'ar.units.q10',
+    answer: 900,
+    choices: [9, 90, 900],
+    why: 'ar.units.a10',
+    hint: 'ar.units.h10',
+  },
+  {
+    key: 'ar.units.q11',
+    answer: 500,
+    choices: [500, 5000, 50000],
+    why: 'ar.units.a11',
+    hint: 'ar.units.h11',
+  },
 ];
 
 function units({ key, answer, choices, why, hint: own }: (typeof UNITS)[number]): Exercise {
