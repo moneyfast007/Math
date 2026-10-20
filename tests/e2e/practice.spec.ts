@@ -147,7 +147,8 @@ test.describe('practice', () => {
     const row = page.getByRole('article', { name: 'נועה' });
     await expect(row).toContainText('תרגלה נושא אחד');
     await expect(row).toContainText('10 תרגילים');
-    await expect(row).toContainText('הצלחה: 100%');
+    await expect(row).toContainText('10 נכון בניסיון הראשון');
+    await expect(row).not.toContainText('טעויות');
     expect(errors).toEqual([]);
   });
 

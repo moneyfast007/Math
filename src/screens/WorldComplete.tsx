@@ -51,7 +51,7 @@ export function WorldComplete({
   return (
     <main className="screen practice celebrate" data-screen="world-complete">
       {pieces.length > 0 ? (
-        <div className="confetti" aria-hidden="true">
+        <div className="celebrate__confetti" aria-hidden="true">
           {pieces.map((p, i) => (
             <span
               key={i}

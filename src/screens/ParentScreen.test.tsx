@@ -51,7 +51,7 @@ describe('<ParentScreen> sections', () => {
     const noa = screen.getByRole('article', { name: 'נועה' });
     expect(noa).toHaveTextContent('כיתה ב׳');
     expect(noa).toHaveTextContent(/עולם 1 · /);
-    expect(noa).toHaveTextContent('תחנה 3 מתוך');
+    expect(noa).toHaveTextContent(/עכשיו: תחנה 3 · /);
     expect(noa).toHaveTextContent(/נושאים לחיזוק:/);
     expect(within(noa).getByRole('button', { name: /עריכה/ })).toBeInTheDocument();
     const itai = screen.getByRole('article', { name: 'איתי' });
@@ -68,7 +68,10 @@ describe('<ParentScreen> sections', () => {
     const noa = screen.getByRole('article', { name: 'נועה' });
     expect(noa).toHaveTextContent('תרגלה נושא אחד');
     expect(noa).toHaveTextContent('10 תרגילים');
-    expect(noa).toHaveTextContent('הצלחה: 80%');
+    expect(noa).toHaveTextContent('8 נכון בניסיון הראשון');
+    expect(noa).toHaveTextContent('2 טעויות');
+    // A percentage only once there are enough exercises behind it.
+    expect(noa).not.toHaveTextContent('הצלחה:');
     expect(noa).toHaveTextContent('פעולה לא נכונה');
     expect(noa).toHaveTextContent('התקדמות במסע');
     expect(screen.queryByRole('button', { name: /הוספת ילד או ילדה/ })).toBeNull();

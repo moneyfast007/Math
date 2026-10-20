@@ -118,7 +118,7 @@ test('the map of worlds: done plays again, current goes back, locked says what o
 }) => {
   await restoreGrade1(page);
   await expect(page.getByText('עולם 2 · מספרים עד 100')).toBeVisible();
-  await page.getByRole('button', { name: 'כל העולמות' }).click();
+  await page.getByRole('button', { name: 'כל העולמות', exact: true }).click();
   await expect(page).toHaveURL(/\/worlds$/);
   await expect(page.getByRole('heading', { level: 1, name: 'כל העולמות' })).toBeVisible();
 
@@ -145,7 +145,7 @@ test('the map of worlds: done plays again, current goes back, locked says what o
   await expect(page).toHaveURL(/\/play$/);
 
   // A finished world plays again, as from the album.
-  await page.getByRole('button', { name: 'כל העולמות' }).click();
+  await page.getByRole('button', { name: 'כל העולמות', exact: true }).click();
   await page.getByRole('button', { name: 'לתרגל שוב: חיבור וחיסור עד 20' }).click();
   await expect(page).toHaveURL(/\/practice\/again$/);
   await expect(page.locator('.exercise')).toBeVisible();
@@ -156,7 +156,7 @@ test('phone: the explainer and the map of worlds fit a 360px screen', async ({ p
   await restoreGrade1(page);
   await expect(page.getByRole('region', { name: 'ברוכה הבאה למסע!' })).toBeVisible();
   expect(await outside(page, '.intro, .intro *, .journey__world, .journey__world *')).toEqual([]);
-  await page.getByRole('button', { name: 'כל העולמות' }).click();
+  await page.getByRole('button', { name: 'כל העולמות', exact: true }).click();
   await expect(page.getByRole('list', { name: 'העולמות לפי הסדר' })).toBeVisible();
   expect(await outside(page, 'main *')).toEqual([]);
 });

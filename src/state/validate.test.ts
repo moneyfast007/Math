@@ -117,6 +117,26 @@ describe('parseAppData', () => {
     expect(parseAppData(makeData({ profiles: [bad] })).ok).toBe(false);
   });
 
+  it("keeps a parent's round length; 'normal' and older profiles come back without one", () => {
+    const base = makeProfile();
+    const long = { ...base, settings: { ...base.settings, roundLength: 'long' as const } };
+    const normal = {
+      ...base,
+      id: 'p2',
+      settings: { ...base.settings, roundLength: 'normal' as const },
+    };
+    const result = parseAppData(
+      clone(makeData({ profiles: [long, normal, makeProfile({ id: 'p3' })] })),
+    );
+    expect(result.ok).toBe(true);
+    if (!result.ok) return;
+    expect(result.data.profiles[0]?.settings.roundLength).toBe('long');
+    expect(result.data.profiles[1]?.settings).not.toHaveProperty('roundLength');
+    expect(result.data.profiles[2]?.settings).not.toHaveProperty('roundLength');
+    const bad = { ...base, settings: { ...base.settings, roundLength: 'huge' } } as never;
+    expect(parseAppData(makeData({ profiles: [bad] })).ok).toBe(false);
+  });
+
   it('trims names', () => {
     const result = parseAppData(makeData({ profiles: [makeProfile({ name: '  נועה  ' })] }));
     expect(result.ok && result.data.profiles[0]?.name).toBe('נועה');

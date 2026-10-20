@@ -9,6 +9,7 @@ import { gradeLabel } from '@/i18n/labels';
 import { compose } from '@/lang/compose';
 import { useActiveProfile, useApp } from '@/state/store';
 import { ageBandForGrade, applyAgeBand } from '@/ui/ageBand';
+import { BrandMark } from '@/ui/BrandMark';
 import { Dialog } from '@/ui/Dialog';
 import { Plusi } from '@/ui/Plusi';
 import { Sticker } from '@/ui/Sticker';
@@ -53,6 +54,7 @@ export function WorldsScreen() {
 
   return (
     <main className="screen worlds" data-screen="worlds">
+      <BrandMark />
       <header className="screen__header worlds__header">
         <div className="worlds__heading">
           <h1>{t('worlds.title')}</h1>

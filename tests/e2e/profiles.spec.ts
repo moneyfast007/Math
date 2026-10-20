@@ -301,7 +301,7 @@ test.describe('backup', () => {
     // The chosen file opened the settings, where the confirmation and the result are.
     await expect(page.getByText('השחזור הושלם.')).toBeVisible();
     await openTab(page, 'התקדמות');
-    await expect(page.getByRole('article', { name: 'תמר' })).toContainText('הצלחה: 80%');
+    await expect(page.getByRole('article', { name: 'תמר' })).toContainText('נכון בניסיון הראשון');
     await expect(page.getByRole('article', { name: 'תמר' })).toContainText(
       'נושאים לחיזוק: חיבור וחיסור עד 20',
     );
@@ -312,7 +312,7 @@ test.describe('backup', () => {
     await openTab(page, 'ילדים');
     const card = page.getByRole('article', { name: 'תמר' });
     await expect(card).toContainText('כיתה ה׳');
-    await expect(card).toContainText(/תחנה \d+ מתוך \d+/);
+    await expect(card).toContainText(/עכשיו: תחנה \d+ · /);
     await expect(card).toContainText('נושאים לחיזוק: חיבור וחיסור עד 20');
   });
 

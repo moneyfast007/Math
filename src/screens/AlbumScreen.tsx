@@ -6,6 +6,7 @@ import { t, type TranslationKey } from '@/i18n';
 import { compose } from '@/lang/compose';
 import { useActiveProfile, useApp } from '@/state/store';
 import { ageBandForGrade, applyAgeBand } from '@/ui/ageBand';
+import { BrandMark } from '@/ui/BrandMark';
 import { Plusi } from '@/ui/Plusi';
 import { SpeakerButton } from '@/ui/SpeakerButton';
 import { Sticker } from '@/ui/Sticker';
@@ -48,6 +49,7 @@ export function AlbumScreen() {
 
   return (
     <main className="screen album" data-screen="album">
+      <BrandMark />
       <header className="screen__header">
         <div>
           <h1>{t('album.title', { params: { name: profile.name } })}</h1>

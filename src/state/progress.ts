@@ -65,13 +65,22 @@ export function bumpDay(
   return next;
 }
 
-/** A finished daily review: counts for the streak and is marked on the day. */
-export function completeDaily(progress: ProfileProgress, at: number): ProfileProgress {
+/**
+ * A finished mixed round (more exercises from this world's passed stations):
+ * counts for the streak and the day's rounds, passes and opens nothing.
+ */
+export function completeMixedRound(progress: ProfileProgress, at: number): ProfileProgress {
   return {
     ...progress,
     streak: advanceStreak(progress.streak, at),
-    days: bumpDay(progress.days, at, (d) => ({ ...d, rounds: d.rounds + 1, daily: true })),
+    days: bumpDay(progress.days, at, (d) => ({ ...d, rounds: d.rounds + 1 })),
   };
+}
+
+/** A finished daily review: a mixed round that is also marked on the day. */
+export function completeDaily(progress: ProfileProgress, at: number): ProfileProgress {
+  const next = completeMixedRound(progress, at);
+  return { ...next, days: bumpDay(next.days, at, (d) => ({ ...d, daily: true })) };
 }
 
 /** Share of first-try answers that passes a station. */
@@ -177,6 +186,8 @@ export const STRONG_THRESHOLD = 0.9;
 export interface ChildSummary {
   topicsPracticed: number;
   attempts: number;
+  /** Exercises answered right on the first try. */
+  correct: number;
   /** 0–1, or null before any attempt. */
   successRate: number | null;
   /** Topic ids, worst first. */
@@ -214,8 +225,9 @@ export function summarizeProgress(progress: ProfileProgress | undefined): ChildS
       mistakeTotals.set(kind, (mistakeTotals.get(kind) ?? 0) + count);
     }
   }
+  // "Other" is every mistake the engine could not name: nothing a parent can act on.
   const topMistakes = [...mistakeTotals.entries()]
-    .filter(([, count]) => count > 0)
+    .filter(([kind, count]) => count > 0 && kind !== 'other')
     .sort((a, b) => b[1] - a[1])
     .slice(0, 3)
     .map(([kind, count]) => ({ kind, count }));
@@ -227,6 +239,7 @@ export function summarizeProgress(progress: ProfileProgress | undefined): ChildS
   return {
     topicsPracticed: entries.length,
     attempts,
+    correct,
     successRate: attempts > 0 ? correct / attempts : null,
     struggling,
     strong,

@@ -8,7 +8,7 @@ import {
   type RefObject,
 } from 'react';
 import { navigate } from '@/app/router';
-import { dailyPool } from '@/engine/daily';
+import { dailyPool, worldPool } from '@/engine/daily';
 import { currentLevel } from '@/engine/registry';
 import { activeWorld, nextStop, worldsFor, type World, type WorldStation } from '@/engine/journey';
 import { makeT, t, type TranslationKey } from '@/i18n';
@@ -21,6 +21,7 @@ import { ageBandForGrade, applyAgeBand } from '@/ui/ageBand';
 import { Avatar } from '@/ui/Avatar';
 import { Dialog } from '@/ui/Dialog';
 import { Icon } from '@/ui/Icon';
+import { playGiggle } from '@/ui/fanfare';
 import { Plusi } from '@/ui/Plusi';
 import { SpeakerButton } from '@/ui/SpeakerButton';
 import { JourneyIntroCard, WorldsIcon } from './JourneyIntro';
@@ -102,6 +103,8 @@ function Journey({ profile }: { profile: Profile }) {
   };
   const hasDaily = dailyPool(profile.grade, progress).length > 0;
   const dailyDone = progress?.days[dayKey(Date.now())]?.daily === true;
+  // More of this world: once a station of it is passed (nothing to mix before).
+  const hasWorldMix = worldPool(world, progress).length > 0;
   const canPick = profile.settings.allowLevelChange && stop.kind === 'level';
 
   return (
@@ -203,7 +206,15 @@ function Journey({ profile }: { profile: Profile }) {
               <span className="station__eyebrow">{t('child.nextStation')}</span>
               <h2 id="station-title">{stopName}</h2>
             </div>
-            <SpeakerButton text={spokenLabel(stopName)} />
+            <div className="journey__next-side">
+              {/* "Another station?" right above the speaker, at the end of the row. */}
+              {canPick ? (
+                <button type="button" className="journey__other" onClick={() => setPicking(true)}>
+                  {t('child.otherLevel')}
+                </button>
+              ) : null}
+              <SpeakerButton text={spokenLabel(stopName)} />
+            </div>
           </div>
           <button
             ref={startRef}
@@ -220,9 +231,20 @@ function Journey({ profile }: { profile: Profile }) {
                 : t('journeyBar.rewardLast')}
             </p>
           ) : null}
-          {hasDaily || canPick ? (
-            // The day's review and another level: one compact row under the big button.
+          {hasWorldMix || hasDaily ? (
+            // Under the big button, side by side: more of this world, and the review
+            // from every world. Equal tiles, two lines of text when the screen is narrow.
             <div className="journey__more">
+              {hasWorldMix ? (
+                <button
+                  type="button"
+                  className="btn btn--secondary btn--small daily"
+                  onClick={() => navigate({ name: 'worldMix' })}
+                >
+                  <ShuffleIcon />
+                  <span>{t('journey.worldMix')}</span>
+                </button>
+              ) : null}
               {hasDaily ? (
                 <button
                   type="button"
@@ -231,19 +253,11 @@ function Journey({ profile }: { profile: Profile }) {
                       ? 'btn btn--secondary btn--small daily daily--done'
                       : 'btn btn--secondary btn--small daily'
                   }
+                  aria-label={dailyDone ? t('journey.dailyDone') : undefined}
                   onClick={() => navigate({ name: 'daily' })}
                 >
                   <DailyIcon done={dailyDone} />
-                  <span>{dailyDone ? t('journey.dailyDone') : t('journey.daily')}</span>
-                </button>
-              ) : null}
-              {canPick ? (
-                <button
-                  type="button"
-                  className="btn btn--ghost btn--small journey__other"
-                  onClick={() => setPicking(true)}
-                >
-                  {t('child.otherLevel')}
+                  <span>{t('journey.daily')}</span>
                 </button>
               ) : null}
             </div>
@@ -315,6 +329,28 @@ function StreakChip({ count }: { count: number }) {
       </svg>
       <span className="streak__count">{count}</span>
     </div>
+  );
+}
+
+/** Two crossing arrows: a mix of this world's stations. */
+function ShuffleIcon() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+      className="daily__icon"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M3 17h2.5c1.4 0 2.7-.7 3.5-1.8l5.5-7.4A4.3 4.3 0 0 1 18 6h3" />
+      <path d="M17.5 3L21 6l-3.5 3" />
+      <path d="M3 7h2.5c1.4 0 2.7.7 3.5 1.8l.6.8" />
+      <path d="M21 18h-3a4.3 4.3 0 0 1-3.5-1.8l-.6-.8" />
+      <path d="M17.5 15L21 18l-3.5 3" />
+    </svg>
   );
 }
 
@@ -446,16 +482,47 @@ function WorldMap({
         </div>
 
         {plusiAt ? (
-          <div
-            className="map__plusi"
-            style={{ left: `${plusiAt.x}%`, top: `${(plusiAt.y / height) * 100}%` }}
-          >
-            <Plusi mood={world.completed ? 'cheering' : 'happy'} size="100%" decorative />
-            <span className="visually-hidden">{t('journey.plusiWaiting')}</span>
-          </div>
+          <MapPlusi
+            x={plusiAt.x}
+            y={(plusiAt.y / height) * 100}
+            mood={world.completed ? 'cheering' : 'happy'}
+          />
         ) : null}
       </section>
     </div>
+  );
+}
+
+/**
+ * Plusi beside the next station: sways gently while he waits, and a tap
+ * tickles him (a wiggle, a cheer and a giggle). The tap does nothing else, so
+ * a child can play with him without leaving the map.
+ */
+function MapPlusi({ x, y, mood }: { x: number; y: number; mood: 'happy' | 'cheering' }) {
+  const [tickled, setTickled] = useState(false);
+  const timer = useRef<number | null>(null);
+  useEffect(() => () => window.clearTimeout(timer.current ?? undefined), []);
+  const tickle = () => {
+    playGiggle();
+    setTickled(false);
+    // Restart the wiggle even mid-wiggle: off for a frame, then on.
+    window.requestAnimationFrame(() => setTickled(true));
+    window.clearTimeout(timer.current ?? undefined);
+    timer.current = window.setTimeout(() => setTickled(false), 1100);
+  };
+  return (
+    <button
+      type="button"
+      className="map__plusi"
+      style={{ left: `${x}%`, top: `${y}%` }}
+      aria-label={t('journey.plusiTickle')}
+      data-tickled={tickled ? '' : undefined}
+      onClick={tickle}
+    >
+      <span className="map__plusi-body">
+        <Plusi mood={tickled ? 'cheering' : mood} size="100%" decorative />
+      </span>
+    </button>
   );
 }
 

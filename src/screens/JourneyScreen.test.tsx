@@ -1,5 +1,5 @@
 import { act, fireEvent, render, screen, within } from '@testing-library/react';
-import { beforeEach, describe, expect, it } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { replayTopic } from '@/app/replay';
 import { activeWorld } from '@/engine/journey';
 import { t } from '@/i18n';
@@ -272,5 +272,27 @@ describe('<WorldsScreen>', () => {
     expect(within(dialog).getAllByRole('listitem')).toHaveLength(3);
     fireEvent.click(within(dialog).getByRole('button', { name: 'הבנתי!' }));
     expect(screen.queryByRole('dialog')).toBeNull();
+  });
+});
+
+describe('<JourneyScreen> Plusi on the map', () => {
+  it('is a button: a tap tickles him (he cheers for a moment) and nothing else happens', () => {
+    vi.useFakeTimers();
+    playAs(makeProfile({ journeyIntroSeenAt: 1 }));
+    render(<JourneyScreen />);
+    const plusi = screen.getByRole('button', { name: /פלוסי/ });
+    expect(plusi.querySelector('.plusi--happy')).not.toBeNull();
+    fireEvent.click(plusi);
+    act(() => {
+      vi.advanceTimersToNextFrame();
+    });
+    expect(plusi).toHaveAttribute('data-tickled');
+    expect(plusi.querySelector('.plusi--cheering')).not.toBeNull();
+    act(() => {
+      vi.advanceTimersByTime(1200);
+    });
+    expect(plusi).not.toHaveAttribute('data-tickled');
+    expect(window.location.pathname).toBe('/play');
+    vi.useRealTimers();
   });
 });

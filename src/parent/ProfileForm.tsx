@@ -3,8 +3,15 @@ import { t } from '@/i18n';
 import { avatarLabel, gradeLabel } from '@/i18n/labels';
 import type { Gender } from '@/lang/gender';
 import { AVATARS, type AvatarId } from '@/profiles/avatars';
-import { MAX_NAME_LENGTH, type Profile, type ProfileInput } from '@/state/schema';
-import type { Grade } from '@/ui/ageBand';
+import { ROUND_LENGTHS } from '@/engine/session';
+import {
+  MAX_NAME_LENGTH,
+  ROUND_LENGTH_OPTIONS,
+  type Profile,
+  type ProfileInput,
+  type RoundLength,
+} from '@/state/schema';
+import { ageBandForGrade, type Grade } from '@/ui/ageBand';
 import { Avatar } from '@/ui/Avatar';
 import { ConfirmDialog, Dialog } from '@/ui/Dialog';
 
@@ -28,6 +35,10 @@ export function ProfileForm({ profile, onSave, onDelete, onClose }: ProfileFormP
   const [allowLevelChange, setAllowLevelChange] = useState(
     profile?.settings.allowLevelChange ?? true,
   );
+  const [sounds, setSounds] = useState(profile?.settings.sounds ?? true);
+  const [roundLength, setRoundLength] = useState<RoundLength>(
+    profile?.settings.roundLength ?? 'normal',
+  );
   const [error, setError] = useState(false);
   const [confirmDelete, setConfirmDelete] = useState(false);
 
@@ -37,7 +48,17 @@ export function ProfileForm({ profile, onSave, onDelete, onClose }: ProfileFormP
       setError(true);
       return;
     }
-    onSave({ name: name.trim(), avatar, grade, gender, settings: { allowLevelChange } });
+    onSave({
+      name: name.trim(),
+      avatar,
+      grade,
+      gender,
+      settings: {
+        allowLevelChange,
+        ...(sounds ? {} : { sounds: false }),
+        ...(roundLength === 'normal' ? {} : { roundLength }),
+      },
+    });
   };
 
   if (confirmDelete && profile && onDelete) {
@@ -163,6 +184,31 @@ export function ProfileForm({ profile, onSave, onDelete, onClose }: ProfileFormP
           </div>
         </fieldset>
 
+        <fieldset className="field">
+          <legend>{t('profile.roundLength')}</legend>
+          <div className="choices">
+            {ROUND_LENGTH_OPTIONS.map((o) => (
+              <label key={o} className="choice choice--stacked">
+                <input
+                  type="radio"
+                  name="roundLength"
+                  value={o}
+                  checked={roundLength === o}
+                  onChange={() => setRoundLength(o)}
+                />
+                {t(`profile.roundLength.${o}`)}
+                {/* The real count for the grade chosen above, so the choice means something. */}
+                <span className="muted choice__detail">
+                  {t('profile.roundLength.count', {
+                    params: { count: ROUND_LENGTHS[ageBandForGrade(grade)][o] },
+                  })}
+                </span>
+              </label>
+            ))}
+          </div>
+          <p className="muted field__hint">{t('profile.roundLength.hint')}</p>
+        </fieldset>
+
         <label className="toggle">
           <input
             type="checkbox"
@@ -170,6 +216,11 @@ export function ProfileForm({ profile, onSave, onDelete, onClose }: ProfileFormP
             onChange={(e) => setAllowLevelChange(e.target.checked)}
           />
           {t('profile.allowLevelChange')}
+        </label>
+
+        <label className="toggle">
+          <input type="checkbox" checked={sounds} onChange={(e) => setSounds(e.target.checked)} />
+          {t('profile.sounds')}
         </label>
       </form>
     </Dialog>

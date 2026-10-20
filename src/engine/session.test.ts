@@ -6,9 +6,11 @@ import {
   MAX_TRIES,
   reduce,
   ROUND_LENGTH,
+  ROUND_LENGTHS,
   startSession,
   type SessionState,
 } from './session';
+import type { RoundLength } from '@/state/schema';
 import { addSub20 } from './topics/addSub20';
 
 const rng = seededRng(7);
@@ -33,6 +35,33 @@ describe('practice session', () => {
   it('uses the round length of the age band', () => {
     expect(start(1, 'young').length).toBe(ROUND_LENGTH.young);
     expect(start(9, 'older').length).toBe(ROUND_LENGTH.older);
+  });
+
+  it("follows the parent's choice of a shorter or longer round", () => {
+    const withChoice = (band: 'young' | 'middle' | 'older', roundLength: RoundLength) =>
+      startSession({
+        topicId: 'add-sub-20',
+        level: 3,
+        minLevel: 1,
+        maxLevel: 10,
+        band,
+        roundLength,
+        exercise: gen(3),
+      }).length;
+    expect(withChoice('middle', 'normal')).toBe(ROUND_LENGTH.middle);
+    expect(withChoice('middle', 'short')).toBeLessThan(ROUND_LENGTH.middle);
+    expect(withChoice('middle', 'long')).toBeGreaterThan(ROUND_LENGTH.middle);
+    expect(withChoice('young', 'short')).toBeLessThan(ROUND_LENGTH.young);
+    expect(withChoice('older', 'long')).toBeGreaterThan(ROUND_LENGTH.older);
+    // A station passes at 70% first-try answers, rounded up to whole exercises: no
+    // length may be stricter than the strictest normal round (gan: 5 of 6).
+    const strictest = Math.ceil(ROUND_LENGTH.young * 0.7 - 1e-9) / ROUND_LENGTH.young;
+    for (const band of ['young', 'middle', 'older'] as const) {
+      for (const choice of ['short', 'normal', 'long'] as const) {
+        const n = ROUND_LENGTHS[band][choice];
+        expect(Math.ceil(n * 0.7 - 1e-9) / n).toBeLessThanOrEqual(strictest);
+      }
+    }
   });
 
   it('accepts an answer equal give or take floating-point noise', () => {

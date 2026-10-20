@@ -204,11 +204,13 @@ const ROUND10_VARIANTS: Variant[] = [
  * gain at -6 dB, and with a prompt asking for a soft volume.
  */
 const SOFT_PROMPT = QUICK_PROMPT + ' Speak at a soft, moderate volume, never loud.';
-const ROUND11_VARIANTS: Variant[] = [
-  { name: 'pcm-as-is', spec: { ...LEDA_QUICK, encoding: 'LINEAR16' } },
-  { name: 'pcm-gain-6', spec: { ...LEDA_QUICK, encoding: 'LINEAR16', volumeGainDb: -6 } },
-  { name: 'pcm-soft-prompt', spec: { ...LEDA_QUICK, encoding: 'LINEAR16', prompt: SOFT_PROMPT } },
-].map(({ name, spec }) => ({
+const ROUND11_VARIANTS: Variant[] = (
+  [
+    { name: 'pcm-as-is', spec: { ...LEDA_QUICK, encoding: 'LINEAR16' } },
+    { name: 'pcm-gain-6', spec: { ...LEDA_QUICK, encoding: 'LINEAR16', volumeGainDb: -6 } },
+    { name: 'pcm-soft-prompt', spec: { ...LEDA_QUICK, encoding: 'LINEAR16', prompt: SOFT_PROMPT } },
+  ] satisfies { name: string; spec: VoiceSpec }[]
+).map(({ name, spec }) => ({
   name,
   spec,
   texts: SENTENCES.map(vocalizeForTts),

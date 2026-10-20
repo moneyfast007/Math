@@ -21,17 +21,18 @@ export function typingDelay(ch: string | undefined, charMs: number): number {
  */
 export function useTypewriter(
   text: string,
-  options: { startMs?: number; charMs?: number } = {},
+  options: { startMs?: number; charMs?: number; startWith?: number } = {},
 ): number {
-  const { startMs = 0, charMs = 34 } = options;
-  const [shown, setShown] = useState(() => (prefersReducedMotion() ? text.length : 0));
+  // `startWith`: characters shown from the first paint (the bubble is never empty).
+  const { startMs = 0, charMs = 34, startWith = 0 } = options;
+  const [shown, setShown] = useState(() => (prefersReducedMotion() ? text.length : startWith));
 
   useEffect(() => {
     if (prefersReducedMotion()) {
       setShown(text.length);
       return;
     }
-    let count = 0;
+    let count = startWith;
     let timer = 0;
     const step = () => {
       count += 1;
@@ -41,7 +42,7 @@ export function useTypewriter(
     };
     timer = window.setTimeout(step, startMs);
     return () => window.clearTimeout(timer);
-  }, [text, startMs, charMs]);
+  }, [text, startMs, charMs, startWith]);
 
   return Math.min(shown, text.length);
 }

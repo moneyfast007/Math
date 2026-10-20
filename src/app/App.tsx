@@ -20,6 +20,7 @@ const TITLES = {
   review: 'pageTitle.practice',
   replay: 'pageTitle.practice',
   daily: 'pageTitle.practice',
+  worldMix: 'pageTitle.practice',
   album: 'pageTitle.album',
   worlds: 'pageTitle.worlds',
   parents: 'pageTitle.parents',
@@ -51,6 +52,8 @@ export function App() {
       return <PracticeScreen mode="replay" />;
     case 'daily':
       return <PracticeScreen mode="daily" />;
+    case 'worldMix':
+      return <PracticeScreen mode="worldMix" />;
     case 'album':
       return <AlbumScreen />;
     case 'worlds':

@@ -1,4 +1,4 @@
-import type { MistakeKind } from '@/state/schema';
+import type { MistakeKind, RoundLength } from '@/state/schema';
 import type { AgeBand } from '@/ui/ageBand';
 import type { Exercise } from './types';
 
@@ -8,7 +8,8 @@ import type { Exercise } from './types';
  * exercises are passed in), so every rule below is unit-tested.
  *
  * Rules (from the phase 0 research and the brief):
- * - Round length depends on age: short for gan, longer for grades 4–6.
+ * - Round length depends on age: short for gan, longer for grades 4–6; a parent
+ *   can make a child's rounds shorter or longer (ROUND_LENGTHS).
  * - Three tries per exercise. A wrong answer gets a gentle, specific
  *   explanation; after the third the answer is shown with the solution.
  * - Only a first-try answer counts as correct for progress.
@@ -21,7 +22,30 @@ import type { Exercise } from './types';
  *   through six more hard exercises.
  */
 
-export const ROUND_LENGTH: Record<AgeBand, number> = { young: 6, middle: 10, older: 12 };
+/**
+ * Exercises per round, by age band and the parent's choice. A station passes at
+ * 70% first-try answers and the final challenge at 80% (state/progress.ts), so
+ * the lengths are chosen where those shares round to a fair count: 7 passes at
+ * 5 of 7, 15 at 11 of 15, 18 at 13 of 18. (6 would need 5 of 6, 83%; 9 would
+ * need 7 of 9 and 8 of 9 for the challenge.)
+ */
+export const ROUND_LENGTHS: Record<AgeBand, Record<RoundLength, number>> = {
+  young: { short: 5, normal: 6, long: 10 },
+  middle: { short: 7, normal: 10, long: 15 },
+  older: { short: 10, normal: 12, long: 18 },
+};
+
+/** The normal round of each band. */
+export const ROUND_LENGTH: Record<AgeBand, number> = {
+  young: ROUND_LENGTHS.young.normal,
+  middle: ROUND_LENGTHS.middle.normal,
+  older: ROUND_LENGTHS.older.normal,
+};
+
+export function roundLength(band: AgeBand, choice: RoundLength = 'normal'): number {
+  return ROUND_LENGTHS[band][choice];
+}
+
 export const MAX_TRIES = 3;
 
 export type Phase = 'answering' | 'wrong' | 'correct' | 'revealed' | 'finished';
@@ -75,6 +99,8 @@ export interface StartOptions {
   minLevel: number;
   maxLevel: number;
   band: AgeBand;
+  /** The parent's choice for this child; 'normal' when absent. */
+  roundLength?: RoundLength;
   exercise: Exercise;
 }
 
@@ -84,7 +110,7 @@ export function startSession(o: StartOptions): SessionState {
     level: o.level,
     minLevel: o.minLevel,
     maxLevel: o.maxLevel,
-    length: ROUND_LENGTH[o.band],
+    length: roundLength(o.band, o.roundLength),
     done: 0,
     exercise: o.exercise,
     phase: 'answering',

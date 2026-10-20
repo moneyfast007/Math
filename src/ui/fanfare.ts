@@ -47,6 +47,34 @@ function play(ctx: Ctx) {
   window.setTimeout(() => void ctx.close(), 2000);
 }
 
+/** A short giggle (three quick rising blips) when Plusi is tickled; from a tap, so it plays at once. */
+export function playGiggle(): void {
+  const ctx = context();
+  if (!ctx) return;
+  const go = () => {
+    const now = ctx.currentTime + 0.02;
+    const master = ctx.createGain();
+    master.gain.value = 0.14;
+    master.connect(ctx.destination);
+    [880, 1109, 1319, 1109, 1480].forEach((freq, i) => {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = 'triangle';
+      osc.frequency.value = freq;
+      const at = now + i * 0.09;
+      gain.gain.setValueAtTime(0, at);
+      gain.gain.linearRampToValueAtTime(1, at + 0.015);
+      gain.gain.exponentialRampToValueAtTime(0.001, at + 0.08);
+      osc.connect(gain).connect(master);
+      osc.start(at);
+      osc.stop(at + 0.1);
+    });
+    window.setTimeout(() => void ctx.close(), 1000);
+  };
+  if (ctx.state === 'running') go();
+  else void ctx.resume().then(go, () => void ctx.close());
+}
+
 /** Plays the tune now, or at the next touch if the browser holds audio back. */
 export function playFanfare(): () => void {
   const ctx = context();
