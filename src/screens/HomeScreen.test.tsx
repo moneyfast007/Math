@@ -57,7 +57,7 @@ describe('<HomeScreen> welcome (no profiles yet)', () => {
     // The first word is there from the first paint: the bubble is never empty.
     expect(typed()).toBe('היי,');
     expect(container.querySelector('.welcome__rest')).toHaveTextContent(
-      t('welcome.greeting').slice('היי,'.length),
+      t('welcome.greeting').slice('היי,'.length).trim(),
     );
 
     act(() => {
