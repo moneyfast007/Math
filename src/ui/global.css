@@ -3516,8 +3516,10 @@ ol.steps {
 }
 
 .welcome__bubble {
+  /* The greeting gets the bubble's whole width; the speaker sits under it, at the end. */
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: stretch;
   gap: var(--space-2);
   width: 100%;
   margin-top: var(--space-3);
@@ -4518,4 +4520,9 @@ details.report .report__worlds {
   .sticker-card--next .sticker-card__spark {
     animation: none !important;
   }
+}
+
+.welcome__bubble > .speaker {
+  align-self: flex-end;
+  max-width: 100%;
 }

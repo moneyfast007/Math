@@ -425,7 +425,7 @@ export const he = {
 
   // Audio
   'audio.unavailableOffline': 'ההקראה לא זמינה עכשיו. נסו שוב כשיש אינטרנט.',
-  'audio.unavailable': 'אין הקראה לשאלה הזו.',
+  'audio.unavailable': 'אין הקראה למשפט הזה כרגע.',
 
   // Install guide (parents)
   'install.title': 'הוספה למסך הבית',

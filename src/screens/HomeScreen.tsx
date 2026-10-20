@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { navigate } from '@/app/router';
+import { speaker } from '@/audio/speaker';
 import { t } from '@/i18n';
 import { ParentGate } from '@/parent/ParentGate';
 import { requestParentTab } from '@/parent/tab';
@@ -124,13 +125,40 @@ export function HomeScreen() {
 
 /**
  * First launch: Plusi pops in, waves, and says hello in a speech bubble that
- * types itself out (all at once with reduced motion). The greeting is read
- * aloud only from the speaker button: audio never starts by itself.
+ * types itself out (all at once with reduced motion). The greeting is also
+ * read aloud as the typing starts, where the browser allows sound before a
+ * touch; where it does not (iPhone, iPad), on the first touch of the screen
+ * that is not a button.
  */
 function Welcome({ onStart, onConnect }: { onStart: () => void; onConnect: () => void }) {
   const greeting = t('welcome.greeting');
   const shown = useTypewriter(greeting, { startMs: GREETING_DELAY_MS });
   const done = shown >= greeting.length;
+
+  useEffect(() => {
+    let heard = false;
+    const play = () => {
+      void speaker.speak(greeting).then((result) => {
+        if (result === 'clip') heard = true;
+      });
+    };
+    const timer = window.setTimeout(play, GREETING_DELAY_MS);
+    const onTouch = (event: PointerEvent) => {
+      // A tap on a button does what the button says (the speaker button reads it itself).
+      if ((event.target as Element | null)?.closest('button, a, input, label')) return;
+      if (!heard) {
+        heard = true;
+        play();
+      }
+      document.removeEventListener('pointerdown', onTouch);
+    };
+    document.addEventListener('pointerdown', onTouch);
+    return () => {
+      window.clearTimeout(timer);
+      document.removeEventListener('pointerdown', onTouch);
+      speaker.stop();
+    };
+  }, [greeting]);
 
   return (
     <main className="screen welcome" data-screen="home">
