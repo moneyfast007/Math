@@ -30,7 +30,7 @@ describe('<WorldComplete>', () => {
     );
     expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('סיימת את עולם 1!');
     expect(screen.getByText(/^עולם 2: .* נפתח!$/)).toBeInTheDocument();
-    expect(container.querySelectorAll('.confetti span').length).toBeGreaterThan(0);
+    expect(container.querySelectorAll('.celebrate__confetti span').length).toBeGreaterThan(0);
     // One big way on; the album is a small link (and the sticker opens it too).
     expect(screen.queryByRole('button', { name: 'עוד סבב' })).toBeNull();
     fireEvent.click(screen.getByRole('button', { name: 'לעולם הבא' }));
@@ -53,6 +53,6 @@ describe('<WorldComplete>', () => {
     const { container } = render(
       <WorldComplete profile={profile} world={at(0)} next={at(1)} spoken="יש!" />,
     );
-    expect(container.querySelector('.confetti')).toBeNull();
+    expect(container.querySelector('.celebrate__confetti')).toBeNull();
   });
 });

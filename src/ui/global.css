@@ -1360,7 +1360,67 @@ ol.steps {
   max-width: 120px;
   /* Beside the station, above and to the start side of it. */
   transform: translate(-50%, -50%) translate(-85%, -75%);
-  pointer-events: none;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.map__plusi:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 4px;
+  border-radius: 50%;
+}
+
+.map__plusi-body {
+  display: block;
+}
+
+/* Waiting: a gentle sway, as if breathing. Tickled: a quick wiggle. */
+@media (prefers-reduced-motion: no-preference) {
+  .map__plusi-body {
+    animation: plusi-sway 3.4s ease-in-out infinite;
+  }
+
+  .map__plusi[data-tickled] .map__plusi-body {
+    animation: plusi-tickle 1s ease-in-out;
+  }
+}
+
+@keyframes plusi-sway {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0);
+  }
+  30% {
+    transform: translateY(-5px) rotate(-3deg);
+  }
+  70% {
+    transform: translateY(-2px) rotate(3deg);
+  }
+}
+
+@keyframes plusi-tickle {
+  0%,
+  100% {
+    transform: rotate(0) scale(1);
+  }
+  15% {
+    transform: rotate(-14deg) scale(1.12);
+  }
+  30% {
+    transform: rotate(12deg) scale(1.14);
+  }
+  45% {
+    transform: rotate(-10deg) scale(1.1);
+  }
+  60% {
+    transform: rotate(8deg) scale(1.06);
+  }
+  75% {
+    transform: rotate(-4deg) scale(1.03);
+  }
 }
 
 .journey__next {
@@ -5483,13 +5543,13 @@ details.report .report__worlds {
   width: 100%;
 }
 
-.confetti {
+.celebrate__confetti {
   position: absolute;
   inset: 0;
   pointer-events: none;
 }
 
-.confetti span {
+.celebrate__confetti span {
   position: absolute;
   top: -16px;
   width: 10px;
@@ -5511,7 +5571,7 @@ details.report .report__worlds {
     animation: celebrate-rays 12s linear infinite;
   }
 
-  .confetti span {
+  .celebrate__confetti span {
     animation-name: confetti-fall;
     animation-timing-function: linear;
     animation-iteration-count: 2;

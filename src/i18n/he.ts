@@ -1542,6 +1542,7 @@ export const he = {
   'journey.review.current': 'אתגר הסיום, התחנה הבאה',
   'journey.review.locked': 'אתגר הסיום, עדיין סגור',
   'journey.plusiWaiting': 'פלוסי מחכה ליד התחנה הבאה',
+  'journey.plusiTickle': 'פלוסי. לחיצה מדגדגת אותו',
   'journey.map': 'מפת המסע',
   'journey.daily': 'חזרה של היום',
   'journey.dailyDone': 'החזרה של היום נעשתה',

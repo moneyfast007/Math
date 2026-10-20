@@ -21,6 +21,7 @@ import { ageBandForGrade, applyAgeBand } from '@/ui/ageBand';
 import { Avatar } from '@/ui/Avatar';
 import { Dialog } from '@/ui/Dialog';
 import { Icon } from '@/ui/Icon';
+import { playGiggle } from '@/ui/fanfare';
 import { Plusi } from '@/ui/Plusi';
 import { SpeakerButton } from '@/ui/SpeakerButton';
 import { JourneyIntroCard, WorldsIcon } from './JourneyIntro';
@@ -446,16 +447,47 @@ function WorldMap({
         </div>
 
         {plusiAt ? (
-          <div
-            className="map__plusi"
-            style={{ left: `${plusiAt.x}%`, top: `${(plusiAt.y / height) * 100}%` }}
-          >
-            <Plusi mood={world.completed ? 'cheering' : 'happy'} size="100%" decorative />
-            <span className="visually-hidden">{t('journey.plusiWaiting')}</span>
-          </div>
+          <MapPlusi
+            x={plusiAt.x}
+            y={(plusiAt.y / height) * 100}
+            mood={world.completed ? 'cheering' : 'happy'}
+          />
         ) : null}
       </section>
     </div>
+  );
+}
+
+/**
+ * Plusi beside the next station: sways gently while he waits, and a tap
+ * tickles him (a wiggle, a cheer and a giggle). The tap does nothing else, so
+ * a child can play with him without leaving the map.
+ */
+function MapPlusi({ x, y, mood }: { x: number; y: number; mood: 'happy' | 'cheering' }) {
+  const [tickled, setTickled] = useState(false);
+  const timer = useRef<number | null>(null);
+  useEffect(() => () => window.clearTimeout(timer.current ?? undefined), []);
+  const tickle = () => {
+    playGiggle();
+    setTickled(false);
+    // Restart the wiggle even mid-wiggle: off for a frame, then on.
+    window.requestAnimationFrame(() => setTickled(true));
+    window.clearTimeout(timer.current ?? undefined);
+    timer.current = window.setTimeout(() => setTickled(false), 1100);
+  };
+  return (
+    <button
+      type="button"
+      className="map__plusi"
+      style={{ left: `${x}%`, top: `${y}%` }}
+      aria-label={t('journey.plusiTickle')}
+      data-tickled={tickled ? '' : undefined}
+      onClick={tickle}
+    >
+      <span className="map__plusi-body">
+        <Plusi mood={tickled ? 'cheering' : mood} size="100%" decorative />
+      </span>
+    </button>
   );
 }
 
