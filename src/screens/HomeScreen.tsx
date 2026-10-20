@@ -134,7 +134,9 @@ export function HomeScreen() {
  */
 function Welcome({ onStart, onConnect }: { onStart: () => void; onConnect: () => void }) {
   const greeting = t('welcome.greeting');
-  const shown = useTypewriter(greeting, { startMs: GREETING_DELAY_MS });
+  // The first word is there at once; the rest is typed after a beat.
+  const firstWord = greeting.indexOf(' ') > 0 ? greeting.indexOf(' ') : greeting.length;
+  const shown = useTypewriter(greeting, { startMs: GREETING_DELAY_MS, startWith: firstWord });
   const done = shown >= greeting.length;
 
   useEffect(() => {

@@ -823,8 +823,18 @@ function OfflineGrade({ grade }: { grade: Grade }) {
   const title = (audio: GradeAudio) =>
     t('parent.offline.grade', { params: { grade: gradeLabel(grade), mb: mb(audio.bytes) } });
 
-  if (state.phase === 'loading') return <p className="muted">{t('parent.offline.loading')}</p>;
-  if (state.phase === 'error') return <p className="muted">{t('parent.offline.unavailable')}</p>;
+  if (state.phase === 'loading')
+    return (
+      <p className="muted">
+        <strong>{gradeLabel(grade)}:</strong> {t('parent.offline.loading')}
+      </p>
+    );
+  if (state.phase === 'error')
+    return (
+      <p className="muted">
+        <strong>{gradeLabel(grade)}:</strong> {t('parent.offline.unavailable')}
+      </p>
+    );
   const total = state.audio.ids.length;
   const count = state.phase === 'ready' ? state.have : state.done;
   const complete = state.phase === 'ready' && count >= total;

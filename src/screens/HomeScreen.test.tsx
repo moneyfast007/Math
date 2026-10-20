@@ -54,12 +54,16 @@ describe('<HomeScreen> welcome (no profiles yet)', () => {
       t('welcome.greeting'),
     );
     expect(container.querySelector('.welcome__typed')).toHaveAttribute('aria-hidden', 'true');
-    expect(container.querySelector('.welcome__rest')).toHaveTextContent(t('welcome.greeting'));
+    // The first word is there from the first paint: the bubble is never empty.
+    expect(typed()).toBe('היי,');
+    expect(container.querySelector('.welcome__rest')).toHaveTextContent(
+      t('welcome.greeting').slice('היי,'.length),
+    );
 
     act(() => {
       vi.advanceTimersByTime(1200);
     });
-    expect(typed()?.length).toBeGreaterThan(0);
+    expect((typed() ?? '').length).toBeGreaterThan('היי,'.length);
     expect(t('welcome.greeting').startsWith(typed() ?? '')).toBe(true);
 
     act(() => {
