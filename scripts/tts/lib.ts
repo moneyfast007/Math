@@ -230,7 +230,7 @@ export function estimateCost(texts: readonly string[], engine: Engine): string {
     case 'gemini-3.8-flash-lite':
       return `~${(seconds * 25 * (6 / 1_000_000)).toFixed(2)} USD (Gemini 3.8 Flash-Lite TTS preview)`;
     case 'gemini-3.1-flash':
-      return `~${(seconds * 25 * (10 / 1_000_000)).toFixed(2)} USD (Gemini 3.1 Flash TTS preview, ~${Math.round(seconds / 60)} min audio)`;
+      return `~${(seconds * 25 * (20 / 1_000_000)).toFixed(2)} USD (Gemini 3.1 Flash TTS preview, ~${Math.round(seconds / 60)} min audio)`;
     case 'wavenet':
       return `0.00 USD (WaveNet/Standard, ${chars} chars within the 4M free tier)`;
     case 'chirp3-hd':
