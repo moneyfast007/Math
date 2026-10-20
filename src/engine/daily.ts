@@ -31,7 +31,9 @@ function recentRate(recent: readonly boolean[] | undefined): number {
  */
 export function passedStations(world: World, progress: ProfileProgress | undefined): number[] {
   const passed = new Set(progress?.topics[world.topic.id]?.completedLevels ?? []);
-  return world.stations.filter((s) => s.state === 'done' && passed.has(s.level)).map((s) => s.level);
+  return world.stations
+    .filter((s) => s.state === 'done' && passed.has(s.level))
+    .map((s) => s.level);
 }
 
 /** Every passed station of her grade's worlds, weighted (weaker worlds weigh more). */

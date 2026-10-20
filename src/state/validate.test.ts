@@ -120,8 +120,14 @@ describe('parseAppData', () => {
   it("keeps a parent's round length; 'normal' and older profiles come back without one", () => {
     const base = makeProfile();
     const long = { ...base, settings: { ...base.settings, roundLength: 'long' as const } };
-    const normal = { ...base, id: 'p2', settings: { ...base.settings, roundLength: 'normal' as const } };
-    const result = parseAppData(clone(makeData({ profiles: [long, normal, makeProfile({ id: 'p3' })] })));
+    const normal = {
+      ...base,
+      id: 'p2',
+      settings: { ...base.settings, roundLength: 'normal' as const },
+    };
+    const result = parseAppData(
+      clone(makeData({ profiles: [long, normal, makeProfile({ id: 'p3' })] })),
+    );
     expect(result.ok).toBe(true);
     if (!result.ok) return;
     expect(result.data.profiles[0]?.settings.roundLength).toBe('long');
