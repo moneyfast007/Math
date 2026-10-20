@@ -50,8 +50,8 @@ export function JourneySteps() {
 }
 
 /**
- * The first-time card on the journey. Not a dialog: it never stands between a
- * child and the start button.
+ * The first-time card on the journey. Not a dialog: it lies over the map and
+ * never stands between a child and the start button.
  */
 export function JourneyIntroCard({ gender, onDone }: { gender: Gender; onDone: () => void }) {
   const titleId = useId();

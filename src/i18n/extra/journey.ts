@@ -3,8 +3,8 @@
  * explainer (merged into `he`).
  *
  * `journey.*` texts are read aloud to the child (they go to the audio bank),
- * so they hold no digits: numbers come through `{slots}`. `worlds.*` texts are
- * only shown, for the child and for the parent next to her.
+ * so they hold no digits: numbers come through `{slots}`. `worlds.*` and
+ * `journeyBar.*` texts are only shown, for the child and for the parent next to her.
  */
 export const heJourney = {
   'pageTitle.worlds': 'כל העולמות · פלוסי',
@@ -24,6 +24,12 @@ export const heJourney = {
     f: 'סיימת את כל העולמות! את אלופה!',
     m: 'סיימת את כל העולמות! אתה אלוף!',
   },
+
+  // The journey's header and world row: only shown (the buttons keep their spoken
+  // names, "האלבום" and "מי משחק?"), so they are not in the audio bank.
+  'journeyBar.album': 'מדבקות',
+  'journeyBar.children': 'ילדים',
+  'journeyBar.stationsDone': 'כל התחנות הושלמו · עכשיו סיום העולם',
 
   // The map of all worlds
   'worlds.open': 'כל העולמות',

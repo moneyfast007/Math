@@ -129,7 +129,7 @@ test.describe('practice', () => {
     await page.getByRole('button', { name: 'למסע' }).click();
     await expect(page.getByRole('button', { name: 'תחנה 1, הושלמה' })).toBeVisible();
     await expect(page.getByRole('button', { name: 'תחנה 2, התחנה הבאה' })).toBeVisible();
-    await expect(page.getByText('תחנה 2 מתוך 11')).toBeVisible();
+    await expect(page.getByText('תחנה 2 מתוך 10')).toBeVisible();
 
     // The parent sees it.
     await page.getByRole('button', { name: 'מי משחק?' }).click();
@@ -256,8 +256,9 @@ test.describe('journey', () => {
     await expect(map.getByRole('img', { name: 'סיום העולם, עדיין סגור' })).toBeVisible();
     await expect(map.locator('.plusi')).toBeVisible();
     await expect(page.getByText('עולם 1 · חיבור וחיסור עד 20')).toBeVisible();
-    await expect(page.getByText('תחנה 4 מתוך 11')).toBeVisible();
-    await expect(page.getByRole('img', { name: 'בלי רצף עדיין' })).toBeVisible();
+    await expect(page.getByText('תחנה 4 מתוך 10')).toBeVisible();
+    // No streak yet: no chip (it shows from the first day).
+    await expect(page.getByRole('img', { name: /רצף/ })).toHaveCount(0);
 
     // A done station is a shortcut back to that level.
     await map.getByRole('button', { name: 'תחנה 3, הושלמה' }).click();

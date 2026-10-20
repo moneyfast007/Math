@@ -1713,10 +1713,6 @@ ol.steps {
   .journey__body .journey__next {
     margin-top: 0;
   }
-
-  .journey__mapcol .map {
-    max-height: calc(100dvh - 230px);
-  }
 }
 
 /* Practice: Plusi, small in the bar, reacts to every answer. */
@@ -4830,7 +4826,6 @@ details.report .report__worlds {
     font-size: 17px;
   }
 
-
   .practice[data-screen='practice'] > .exercise {
     padding: 12px;
   }
@@ -4856,7 +4851,69 @@ details.report .report__worlds {
   }
 }
 
-/* Journey header: the child and the tools on one row, on every phone. */
+/* ==========================================================================
+   Journey: one screen, on every phone.
+   The screen is a column exactly as tall as the visible screen (dvh: without
+   the browser's bars, minus the notch and home bar): the header, the world's
+   row, the map (it takes what is left; JourneyScreen lays the stations out to
+   fit it and sets --cell, the room for one station), and the next station's
+   card pinned at the bottom. The first-time explainer lies over the map.
+   ========================================================================== */
+
+#root:has(> .journey) {
+  min-height: 0;
+}
+
+.screen.journey {
+  flex: none;
+  height: calc(100vh - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+  height: calc(100dvh - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+  min-height: 0;
+  padding: var(--space-3) var(--space-4);
+  gap: var(--space-2);
+}
+
+.journey > * {
+  flex: none;
+}
+
+.journey > .journey__body {
+  flex: 1 1 0;
+  min-height: 0;
+}
+
+.journey__mapcol {
+  position: relative;
+  flex: 1 1 0;
+  min-height: 0;
+  gap: var(--space-1);
+}
+
+.journey__mapcol > .journey__world {
+  flex: none;
+}
+
+/* The room the map may take; the map is sized (and centred) inside it. */
+.journey__mapbox {
+  position: relative;
+  flex: 1 1 0;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.journey__mapbox > .map {
+  flex: none;
+  margin: 0;
+}
+
+.journey__body > .journey__next {
+  flex: none;
+  margin-top: 0;
+}
+
+/* Header: the child and the tools on one row; the name gives way only when very long. */
 .journey__header {
   flex-wrap: nowrap;
 }
@@ -4874,19 +4931,352 @@ details.report .report__worlds {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  line-height: 1.2;
 }
 
 .journey__tools {
   flex: 0 0 auto;
+  align-items: flex-start;
   gap: var(--space-1);
 }
 
-@media (max-width: 420px) {
+/* A round icon with its word under it. The whole of it is the button. */
+.journey__tool {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  min-width: 44px;
+  color: var(--color-text);
+}
+
+.journey__tool-icon {
+  display: inline-grid;
+  place-items: center;
+  width: var(--tool, var(--tap-min));
+  height: var(--tool, var(--tap-min));
+  border-radius: 50%;
+  background: var(--color-surface);
+  border: 1.5px solid var(--color-border);
+  transition: transform var(--dur-fast) var(--ease);
+}
+
+.journey__tool:active .journey__tool-icon {
+  transform: scale(0.94);
+  background: var(--color-accent-soft);
+}
+
+.journey__tool-icon svg {
+  width: 50%;
+  height: 50%;
+}
+
+.journey__tool-label {
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.15;
+  white-space: nowrap;
+  color: var(--color-text-muted);
+}
+
+.journey__tools > .streak {
+  min-height: var(--tool, var(--tap-min));
+}
+
+/* The world's row: its name and the progress under it at the start, "כל העולמות" at the end. */
+.journey__world {
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+.journey__world-text {
+  flex: 1 1 auto;
+  flex-direction: column;
+  align-items: flex-start;
+  row-gap: 0;
+}
+
+.journey__world-name {
+  line-height: 1.25;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+}
+
+.journey__progress {
+  line-height: 1.3;
+}
+
+.journey__all {
+  flex: none;
+  white-space: nowrap;
+}
+
+/* The map: stations sized from the room each one has (--cell, px). */
+.map {
+  --node: clamp(26px, calc(var(--cell, 100px) * 0.5), calc(var(--tap-min) - 4px));
+  --node-current: clamp(
+    var(--tap-min),
+    calc(var(--cell, 100px) * 0.9),
+    calc(var(--tap-min) + 28px)
+  );
+}
+
+.node {
+  font-size: clamp(14px, calc(var(--node) * 0.46), var(--text-md));
+}
+
+.node--current {
+  font-size: clamp(18px, calc(var(--node-current) * 0.4), var(--text-lg));
+}
+
+.node--review {
+  width: calc(var(--node) * 1.2 + 8px);
+  height: calc(var(--node) * 1.2 + 8px);
+}
+
+.map__plusi {
+  width: clamp(36px, calc(var(--cell, 160px) * 0.6), 120px);
+  max-width: none;
+}
+
+/* The first-time explainer lies over the map, under the world's row (top-aligned, scrolling inside if it must). */
+.journey__mapbox > .intro {
+  position: absolute;
+  inset: 0 0 auto;
+  max-height: 100%;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  z-index: 3;
+  padding: var(--space-3);
+  gap: var(--space-2);
+  /* A rim of the page's colour hides the map's edges behind the rounded corners. */
+  box-shadow:
+    var(--shadow-md),
+    0 0 0 6px var(--color-bg);
+}
+
+/* "הבנתי!" stays in view while the steps scroll under it, on a band of the card's colour. */
+.journey__mapbox > .intro .intro__ok {
+  position: sticky;
+  bottom: 0;
+  flex: none;
+  box-shadow: 0 0 0 100vmax var(--color-surface);
+  clip-path: inset(-10px -100vmax -100vmax -100vmax);
+}
+
+/* The next station: its name, the big button, and one compact row under it. */
+.journey__next-text {
+  min-width: 0;
+}
+
+.journey__next-text h2 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+}
+
+.journey__more {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-1);
+  width: 100%;
+}
+
+.journey__more > .btn {
+  flex: 0 1 auto;
+  min-width: 0;
+}
+
+.journey__more > .daily > span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* A landscape tablet (and a phone on its side): the map and the card side by side. */
+@media (orientation: landscape) and (min-width: 900px),
+  (orientation: landscape) and (max-height: 520px) and (min-width: 600px) {
+  .journey__body {
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(300px, 1fr);
+    grid-template-rows: minmax(0, 1fr);
+    align-items: stretch;
+  }
+
+  .journey__body > .journey__next {
+    align-self: center;
+  }
+}
+
+/* Phones, and short screens: everything a size smaller, so the map keeps room. */
+@media (max-width: 560px), (max-height: 520px) {
+  .screen.journey {
+    --tool: 40px;
+    padding: 8px 16px 10px;
+    gap: 8px;
+  }
+
+  .journey__body,
+  .journey__mapcol {
+    gap: 6px;
+  }
+
+  .journey__header {
+    gap: 8px;
+  }
+
+  .journey__who {
+    gap: 8px;
+  }
+
   .journey__who .avatar--lg {
-    font-size: 44px;
+    font-size: 40px;
   }
 
   .journey__hello {
-    font-size: var(--text-md);
+    font-size: 20px;
+  }
+
+  :root[data-age='young'] .journey__hello {
+    font-size: 22px;
+  }
+
+  .journey__grade {
+    font-size: 14px;
+    line-height: 1.3;
+  }
+
+  .journey__tools {
+    gap: 4px;
+  }
+
+  .journey__tool-label {
+    font-size: 12px;
+  }
+
+  .journey__tools > .streak {
+    padding: 0 8px;
+    font-size: 15px;
+  }
+
+  .journey__tools > .streak .streak__icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  .journey__world {
+    padding: 0;
+    gap: 8px;
+  }
+
+  .journey__world-name {
+    font-size: 17px;
+  }
+
+  .journey__progress {
+    font-size: 14px;
+  }
+
+  .journey__all {
+    min-height: 40px;
+    padding: 0 12px;
+    font-size: 15px;
+    gap: 6px;
+  }
+
+  .journey__all svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .node__caption {
+    font-size: 13px;
+    margin-top: 3px;
+  }
+
+  .journey__mapbox > .intro {
+    padding: 14px;
+    gap: 10px;
+  }
+
+  .journey__mapbox > .intro .intro__title {
+    font-size: 22px;
+  }
+
+  .journey__mapbox > .intro .intro__step p {
+    font-size: 15px;
+    line-height: 1.4;
+  }
+
+  .journey__mapbox > .intro .intro__icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .journey__mapbox > .intro .intro__head .plusi {
+    width: 44px;
+    height: 44px;
+  }
+
+  .journey__mapbox > .intro .speaker__btn {
+    width: 44px;
+    height: 44px;
+  }
+
+  .journey__mapbox > .intro .intro__ok {
+    min-height: 44px;
+  }
+
+  .journey__body > .journey__next {
+    padding: 12px 14px;
+    gap: 8px;
+    border-radius: var(--radius-md);
+  }
+
+  .journey__next .station__eyebrow {
+    font-size: 14px;
+    line-height: 1.3;
+  }
+
+  .journey__next-text h2 {
+    font-size: 21px;
+  }
+
+  :root[data-age='young'] .journey__next-text h2 {
+    font-size: 23px;
+  }
+
+  .journey__next .speaker__btn {
+    width: 44px;
+    height: 44px;
+  }
+
+  .journey__start {
+    min-height: calc(var(--tap-min) + 4px);
+    padding: 0 16px;
+    font-size: 24px;
+  }
+
+  :root[data-age='young'] .journey__start {
+    font-size: 28px;
+  }
+
+  .journey__more > .btn {
+    min-height: 40px;
+    padding: 0 12px;
+    font-size: 15px;
+    gap: 6px;
+  }
+
+  .journey__more .daily__icon {
+    width: 20px;
+    height: 20px;
   }
 }
