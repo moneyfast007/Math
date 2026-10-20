@@ -5679,3 +5679,10 @@ details.report .report__worlds {
   display: block;
   font-size: var(--text-sm);
 }
+
+/* A drawn avatar is sized by the same font-size as the emoji it replaces (1em square). */
+.avatar--drawn .avatar__art {
+  display: block;
+  width: 1em;
+  height: 1em;
+}
