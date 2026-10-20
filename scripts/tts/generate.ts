@@ -88,8 +88,10 @@ async function main(): Promise<void> {
     return;
   }
 
-  // Short clips first: numbers and fragments are heard in many sentences.
-  work.sort((x, y) => x.phrase.text.length - y.phrase.text.length);
+  // The app's own lines first (greetings, feedback: heard on every visit), then
+  // short clips first: numbers and fragments are heard in many sentences.
+  const rank = (w: (typeof work)[number]) => (w.phrase.id.startsWith('ui.') ? 0 : 1);
+  work.sort((x, y) => rank(x) - rank(y) || x.phrase.text.length - y.phrase.text.length);
   let deadline =
     Number(values['max-minutes']) > 0
       ? Date.now() + Number(values['max-minutes']) * 60_000
