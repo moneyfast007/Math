@@ -1701,8 +1701,7 @@ ol.steps {
   font-size: 104px;
 }
 
-/* Journey: map and the start card side by side on a landscape tablet, so the
-   big button is always on screen. */
+/* Journey: the map column and the start card. */
 .journey__body {
   flex: 1;
   display: flex;
@@ -1716,17 +1715,7 @@ ol.steps {
   gap: var(--space-2);
 }
 
-@media (orientation: landscape) and (min-width: 900px) {
-  .journey__body {
-    display: grid;
-    grid-template-columns: minmax(0, 1.35fr) minmax(320px, 1fr);
-    align-items: center;
-  }
-
-  .journey__body .journey__next {
-    margin-top: 0;
-  }
-}
+/* (The wide-screen layouts are with the one-screen journey, further down.) */
 
 /* Practice: Plusi, small in the bar, reacts to every answer. */
 .practice__plusi {
@@ -5150,13 +5139,34 @@ details.report .report__worlds {
   white-space: nowrap;
 }
 
-/* A landscape tablet (and a phone on its side): the map and the card side by side. */
-@media (orientation: landscape) and (min-width: 900px),
-  (orientation: landscape) and (max-height: 520px) and (min-width: 600px) {
+/* A wide screen with height to spare (a desktop, a tablet upright or on its
+   side): one centred column, like a big phone, so the map and the card read
+   top to bottom with nothing floating in the empty width. */
+@media (min-width: 700px) and (min-height: 701px) {
+  .screen.journey {
+    max-width: 820px;
+    padding-inline: var(--space-5);
+  }
+
+  .journey__mapcol {
+    gap: var(--space-2);
+  }
+
+  .journey__body > .journey__next {
+    margin-inline: auto;
+    width: 100%;
+    max-width: 640px;
+  }
+}
+
+/* A short, wide screen (a phone on its side, a small laptop): the map and the
+   card side by side, since there is no height to stack them. */
+@media (orientation: landscape) and (max-height: 700px) and (min-width: 600px) {
   .journey__body {
     display: grid;
     grid-template-columns: minmax(0, 1.35fr) minmax(300px, 1fr);
     grid-template-rows: minmax(0, 1fr);
+    column-gap: var(--space-5);
     align-items: stretch;
   }
 
