@@ -12,6 +12,7 @@ export type RouteName =
   | 'review'
   | 'replay'
   | 'daily'
+  | 'worldMix'
   | 'album'
   | 'worlds'
   | 'parents'
@@ -27,6 +28,7 @@ const PATHS: Record<RouteName, string> = {
   review: '/practice/review',
   replay: '/practice/again',
   daily: '/practice/daily',
+  worldMix: '/practice/world',
   album: '/album',
   worlds: '/worlds',
   parents: '/parents',

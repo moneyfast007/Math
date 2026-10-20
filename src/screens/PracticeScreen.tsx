@@ -9,7 +9,7 @@ import {
 } from 'react';
 import { replayTopic } from '@/app/replay';
 import { navigate } from '@/app/router';
-import { dailyPool, pickDaily, type DailyItem } from '@/engine/daily';
+import { dailyPool, pickDaily, worldPool, type DailyItem } from '@/engine/daily';
 import { activeWorld, nextStop, worldsFor } from '@/engine/journey';
 import { pick } from '@/engine/rng';
 import { currentLevel, levelsFor, topicById } from '@/engine/registry';
@@ -57,8 +57,21 @@ const MIN_PICTURE_FIT = 0.3;
  * from every level. 'replay': a finished world played again from the album,
  * mixed like the review; it changes nothing on the journey. 'daily': the
  * day's review, exercises from stations passed in any of her worlds.
+ * 'worldMix': more exercises from the stations passed in the world she is in;
+ * like the daily review, it passes and opens nothing.
  */
-export type PracticeMode = 'level' | 'review' | 'replay' | 'daily';
+export type PracticeMode = 'level' | 'review' | 'replay' | 'daily' | 'worldMix';
+
+/** The pool a mixed round draws from, or none when nothing is passed yet. */
+function mixedPool(profile: Profile, mode: PracticeMode): DailyItem[] {
+  const progress = appProgress(profile.id);
+  if (mode === 'daily') return dailyPool(profile.grade, progress);
+  if (mode === 'worldMix') {
+    const world = activeWorld(profile.grade, progress);
+    return world ? worldPool(world, progress) : [];
+  }
+  return [];
+}
 
 /** The finished world chosen in the album, if it is really hers and finished. */
 function replayableTopic(profile: Profile): Topic | undefined {
@@ -71,16 +84,16 @@ function replayableTopic(profile: Profile): Topic | undefined {
 export function PracticeScreen({ mode }: { mode: PracticeMode }) {
   const profile = useActiveProfile();
   const missingReplay = mode === 'replay' && profile !== undefined && !replayableTopic(profile);
-  const noDaily =
-    mode === 'daily' &&
+  const noPool =
+    (mode === 'daily' || mode === 'worldMix') &&
     profile !== undefined &&
-    dailyPool(profile.grade, appProgress(profile.id)).length === 0;
+    mixedPool(profile, mode).length === 0;
   useEffect(() => {
     if (!profile) navigate({ name: 'home' }, { replace: true });
     else if (missingReplay) navigate({ name: 'album' }, { replace: true });
-    else if (noDaily) navigate({ name: 'play' }, { replace: true });
-  }, [profile, missingReplay, noDaily]);
-  if (!profile || missingReplay || noDaily) return null;
+    else if (noPool) navigate({ name: 'play' }, { replace: true });
+  }, [profile, missingReplay, noPool]);
+  if (!profile || missingReplay || noPool) return null;
   return <Practice key={`${profile.id}:${mode}`} profile={profile} mode={mode} />;
 }
 
@@ -88,6 +101,7 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
   const recordAttempt = useApp((s) => s.recordAttempt);
   const completeRound = useApp((s) => s.completeRound);
   const completeDaily = useApp((s) => s.completeDaily);
+  const completeMixed = useApp((s) => s.completeMixed);
   const setTopicLevel = useApp((s) => s.setTopicLevel);
   const band = ageBandForGrade(profile.grade);
   const tc = makeT(profile.gender);
@@ -97,8 +111,8 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
   const station = useMemo(
     () => {
       const progress = appProgress(profile.id);
-      if (mode === 'daily') {
-        const pool = dailyPool(profile.grade, progress);
+      if (mode === 'daily' || mode === 'worldMix') {
+        const pool = mixedPool(profile, mode);
         const first = pool[0] as DailyItem;
         return { topic: first.topic, level: first.level, stored: first.level, pool };
       }
@@ -125,6 +139,8 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
   const review = mode !== 'level';
   const replaying = mode === 'replay';
   const daily = mode === 'daily';
+  /** Drawn from a pool of passed stations (the daily review, more of this world). */
+  const mixed = daily || mode === 'worldMix';
   const pool = 'pool' in station ? station.pool : [];
   /** This child's levels of the world (a younger grade may end earlier). */
   const gradeLevels = levelsFor(topic, profile.grade);
@@ -132,7 +148,7 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
   /** Exercises already given in this round: none comes again while the level has others. */
   const seen = useRef<string[]>([]);
   const generate = (level: number): Exercise => {
-    const e = daily
+    const e = mixed
       ? (() => {
           const item = pickDaily(pool, rng);
           return item.topic.generate(item.level, rng, profile.gender, seen.current);
@@ -151,6 +167,7 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
       minLevel: review ? level : (topic.levels[0]?.level ?? 1),
       maxLevel: review ? level : (gradeLevels.at(-1)?.level ?? 10),
       band,
+      ...(profile.settings.roundLength ? { roundLength: profile.settings.roundLength } : {}),
       exercise: generate(level),
     });
   };
@@ -192,11 +209,11 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
     else if (after.phase === 'wrong' && after.tries > before.tries) playAlmost();
     if (completedExercise(before, after)) {
       const outcome = after.history.at(-1);
-      const exTopic = daily ? (topicById(before.exercise.topicId) ?? topic) : topic;
+      const exTopic = mixed ? (topicById(before.exercise.topicId) ?? topic) : topic;
       recordAttempt(profile.id, {
         topicId: exTopic.id,
         // A review round is scored, but never moves the level the child is at.
-        level: daily
+        level: mixed
           ? currentLevel(exTopic, profile.grade, appProgress(profile.id))
           : review
             ? station.stored
@@ -209,6 +226,8 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
     if (action.type === 'changeLevel') setTopicLevel(profile.id, topic.id, after.level);
     if (after.phase === 'finished' && before.phase !== 'finished' && daily) {
       completeDaily(profile.id);
+    } else if (after.phase === 'finished' && before.phase !== 'finished' && mixed) {
+      completeMixed(profile.id);
     } else if (after.phase === 'finished' && before.phase !== 'finished') {
       setOutcome(
         completeRound(profile.id, {
@@ -258,24 +277,21 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
   };
 
   if (s.phase === 'finished') {
-    // Playing a finished world again is always just praise: there is nothing to pass.
-    const result = daily
+    // Playing a finished world again, or a mixed round, is always just praise: nothing to pass.
+    const praise = daily
       ? t('practice.done.daily')
-      : replaying
-        ? t('practice.done.replay')
-        : outcome
-          ? resultLine(outcome, tc, profile.id, profile.grade)
+      : mixed
+        ? t('practice.done.worldMix')
+        : replaying
+          ? t('practice.done.replay')
           : null;
-    const passed = daily || replaying || outcome?.passed === true;
-    const spoken = daily
-      ? t('practice.done.daily')
-      : replaying
-        ? t('practice.done.replay')
-        : passed
-          ? tc('practice.done.passedSpoken')
-          : t('practice.done.notPassed');
+    const result =
+      praise ?? (outcome ? resultLine(outcome, tc, profile.id, profile.grade) : null);
+    const passed = praise !== null || outcome?.passed === true;
+    const spoken =
+      praise ?? (passed ? tc('practice.done.passedSpoken') : t('practice.done.notPassed'));
     // The final challenge passed: the world is finished, a celebration of its own.
-    if (outcome?.worldCompleted && !daily && !replaying) {
+    if (outcome?.worldCompleted && !mixed && !replaying) {
       const worlds = worldsFor(profile.grade, appProgress(profile.id));
       const done = worlds.find((w) => w.topic.id === topic.id);
       if (done) {
@@ -291,7 +307,7 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
     }
     // A plain station round (not the daily review, not a world played again, not the
     // end of a world): passed leads straight to the next station, otherwise the same again.
-    const stationRound = !daily && !replaying && outcome !== null && !outcome.worldCompleted;
+    const stationRound = !mixed && !replaying && outcome !== null && !outcome.worldCompleted;
     const playAgain = () => {
       const level = outcome?.advancedTo ?? stateRef.current.level;
       setNotice(null);
@@ -412,7 +428,7 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
       ) : null}
       {review && s.done === 0 && s.phase === 'answering' ? (
         <p className="notice" role="status">
-          {t('practice.review.body')}
+          {t(mode === 'worldMix' ? 'practice.worldMix.body' : 'practice.review.body')}
         </p>
       ) : null}
 

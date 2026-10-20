@@ -10,6 +10,7 @@ import {
   SCHEMA_VERSION,
   SUPPORTED_SCHEMA_VERSIONS,
   emptyStreak,
+  isRoundLength,
   type AppData,
   type DayStats,
   type PinRecord,
@@ -77,6 +78,8 @@ function parseProfile(value: unknown, index: number): Profile {
   if (typeof allowLevelChange !== 'boolean') fail(`${where}: הגדרה לא חוקית`);
   const sounds = settings['sounds'];
   if (sounds !== undefined && typeof sounds !== 'boolean') fail(`${where}: הגדרה לא חוקית`);
+  const roundLength = settings['roundLength'];
+  if (roundLength !== undefined && !isRoundLength(roundLength)) fail(`${where}: הגדרה לא חוקית`);
   // Added later and optional: absent in older data.
   const introSeen = p['journeyIntroSeenAt'];
   return {
@@ -86,7 +89,12 @@ function parseProfile(value: unknown, index: number): Profile {
     grade: intInRange(p['grade'], 0, 6, `${where}, כיתה`) as Grade,
     gender,
     createdAt: finiteNumber(p['createdAt'], `${where}, תאריך`),
-    settings: { allowLevelChange, ...(sounds === undefined ? {} : { sounds }) },
+    settings: {
+      allowLevelChange,
+      ...(sounds === undefined ? {} : { sounds }),
+      // 'normal' is the absent value; a backup that spells it out comes back without it.
+      ...(roundLength === undefined || roundLength === 'normal' ? {} : { roundLength }),
+    },
     ...(introSeen === undefined
       ? {}
       : { journeyIntroSeenAt: finiteNumber(introSeen, `${where}, הסבר המסע`) }),

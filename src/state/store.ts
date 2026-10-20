@@ -3,6 +3,7 @@ import { createStore, type StoreApi } from 'zustand/vanilla';
 import { createPinRecord, verifyPin as checkPin } from './pin';
 import {
   completeDaily as finishDaily,
+  completeMixedRound as finishMixed,
   completeRound as finishRound,
   recordAttempt as addAttempt,
   type Attempt,
@@ -73,6 +74,8 @@ export interface AppState {
   setTopicLevel: (profileId: string, topicId: string, level: number) => void;
   /** The day's review finished: the streak and the day's record. */
   completeDaily: (profileId: string) => void;
+  /** A mixed round of this world finished: the streak and the day's rounds only. */
+  completeMixed: (profileId: string) => void;
   /** The journey's first-time explainer was shown: it does not open by itself again. */
   markJourneyIntroSeen: (profileId: string) => void;
 }
@@ -235,6 +238,13 @@ export function createAppStore(storage: StorageAdapter, clock: () => number = Da
         const { data } = get();
         if (!data.profiles.some((p) => p.id === profileId)) return;
         const progress = finishDaily(data.progress[profileId] ?? emptyProgress(), clock());
+        commit({ ...data, progress: { ...data.progress, [profileId]: progress } });
+      },
+
+      completeMixed: (profileId) => {
+        const { data } = get();
+        if (!data.profiles.some((p) => p.id === profileId)) return;
+        const progress = finishMixed(data.progress[profileId] ?? emptyProgress(), clock());
         commit({ ...data, progress: { ...data.progress, [profileId]: progress } });
       },
 

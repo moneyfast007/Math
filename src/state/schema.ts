@@ -23,11 +23,20 @@ export const RECENT_WINDOW = 20;
 export const MIN_LEVEL = 1;
 export const MAX_LEVEL = 10;
 
+/** How long a child's rounds are, relative to her age; a parent's choice. */
+export type RoundLength = 'short' | 'normal' | 'long';
+export const ROUND_LENGTH_OPTIONS: readonly RoundLength[] = ['short', 'normal', 'long'];
+export function isRoundLength(value: unknown): value is RoundLength {
+  return ROUND_LENGTH_OPTIONS.includes(value as RoundLength);
+}
+
 export interface ProfileSettings {
   /** Whether the child may change the difficulty level herself. */
   allowLevelChange: boolean;
   /** The small sounds of practice (a ding, a boop). Absent: on. Optional, so older data stays valid. */
   sounds?: boolean;
+  /** Exercises per round, relative to the child's age (engine/session ROUND_LENGTHS). Absent: normal. */
+  roundLength?: RoundLength;
 }
 
 export interface Profile {

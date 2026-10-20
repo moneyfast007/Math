@@ -653,6 +653,29 @@ ol.steps {
   font-weight: 600;
 }
 
+/* Three equal choices, each with its detail under its name ("קצר" / "7 תרגילים"). */
+.choice--stacked {
+  flex: 1 1 0;
+  flex-direction: column;
+  gap: 0;
+  min-width: 0;
+  padding: 6px var(--space-2);
+  line-height: 1.2;
+}
+
+.choice__detail {
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.choice:has(input:checked) .choice__detail {
+  color: inherit;
+}
+
+.field__hint {
+  margin: 0;
+}
+
 /* ---------- Phase 3: practice ---------- */
 
 .btn--hero {
@@ -5208,24 +5231,67 @@ details.report .report__worlds {
   overflow: hidden;
 }
 
-.journey__more {
+/* "Another station?" beside the eyebrow, as a small link rather than a third tile. */
+.journey__eyebrow-row {
   display: flex;
-  flex-wrap: nowrap;
-  justify-content: center;
-  align-items: center;
+  align-items: baseline;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+.journey__other {
+  /* A text link with a tap area that does not push the row apart. */
+  margin: -8px 0;
+  padding: 8px 0;
+  border: 0;
+  background: none;
+  color: var(--color-text-muted);
+  font: inherit;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.journey__other:hover {
+  color: var(--color-text);
+}
+
+.journey__other:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Two equal tiles under the big button; a label takes two lines when it must. */
+.journey__more {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
   gap: var(--space-1);
   width: 100%;
 }
 
 .journey__more > .btn {
-  flex: 0 1 auto;
   min-width: 0;
+  padding-inline: var(--space-2);
+  white-space: normal;
+  line-height: 1.15;
+  text-align: center;
 }
 
 .journey__more > .daily > span {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
   overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+}
+
+.journey__more .daily__icon {
+  flex: 0 0 auto;
 }
 
 /* A wide screen with height to spare (a desktop, a tablet upright or on its
@@ -5419,7 +5485,7 @@ details.report .report__worlds {
 
   .journey__more > .btn {
     min-height: 40px;
-    padding: 0 12px;
+    padding: 4px 8px;
     font-size: 15px;
     gap: 6px;
   }

@@ -239,6 +239,17 @@ describe('the week and the days of practice (schema 3)', () => {
     expect(p.days['2026-10-18']?.rounds).toBe(2);
   });
 
+  it('counts a mixed round of this world for the streak and the day, and marks nothing', async () => {
+    const { completeMixedRound, weekSummary } = await import('./progress');
+    const { emptyProgress } = await import('./schema');
+    const day = new Date(2026, 9, 18, 10).getTime();
+    const p = completeMixedRound(emptyProgress(), day);
+    expect(p.streak.count).toBe(1);
+    expect(p.days['2026-10-18']).toMatchObject({ rounds: 1, daily: false });
+    expect(p.topics).toEqual({});
+    expect(weekSummary(p, day).dailyReviews).toBe(0);
+  });
+
   it('keeps only about two months of days', async () => {
     const { bumpDay } = await import('./progress');
     const { DAYS_KEPT } = await import('./schema');

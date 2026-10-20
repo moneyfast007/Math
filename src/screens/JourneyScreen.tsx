@@ -8,7 +8,7 @@ import {
   type RefObject,
 } from 'react';
 import { navigate } from '@/app/router';
-import { dailyPool } from '@/engine/daily';
+import { dailyPool, worldPool } from '@/engine/daily';
 import { currentLevel } from '@/engine/registry';
 import { activeWorld, nextStop, worldsFor, type World, type WorldStation } from '@/engine/journey';
 import { makeT, t, type TranslationKey } from '@/i18n';
@@ -103,6 +103,8 @@ function Journey({ profile }: { profile: Profile }) {
   };
   const hasDaily = dailyPool(profile.grade, progress).length > 0;
   const dailyDone = progress?.days[dayKey(Date.now())]?.daily === true;
+  // More of this world: once a station of it is passed (nothing to mix before).
+  const hasWorldMix = worldPool(world, progress).length > 0;
   const canPick = profile.settings.allowLevelChange && stop.kind === 'level';
 
   return (
@@ -201,7 +203,19 @@ function Journey({ profile }: { profile: Profile }) {
         <section className="station card journey__next" aria-labelledby="station-title">
           <div className="journey__next-row">
             <div className="journey__next-text">
-              <span className="station__eyebrow">{t('child.nextStation')}</span>
+              <span className="journey__eyebrow-row">
+                <span className="station__eyebrow">{t('child.nextStation')}</span>
+                {/* "Another station?" right where the next one is named. */}
+                {canPick ? (
+                  <button
+                    type="button"
+                    className="journey__other"
+                    onClick={() => setPicking(true)}
+                  >
+                    {t('child.otherLevel')}
+                  </button>
+                ) : null}
+              </span>
               <h2 id="station-title">{stopName}</h2>
             </div>
             <SpeakerButton text={spokenLabel(stopName)} />
@@ -221,9 +235,20 @@ function Journey({ profile }: { profile: Profile }) {
                 : t('journeyBar.rewardLast')}
             </p>
           ) : null}
-          {hasDaily || canPick ? (
-            // The day's review and another level: one compact row under the big button.
+          {hasWorldMix || hasDaily ? (
+            // Under the big button, side by side: more of this world, and the review
+            // from every world. Equal tiles, two lines of text when the screen is narrow.
             <div className="journey__more">
+              {hasWorldMix ? (
+                <button
+                  type="button"
+                  className="btn btn--secondary btn--small daily"
+                  onClick={() => navigate({ name: 'worldMix' })}
+                >
+                  <ShuffleIcon />
+                  <span>{t('journey.worldMix')}</span>
+                </button>
+              ) : null}
               {hasDaily ? (
                 <button
                   type="button"
@@ -232,19 +257,11 @@ function Journey({ profile }: { profile: Profile }) {
                       ? 'btn btn--secondary btn--small daily daily--done'
                       : 'btn btn--secondary btn--small daily'
                   }
+                  aria-label={dailyDone ? t('journey.dailyDone') : undefined}
                   onClick={() => navigate({ name: 'daily' })}
                 >
                   <DailyIcon done={dailyDone} />
-                  <span>{dailyDone ? t('journey.dailyDone') : t('journey.daily')}</span>
-                </button>
-              ) : null}
-              {canPick ? (
-                <button
-                  type="button"
-                  className="btn btn--ghost btn--small journey__other"
-                  onClick={() => setPicking(true)}
-                >
-                  {t('child.otherLevel')}
+                  <span>{t('journey.daily')}</span>
                 </button>
               ) : null}
             </div>
@@ -316,6 +333,28 @@ function StreakChip({ count }: { count: number }) {
       </svg>
       <span className="streak__count">{count}</span>
     </div>
+  );
+}
+
+/** Two crossing arrows: a mix of this world's stations. */
+function ShuffleIcon() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+      className="daily__icon"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M3 17h2.5c1.4 0 2.7-.7 3.5-1.8l5.5-7.4A4.3 4.3 0 0 1 18 6h3" />
+      <path d="M17.5 3L21 6l-3.5 3" />
+      <path d="M3 7h2.5c1.4 0 2.7.7 3.5 1.8l.6.8" />
+      <path d="M21 18h-3a4.3 4.3 0 0 1-3.5-1.8l-.6-.8" />
+      <path d="M17.5 15L21 18l-3.5 3" />
+    </svg>
   );
 }
 

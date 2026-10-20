@@ -65,13 +65,22 @@ export function bumpDay(
   return next;
 }
 
-/** A finished daily review: counts for the streak and is marked on the day. */
-export function completeDaily(progress: ProfileProgress, at: number): ProfileProgress {
+/**
+ * A finished mixed round (more exercises from this world's passed stations):
+ * counts for the streak and the day's rounds, passes and opens nothing.
+ */
+export function completeMixedRound(progress: ProfileProgress, at: number): ProfileProgress {
   return {
     ...progress,
     streak: advanceStreak(progress.streak, at),
-    days: bumpDay(progress.days, at, (d) => ({ ...d, rounds: d.rounds + 1, daily: true })),
+    days: bumpDay(progress.days, at, (d) => ({ ...d, rounds: d.rounds + 1 })),
   };
+}
+
+/** A finished daily review: a mixed round that is also marked on the day. */
+export function completeDaily(progress: ProfileProgress, at: number): ProfileProgress {
+  const next = completeMixedRound(progress, at);
+  return { ...next, days: bumpDay(next.days, at, (d) => ({ ...d, daily: true })) };
 }
 
 /** Share of first-try answers that passes a station. */
