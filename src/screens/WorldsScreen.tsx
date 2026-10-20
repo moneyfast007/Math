@@ -4,12 +4,10 @@ import { navigate } from '@/app/router';
 import { worldsMap, type WorldMapEntry } from '@/engine/journey';
 import { t, type TranslationKey } from '@/i18n';
 import { gradeLabel } from '@/i18n/labels';
-import { compose } from '@/lang/compose';
 import { useActiveProfile, useApp } from '@/state/store';
 import { ageBandForGrade, applyAgeBand } from '@/ui/ageBand';
 import { Dialog } from '@/ui/Dialog';
 import { Plusi } from '@/ui/Plusi';
-import { SpeakerButton } from '@/ui/SpeakerButton';
 import { Sticker } from '@/ui/Sticker';
 import { stickerForWorld } from '@/ui/stickers';
 import { IntroSpeaker, JourneySteps, LockIcon } from './JourneyIntro';
@@ -33,22 +31,6 @@ export function WorldsScreen() {
 
   const young = ageBandForGrade(profile.grade) === 'young';
   const entries = worldsMap(profile.grade, progress);
-  const done = entries.filter((e) => e.state === 'done').length;
-  const total = entries.length;
-  const line =
-    done === 0
-      ? t('journey.worlds.count.none')
-      : done === total
-        ? t('journey.worlds.count.all', { gender: profile.gender })
-        : t('journey.worlds.count', { params: { done, total } });
-  // Read aloud with the numbers as words ("עולם" is masculine: "שלושה מתוך שמונה").
-  const spoken =
-    done > 0 && done < total
-      ? compose(t('journey.worlds.count'), {
-          done: { n: done, gender: 'm' },
-          total: { n: total, gender: 'm' },
-        })
-      : { text: line, parts: [line] };
 
   return (
     <main className="screen worlds" data-screen="worlds">
@@ -73,12 +55,6 @@ export function WorldsScreen() {
           {t('album.back')}
         </button>
       </header>
-
-      <section className="card album__status">
-        <Plusi mood={done > 0 ? 'cheering' : 'happy'} size={56} decorative />
-        <p className="album__line">{line}</p>
-        <SpeakerButton text={spoken.text} parts={spoken.parts} />
-      </section>
 
       <ol className="worlds__list" aria-label={t('worlds.list')}>
         {entries.map((entry) => (
