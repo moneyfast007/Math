@@ -268,6 +268,25 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
         : passed
           ? tc('practice.done.passedSpoken')
           : t('practice.done.notPassed');
+    // A plain station round (not the daily review, not a world played again, not the
+    // end of a world): passed leads straight to the next station, otherwise the same again.
+    const stationRound = !daily && !replaying && outcome !== null && !outcome.worldCompleted;
+    const playAgain = () => {
+      const level = outcome?.advancedTo ?? stateRef.current.level;
+      setNotice(null);
+      setValue('');
+      setTried([]);
+      setOutcome(null);
+      const fresh = newRound(level);
+      stateRef.current = fresh;
+      setS(fresh);
+    };
+    // The next station straight away; when there is none to start from here (the review
+    // just opened, an old station played again), the journey, whose big button starts it.
+    const goNext = () => {
+      if (typeof outcome?.advancedTo === 'number') playAgain();
+      else navigate({ name: 'play' });
+    };
     return (
       <main className="screen practice" data-screen="practice-done">
         <section className="stack done" style={{ alignItems: 'center', textAlign: 'center' }}>
@@ -287,36 +306,40 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
               <span>{result}</span>
             </div>
           ) : null}
-          <div className="row" style={{ justifyContent: 'center' }}>
-            {outcome?.worldCompleted || replaying ? (
-              <button type="button" className="btn" onClick={() => navigate({ name: 'album' })}>
-                {t('practice.done.toAlbum')}
+          {stationRound ? (
+            // A station round: one big way on (the next station, or the same one again),
+            // and a small way out to the map.
+            <div className="stack done__actions" style={{ alignItems: 'center' }}>
+              <button type="button" className="btn btn--hero" onClick={passed ? goNext : playAgain}>
+                {passed ? t('practice.done.next') : t('practice.done.again')}
               </button>
-            ) : null}
-            <button
-              type="button"
-              className={outcome?.worldCompleted || replaying ? 'btn btn--secondary' : 'btn'}
-              onClick={() => navigate({ name: 'play' })}
-            >
-              {t('practice.done.toJourney')}
-            </button>
-            <button
-              type="button"
-              className="btn btn--secondary"
-              onClick={() => {
-                const level = outcome?.advancedTo ?? stateRef.current.level;
-                setNotice(null);
-                setValue('');
-                setTried([]);
-                setOutcome(null);
-                const fresh = newRound(level);
-                stateRef.current = fresh;
-                setS(fresh);
-              }}
-            >
-              {t('practice.done.again')}
-            </button>
-          </div>
+              <button
+                type="button"
+                className="btn btn--ghost btn--small"
+                onClick={() => navigate({ name: 'play' })}
+              >
+                {t('practice.done.toJourney')}
+              </button>
+            </div>
+          ) : (
+            <div className="row" style={{ justifyContent: 'center' }}>
+              {outcome?.worldCompleted || replaying ? (
+                <button type="button" className="btn" onClick={() => navigate({ name: 'album' })}>
+                  {t('practice.done.toAlbum')}
+                </button>
+              ) : null}
+              <button
+                type="button"
+                className={outcome?.worldCompleted || replaying ? 'btn btn--secondary' : 'btn'}
+                onClick={() => navigate({ name: 'play' })}
+              >
+                {t('practice.done.toJourney')}
+              </button>
+              <button type="button" className="btn btn--secondary" onClick={playAgain}>
+                {t('practice.done.again')}
+              </button>
+            </div>
+          )}
         </section>
       </main>
     );

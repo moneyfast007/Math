@@ -2048,6 +2048,7 @@ export const he = {
   'practice.done.daily': 'כל הכבוד! סיימת את החזרה של היום.',
   'practice.done.replay': 'כל הכבוד! חזרת על העולם הזה.',
   'practice.done.toJourney': 'למסע',
+  'practice.done.next': 'לשלב הבא',
   'practice.review.title': 'חזרה על כל העולם',
   'practice.review.body': 'תרגילים מכל התחנות, מעורבבים.',
 

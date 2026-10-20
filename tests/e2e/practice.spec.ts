@@ -125,6 +125,10 @@ test.describe('practice', () => {
     // Every answer right: the station is passed and the journey moves on.
     await expect(page.getByRole('status')).toContainText('עברת את התחנה! התחנה הבאה נפתחה!');
 
+    // One big way on, and a small way back to the map; no "again" after a pass.
+    await expect(page.getByRole('button', { name: 'לשלב הבא' })).toBeVisible();
+    await expect(page.getByRole('button', { name: 'עוד סבב' })).toHaveCount(0);
+
     // Back on the map: station 1 is done, 2 is next.
     await page.getByRole('button', { name: 'למסע' }).click();
     await expect(page.getByRole('button', { name: 'תחנה 1, הושלמה' })).toBeVisible();
