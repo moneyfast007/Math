@@ -31,6 +31,8 @@ export interface VoiceSpec {
   speakingRate?: number;
   /** What the service encodes: its own MP3 (32 kbps), or raw PCM (a WAV) to encode here. */
   encoding?: 'MP3' | 'LINEAR16';
+  /** Gain the service applies before encoding, dB (its output clips at full scale). */
+  volumeGainDb?: number;
 }
 
 export const LANGUAGE = 'he-IL';
@@ -88,6 +90,7 @@ interface SynthesizeBody {
     audioEncoding: 'MP3' | 'LINEAR16';
     speakingRate?: number;
     sampleRateHertz?: number;
+    volumeGainDb?: number;
   };
 }
 
@@ -114,7 +117,10 @@ function buildBody(text: string, spec: VoiceSpec): SynthesizeBody {
                     ? 'gemini-3.8-flash-lite-tts'
                     : 'gemini-3.1-flash-tts-preview',
         },
-        audioConfig: { audioEncoding: spec.encoding ?? 'MP3' },
+        audioConfig: {
+          audioEncoding: spec.encoding ?? 'MP3',
+          ...(spec.volumeGainDb !== undefined ? { volumeGainDb: spec.volumeGainDb } : {}),
+        },
       };
       return body;
     }
@@ -122,7 +128,10 @@ function buildBody(text: string, spec: VoiceSpec): SynthesizeBody {
       const body: SynthesizeBody = {
         input: { text },
         voice: { languageCode: LANGUAGE, name: `${LANGUAGE}-Chirp3-HD-${spec.voice}` },
-        audioConfig: { audioEncoding: spec.encoding ?? 'MP3' },
+        audioConfig: {
+          audioEncoding: spec.encoding ?? 'MP3',
+          ...(spec.volumeGainDb !== undefined ? { volumeGainDb: spec.volumeGainDb } : {}),
+        },
       };
       return body;
     }
@@ -131,7 +140,10 @@ function buildBody(text: string, spec: VoiceSpec): SynthesizeBody {
       const body: SynthesizeBody = {
         input: { text },
         voice: { languageCode: LANGUAGE, name: spec.voice },
-        audioConfig: { audioEncoding: spec.encoding ?? 'MP3' },
+        audioConfig: {
+          audioEncoding: spec.encoding ?? 'MP3',
+          ...(spec.volumeGainDb !== undefined ? { volumeGainDb: spec.volumeGainDb } : {}),
+        },
       };
       return body;
     }

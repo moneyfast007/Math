@@ -59,7 +59,7 @@ const { values } = parseArgs({
 });
 
 const SENTENCES: readonly string[] =
-  values.set === 'round10'
+  values.set === 'round10' || values.set === 'round11'
     ? ROUND10
     : values.set === 'round9'
       ? ROUND9
@@ -198,6 +198,23 @@ const ROUND10_VARIANTS: Variant[] = [
   },
 ];
 
+/**
+ * Round 11: the clipping (round 10's PCM peaks at full scale, 20 bursts a sentence).
+ * Raw PCM three ways, to measure which one stops it: as is, with the service's
+ * gain at -6 dB, and with a prompt asking for a soft volume.
+ */
+const SOFT_PROMPT = QUICK_PROMPT + ' Speak at a soft, moderate volume, never loud.';
+const ROUND11_VARIANTS: Variant[] = [
+  { name: 'pcm-as-is', spec: { ...LEDA_QUICK, encoding: 'LINEAR16' } },
+  { name: 'pcm-gain-6', spec: { ...LEDA_QUICK, encoding: 'LINEAR16', volumeGainDb: -6 } },
+  { name: 'pcm-soft-prompt', spec: { ...LEDA_QUICK, encoding: 'LINEAR16', prompt: SOFT_PROMPT } },
+].map(({ name, spec }) => ({
+  name,
+  spec,
+  texts: SENTENCES.map(vocalizeForTts),
+  post: { ext: 'wav', args: ['-c:a', 'pcm_s16le'] },
+}));
+
 /** Round 9: the chosen voice and pace, plain text against the targeted nikud (teens). */
 const ROUND9_VARIANTS: Variant[] = [
   { name: 'plain', texts: [...SENTENCES] },
@@ -233,17 +250,19 @@ const variants: Variant[] = values.voices
           texts,
         }));
       })
-  : (values.set === 'round10'
-      ? ROUND10_VARIANTS
-      : values.set === 'round9'
-        ? ROUND9_VARIANTS
-        : values.set === 'round8'
-          ? ROUND8_VARIANTS
-          : values.set === 'round7'
-            ? ROUND7_VARIANTS
-            : values.set === 'round6'
-              ? ROUND6_VARIANTS
-              : ALL_VARIANTS
+  : (values.set === 'round11'
+      ? ROUND11_VARIANTS
+      : values.set === 'round10'
+        ? ROUND10_VARIANTS
+        : values.set === 'round9'
+          ? ROUND9_VARIANTS
+          : values.set === 'round8'
+            ? ROUND8_VARIANTS
+            : values.set === 'round7'
+              ? ROUND7_VARIANTS
+              : values.set === 'round6'
+                ? ROUND6_VARIANTS
+                : ALL_VARIANTS
     ).filter((v) => !only || only.includes(v.name));
 
 const HTML_ESCAPES: Record<string, string> = {
