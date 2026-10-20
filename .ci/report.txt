@@ -6,6 +6,9 @@ ok
 > heshbon@0.1.0 typecheck
 > tsc -b
 
+src/screens/JourneyScreen.tsx(442,25): error TS2345: Argument of type '"journey.review.done" | "journey.review.current" | "journey.review.locked" | "journey.review.skipped" | "journey.review.warmup"' is not assignable to parameter of type '"welcome.greeting" | "welcome.forParents" | "welcome.haveData" | "welcome.connect" | "home.whoIsPlaying.mixed" | "home.pickHint" | "home.parentsHold" | "parentArea.tabs" | ... 2609 more ... | "playground.band.older"'.
+  Type '"journey.review.skipped"' is not assignable to type '"welcome.greeting" | "welcome.forParents" | "welcome.haveData" | "welcome.connect" | "home.whoIsPlaying.mixed" | "home.pickHint" | "home.parentsHold" | "parentArea.tabs" | ... 2609 more ... | "playground.band.older"'. Did you mean '"journey.review.locked"'?
+TYPECHECK FAILED
 
 ## lint
 
@@ -21,16 +24,16 @@ ok
 
 [1m[46m RUN [49m[22m [36mv3.2.7 [39m[90m/home/runner/work/Math/Math[39m
 
- [32m✓[39m src/state/store.test.ts [2m([22m[2m13 tests[22m[2m)[22m[32m 40[2mms[22m[39m
- [32m✓[39m src/sync/merge.test.ts [2m([22m[2m13 tests[22m[2m)[22m[32m 54[2mms[22m[39m
- [32m✓[39m src/state/progress.test.ts [2m([22m[2m15 tests[22m[2m)[22m[32m 35[2mms[22m[39m
- [32m✓[39m src/state/validate.test.ts [2m([22m[2m20 tests[22m[2m)[22m[32m 43[2mms[22m[39m
- [32m✓[39m src/screens/JourneyScreen.test.tsx [2m([22m[2m17 tests[22m[2m)[22m[33m 761[2mms[22m[39m
- [32m✓[39m src/lang/hebrewNumbers.test.ts [2m([22m[2m81 tests[22m[2m)[22m[33m 1609[2mms[22m[39m
-   [33m[2m✓[22m[39m numberToWords, properties[2m > [22mis injective on 0–99,999: different numbers never produce the same words [33m 1463[2mms[22m[39m
- [32m✓[39m src/audio/speaker.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 53[2mms[22m[39m
- [32m✓[39m src/screens/HomeScreen.test.tsx [2m([22m[2m7 tests[22m[2m)[22m[33m 331[2mms[22m[39m
- [32m✓[39m src/lang/compose.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 27[2mms[22m[39m
+ [32m✓[39m src/state/store.test.ts [2m([22m[2m13 tests[22m[2m)[22m[32m 54[2mms[22m[39m
+ [32m✓[39m src/sync/merge.test.ts [2m([22m[2m13 tests[22m[2m)[22m[32m 89[2mms[22m[39m
+ [32m✓[39m src/state/progress.test.ts [2m([22m[2m15 tests[22m[2m)[22m[32m 48[2mms[22m[39m
+ [32m✓[39m src/state/validate.test.ts [2m([22m[2m20 tests[22m[2m)[22m[32m 37[2mms[22m[39m
+ [32m✓[39m src/screens/JourneyScreen.test.tsx [2m([22m[2m17 tests[22m[2m)[22m[33m 864[2mms[22m[39m
+ [32m✓[39m src/lang/hebrewNumbers.test.ts [2m([22m[2m81 tests[22m[2m)[22m[33m 2048[2mms[22m[39m
+   [33m[2m✓[22m[39m numberToWords, properties[2m > [22mis injective on 0–99,999: different numbers never produce the same words [33m 1852[2mms[22m[39m
+ [32m✓[39m src/audio/speaker.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 36[2mms[22m[39m
+ [32m✓[39m src/screens/HomeScreen.test.tsx [2m([22m[2m7 tests[22m[2m)[22m[33m 426[2mms[22m[39m
+ [32m✓[39m src/lang/compose.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 25[2mms[22m[39m
 [90mstderr[2m | src/screens/ParentScreen.test.tsx[2m > [22m[2m<ParentScreen> sections[2m > [22m[2mshows the progress per child in its own section, keeping every detail
 [22m[39mError: Not implemented: window.scrollTo
     at module.exports (/home/runner/work/Math/Math/node_modules/jsdom/lib/jsdom/browser/not-implemented.js:9:17)
@@ -81,193 +84,272 @@ Error: Not implemented: window.scrollTo
     at batchedUpdates$1 (/home/runner/work/Math/Math/node_modules/react-dom/cjs/react-dom-client.development.js:3437:40)
     at dispatchEventForPluginEventSystem (/home/runner/work/Math/Math/node_modules/react-dom/cjs/react-dom-client.development.js:21008:7) [90mundefined[39m
 
- [32m✓[39m src/screens/ParentScreen.test.tsx [2m([22m[2m6 tests[22m[2m)[22m[33m 834[2mms[22m[39m
- [32m✓[39m src/ui/components.test.tsx [2m([22m[2m8 tests[22m[2m)[22m[33m 423[2mms[22m[39m
- [32m✓[39m src/parent/gate.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[33m 463[2mms[22m[39m
- [32m✓[39m src/state/streak.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 16[2mms[22m[39m
- [32m✓[39m scripts/tts/pronunciation.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 17[2mms[22m[39m
- [32m✓[39m src/lang/time.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 19[2mms[22m[39m
- [32m✓[39m src/i18n/i18n.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 148[2mms[22m[39m
- [32m✓[39m src/ui/MathExpr.test.tsx [2m([22m[2m4 tests[22m[2m)[22m[32m 77[2mms[22m[39m
+ [32m✓[39m src/screens/ParentScreen.test.tsx [2m([22m[2m6 tests[22m[2m)[22m[33m 909[2mms[22m[39m
+   [33m[2m✓[22m[39m <ParentScreen> sections[2m > [22mopens on the children: a card each, with the world, the station and what to strengthen [33m 314[2mms[22m[39m
+ [32m✓[39m src/ui/components.test.tsx [2m([22m[2m8 tests[22m[2m)[22m[33m 440[2mms[22m[39m
+ [32m✓[39m src/parent/gate.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[33m 596[2mms[22m[39m
+   [33m[2m✓[22m[39m <ParentGate> with the arithmetic question[2m > [22munlocks on the right answer [33m 314[2mms[22m[39m
+ [32m✓[39m src/state/streak.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 18[2mms[22m[39m
+ [32m✓[39m scripts/tts/pronunciation.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 18[2mms[22m[39m
+ [32m✓[39m src/lang/time.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 27[2mms[22m[39m
+ [32m✓[39m src/screens/WorldComplete.test.tsx [2m([22m[2m3 tests[22m[2m)[22m[33m 364[2mms[22m[39m
  [32m✓[39m src/screens/AlbumScreen.test.tsx [2m([22m[2m1 test[22m[2m)[22m[32m 192[2mms[22m[39m
- [32m✓[39m src/lang/spoken.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 7[2mms[22m[39m
- [32m✓[39m src/audio/hash.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 14[2mms[22m[39m
+ [32m✓[39m src/ui/MathExpr.test.tsx [2m([22m[2m4 tests[22m[2m)[22m[32m 75[2mms[22m[39m
+ [32m✓[39m src/i18n/i18n.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 230[2mms[22m[39m
+ [32m✓[39m src/lang/spoken.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 12[2mms[22m[39m
  [32m✓[39m src/lang/spokenLabel.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 26[2mms[22m[39m
- [32m✓[39m src/state/pin.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 14[2mms[22m[39m
- [32m✓[39m src/state/backup.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 16[2mms[22m[39m
+ [32m✓[39m src/audio/hash.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 11[2mms[22m[39m
+ [32m✓[39m src/state/pin.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 22[2mms[22m[39m
  [32m✓[39m src/lang/groupDigits.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 7[2mms[22m[39m
- [32m✓[39m src/lang/fractions.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 8[2mms[22m[39m
- [32m✓[39m src/app/router.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 10[2mms[22m[39m
- [32m✓[39m src/ui/ageBand.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 11[2mms[22m[39m
- [32m✓[39m src/sync/client.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 121[2mms[22m[39m
- [32m✓[39m src/engine/topics/addSub20.test.ts [2m([22m[2m18 tests[22m[2m)[22m[33m 537[2mms[22m[39m
- [32m✓[39m worker/core.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 57[2mms[22m[39m
- [32m✓[39m src/engine/session.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 42[2mms[22m[39m
- [32m✓[39m src/engine/journey.test.ts [2m([22m[2m14 tests[22m[2m)[22m[32m 26[2mms[22m[39m
- [32m✓[39m src/engine/daily.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 13[2mms[22m[39m
- [32m✓[39m src/engine/topics/audioBank.test.ts [2m([22m[2m340 tests[22m[2m)[22m[33m 24347[2mms[22m[39m
-   [33m[2m✓[22m[39m the audio bank covers what a child can hear: numbers-100[2m > [22mlevel 3 [33m 368[2mms[22m[39m
-   [33m[2m✓[22m[39m the audio bank covers what a child can hear: numbers-100[2m > [22mlevel 4 [33m 1121[2mms[22m[39m
-   [33m[2m✓[22m[39m the audio bank covers what a child can hear: numbers-100[2m > [22mlevel 9 [33m 619[2mms[22m[39m
-   [33m[2m✓[22m[39m the audio bank covers what a child can hear: clock[2m > [22mlevel 10 [33m 345[2mms[22m[39m
-   [33m[2m✓[22m[39m the audio bank covers what a child can hear: vertical-2[2m > [22mlevel 1 [33m 388[2mms[22m[39m
-   [33m[2m✓[22m[39m the audio bank covers what a child can hear: vertical-3[2m > [22mlevel 1 [33m 556[2mms[22m[39m
-   [33m[2m✓[22m[39m the audio bank covers what a child can hear: fraction-ops[2m > [22mlevel 7 [33m 308[2mms[22m[39m
-   [33m[2m✓[22m[39m the audio bank covers what a child can hear: fraction-ops[2m > [22mlevel 9 [33m 348[2mms[22m[39m
-   [33m[2m✓[22m[39m the audio bank covers what a child can hear: vertical-4[2m > [22mlevel 1 [33m 864[2mms[22m[39m
-   [33m[2m✓[22m[39m the audio bank covers what a child can hear: fraction-mul-div[2m > [22mlevel 6 [33m 534[2mms[22m[39m
-   [33m[2m✓[22m[39m the audio bank covers what a child can hear: fraction-mul-div[2m > [22mlevel 9 [33m 553[2mms[22m[39m
-   [33m[2m✓[22m[39m the audio bank covers what a child can hear: ratio[2m > [22mlevel 1 [33m 503[2mms[22m[39m
-   [33m[2m✓[22m[39m the audio bank covers what a child can hear: ratio[2m > [22mlevel 2 [33m 320[2mms[22m[39m
-   [33m[2m✓[22m[39m the audio bank covers what a child can hear: ratio[2m > [22mlevel 3 [33m 720[2mms[22m[39m
-   [33m[2m✓[22m[39m the audio bank covers what a child can hear: ratio[2m > [22mlevel 4 [33m 688[2mms[22m[39m
-   [33m[2m✓[22m[39m the audio bank covers what a child can hear: ratio[2m > [22mlevel 5 [33m 504[2mms[22m[39m
-   [33m[2m✓[22m[39m the audio bank covers what a child can hear: ratio[2m > [22mlevel 9 [33m 510[2mms[22m[39m
-   [33m[2m✓[22m[39m the audio bank covers what a child can hear: circle-volume[2m > [22mlevel 7 [33m 516[2mms[22m[39m
-   [33m[2m✓[22m[39m the audio bank covers what a child can hear: circle-volume[2m > [22mlevel 8 [33m 531[2mms[22m[39m
- [32m✓[39m src/engine/topics/all.test.ts [2m([22m[2m516 tests[22m[2m)[22m[33m 181879[2mms[22m[39m
-   [33m[2m✓[22m[39m topic count-10[2m > [22mlevel 3 produces valid exercises [33m 317[2mms[22m[39m
-   [33m[2m✓[22m[39m topic count-10[2m > [22mlevel 4 produces valid exercises [33m 439[2mms[22m[39m
-   [33m[2m✓[22m[39m topic count-10[2m > [22mlevel 10 produces valid exercises [33m 388[2mms[22m[39m
-   [33m[2m✓[22m[39m topic count-10[2m > [22mputs the answer at different places among the buttons [33m 1057[2mms[22m[39m
-   [33m[2m✓[22m[39m topic count-10[2m > [22mdoes not repeat an exercise within a round while the level has others [33m 1104[2mms[22m[39m
-   [33m[2m✓[22m[39m topic shapes[2m > [22mlevel 9 produces valid exercises [33m 365[2mms[22m[39m
-   [33m[2m✓[22m[39m topic shapes[2m > [22mputs the answer at different places among the buttons [33m 949[2mms[22m[39m
-   [33m[2m✓[22m[39m topic shapes[2m > [22mdoes not repeat an exercise within a round while the level has others [33m 1059[2mms[22m[39m
-   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 2 produces valid exercises [33m 341[2mms[22m[39m
-   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 3 produces valid exercises [33m 511[2mms[22m[39m
-   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 4 produces valid exercises [33m 1811[2mms[22m[39m
-   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 6 produces valid exercises [33m 410[2mms[22m[39m
-   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 8 produces valid exercises [33m 404[2mms[22m[39m
-   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 9 produces valid exercises [33m 709[2mms[22m[39m
-   [33m[2m✓[22m[39m topic numbers-100[2m > [22mputs the answer at different places among the buttons [33m 5404[2mms[22m[39m
-   [33m[2m✓[22m[39m topic numbers-100[2m > [22mdoes not repeat an exercise within a round while the level has others [33m 6000[2mms[22m[39m
-   [33m[2m✓[22m[39m topic numbers-100[2m > [22mavoids an immediate repeat [33m 364[2mms[22m[39m
-   [33m[2m✓[22m[39m topic clock-money-1[2m > [22mlevel 10 produces valid exercises [33m 345[2mms[22m[39m
-   [33m[2m✓[22m[39m topic money[2m > [22mlevel 7 produces valid exercises [33m 328[2mms[22m[39m
-   [33m[2m✓[22m[39m topic money[2m > [22mlevel 8 produces valid exercises [33m 359[2mms[22m[39m
-   [33m[2m✓[22m[39m topic money[2m > [22mlevel 10 produces valid exercises [33m 330[2mms[22m[39m
-   [33m[2m✓[22m[39m topic money[2m > [22mputs the answer at different places among the buttons [33m 470[2mms[22m[39m
-   [33m[2m✓[22m[39m topic money[2m > [22mdoes not repeat an exercise within a round while the level has others [33m 542[2mms[22m[39m
-   [33m[2m✓[22m[39m topic mult-intro[2m > [22mputs the answer at different places among the buttons [33m 783[2mms[22m[39m
-   [33m[2m✓[22m[39m topic mult-intro[2m > [22mdoes not repeat an exercise within a round while the level has others [33m 890[2mms[22m[39m
-   [33m[2m✓[22m[39m topic clock[2m > [22mlevel 8 produces valid exercises [33m 326[2mms[22m[39m
-   [33m[2m✓[22m[39m topic clock[2m > [22mlevel 9 produces valid exercises [33m 441[2mms[22m[39m
-   [33m[2m✓[22m[39m topic clock[2m > [22mlevel 10 produces valid exercises [33m 554[2mms[22m[39m
-   [33m[2m✓[22m[39m topic clock[2m > [22mputs the answer at different places among the buttons [33m 1920[2mms[22m[39m
-   [33m[2m✓[22m[39m topic clock[2m > [22mdoes not repeat an exercise within a round while the level has others [33m 2255[2mms[22m[39m
-   [33m[2m✓[22m[39m topic vertical-2[2m > [22mlevel 1 produces valid exercises [33m 397[2mms[22m[39m
-   [33m[2m✓[22m[39m topic vertical-2[2m > [22mlevel 2 produces valid exercises [33m 437[2mms[22m[39m
-   [33m[2m✓[22m[39m topic vertical-2[2m > [22mlevel 3 produces valid exercises [33m 431[2mms[22m[39m
-   [33m[2m✓[22m[39m topic vertical-2[2m > [22mlevel 4 produces valid exercises [33m 390[2mms[22m[39m
-   [33m[2m✓[22m[39m topic vertical-2[2m > [22mlevel 5 produces valid exercises [33m 410[2mms[22m[39m
-   [33m[2m✓[22m[39m topic vertical-2[2m > [22mlevel 6 produces valid exercises [33m 414[2mms[22m[39m
-   [33m[2m✓[22m[39m topic vertical-2[2m > [22mlevel 7 produces valid exercises [33m 413[2mms[22m[39m
-   [33m[2m✓[22m[39m topic vertical-2[2m > [22mlevel 10 produces valid exercises [33m 427[2mms[22m[39m
-   [33m[2m✓[22m[39m topic numbers-10000[2m > [22mlevel 9 produces valid exercises [33m 302[2mms[22m[39m
-   [33m[2m✓[22m[39m topic fractions-1[2m > [22mlevel 7 produces valid exercises [33m 357[2mms[22m[39m
-   [33m[2m✓[22m[39m topic fractions-1[2m > [22mputs the answer at different places among the buttons [33m 1100[2mms[22m[39m
-   [33m[2m✓[22m[39m topic fractions-1[2m > [22mdoes not repeat an exercise within a round while the level has others [33m 1237[2mms[22m[39m
-   [33m[2m✓[22m[39m topic measure[2m > [22mlevel 1 produces valid exercises [33m 325[2mms[22m[39m
-   [33m[2m✓[22m[39m topic measure[2m > [22mlevel 2 produces valid exercises [33m 337[2mms[22m[39m
-   [33m[2m✓[22m[39m topic measure[2m > [22mputs the answer at different places among the buttons [33m 790[2mms[22m[39m
-   [33m[2m✓[22m[39m topic measure[2m > [22mdoes not repeat an exercise within a round while the level has others [33m 903[2mms[22m[39m
-   [33m[2m✓[22m[39m topic vertical-3[2m > [22mlevel 1 produces valid exercises [33m 500[2mms[22m[39m
-   [33m[2m✓[22m[39m topic vertical-3[2m > [22mlevel 2 produces valid exercises [33m 657[2mms[22m[39m
-   [33m[2m✓[22m[39m topic vertical-3[2m > [22mlevel 3 produces valid exercises [33m 472[2mms[22m[39m
-   [33m[2m✓[22m[39m topic vertical-3[2m > [22mlevel 4 produces valid exercises [33m 517[2mms[22m[39m
-   [33m[2m✓[22m[39m topic vertical-3[2m > [22mlevel 5 produces valid exercises [33m 500[2mms[22m[39m
-   [33m[2m✓[22m[39m topic vertical-3[2m > [22mlevel 6 produces valid exercises [33m 583[2mms[22m[39m
-   [33m[2m✓[22m[39m topic vertical-3[2m > [22mlevel 7 produces valid exercises [33m 538[2mms[22m[39m
-   [33m[2m✓[22m[39m topic vertical-3[2m > [22mlevel 10 produces valid exercises [33m 644[2mms[22m[39m
-   [33m[2m✓[22m[39m topic vertical-3[2m > [22mputs the answer at different places among the buttons [33m 322[2mms[22m[39m
-   [33m[2m✓[22m[39m topic vertical-3[2m > [22mdoes not repeat an exercise within a round while the level has others [33m 372[2mms[22m[39m
-   [33m[2m✓[22m[39m topic vertical-3[2m > [22mhas a finite spoken bank without digits [33m 511[2mms[22m[39m
-   [33m[2m✓[22m[39m topic big-numbers[2m > [22mlevel 2 produces valid exercises [33m 382[2mms[22m[39m
-   [33m[2m✓[22m[39m topic big-numbers[2m > [22mlevel 4 produces valid exercises [33m 338[2mms[22m[39m
-   [33m[2m✓[22m[39m topic big-numbers[2m > [22mlevel 5 produces valid exercises [33m 353[2mms[22m[39m
-   [33m[2m✓[22m[39m topic big-numbers[2m > [22mlevel 6 produces valid exercises [33m 321[2mms[22m[39m
-   [33m[2m✓[22m[39m topic big-numbers[2m > [22mlevel 7 produces valid exercises [33m 310[2mms[22m[39m
-   [33m[2m✓[22m[39m topic big-numbers[2m > [22mlevel 8 produces valid exercises [33m 308[2mms[22m[39m
-   [33m[2m✓[22m[39m topic long-mul-div[2m > [22mlevel 7 produces valid exercises [33m 301[2mms[22m[39m
-   [33m[2m✓[22m[39m topic fraction-ops[2m > [22mlevel 3 produces valid exercises [33m 411[2mms[22m[39m
-   [33m[2m✓[22m[39m topic fraction-ops[2m > [22mlevel 6 produces valid exercises [33m 373[2mms[22m[39m
-   [33m[2m✓[22m[39m topic fraction-ops[2m > [22mlevel 7 produces valid exercises [33m 486[2mms[22m[39m
-   [33m[2m✓[22m[39m topic fraction-ops[2m > [22mlevel 8 produces valid exercises [33m 430[2mms[22m[39m
-   [33m[2m✓[22m[39m topic fraction-ops[2m > [22mlevel 9 produces valid exercises [33m 498[2mms[22m[39m
-   [33m[2m✓[22m[39m topic fraction-ops[2m > [22mlevel 10 produces valid exercises [33m 480[2mms[22m[39m
-   [33m[2m✓[22m[39m topic fraction-ops[2m > [22mputs the answer at different places among the buttons [33m 3668[2mms[22m[39m
-   [33m[2m✓[22m[39m topic fraction-ops[2m > [22mdoes not repeat an exercise within a round while the level has others [33m 4327[2mms[22m[39m
-   [33m[2m✓[22m[39m topic perimeter-area[2m > [22mlevel 9 produces valid exercises [33m 322[2mms[22m[39m
-   [33m[2m✓[22m[39m topic perimeter-area[2m > [22mputs the answer at different places among the buttons [33m 824[2mms[22m[39m
-   [33m[2m✓[22m[39m topic perimeter-area[2m > [22mdoes not repeat an exercise within a round while the level has others [33m 966[2mms[22m[39m
-   [33m[2m✓[22m[39m topic vertical-4[2m > [22mlevel 1 produces valid exercises [33m 882[2mms[22m[39m
-   [33m[2m✓[22m[39m topic vertical-4[2m > [22mlevel 2 produces valid exercises [33m 764[2mms[22m[39m
-   [33m[2m✓[22m[39m topic vertical-4[2m > [22mlevel 3 produces valid exercises [33m 478[2mms[22m[39m
-   [33m[2m✓[22m[39m topic vertical-4[2m > [22mlevel 4 produces valid exercises [33m 714[2mms[22m[39m
-   [33m[2m✓[22m[39m topic vertical-4[2m > [22mlevel 5 produces valid exercises [33m 1023[2mms[22m[39m
-   [33m[2m✓[22m[39m topic vertical-4[2m > [22mlevel 6 produces valid exercises [33m 1004[2mms[22m[39m
-   [33m[2m✓[22m[39m topic vertical-4[2m > [22mlevel 7 produces valid exercises [33m 1339[2mms[22m[39m
-   [33m[2m✓[22m[39m topic vertical-4[2m > [22mlevel 10 produces valid exercises [33m 927[2mms[22m[39m
-   [33m[2m✓[22m[39m topic vertical-4[2m > [22mputs the answer at different places among the buttons [33m 544[2mms[22m[39m
-   [33m[2m✓[22m[39m topic vertical-4[2m > [22mdoes not repeat an exercise within a round while the level has others [33m 636[2mms[22m[39m
-   [33m[2m✓[22m[39m topic vertical-4[2m > [22mhas a finite spoken bank without digits [33m 755[2mms[22m[39m
-   [33m[2m✓[22m[39m topic decimals[2m > [22mlevel 3 produces valid exercises [33m 489[2mms[22m[39m
-   [33m[2m✓[22m[39m topic decimals[2m > [22mlevel 6 produces valid exercises [33m 302[2mms[22m[39m
-   [33m[2m✓[22m[39m topic decimals[2m > [22mlevel 7 produces valid exercises [33m 301[2mms[22m[39m
-   [33m[2m✓[22m[39m topic decimals[2m > [22mlevel 8 produces valid exercises [33m 312[2mms[22m[39m
-   [33m[2m✓[22m[39m topic decimals[2m > [22mputs the answer at different places among the buttons [33m 947[2mms[22m[39m
-   [33m[2m✓[22m[39m topic decimals[2m > [22mdoes not repeat an exercise within a round while the level has others [33m 1091[2mms[22m[39m
-   [33m[2m✓[22m[39m topic percent-intro[2m > [22mputs the answer at different places among the buttons [33m 791[2mms[22m[39m
-   [33m[2m✓[22m[39m topic percent-intro[2m > [22mdoes not repeat an exercise within a round while the level has others [33m 893[2mms[22m[39m
-   [33m[2m✓[22m[39m topic order-ops[2m > [22mlevel 2 produces valid exercises [33m 337[2mms[22m[39m
-   [33m[2m✓[22m[39m topic order-ops[2m > [22mlevel 3 produces valid exercises [33m 308[2mms[22m[39m
-   [33m[2m✓[22m[39m topic order-ops[2m > [22mlevel 4 produces valid exercises [33m 307[2mms[22m[39m
-   [33m[2m✓[22m[39m topic order-ops[2m > [22mlevel 5 produces valid exercises [33m 380[2mms[22m[39m
-   [33m[2m✓[22m[39m topic order-ops[2m > [22mlevel 6 produces valid exercises [33m 304[2mms[22m[39m
-   [33m[2m✓[22m[39m topic order-ops[2m > [22mlevel 8 produces valid exercises [33m 363[2mms[22m[39m
-   [33m[2m✓[22m[39m topic order-ops[2m > [22mlevel 9 produces valid exercises [33m 345[2mms[22m[39m
-   [33m[2m✓[22m[39m topic areas[2m > [22mlevel 8 produces valid exercises [33m 301[2mms[22m[39m
-   [33m[2m✓[22m[39m topic fraction-mul-div[2m > [22mlevel 2 produces valid exercises [33m 430[2mms[22m[39m
-   [33m[2m✓[22m[39m topic fraction-mul-div[2m > [22mlevel 3 produces valid exercises [33m 415[2mms[22m[39m
-   [33m[2m✓[22m[39m topic fraction-mul-div[2m > [22mlevel 4 produces valid exercises [33m 419[2mms[22m[39m
-   [33m[2m✓[22m[39m topic fraction-mul-div[2m > [22mlevel 6 produces valid exercises [33m 683[2mms[22m[39m
-   [33m[2m✓[22m[39m topic fraction-mul-div[2m > [22mlevel 9 produces valid exercises [33m 750[2mms[22m[39m
-   [33m[2m✓[22m[39m topic fraction-mul-div[2m > [22mputs the answer at different places among the buttons [33m 3973[2mms[22m[39m
-   [33m[2m✓[22m[39m topic fraction-mul-div[2m > [22mdoes not repeat an exercise within a round while the level has others [33m 4616[2mms[22m[39m
-   [33m[2m✓[22m[39m topic decimal-ops[2m > [22mlevel 1 produces valid exercises [33m 334[2mms[22m[39m
-   [33m[2m✓[22m[39m topic decimal-ops[2m > [22mlevel 2 produces valid exercises [33m 339[2mms[22m[39m
-   [33m[2m✓[22m[39m topic decimal-ops[2m > [22mlevel 3 produces valid exercises [33m 397[2mms[22m[39m
-   [33m[2m✓[22m[39m topic decimal-ops[2m > [22mlevel 4 produces valid exercises [33m 381[2mms[22m[39m
-   [33m[2m✓[22m[39m topic decimal-ops[2m > [22mlevel 5 produces valid exercises [33m 357[2mms[22m[39m
-   [33m[2m✓[22m[39m topic decimal-ops[2m > [22mlevel 6 produces valid exercises [33m 340[2mms[22m[39m
-   [33m[2m✓[22m[39m topic decimal-ops[2m > [22mlevel 7 produces valid exercises [33m 328[2mms[22m[39m
-   [33m[2m✓[22m[39m topic decimal-ops[2m > [22mlevel 9 produces valid exercises [33m 327[2mms[22m[39m
-   [33m[2m✓[22m[39m topic decimal-ops[2m > [22mlevel 10 produces valid exercises [33m 330[2mms[22m[39m
-   [33m[2m✓[22m[39m topic percent[2m > [22mlevel 5 produces valid exercises [33m 302[2mms[22m[39m
-   [33m[2m✓[22m[39m topic percent[2m > [22mlevel 7 produces valid exercises [33m 319[2mms[22m[39m
-   [33m[2m✓[22m[39m topic ratio[2m > [22mlevel 1 produces valid exercises [33m 597[2mms[22m[39m
-   [33m[2m✓[22m[39m topic ratio[2m > [22mlevel 2 produces valid exercises [33m 478[2mms[22m[39m
-   [33m[2m✓[22m[39m topic ratio[2m > [22mlevel 3 produces valid exercises [33m 901[2mms[22m[39m
-   [33m[2m✓[22m[39m topic ratio[2m > [22mlevel 4 produces valid exercises [33m 882[2mms[22m[39m
-   [33m[2m✓[22m[39m topic ratio[2m > [22mlevel 5 produces valid exercises [33m 860[2mms[22m[39m
-   [33m[2m✓[22m[39m topic ratio[2m > [22mlevel 7 produces valid exercises [33m 397[2mms[22m[39m
-   [33m[2m✓[22m[39m topic ratio[2m > [22mlevel 8 produces valid exercises [33m 478[2mms[22m[39m
-   [33m[2m✓[22m[39m topic ratio[2m > [22mlevel 9 produces valid exercises [33m 879[2mms[22m[39m
-   [33m[2m✓[22m[39m topic ratio[2m > [22mlevel 10 produces valid exercises [33m 507[2mms[22m[39m
-   [33m[2m✓[22m[39m topic ratio[2m > [22mputs the answer at different places among the buttons [33m 7815[2mms[22m[39m
-   [33m[2m✓[22m[39m topic ratio[2m > [22mdoes not repeat an exercise within a round while the level has others [33m 9167[2mms[22m[39m
-   [33m[2m✓[22m[39m topic ratio[2m > [22mavoids an immediate repeat [33m 557[2mms[22m[39m
-   [33m[2m✓[22m[39m topic circle-volume[2m > [22mlevel 7 produces valid exercises [33m 869[2mms[22m[39m
-   [33m[2m✓[22m[39m topic circle-volume[2m > [22mlevel 8 produces valid exercises [33m 856[2mms[22m[39m
-   [33m[2m✓[22m[39m topic circle-volume[2m > [22mlevel 10 produces valid exercises [33m 345[2mms[22m[39m
-   [33m[2m✓[22m[39m topic circle-volume[2m > [22mputs the answer at different places among the buttons [33m 3707[2mms[22m[39m
-   [33m[2m✓[22m[39m topic circle-volume[2m > [22mdoes not repeat an exercise within a round while the level has others [33m 4270[2mms[22m[39m
+ [32m✓[39m src/state/backup.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 11[2mms[22m[39m
+ [32m✓[39m src/lang/fractions.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 11[2mms[22m[39m
+ [32m✓[39m src/app/router.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 12[2mms[22m[39m
+ [32m✓[39m src/ui/ageBand.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+ [32m✓[39m src/sync/client.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 140[2mms[22m[39m
+ [32m✓[39m worker/core.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 69[2mms[22m[39m
+ [32m✓[39m src/engine/topics/addSub20.test.ts [2m([22m[2m18 tests[22m[2m)[22m[33m 673[2mms[22m[39m
+ [32m✓[39m src/engine/session.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 34[2mms[22m[39m
+ [32m✓[39m src/engine/journey.test.ts [2m([22m[2m17 tests[22m[2m)[22m[32m 37[2mms[22m[39m
+ [32m✓[39m src/engine/daily.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 12[2mms[22m[39m
+ [32m✓[39m src/engine/topics/audioBank.test.ts [2m([22m[2m340 tests[22m[2m)[22m[33m 29654[2mms[22m[39m
+   [33m[2m✓[22m[39m the audio bank covers what a child can hear: numbers-100[2m > [22mlevel 3 [33m 385[2mms[22m[39m
+   [33m[2m✓[22m[39m the audio bank covers what a child can hear: numbers-100[2m > [22mlevel 4 [33m 1328[2mms[22m[39m
+   [33m[2m✓[22m[39m the audio bank covers what a child can hear: numbers-100[2m > [22mlevel 8 [33m 365[2mms[22m[39m
+   [33m[2m✓[22m[39m the audio bank covers what a child can hear: numbers-100[2m > [22mlevel 9 [33m 624[2mms[22m[39m
+   [33m[2m✓[22m[39m the audio bank covers what a child can hear: clock[2m > [22mlevel 10 [33m 459[2mms[22m[39m
+   [33m[2m✓[22m[39m the audio bank covers what a child can hear: vertical-2[2m > [22mlevel 1 [33m 508[2mms[22m[39m
+   [33m[2m✓[22m[39m the audio bank covers what a child can hear: vertical-3[2m > [22mlevel 1 [33m 677[2mms[22m[39m
+   [33m[2m✓[22m[39m the audio bank covers what a child can hear: fraction-ops[2m > [22mlevel 7 [33m 395[2mms[22m[39m
+   [33m[2m✓[22m[39m the audio bank covers what a child can hear: fraction-ops[2m > [22mlevel 9 [33m 420[2mms[22m[39m
+   [33m[2m✓[22m[39m the audio bank covers what a child can hear: fraction-ops[2m > [22mlevel 10 [33m 391[2mms[22m[39m
+   [33m[2m✓[22m[39m the audio bank covers what a child can hear: vertical-4[2m > [22mlevel 1 [33m 1032[2mms[22m[39m
+   [33m[2m✓[22m[39m the audio bank covers what a child can hear: decimals[2m > [22mlevel 3 [33m 375[2mms[22m[39m
+   [33m[2m✓[22m[39m the audio bank covers what a child can hear: fraction-mul-div[2m > [22mlevel 6 [33m 440[2mms[22m[39m
+   [33m[2m✓[22m[39m the audio bank covers what a child can hear: fraction-mul-div[2m > [22mlevel 9 [33m 528[2mms[22m[39m
+   [33m[2m✓[22m[39m the audio bank covers what a child can hear: ratio[2m > [22mlevel 1 [33m 690[2mms[22m[39m
+   [33m[2m✓[22m[39m the audio bank covers what a child can hear: ratio[2m > [22mlevel 2 [33m 386[2mms[22m[39m
+   [33m[2m✓[22m[39m the audio bank covers what a child can hear: ratio[2m > [22mlevel 3 [33m 916[2mms[22m[39m
+   [33m[2m✓[22m[39m the audio bank covers what a child can hear: ratio[2m > [22mlevel 4 [33m 886[2mms[22m[39m
+   [33m[2m✓[22m[39m the audio bank covers what a child can hear: ratio[2m > [22mlevel 5 [33m 837[2mms[22m[39m
+   [33m[2m✓[22m[39m the audio bank covers what a child can hear: ratio[2m > [22mlevel 8 [33m 301[2mms[22m[39m
+   [33m[2m✓[22m[39m the audio bank covers what a child can hear: ratio[2m > [22mlevel 9 [33m 630[2mms[22m[39m
+   [33m[2m✓[22m[39m the audio bank covers what a child can hear: ratio[2m > [22mlevel 10 [33m 339[2mms[22m[39m
+   [33m[2m✓[22m[39m the audio bank covers what a child can hear: circle-volume[2m > [22mlevel 7 [33m 657[2mms[22m[39m
+   [33m[2m✓[22m[39m the audio bank covers what a child can hear: circle-volume[2m > [22mlevel 8 [33m 679[2mms[22m[39m
+ [32m✓[39m src/engine/topics/all.test.ts [2m([22m[2m516 tests[22m[2m)[22m[33m 227838[2mms[22m[39m
+   [33m[2m✓[22m[39m topic count-10[2m > [22mlevel 3 produces valid exercises [33m 483[2mms[22m[39m
+   [33m[2m✓[22m[39m topic count-10[2m > [22mlevel 4 produces valid exercises [33m 448[2mms[22m[39m
+   [33m[2m✓[22m[39m topic count-10[2m > [22mlevel 5 produces valid exercises [33m 327[2mms[22m[39m
+   [33m[2m✓[22m[39m topic count-10[2m > [22mlevel 10 produces valid exercises [33m 415[2mms[22m[39m
+   [33m[2m✓[22m[39m topic count-10[2m > [22mputs the answer at different places among the buttons [33m 1164[2mms[22m[39m
+   [33m[2m✓[22m[39m topic count-10[2m > [22mdoes not repeat an exercise within a round while the level has others [33m 1199[2mms[22m[39m
+   [33m[2m✓[22m[39m topic shapes[2m > [22mlevel 9 produces valid exercises [33m 464[2mms[22m[39m
+   [33m[2m✓[22m[39m topic shapes[2m > [22mputs the answer at different places among the buttons [33m 1085[2mms[22m[39m
+   [33m[2m✓[22m[39m topic shapes[2m > [22mdoes not repeat an exercise within a round while the level has others [33m 1180[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 2 produces valid exercises [33m 472[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 3 produces valid exercises [33m 622[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 4 produces valid exercises [33m 2149[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 6 produces valid exercises [33m 520[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 8 produces valid exercises [33m 480[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mlevel 9 produces valid exercises [33m 896[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mputs the answer at different places among the buttons [33m 6570[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mdoes not repeat an exercise within a round while the level has others [33m 7570[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-100[2m > [22mavoids an immediate repeat [33m 488[2mms[22m[39m
+   [33m[2m✓[22m[39m topic clock-money-1[2m > [22mlevel 10 produces valid exercises [33m 402[2mms[22m[39m
+   [33m[2m✓[22m[39m topic clock-money-1[2m > [22mputs the answer at different places among the buttons [33m 351[2mms[22m[39m
+   [33m[2m✓[22m[39m topic clock-money-1[2m > [22mdoes not repeat an exercise within a round while the level has others [33m 364[2mms[22m[39m
+   [33m[2m✓[22m[39m topic money[2m > [22mlevel 6 produces valid exercises [33m 305[2mms[22m[39m
+   [33m[2m✓[22m[39m topic money[2m > [22mlevel 7 produces valid exercises [33m 382[2mms[22m[39m
+   [33m[2m✓[22m[39m topic money[2m > [22mlevel 8 produces valid exercises [33m 415[2mms[22m[39m
+   [33m[2m✓[22m[39m topic money[2m > [22mlevel 10 produces valid exercises [33m 381[2mms[22m[39m
+   [33m[2m✓[22m[39m topic money[2m > [22mputs the answer at different places among the buttons [33m 547[2mms[22m[39m
+   [33m[2m✓[22m[39m topic money[2m > [22mdoes not repeat an exercise within a round while the level has others [33m 628[2mms[22m[39m
+   [33m[2m✓[22m[39m topic mult-intro[2m > [22mlevel 9 produces valid exercises [33m 316[2mms[22m[39m
+   [33m[2m✓[22m[39m topic mult-intro[2m > [22mputs the answer at different places among the buttons [33m 981[2mms[22m[39m
+   [33m[2m✓[22m[39m topic mult-intro[2m > [22mdoes not repeat an exercise within a round while the level has others [33m 1133[2mms[22m[39m
+   [33m[2m✓[22m[39m topic clock[2m > [22mlevel 8 produces valid exercises [33m 335[2mms[22m[39m
+   [33m[2m✓[22m[39m topic clock[2m > [22mlevel 9 produces valid exercises [33m 521[2mms[22m[39m
+   [33m[2m✓[22m[39m topic clock[2m > [22mlevel 10 produces valid exercises [33m 664[2mms[22m[39m
+   [33m[2m✓[22m[39m topic clock[2m > [22mputs the answer at different places among the buttons [33m 2251[2mms[22m[39m
+   [33m[2m✓[22m[39m topic clock[2m > [22mdoes not repeat an exercise within a round while the level has others [33m 2624[2mms[22m[39m
+   [33m[2m✓[22m[39m topic vertical-2[2m > [22mlevel 1 produces valid exercises [33m 471[2mms[22m[39m
+   [33m[2m✓[22m[39m topic vertical-2[2m > [22mlevel 2 produces valid exercises [33m 523[2mms[22m[39m
+   [33m[2m✓[22m[39m topic vertical-2[2m > [22mlevel 3 produces valid exercises [33m 518[2mms[22m[39m
+   [33m[2m✓[22m[39m topic vertical-2[2m > [22mlevel 4 produces valid exercises [33m 462[2mms[22m[39m
+   [33m[2m✓[22m[39m topic vertical-2[2m > [22mlevel 5 produces valid exercises [33m 486[2mms[22m[39m
+   [33m[2m✓[22m[39m topic vertical-2[2m > [22mlevel 6 produces valid exercises [33m 487[2mms[22m[39m
+   [33m[2m✓[22m[39m topic vertical-2[2m > [22mlevel 7 produces valid exercises [33m 488[2mms[22m[39m
+   [33m[2m✓[22m[39m topic vertical-2[2m > [22mlevel 9 produces valid exercises [33m 308[2mms[22m[39m
+   [33m[2m✓[22m[39m topic vertical-2[2m > [22mlevel 10 produces valid exercises [33m 508[2mms[22m[39m
+   [33m[2m✓[22m[39m topic vertical-2[2m > [22mhas a finite spoken bank without digits [33m 369[2mms[22m[39m
+   [33m[2m✓[22m[39m topic mult-table[2m > [22mlevel 2 produces valid exercises [33m 321[2mms[22m[39m
+   [33m[2m✓[22m[39m topic mult-table[2m > [22mlevel 5 produces valid exercises [33m 319[2mms[22m[39m
+   [33m[2m✓[22m[39m topic mult-table[2m > [22mlevel 6 produces valid exercises [33m 323[2mms[22m[39m
+   [33m[2m✓[22m[39m topic mult-table[2m > [22mlevel 7 produces valid exercises [33m 330[2mms[22m[39m
+   [33m[2m✓[22m[39m topic mult-table[2m > [22mlevel 8 produces valid exercises [33m 303[2mms[22m[39m
+   [33m[2m✓[22m[39m topic mult-table[2m > [22mlevel 9 produces valid exercises [33m 321[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-10000[2m > [22mlevel 1 produces valid exercises [33m 337[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-10000[2m > [22mlevel 2 produces valid exercises [33m 309[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-10000[2m > [22mlevel 4 produces valid exercises [33m 316[2mms[22m[39m
+   [33m[2m✓[22m[39m topic numbers-10000[2m > [22mlevel 9 produces valid exercises [33m 358[2mms[22m[39m
+   [33m[2m✓[22m[39m topic fractions-1[2m > [22mlevel 7 produces valid exercises [33m 434[2mms[22m[39m
+   [33m[2m✓[22m[39m topic fractions-1[2m > [22mputs the answer at different places among the buttons [33m 1374[2mms[22m[39m
+   [33m[2m✓[22m[39m topic fractions-1[2m > [22mdoes not repeat an exercise within a round while the level has others [33m 1551[2mms[22m[39m
+   [33m[2m✓[22m[39m topic measure[2m > [22mlevel 1 produces valid exercises [33m 379[2mms[22m[39m
+   [33m[2m✓[22m[39m topic measure[2m > [22mlevel 2 produces valid exercises [33m 400[2mms[22m[39m
+   [33m[2m✓[22m[39m topic measure[2m > [22mlevel 9 produces valid exercises [33m 316[2mms[22m[39m
+   [33m[2m✓[22m[39m topic measure[2m > [22mputs the answer at different places among the buttons [33m 1026[2mms[22m[39m
+   [33m[2m✓[22m[39m topic measure[2m > [22mdoes not repeat an exercise within a round while the level has others [33m 1148[2mms[22m[39m
+   [33m[2m✓[22m[39m topic angles[2m > [22mputs the answer at different places among the buttons [33m 303[2mms[22m[39m
+   [33m[2m✓[22m[39m topic vertical-3[2m > [22mlevel 1 produces valid exercises [33m 600[2mms[22m[39m
+   [33m[2m✓[22m[39m topic vertical-3[2m > [22mlevel 2 produces valid exercises [33m 789[2mms[22m[39m
+   [33m[2m✓[22m[39m topic vertical-3[2m > [22mlevel 3 produces valid exercises [33m 566[2mms[22m[39m
+   [33m[2m✓[22m[39m topic vertical-3[2m > [22mlevel 4 produces valid exercises [33m 617[2mms[22m[39m
+   [33m[2m✓[22m[39m topic vertical-3[2m > [22mlevel 5 produces valid exercises [33m 593[2mms[22m[39m
+   [33m[2m✓[22m[39m topic vertical-3[2m > [22mlevel 6 produces valid exercises [33m 690[2mms[22m[39m
+   [33m[2m✓[22m[39m topic vertical-3[2m > [22mlevel 7 produces valid exercises [33m 636[2mms[22m[39m
+   [33m[2m✓[22m[39m topic vertical-3[2m > [22mlevel 9 produces valid exercises [33m 325[2mms[22m[39m
+   [33m[2m✓[22m[39m topic vertical-3[2m > [22mlevel 10 produces valid exercises [33m 760[2mms[22m[39m
+   [33m[2m✓[22m[39m topic vertical-3[2m > [22mputs the answer at different places among the buttons [33m 409[2mms[22m[39m
+   [33m[2m✓[22m[39m topic vertical-3[2m > [22mdoes not repeat an exercise within a round while the level has others [33m 464[2mms[22m[39m
+   [33m[2m✓[22m[39m topic vertical-3[2m > [22mhas a finite spoken bank without digits [33m 614[2mms[22m[39m
+   [33m[2m✓[22m[39m topic big-numbers[2m > [22mlevel 2 produces valid exercises [33m 464[2mms[22m[39m
+   [33m[2m✓[22m[39m topic big-numbers[2m > [22mlevel 3 produces valid exercises [33m 345[2mms[22m[39m
+   [33m[2m✓[22m[39m topic big-numbers[2m > [22mlevel 4 produces valid exercises [33m 417[2mms[22m[39m
+   [33m[2m✓[22m[39m topic big-numbers[2m > [22mlevel 5 produces valid exercises [33m 426[2mms[22m[39m
+   [33m[2m✓[22m[39m topic big-numbers[2m > [22mlevel 6 produces valid exercises [33m 391[2mms[22m[39m
+   [33m[2m✓[22m[39m topic big-numbers[2m > [22mlevel 7 produces valid exercises [33m 377[2mms[22m[39m
+   [33m[2m✓[22m[39m topic big-numbers[2m > [22mlevel 8 produces valid exercises [33m 372[2mms[22m[39m
+   [33m[2m✓[22m[39m topic big-numbers[2m > [22mlevel 9 produces valid exercises [33m 346[2mms[22m[39m
+   [33m[2m✓[22m[39m topic big-numbers[2m > [22mlevel 10 produces valid exercises [33m 350[2mms[22m[39m
+   [33m[2m✓[22m[39m topic long-mul-div[2m > [22mlevel 3 produces valid exercises [33m 366[2mms[22m[39m
+   [33m[2m✓[22m[39m topic long-mul-div[2m > [22mlevel 4 produces valid exercises [33m 356[2mms[22m[39m
+   [33m[2m✓[22m[39m topic long-mul-div[2m > [22mlevel 6 produces valid exercises [33m 308[2mms[22m[39m
+   [33m[2m✓[22m[39m topic long-mul-div[2m > [22mlevel 7 produces valid exercises [33m 339[2mms[22m[39m
+   [33m[2m✓[22m[39m topic long-mul-div[2m > [22mlevel 8 produces valid exercises [33m 347[2mms[22m[39m
+   [33m[2m✓[22m[39m topic long-mul-div[2m > [22mlevel 9 produces valid exercises [33m 330[2mms[22m[39m
+   [33m[2m✓[22m[39m topic divisibility[2m > [22mlevel 1 produces valid exercises [33m 304[2mms[22m[39m
+   [33m[2m✓[22m[39m topic divisibility[2m > [22mlevel 2 produces valid exercises [33m 301[2mms[22m[39m
+   [33m[2m✓[22m[39m topic divisibility[2m > [22mlevel 4 produces valid exercises [33m 301[2mms[22m[39m
+   [33m[2m✓[22m[39m topic divisibility[2m > [22mlevel 5 produces valid exercises [33m 301[2mms[22m[39m
+   [33m[2m✓[22m[39m topic divisibility[2m > [22mlevel 6 produces valid exercises [33m 302[2mms[22m[39m
+   [33m[2m✓[22m[39m topic divisibility[2m > [22mlevel 7 produces valid exercises [33m 302[2mms[22m[39m
+   [33m[2m✓[22m[39m topic fraction-ops[2m > [22mlevel 3 produces valid exercises [33m 510[2mms[22m[39m
+   [33m[2m✓[22m[39m topic fraction-ops[2m > [22mlevel 6 produces valid exercises [33m 453[2mms[22m[39m
+   [33m[2m✓[22m[39m topic fraction-ops[2m > [22mlevel 7 produces valid exercises [33m 584[2mms[22m[39m
+   [33m[2m✓[22m[39m topic fraction-ops[2m > [22mlevel 8 produces valid exercises [33m 524[2mms[22m[39m
+   [33m[2m✓[22m[39m topic fraction-ops[2m > [22mlevel 9 produces valid exercises [33m 604[2mms[22m[39m
+   [33m[2m✓[22m[39m topic fraction-ops[2m > [22mlevel 10 produces valid exercises [33m 651[2mms[22m[39m
+   [33m[2m✓[22m[39m topic fraction-ops[2m > [22mputs the answer at different places among the buttons [33m 4676[2mms[22m[39m
+   [33m[2m✓[22m[39m topic fraction-ops[2m > [22mdoes not repeat an exercise within a round while the level has others [33m 5456[2mms[22m[39m
+   [33m[2m✓[22m[39m topic fraction-ops[2m > [22mavoids an immediate repeat [33m 349[2mms[22m[39m
+   [33m[2m✓[22m[39m topic perimeter-area[2m > [22mlevel 9 produces valid exercises [33m 359[2mms[22m[39m
+   [33m[2m✓[22m[39m topic perimeter-area[2m > [22mputs the answer at different places among the buttons [33m 968[2mms[22m[39m
+   [33m[2m✓[22m[39m topic perimeter-area[2m > [22mdoes not repeat an exercise within a round while the level has others [33m 1153[2mms[22m[39m
+   [33m[2m✓[22m[39m topic vertical-4[2m > [22mlevel 1 produces valid exercises [33m 1034[2mms[22m[39m
+   [33m[2m✓[22m[39m topic vertical-4[2m > [22mlevel 2 produces valid exercises [33m 897[2mms[22m[39m
+   [33m[2m✓[22m[39m topic vertical-4[2m > [22mlevel 3 produces valid exercises [33m 567[2mms[22m[39m
+   [33m[2m✓[22m[39m topic vertical-4[2m > [22mlevel 4 produces valid exercises [33m 839[2mms[22m[39m
+   [33m[2m✓[22m[39m topic vertical-4[2m > [22mlevel 5 produces valid exercises [33m 1218[2mms[22m[39m
+   [33m[2m✓[22m[39m topic vertical-4[2m > [22mlevel 6 produces valid exercises [33m 1180[2mms[22m[39m
+   [33m[2m✓[22m[39m topic vertical-4[2m > [22mlevel 7 produces valid exercises [33m 1546[2mms[22m[39m
+   [33m[2m✓[22m[39m topic vertical-4[2m > [22mlevel 8 produces valid exercises [33m 353[2mms[22m[39m
+   [33m[2m✓[22m[39m topic vertical-4[2m > [22mlevel 9 produces valid exercises [33m 357[2mms[22m[39m
+   [33m[2m✓[22m[39m topic vertical-4[2m > [22mlevel 10 produces valid exercises [33m 1072[2mms[22m[39m
+   [33m[2m✓[22m[39m topic vertical-4[2m > [22mputs the answer at different places among the buttons [33m 637[2mms[22m[39m
+   [33m[2m✓[22m[39m topic vertical-4[2m > [22mdoes not repeat an exercise within a round while the level has others [33m 751[2mms[22m[39m
+   [33m[2m✓[22m[39m topic vertical-4[2m > [22mhas a finite spoken bank without digits [33m 933[2mms[22m[39m
+   [33m[2m✓[22m[39m topic decimals[2m > [22mlevel 2 produces valid exercises [33m 356[2mms[22m[39m
+   [33m[2m✓[22m[39m topic decimals[2m > [22mlevel 3 produces valid exercises [33m 596[2mms[22m[39m
+   [33m[2m✓[22m[39m topic decimals[2m > [22mlevel 4 produces valid exercises [33m 349[2mms[22m[39m
+   [33m[2m✓[22m[39m topic decimals[2m > [22mlevel 5 produces valid exercises [33m 352[2mms[22m[39m
+   [33m[2m✓[22m[39m topic decimals[2m > [22mlevel 6 produces valid exercises [33m 363[2mms[22m[39m
+   [33m[2m✓[22m[39m topic decimals[2m > [22mlevel 7 produces valid exercises [33m 360[2mms[22m[39m
+   [33m[2m✓[22m[39m topic decimals[2m > [22mlevel 8 produces valid exercises [33m 369[2mms[22m[39m
+   [33m[2m✓[22m[39m topic decimals[2m > [22mlevel 9 produces valid exercises [33m 334[2mms[22m[39m
+   [33m[2m✓[22m[39m topic decimals[2m > [22mlevel 10 produces valid exercises [33m 352[2mms[22m[39m
+   [33m[2m✓[22m[39m topic decimals[2m > [22mputs the answer at different places among the buttons [33m 1233[2mms[22m[39m
+   [33m[2m✓[22m[39m topic decimals[2m > [22mdoes not repeat an exercise within a round while the level has others [33m 1443[2mms[22m[39m
+   [33m[2m✓[22m[39m topic percent-intro[2m > [22mlevel 3 produces valid exercises [33m 303[2mms[22m[39m
+   [33m[2m✓[22m[39m topic percent-intro[2m > [22mlevel 5 produces valid exercises [33m 317[2mms[22m[39m
+   [33m[2m✓[22m[39m topic percent-intro[2m > [22mlevel 6 produces valid exercises [33m 309[2mms[22m[39m
+   [33m[2m✓[22m[39m topic percent-intro[2m > [22mlevel 7 produces valid exercises [33m 342[2mms[22m[39m
+   [33m[2m✓[22m[39m topic percent-intro[2m > [22mlevel 9 produces valid exercises [33m 306[2mms[22m[39m
+   [33m[2m✓[22m[39m topic percent-intro[2m > [22mlevel 10 produces valid exercises [33m 305[2mms[22m[39m
+   [33m[2m✓[22m[39m topic percent-intro[2m > [22mputs the answer at different places among the buttons [33m 1017[2mms[22m[39m
+   [33m[2m✓[22m[39m topic percent-intro[2m > [22mdoes not repeat an exercise within a round while the level has others [33m 1161[2mms[22m[39m
+   [33m[2m✓[22m[39m topic order-ops[2m > [22mlevel 1 produces valid exercises [33m 367[2mms[22m[39m
+   [33m[2m✓[22m[39m topic order-ops[2m > [22mlevel 2 produces valid exercises [33m 406[2mms[22m[39m
+   [33m[2m✓[22m[39m topic order-ops[2m > [22mlevel 3 produces valid exercises [33m 367[2mms[22m[39m
+   [33m[2m✓[22m[39m topic order-ops[2m > [22mlevel 4 produces valid exercises [33m 368[2mms[22m[39m
+   [33m[2m✓[22m[39m topic order-ops[2m > [22mlevel 5 produces valid exercises [33m 455[2mms[22m[39m
+   [33m[2m✓[22m[39m topic order-ops[2m > [22mlevel 6 produces valid exercises [33m 359[2mms[22m[39m
+   [33m[2m✓[22m[39m topic order-ops[2m > [22mlevel 7 produces valid exercises [33m 333[2mms[22m[39m
+   [33m[2m✓[22m[39m topic order-ops[2m > [22mlevel 8 produces valid exercises [33m 438[2mms[22m[39m
+   [33m[2m✓[22m[39m topic order-ops[2m > [22mlevel 9 produces valid exercises [33m 414[2mms[22m[39m
+   [33m[2m✓[22m[39m topic order-ops[2m > [22mlevel 10 produces valid exercises [33m 348[2mms[22m[39m
+   [33m[2m✓[22m[39m topic areas[2m > [22mlevel 1 produces valid exercises [33m 353[2mms[22m[39m
+   [33m[2m✓[22m[39m topic areas[2m > [22mlevel 2 produces valid exercises [33m 325[2mms[22m[39m
+   [33m[2m✓[22m[39m topic areas[2m > [22mlevel 3 produces valid exercises [33m 325[2mms[22m[39m
+   [33m[2m✓[22m[39m topic areas[2m > [22mlevel 4 produces valid exercises [33m 353[2mms[22m[39m
+   [33m[2m✓[22m[39m topic areas[2m > [22mlevel 5 produces valid exercises [33m 354[2mms[22m[39m
+   [33m[2m✓[22m[39m topic areas[2m > [22mlevel 6 produces valid exercises [33m 357[2mms[22m[39m
+   [33m[2m✓[22m[39m topic areas[2m > [22mlevel 8 produces valid exercises [33m 361[2mms[22m[39m
+   [33m[2m✓[22m[39m topic areas[2m > [22mlevel 10 produces valid exercises [33m 312[2mms[22m[39m
+   [33m[2m✓[22m[39m topic fraction-mul-div[2m > [22mlevel 2 produces valid exercises [33m 538[2mms[22m[39m
+   [33m[2m✓[22m[39m topic fraction-mul-div[2m > [22mlevel 3 produces valid exercises [33m 489[2mms[22m[39m
+   [33m[2m✓[22m[39m topic fraction-mul-div[2m > [22mlevel 4 produces valid exercises [33m 511[2mms[22m[39m
+   [33m[2m✓[22m[39m topic fraction-mul-div[2m > [22mlevel 6 produces valid exercises [33m 857[2mms[22m[39m
+   [33m[2m✓[22m[39m topic fraction-mul-div[2m > [22mlevel 9 produces valid exercises [33m 945[2mms[22m[39m
+   [33m[2m✓[22m[39m topic fraction-mul-div[2m > [22mputs the answer at different places among the buttons [33m 5059[2mms[22m[39m
+   [33m[2m✓[22m[39m topic fraction-mul-div[2m > [22mdoes not repeat an exercise within a round while the level has others [33m 5997[2mms[22m[39m
+   [33m[2m✓[22m[39m topic fraction-mul-div[2m > [22mavoids an immediate repeat [33m 365[2mms[22m[39m
+   [33m[2m✓[22m[39m topic decimal-ops[2m > [22mlevel 1 produces valid exercises [33m 412[2mms[22m[39m
+   [33m[2m✓[22m[39m topic decimal-ops[2m > [22mlevel 2 produces valid exercises [33m 428[2mms[22m[39m
+   [33m[2m✓[22m[39m topic decimal-ops[2m > [22mlevel 3 produces valid exercises [33m 455[2mms[22m[39m
+   [33m[2m✓[22m[39m topic decimal-ops[2m > [22mlevel 4 produces valid exercises [33m 460[2mms[22m[39m
+   [33m[2m✓[22m[39m topic decimal-ops[2m > [22mlevel 5 produces valid exercises [33m 431[2mms[22m[39m
+   [33m[2m✓[22m[39m topic decimal-ops[2m > [22mlevel 6 produces valid exercises [33m 412[2mms[22m[39m
+   [33m[2m✓[22m[39m topic decimal-ops[2m > [22mlevel 7 produces valid exercises [33m 398[2mms[22m[39m
+   [33m[2m✓[22m[39m topic decimal-ops[2m > [22mlevel 8 produces valid exercises [33m 313[2mms[22m[39m
+   [33m[2m✓[22m[39m topic decimal-ops[2m > [22mlevel 9 produces valid exercises [33m 395[2mms[22m[39m
+   [33m[2m✓[22m[39m topic decimal-ops[2m > [22mlevel 10 produces valid exercises [33m 396[2mms[22m[39m
+   [33m[2m✓[22m[39m topic percent[2m > [22mlevel 1 produces valid exercises [33m 345[2mms[22m[39m
+   [33m[2m✓[22m[39m topic percent[2m > [22mlevel 2 produces valid exercises [33m 354[2mms[22m[39m
+   [33m[2m✓[22m[39m topic percent[2m > [22mlevel 3 produces valid exercises [33m 339[2mms[22m[39m
+   [33m[2m✓[22m[39m topic percent[2m > [22mlevel 4 produces valid exercises [33m 328[2mms[22m[39m
+   [33m[2m✓[22m[39m topic percent[2m > [22mlevel 5 produces valid exercises [33m 367[2mms[22m[39m
+   [33m[2m✓[22m[39m topic percent[2m > [22mlevel 6 produces valid exercises [33m 363[2mms[22m[39m
+   [33m[2m✓[22m[39m topic percent[2m > [22mlevel 7 produces valid exercises [33m 381[2mms[22m[39m
+   [33m[2m✓[22m[39m topic percent[2m > [22mlevel 8 produces valid exercises [33m 348[2mms[22m[39m
+   [33m[2m✓[22m[39m topic percent[2m > [22mlevel 9 produces valid exercises [33m 331[2mms[22m[39m
+   [33m[2m✓[22m[39m topic percent[2m > [22mlevel 10 produces valid exercises [33m 337[2mms[22m[39m
+   [33m[2m✓[22m[39m topic ratio[2m > [22mlevel 1 produces valid exercises [33m 756[2mms[22m[39m
+   [33m[2m✓[22m[39m topic ratio[2m > [22mlevel 2 produces valid exercises [33m 593[2mms[22m[39m
+   [33m[2m✓[22m[39m topic ratio[2m > [22mlevel 3 produces valid exercises [33m 1164[2mms[22m[39m
+   [33m[2m✓[22m[39m topic ratio[2m > [22mlevel 4 produces valid exercises [33m 1139[2mms[22m[39m
+   [33m[2m✓[22m[39m topic ratio[2m > [22mlevel 5 produces valid exercises [33m 1121[2mms[22m[39m
+   [33m[2m✓[22m[39m topic ratio[2m > [22mlevel 6 produces valid exercises [33m 302[2mms[22m[39m
+   [33m[2m✓[22m[39m topic ratio[2m > [22mlevel 7 produces valid exercises [33m 500[2mms[22m[39m
+   [33m[2m✓[22m[39m topic ratio[2m > [22mlevel 8 produces valid exercises [33m 562[2mms[22m[39m
+   [33m[2m✓[22m[39m topic ratio[2m > [22mlevel 9 produces valid exercises [33m 1104[2mms[22m[39m
+   [33m[2m✓[22m[39m topic ratio[2m > [22mlevel 10 produces valid exercises [33m 637[2mms[22m[39m
+   [33m[2m✓[22m[39m topic ratio[2m > [22mputs the answer at different places among the buttons [33m 10282[2mms[22m[39m
+   [33m[2m✓[22m[39m topic ratio[2m > [22mdoes not repeat an exercise within a round while the level has others [33m 11941[2mms[22m[39m
+   [33m[2m✓[22m[39m topic ratio[2m > [22mavoids an immediate repeat [33m 722[2mms[22m[39m
+   [33m[2m✓[22m[39m topic circle-volume[2m > [22mlevel 4 produces valid exercises [33m 350[2mms[22m[39m
+   [33m[2m✓[22m[39m topic circle-volume[2m > [22mlevel 6 produces valid exercises [33m 324[2mms[22m[39m
+   [33m[2m✓[22m[39m topic circle-volume[2m > [22mlevel 7 produces valid exercises [33m 1260[2mms[22m[39m
+   [33m[2m✓[22m[39m topic circle-volume[2m > [22mlevel 8 produces valid exercises [33m 1296[2mms[22m[39m
+   [33m[2m✓[22m[39m topic circle-volume[2m > [22mlevel 10 produces valid exercises [33m 501[2mms[22m[39m
+   [33m[2m✓[22m[39m topic circle-volume[2m > [22mputs the answer at different places among the buttons [33m 6230[2mms[22m[39m
+   [33m[2m✓[22m[39m topic circle-volume[2m > [22mdoes not repeat an exercise within a round while the level has others [33m 7260[2mms[22m[39m
+   [33m[2m✓[22m[39m topic circle-volume[2m > [22mavoids an immediate repeat [33m 447[2mms[22m[39m
 
-[2m Test Files [22m [1m[32m35 passed[39m[22m[90m (35)[39m
-[2m      Tests [22m [1m[32m1180 passed[39m[22m[90m (1180)[39m
-[2m   Start at [22m 06:20:50
-[2m   Duration [22m 194.72s[2m (transform 3.11s, setup 6.70s, collect 6.01s, tests 212.28s, environment 12.65s, prepare 3.41s)[22m
+[2m Test Files [22m [1m[32m36 passed[39m[22m[90m (36)[39m
+[2m      Tests [22m [1m[32m1186 passed[39m[22m[90m (1186)[39m
+[2m   Start at [22m 07:28:37
+[2m   Duration [22m 243.35s[2m (transform 3.44s, setup 8.36s, collect 6.74s, tests 265.07s, environment 15.78s, prepare 4.34s)[22m
 
 
 ## build
@@ -280,37 +362,17 @@ Error: Not implemented: window.scrollTo
 > tsx --tsconfig tsconfig.node.json scripts/tts/index.ts
 
 audio index: shared: 8484, g0: 11383, g1: 13645, g2: 12311, g3: 12253, g4: 14658, g5: 15885, g6: 21361 clips
-[36mvite v7.3.7 [32mbuilding client environment for production...[36m[39m
-transforming...
-[32m✓[39m 149 modules transformed.
-rendering chunks...
-computing gzip size...
-[2mdist/[22m[32mmanifest.webmanifest                        [39m[1m[2m  0.53 kB[22m[1m[22m
-[2mdist/[22m[32mindex.html                                  [39m[1m[2m  1.21 kB[22m[1m[22m[2m │ gzip:   0.58 kB[22m
-[2mdist/[22m[2massets/[22m[35mindex-C9mEGi4h.css                   [39m[1m[2m 75.47 kB[22m[1m[22m[2m │ gzip:  14.35 kB[22m
-[2mdist/[22m[2massets/[22m[36mworkbox-window.prod.es5-BBnX5xw4.js  [39m[1m[2m  5.75 kB[22m[1m[22m[2m │ gzip:   2.36 kB[22m
-[2mdist/[22m[2massets/[22m[36mindex-BW56mL6K.js                    [39m[1m[33m899.20 kB[39m[22m[2m │ gzip: 258.00 kB[22m
-[33m
-(!) Some chunks are larger than 500 kB after minification. Consider:
-- Using dynamic import() to code-split the application
-- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
-- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.[39m
-[32m✓ built in 2.15s[39m
-
-[36mPWA v1.3.0[39m
-mode      [35mgenerateSW[39m
-precache  [32m14 entries[39m [2m(1021.88 KiB)[22m
-files generated
-  [2mdist/sw.js[22m
-  [2mdist/workbox-355bf58a.js[22m
+src/screens/JourneyScreen.tsx(442,25): error TS2345: Argument of type '"journey.review.done" | "journey.review.current" | "journey.review.locked" | "journey.review.skipped" | "journey.review.warmup"' is not assignable to parameter of type '"welcome.greeting" | "welcome.forParents" | "welcome.haveData" | "welcome.connect" | "home.whoIsPlaying.mixed" | "home.pickHint" | "home.parentsHold" | "parentArea.tabs" | ... 2609 more ... | "playground.band.older"'.
+  Type '"journey.review.skipped"' is not assignable to type '"welcome.greeting" | "welcome.forParents" | "welcome.haveData" | "welcome.connect" | "home.whoIsPlaying.mixed" | "home.pickHint" | "home.parentsHold" | "parentArea.tabs" | ... 2609 more ... | "playground.band.older"'. Did you mean '"journey.review.locked"'?
+BUILD FAILED
 
 ## audio bank (dry run: what would be generated, and the cost)
 
 > heshbon@0.1.0 tts:build
 > tsx --tsconfig tsconfig.node.json scripts/tts/generate.ts --dry-run
 
-37441 phrases in the bank, 24139 to generate.
-  gemini-3.1-flash/Leda/quick: 24139 clips, ~27.41 USD (Gemini 3.1 Flash TTS preview, ~1828 min audio)
+37443 phrases in the bank, 24141 to generate.
+  gemini-3.1-flash/Leda/quick: 24141 clips, ~27.41 USD (Gemini 3.1 Flash TTS preview, ~1828 min audio)
   [gemini-3.1-flash/Leda/quick] ui.explain.wrongOperation.story.add.f: קראי שוב את השאלה: כאן צריך לחבר.
   [gemini-3.1-flash/Leda/quick] ui.explain.wrongOperation.story.add.m: קרא שוב את השאלה: כאן צריך לחבר.
   [gemini-3.1-flash/Leda/quick] ui.explain.wrongOperation.story.sub.f: קראי שוב את השאלה: כאן צריך לחסר.
@@ -331,26 +393,18 @@ files generated
   [gemini-3.1-flash/Leda/quick] ui.explain.placeValue.units.f: כמעט. שימי לב ליחידות: כמה קטנות יש באחת גדולה?
   [gemini-3.1-flash/Leda/quick] ui.explain.placeValue.units.m: כמעט. שים לב ליחידות: כמה קטנות יש באחת גדולה?
   [gemini-3.1-flash/Leda/quick] ui.explain.shapeFormula.f: בדקי מה השאלה שואלת: שטח, היקף או נפח? לכל אחד מחשבים אחרת.
-  … and 24119 more
+  … and 24121 more
 
 ## e2e
 
 > heshbon@0.1.0 test:e2e
 > playwright test
 
-[WebServer] 
-[WebServer] (!) Some chunks are larger than 500 kB after minification. Consider:
-[WebServer] - Using dynamic import() to code-split the application
-[WebServer] - Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
-[WebServer] - Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
 
-Running 441 tests using 2 workers
-°°°°°·°°°·°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°·······°·°°°°°°°°°°°°°°°°°°°°°
-°°°°°°°°°°°°°°°°°°°°°°°°°°°····················°°°°°°°°°°··········°°°°°········
-················································································
-···········°°·····················°°°°°°°°°°·················°°°°°°°°°°°°°°°°°°°
-°°°°°°°°°°°°°°°°°°°°°°°°·······°°°·°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°
-°····················°°°°°°°°°°··········
-  226 skipped
-  215 passed (16.2m)
-::notice title=🎭 Playwright Run Summary::  226 skipped%0A  215 passed (16.2m)
+Error: Process from config.webServer was not able to start. Exit code: 1
+::error ::Error: Process from config.webServer was not able to start. Exit code: 1
+
+
+::notice title=🎭 Playwright Run Summary::
+E2E FAILED
+SCREENSHOTS FAILED
