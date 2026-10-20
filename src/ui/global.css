@@ -5231,18 +5231,17 @@ details.report .report__worlds {
   overflow: hidden;
 }
 
-/* "Another station?" beside the eyebrow, as a small link rather than a third tile. */
-.journey__eyebrow-row {
+/* The end of the row: "another station?" as a small link right above the speaker. */
+.journey__next-side {
   display: flex;
-  align-items: baseline;
-  gap: var(--space-2);
-  min-width: 0;
+  flex: 0 0 auto;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
 }
 
 .journey__other {
-  /* A text link with a tap area that does not push the row apart. */
-  margin: -8px 0;
-  padding: 8px 0;
+  padding: 6px 4px;
   border: 0;
   background: none;
   color: var(--color-text-muted);

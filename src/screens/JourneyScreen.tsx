@@ -203,22 +203,18 @@ function Journey({ profile }: { profile: Profile }) {
         <section className="station card journey__next" aria-labelledby="station-title">
           <div className="journey__next-row">
             <div className="journey__next-text">
-              <span className="journey__eyebrow-row">
-                <span className="station__eyebrow">{t('child.nextStation')}</span>
-                {/* "Another station?" right where the next one is named. */}
-                {canPick ? (
-                  <button
-                    type="button"
-                    className="journey__other"
-                    onClick={() => setPicking(true)}
-                  >
-                    {t('child.otherLevel')}
-                  </button>
-                ) : null}
-              </span>
+              <span className="station__eyebrow">{t('child.nextStation')}</span>
               <h2 id="station-title">{stopName}</h2>
             </div>
-            <SpeakerButton text={spokenLabel(stopName)} />
+            <div className="journey__next-side">
+              {/* "Another station?" right above the speaker, at the end of the row. */}
+              {canPick ? (
+                <button type="button" className="journey__other" onClick={() => setPicking(true)}>
+                  {t('child.otherLevel')}
+                </button>
+              ) : null}
+              <SpeakerButton text={spokenLabel(stopName)} />
+            </div>
           </div>
           <button
             ref={startRef}
