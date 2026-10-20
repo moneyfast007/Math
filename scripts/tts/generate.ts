@@ -85,9 +85,7 @@ async function main(): Promise<void> {
   await ensureDir(OUT_DIR);
   const manifest = await readJson<Manifest>(MANIFEST, { version: 2, clips: {} });
   if ((manifest as { version: number }).version !== 2) {
-    throw new Error(
-      'audio/manifest.json is from an older layout.',
-    );
+    throw new Error('audio/manifest.json is from an older layout.');
   }
 
   const phrases = allPhrases();
