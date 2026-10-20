@@ -312,7 +312,7 @@ test.describe('backup', () => {
     await openTab(page, 'ילדים');
     const card = page.getByRole('article', { name: 'תמר' });
     await expect(card).toContainText('כיתה ה׳');
-    await expect(card).toContainText(/תחנה \d+ מתוך \d+/);
+    await expect(card).toContainText(/עכשיו: תחנה \d+ · /);
     await expect(card).toContainText('נושאים לחיזוק: חיבור וחיסור עד 20');
   });
 

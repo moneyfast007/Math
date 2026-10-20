@@ -51,7 +51,7 @@ describe('<ParentScreen> sections', () => {
     const noa = screen.getByRole('article', { name: 'נועה' });
     expect(noa).toHaveTextContent('כיתה ב׳');
     expect(noa).toHaveTextContent(/עולם 1 · /);
-    expect(noa).toHaveTextContent('תחנה 3 מתוך');
+    expect(noa).toHaveTextContent(/עכשיו: תחנה 3 · /);
     expect(noa).toHaveTextContent(/נושאים לחיזוק:/);
     expect(within(noa).getByRole('button', { name: /עריכה/ })).toBeInTheDocument();
     const itai = screen.getByRole('article', { name: 'איתי' });
