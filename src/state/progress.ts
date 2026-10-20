@@ -177,6 +177,8 @@ export const STRONG_THRESHOLD = 0.9;
 export interface ChildSummary {
   topicsPracticed: number;
   attempts: number;
+  /** Exercises answered right on the first try. */
+  correct: number;
   /** 0–1, or null before any attempt. */
   successRate: number | null;
   /** Topic ids, worst first. */
@@ -214,8 +216,9 @@ export function summarizeProgress(progress: ProfileProgress | undefined): ChildS
       mistakeTotals.set(kind, (mistakeTotals.get(kind) ?? 0) + count);
     }
   }
+  // "Other" is every mistake the engine could not name: nothing a parent can act on.
   const topMistakes = [...mistakeTotals.entries()]
-    .filter(([, count]) => count > 0)
+    .filter(([kind, count]) => count > 0 && kind !== 'other')
     .sort((a, b) => b[1] - a[1])
     .slice(0, 3)
     .map(([kind, count]) => ({ kind, count }));
@@ -227,6 +230,7 @@ export function summarizeProgress(progress: ProfileProgress | undefined): ChildS
   return {
     topicsPracticed: entries.length,
     attempts,
+    correct,
     successRate: attempts > 0 ? correct / attempts : null,
     struggling,
     strong,

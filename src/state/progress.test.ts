@@ -57,6 +57,7 @@ describe('summarizeProgress', () => {
     expect(summarizeProgress(undefined)).toEqual({
       topicsPracticed: 0,
       attempts: 0,
+      correct: 0,
       successRate: null,
       struggling: [],
       strong: [],
@@ -76,10 +77,19 @@ describe('summarizeProgress', () => {
     const s = summarizeProgress(p);
     expect(s.topicsPracticed).toBe(3);
     expect(s.attempts).toBe(18);
+    expect(s.correct).toBe(12);
     expect(s.successRate).toBeCloseTo(12 / 18);
     expect(s.struggling).toEqual(['hard']);
     expect(s.strong).toEqual(['easy']);
     expect(s.topMistakes).toEqual([{ kind: 'wrongOperation', count: 6 }]);
+  });
+
+  it('leaves "other" out of the common mistakes: nothing a parent can act on', () => {
+    let p = emptyProgress();
+    const at = Date.now();
+    for (const mistake of ['other', 'other', 'offByOne'] as const)
+      p = recordAttempt(p, { topicId: 't', level: 1, correct: false, mistake, at });
+    expect(summarizeProgress(p).topMistakes).toEqual([{ kind: 'offByOne', count: 1 }]);
   });
 });
 

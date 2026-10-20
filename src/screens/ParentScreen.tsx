@@ -7,7 +7,7 @@ import {
   offlineSupported,
   type GradeAudio,
 } from '@/audio/offline';
-import { makeT, t } from '@/i18n';
+import { makeT, t, type TranslationKey } from '@/i18n';
 import { formatDate, formatPercent, gradeLabel, mistakeLabel, topicLabel } from '@/i18n/labels';
 import { ParentGate } from '@/parent/ParentGate';
 import { ProfileForm } from '@/parent/ProfileForm';
@@ -19,7 +19,7 @@ import { isStandalone } from '@/pwa/standalone';
 import { backupFileName, deliverFile, readBackupFile, serializeBackup } from '@/state/backup';
 import { PIN_LENGTH } from '@/state/pin';
 import { summarizeProgress, weekSummary } from '@/state/progress';
-import { activeWorld, worldsFor } from '@/engine/journey';
+import { activeWorld, nextStop, worldsFor, type World } from '@/engine/journey';
 import { MAX_PROFILES, type AppData, type Profile } from '@/state/schema';
 import type { Grade } from '@/ui/ageBand';
 import { BrandMark } from '@/ui/BrandMark';
@@ -424,11 +424,7 @@ function ChildCard({
             })}
           </span>
           <span className="muted">
-            {world.completed
-              ? tc('parentArea.allWorldsDone')
-              : t('journey.stationOf', {
-                  params: { n: Math.min(world.done + 1, world.total), total: world.total },
-                })}
+            {world.completed ? tc('parentArea.allWorldsDone') : nowAt(world)}
           </span>
           <span className="meter" aria-hidden="true">
             <span style={{ width: `${share}%` }} />
@@ -492,7 +488,16 @@ function ProgressCard({ profile }: { profile: Profile }) {
                 : tc('parent.topicsPracticed', { count: summary.topicsPracticed })}
             </li>
             <li>{t('parent.attempts', { params: { count: summary.attempts } })}</li>
-            {summary.successRate !== null ? (
+            <li>{t('parent.firstTry', { params: { count: summary.correct } })}</li>
+            {summary.attempts - summary.correct > 0 ? (
+              <li>
+                {summary.attempts - summary.correct === 1
+                  ? t('parent.wrongOne')
+                  : t('parent.wrong', { params: { count: summary.attempts - summary.correct } })}
+              </li>
+            ) : null}
+            {/* A percentage means something only once there are enough exercises behind it. */}
+            {summary.successRate !== null && summary.attempts >= 20 ? (
               <li>
                 {t('parent.successRate', {
                   params: { percent: formatPercent(summary.successRate) },
@@ -897,10 +902,20 @@ function WeekReport({ profile }: { profile: Profile }) {
   );
 }
 
+/** Where the child is in a world: the station the big button starts, by number and name. */
+function nowAt(world: World): string {
+  const stop = nextStop(world);
+  if (stop.kind === 'review') return t('parent.nowAtReview');
+  const station = world.stations.find((s) => s.level === stop.level);
+  const name = station ? t(station.labelKey as TranslationKey) : '';
+  return t('parent.nowAt', { params: { n: stop.level, name } });
+}
+
 /** Every world and its stations, folded: the child card already shows the current one. */
 function JourneyReport({ profile }: { profile: Profile }) {
   const progress = useApp((s) => s.data.progress[profile.id]);
   const worlds = worldsFor(profile.grade, progress);
+  const active = activeWorld(profile.grade, progress);
   return (
     <details className="report more">
       <summary>{t('parent.journey.title')}</summary>
@@ -913,6 +928,9 @@ function JourneyReport({ profile }: { profile: Profile }) {
                 : t('parent.journey.world', {
                     params: { name: topicLabel(w.topic.id), done: w.done, total: w.total },
                   })}
+              {w.topic.id === active?.topic.id && !w.completed ? (
+                <span className="muted report__now">{nowAt(w)}</span>
+              ) : null}
             </span>
             <progress max={w.total} value={w.done} className="report__bar" />
           </li>

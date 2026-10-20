@@ -5537,3 +5537,9 @@ details.report .report__worlds {
   transform: scale(0.95);
   background: var(--color-accent-soft);
 }
+
+/* In the journey report, where the child is in the current world. */
+.report__now {
+  display: block;
+  font-size: var(--text-sm);
+}
