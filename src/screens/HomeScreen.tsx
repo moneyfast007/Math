@@ -10,6 +10,7 @@ import { applyAgeBand } from '@/ui/ageBand';
 import { Avatar } from '@/ui/Avatar';
 import { Icon } from '@/ui/Icon';
 import { LongPressButton } from '@/ui/LongPressButton';
+import { BrandMark } from '@/ui/BrandMark';
 import { Plusi } from '@/ui/Plusi';
 import { SpeakerButton } from '@/ui/SpeakerButton';
 import { useTypewriter } from '@/ui/useTypewriter';
@@ -58,6 +59,7 @@ export function HomeScreen() {
 
   return (
     <main className="screen home" data-screen="home">
+      <BrandMark />
       <div className="home__center">
         <header className="home__header">
           <div className="home__ask">

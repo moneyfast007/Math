@@ -22,6 +22,7 @@ import { summarizeProgress, weekSummary } from '@/state/progress';
 import { activeWorld, worldsFor } from '@/engine/journey';
 import { MAX_PROFILES, type AppData, type Profile } from '@/state/schema';
 import type { Grade } from '@/ui/ageBand';
+import { BrandMark } from '@/ui/BrandMark';
 import { useApp } from '@/state/store';
 import { applyAgeBand } from '@/ui/ageBand';
 import { Avatar } from '@/ui/Avatar';
@@ -48,6 +49,7 @@ export function ParentScreen() {
   if (!unlocked && !noProfiles) {
     return (
       <main className="screen parent-locked" data-screen="parents-locked">
+        <BrandMark />
         <div className="parent-locked__art" aria-hidden="true">
           <Icon name="lock" />
         </div>
@@ -116,6 +118,7 @@ function ParentArea() {
 
   return (
     <main className="screen parent" data-screen="parents">
+      <BrandMark />
       <header className="parent__top">
         <div className="parent__titlebar">
           <h1 className="parent__title">

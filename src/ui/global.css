@@ -5511,3 +5511,29 @@ details.report .report__worlds {
     opacity: 1;
   }
 }
+
+/* The app's name, small, at the top of the screens around the exercises. */
+.brandmark {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  align-self: flex-start;
+  margin-block-end: calc(-1 * var(--space-2));
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  user-select: none;
+}
+
+.parent-locked .brandmark {
+  align-self: flex-start;
+  margin-inline-end: auto;
+  margin-block-end: auto;
+}
+
+/* A key pressed on a physical keyboard lights its key on the screen for a moment. */
+.numpad__key--lit {
+  transform: scale(0.95);
+  background: var(--color-accent-soft);
+}
