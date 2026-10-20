@@ -157,7 +157,7 @@ for (const c of CASES) {
     await expect(page.getByRole('img', { name: /רצף/ })).toHaveCount(0);
 
     // The world's row: its name and progress at the start, "כל העולמות" at the end.
-    const all = page.getByRole('button', { name: 'כל העולמות' });
+    const all = page.getByRole('button', { name: 'כל העולמות', exact: true });
     await expect(all).toBeVisible();
     if (c.progress) {
       await expect(page.locator('.journey__progress')).toHaveText(c.progress);
