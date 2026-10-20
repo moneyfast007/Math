@@ -1,4 +1,12 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import {
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
+  type CSSProperties,
+  type RefObject,
+} from 'react';
 import { replayTopic } from '@/app/replay';
 import { navigate } from '@/app/router';
 import { dailyPool, pickDaily, type DailyItem } from '@/engine/daily';
@@ -31,6 +39,16 @@ const LONG_PROMPT = 40;
 
 /** How long a correct answer stays on screen before the next exercise. */
 const CORRECT_PAUSE_MS = 1400;
+
+/**
+ * The exercise card shrinks its question text and pictures to fit the height
+ * it has, down to this share of their full size (the text never below 18px,
+ * see global.css); past that, the card scrolls inside itself, never the page.
+ */
+const MIN_CARD_FIT = 0.4;
+const CARD_FIT_STEP = 0.06;
+/** A picture on an answer button shrinks down to this share of its size. */
+const MIN_PICTURE_FIT = 0.3;
 
 /**
  * 'level': the next station. 'review': the world's final station, exercises
@@ -139,10 +157,27 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
   const [outcome, setOutcome] = useState<RoundOutcome | null>(null);
   const [value, setValue] = useState('');
   const [tried, setTried] = useState<number[]>([]);
-  const [slow, setSlow] = useState(false);
   const [notice, setNotice] = useState<string | null>(null);
   const stateRef = useRef(s);
   stateRef.current = s;
+  const cardRef = useRef<HTMLElement>(null);
+  const answersRef = useRef<HTMLElement>(null);
+  const hintsRef = useRef<HTMLElement>(null);
+  const playing = s.phase !== 'finished';
+  useFitToScreen(cardRef, answersRef, {
+    active: playing,
+    content: `${s.done}:${s.exercise.factId}:${s.phase}:${s.hintsShown}`,
+    // While the answer is shown, nothing grows back (it would only jump before the next one).
+    shrinkOnly: s.phase === 'correct' || s.phase === 'revealed',
+  });
+
+  // A new hint scrolls into view in its panel (which scrolls by itself, never the page).
+  useLayoutEffect(() => {
+    const panel = hintsRef.current;
+    const last = panel?.lastElementChild;
+    if (!panel || !(last instanceof HTMLElement)) return;
+    panel.scrollTop = Math.max(0, last.offsetTop - 8);
+  }, [s.hintsShown]);
 
   useEffect(() => applyAgeBand(band), [band]);
 
@@ -248,7 +283,7 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
               className={passed ? 'feedback feedback--correct' : 'feedback feedback--almost'}
               role="status"
             >
-              <SpeakerButton text={spoken} slow={slow} />
+              <SpeakerButton text={spoken} />
               <span>{result}</span>
             </div>
           ) : null}
@@ -301,22 +336,39 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
   return (
     <main className="screen practice" data-screen="practice">
       <header className="practice__bar">
-        <button
-          type="button"
-          className="btn btn--ghost btn--small"
-          onClick={() => navigate({ name: 'play' })}
-        >
-          {t('practice.exit')}
-        </button>
+        <div className="practice__side">
+          <button
+            type="button"
+            className="btn btn--ghost btn--small"
+            onClick={() => navigate({ name: 'play' })}
+          >
+            {t('practice.exit')}
+          </button>
+        </div>
         <Progress done={s.done} total={s.length} />
-        <button
-          type="button"
-          className="btn btn--ghost btn--small slow-toggle"
-          aria-pressed={slow}
-          onClick={() => setSlow((x) => !x)}
-        >
-          {t('action.listenSlow')}
-        </button>
+        <div className="practice__side practice__side--end">
+          {!finished ? (
+            <button
+              type="button"
+              className="btn btn--secondary btn--small practice__hint"
+              disabled={s.hintsShown >= 3}
+              onClick={() => apply({ type: 'hint' })}
+            >
+              {t('action.hint')}
+            </button>
+          ) : null}
+          {/* Plusi, small, reacts to every answer from the corner of the bar. */}
+          <span className="practice__mascot">
+            <Plusi
+              key={`${s.done}:${s.phase}`}
+              mood={plusiMood(s)}
+              size={band === 'young' ? 44 : 42}
+              decorative
+              className="practice__plusi"
+            />
+            {s.phase === 'correct' ? <Confetti /> : null}
+          </span>
+        </div>
       </header>
 
       {notice ? (
@@ -330,16 +382,20 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
         </p>
       ) : null}
 
-      <section className="exercise card" aria-live="polite">
+      <section
+        ref={cardRef}
+        className={e.input.type === 'vertical' ? 'exercise exercise--column card' : 'exercise card'}
+        aria-live="polite"
+      >
         <div
           className={
-            // A word problem: on a phone the speaker goes above it, so the text gets the full width.
+            // A word problem: its text starts at the speaker's side and gets the rest of the row.
             e.prompt.length > LONG_PROMPT
               ? 'exercise__prompt exercise__prompt--long'
               : 'exercise__prompt'
           }
         >
-          <SpeakerButton text={e.spokenText} parts={e.spokenParts} slow={slow} size="lg" />
+          <SpeakerButton text={e.spokenText} parts={e.spokenParts} size="lg" />
           <h1 className="exercise__title">{groupDigits(e.prompt)}</h1>
         </div>
         {e.visual ? <VisualView visual={e.visual} /> : null}
@@ -350,7 +406,6 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
             layout={e.input.layout}
             guided={e.input.guided}
             phase={s.phase}
-            slow={slow}
             onMiss={(mistake, assisted) => apply({ type: 'stepMiss', mistake, assisted })}
             onSubmit={(v) => apply({ type: 'answer', value: v })}
           />
@@ -375,20 +430,32 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
         ) : null}
       </section>
 
-      <div className="coach">
-        <Plusi
-          key={`${s.done}:${s.phase}`}
-          mood={plusiMood(s)}
-          size={band === 'young' ? 112 : 88}
-          decorative
-          className="coach__plusi"
-        />
-        {s.phase === 'correct' ? <Confetti /> : null}
-        <Feedback state={s} tc={tc} slow={slow} />
-      </div>
+      {s.hintsShown > 0 ? (
+        <section ref={hintsRef} className="hints stack" aria-label={t('action.hint')}>
+          {e.hints.slice(0, s.hintsShown).map((h, i) => (
+            <article key={i} className="hint card">
+              <div className="hint__head">
+                <SpeakerButton text={h.spoken} parts={h.spokenParts} />
+                <strong>{t('practice.hintTitle', { params: { n: i + 1 } })}</strong>
+              </div>
+              <p>{h.text}</p>
+              {h.visual ? <VisualView visual={h.visual} /> : null}
+              {h.example ? <MathExpr block>{h.example.display}</MathExpr> : null}
+            </article>
+          ))}
+        </section>
+      ) : null}
 
-      {!finished ? (
-        <section className="answer">
+      <Feedback state={s} tc={tc} />
+
+      {finished ? (
+        <div className="row practice__next" style={{ justifyContent: 'center' }}>
+          <button type="button" className="btn" onClick={advance}>
+            {t('practice.next')}
+          </button>
+        </div>
+      ) : e.input.type === 'vertical' ? null : (
+        <section ref={answersRef} className="answer">
           {e.input.type === 'choices' ? (
             <div
               className="choices-big"
@@ -413,20 +480,23 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
                     </button>
                   );
                 }
+                const text = groupDigits(label ?? String(c));
                 return (
                   <button
                     key={c}
                     type="button"
                     className={label ? 'choice-big choice-big--label' : 'choice-big'}
+                    // The longest word sets the label's size, so a long number never overflows.
+                    style={label ? ({ '--chars': longestWord(text) } as CSSProperties) : undefined}
                     disabled={tried.includes(c)}
                     onClick={() => answer(c)}
                   >
-                    {groupDigits(label ?? String(c))}
+                    {label ? <span className="choice-big__text">{text}</span> : text}
                   </button>
                 );
               })}
             </div>
-          ) : e.input.type === 'vertical' ? null : (
+          ) : (
             <NumberPad
               label={t('practice.answerLabel')}
               value={value}
@@ -436,42 +506,106 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
               onSubmit={() => answer(Number(value))}
             />
           )}
-          <div className="row" style={{ justifyContent: 'center' }}>
-            <button
-              type="button"
-              className="btn btn--secondary"
-              disabled={s.hintsShown >= 3}
-              onClick={() => apply({ type: 'hint' })}
-            >
-              {t('action.hint')}
-            </button>
-          </div>
         </section>
-      ) : (
-        <div className="row" style={{ justifyContent: 'center' }}>
-          <button type="button" className="btn" onClick={advance}>
-            {t('practice.next')}
-          </button>
-        </div>
       )}
-
-      {s.hintsShown > 0 ? (
-        <section className="hints stack" aria-label={t('action.hint')}>
-          {e.hints.slice(0, s.hintsShown).map((h, i) => (
-            <article key={i} className="hint card">
-              <div className="hint__head">
-                <SpeakerButton text={h.spoken} parts={h.spokenParts} slow={slow} />
-                <strong>{t('practice.hintTitle', { params: { n: i + 1 } })}</strong>
-              </div>
-              <p>{h.text}</p>
-              {h.visual ? <VisualView visual={h.visual} /> : null}
-              {h.example ? <MathExpr block>{h.example.display}</MathExpr> : null}
-            </article>
-          ))}
-        </section>
-      ) : null}
     </main>
   );
+}
+
+/** Characters in the longest word of a label (a long number is one word). */
+function longestWord(text: string): number {
+  return Math.max(1, ...text.split(/\s+/).map((w) => w.length));
+}
+
+/**
+ * Keeps the whole exercise on one screen (phone first): the card shrinks its
+ * question text, pictures and column grid until its content fits the height
+ * it has (--card-fit, read by global.css; pictures by zoom, which works on any
+ * picture), and a picture on an answer button shrinks until it fits its
+ * button. Measured before paint on every new exercise, step and hint, and
+ * again whenever the card or the answers change size (a phone turning, the
+ * feedback line appearing) or the card's content changes (a typed digit, the
+ * column exercise saying what to do next).
+ */
+function useFitToScreen(
+  cardRef: RefObject<HTMLElement | null>,
+  answersRef: RefObject<HTMLElement | null>,
+  { active, content, shrinkOnly }: { active: boolean; content: string; shrinkOnly: boolean },
+) {
+  const fitRef = useRef<() => void>(() => undefined);
+  const shrinkRef = useRef(shrinkOnly);
+  shrinkRef.current = shrinkOnly;
+  const current = useRef(1);
+
+  fitRef.current = () => {
+    const card = cardRef.current;
+    if (card) {
+      const sheets = () => card.querySelectorAll<HTMLElement>('.column-work__sheet');
+      const overflowing = () => {
+        if (card.scrollHeight > card.clientHeight + 1) return true;
+        for (const el of sheets()) if (el.scrollHeight > el.clientHeight + 1) return true;
+        return false;
+      };
+      const pictures = card.querySelectorAll<HTMLElement>(':scope > [data-visual]');
+      const set = (f: number) => {
+        card.style.setProperty('--card-fit', f.toFixed(2));
+        for (const el of pictures) {
+          if (f < 1) el.style.setProperty('zoom', f.toFixed(2));
+          else el.style.removeProperty('zoom');
+        }
+      };
+      let f = shrinkRef.current ? current.current : 1;
+      set(f);
+      while (f > MIN_CARD_FIT && overflowing()) {
+        f = Math.max(MIN_CARD_FIT, f - CARD_FIT_STEP);
+        set(f);
+      }
+      current.current = f;
+    }
+    const answers = answersRef.current;
+    if (answers) {
+      for (const button of answers.querySelectorAll<HTMLElement>('.choice-big--picture')) {
+        const picture = button.firstElementChild;
+        if (!(picture instanceof HTMLElement)) continue;
+        let z = 1;
+        picture.style.removeProperty('zoom');
+        const over = () =>
+          button.scrollHeight > button.clientHeight + 1 ||
+          button.scrollWidth > button.clientWidth + 1;
+        while (z > MIN_PICTURE_FIT && over()) {
+          z = Math.max(MIN_PICTURE_FIT, z - 0.1);
+          picture.style.setProperty('zoom', z.toFixed(2));
+        }
+      }
+    }
+  };
+
+  // A new exercise, step or hint: fitted before it is ever painted.
+  useLayoutEffect(() => {
+    if (active) fitRef.current();
+  }, [active, content]);
+
+  // Sizes and content changing later: fitted on the next frame.
+  useEffect(() => {
+    const card = cardRef.current;
+    if (!active || !card) return;
+    let frame = 0;
+    const later = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => fitRef.current());
+    };
+    const sizes = typeof ResizeObserver === 'undefined' ? null : new ResizeObserver(later);
+    sizes?.observe(card);
+    if (answersRef.current) sizes?.observe(answersRef.current);
+    const changes = typeof MutationObserver === 'undefined' ? null : new MutationObserver(later);
+    changes?.observe(card, { childList: true, subtree: true, characterData: true });
+    void document.fonts?.ready.then(later);
+    return () => {
+      cancelAnimationFrame(frame);
+      sizes?.disconnect();
+      changes?.disconnect();
+    };
+  }, [active, content, cardRef, answersRef]);
 }
 
 /** Reads progress once, outside React, for the station choice at round start. */
@@ -547,13 +681,13 @@ function Progress({ done, total }: { done: number; total: number }) {
 
 type TC = ReturnType<typeof makeT>;
 
-function Feedback({ state: s, tc, slow }: { state: SessionState; tc: TC; slow: boolean }) {
+function Feedback({ state: s, tc }: { state: SessionState; tc: TC }) {
   const e = s.exercise;
   if (s.phase === 'correct') {
     const text = tc('feedback.correct');
     return (
       <div className="feedback feedback--correct" role="status">
-        <SpeakerButton text={text} slow={slow} />
+        <SpeakerButton text={text} />
         <span>{text}</span>
       </div>
     );
@@ -561,7 +695,7 @@ function Feedback({ state: s, tc, slow }: { state: SessionState; tc: TC; slow: b
   if (s.phase === 'revealed') {
     return (
       <div className="feedback feedback--reveal" role="status">
-        <SpeakerButton text={e.solutionSpoken} parts={e.solutionParts} slow={slow} />
+        <SpeakerButton text={e.solutionSpoken} parts={e.solutionParts} />
         <span>{t('explain.reveal', { params: { answer: answerLabel(e) } })}</span>
       </div>
     );
@@ -573,7 +707,7 @@ function Feedback({ state: s, tc, slow }: { state: SessionState; tc: TC; slow: b
     if (advice) {
       return (
         <div className="feedback feedback--almost" role="status">
-          <SpeakerButton text={advice.spoken} parts={advice.parts} slow={slow} />
+          <SpeakerButton text={advice.spoken} parts={advice.parts} />
           <span>{advice.text}</span>
         </div>
       );
@@ -581,12 +715,13 @@ function Feedback({ state: s, tc, slow }: { state: SessionState; tc: TC; slow: b
     const text = explanation(s, tc);
     return (
       <div className="feedback feedback--almost" role="status">
-        <SpeakerButton text={text} slow={slow} />
+        <SpeakerButton text={text} />
         <span>{text}</span>
       </div>
     );
   }
-  return <div className="feedback feedback--empty" aria-hidden="true" />;
+  // Nothing to say: no room is taken, the card keeps it.
+  return null;
 }
 
 /** An operation sign the child can see in the exercise. */

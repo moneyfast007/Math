@@ -767,16 +767,39 @@ ol.steps {
   gap: var(--space-3);
 }
 
+/*
+ * The bar: "סיום" at the start, the dots, then the hint and Plusi at the end.
+ * The two sides are columns of the same width, so the dots stay centred on
+ * the screen whatever is beside them (they wrap to a second row if many).
+ */
 .practice__bar {
-  display: flex;
+  --bar-side: 200px;
+  display: grid;
+  grid-template-columns: var(--bar-side) minmax(0, 1fr) var(--bar-side);
   align-items: center;
-  justify-content: space-between;
-  gap: var(--space-2);
+  gap: 6px;
+  min-height: 44px;
 }
 
-.slow-toggle[aria-pressed='true'] {
-  background: var(--color-accent-soft);
-  color: var(--color-accent-strong);
+.practice__side {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+
+.practice__side--end {
+  justify-content: flex-end;
+}
+
+.practice__bar .btn--small {
+  min-width: 44px;
+}
+
+.practice__mascot {
+  position: relative;
+  display: inline-flex;
+  flex: none;
 }
 
 .progress-dots {
@@ -819,15 +842,11 @@ ol.steps {
   font-size: var(--text-lg);
 }
 
-/* Phones: a word problem gets the card's full width, the speaker above it. */
-@media (max-width: 560px) {
-  .exercise__prompt--long {
-    flex-direction: column;
-  }
-
-  .exercise__prompt--long .exercise__title {
-    text-align: center;
-  }
+/* A word problem: the speaker beside it, the text from the speaker's side. */
+.exercise__prompt--long .exercise__title {
+  flex: 1;
+  min-width: 0;
+  text-align: start;
 }
 
 .slot {
@@ -1700,26 +1719,34 @@ ol.steps {
   }
 }
 
-/* Practice: Plusi coaches from beside the feedback bubble. */
-.coach {
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: var(--space-2);
-  min-height: calc(var(--tap-min) + 24px);
-}
-
-.coach__plusi {
+/* Practice: Plusi, small in the bar, reacts to every answer. */
+.practice__plusi {
   flex: none;
   animation: plusi-in var(--dur-med) var(--ease);
 }
 
-.coach__plusi.plusi--cheering {
-  animation: plusi-hop 600ms var(--ease);
+.practice__plusi.plusi--cheering {
+  animation: plusi-hop-small 600ms var(--ease);
 }
 
-.coach__plusi.plusi--thinking {
+.practice__plusi.plusi--thinking {
   animation: plusi-tilt 900ms var(--ease);
+}
+
+@keyframes plusi-hop-small {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+  35% {
+    transform: translateY(-5px) scale(1.14);
+  }
+  60% {
+    transform: translateY(0) scale(0.96);
+  }
+  80% {
+    transform: translateY(-2px) scale(1.03);
+  }
 }
 
 @keyframes plusi-in {
@@ -1764,36 +1791,11 @@ ol.steps {
   }
 }
 
-/* The feedback becomes a speech bubble pointing at Plusi (who stands at the start, on the right). */
-.coach .feedback {
-  position: relative;
-  flex: 1;
-  justify-content: flex-start;
-  padding: var(--space-2) var(--space-3);
-  border-radius: var(--radius-lg);
-}
-
-.coach .feedback:not(.feedback--empty)::before {
-  content: '';
-  position: absolute;
-  inset-inline-start: -10px;
-  top: 50%;
-  width: 20px;
-  height: 20px;
-  background: inherit;
-  transform: translateY(-50%) rotate(45deg);
-  border-radius: 4px;
-}
-
-.feedback--empty {
-  background: transparent;
-}
-
-/* A small burst of colour on a right answer. */
+/* A small burst of colour on a right answer, from Plusi in the bar, falling into the screen. */
 .confetti {
   position: absolute;
-  inset-inline-start: 44px;
-  top: 30%;
+  inset-inline-start: 50%;
+  top: 50%;
   width: 0;
   height: 0;
   pointer-events: none;
@@ -1866,7 +1868,7 @@ ol.steps {
     opacity: 1;
   }
   100% {
-    transform: translate(var(--dx), var(--dy)) scale(1) rotate(200deg);
+    transform: translate(var(--dx), calc(var(--dy) * -1)) scale(1) rotate(200deg);
     opacity: 0;
   }
 }
@@ -4525,4 +4527,331 @@ details.report .report__worlds {
 .welcome__bubble > .speaker {
   align-self: flex-end;
   max-width: 100%;
+}
+
+/* ==========================================================================
+   Practice: the whole exercise on one screen.
+   The round is a column exactly as tall as the visible screen: the bar, the
+   card (it takes what is left and shrinks its text, pictures and column grid
+   to fit: --card-fit, set by useFitToScreen in PracticeScreen.tsx), the hints
+   and the feedback when there are some, and the answers pinned at the bottom.
+   Nothing on the page scrolls; in the extreme case the card or the hints
+   scroll inside themselves, never the answers off the screen.
+   ========================================================================== */
+
+#root:has(> .practice[data-screen='practice']) {
+  min-height: 0;
+}
+
+.practice[data-screen='practice'] {
+  /* Number-pad key, answer button, and picture answer heights. */
+  --key-h: calc(var(--tap-min) + 8px);
+  --choice-h: calc(var(--tap-min) * 1.5);
+  --choice-max: 200px;
+  --pic-h: 260px;
+  flex: none;
+  /* The visible screen (dvh: without the browser's bars), minus the notch and home bar. */
+  height: calc(100vh - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+  height: calc(100dvh - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+  padding: var(--space-2) var(--space-4);
+  gap: var(--space-2);
+}
+
+:root[data-age='young'] .practice[data-screen='practice'] {
+  --choice-h: clamp(72px, 16vh, 148px);
+  --pic-h: 280px;
+}
+
+.practice[data-screen='practice'] > * {
+  flex: none;
+  margin: 0;
+}
+
+.practice[data-screen='practice'] > .notice {
+  max-width: none;
+  padding: var(--space-1) var(--space-2);
+}
+
+.progress-dots {
+  justify-self: center;
+  max-width: 100%;
+  row-gap: 6px;
+}
+
+.practice__hint {
+  white-space: nowrap;
+}
+
+/* The card: all the room that is left. */
+.practice[data-screen='practice'] > .exercise {
+  flex: 1 1 0;
+  min-height: 22%;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  gap: var(--space-2);
+  padding: var(--space-3);
+}
+
+.practice[data-screen='practice'] > .exercise > * {
+  flex-shrink: 0;
+}
+
+/* The question on top, the rest centred under it (auto margins: nothing is cut off if it scrolls). */
+.practice[data-screen='practice'] > .exercise > :nth-child(2) {
+  margin-top: auto;
+}
+
+.practice[data-screen='practice'] > .exercise > :last-child {
+  margin-bottom: auto;
+}
+
+.practice[data-screen='practice'] .exercise__prompt {
+  align-self: stretch;
+  justify-content: center;
+}
+
+/* A long word problem gets smaller, never below 18px. */
+.practice[data-screen='practice'] .exercise__title {
+  font-size: max(18px, calc(var(--text-lg) * var(--card-fit, 1)));
+  line-height: 1.3;
+}
+
+.practice[data-screen='practice'] .exercise__prompt .speaker__btn--lg {
+  width: clamp(44px, var(--tap-min), 60px);
+  height: clamp(44px, var(--tap-min), 60px);
+}
+
+.practice[data-screen='practice'] .answer-box {
+  font-size: calc(var(--text-math) * max(0.6, var(--card-fit, 1)));
+}
+
+@media (orientation: landscape) and (max-height: 900px) {
+  .practice[data-screen='practice'] > .exercise:has(> [data-visual]):has(> .answer-box) {
+    align-content: safe center;
+  }
+
+  .practice[data-screen='practice'] > .exercise:has(> [data-visual]):has(> .answer-box) > * {
+    margin-block: 0;
+  }
+}
+
+/* Column arithmetic: the grid shrinks (and at worst scrolls in its sheet); the pad stays at the bottom. */
+.column-work__sheet {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.practice[data-screen='practice'] > .exercise--column > .column-work {
+  flex: 1 1 auto;
+  min-height: 0;
+  margin-block: 0;
+}
+
+.practice[data-screen='practice'] .column-work > * {
+  flex: none;
+}
+
+.practice[data-screen='practice'] .column-work > .column-work__sheet {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.practice[data-screen='practice'] .column-work__sheet > .vgrid {
+  flex: none;
+  margin-block: auto;
+}
+
+.practice[data-screen='practice'] .column-work__line {
+  font-size: max(17px, calc(var(--text-md) * var(--card-fit, 1)));
+  line-height: 1.3;
+}
+
+/* Digits stay at least 20px (28px × 0.72). */
+.practice[data-screen='practice'] .column-work .vgrid:not(.vgrid--small) {
+  --vcell: max(28px, calc(clamp(30px, 10vw, 54px) * var(--card-fit, 1)));
+}
+
+/* Hints: their own panel, at most a third of the screen, scrolling inside. */
+.practice[data-screen='practice'] > .hints {
+  position: relative;
+  flex: 0 1 auto;
+  min-height: 0;
+  max-height: 38%;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  gap: var(--space-2);
+}
+
+.practice[data-screen='practice'] > .hints > * {
+  flex: none;
+}
+
+/* Feedback: one line between the card and the answers (the card makes room). */
+.practice[data-screen='practice'] > .feedback {
+  min-height: 44px;
+  padding: 4px var(--space-2);
+  line-height: 1.3;
+  text-align: start;
+}
+
+.practice[data-screen='practice'] > .feedback .speaker__btn {
+  width: 44px;
+  height: 44px;
+}
+
+/* The answers, pinned at the bottom. */
+.practice[data-screen='practice'] > .answer {
+  gap: var(--space-2);
+}
+
+.practice[data-screen='practice'] .numpad {
+  grid-auto-rows: var(--key-h);
+  gap: 8px;
+}
+
+.practice[data-screen='practice'] .numpad__key {
+  min-height: 0;
+  height: var(--key-h);
+}
+
+/* The decimal pad has a fifth row (the wide ✓): a little lower keys. */
+.practice[data-screen='practice'] .numpad:has(> .numpad__key--wide) {
+  --key-h: clamp(44px, 7vh, calc(var(--tap-min) + 8px));
+}
+
+/* Two to four answers in one row, the same width each. */
+.practice[data-screen='practice'] .choices-big {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, var(--choice-max));
+  justify-content: center;
+  align-items: stretch;
+  gap: var(--space-2);
+  width: 100%;
+}
+
+.practice[data-screen='practice'] .choices-big:has(> :nth-child(5)) {
+  grid-auto-flow: row;
+  grid-template-columns: repeat(3, minmax(0, var(--choice-max)));
+}
+
+.practice[data-screen='practice'] .choice-big {
+  width: 100%;
+  min-width: 0;
+  height: var(--choice-h);
+  font-size: min(var(--text-xl), calc(var(--choice-h) * 0.55));
+}
+
+:root[data-age='young'] .practice[data-screen='practice'] .choice-big {
+  width: 100%;
+  height: var(--choice-h);
+  font-size: min(76px, calc(var(--choice-h) * 0.6));
+}
+
+/* A word or a long number: sized by its longest word and the button's width, wrapping between words. */
+.practice[data-screen='practice'] .choices-big:has(> .choice-big--label) {
+  --choice-max: 280px;
+}
+
+.practice[data-screen='practice'] .choice-big--label,
+:root[data-age='young'] .practice[data-screen='practice'] .choice-big--label {
+  --label-max: var(--text-lg);
+  container-type: inline-size;
+  min-width: 0;
+  height: auto;
+  min-height: var(--choice-h);
+  padding: 4px 8px;
+  white-space: normal;
+  line-height: 1.15;
+}
+
+:root[data-age='young'] .practice[data-screen='practice'] .choice-big--label {
+  --label-max: 48px;
+}
+
+.practice[data-screen='practice'] .choice-big__text {
+  font-size: min(var(--label-max), calc(100cqi / (var(--chars, 4) * 0.58 + 1.4)));
+  text-wrap: balance;
+}
+
+/* A picture: as tall as the room allows; useFitToScreen shrinks a bigger one to fit. */
+.practice[data-screen='practice'] .choices-big:has(> .choice-big--picture) {
+  --choice-max: 260px;
+}
+
+.practice[data-screen='practice'] .choice-big--picture,
+:root[data-age='young'] .practice[data-screen='practice'] .choice-big--picture {
+  width: 100%;
+  min-width: 0;
+  height: auto;
+  min-height: var(--choice-h);
+  max-height: var(--pic-h);
+  padding: var(--space-1);
+  overflow: hidden;
+}
+
+.practice[data-screen='practice'] .choice-big--picture > [data-visual] {
+  max-width: 100%;
+}
+
+/* Phones: a 16px side gutter, tighter gaps, sizes that follow the screen's height. */
+@media (max-width: 560px) {
+  .practice[data-screen='practice'] {
+    --key-h: clamp(44px, 8.5vh, 56px);
+    --choice-h: clamp(56px, 12vh, 96px);
+    --pic-h: clamp(96px, 22vh, 200px);
+    padding: 8px 16px;
+    gap: 8px;
+  }
+
+  :root[data-age='young'] .practice[data-screen='practice'] {
+    --choice-h: clamp(72px, 16vh, 140px);
+    --pic-h: clamp(110px, 25vh, 240px);
+  }
+
+  .practice__bar {
+    --bar-side: 104px;
+    gap: 4px;
+  }
+
+  .practice__side {
+    gap: 4px;
+  }
+
+  .practice__bar .btn--small {
+    padding: 0 10px;
+    font-size: 17px;
+  }
+
+  .practice__bar .practice__hint {
+    padding: 0 8px;
+  }
+
+  .practice[data-screen='practice'] > .exercise {
+    padding: 12px;
+  }
+
+  .practice[data-screen='practice'] .column-work .numpad {
+    --key-h: clamp(44px, 7.5vh, 56px);
+  }
+
+  .practice[data-screen='practice'] .hint {
+    padding: 12px;
+  }
+}
+
+/* Narrow phones: four answers as two rows of two. */
+@media (max-width: 420px) {
+  .practice[data-screen='practice'] .choices-big:has(> :nth-child(4)) {
+    grid-auto-flow: row;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .practice[data-screen='practice'] .choices-big:has(> .choice-big--picture:nth-child(4)) {
+    --pic-h: clamp(96px, 19vh, 200px);
+  }
 }
