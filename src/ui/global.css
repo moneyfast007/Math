@@ -4855,3 +4855,38 @@ details.report .report__worlds {
     --pic-h: clamp(96px, 19vh, 200px);
   }
 }
+
+/* Journey header: the child and the tools on one row, on every phone. */
+.journey__header {
+  flex-wrap: nowrap;
+}
+
+.journey__who {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.journey__who > div {
+  min-width: 0;
+}
+
+.journey__hello {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.journey__tools {
+  flex: 0 0 auto;
+  gap: var(--space-1);
+}
+
+@media (max-width: 420px) {
+  .journey__who .avatar--lg {
+    font-size: 44px;
+  }
+
+  .journey__hello {
+    font-size: var(--text-md);
+  }
+}

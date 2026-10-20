@@ -11,6 +11,7 @@ import { currentStreak, dayKey } from '@/state/streak';
 import { ageBandForGrade, applyAgeBand } from '@/ui/ageBand';
 import { Avatar } from '@/ui/Avatar';
 import { Dialog } from '@/ui/Dialog';
+import { Icon } from '@/ui/Icon';
 import { Plusi } from '@/ui/Plusi';
 import { SpeakerButton } from '@/ui/SpeakerButton';
 import { JourneyIntroCard, WorldsIcon } from './JourneyIntro';
@@ -101,12 +102,15 @@ function Journey({ profile }: { profile: Profile }) {
           >
             <AlbumIcon />
           </button>
+          {/* Back to "who is playing?": an icon, so the whole header fits one row. */}
           <button
             type="button"
-            className="btn btn--ghost btn--small"
+            className="icon-btn"
+            aria-label={tc('child.switch')}
+            title={tc('child.switch')}
             onClick={() => navigate({ name: 'home' })}
           >
-            {tc('child.switch')}
+            <Icon name="children" />
           </button>
         </div>
       </header>
