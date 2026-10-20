@@ -51,6 +51,8 @@ jobs:
         if: always() && inputs.dry_run != 'true'
         run: |
           set -o pipefail
+          # The runner image has no ffmpeg/ffprobe any more.
+          command -v ffprobe >/dev/null || { sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg >/dev/null; }
           npm run tts:trim -- --max-minutes 25 2>&1 | tee -a tts-build.log
       - name: Upload the new clips to R2
         # Also after a failure: what was recorded before it is kept, and the next run goes on.
