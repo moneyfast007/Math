@@ -94,7 +94,7 @@ async function shot(page: Page, name: string) {
 
 /** From the journey: pick a level in the picker, start it, photograph, go back. */
 async function level(page: Page, label: string | RegExp, name: string, hints = 0) {
-  await page.getByRole('button', { name: 'שלב אחר' }).click();
+  await page.getByRole('button', { name: 'תחנה אחרת' }).click();
   await page.getByRole('dialog').getByRole('listitem').filter({ hasText: label }).click();
   await page.getByRole('button', { name: 'יאללה, מתחילים!' }).click();
   await expect(page.locator('.exercise')).toBeVisible();

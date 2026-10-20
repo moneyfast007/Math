@@ -126,7 +126,7 @@ test.describe('practice', () => {
     await expect(page.getByRole('status')).toContainText('עברת את התחנה! התחנה הבאה נפתחה!');
 
     // One big way on, and a small way back to the map; no "again" after a pass.
-    await expect(page.getByRole('button', { name: 'לשלב הבא' })).toBeVisible();
+    await expect(page.getByRole('button', { name: 'לתחנה הבאה' })).toBeVisible();
     await expect(page.getByRole('button', { name: 'עוד סבב' })).toHaveCount(0);
 
     // Back on the map: station 1 is done, 2 is next.
@@ -190,7 +190,7 @@ test.describe('practice', () => {
       await page.getByRole('button', { name: 'הבא' }).click();
     }
     await expect(
-      page.getByRole('status').filter({ hasText: 'נתרגל רגע שלב קל יותר.' }),
+      page.getByRole('status').filter({ hasText: 'נתרגל רגע תחנה קלה יותר.' }),
     ).toBeVisible();
     await expect(page.getByRole('dialog')).toHaveCount(0);
   });
@@ -229,9 +229,9 @@ test.describe('practice', () => {
       exact: true,
     });
     await expect(next).toBeVisible();
-    await page.getByRole('button', { name: 'שלב אחר' }).click();
+    await page.getByRole('button', { name: 'תחנה אחרת' }).click();
     await page
-      .getByRole('dialog', { name: 'באיזה שלב לתרגל?' })
+      .getByRole('dialog', { name: 'באיזו תחנה לתרגל?' })
       .getByRole('listitem')
       .filter({ hasText: 'מספר חסר' })
       .click();

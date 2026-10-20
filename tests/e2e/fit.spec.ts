@@ -144,7 +144,7 @@ for (const [grade, worlds] of Object.entries(WORLDS)) {
       test.skip(info.project.name !== 'iphone', 'phone only');
       test.setTimeout(180_000);
       await setup(page, Number(grade), world);
-      const other = page.getByRole('button', { name: 'שלב אחר' });
+      const other = page.getByRole('button', { name: 'תחנה אחרת' });
       await expect(other).toBeVisible();
 
       // A world can end earlier for a younger grade (gan stops at level 5 of world 2).

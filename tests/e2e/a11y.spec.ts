@@ -115,7 +115,7 @@ test.describe('accessibility (WCAG 2.0 AA)', () => {
     await page.getByRole('button', { name: 'סיימתי, למסך הבית' }).first().click();
     await page.getByRole('button', { name: 'נועה' }).click();
     await check(page, 'journey');
-    await page.getByRole('button', { name: 'שלב אחר' }).click();
+    await page.getByRole('button', { name: 'תחנה אחרת' }).click();
     await check(page, 'level picker');
     await page.getByRole('dialog').getByRole('listitem').first().click();
     await page.getByRole('button', { name: 'יאללה, מתחילים!' }).click();

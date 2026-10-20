@@ -400,9 +400,9 @@ export const he = {
   // Child home: the next station
   'child.nextStation': 'התחנה הבאה',
   'child.start': 'יאללה, מתחילים!',
-  'child.levelLabel': 'שלב {level}: {name}',
-  'child.otherLevel': 'שלב אחר',
-  'child.pickLevel': 'באיזה שלב לתרגל?',
+  'child.levelLabel': 'תחנה {level}: {name}',
+  'child.otherLevel': 'תחנה אחרת',
+  'child.pickLevel': 'באיזו תחנה לתרגל?',
 
   // Practice round
   'practice.exit': 'סיום',
@@ -411,7 +411,7 @@ export const he = {
   'practice.choicesLabel': 'בחירת תשובה',
   'practice.hintTitle': 'רמז {n}',
   'practice.next': 'הבא',
-  'practice.levelChanged.down': 'נתרגל רגע שלב קל יותר.',
+  'practice.levelChanged.down': 'נתרגל רגע תחנה קלה יותר.',
   'practice.done.title': 'כל הכבוד, {name}!',
   'practice.done.body': 'פתרת {count} תרגילים.',
   'practice.done.again': 'עוד סבב',
@@ -2050,7 +2050,7 @@ export const he = {
   'practice.done.daily': 'כל הכבוד! סיימת את החזרה של היום.',
   'practice.done.replay': 'כל הכבוד! חזרת על העולם הזה.',
   'practice.done.toJourney': 'למסע',
-  'practice.done.next': 'לשלב הבא',
+  'practice.done.next': 'לתחנה הבאה',
   'practice.review.title': 'אתגר הסיום',
   'practice.review.body': 'תרגילים מכל התחנות, מעורבבים.',
 
