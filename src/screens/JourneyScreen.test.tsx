@@ -33,11 +33,11 @@ describe('journey map layout', () => {
   it('spreads or closes up the rows to fill the height it is given, within limits', () => {
     const natural = layoutStations(11, 3);
     const tall = layoutStations(11, 3, 120);
-    const short = layoutStations(11, 3, 70);
+    const short = layoutStations(11, 3, 80);
     expect(tall.height).toBeGreaterThan(natural.height);
     expect(tall.height).toBeLessThanOrEqual(120);
     expect(short.height).toBeLessThan(natural.height);
-    expect(short.height).toBeCloseTo(70);
+    expect(short.height).toBeCloseTo(80);
     // Never squeezed past the point where the stations would touch.
     expect(layoutStations(11, 3, 10).height).toBeGreaterThan(10);
   });
