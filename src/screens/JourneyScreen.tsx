@@ -9,6 +9,7 @@ import {
 } from 'react';
 import { navigate } from '@/app/router';
 import { dailyPool } from '@/engine/daily';
+import { currentLevel } from '@/engine/registry';
 import { activeWorld, nextStop, worldsFor, type World, type WorldStation } from '@/engine/journey';
 import { makeT, t, type TranslationKey } from '@/i18n';
 import { gradeLabel } from '@/i18n/labels';
@@ -93,7 +94,12 @@ function Journey({ profile }: { profile: Profile }) {
     worldsFor(profile.grade, progress).length > world.index ? world.index + 1 : null;
   const streak = currentStreak(progress?.streak ?? { count: 0, lastDay: null }, Date.now());
 
-  const start = () => navigate({ name: stop.kind === 'review' ? 'review' : 'practice' });
+  const start = () => {
+    // The station to play may not be the level she is at (one she skipped, after the last).
+    if (stop.kind === 'level' && stop.level !== currentLevel(world.topic, profile.grade, progress))
+      setTopicLevel(profile.id, world.topic.id, stop.level);
+    navigate({ name: stop.kind === 'review' ? 'review' : 'practice' });
+  };
   const hasDaily = dailyPool(profile.grade, progress).length > 0;
   const dailyDone = progress?.days[dayKey(Date.now())]?.daily === true;
   const canPick = profile.settings.allowLevelChange && stop.kind === 'level';
@@ -371,16 +377,12 @@ function WorldMap({
   // Laid out to fit the room the screen leaves (until it is measured: the usual snake).
   const fitted = box ? fitStations(all, box, young) : null;
   const { points, height } = fitted ?? layoutStations(all, young ? 4 : 3);
-  const doneCount = world.stations.filter((s) => s.state === 'done').length;
-  const donePath = pathThrough(points.slice(0, Math.min(all, doneCount + 1)));
-  const restPath = pathThrough(points.slice(Math.max(0, doneCount)));
   const currentIndex = world.stations.findIndex((s) => s.state === 'current');
-  const plusiAt =
-    world.review === 'current'
-      ? points[all - 1]
-      : currentIndex >= 0
-        ? points[currentIndex]
-        : points[all - 1];
+  // The path is walked up to where Plusi stands (stations skipped on the way keep no check).
+  const walked = currentIndex >= 0 ? currentIndex : world.review === 'locked' ? 0 : all - 1;
+  const donePath = pathThrough(points.slice(0, walked + 1));
+  const restPath = pathThrough(points.slice(walked));
+  const plusiAt = currentIndex >= 0 ? points[currentIndex] : points[all - 1];
   const reviewPoint = points[all - 1] as Point;
   const mapStyle: CSSProperties & { '--cell'?: string } = fitted
     ? {

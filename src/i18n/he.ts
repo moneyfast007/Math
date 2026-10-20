@@ -1529,6 +1529,8 @@ export const he = {
   'journey.station.done': 'תחנה {n}, הושלמה',
   'journey.station.current': 'תחנה {n}, התחנה הבאה',
   'journey.station.locked': 'תחנה {n}, עדיין סגורה',
+  'journey.station.skipped': 'תחנה {n}, דילגת עליה',
+  'journey.station.warmup': 'תחנה {n}, חימום',
   'journey.review': 'אתגר הסיום',
   'journey.review.name': 'אתגר הסיום',
   'journey.review.done': 'אתגר הסיום, הושלם',

@@ -10,18 +10,26 @@ import type { Topic } from './types';
  * Pure functions over progress; the journey screen only draws what comes back.
  *
  * Station states:
- *   done     passed once (completedLevels), or below the level she is at now
- *   current  the level she practices next
- *   locked   above the current level
- * The review opens when the last level is done and stays "done" once passed.
+ *   done     passed (completedLevels); only a passed station gets a check
+ *   current  the station the big button starts: the level she is at, or, once
+ *            that is passed, the first station of her grade still to pass
+ *   skipped  of her grade, below where she got to, not passed (she jumped ahead):
+ *            open to play, and still needed to finish the world
+ *   warmup   before her grade's starting station (last year's material): open to
+ *            play, never needed
+ *   locked   above where she got to
+ * The final challenge (the review) opens once every station of her grade is passed,
+ * and the world is finished when it is passed.
  */
 
-export type StationState = 'done' | 'current' | 'locked';
+export type StationState = 'done' | 'current' | 'skipped' | 'warmup' | 'locked';
 
 export interface WorldStation {
   level: number;
   labelKey: string;
   state: StationState;
+  /** Before the grade's starting station: optional, never needed to finish the world. */
+  warmup: boolean;
 }
 
 export interface World {
@@ -30,10 +38,10 @@ export interface World {
   index: number;
   stations: WorldStation[];
   review: StationState;
-  /** Stations done out of all stations (levels plus the review). */
+  /** Stations done out of the stations needed (her grade's levels plus the review). */
   done: number;
   total: number;
-  /** All stations and the review are done. */
+  /** Every needed station and the review are done. */
   completed: boolean;
 }
 
@@ -47,23 +55,40 @@ export function worldFor(
 ): World {
   const stats = progress?.topics[topic.id];
   const level = currentLevel(topic, grade, progress);
+  const start = topic.startLevel(grade);
   const completed = new Set(stats?.completedLevels ?? []);
-  const stations: WorldStation[] = levelsFor(topic, grade).map((l) => ({
-    level: l.level,
-    labelKey: l.labelKey,
-    state:
-      completed.has(l.level) || l.level < level ? 'done' : l.level === level ? 'current' : 'locked',
-  }));
-  const lastDone = stations.length > 0 && stations.every((s) => s.state === 'done');
+  const levels = levelsFor(topic, grade);
+  // How far she got: the level she is at, or a passed station above it.
+  const reach = Math.max(level, ...completed);
+  const needed = levels.filter((l) => l.level >= start);
+  const target =
+    !completed.has(level) && levels.some((l) => l.level === level)
+      ? level
+      : needed.find((l) => !completed.has(l.level))?.level;
+  const stations: WorldStation[] = levels.map((l) => {
+    const warmup = l.level < start;
+    const state: StationState = completed.has(l.level)
+      ? 'done'
+      : l.level === target
+        ? 'current'
+        : warmup
+          ? 'warmup'
+          : l.level < reach
+            ? 'skipped'
+            : 'locked';
+    return { level: l.level, labelKey: l.labelKey, state, warmup };
+  });
+  const lastDone = needed.length > 0 && needed.every((l) => completed.has(l.level));
   const review: StationState = stats?.reviewPassed ? 'done' : lastDone ? 'current' : 'locked';
-  const done = stations.filter((s) => s.state === 'done').length + (review === 'done' ? 1 : 0);
+  const done =
+    stations.filter((s) => !s.warmup && s.state === 'done').length + (review === 'done' ? 1 : 0);
   return {
     topic,
     index,
     stations,
     review,
     done,
-    total: stations.length + 1,
+    total: needed.length + 1,
     completed: review === 'done' && lastDone,
   };
 }
@@ -84,7 +109,8 @@ export function activeWorld(
 
 /** What the big button starts: the current level, or the review once every level is done. */
 export function nextStop(world: World): NextStop {
-  if (world.review === 'current') return { kind: 'review' };
+  if (world.review === 'current' && !world.stations.some((s) => s.state === 'current'))
+    return { kind: 'review' };
   const current = world.stations.find((s) => s.state === 'current');
   if (current) return { kind: 'level', level: current.level };
   // Everything done: free practice at the top level, review stays available.

@@ -111,7 +111,11 @@ const profileNow = () => appStore.getState().data.profiles[0];
 /** Grade 1 with world 1 (add-sub-20) finished. */
 function firstWorldDone(): ProfileProgress {
   const p = emptyProgress();
-  p.topics['add-sub-20'] = { ...emptyTopicStats(10), completedLevels: [10], reviewPassed: true };
+  p.topics['add-sub-20'] = {
+    ...emptyTopicStats(10),
+    completedLevels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+    reviewPassed: true,
+  };
   return p;
 }
 

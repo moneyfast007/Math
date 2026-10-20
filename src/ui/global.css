@@ -1294,6 +1294,19 @@ ol.steps {
   border: 3px dashed var(--color-border);
 }
 
+/* Skipped: open to play and still needed, so a full ring but no check. */
+.node--skipped {
+  background: var(--color-surface);
+  color: var(--color-accent-strong);
+  border: 3px solid var(--color-accent);
+}
+
+/* Warm-up (last year's stations): open to play, never needed. */
+.node--warmup {
+  background: var(--color-accent-soft);
+  color: var(--color-accent-strong);
+}
+
 .node--review {
   width: calc(var(--node) + 20px);
   height: calc(var(--node) + 20px);
