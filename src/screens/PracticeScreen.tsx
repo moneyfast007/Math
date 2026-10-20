@@ -33,6 +33,7 @@ import { Plusi, type PlusiMood } from '@/ui/Plusi';
 import { SpeakerButton } from '@/ui/SpeakerButton';
 import { ColumnWork } from '@/ui/Vertical';
 import { VisualView } from '@/ui/Visuals';
+import { WorldComplete } from './WorldComplete';
 
 /** A prompt longer than this (characters) is a word problem rather than "how much is it?". */
 const LONG_PROMPT = 40;
@@ -268,6 +269,21 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
         : passed
           ? tc('practice.done.passedSpoken')
           : t('practice.done.notPassed');
+    // The final challenge passed: the world is finished, a celebration of its own.
+    if (outcome?.worldCompleted && !daily && !replaying) {
+      const worlds = worldsFor(profile.grade, appProgress(profile.id));
+      const done = worlds.find((w) => w.topic.id === topic.id);
+      if (done) {
+        return (
+          <WorldComplete
+            profile={profile}
+            world={done}
+            next={worlds[done.index] ?? null}
+            spoken={t('practice.done.worldDone')}
+          />
+        );
+      }
+    }
     // A plain station round (not the daily review, not a world played again, not the
     // end of a world): passed leads straight to the next station, otherwise the same again.
     const stationRound = !daily && !replaying && outcome !== null && !outcome.worldCompleted;

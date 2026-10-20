@@ -34,6 +34,14 @@ export const heJourney = {
   'journeyBar.reward': 'מצליחים, ועולם {next} נפתח ⭐',
   'journeyBar.rewardLast': 'מצליחים, ומקבלים מדבקה ⭐',
 
+  // The end of a world (only shown; the speaker reads practice.done.worldDone).
+  'celebrate.title': 'סיימת את עולם {n}!',
+  'celebrate.lastTitle': 'סיימת את כל העולמות של {grade}!',
+  'celebrate.next': 'עולם {n}: {name} נפתח!',
+  'celebrate.toNext': 'לעולם הבא',
+  'celebrate.toAlbum': 'לאלבום',
+  'celebrate.stickerOpen': 'המדבקה החדשה שלך. לחיצה פותחת את האלבום',
+
   // The map of all worlds
   'worlds.open': 'כל העולמות',
   'worlds.title': 'כל העולמות',

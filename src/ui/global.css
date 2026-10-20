@@ -5347,3 +5347,167 @@ details.report .report__worlds {
   font-weight: 600;
   color: var(--color-text-muted);
 }
+
+/* The end of a world: confetti, Plusi jumping, the new sticker arriving. */
+.celebrate {
+  position: relative;
+  overflow: hidden;
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
+}
+
+.celebrate__body {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+  max-width: 28rem;
+  text-align: center;
+}
+
+.celebrate__plusi {
+  position: relative;
+  z-index: 2;
+  margin-block-end: calc(-1 * var(--space-4));
+}
+
+.celebrate__title,
+.celebrate__next,
+.celebrate__say,
+.celebrate__actions {
+  position: relative;
+  z-index: 2;
+}
+
+.celebrate__sticker {
+  position: relative;
+  width: min(52vw, 200px);
+  aspect-ratio: 1;
+  padding: 0;
+  border: 0;
+  background: none;
+  filter: drop-shadow(0 8px 16px rgb(0 0 0 / 15%));
+}
+
+/* Rays behind the sticker. */
+.celebrate__sticker::before {
+  content: '';
+  position: absolute;
+  inset: -28%;
+  z-index: -1;
+  border-radius: 50%;
+  background: repeating-conic-gradient(
+    from 0deg,
+    rgb(242 201 76 / 45%) 0deg 10deg,
+    transparent 10deg 30deg
+  );
+  mask: radial-gradient(circle, #000 35%, transparent 70%);
+}
+
+.celebrate__title {
+  margin: 0;
+  font-size: clamp(28px, 8.5vw, 42px);
+  text-wrap: balance;
+}
+
+.celebrate__next {
+  margin: 0;
+  font-size: var(--text-lg);
+  font-weight: 700;
+  color: var(--color-accent-strong);
+}
+
+.celebrate__say {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--color-text-muted);
+}
+
+.celebrate__actions {
+  align-items: center;
+  width: 100%;
+}
+
+.celebrate__actions .btn--hero {
+  width: 100%;
+}
+
+.confetti {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.confetti span {
+  position: absolute;
+  top: -16px;
+  width: 10px;
+  height: 16px;
+  border-radius: 2px;
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .celebrate__plusi {
+    animation: celebrate-jump 0.7s var(--ease) 0.3s 3 both;
+  }
+
+  .celebrate__sticker {
+    animation: celebrate-sticker 1.1s cubic-bezier(0.2, 1.4, 0.4, 1) both;
+  }
+
+  .celebrate__sticker::before {
+    animation: celebrate-rays 12s linear infinite;
+  }
+
+  .confetti span {
+    animation-name: confetti-fall;
+    animation-timing-function: linear;
+    animation-iteration-count: 2;
+  }
+}
+
+@keyframes celebrate-jump {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-22px) rotate(-8deg);
+  }
+}
+
+@keyframes celebrate-sticker {
+  0% {
+    transform: scale(0.2) rotate(-200deg);
+    opacity: 0;
+  }
+  70% {
+    transform: scale(1.12) rotate(8deg);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1) rotate(0);
+  }
+}
+
+@keyframes celebrate-rays {
+  to {
+    rotate: 360deg;
+  }
+}
+
+@keyframes confetti-fall {
+  0% {
+    transform: translateY(0) rotate(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(105dvh) rotate(540deg);
+    opacity: 1;
+  }
+}
