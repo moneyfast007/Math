@@ -1,6 +1,7 @@
-import { writeFile } from 'node:fs/promises';
+import { execFile } from 'node:child_process';
+import { rm, writeFile } from 'node:fs/promises';
 import path from 'node:path';
-import { parseArgs } from 'node:util';
+import { parseArgs, promisify } from 'node:util';
 import {
   BRISK_PROMPT,
   DEFAULT_PROMPT,
@@ -20,6 +21,7 @@ import {
   ROUND7,
   ROUND8,
   ROUND9,
+  ROUND10,
   SENTENCES as SAMPLE_SENTENCES,
   WORDS,
 } from './sample-sentences';
@@ -41,6 +43,7 @@ import {
  */
 
 const OUT = path.resolve(import.meta.dirname, 'out-sample');
+const run = promisify(execFile);
 
 const { values } = parseArgs({
   options: {
@@ -56,21 +59,23 @@ const { values } = parseArgs({
 });
 
 const SENTENCES: readonly string[] =
-  values.set === 'round9'
-    ? ROUND9
-    : values.set === 'round8'
-      ? ROUND8
-      : values.set === 'round7'
-        ? ROUND7
-        : values.set === 'round6'
-          ? ROUND6.map((r) => r.text)
-          : values.set === 'bank'
-            ? BANK_CHECK
-            : values.set === 'probe'
-              ? PROBE
-              : values.set === 'words'
-                ? WORDS
-                : SAMPLE_SENTENCES;
+  values.set === 'round10'
+    ? ROUND10
+    : values.set === 'round9'
+      ? ROUND9
+      : values.set === 'round8'
+        ? ROUND8
+        : values.set === 'round7'
+          ? ROUND7
+          : values.set === 'round6'
+            ? ROUND6.map((r) => r.text)
+            : values.set === 'bank'
+              ? BANK_CHECK
+              : values.set === 'probe'
+                ? PROBE
+                : values.set === 'words'
+                  ? WORDS
+                  : SAMPLE_SENTENCES;
 
 interface Variant {
   name: string;
@@ -79,6 +84,8 @@ interface Variant {
   texts: (string | null)[];
   /** Assemble each sentence from these clips, as the app does (null: one request). */
   parts?: (readonly string[] | null)[];
+  /** Re-encode what the service returned (ffmpeg), and the extension of the result. */
+  post?: { ext: string; args: string[] };
 }
 
 /** The fully vocalized subset, aligned to SENTENCES. */
@@ -163,6 +170,34 @@ const ROUND8_VARIANTS: Variant[] = (
   texts: [...SENTENCES],
 }));
 
+/**
+ * Round 10: the crackle. The service's own MP3 (32 kbps, nearly full scale) against
+ * raw PCM from the service, encoded here: a little quieter, at 64 and 96 kbps, and the
+ * untouched WAV as the reference (if it crackles too, the voice itself does).
+ */
+const LEDA_QUICK = { engine: 'gemini-3.1-flash' as const, voice: 'Leda', prompt: QUICK_PROMPT };
+const ROUND10_VARIANTS: Variant[] = [
+  { name: 'mp3-32-service', spec: LEDA_QUICK, texts: SENTENCES.map(vocalizeForTts) },
+  {
+    name: 'wav-reference',
+    spec: { ...LEDA_QUICK, encoding: 'LINEAR16' },
+    texts: SENTENCES.map(vocalizeForTts),
+    post: { ext: 'wav', args: ['-c:a', 'pcm_s16le'] },
+  },
+  {
+    name: 'mp3-64-quieter',
+    spec: { ...LEDA_QUICK, encoding: 'LINEAR16' },
+    texts: SENTENCES.map(vocalizeForTts),
+    post: { ext: 'mp3', args: ['-af', 'volume=-3dB', '-c:a', 'libmp3lame', '-b:a', '64k'] },
+  },
+  {
+    name: 'mp3-96-quieter',
+    spec: { ...LEDA_QUICK, encoding: 'LINEAR16' },
+    texts: SENTENCES.map(vocalizeForTts),
+    post: { ext: 'mp3', args: ['-af', 'volume=-3dB', '-c:a', 'libmp3lame', '-b:a', '96k'] },
+  },
+];
+
 /** Round 9: the chosen voice and pace, plain text against the targeted nikud (teens). */
 const ROUND9_VARIANTS: Variant[] = [
   { name: 'plain', texts: [...SENTENCES] },
@@ -198,15 +233,17 @@ const variants: Variant[] = values.voices
           texts,
         }));
       })
-  : (values.set === 'round9'
-      ? ROUND9_VARIANTS
-      : values.set === 'round8'
-        ? ROUND8_VARIANTS
-        : values.set === 'round7'
-          ? ROUND7_VARIANTS
-          : values.set === 'round6'
-            ? ROUND6_VARIANTS
-            : ALL_VARIANTS
+  : (values.set === 'round10'
+      ? ROUND10_VARIANTS
+      : values.set === 'round9'
+        ? ROUND9_VARIANTS
+        : values.set === 'round8'
+          ? ROUND8_VARIANTS
+          : values.set === 'round7'
+            ? ROUND7_VARIANTS
+            : values.set === 'round6'
+              ? ROUND6_VARIANTS
+              : ALL_VARIANTS
     ).filter((v) => !only || only.includes(v.name));
 
 const HTML_ESCAPES: Record<string, string> = {
@@ -246,7 +283,20 @@ async function main(): Promise<void> {
         const audio = clips
           ? Buffer.concat(await Promise.all(clips.map((c) => synthesize(c, v.spec))))
           : await synthesize(text, v.spec);
-        await writeFile(path.join(dir, `${n}.mp3`), audio);
+        if (v.post) {
+          const raw = path.join(dir, `${n}.raw`);
+          await writeFile(raw, audio);
+          await run('ffmpeg', [
+            '-v',
+            'error',
+            '-y',
+            '-i',
+            raw,
+            ...v.post.args,
+            path.join(dir, `${n}.${v.post.ext}`),
+          ]);
+          await rm(raw);
+        } else await writeFile(path.join(dir, `${n}.mp3`), audio);
         console.log(`  ${n} ${text}`);
       });
     } catch (err) {
@@ -264,7 +314,8 @@ async function main(): Promise<void> {
     const cells = columns
       .map(({ name, texts }) => {
         if (failures.has(name) || texts[i] === null) return '<td class="na">—</td>';
-        return `<td><audio controls preload="none" src="${name}/${n}.mp3"></audio></td>`;
+        const ext = variants.find((v) => v.name === name)?.post?.ext ?? 'mp3';
+        return `<td><audio controls preload="none" src="${name}/${n}.${ext}"></audio></td>`;
       })
       .join('');
     return `<tr><td class="n">${n}</td><td class="t">${escapeHtml(text)}</td>${cells}</tr>`;

@@ -29,6 +29,8 @@ export interface VoiceSpec {
   prompt?: string;
   /** Multiplier for speaking rate; Gemini ignores it, Chirp 3 HD does not support it in he-IL. */
   speakingRate?: number;
+  /** What the service encodes: its own MP3 (32 kbps), or raw PCM (a WAV) to encode here. */
+  encoding?: 'MP3' | 'LINEAR16';
 }
 
 export const LANGUAGE = 'he-IL';
@@ -82,7 +84,11 @@ async function projectId(): Promise<string> {
 interface SynthesizeBody {
   input: { text: string; prompt?: string };
   voice: { languageCode: string; name: string; modelName?: string };
-  audioConfig: { audioEncoding: 'MP3'; speakingRate?: number; sampleRateHertz?: number };
+  audioConfig: {
+    audioEncoding: 'MP3' | 'LINEAR16';
+    speakingRate?: number;
+    sampleRateHertz?: number;
+  };
 }
 
 function buildBody(text: string, spec: VoiceSpec): SynthesizeBody {
@@ -108,7 +114,7 @@ function buildBody(text: string, spec: VoiceSpec): SynthesizeBody {
                     ? 'gemini-3.8-flash-lite-tts'
                     : 'gemini-3.1-flash-tts-preview',
         },
-        audioConfig: { audioEncoding: 'MP3' },
+        audioConfig: { audioEncoding: spec.encoding ?? 'MP3' },
       };
       return body;
     }
@@ -116,7 +122,7 @@ function buildBody(text: string, spec: VoiceSpec): SynthesizeBody {
       const body: SynthesizeBody = {
         input: { text },
         voice: { languageCode: LANGUAGE, name: `${LANGUAGE}-Chirp3-HD-${spec.voice}` },
-        audioConfig: { audioEncoding: 'MP3' },
+        audioConfig: { audioEncoding: spec.encoding ?? 'MP3' },
       };
       return body;
     }
@@ -125,14 +131,14 @@ function buildBody(text: string, spec: VoiceSpec): SynthesizeBody {
       const body: SynthesizeBody = {
         input: { text },
         voice: { languageCode: LANGUAGE, name: spec.voice },
-        audioConfig: { audioEncoding: 'MP3' },
+        audioConfig: { audioEncoding: spec.encoding ?? 'MP3' },
       };
       return body;
     }
   }
 }
 
-/** Calls the API once and returns MP3 bytes. Retries transient failures. */
+/** Calls the API once and returns the audio bytes (MP3, or a WAV with LINEAR16). Retries transient failures. */
 export async function synthesize(text: string, spec: VoiceSpec): Promise<Buffer> {
   let body = buildBody(text, spec);
   let refusals = 0;
