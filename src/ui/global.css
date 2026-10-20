@@ -3663,6 +3663,24 @@ ol.steps {
   max-width: 100%;
 }
 
+/* Wide screens: the bubble sits on the centre line of the cards below it, and
+   Plusi stands beside it, outside the centring (phones keep the pair centred). */
+@media (min-width: 700px) {
+  .home__ask {
+    position: relative;
+  }
+
+  .home__ask .home__plusi {
+    position: absolute;
+    /* Beyond the bubble's start edge, where its tail points. */
+    inset-inline-end: 100%;
+    top: 50%;
+    /* `translate`, not `transform`: the entrance animation animates the transform. */
+    translate: 0 -50%;
+    margin-inline-end: var(--space-3);
+  }
+}
+
 .home__plusi {
   animation: plusi-in var(--dur-med) var(--ease);
 }
@@ -4275,6 +4293,16 @@ details.report .report__worlds {
 /* Wide screens: two columns that fill from the top, each card right under the one
    before it (grid rows would leave a hole under every short card). */
 @media (min-width: 900px) {
+  .brandmark {
+    gap: 8px;
+    font-size: var(--text-md, 1.1rem);
+  }
+
+  .brandmark .plusi {
+    width: 40px;
+    height: 40px;
+  }
+
   .settings-grid {
     display: block;
     columns: 2;
