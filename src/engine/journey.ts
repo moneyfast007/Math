@@ -23,6 +23,8 @@ import type { Topic } from './types';
  */
 
 export type StationState = 'done' | 'current' | 'skipped' | 'warmup' | 'locked';
+/** The final challenge is never skipped or a warm-up. */
+export type ReviewState = 'done' | 'current' | 'locked';
 
 export interface WorldStation {
   level: number;
@@ -37,7 +39,7 @@ export interface World {
   /** 1-based position among the child's worlds. */
   index: number;
   stations: WorldStation[];
-  review: StationState;
+  review: ReviewState;
   /** Stations done out of the stations needed (her grade's levels plus the review). */
   done: number;
   total: number;
@@ -79,7 +81,7 @@ export function worldFor(
     return { level: l.level, labelKey: l.labelKey, state, warmup };
   });
   const lastDone = needed.length > 0 && needed.every((l) => completed.has(l.level));
-  const review: StationState = stats?.reviewPassed ? 'done' : lastDone ? 'current' : 'locked';
+  const review: ReviewState = stats?.reviewPassed ? 'done' : lastDone ? 'current' : 'locked';
   const done =
     stations.filter((s) => !s.warmup && s.state === 'done').length + (review === 'done' ? 1 : 0);
   return {
