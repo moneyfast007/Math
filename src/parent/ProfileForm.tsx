@@ -28,6 +28,7 @@ export function ProfileForm({ profile, onSave, onDelete, onClose }: ProfileFormP
   const [allowLevelChange, setAllowLevelChange] = useState(
     profile?.settings.allowLevelChange ?? true,
   );
+  const [sounds, setSounds] = useState(profile?.settings.sounds ?? true);
   const [error, setError] = useState(false);
   const [confirmDelete, setConfirmDelete] = useState(false);
 
@@ -37,7 +38,13 @@ export function ProfileForm({ profile, onSave, onDelete, onClose }: ProfileFormP
       setError(true);
       return;
     }
-    onSave({ name: name.trim(), avatar, grade, gender, settings: { allowLevelChange } });
+    onSave({
+      name: name.trim(),
+      avatar,
+      grade,
+      gender,
+      settings: { allowLevelChange, ...(sounds ? {} : { sounds: false }) },
+    });
   };
 
   if (confirmDelete && profile && onDelete) {
@@ -170,6 +177,11 @@ export function ProfileForm({ profile, onSave, onDelete, onClose }: ProfileFormP
             onChange={(e) => setAllowLevelChange(e.target.checked)}
           />
           {t('profile.allowLevelChange')}
+        </label>
+
+        <label className="toggle">
+          <input type="checkbox" checked={sounds} onChange={(e) => setSounds(e.target.checked)} />
+          {t('profile.sounds')}
         </label>
       </form>
     </Dialog>

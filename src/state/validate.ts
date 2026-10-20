@@ -75,6 +75,8 @@ function parseProfile(value: unknown, index: number): Profile {
   if (!isAvatarId(avatar)) fail(`${where}: דמות לא מוכרת`);
   if (gender !== 'f' && gender !== 'm') fail(`${where}: פנייה לא חוקית`);
   if (typeof allowLevelChange !== 'boolean') fail(`${where}: הגדרה לא חוקית`);
+  const sounds = settings['sounds'];
+  if (sounds !== undefined && typeof sounds !== 'boolean') fail(`${where}: הגדרה לא חוקית`);
   // Added later and optional: absent in older data.
   const introSeen = p['journeyIntroSeenAt'];
   return {
@@ -84,7 +86,7 @@ function parseProfile(value: unknown, index: number): Profile {
     grade: intInRange(p['grade'], 0, 6, `${where}, כיתה`) as Grade,
     gender,
     createdAt: finiteNumber(p['createdAt'], `${where}, תאריך`),
-    settings: { allowLevelChange },
+    settings: { allowLevelChange, ...(sounds === undefined ? {} : { sounds }) },
     ...(introSeen === undefined
       ? {}
       : { journeyIntroSeenAt: finiteNumber(introSeen, `${where}, הסבר המסע`) }),

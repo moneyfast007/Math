@@ -4821,6 +4821,35 @@ details.report .report__worlds {
   --key-h: clamp(44px, 7vh, calc(var(--tap-min) + 8px));
 }
 
+/* A big screen (a desktop, a tablet): a bigger pad, with room to spare, and a
+   line saying the keyboard works too. */
+@media (min-width: 900px) and (min-height: 760px) {
+  .practice[data-screen='practice'] {
+    --key-h: 68px;
+  }
+
+  .practice[data-screen='practice'] .numpad {
+    max-width: 420px;
+    gap: 12px;
+  }
+
+  .practice[data-screen='practice'] .numpad__key {
+    font-size: var(--text-xl);
+  }
+
+  .practice[data-screen='practice'] .answer__keyboard-hint {
+    display: block;
+  }
+}
+
+.answer__keyboard-hint {
+  display: none;
+  margin: 0;
+  text-align: center;
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+
 /* Two to four answers in one row, the same width each. */
 .practice[data-screen='practice'] .choices-big {
   display: grid;

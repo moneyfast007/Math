@@ -32,6 +32,7 @@ import { NumberPad } from '@/ui/NumberPad';
 import { Plusi, type PlusiMood } from '@/ui/Plusi';
 import { SpeakerButton } from '@/ui/SpeakerButton';
 import { ColumnWork } from '@/ui/Vertical';
+import { playAlmost, playCorrect, setSoundsEnabled } from '@/ui/sounds';
 import { VisualView } from '@/ui/Visuals';
 import { WorldComplete } from './WorldComplete';
 
@@ -181,10 +182,14 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
   }, [s.hintsShown]);
 
   useEffect(() => applyAgeBand(band), [band]);
+  useEffect(() => setSoundsEnabled(profile.settings.sounds !== false), [profile.settings.sounds]);
 
   const apply = (action: SessionAction) => {
     const before = stateRef.current;
     const after = reduce(before, action);
+    // The sounds of an answer: on the way in (before the state settles, so they feel instant).
+    if (after.phase === 'correct' && before.phase !== 'correct') playCorrect();
+    else if (after.phase === 'wrong' && after.tries > before.tries) playAlmost();
     if (completedExercise(before, after)) {
       const outcome = after.history.at(-1);
       const exTopic = daily ? (topicById(before.exercise.topicId) ?? topic) : topic;
@@ -546,6 +551,9 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
               onSubmit={() => answer(Number(value))}
             />
           )}
+          {e.input.type !== 'choices' ? (
+            <p className="answer__keyboard-hint">{t('desktop.keyboardHint')}</p>
+          ) : null}
         </section>
       )}
     </main>

@@ -219,6 +219,9 @@ export const he = {
   'profile.gender.f': 'בלשון נקבה',
   'profile.gender.m': 'בלשון זכר',
   'profile.allowLevelChange': 'מותר לשנות רמת קושי לבד',
+  'profile.sounds': 'צלילים בתרגול (דינג לתשובה נכונה)',
+  // Shown only (a desktop line, not for the audio bank).
+  'desktop.keyboardHint': 'אפשר גם להקליד במקלדת: ספרות ו-Enter',
   'profile.save': 'שמירה',
   'profile.delete': 'מחיקת הפרופיל',
   'profile.deleteTitle': 'למחוק את הפרופיל של {name}?',

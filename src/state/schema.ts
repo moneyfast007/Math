@@ -26,6 +26,8 @@ export const MAX_LEVEL = 10;
 export interface ProfileSettings {
   /** Whether the child may change the difficulty level herself. */
   allowLevelChange: boolean;
+  /** The small sounds of practice (a ding, a boop). Absent: on. Optional, so older data stays valid. */
+  sounds?: boolean;
 }
 
 export interface Profile {
