@@ -56,11 +56,15 @@ describe('<HomeScreen> welcome (no profiles yet)', () => {
     expect(container.querySelector('.welcome__typed')).toHaveAttribute('aria-hidden', 'true');
     expect(container.querySelector('.welcome__rest')).toHaveTextContent(t('welcome.greeting'));
 
-    act(() => vi.advanceTimersByTime(1200));
+    act(() => {
+      vi.advanceTimersByTime(1200);
+    });
     expect(typed()?.length).toBeGreaterThan(0);
     expect(t('welcome.greeting').startsWith(typed() ?? '')).toBe(true);
 
-    act(() => vi.advanceTimersByTime(20_000));
+    act(() => {
+      vi.advanceTimersByTime(20_000);
+    });
     expect(bubble).not.toHaveAttribute('data-typing');
     expect(container.querySelector('.welcome__rest')).toBeEmptyDOMElement();
     expect(container.querySelector('svg[data-mood="cheering"]')).not.toBeNull();
@@ -120,7 +124,9 @@ describe('<HomeScreen> child picker', () => {
     fireEvent.click(entry);
     expect(screen.queryByRole('dialog')).toBeNull();
     fireEvent.pointerDown(entry);
-    act(() => vi.advanceTimersByTime(1600));
+    act(() => {
+      vi.advanceTimersByTime(1600);
+    });
     expect(screen.getByRole('dialog', { name: 'כניסת הורים' })).toBeInTheDocument();
   });
 });
