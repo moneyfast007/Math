@@ -123,7 +123,7 @@ describe('<JourneyScreen> first-time explainer and the way to all worlds', () =>
     const { unmount } = render(<JourneyScreen />);
     const card = screen.getByRole('region', { name: 'ברוכה הבאה למסע!' });
     expect(within(card).getAllByRole('listitem')).toHaveLength(3);
-    expect(within(card).getByText(/הכוכב: סיום העולם/)).toBeInTheDocument();
+    expect(within(card).getByText(/הכוכב: אתגר הסיום/)).toBeInTheDocument();
     expect(within(card).getByText(/"כל העולמות"/)).toBeInTheDocument();
     // Not a dialog: the big button is right there.
     expect(screen.queryByRole('dialog')).toBeNull();
@@ -175,7 +175,7 @@ describe('<JourneyScreen> header and world row', () => {
     expect(within(row).getByRole('button', { name: 'כל העולמות' })).toBeInTheDocument();
   });
 
-  it("once every station is done, says the world's final review is next", () => {
+  it('once every station is done, names the final challenge and what it opens', () => {
     const p = emptyProgress();
     p.topics['add-sub-20'] = {
       ...emptyTopicStats(10),
@@ -183,7 +183,10 @@ describe('<JourneyScreen> header and world row', () => {
     };
     playAs(makeProfile({ grade: 1, journeyIntroSeenAt: 1 }), p);
     render(<JourneyScreen />);
-    expect(screen.getByText('כל התחנות הושלמו · עכשיו סיום העולם')).toBeInTheDocument();
+    expect(screen.getByText('נשאר אתגר אחד ועולם 2 נפתח')).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'אתגר הסיום' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'יאללה, לאתגר הסיום!' })).toBeInTheDocument();
+    expect(screen.getByText('מצליחים, ועולם 2 נפתח ⭐')).toBeInTheDocument();
   });
 
   it('shows the streak from the first day only', () => {

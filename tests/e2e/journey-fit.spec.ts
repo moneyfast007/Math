@@ -44,11 +44,11 @@ const CASES: Case[] = [
   { label: 'grade 2', grade: 2, topics: {}, progress: /^תחנה 1 מתוך 10$/ },
   { label: 'grade 4', grade: 4, topics: {}, progress: /^תחנה \d+ מתוך \d+$/ },
   {
-    // Every station of the first world done: the world's final review is next.
+    // Every station of the first world done: the final challenge is next, and opens world 2.
     label: 'grade 4, every station done',
     grade: 4,
     topics: { 'big-numbers': done },
-    progress: /^כל התחנות הושלמו · עכשיו סיום העולם$/,
+    progress: /^נשאר אתגר אחד ועולם 2 נפתח$/,
   },
 ];
 
@@ -147,7 +147,7 @@ for (const c of CASES) {
     test.skip(info.project.name !== 'iphone', 'phone only');
     test.setTimeout(90_000);
     await setup(page, c);
-    const start = page.getByRole('button', { name: /^יאללה, (מתחילים|חוזרים על הכול)!$/ });
+    const start = page.getByRole('button', { name: /^יאללה, (מתחילים|לאתגר הסיום)!$/ });
     await expect(start).toBeVisible();
     await expect(page.getByRole('heading', { level: 1 })).toHaveText(`שלום ${NAME}!`);
 

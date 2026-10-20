@@ -5325,3 +5325,12 @@ details.report .report__worlds {
   font-size: var(--text-sm);
   font-weight: 600;
 }
+
+/* Under "יאללה, לאתגר הסיום!": what passing it brings. */
+.journey__reward {
+  margin: 0;
+  text-align: center;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-text-muted);
+}

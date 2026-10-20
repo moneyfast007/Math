@@ -110,6 +110,9 @@ export function WorldsScreen() {
 function WorldRow({ entry, young }: { entry: WorldMapEntry; young: boolean }) {
   const { world, state, after } = entry;
   const name = t(world.topic.labelKey as TranslationKey);
+  // The level stations only; the final challenge is named on its own once they are done.
+  const levels = Math.max(1, world.stations.length);
+  const levelsDone = world.stations.filter((s) => s.state === 'done').length;
   return (
     <li
       className={`world-row world-row--${state}`}
@@ -135,13 +138,15 @@ function WorldRow({ entry, young }: { entry: WorldMapEntry; young: boolean }) {
           </span>
           {state === 'current' ? (
             <span className={young ? 'visually-hidden' : 'world-row__count'}>
-              {t('worlds.stations', { params: { done: world.done, total: world.total } })}
+              {levelsDone === levels
+                ? t('worlds.stationsChallenge', { params: { total: levels } })
+                : t('worlds.stations', { params: { done: levelsDone, total: levels } })}
             </span>
           ) : null}
         </p>
         {state === 'current' ? (
           <span className="world-row__bar" aria-hidden="true">
-            <span style={{ width: `${Math.round((world.done / world.total) * 100)}%` }} />
+            <span style={{ width: `${Math.round((levelsDone / levels) * 100)}%` }} />
           </span>
         ) : null}
         {after ? (

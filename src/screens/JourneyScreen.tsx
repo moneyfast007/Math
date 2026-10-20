@@ -9,7 +9,7 @@ import {
 } from 'react';
 import { navigate } from '@/app/router';
 import { dailyPool } from '@/engine/daily';
-import { activeWorld, nextStop, type World, type WorldStation } from '@/engine/journey';
+import { activeWorld, nextStop, worldsFor, type World, type WorldStation } from '@/engine/journey';
 import { makeT, t, type TranslationKey } from '@/i18n';
 import { gradeLabel } from '@/i18n/labels';
 import { spokenLabel } from '@/lang/spokenLabel';
@@ -88,6 +88,9 @@ function Journey({ profile }: { profile: Profile }) {
     ? t(stopStation.labelKey as TranslationKey)
     : t('journey.review.name');
   const startLabel = stop.kind === 'review' ? t('journey.start.review') : t('child.start');
+  // The world after this one, if the grade has one: the final challenge opens it.
+  const nextWorld =
+    worldsFor(profile.grade, progress).length > world.index ? world.index + 1 : null;
   const streak = currentStreak(progress?.streak ?? { count: 0, lastDay: null }, Date.now());
 
   const start = () => navigate({ name: stop.kind === 'review' ? 'review' : 'practice' });
@@ -149,7 +152,7 @@ function Journey({ profile }: { profile: Profile }) {
                     params: { index: world.index, name: t(world.topic.labelKey as TranslationKey) },
                   })}
                 </h2>
-                <p className="muted journey__progress">{progressLine(world)}</p>
+                <p className="muted journey__progress">{progressLine(world, nextWorld)}</p>
               </div>
             ) : null}
             <button
@@ -204,6 +207,13 @@ function Journey({ profile }: { profile: Profile }) {
           >
             {startLabel}
           </button>
+          {stop.kind === 'review' ? (
+            <p className="journey__reward">
+              {nextWorld !== null
+                ? t('journeyBar.reward', { params: { next: nextWorld } })
+                : t('journeyBar.rewardLast')}
+            </p>
+          ) : null}
           {hasDaily || canPick ? (
             // The day's review and another level: one compact row under the big button.
             <div className="journey__more">
@@ -265,9 +275,12 @@ function Journey({ profile }: { profile: Profile }) {
  * Where the child stands in the world, counting the level stations only (the
  * world's final review is named on its own once every station is done).
  */
-function progressLine(world: World): string {
+function progressLine(world: World, nextWorld: number | null): string {
   if (world.completed) return t('journey.worldDone');
-  if (world.review === 'current') return t('journeyBar.stationsDone');
+  if (world.review === 'current')
+    return nextWorld !== null
+      ? t('journeyBar.stationsDone', { params: { next: nextWorld } })
+      : t('journeyBar.stationsDoneLast');
   const total = world.stations.length;
   const at = world.stations.findIndex((s) => s.state === 'current');
   const doneCount = world.stations.filter((s) => s.state === 'done').length;
