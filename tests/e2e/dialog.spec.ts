@@ -14,8 +14,8 @@ test('the level picker scrolls inside the dialog, not the page behind', async ({
   await form.getByRole('button', { name: 'שמירה' }).click();
   await page.getByRole('button', { name: 'להתחיל לשחק' }).click();
 
-  await page.getByRole('button', { name: 'שלב אחר' }).click();
-  const dialog = page.getByRole('dialog', { name: 'באיזה שלב לתרגל?' });
+  await page.getByRole('button', { name: 'תחנה אחרת' }).click();
+  const dialog = page.getByRole('dialog', { name: 'באיזו תחנה לתרגל?' });
   await expect(dialog).toBeVisible();
 
   // The whole panel is on screen: title at the top, nothing cut off below.
@@ -26,7 +26,7 @@ test('the level picker scrolls inside the dialog, not the page behind', async ({
     expect(box.y).toBeGreaterThanOrEqual(0);
     expect(box.y + box.height).toBeLessThanOrEqual(viewport.height + 1);
   }
-  await expect(dialog.getByRole('heading', { name: 'באיזה שלב לתרגל?' })).toBeInViewport();
+  await expect(dialog.getByRole('heading', { name: 'באיזו תחנה לתרגל?' })).toBeInViewport();
 
   // The page behind is pinned while the dialog is open.
   expect(await page.evaluate(() => getComputedStyle(document.body).position)).toBe('fixed');

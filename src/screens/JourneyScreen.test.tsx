@@ -1,11 +1,13 @@
 import { act, fireEvent, render, screen, within } from '@testing-library/react';
 import { beforeEach, describe, expect, it } from 'vitest';
 import { replayTopic } from '@/app/replay';
+import { activeWorld } from '@/engine/journey';
 import { t } from '@/i18n';
 import { emptyProgress, emptyTopicStats, type Profile, type ProfileProgress } from '@/state/schema';
 import { appStore } from '@/state/store';
+import { dayKey } from '@/state/streak';
 import { makeData, makeProfile } from '@/state/testData';
-import { layoutStations, pathThrough } from './journeyLayout';
+import { fitStations, layoutStations, pathThrough } from './journeyLayout';
 import { JourneyScreen } from './JourneyScreen';
 import { WorldsScreen } from './WorldsScreen';
 import { Plusi } from '@/ui/Plusi';
@@ -26,6 +28,33 @@ describe('journey map layout', () => {
     expect(points[0]?.x).toBeGreaterThan(points[1]?.x ?? 0);
     expect(points[0]?.y).toBeGreaterThan(points[3]?.y ?? 0);
     expect(points[3]?.x).toBeLessThan(points[4]?.x ?? 0);
+  });
+
+  it('spreads or closes up the rows to fill the height it is given, within limits', () => {
+    const natural = layoutStations(11, 3);
+    const tall = layoutStations(11, 3, 120);
+    const short = layoutStations(11, 3, 80);
+    expect(tall.height).toBeGreaterThan(natural.height);
+    expect(tall.height).toBeLessThanOrEqual(120);
+    expect(short.height).toBeLessThan(natural.height);
+    expect(short.height).toBeCloseTo(80);
+    // Never squeezed past the point where the stations would touch.
+    expect(layoutStations(11, 3, 10).height).toBeGreaterThan(10);
+  });
+
+  it('fits a phone box: inside it, and more stations per row when the box is wide and short', () => {
+    const phone = fitStations(11, { width: 328, height: 300 }, false);
+    expect(phone.width).toBeLessThanOrEqual(328);
+    expect((phone.width * phone.height) / 100).toBeLessThanOrEqual(300 + 0.01);
+    expect(phone.points).toHaveLength(11);
+    expect(phone.cell).toBeGreaterThan(60);
+
+    const sideways = fitStations(11, { width: 460, height: 260 }, false);
+    expect(sideways.perRow).toBeGreaterThan(3);
+    expect((sideways.width * sideways.height) / 100).toBeLessThanOrEqual(260 + 0.01);
+
+    // A tablet's map stops growing at its usual width.
+    expect(fitStations(11, { width: 1000, height: 2000 }, true).width).toBeLessThanOrEqual(680);
   });
 
   it('draws one path segment per hop', () => {
@@ -82,7 +111,11 @@ const profileNow = () => appStore.getState().data.profiles[0];
 /** Grade 1 with world 1 (add-sub-20) finished. */
 function firstWorldDone(): ProfileProgress {
   const p = emptyProgress();
-  p.topics['add-sub-20'] = { ...emptyTopicStats(10), completedLevels: [10], reviewPassed: true };
+  p.topics['add-sub-20'] = {
+    ...emptyTopicStats(10),
+    completedLevels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+    reviewPassed: true,
+  };
   return p;
 }
 
@@ -94,7 +127,7 @@ describe('<JourneyScreen> first-time explainer and the way to all worlds', () =>
     const { unmount } = render(<JourneyScreen />);
     const card = screen.getByRole('region', { name: 'ברוכה הבאה למסע!' });
     expect(within(card).getAllByRole('listitem')).toHaveLength(3);
-    expect(within(card).getByText(/הכוכב: סיום העולם/)).toBeInTheDocument();
+    expect(within(card).getByText(/הכוכב: אתגר הסיום/)).toBeInTheDocument();
     expect(within(card).getByText(/"כל העולמות"/)).toBeInTheDocument();
     // Not a dialog: the big button is right there.
     expect(screen.queryByRole('dialog')).toBeNull();
@@ -126,6 +159,62 @@ describe('<JourneyScreen> first-time explainer and the way to all worlds', () =>
       unmount();
       window.history.replaceState(null, '', '/play');
     }
+  });
+});
+
+describe('<JourneyScreen> header and world row', () => {
+  beforeEach(() => window.history.replaceState(null, '', '/play'));
+
+  it('counts the level stations only: "תחנה 1 מתוך" the world\'s real number of stations', () => {
+    playAs(makeProfile({ grade: 2, journeyIntroSeenAt: 1 }));
+    render(<JourneyScreen />);
+    const stations = activeWorld(2, emptyProgress())?.stations.length ?? 0;
+    expect(stations).toBeGreaterThan(0);
+    expect(screen.getByText(`תחנה 1 מתוך ${stations}`)).toBeInTheDocument();
+    // The world's name and "כל העולמות" share one row.
+    const row = screen
+      .getByRole('heading', { level: 2, name: /^עולם 1 · / })
+      .closest<HTMLElement>('.journey__world');
+    if (!row) throw new Error('the world row is missing');
+    expect(within(row).getByRole('button', { name: 'כל העולמות' })).toBeInTheDocument();
+  });
+
+  it('once every station is done, names the final challenge and what it opens', () => {
+    const p = emptyProgress();
+    p.topics['add-sub-20'] = {
+      ...emptyTopicStats(10),
+      completedLevels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+    };
+    playAs(makeProfile({ grade: 1, journeyIntroSeenAt: 1 }), p);
+    render(<JourneyScreen />);
+    expect(screen.getByText('נשאר אתגר אחד ועולם 2 נפתח')).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'אתגר הסיום' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'יאללה, לאתגר הסיום!' })).toBeInTheDocument();
+    expect(screen.getByText('מצליחים, ועולם 2 נפתח ⭐')).toBeInTheDocument();
+  });
+
+  it('shows the streak from the first day only', () => {
+    playAs(makeProfile({ journeyIntroSeenAt: 1 }));
+    const { unmount } = render(<JourneyScreen />);
+    expect(screen.queryByRole('img', { name: /רצף/ })).toBeNull();
+    unmount();
+
+    const p = emptyProgress();
+    p.streak = { count: 3, lastDay: dayKey(Date.now()) };
+    playAs(makeProfile({ journeyIntroSeenAt: 1 }), p);
+    render(<JourneyScreen />);
+    expect(screen.getByRole('img', { name: '3 ימים ברצף' })).toBeInTheDocument();
+  });
+
+  it('labels the album and the switch with a word, keeping their names', () => {
+    playAs(makeProfile({ journeyIntroSeenAt: 1 }));
+    render(<JourneyScreen />);
+    const album = screen.getByRole('button', { name: 'האלבום' });
+    const who = screen.getByRole('button', { name: 'מי משחק?' });
+    expect(album).toHaveTextContent('מדבקות');
+    expect(who).toHaveTextContent('ילדים');
+    fireEvent.click(album);
+    expect(window.location.pathname).toBe('/album');
   });
 });
 

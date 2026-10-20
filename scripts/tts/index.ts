@@ -20,8 +20,11 @@ const OUT = INDEX_DIR;
 
 async function main(): Promise<void> {
   const clips: Record<string, { bytes?: number }> = existsSync(MANIFEST)
-    ? ((JSON.parse(await readFile(MANIFEST, 'utf8')) as { clips?: Record<string, { bytes?: number }> })
-        .clips ?? {})
+    ? ((
+        JSON.parse(await readFile(MANIFEST, 'utf8')) as {
+          clips?: Record<string, { bytes?: number }>;
+        }
+      ).clips ?? {})
     : {};
   const recorded = new Set(Object.keys(clips));
   const idsOf = (texts: Iterable<string>) => {

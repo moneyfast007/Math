@@ -14,56 +14,100 @@ function progressAt(
   return p;
 }
 
+const range = (from: number, to: number) =>
+  Array.from({ length: to - from + 1 }, (_, i) => from + i);
+
 describe('worldFor', () => {
-  it('gan stops world 2 at level 5; a gan child already past it goes to the review', () => {
+  it('gan stops world 2 at level 5; a gan child placed past it still has her stations to pass', () => {
     const fresh = worldFor(addSub20, 2, 0, undefined);
     expect(fresh.stations.map((s) => s.level)).toEqual([1, 2, 3, 4, 5]);
-    expect(fresh.total).toBe(6);
+    // Gan starts at 3: stations 1–2 are warm-ups, not needed.
+    expect(fresh.total).toBe(4);
     const past = worldFor(addSub20, 2, 0, progressAt(8));
-    expect(past.stations.every((s) => s.state === 'done')).toBe(true);
-    expect(nextStop(past)).toEqual({ kind: 'review' });
+    expect(past.stations.map((s) => s.state)).toEqual([
+      'warmup',
+      'warmup',
+      'current',
+      'skipped',
+      'skipped',
+    ]);
+    expect(past.review).toBe('locked');
+    expect(nextStop(past)).toEqual({ kind: 'level', level: 3 });
   });
 
-  it('a new grade-2 child starts at her grade level with earlier stations done', () => {
+  it('a new grade-2 child starts at her grade level; the stations before it are warm-ups', () => {
     const w = worldFor(addSub20, 1, 2, undefined);
     expect(w.stations.map((s) => s.state)).toEqual([
-      ...Array.from({ length: 7 }, () => 'done'),
+      ...Array.from({ length: 7 }, () => 'warmup'),
       'current',
       'locked',
       'locked',
     ]);
     expect(w.review).toBe('locked');
-    expect(w.total).toBe(11);
-    expect(w.done).toBe(7);
+    expect(w.total).toBe(4);
+    expect(w.done).toBe(0);
     expect(nextStop(w)).toEqual({ kind: 'level', level: 8 });
   });
 
   it('a kindergartener arrives at add-sub-20 past the counting stations (world 1 taught them)', () => {
     const w = worldFor(addSub20, 2, 0, undefined);
     expect(w.stations[2]?.state).toBe('current');
+    expect(w.done).toBe(0);
+  });
+
+  it('only a passed station gets a check: jumping ahead leaves the stations between open', () => {
+    // Grade 1 starts at 4; she jumped to 7 and passed it, so she is at 8.
+    const w = worldFor(addSub20, 1, 1, progressAt(8, [4, 7]));
+    expect(w.stations.map((s) => s.state)).toEqual([
+      'warmup',
+      'warmup',
+      'warmup',
+      'done',
+      'skipped',
+      'skipped',
+      'done',
+      'current',
+      'locked',
+      'locked',
+    ]);
     expect(w.done).toBe(2);
   });
 
-  it('passed stations above the current level stay done after a level-down', () => {
-    const w = worldFor(addSub20, 1, 2, progressAt(6, [8]));
-    expect(w.stations.find((s) => s.level === 8)?.state).toBe('done');
-    expect(w.stations.find((s) => s.level === 7)?.state).toBe('locked');
+  it('after the last station, the big button goes back to the first one skipped', () => {
+    const w = worldFor(addSub20, 1, 1, progressAt(10, [4, 5, 8, 9, 10]));
+    expect(w.review).toBe('locked');
+    expect(nextStop(w)).toEqual({ kind: 'level', level: 6 });
     expect(w.stations.find((s) => s.level === 6)?.state).toBe('current');
+    expect(w.stations.find((s) => s.level === 7)?.state).toBe('skipped');
   });
 
-  it('opens the review when every level is done, and completes the world when it is passed', () => {
-    const allDone = worldFor(addSub20, 1, 2, progressAt(10, [10]));
-    expect(allDone.stations.every((s) => s.state === 'done')).toBe(true);
+  it('passed stations above the current level stay done after a level-down', () => {
+    const w = worldFor(addSub20, 1, 1, progressAt(6, [4, 5, 8]));
+    expect(w.stations.find((s) => s.level === 8)?.state).toBe('done');
+    expect(w.stations.find((s) => s.level === 7)?.state).toBe('skipped');
+    expect(w.stations.find((s) => s.level === 6)?.state).toBe('current');
+    expect(w.stations.find((s) => s.level === 9)?.state).toBe('locked');
+  });
+
+  it('opens the review when every station of her grade is passed, and completes the world when it is passed', () => {
+    const allDone = worldFor(addSub20, 1, 2, progressAt(10, range(8, 10)));
+    expect(allDone.stations.filter((s) => !s.warmup).every((s) => s.state === 'done')).toBe(true);
     expect(allDone.review).toBe('current');
     expect(nextStop(allDone)).toEqual({ kind: 'review' });
     expect(allDone.completed).toBe(false);
 
-    const passed = worldFor(addSub20, 1, 2, progressAt(10, [10], true));
+    const passed = worldFor(addSub20, 1, 2, progressAt(10, range(8, 10), true));
     expect(passed.review).toBe('done');
     expect(passed.completed).toBe(true);
-    expect(passed.done).toBe(11);
+    expect(passed.done).toBe(4);
     // After the world: free practice at the top level.
     expect(nextStop(passed)).toEqual({ kind: 'level', level: 10 });
+  });
+
+  it('the review stays shut while a station of her grade is open', () => {
+    const w = worldFor(addSub20, 1, 2, progressAt(10, [8, 10]));
+    expect(w.review).toBe('locked');
+    expect(nextStop(w)).toEqual({ kind: 'level', level: 9 });
   });
 
   it('the review passed early (imported data) does not complete a world with open stations', () => {
@@ -80,7 +124,7 @@ describe('worlds', () => {
     expect(worlds[0]?.topic.id).toBe(addSub20.id);
     expect(activeWorld(1, undefined)?.topic.id).toBe(addSub20.id);
     expect(stickersEarned(worlds)).toBe(0);
-    const done = progressAt(10, [10], true);
+    const done = progressAt(10, range(1, 10), true);
     expect(stickersEarned(worldsFor(1, done))).toBe(1);
     expect(activeWorld(1, done)?.topic.id).toBe('numbers-100');
   });
@@ -125,8 +169,12 @@ describe('worldsMap', () => {
   });
 
   it('finished worlds are done wherever they are; a locked one waits for the closest unfinished', () => {
-    const p = progressAt(10, [10], true); // world 1 (add-sub-20) finished
-    p.topics['polygons'] = { ...emptyTopicStats(5), completedLevels: [5], reviewPassed: true };
+    const p = progressAt(10, range(1, 10), true); // world 1 (add-sub-20) finished
+    p.topics['polygons'] = {
+      ...emptyTopicStats(5),
+      completedLevels: range(1, 5),
+      reviewPassed: true,
+    };
     const map = worldsMap(1, p);
     expect(map.map((e) => [e.world.topic.id, e.state])).toEqual([
       ['add-sub-20', 'done'],
@@ -148,7 +196,7 @@ describe('worldsMap', () => {
       const last = w.stations.at(-1)?.level ?? 1;
       p.topics[w.topic.id] = {
         ...emptyTopicStats(last),
-        completedLevels: [last],
+        completedLevels: range(1, last),
         reviewPassed: true,
       };
     }

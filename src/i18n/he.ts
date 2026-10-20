@@ -400,9 +400,9 @@ export const he = {
   // Child home: the next station
   'child.nextStation': 'התחנה הבאה',
   'child.start': 'יאללה, מתחילים!',
-  'child.levelLabel': 'שלב {level}: {name}',
-  'child.otherLevel': 'שלב אחר',
-  'child.pickLevel': 'באיזה שלב לתרגל?',
+  'child.levelLabel': 'תחנה {level}: {name}',
+  'child.otherLevel': 'תחנה אחרת',
+  'child.pickLevel': 'באיזו תחנה לתרגל?',
 
   // Practice round
   'practice.exit': 'סיום',
@@ -411,7 +411,7 @@ export const he = {
   'practice.choicesLabel': 'בחירת תשובה',
   'practice.hintTitle': 'רמז {n}',
   'practice.next': 'הבא',
-  'practice.levelChanged.down': 'נתרגל רגע שלב קל יותר.',
+  'practice.levelChanged.down': 'נתרגל רגע תחנה קלה יותר.',
   'practice.done.title': 'כל הכבוד, {name}!',
   'practice.done.body': 'פתרת {count} תרגילים.',
   'practice.done.again': 'עוד סבב',
@@ -425,7 +425,7 @@ export const he = {
 
   // Audio
   'audio.unavailableOffline': 'ההקראה לא זמינה עכשיו. נסו שוב כשיש אינטרנט.',
-  'audio.unavailable': 'אין הקראה לשאלה הזו.',
+  'audio.unavailable': 'אין הקראה למשפט הזה כרגע.',
 
   // Install guide (parents)
   'install.title': 'הוספה למסך הבית',
@@ -1529,11 +1529,13 @@ export const he = {
   'journey.station.done': 'תחנה {n}, הושלמה',
   'journey.station.current': 'תחנה {n}, התחנה הבאה',
   'journey.station.locked': 'תחנה {n}, עדיין סגורה',
-  'journey.review': 'סיום העולם',
-  'journey.review.name': 'חזרה על כל העולם',
-  'journey.review.done': 'סיום העולם, הושלם',
-  'journey.review.current': 'סיום העולם, התחנה הבאה',
-  'journey.review.locked': 'סיום העולם, עדיין סגור',
+  'journey.station.skipped': 'תחנה {n}, דילגת עליה',
+  'journey.station.warmup': 'תחנה {n}, חימום',
+  'journey.review': 'אתגר הסיום',
+  'journey.review.name': 'אתגר הסיום',
+  'journey.review.done': 'אתגר הסיום, הושלם',
+  'journey.review.current': 'אתגר הסיום, התחנה הבאה',
+  'journey.review.locked': 'אתגר הסיום, עדיין סגור',
   'journey.plusiWaiting': 'פלוסי מחכה ליד התחנה הבאה',
   'journey.map': 'מפת המסע',
   'journey.daily': 'חזרה של היום',
@@ -2019,7 +2021,7 @@ export const he = {
   'journey.streak.one': { f: 'יום ראשון ברצף. יאללה!', m: 'יום ראשון ברצף. יאללה!' },
   'journey.streak.short': '{count} ימים ברצף',
   'journey.streak.none': 'בלי רצף עדיין',
-  'journey.start.review': 'יאללה, חוזרים על הכול!',
+  'journey.start.review': 'יאללה, לאתגר הסיום!',
 
   'album.title': 'האלבום של {name}',
   'album.intro': 'כל עולם שמסיימים משאיר כאן מדבקה. נוגעים במדבקה כדי לתרגל את העולם שוב.',
@@ -2042,13 +2044,14 @@ export const he = {
   'practice.done.passedSpoken': { f: 'כל הכבוד! עברת את התחנה!', m: 'כל הכבוד! עברת את התחנה!' },
   'practice.done.notPassed': 'תרגלנו יפה. נחזור לתחנה הזאת עוד פעם.',
   'practice.done.nextOpened': 'התחנה הבאה נפתחה!',
-  'practice.done.reviewOpened': 'כל התחנות הושלמו! עכשיו אפשר לסיים את העולם.',
+  'practice.done.reviewOpened': 'נשאר רק אתגר הסיום, ואז נפתח העולם הבא!',
   'practice.done.worldDone': 'סיימת את כל העולם! מדבקה חדשה מחכה באלבום.',
   'practice.done.toAlbum': 'לאלבום',
   'practice.done.daily': 'כל הכבוד! סיימת את החזרה של היום.',
   'practice.done.replay': 'כל הכבוד! חזרת על העולם הזה.',
   'practice.done.toJourney': 'למסע',
-  'practice.review.title': 'חזרה על כל העולם',
+  'practice.done.next': 'לתחנה הבאה',
+  'practice.review.title': 'אתגר הסיום',
   'practice.review.body': 'תרגילים מכל התחנות, מעורבבים.',
 
   // Playground (temporary screen used to verify RTL and math rendering)

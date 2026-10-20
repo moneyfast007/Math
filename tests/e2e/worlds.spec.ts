@@ -97,7 +97,7 @@ test('the first visit explains how the worlds open, once, without blocking anyth
   const intro = page.getByRole('region', { name: 'ברוכה הבאה למסע!' });
   await expect(intro).toBeVisible();
   await expect(intro.getByRole('listitem')).toHaveCount(3);
-  await expect(intro).toContainText('סיום העולם');
+  await expect(intro).toContainText('אתגר הסיום');
   await expect(intro).toContainText('כל העולמות');
   // Not a dialog: the child can start right away.
   await expect(page.getByRole('dialog')).toHaveCount(0);

@@ -3,8 +3,8 @@
  * explainer (merged into `he`).
  *
  * `journey.*` texts are read aloud to the child (they go to the audio bank),
- * so they hold no digits: numbers come through `{slots}`. `worlds.*` texts are
- * only shown, for the child and for the parent next to her.
+ * so they hold no digits: numbers come through `{slots}`. `worlds.*` and
+ * `journeyBar.*` texts are only shown, for the child and for the parent next to her.
  */
 export const heJourney = {
   'pageTitle.worlds': 'כל העולמות · פלוסי',
@@ -12,9 +12,9 @@ export const heJourney = {
   // The first-time explainer, on the journey (and again from "איך זה עובד?")
   'journey.intro.title': { f: 'ברוכה הבאה למסע!', m: 'ברוך הבא למסע!' },
   'journey.intro.step1': 'בכל עולם יש שביל של תחנות. בכל תחנה מתרגלים קצת, ואז ממשיכים לתחנה הבאה.',
-  'journey.intro.step2': 'בסוף השביל מחכה הכוכב: סיום העולם. זו חזרה עם תרגילים מכל התחנות.',
+  'journey.intro.step2': 'בסוף השביל מחכה הכוכב: אתגר הסיום, עם תרגילים מכל התחנות.',
   'journey.intro.step3':
-    'אחרי סיום העולם נפתח העולם הבא. בכפתור "כל העולמות" רואים את כל העולמות לפי הסדר.',
+    'מצליחים באתגר הסיום, והעולם הבא נפתח. בכפתור "כל העולמות" רואים את כל העולמות לפי הסדר.',
   'journey.intro.ok': 'הבנתי!',
 
   // How many worlds are finished, read aloud on the map of worlds
@@ -24,6 +24,23 @@ export const heJourney = {
     f: 'סיימת את כל העולמות! את אלופה!',
     m: 'סיימת את כל העולמות! אתה אלוף!',
   },
+
+  // The journey's header and world row: only shown (the buttons keep their spoken
+  // names, "האלבום" and "מי משחק?"), so they are not in the audio bank.
+  'journeyBar.album': 'מדבקות',
+  'journeyBar.children': 'ילדים',
+  'journeyBar.stationsDone': 'נשאר אתגר אחד ועולם {next} נפתח',
+  'journeyBar.stationsDoneLast': 'נשאר רק אתגר הסיום',
+  'journeyBar.reward': 'מצליחים, ועולם {next} נפתח ⭐',
+  'journeyBar.rewardLast': 'מצליחים, ומקבלים מדבקה ⭐',
+
+  // The end of a world (only shown; the speaker reads practice.done.worldDone).
+  'celebrate.title': 'סיימת את עולם {n}!',
+  'celebrate.lastTitle': 'סיימת את כל העולמות של {grade}!',
+  'celebrate.next': 'עולם {n}: {name} נפתח!',
+  'celebrate.toNext': 'לעולם הבא',
+  'celebrate.toAlbum': 'לאלבום',
+  'celebrate.stickerOpen': 'המדבקה החדשה שלך. לחיצה פותחת את האלבום',
 
   // The map of all worlds
   'worlds.open': 'כל העולמות',
@@ -35,6 +52,7 @@ export const heJourney = {
   'worlds.state.current': 'כאן עכשיו',
   'worlds.state.locked': 'עוד סגור',
   'worlds.stations': '{done} מתוך {total} תחנות',
+  'worlds.stationsChallenge': '{total} מתוך {total} תחנות · נשאר אתגר הסיום',
   'worlds.locked': 'נפתח אחרי שמסיימים את "{name}"',
   'worlds.continue': 'להמשיך במסע',
 } as const;

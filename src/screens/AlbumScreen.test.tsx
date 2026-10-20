@@ -11,7 +11,7 @@ describe('<AlbumScreen>', () => {
     const progress = emptyProgress();
     progress.topics['add-sub-20'] = {
       ...emptyTopicStats(10),
-      completedLevels: [10],
+      completedLevels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
       reviewPassed: true,
     };
     act(() => {

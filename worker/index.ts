@@ -83,9 +83,9 @@ async function serveClip(
     etag: object.httpEtag,
   });
   if (!('body' in object) || !object.body) return new Response(null, { status: 304, headers });
-  const range = object.range as { offset?: number; length?: number } | undefined;
+  const range = object.range;
   if (range && request.headers.has('range')) {
-    const suffix = (range as { suffix?: number }).suffix;
+    const suffix = range.suffix;
     const offset = suffix !== undefined ? object.size - suffix : (range.offset ?? 0);
     const length = suffix ?? range.length ?? object.size - offset;
     headers.set('content-range', `bytes ${offset}-${offset + length - 1}/${object.size}`);

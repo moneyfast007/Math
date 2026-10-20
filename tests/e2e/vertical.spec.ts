@@ -69,7 +69,7 @@ async function setup(page: Page, grade: number, world: string) {
 }
 
 async function openLevel(page: Page, index: number) {
-  await page.getByRole('button', { name: 'שלב אחר' }).click();
+  await page.getByRole('button', { name: 'תחנה אחרת' }).click();
   await page.getByRole('dialog').getByRole('listitem').nth(index).click();
   await page.getByRole('button', { name: 'יאללה, מתחילים!' }).click();
   await expect(page.locator('.column-work')).toBeVisible();

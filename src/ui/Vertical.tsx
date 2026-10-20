@@ -243,7 +243,6 @@ interface WorkProps {
   guided: boolean;
   /** The round's phase for this exercise. */
   phase: 'answering' | 'wrong' | 'correct' | 'revealed';
-  slow: boolean;
   /** A wrong digit in guided mode (assisted: then written for the child). */
   onMiss: (mistake: MistakeKind | null, assisted: boolean) => void;
   /** The finished answer: guided, always the right one; otherwise what was written. */
@@ -254,14 +253,7 @@ interface WorkProps {
  * The column exercise being answered: the grid, the line that says what to do
  * (guided) or what went wrong, and the number pad.
  */
-export function ColumnWork({
-  layout,
-  guided: startGuided,
-  phase,
-  slow,
-  onMiss,
-  onSubmit,
-}: WorkProps) {
+export function ColumnWork({ layout, guided: startGuided, phase, onMiss, onSubmit }: WorkProps) {
   const steps = layout.steps;
   const expected = cellDigits(layout);
   const [guided, setGuided] = useState(startGuided);
@@ -403,15 +395,18 @@ export function ColumnWork({
 
   return (
     <div className="column-work">
-      <VerticalGrid
-        layout={layout}
-        cells={cells}
-        marks={marks}
-        group={group}
-        headers={headers}
-        label={describe(layout)}
-        shake={shake}
-      />
+      {/* On a short screen the grid shrinks (and at worst scrolls here); the pad stays put. */}
+      <div className="column-work__sheet">
+        <VerticalGrid
+          layout={layout}
+          cells={cells}
+          marks={marks}
+          group={group}
+          headers={headers}
+          label={describe(layout)}
+          shake={shake}
+        />
+      </div>
       {!finished && message ? (
         <div
           className={
@@ -423,7 +418,7 @@ export function ColumnWork({
         >
           {message.lines.map((l, i) => (
             <p key={i} className="column-work__line">
-              <SpeakerButton text={l.spoken} parts={l.parts} slow={slow} />
+              <SpeakerButton text={l.spoken} parts={l.parts} />
               <span>{l.text}</span>
             </p>
           ))}

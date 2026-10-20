@@ -141,14 +141,14 @@ for (const [grade, worlds] of Object.entries(WORLDS)) {
       test.skip(info.project.name !== 'iphone', 'phone only');
       test.setTimeout(150_000);
       await setup(page, Number(grade), world);
-      await expect(page.getByRole('button', { name: 'שלב אחר' })).toBeVisible();
+      await expect(page.getByRole('button', { name: 'תחנה אחרת' })).toBeVisible();
 
       // A world can end earlier for a younger grade (gan stops at level 5 of world 2).
-      await page.getByRole('button', { name: 'שלב אחר' }).click();
+      await page.getByRole('button', { name: 'תחנה אחרת' }).click();
       const count = await page.getByRole('dialog').getByRole('listitem').count();
       await page.keyboard.press('Escape');
       for (let i = 0; i < count; i++) {
-        await page.getByRole('button', { name: 'שלב אחר' }).click();
+        await page.getByRole('button', { name: 'תחנה אחרת' }).click();
         await page.getByRole('dialog').getByRole('listitem').nth(i).click();
         await page.getByRole('button', { name: 'יאללה, מתחילים!' }).click();
         await expect(page.locator('.exercise')).toBeVisible();
@@ -187,7 +187,7 @@ test('phone screens for review', async ({ page }, info) => {
     await page.screenshot({ path: `.ci/screens/${name}.png` });
   };
   const open = async (i: number) => {
-    await page.getByRole('button', { name: 'שלב אחר' }).click();
+    await page.getByRole('button', { name: 'תחנה אחרת' }).click();
     await page.getByRole('dialog').getByRole('listitem').nth(i).click();
     await page.getByRole('button', { name: 'יאללה, מתחילים!' }).click();
     await expect(page.locator('.exercise')).toBeVisible();
@@ -215,7 +215,7 @@ test('phone column screens for review', async ({ page }, info) => {
     await page.screenshot({ path: `.ci/screens/${name}.png` });
   };
   const open = async (i: number) => {
-    await page.getByRole('button', { name: 'שלב אחר' }).click();
+    await page.getByRole('button', { name: 'תחנה אחרת' }).click();
     await page.getByRole('dialog').getByRole('listitem').nth(i).click();
     await page.getByRole('button', { name: 'יאללה, מתחילים!' }).click();
     await expect(page.locator('.exercise')).toBeVisible();

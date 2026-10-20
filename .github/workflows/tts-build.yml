@@ -16,21 +16,22 @@ on:
         required: false
         default: '8'
       max_minutes:
-        description: 'Stop starting new clips after this many minutes (rerun to continue)'
+        description: 'Stop starting new clips after this many minutes (rerun to continue). The job has 355; trimming and uploading ~50k clips need about an hour.'
         required: false
-        default: '300'
+        default: '180'
 
 permissions:
   contents: write
 
 concurrency:
-  group: tts-build
+  # One recording at a time per branch (main and a content branch may record side by side).
+  group: tts-build-${{ github.ref_name }}
   cancel-in-progress: false
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 350
+    timeout-minutes: 355
     env:
       GOOGLE_CLOUD_PROJECT: ${{ secrets.GOOGLE_CLOUD_PROJECT }}
     steps:

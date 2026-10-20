@@ -125,11 +125,15 @@ test.describe('practice', () => {
     // Every answer right: the station is passed and the journey moves on.
     await expect(page.getByRole('status')).toContainText('עברת את התחנה! התחנה הבאה נפתחה!');
 
+    // One big way on, and a small way back to the map; no "again" after a pass.
+    await expect(page.getByRole('button', { name: 'לתחנה הבאה' })).toBeVisible();
+    await expect(page.getByRole('button', { name: 'עוד סבב' })).toHaveCount(0);
+
     // Back on the map: station 1 is done, 2 is next.
     await page.getByRole('button', { name: 'למסע' }).click();
     await expect(page.getByRole('button', { name: 'תחנה 1, הושלמה' })).toBeVisible();
     await expect(page.getByRole('button', { name: 'תחנה 2, התחנה הבאה' })).toBeVisible();
-    await expect(page.getByText('תחנה 2 מתוך 11')).toBeVisible();
+    await expect(page.getByText('תחנה 2 מתוך 10')).toBeVisible();
 
     // The parent sees it.
     await page.getByRole('button', { name: 'מי משחק?' }).click();
@@ -186,7 +190,7 @@ test.describe('practice', () => {
       await page.getByRole('button', { name: 'הבא' }).click();
     }
     await expect(
-      page.getByRole('status').filter({ hasText: 'נתרגל רגע שלב קל יותר.' }),
+      page.getByRole('status').filter({ hasText: 'נתרגל רגע תחנה קלה יותר.' }),
     ).toBeVisible();
     await expect(page.getByRole('dialog')).toHaveCount(0);
   });
@@ -225,9 +229,9 @@ test.describe('practice', () => {
       exact: true,
     });
     await expect(next).toBeVisible();
-    await page.getByRole('button', { name: 'שלב אחר' }).click();
+    await page.getByRole('button', { name: 'תחנה אחרת' }).click();
     await page
-      .getByRole('dialog', { name: 'באיזה שלב לתרגל?' })
+      .getByRole('dialog', { name: 'באיזו תחנה לתרגל?' })
       .getByRole('listitem')
       .filter({ hasText: 'מספר חסר' })
       .click();
@@ -245,22 +249,24 @@ test.describe('journey', () => {
   test('the map shows every station, the review, Plusi, the streak and the album', async ({
     page,
   }) => {
-    // Grade 1 starts world 1 (add-sub-20) at level 4: three stations already done.
+    // Grade 1 starts world 1 (add-sub-20) at level 4: three warm-up stations before it.
     await setupChild(page, 'נועה', 'כיתה א׳');
     await page.getByRole('button', { name: 'סיום' }).click();
     await expect(page).toHaveURL(/\/play$/);
 
     const map = page.getByRole('region', { name: 'מפת המסע' });
     await expect(map.locator('.node')).toHaveCount(11);
-    await expect(map.locator('.node--done')).toHaveCount(3);
-    await expect(map.getByRole('img', { name: 'סיום העולם, עדיין סגור' })).toBeVisible();
+    await expect(map.locator('.node--warmup')).toHaveCount(3);
+    await expect(map.locator('.node--done')).toHaveCount(0);
+    await expect(map.getByRole('img', { name: 'אתגר הסיום, עדיין סגור' })).toBeVisible();
     await expect(map.locator('.plusi')).toBeVisible();
     await expect(page.getByText('עולם 1 · חיבור וחיסור עד 20')).toBeVisible();
-    await expect(page.getByText('תחנה 4 מתוך 11')).toBeVisible();
-    await expect(page.getByRole('img', { name: 'בלי רצף עדיין' })).toBeVisible();
+    await expect(page.getByText('תחנה 4 מתוך 10')).toBeVisible();
+    // No streak yet: no chip (it shows from the first day).
+    await expect(page.getByRole('img', { name: /רצף/ })).toHaveCount(0);
 
-    // A done station is a shortcut back to that level.
-    await map.getByRole('button', { name: 'תחנה 3, הושלמה' }).click();
+    // A warm-up station can be played: a shortcut to that level.
+    await map.getByRole('button', { name: 'תחנה 3, חימום' }).click();
     await expect(page).toHaveURL(/\/practice$/);
     // Level 3: adding with pictures.
     await expect(page.locator('.exercise .obj').first()).toBeVisible();

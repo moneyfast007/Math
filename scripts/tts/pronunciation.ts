@@ -93,13 +93,15 @@ function parts(token: string): { pre: string; word: string; post: string } {
 }
 
 function vocalizeWord(word: string, previous: string | undefined): string {
+  // The unit before may carry a conjunction ("ושלוש עשרה", "ואחד עשר").
+  const unit = previous?.replace(/^ו(?=.)/, '');
   if (word === 'עשרה') {
     // After a feminine unit it is the teen suffix (esre); alone it is masculine ten (asara).
-    return previous !== undefined && FEMININE_UNITS.has(previous) ? 'עֶשְׂרֵה' : 'עֲשָׂרָה';
+    return unit !== undefined && FEMININE_UNITS.has(unit) ? 'עֶשְׂרֵה' : 'עֲשָׂרָה';
   }
   if (word === 'עשר') {
     // Masculine teens read correctly as plain text; alone it is feminine ten (eser).
-    return previous !== undefined && MASCULINE_UNITS.has(previous) ? 'עשר' : 'עֶשֶׂר';
+    return unit !== undefined && MASCULINE_UNITS.has(unit) ? 'עשר' : 'עֶשֶׂר';
   }
   return LEXICON[word] ?? word;
 }
@@ -119,10 +121,14 @@ export function vocalizeForTts(text: string): string {
   const tokens = text.split(' ');
   // Feminine teens: vocalize the unit together with עשרה (shlosh esre), as a native speaker spelled it.
   for (let i = 0; i + 1 < tokens.length; i++) {
-    const unit = tokens[i] ?? '';
+    const token = tokens[i] ?? '';
     const next = tokens[i + 1] ?? '';
-    if (/^עשרה[^\u05d0-\u05ea]*$/.test(next) && unit in TEEN_UNITS)
-      tokens[i] = TEEN_UNITS[unit] ?? unit;
+    const pre = token.startsWith('ו') && token.slice(1) in TEEN_UNITS ? 'ו' : '';
+    const unit = token.slice(pre.length);
+    if (/^עשרה[^\u05d0-\u05ea]*$/.test(next) && unit in TEEN_UNITS) {
+      const vocalized = TEEN_UNITS[unit] ?? unit;
+      tokens[i] = (pre ? conjunction(vocalized) : '') + vocalized;
+    }
   }
   return tokens
     .map((token) => {
