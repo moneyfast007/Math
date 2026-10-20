@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { speaker } from '@/audio/speaker';
 import { useSpeaking } from '@/audio/useSpeaker';
 import { setReplayTopic } from '@/app/replay';
@@ -194,15 +194,30 @@ function PlusiSays({
 }) {
   const speaking = useSpeaking() === text;
   const [shown, setShown] = useState(false);
+  const open = shown || speaking;
+  const root = useRef<HTMLSpanElement>(null);
   useEffect(() => {
     if (!shown) return;
     const id = window.setTimeout(() => setShown(false), 4000);
     return () => window.clearTimeout(id);
   }, [shown]);
+  // A tap anywhere else closes the bubble (and stops the reading).
+  useEffect(() => {
+    if (!open) return;
+    const onDown = (e: PointerEvent) => {
+      if (root.current?.contains(e.target as Node)) return;
+      setShown(false);
+      if (speaker.speaking === text) speaker.stop();
+    };
+    document.addEventListener('pointerdown', onDown);
+    return () => document.removeEventListener('pointerdown', onDown);
+  }, [open, text]);
 
   const onClick = async () => {
-    if (speaking) {
-      speaker.stop();
+    // A second tap closes it.
+    if (open) {
+      setShown(false);
+      if (speaking) speaker.stop();
       return;
     }
     setShown(true);
@@ -210,7 +225,7 @@ function PlusiSays({
   };
 
   return (
-    <span className="worlds__plusi">
+    <span className="worlds__plusi" ref={root}>
       {shown || speaking ? (
         <span className="worlds__plusi-line" role="status">
           {line}
