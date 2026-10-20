@@ -19,6 +19,7 @@ import {
   ROUND6,
   ROUND7,
   ROUND8,
+  ROUND9,
   SENTENCES as SAMPLE_SENTENCES,
   WORDS,
 } from './sample-sentences';
@@ -55,19 +56,21 @@ const { values } = parseArgs({
 });
 
 const SENTENCES: readonly string[] =
-  values.set === 'round8'
-    ? ROUND8
-    : values.set === 'round7'
-      ? ROUND7
-      : values.set === 'round6'
-        ? ROUND6.map((r) => r.text)
-        : values.set === 'bank'
-          ? BANK_CHECK
-          : values.set === 'probe'
-            ? PROBE
-            : values.set === 'words'
-              ? WORDS
-              : SAMPLE_SENTENCES;
+  values.set === 'round9'
+    ? ROUND9
+    : values.set === 'round8'
+      ? ROUND8
+      : values.set === 'round7'
+        ? ROUND7
+        : values.set === 'round6'
+          ? ROUND6.map((r) => r.text)
+          : values.set === 'bank'
+            ? BANK_CHECK
+            : values.set === 'probe'
+              ? PROBE
+              : values.set === 'words'
+                ? WORDS
+                : SAMPLE_SENTENCES;
 
 interface Variant {
   name: string;
@@ -160,6 +163,16 @@ const ROUND8_VARIANTS: Variant[] = (
   texts: [...SENTENCES],
 }));
 
+/** Round 9: the chosen voice and pace, plain text against the targeted nikud (teens). */
+const ROUND9_VARIANTS: Variant[] = [
+  { name: 'plain', texts: [...SENTENCES] },
+  { name: 'fixed', texts: SENTENCES.map(vocalizeForTts) },
+].map(({ name, texts }) => ({
+  name,
+  spec: { engine: 'gemini-3.1-flash' as const, voice: 'Leda', prompt: QUICK_PROMPT },
+  texts,
+}));
+
 const only = values.only?.split(',').map((x) => x.trim());
 const takes = Math.max(1, Number(values.takes) || 1);
 const variants: Variant[] = values.voices
@@ -185,13 +198,15 @@ const variants: Variant[] = values.voices
           texts,
         }));
       })
-  : (values.set === 'round8'
-      ? ROUND8_VARIANTS
-      : values.set === 'round7'
-        ? ROUND7_VARIANTS
-        : values.set === 'round6'
-          ? ROUND6_VARIANTS
-          : ALL_VARIANTS
+  : (values.set === 'round9'
+      ? ROUND9_VARIANTS
+      : values.set === 'round8'
+        ? ROUND8_VARIANTS
+        : values.set === 'round7'
+          ? ROUND7_VARIANTS
+          : values.set === 'round6'
+            ? ROUND6_VARIANTS
+            : ALL_VARIANTS
     ).filter((v) => !only || only.includes(v.name));
 
 const HTML_ESCAPES: Record<string, string> = {

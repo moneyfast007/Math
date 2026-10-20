@@ -17,6 +17,12 @@ describe('vocalizeForTts', () => {
 
   it('leaves the masculine teens plain (they read correctly as they are)', () => {
     expect(vocalizeForTts('אחד עשר כדורים')).toBe('אחד עשר כדורים');
+    expect(vocalizeForTts('מאה ואחד עשר שקלים')).toBe('מאה ואחד עשר שקלים');
+  });
+
+  it('reads a teen after a conjunction as esre, with the ו given its vowel', () => {
+    expect(vocalizeForTts('מאה ואחת עשרה מתוך')).toBe('מאה וְאַחַת עֶשְׂרֵה מתוך');
+    expect(vocalizeForTts('עשרים ושלוש עשרה')).toBe('עֶשְׂרִים וּשְׁלוֹשׁ עֶשְׂרֵה');
   });
 
   it('leaves number words that read well plain untouched', () => {
