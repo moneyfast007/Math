@@ -19,6 +19,10 @@ on:
         description: 'Stop starting new clips after this many minutes (rerun to continue). The job has 355; trimming and uploading ~50k clips need about an hour.'
         required: false
         default: '180'
+      recover_window:
+        description: 'Before generating, record clips already in the bucket from a cut-off run: "since,until" (ISO times, UTC). Empty: none.'
+        required: false
+        default: ''
 
 permissions:
   contents: write
@@ -43,11 +47,22 @@ jobs:
       - uses: google-github-actions/auth@v2
         with:
           credentials_json: ${{ secrets.GCP_SA_KEY }}
+      - name: Recover clips a cut-off run uploaded
+        if: inputs.recover_window != ''
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: auto
+          R2_ENDPOINT: https://${{ vars.CF_ACCOUNT_ID || '6e361a6ea0adc5dde636c123d59a4ba0' }}.r2.cloudflarestorage.com
+        run: |
+          set -o pipefail
+          WINDOW="${{ inputs.recover_window }}"
+          npm run tts:reconcile -- --since "${WINDOW%%,*}" --until "${WINDOW##*,}" 2>&1 | tee tts-build.log
       - name: Generate
         run: |
           DRY="${{ inputs.dry_run }}"
           set -o pipefail
-          if [ "$DRY" = "true" ]; then npm run tts:build -- --dry-run 2>&1 | tee tts-build.log; else npm run tts:build -- --max-minutes "${{ inputs.max_minutes }}" --concurrency "${{ inputs.concurrency }}" 2>&1 | tee tts-build.log; fi
+          if [ "$DRY" = "true" ]; then npm run tts:build -- --dry-run 2>&1 | tee -a tts-build.log; else npm run tts:build -- --max-minutes "${{ inputs.max_minutes }}" --concurrency "${{ inputs.concurrency }}" 2>&1 | tee -a tts-build.log; fi
       - name: Trim the silence at both ends of each clip
         if: always() && inputs.dry_run != 'true'
         run: |

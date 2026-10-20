@@ -145,3 +145,33 @@ export function vocalizeForTts(text: string): string {
     })
     .join(' ');
 }
+
+const TEEN_UNITS_ALL: Readonly<Record<string, string>> = {
+  ...TEEN_UNITS,
+  אחת: 'אַחַת',
+  שתים: 'שְׁתֵּים',
+};
+
+/**
+ * The smallest fix for Gemini (round 9, Oct 20, 2026): only the feminine teens.
+ * "שלוש עשרה" is read as asara unless עשרה carries its nikud, so the unit and
+ * עשרה are vocalized together (with a ו prefix given its vowel: "וּשְׁלוֹשׁ עֶשְׂרֵה",
+ * "וְאַחַת עֶשְׂרֵה"). Everything else Gemini reads well as plain text, and it stays
+ * plain, so only clips with a teen in them are affected.
+ */
+export function vocalizeTeens(text: string): string {
+  const tokens = text.split(' ');
+  for (let i = 0; i + 1 < tokens.length; i++) {
+    const token = tokens[i] ?? '';
+    const next = tokens[i + 1] ?? '';
+    const m = /^(ו?)([א-ת]+)$/.exec(token);
+    if (!m || !/^עשרה[^\u05d0-\u05ea]*$/.test(next)) continue;
+    const pre = m[1] ?? '';
+    const unit = m[2] ?? '';
+    const vocalized = TEEN_UNITS_ALL[unit];
+    if (!vocalized) continue;
+    tokens[i] = (pre ? conjunction(vocalized) : '') + vocalized;
+    tokens[i + 1] = next.replace(/^עשרה/, 'עֶשְׂרֵה');
+  }
+  return tokens.join(' ');
+}

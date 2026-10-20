@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { vocalizeForTts } from './pronunciation';
+import { vocalizeForTts, vocalizeTeens } from './pronunciation';
 
 describe('vocalizeForTts', () => {
   it('reads the feminine teens as esre', () => {
@@ -51,5 +51,30 @@ describe('vocalizeForTts', () => {
 
   it('does not carry context across a sentence boundary', () => {
     expect(vocalizeForTts('יש שבע. עשרה כדורים')).toBe('יש שבע. עֲשָׂרָה כדורים');
+  });
+});
+
+describe('vocalizeTeens (the Gemini fix)', () => {
+  it('vocalizes a feminine teen, and nothing else', () => {
+    expect(vocalizeTeens('שמונה ועוד חמש זה שלוש עשרה.')).toBe(
+      'שמונה ועוד חמש זה שְׁלוֹשׁ עֶשְׂרֵה.',
+    );
+    expect(vocalizeTeens('מאה ואחת עשרה מתוך שלוש מאות')).toBe(
+      'מאה וְאַחַת עֶשְׂרֵה מתוך שלוש מאות',
+    );
+    expect(vocalizeTeens('עשרים ושלוש עשרה')).toBe('עשרים וּשְׁלוֹשׁ עֶשְׂרֵה');
+    expect(vocalizeTeens('כמה זה שתים עשרה לחלק לשלוש?')).toBe(
+      'כמה זה שְׁתֵּים עֶשְׂרֵה לחלק לשלוש?',
+    );
+  });
+
+  it('leaves ten, the masculine teens and plain sentences alone', () => {
+    for (const s of [
+      'היו עשרה בלונים.',
+      'אחד עשר כדורים',
+      'עשר ועוד עשר זה עשרים.',
+      'ארבע מאות שלושים ושתיים',
+    ])
+      expect(vocalizeTeens(s)).toBe(s);
   });
 });

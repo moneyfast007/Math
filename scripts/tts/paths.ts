@@ -17,3 +17,5 @@ export const INDEX_DIR = path.join(ROOT, 'public', 'audio', 'index');
 /** The R2 bucket and the key prefix the Worker reads. */
 export const BUCKET = 'plusi-audio';
 export const KEY_PREFIX = 'audio/';
+/** Where the site serves the clips from (the Worker in front of the bucket). */
+export const SITE_AUDIO = 'https://math.assafkutai.workers.dev/audio/';

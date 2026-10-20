@@ -4,7 +4,6 @@ import { parseArgs } from 'node:util';
 import {
   clipIdNode,
   DEFAULT_PROMPT,
-  QUICK_PROMPT,
   ensureDir,
   estimateCost,
   mapLimit,
@@ -15,7 +14,7 @@ import {
 } from './lib';
 import { CLIPS_DIR, MANIFEST, ROOT } from './paths';
 import { allPhrases, type Phrase } from './phrases';
-import { vocalizeForTts } from './pronunciation';
+import { isCurrent, recordOf, textFor, VOICE, voiceKey, type Manifest } from './voice';
 
 /**
  * Generates the app's audio bank: new and changed clips into audio/clips/,
@@ -25,12 +24,8 @@ import { vocalizeForTts } from './pronunciation';
  *   npm run tts:build                  # generate whatever is missing
  *   npm run tts:build -- --dry-run     # list what would be generated and the cost
  *
- * One voice for everything: Gemini 3.1 Flash TTS, "Leda", at a quick
- * conversational pace (QUICK_PROMPT). Chosen in listening rounds 6 and 7
- * (Oct 19, 2026) over WaveNet A, Chirp 3 HD and Gemini 2.5 Pro, for whole
- * sentences, lone numbers and the fragments sentences are assembled from.
- * A phrase's voice is recorded in the manifest, so changing the voice or the
- * pace regenerates every clip.
+ * One voice for everything (voice.ts); the targeted nikud of pronunciation.ts
+ * goes to the engine, and the manifest records the text sent when it differs.
  *
  * Idempotent: a clip is regenerated only if its text or its voice changed,
  * because the file is named by the hash of the text and the manifest records
@@ -38,24 +33,6 @@ import { vocalizeForTts } from './pronunciation';
  */
 
 const OUT_DIR = CLIPS_DIR;
-
-export const VOICE: VoiceSpec = { engine: 'gemini-3.1-flash', voice: 'Leda', prompt: QUICK_PROMPT };
-/** Part of the manifest's voice key: a new pace must regenerate the clips too. */
-const PACE = 'quick';
-
-interface ClipRecord {
-  text: string;
-  voice: string;
-  /** Size in bytes (for the offline download the parents see); set again when trimmed. */
-  bytes?: number;
-  trimmed?: boolean;
-}
-
-interface Manifest {
-  version: 2;
-  /** clipId → text and voice, for auditing and for detecting routing changes. */
-  clips: Record<string, ClipRecord>;
-}
 
 const { values } = parseArgs({
   options: {
@@ -68,17 +45,6 @@ const { values } = parseArgs({
 
 export function voiceFor(): VoiceSpec {
   return VOICE;
-}
-
-function voiceKey(v: VoiceSpec): string {
-  return v.engine.startsWith('gemini')
-    ? `${v.engine}/${v.voice}/${PACE}`
-    : `${v.engine}/${v.voice}`;
-}
-
-function textFor(phrase: string, spec: VoiceSpec): string {
-  // Nikud hints are only for Chirp; the classic engine reads plain text correctly.
-  return spec.engine === 'chirp3-hd' ? vocalizeForTts(phrase) : phrase;
 }
 
 async function main(): Promise<void> {
@@ -97,11 +63,8 @@ async function main(): Promise<void> {
   }
   const work = phrases
     .map((p) => ({ phrase: p, id: clipIdNode(p.text), spec: voiceFor() }))
-    .filter(
-      ({ id, spec }) =>
-        // Recorded in this voice already (the clip is in the bucket): nothing to do.
-        manifest.clips[id]?.voice !== voiceKey(spec),
-    );
+    // Recorded in this voice, from this text, already (the clip is in the bucket): nothing to do.
+    .filter(({ id, spec }) => !isCurrent(manifest.clips[id], spec));
 
   const byVoice = new Map<string, Phrase[]>();
   for (const w of work) {
@@ -162,7 +125,7 @@ async function main(): Promise<void> {
     }
     inARow = 0;
     await writeFile(path.join(OUT_DIR, `${w.id}.mp3`), mp3);
-    manifest.clips[w.id] = { text: w.phrase.text, voice: voiceKey(w.spec), bytes: mp3.length };
+    manifest.clips[w.id] = recordOf(w.phrase.text, w.spec, mp3.length);
     sizes.push({ id: w.id, text: w.phrase.text, perChar: mp3.length / w.phrase.text.length });
     await checkpoint();
   };
