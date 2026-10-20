@@ -347,16 +347,6 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
         </div>
         <Progress done={s.done} total={s.length} />
         <div className="practice__side practice__side--end">
-          {!finished ? (
-            <button
-              type="button"
-              className="btn btn--secondary btn--small practice__hint"
-              disabled={s.hintsShown >= 3}
-              onClick={() => apply({ type: 'hint' })}
-            >
-              {t('action.hint')}
-            </button>
-          ) : null}
           {/* Plusi, small, reacts to every answer from the corner of the bar. */}
           <span className="practice__mascot">
             <Plusi
@@ -427,6 +417,17 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
           >
             {finished ? answerLabel(e) : groupDigits(value) || '?'}
           </div>
+        ) : null}
+        {/* The hint, right under the answer line: where the child is looking when stuck. */}
+        {!finished ? (
+          <button
+            type="button"
+            className="btn btn--secondary btn--small practice__hint"
+            disabled={s.hintsShown >= 3}
+            onClick={() => apply({ type: 'hint' })}
+          >
+            {t('action.hint')}
+          </button>
         ) : null}
       </section>
 

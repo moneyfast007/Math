@@ -4580,6 +4580,9 @@ details.report .report__worlds {
 
 .practice__hint {
   white-space: nowrap;
+  align-self: center;
+  flex-shrink: 0;
+  min-width: 96px;
 }
 
 /* The card: all the room that is left. */
@@ -4827,9 +4830,6 @@ details.report .report__worlds {
     font-size: 17px;
   }
 
-  .practice__bar .practice__hint {
-    padding: 0 8px;
-  }
 
   .practice[data-screen='practice'] > .exercise {
     padding: 12px;
