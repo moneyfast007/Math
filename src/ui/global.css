@@ -5280,3 +5280,48 @@ details.report .report__worlds {
     height: 20px;
   }
 }
+
+/* Worlds: "איך זה עובד?" at the start of the row, a round Plusi at the end that reads the progress. */
+.worlds__how-row {
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.worlds__plusi {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.worlds__plusi-btn {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--color-surface);
+  border: 2px solid var(--color-accent-soft);
+  box-shadow: var(--shadow-sm, 0 2px 6px rgb(0 0 0 / 8%));
+}
+
+.worlds__plusi-btn[aria-pressed='true'] {
+  border-color: var(--color-accent);
+}
+
+.worlds__plusi-line {
+  position: absolute;
+  z-index: 2;
+  top: calc(100% + var(--space-2));
+  inset-inline-end: 0;
+  width: max-content;
+  max-width: min(60vw, 260px);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-md, 14px);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-sm, 0 2px 6px rgb(0 0 0 / 8%));
+  font-size: var(--text-sm);
+  font-weight: 600;
+}

@@ -1,9 +1,12 @@
 import { useEffect, useState } from 'react';
+import { speaker } from '@/audio/speaker';
+import { useSpeaking } from '@/audio/useSpeaker';
 import { setReplayTopic } from '@/app/replay';
 import { navigate } from '@/app/router';
 import { worldsMap, type WorldMapEntry } from '@/engine/journey';
 import { t, type TranslationKey } from '@/i18n';
 import { gradeLabel } from '@/i18n/labels';
+import { compose } from '@/lang/compose';
 import { useActiveProfile, useApp } from '@/state/store';
 import { ageBandForGrade, applyAgeBand } from '@/ui/ageBand';
 import { Dialog } from '@/ui/Dialog';
@@ -31,6 +34,22 @@ export function WorldsScreen() {
 
   const young = ageBandForGrade(profile.grade) === 'young';
   const entries = worldsMap(profile.grade, progress);
+  const done = entries.filter((e) => e.state === 'done').length;
+  const total = entries.length;
+  const line =
+    done === 0
+      ? t('journey.worlds.count.none')
+      : done === total
+        ? t('journey.worlds.count.all', { gender: profile.gender })
+        : t('journey.worlds.count', { params: { done, total } });
+  // Read aloud with the numbers as words ("עולם" is masculine: "שלושה מתוך שמונה").
+  const spoken =
+    done > 0 && done < total
+      ? compose(t('journey.worlds.count'), {
+          done: { n: done, gender: 'm' },
+          total: { n: total, gender: 'm' },
+        })
+      : { text: line, parts: [line] };
 
   return (
     <main className="screen worlds" data-screen="worlds">
@@ -40,12 +59,15 @@ export function WorldsScreen() {
           <p className="muted">
             {t('worlds.intro', { params: { grade: gradeLabel(profile.grade) } })}
           </p>
-          <button type="button" className="worlds__how" onClick={() => setHow(true)}>
-            <span aria-hidden="true" className="worlds__how-mark">
-              ?
-            </span>
-            {t('worlds.how')}
-          </button>
+          <div className="worlds__how-row">
+            <button type="button" className="worlds__how" onClick={() => setHow(true)}>
+              <span aria-hidden="true" className="worlds__how-mark">
+                ?
+              </span>
+              {t('worlds.how')}
+            </button>
+            <PlusiSays line={line} text={spoken.text} parts={spoken.parts} cheering={done > 0} />
+          </div>
         </div>
         <button
           type="button"
@@ -151,5 +173,59 @@ function WorldRow({ entry, young }: { entry: WorldMapEntry; young: boolean }) {
         </button>
       ) : null}
     </li>
+  );
+}
+
+/**
+ * A small round Plusi: a tap reads how far the child got ("השלמת שלושה מתוך
+ * שמונה עולמות"), a second tap stops. The line is its name, so a screen reader
+ * says it too; with no audio it shows the line for a moment.
+ */
+function PlusiSays({
+  line,
+  text,
+  parts,
+  cheering,
+}: {
+  line: string;
+  text: string;
+  parts: readonly string[];
+  cheering: boolean;
+}) {
+  const speaking = useSpeaking() === text;
+  const [shown, setShown] = useState(false);
+  useEffect(() => {
+    if (!shown) return;
+    const id = window.setTimeout(() => setShown(false), 4000);
+    return () => window.clearTimeout(id);
+  }, [shown]);
+
+  const onClick = async () => {
+    if (speaking) {
+      speaker.stop();
+      return;
+    }
+    setShown(true);
+    await speaker.speak(text, { parts });
+  };
+
+  return (
+    <span className="worlds__plusi">
+      {shown || speaking ? (
+        <span className="worlds__plusi-line" role="status">
+          {line}
+        </span>
+      ) : null}
+      <button
+        type="button"
+        className="worlds__plusi-btn"
+        aria-label={line}
+        aria-pressed={speaking}
+        data-speaker=""
+        onClick={() => void onClick()}
+      >
+        <Plusi mood={cheering ? 'cheering' : 'happy'} size={36} decorative />
+      </button>
+    </span>
   );
 }
