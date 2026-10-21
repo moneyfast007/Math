@@ -210,11 +210,12 @@ test('grade 4 angles screens', async ({ page }, info) => {
   ipadOnly(info);
   await setup(page, 'מאיה');
   await shot(page, 'u-11-journey-g4');
-  await level(page, 'זווית ישרה, חדה, קהה', 'u-12-angle');
-  await level(page, 'משולשים לפי הצלעות', 'u-13-sides');
-  await level(page, 'מרובעים', 'u-14-quad');
+  await level(page, 'סוגי זוויות במעלות', 'u-12-angle');
+  await level(page, 'זווית חסרה', 'u-13-split');
+  await level(page, 'משולשים: זוויות וצלעות', 'u-14-both');
   await level(page, 'סכום הזוויות במשולש', 'u-15-third');
-  await level(page, 'נכון או לא נכון?', 'u-16-tf');
+  await level(page, 'זוויות במרובע', 'u-16-quad');
+  await level(page, 'נכון או לא נכון?', 'u-17-tf');
 });
 
 test('grade 5 areas screens', async ({ page }, info) => {

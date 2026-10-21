@@ -40,7 +40,7 @@ const WORLDS: Record<number, string[]> = {
     'divisibility',
     'fraction-ops',
     'perimeter-area',
-    'angles',
+    'angles-4',
     'vertical-4',
     'data-stats',
   ],

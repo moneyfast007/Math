@@ -1,48 +1,44 @@
-import { shown, type Slot } from '@/lang/compose';
+import type { Slot } from '@/lang/compose';
 import { t, type TranslationKey } from '@/i18n';
 import type { Noun } from '@/lang/hebrewNumbers';
 import {
   closed,
   defineTopic,
   windowChoices,
-  exampleAvoiding,
-  exampleHint,
   exercise,
   hint,
   labelledChoices,
-  numpad,
-  open,
   pictureExample,
   say,
   sayText,
   type AdviceSpec,
   type Said,
 } from '../build';
-import { randInt, shuffle } from '../rng';
-import type { Exercise, Hint, Polygon, Rng, Visual } from '../types';
+import { shuffle } from '../rng';
+import type { ClockTime, Exercise, Hint, Polygon, Rng, Visual } from '../types';
 
 /**
- * World "זוויות וצורות", grade 4 (phase 6). Right, acute and obtuse angles;
+ * World "זוויות וצורות", grade 3 (phase 6). Right, acute and obtuse angles;
  * right angles in a shape; parallel and perpendicular lines; triangles by
- * their sides and by their angles; quadrilaterals; the angles of a triangle
- * add up to 180°; diagonals; lines of symmetry; true or false.
+ * their sides and by their angles; quadrilaterals; angles on a clock and in
+ * shapes; what is true of a square, a rectangle and a rhombus; is this line
+ * a line of symmetry? Grade 4 goes on in its own world, "angles-4" (angles4.ts),
+ * which shares the shapes and helpers below.
  */
 
 const ID = 'angles';
 const L = (n: number) => `level.angles.${n}`;
-const DEGREE: Noun = { singular: 'מעלה', plural: 'מעלות', gender: 'f' };
+export const DEGREE: Noun = { singular: 'מעלה', plural: 'מעלות', gender: 'f' };
 const RIGHT_ANGLE: Noun = { singular: 'זווית ישרה', plural: 'זוויות ישרות', gender: 'f' };
-const DIAGONAL: Noun = { singular: 'אלכסון', plural: 'אלכסונים', gender: 'm' };
-const SYM_LINE: Noun = { singular: 'קו סימטריה', plural: 'קווי סימטריה', gender: 'm' };
 
 type P = [number, number];
-const poly = (points: P[], extra: Omit<Polygon, 'points'> = {}): Visual => ({
+export const poly = (points: P[], extra: Omit<Polygon, 'points'> = {}): Visual => ({
   type: 'polygon',
   points,
   ...extra,
 });
 
-const SHAPES = {
+export const SHAPES = {
   square: [
     [15, 15],
     [85, 15],
@@ -137,7 +133,7 @@ const SHAPES = {
   hexagon: regular(6),
 } satisfies Record<string, P[]>;
 
-type ShapeName = keyof typeof SHAPES;
+export type ShapeName = keyof typeof SHAPES;
 
 function regular(n: number): P[] {
   return Array.from({ length: n }, (_, i) => {
@@ -147,7 +143,8 @@ function regular(n: number): P[] {
 }
 
 /** A word for an exercise built from fixed facts: the factId, prompt and answer index. */
-function choiceExercise(o: {
+export function choiceExercise(o: {
+  topicId?: string;
   level: number;
   factId: string;
   promptKey: TranslationKey;
@@ -160,7 +157,7 @@ function choiceExercise(o: {
 }): Exercise {
   return exercise({
     factId: o.factId,
-    topicId: ID,
+    topicId: o.topicId ?? ID,
     level: o.level,
     prompt: t(o.promptKey),
     display: '',
@@ -178,7 +175,7 @@ function choiceExercise(o: {
  * Advice for every wrong name on the buttons: what that name means, then what
  * to check in the picture (never the right name itself).
  */
-function nameAdvice(
+export function nameAdvice(
   labels: string[],
   answer: number,
   meaning: (label: string) => TranslationKey | null,
@@ -192,7 +189,7 @@ function nameAdvice(
 }
 
 /** The key of the label's kind, by its word. */
-const byWord =
+export const byWord =
   <K extends string>(words: Record<K, string>, prefix: string) =>
   (label: string): TranslationKey | null => {
     const k = (Object.keys(words) as K[]).find((x) => words[x] === label);
@@ -200,7 +197,7 @@ const byWord =
   };
 
 /** Labels shuffled with the right one tracked. */
-function shuffledLabels(rng: Rng, right: string, wrong: string[]) {
+export function shuffledLabels(rng: Rng, right: string, wrong: string[]) {
   const labels = shuffle(rng, [right, ...wrong]);
   return { labels, answer: labels.indexOf(right) };
 }
@@ -208,7 +205,7 @@ function shuffledLabels(rng: Rng, right: string, wrong: string[]) {
 /* ---------- Level 1: what kind of angle? ---------- */
 
 type AngleKind = 'acute' | 'right' | 'obtuse';
-const ANGLE_WORD: Record<AngleKind, string> = { acute: 'חדה', right: 'ישרה', obtuse: 'קהה' };
+export const ANGLE_WORD: Record<AngleKind, string> = { acute: 'חדה', right: 'ישרה', obtuse: 'קהה' };
 const kindOf = (deg: number): AngleKind => (deg < 90 ? 'acute' : deg === 90 ? 'right' : 'obtuse');
 
 function angleKind({ deg, turn }: { deg: number; turn: number }, rng: Rng): Exercise {
@@ -259,7 +256,7 @@ const RIGHT_ANGLES: [ShapeName, number][] = [
  * Three neighbouring counts, not in order: many answers are 0, which in order
  * would always be the first button.
  */
-function numberChoices(n: number, rng: Rng): number[] {
+export function numberChoices(n: number, rng: Rng): number[] {
   return shuffle(rng, windowChoices(rng, [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], n));
 }
 
@@ -325,8 +322,8 @@ function linesKind({ kind, turn }: { kind: LinesKind; turn: number }, rng: Rng):
 
 /* ---------- Levels 4–5: kinds of triangles ---------- */
 
-type SideKind = 'equilateral' | 'isosceles' | 'scalene';
-const SIDE_WORD: Record<SideKind, string> = {
+export type SideKind = 'equilateral' | 'isosceles' | 'scalene';
+export const SIDE_WORD: Record<SideKind, string> = {
   equilateral: 'שווה צלעות',
   isosceles: 'שווה שוקיים',
   scalene: 'שונה צלעות',
@@ -378,8 +375,8 @@ function bySides({ kind, sides }: (typeof SIDE_FACTS)[number], rng: Rng): Exerci
   });
 }
 
-type AngleTriKind = 'acute' | 'right' | 'obtuse';
-const TRI_WORD: Record<AngleTriKind, string> = {
+export type AngleTriKind = 'acute' | 'right' | 'obtuse';
+export const TRI_WORD: Record<AngleTriKind, string> = {
   acute: 'חד זווית',
   right: 'ישר זווית',
   obtuse: 'קהה זווית',
@@ -436,8 +433,8 @@ function byAngles({ kind, angles }: (typeof ANGLE_FACTS)[number], rng: Rng): Exe
 
 /* ---------- Level 6: quadrilaterals ---------- */
 
-type Quad = 'square' | 'rectangle' | 'rhombus' | 'parallelogram' | 'trapezoid' | 'kite';
-const QUAD_WORD: Record<Quad, string> = {
+export type Quad = 'square' | 'rectangle' | 'rhombus' | 'parallelogram' | 'trapezoid' | 'kite';
+export const QUAD_WORD: Record<Quad, string> = {
   square: 'ריבוע',
   rectangle: 'מלבן',
   rhombus: 'מעוין',
@@ -461,7 +458,7 @@ const QUAD_CONFUSED: Record<Quad, Quad[]> = {
   // A square and a rhombus are kites too, so they are never offered for a kite (nor a kite for them).
   kite: ['parallelogram', 'trapezoid'],
 };
-const QUAD_MARKS: Record<Quad, Omit<Polygon, 'points'>> = {
+export const QUAD_MARKS: Record<Quad, Omit<Polygon, 'points'>> = {
   square: { ticks: [1, 1, 1, 1], rightAngles: [0, 1, 2, 3] },
   rectangle: { ticks: [1, 2, 1, 2], rightAngles: [0, 1, 2, 3] },
   rhombus: { ticks: [1, 1, 1, 1] },
@@ -507,7 +504,7 @@ function quad({ shape }: { shape: Quad }, rng: Rng): Exercise {
  * Triangles drawn to the numbers on them (a 120° label on a 120° corner):
  * points in the drawing box (0–100, y down), base at the bottom, aspect kept.
  */
-function fitTriangle(pts: [number, number][]): [number, number][] {
+export function fitTriangle(pts: [number, number][]): [number, number][] {
   const xs = pts.map((p) => p[0]);
   const ys = pts.map((p) => p[1]);
   const w = Math.max(...xs) - Math.min(...xs);
@@ -522,7 +519,7 @@ function fitTriangle(pts: [number, number][]): [number, number][] {
 }
 
 /** Vertex 0 has angle a, vertex 1 angle b (degrees), vertex 2 the rest. */
-function triangleFromAngles(a: number, b: number): [number, number][] {
+export function triangleFromAngles(a: number, b: number): [number, number][] {
   const rad = (d: number) => (d * Math.PI) / 180;
   const c = 180 - a - b;
   const l = Math.sin(rad(b)) / Math.sin(rad(c));
@@ -543,200 +540,433 @@ function triangleFromSides(s0: number, s1: number, s2: number): [number, number]
   ]);
 }
 
-/* ---------- Level 7: the third angle ---------- */
+/* ---------- Level 7: the angle between the hands of a clock ---------- */
 
-function thirdAngle(rng: Rng): Exercise {
-  let a: number;
-  let b: number;
-  do {
-    a = randInt(rng, 4, 24) * 5;
-    b = randInt(rng, 4, 24) * 5;
-  } while (180 - a - b < 15);
-  const c = 180 - a - b;
-  const deg = (n: number) => ({ n, noun: DEGREE });
-  return exercise({
-    factId: `third:${a}:${b}`,
-    topicId: ID,
+/**
+ * Times whose hands make a clear angle: whole hours, and half hours whose hour
+ * hand stands well away from a right angle (never 2:30 or 8:30, near ninety).
+ */
+const CLOCK_TIMES: ClockTime[] = [
+  ...[1, 2, 3, 4, 5, 7, 8, 9, 10, 11].map((h) => ({ h, m: 0 })),
+  ...[12, 1, 4, 5, 6, 7, 10].map((h) => ({ h, m: 30 })),
+];
+
+/** The smaller angle between the hands, in degrees. */
+export function handsAngle({ h, m }: ClockTime): number {
+  const hour = ((h % 12) + m / 60) * 30;
+  const minute = m * 6;
+  const d = Math.abs(hour - minute) % 360;
+  return Math.min(d, 360 - d);
+}
+
+function clockAngle(time: ClockTime, rng: Rng): Exercise {
+  const kind = kindOf(handsAngle(time));
+  const { labels, answer } = shuffledLabels(
+    rng,
+    ANGLE_WORD[kind],
+    (Object.keys(ANGLE_WORD) as AngleKind[]).filter((k) => k !== kind).map((k) => ANGLE_WORD[k]),
+  );
+  return choiceExercise({
     level: 7,
-    prompt: t('ex.angles.third.prompt'),
-    display: '',
-    spoken: say('ex.angles.third.spoken', { a: deg(a), b: deg(b) }),
-    visual: poly(triangleFromAngles(a, b), { angleLabels: [`${a}°`, `${b}°`, '?'] }),
-    answer: c,
-    input: numpad(3),
+    factId: `clock:${time.h}:${time.m}`,
+    promptKey: 'ex.ang3.clock.prompt',
+    visual: { type: 'clock', times: [time] },
+    labels,
+    answer,
     hints: [
-      hint(say('ex.angles.third.hint1')),
-      hint(say('ex.angles.third.hint2'), {
-        example: { display: `180 − ${a} − ${b} = ?`, spoken: say('ex.angles.third.hint2') },
-      }),
-      // The two examples' third angles differ (50°, 60°): one is never this answer.
-      exampleAvoiding(
-        c,
-        [
-          { a: 60, b: 70 },
-          { a: 50, b: 70 },
-        ].map((ex) => ({
-          answer: 180 - ex.a - ex.b,
-          hint: () =>
-            exampleHint(
-              `180 − ${ex.a} − ${ex.b} = ${180 - ex.a - ex.b}`,
-              say('ex.angles.third.solution', { a: ex.a, b: ex.b, c: deg(180 - ex.a - ex.b) }),
-            ),
-        })),
-      ),
+      hint(say('ex.ang3.clock.hint1')),
+      hint(say('ex.angles.kind.hint2')),
+      // Three o'clock is a right angle; for a right angle, one o'clock (acute).
+      kind === 'right'
+        ? pictureExample(say('ex.ang3.clock.exAcute'), { type: 'clock', times: [{ h: 1, m: 0 }] })
+        : pictureExample(say('ex.ang3.clock.exRight'), { type: 'clock', times: [{ h: 3, m: 0 }] }),
     ],
-    solution: say('ex.angles.third.solution', { a, b, c: deg(c) }),
-    diagnose: (v) => (v === a + b ? 'wrongOperation' : Math.abs(v - c) === 10 ? 'offByTen' : null),
+    solution: say(`ex.ang3.clock.${kind}`),
+    advice: nameAdvice(labels, answer, byWord(ANGLE_WORD, 'g4.ang.adv.is'), 'ex.ang3.clock.check'),
   });
 }
 
-/* ---------- Levels 8–9: diagonals, symmetry ---------- */
+/* ---------- Level 8: the marked angle of a shape ---------- */
 
-const DIAGONALS: [ShapeName, string, number][] = [
-  ['equilateral', 'משולש', 0],
-  ['square', 'ריבוע', 2],
-  ['rectangle', 'מלבן', 2],
-  ['trapezoid', 'טרפז', 2],
-  ['pentagon', 'מחומש', 5],
-  ['hexagon', 'משושה', 9],
-  ['rhombus', 'מעוין', 2],
-  ['parallelogram', 'מקבילית', 2],
-  ['kite', 'דלתון', 2],
+/** The angle at vertex i of a polygon, in degrees (between 0 and 180). */
+export function vertexAngle(pts: readonly P[], i: number): number {
+  const n = pts.length;
+  const p = pts[i] as P;
+  const a = pts[(i + n - 1) % n] as P;
+  const b = pts[(i + 1) % n] as P;
+  const u: P = [a[0] - p[0], a[1] - p[1]];
+  const v: P = [b[0] - p[0], b[1] - p[1]];
+  const cos = (u[0] * v[0] + u[1] * v[1]) / (Math.hypot(...u) * Math.hypot(...v));
+  return (Math.acos(Math.max(-1, Math.min(1, cos))) * 180) / Math.PI;
+}
+
+/** Which way the outline turns at vertex i; against the polygon's own way, the corner points inward. */
+function turnSign(pts: readonly P[], i: number): number {
+  const n = pts.length;
+  const p = pts[i] as P;
+  const a = pts[(i + n - 1) % n] as P;
+  const b = pts[(i + 1) % n] as P;
+  return Math.sign((p[0] - a[0]) * (b[1] - p[1]) - (p[1] - a[1]) * (b[0] - p[0]));
+}
+
+function areaSign(pts: readonly P[]): number {
+  let s = 0;
+  pts.forEach((p, i) => {
+    const q = pts[(i + 1) % pts.length] as P;
+    s += p[0] * q[1] - q[0] * p[1];
+  });
+  return Math.sign(s);
+}
+
+const CORNER_SHAPES: ShapeName[] = [
+  'right',
+  'obtuse',
+  'acute',
+  'rightTrapezoid',
+  'parallelogram',
+  'trapezoid',
+  'rhombus',
+  'kite',
+  'house',
+  'lShape',
+  'hexagon',
+  'scalene',
+  'rectangle',
 ];
 
-function diagonals([shape, name, n]: [ShapeName, string, number], rng: Rng): Exercise {
-  const ex: [ShapeName, string] = shape === 'square' ? ['pentagon', 'מחומש'] : ['square', 'ריבוע'];
-  return exercise({
-    factId: `diag:${shape}`,
-    topicId: ID,
+/**
+ * Corners whose kind is plain to the eye: exactly a right angle, or at least
+ * twenty degrees away from one; never an inward corner (bigger than 180°).
+ * One corner of each kind per shape.
+ */
+export const CORNERS: { shape: ShapeName; at: number; kind: AngleKind }[] = CORNER_SHAPES.flatMap(
+  (shape) => {
+    const pts = SHAPES[shape] as P[];
+    const dir = areaSign(pts);
+    const seen = new Set<AngleKind>();
+    return pts.flatMap((_, at) => {
+      if (turnSign(pts, at) !== dir) return [];
+      const deg = vertexAngle(pts, at);
+      const kind: AngleKind | null =
+        Math.abs(deg - 90) < 0.5 ? 'right' : Math.abs(deg - 90) >= 20 ? kindOf(deg) : null;
+      if (!kind || seen.has(kind)) return [];
+      seen.add(kind);
+      return [{ shape, at, kind }];
+    });
+  },
+);
+
+function cornerAngle({ shape, at, kind }: (typeof CORNERS)[number], rng: Rng): Exercise {
+  const { labels, answer } = shuffledLabels(
+    rng,
+    ANGLE_WORD[kind],
+    (Object.keys(ANGLE_WORD) as AngleKind[]).filter((k) => k !== kind).map((k) => ANGLE_WORD[k]),
+  );
+  return choiceExercise({
     level: 8,
-    prompt: shown(say('ex.angles.diag.prompt', { name })),
-    display: '',
-    spoken: say('ex.angles.diag.prompt', { name }),
-    visual: poly(SHAPES[shape]),
-    answer: n,
-    input: { type: 'choices', choices: numberChoices(n, rng) },
+    factId: `corner:${shape}:${at}`,
+    promptKey: 'ex.ang3.corner.prompt',
+    // An arc at the corner, never a right-angle square: the square would give it away.
+    visual: poly(SHAPES[shape], { arcs: [at] }),
+    labels,
+    answer,
     hints: [
-      hint(say('ex.angles.diag.hint1')),
-      hint(say('ex.angles.diag.hint2')),
-      pictureExample(
-        say('ex.angles.diag.example', { name: ex[1] }),
-        poly(SHAPES[ex[0]], { diagonals: true }),
-      ),
+      hint(say('ex.ang3.corner.hint1')),
+      hint(say('ex.angles.kind.hint2')),
+      kind === 'right'
+        ? pictureExample(say('ex.ang3.corner.exAcute'), poly(SHAPES.equilateral, { arcs: [0] }))
+        : pictureExample(
+            say('ex.ang3.corner.exRight'),
+            poly(SHAPES.rectangle, { rightAngles: [0] }),
+          ),
     ],
-    solution:
-      n === 0
-        ? say('ex.angles.diag.none', { name })
-        : say('ex.angles.diag.solution', { name, n: { n, noun: DIAGONAL } }),
+    solution: say(`ex.angles.kind.${kind}`),
+    advice: nameAdvice(labels, answer, byWord(ANGLE_WORD, 'g4.ang.adv.is'), 'ex.ang3.corner.check'),
   });
 }
 
-const SYMMETRY: [ShapeName, string, number, Omit<Polygon, 'points'>][] = [
-  ['square', 'ריבוע', 4, { ticks: [1, 1, 1, 1], rightAngles: [0, 1, 2, 3] }],
-  ['rectangle', 'מלבן', 2, { rightAngles: [0, 1, 2, 3] }],
-  ['equilateral', 'משולש שווה צלעות', 3, { ticks: [1, 1, 1] }],
-  ['isosceles', 'משולש שווה שוקיים', 1, { ticks: [1, 0, 1] }],
-  ['rhombus', 'מעוין', 2, { ticks: [1, 1, 1, 1] }],
-  ['parallelogram', 'מקבילית', 0, {}],
-  ['scalene', 'משולש שונה צלעות', 0, {}],
-  ['kite', 'דלתון', 1, { ticks: [1, 2, 2, 1] }],
-  ['trapezoid', 'טרפז שווה שוקיים', 1, { ticks: [0, 1, 0, 1] }],
-  ['hexagon', 'משושה משוכלל', 6, { ticks: [1, 1, 1, 1, 1, 1] }],
-];
+/* ---------- Level 9: a square, a rectangle, a rhombus: true or false? ---------- */
 
-function symmetry([shape, name, n, marks]: (typeof SYMMETRY)[number], rng: Rng): Exercise {
+type Basic = 'square' | 'rectangle' | 'rhombus';
+type Prop = 'sides' | 'rights' | 'parallel' | 'opposite' | 'oneRight' | 'noRight';
+const PROP_TRUE: Record<Prop, Record<Basic, boolean>> = {
+  sides: { square: true, rectangle: false, rhombus: true },
+  rights: { square: true, rectangle: true, rhombus: false },
+  parallel: { square: true, rectangle: true, rhombus: true },
+  opposite: { square: true, rectangle: true, rhombus: true },
+  oneRight: { square: false, rectangle: false, rhombus: false },
+  noRight: { square: false, rectangle: false, rhombus: true },
+};
+
+/** Why a statement is not true of this shape. */
+function propWhy(prop: Prop, shape: Basic): TranslationKey {
+  if (prop === 'sides') return 'ex.ang3.props.w.sides';
+  return shape === 'rhombus' ? 'ex.ang3.props.w.noRights' : 'ex.ang3.props.w.fourRights';
+}
+
+export const PROP_FACTS = (Object.keys(PROP_TRUE) as Prop[]).flatMap((prop) =>
+  (['square', 'rectangle', 'rhombus'] as Basic[]).map((shape) => ({
+    prop,
+    shape,
+    truth: PROP_TRUE[prop][shape],
+  })),
+);
+
+function shapeProp({ prop, shape, truth }: (typeof PROP_FACTS)[number]): Exercise {
+  const statement = say(`ex.ang3.props.${prop}`, { name: QUAD_WORD[shape] });
+  const ex: Quad = shape === 'square' ? 'rectangle' : 'square';
   return exercise({
-    factId: `sym:${shape}`,
+    factId: `prop:${shape}:${prop}`,
     topicId: ID,
     level: 9,
-    prompt: shown(say('ex.angles.sym.prompt', { name })),
+    prompt: statement.text,
     display: '',
-    spoken: say('ex.angles.sym.prompt', { name }),
-    visual: poly(SHAPES[shape], marks),
-    answer: n,
-    input: { type: 'choices', choices: numberChoices(n, rng) },
+    spoken: say('ex.angles.tf.spoken', { s: statement.text }),
+    visual: poly(SHAPES[shape], QUAD_MARKS[shape]),
+    // Left to right: "לא נכון", then "נכון" on the right, where a Hebrew reader starts.
+    answer: truth ? 1 : 0,
+    input: labelledChoices([t('ex.angles.tf.false'), t('ex.angles.tf.true')]),
+    hints: [
+      hint(say('ex.ang3.props.hint1')),
+      hint(say('ex.ang3.props.hint2')),
+      pictureExample(say(`ex.angles.quad.about.${ex}`), poly(SHAPES[ex], QUAD_MARKS[ex])),
+    ],
+    solution: truth ? say('ex.ang3.props.yes') : say(propWhy(prop, shape)),
+  });
+}
+
+/* ---------- Level 10: is this a line of symmetry? ---------- */
+
+/** A dashed line through the shape, drawn a little past it at both ends. */
+function through(from: P, to: P): { from: P; to: P } {
+  const d: P = [to[0] - from[0], to[1] - from[1]];
+  const k = 10 / Math.hypot(...d);
+  return {
+    from: [Math.round(from[0] - d[0] * k), Math.round(from[1] - d[1] * k)],
+    to: [Math.round(to[0] + d[0] * k), Math.round(to[1] + d[1] * k)],
+  };
+}
+
+export const SYM_LINES: { shape: ShapeName; id: string; line: [P, P]; yes: boolean }[] = [
+  {
+    shape: 'square',
+    id: 'mid',
+    line: [
+      [50, 15],
+      [50, 85],
+    ],
+    yes: true,
+  },
+  {
+    shape: 'square',
+    id: 'diag',
+    line: [
+      [15, 15],
+      [85, 85],
+    ],
+    yes: true,
+  },
+  {
+    shape: 'rectangle',
+    id: 'mid',
+    line: [
+      [50, 25],
+      [50, 75],
+    ],
+    yes: true,
+  },
+  {
+    shape: 'rectangle',
+    id: 'across',
+    line: [
+      [3, 50],
+      [97, 50],
+    ],
+    yes: true,
+  },
+  // The classic slip: a rectangle's diagonal cuts it into two equal halves, but not mirror ones.
+  {
+    shape: 'rectangle',
+    id: 'diag',
+    line: [
+      [3, 25],
+      [97, 75],
+    ],
+    yes: false,
+  },
+  {
+    shape: 'isosceles',
+    id: 'mid',
+    line: [
+      [50, 3],
+      [50, 92],
+    ],
+    yes: true,
+  },
+  {
+    shape: 'isosceles',
+    id: 'across',
+    line: [
+      [5, 55],
+      [95, 55],
+    ],
+    yes: false,
+  },
+  {
+    shape: 'equilateral',
+    id: 'mid',
+    line: [
+      [50, 8],
+      [50, 86],
+    ],
+    yes: true,
+  },
+  {
+    shape: 'scalene',
+    id: 'mid',
+    line: [
+      [30, 10],
+      [50, 78],
+    ],
+    yes: false,
+  },
+  {
+    shape: 'rhombus',
+    id: 'mid',
+    line: [
+      [50, 3],
+      [50, 97],
+    ],
+    yes: true,
+  },
+  {
+    shape: 'rhombus',
+    id: 'across',
+    line: [
+      [23, 50],
+      [77, 50],
+    ],
+    yes: true,
+  },
+  {
+    shape: 'parallelogram',
+    id: 'mid',
+    line: [
+      [50, 25],
+      [50, 75],
+    ],
+    yes: false,
+  },
+  {
+    shape: 'parallelogram',
+    id: 'across',
+    line: [
+      [3, 50],
+      [97, 50],
+    ],
+    yes: false,
+  },
+  {
+    shape: 'kite',
+    id: 'mid',
+    line: [
+      [50, 5],
+      [50, 95],
+    ],
+    yes: true,
+  },
+  {
+    shape: 'kite',
+    id: 'across',
+    line: [
+      [22, 38],
+      [78, 38],
+    ],
+    yes: false,
+  },
+  {
+    shape: 'trapezoid',
+    id: 'mid',
+    line: [
+      [50, 25],
+      [50, 75],
+    ],
+    yes: true,
+  },
+  {
+    shape: 'trapezoid',
+    id: 'across',
+    line: [
+      [3, 50],
+      [97, 50],
+    ],
+    yes: false,
+  },
+  {
+    shape: 'house',
+    id: 'mid',
+    line: [
+      [50, 5],
+      [50, 95],
+    ],
+    yes: true,
+  },
+  {
+    shape: 'house',
+    id: 'across',
+    line: [
+      [5, 67],
+      [95, 67],
+    ],
+    yes: false,
+  },
+  {
+    shape: 'hexagon',
+    id: 'mid',
+    line: [
+      [50, 6],
+      [50, 98],
+    ],
+    yes: true,
+  },
+];
+
+function isSymLine({ shape, id, line, yes }: (typeof SYM_LINES)[number]): Exercise {
+  return exercise({
+    factId: `symline:${shape}:${id}`,
+    topicId: ID,
+    level: 10,
+    prompt: t('ex.ang3.sym.prompt'),
+    display: '',
+    spoken: say('ex.ang3.sym.prompt'),
+    visual: poly(SHAPES[shape], { height: through(...line) }),
+    // "לא" on the left, "כן" on the right, where a Hebrew reader starts.
+    answer: yes ? 1 : 0,
+    input: labelledChoices([t('ex.ang3.no'), t('ex.ang3.yes')]),
     hints: [
       hint(say('ex.angles.sym.hint1')),
       hint(say('ex.angles.sym.hint2')),
-      // Never the shape that is asked about: for the isosceles triangle, a rectangle.
+      // Never the shape that is asked about.
       shape === 'isosceles'
         ? pictureExample(
-            say('ex.angles.sym.exampleRect'),
-            poly(SHAPES.rectangle, { rightAngles: [0, 1, 2, 3] }),
+            say('ex.ang3.sym.exampleRect'),
+            poly(SHAPES.rectangle, { height: through([50, 25], [50, 75]) }),
           )
         : pictureExample(
             say('ex.angles.sym.example'),
             poly(SHAPES.isosceles, { ticks: [1, 0, 1], height: { from: [50, 3], to: [50, 92] } }),
           ),
     ],
-    solution:
-      n === 0
-        ? say('ex.angles.sym.none', { name })
-        : say('ex.angles.sym.solution', { name, n: { n, noun: SYM_LINE } }),
-  });
-}
-
-/* ---------- Level 10: true or false ---------- */
-
-/** What a statement is about: its last hint pictures that (a shape, lines, angles). */
-type About = 'shape' | 'lines' | 'angles';
-
-const STATEMENTS: { key: TranslationKey; truth: boolean; why?: TranslationKey; about: About }[] = [
-  { key: 'ex.angles.tf.s1', truth: true, about: 'shape' },
-  { key: 'ex.angles.tf.s2', truth: true, about: 'shape' },
-  { key: 'ex.angles.tf.s3', truth: false, why: 'ex.angles.tf.w3', about: 'shape' },
-  { key: 'ex.angles.tf.s4', truth: true, about: 'shape' },
-  { key: 'ex.angles.tf.s5', truth: false, why: 'ex.angles.tf.w5', about: 'angles' },
-  { key: 'ex.angles.tf.s6', truth: true, about: 'angles' },
-  { key: 'ex.angles.tf.s7', truth: false, why: 'ex.angles.tf.w7', about: 'shape' },
-  { key: 'ex.angles.tf.s8', truth: true, about: 'shape' },
-  { key: 'ex.angles.tf.s9', truth: false, why: 'ex.angles.tf.w9', about: 'angles' },
-  { key: 'ex.angles.tf.s10', truth: true, about: 'angles' },
-  { key: 'ex.angles.tf.s11', truth: true, about: 'lines' },
-  { key: 'ex.angles.tf.s12', truth: false, why: 'ex.angles.tf.w12', about: 'lines' },
-  { key: 'ex.angles.tf.s13', truth: true, about: 'angles' },
-  { key: 'ex.angles.tf.s14', truth: false, why: 'ex.angles.tf.w14', about: 'shape' },
-  { key: 'g4.tf.s15', truth: true, about: 'shape' },
-  { key: 'g4.tf.s16', truth: false, why: 'g4.tf.w16', about: 'shape' },
-  { key: 'g4.tf.s17', truth: false, why: 'g4.tf.w17', about: 'angles' },
-];
-
-const TF_HINT3: Record<About, TranslationKey> = {
-  shape: 'ex.angles.tf.hint3',
-  lines: 'g4.tf.hint3.lines',
-  angles: 'g4.tf.hint3.angles',
-};
-
-function trueFalse({ key, truth, why, about }: (typeof STATEMENTS)[number]): Exercise {
-  const statement = say(key);
-  return exercise({
-    factId: `tf:${key}`,
-    topicId: ID,
-    level: 10,
-    prompt: shown(statement),
-    display: '',
-    spoken: say('ex.angles.tf.spoken', { s: statement.text }),
-    // Left to right: "לא נכון", then "נכון" on the right, where a Hebrew reader starts.
-    answer: truth ? 1 : 0,
-    input: labelledChoices([t('ex.angles.tf.false'), t('ex.angles.tf.true')]),
-    hints: [
-      hint(say('ex.angles.tf.hint1')),
-      hint(say('ex.angles.tf.hint2')),
-      hint(say(TF_HINT3[about])),
-    ],
-    solution: truth ? say('ex.angles.tf.yes') : say(why ?? 'ex.angles.tf.no'),
+    solution: say(yes ? 'ex.ang3.sym.yesWhy' : 'ex.ang3.sym.noWhy'),
   });
 }
 
 export const anglesTopic = defineTopic({
   id: ID,
   labelKey: 'topic.angles',
-  // Grade 3's geometry too (kinds of angles, perpendicular and parallel lines, triangles,
-  // quadrilaterals): levels 1–6. Grade 4 goes on to angles in degrees, diagonals, symmetry.
-  grades: [3, 4],
-  // Grade 4 goes on where grade 3 stopped (levels 1–6 stay open in the picker).
-  startLevel: (grade) => (grade === 4 ? 7 : 1),
-  lastLevel: (grade) => (grade === 3 ? 6 : 10),
+  // Grade 3's geometry. Grade 4 has its own world, "angles-4" (angles4.ts).
+  grades: [3],
+  startLevel: () => 1,
   levels: [
     closed(
       L(1),
@@ -762,21 +992,9 @@ export const anglesTopic = defineTopic({
     closed(L(4), () => SIDE_FACTS, bySides),
     closed(L(5), () => ANGLE_FACTS, byAngles),
     closed(L(6), () => (Object.keys(QUAD_WORD) as Quad[]).map((shape) => ({ shape })), quad),
-    open(L(7), thirdAngle),
-    closed(
-      L(8),
-      () => DIAGONALS,
-      (f: [ShapeName, string, number], rng) => diagonals(f, rng),
-    ),
-    closed(
-      L(9),
-      () => SYMMETRY,
-      (f: (typeof SYMMETRY)[number], rng) => symmetry(f, rng),
-    ),
-    closed(
-      L(10),
-      () => STATEMENTS,
-      (f: (typeof STATEMENTS)[number]) => trueFalse(f),
-    ),
+    closed(L(7), () => CLOCK_TIMES, clockAngle),
+    closed(L(8), () => CORNERS, cornerAngle),
+    closed(L(9), () => PROP_FACTS, shapeProp),
+    closed(L(10), () => SYM_LINES, isSymLine),
   ],
 });

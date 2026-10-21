@@ -2,6 +2,7 @@ import type { Grade } from '@/ui/ageBand';
 import type { ProfileProgress } from '@/state/schema';
 import { addSub100 } from './topics/addSub100';
 import { anglesTopic } from './topics/angles';
+import { angles4 } from './topics/angles4';
 import { areasTopic } from './topics/areas';
 import { addSub20 } from './topics/addSub20';
 import { bigNumbers } from './topics/bigNumbers';
@@ -63,7 +64,7 @@ export const TOPICS: readonly Topic[] = [
   numbers10000,
   fractions1,
   measureTopic,
-  anglesTopic, // grades 3–4
+  anglesTopic,
   vertical3,
   // Grade 4
   bigNumbers,
@@ -71,6 +72,7 @@ export const TOPICS: readonly Topic[] = [
   divisibility,
   fractionOps, // grades 4–5
   perimeterArea,
+  angles4,
   vertical4,
   // Grade 5
   decimals,
@@ -93,8 +95,8 @@ export function topicById(id: string): Topic | undefined {
 
 /**
  * The order of the worlds in each grade, where it differs from TOPICS: a world
- * shared by two grades comes early in one and late in the other (angles are
- * grade 3's fifth world and grade 4's sixth).
+ * shared by two grades comes early in one and late in the other (fractions are
+ * grade 4's fourth world and grade 5's first).
  */
 const ORDER: Partial<Record<Grade, readonly Topic[]>> = {
   // Patterns after the numbers to 100 they count in; solids beside the flat shapes.
@@ -106,7 +108,7 @@ const ORDER: Partial<Record<Grade, readonly Topic[]>> = {
     divisibility,
     fractionOps,
     perimeterArea,
-    anglesTopic,
+    angles4,
     vertical4,
     dataStats,
   ],

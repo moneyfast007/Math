@@ -2,7 +2,15 @@ import type { ClockTime, ShapeItem, Visual } from '@/engine/types';
 import { t } from '@/i18n';
 import { digitalTime } from '@/lang/time';
 import { Bars2, DataTable, LineGraph, Pie, Tally } from './DataVisuals';
-import { AngleView, BoxView, CircleView, LinesView, PolygonView, RulerView } from './GeoVisuals';
+import {
+  AngleSplitView,
+  AngleView,
+  BoxView,
+  CircleView,
+  LinesView,
+  PolygonView,
+  RulerView,
+} from './GeoVisuals';
 import { CubeStackView, SolidsView, ThingView } from './SolidsVisual';
 import { BalanceView, LengthsView, WeekView } from './MeasureVisuals';
 import { VerticalView } from './Vertical';
@@ -38,6 +46,8 @@ export function VisualView({ visual }: { visual: Visual }) {
       return <ThingView v={visual} />;
     case 'angle':
       return <AngleView v={visual} />;
+    case 'angleSplit':
+      return <AngleSplitView v={visual} />;
     case 'lines':
       return <LinesView v={visual} />;
     case 'polygon':

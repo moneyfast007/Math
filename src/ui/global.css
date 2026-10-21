@@ -2545,6 +2545,28 @@ ol.steps {
   stroke-width: 3;
 }
 
+.geo__mark--other {
+  stroke: #e8793a;
+}
+
+.geo__mark--arc {
+  stroke: #e8793a;
+  stroke-width: 4;
+}
+
+.geo__label.geo__label--split {
+  font-size: 14px;
+}
+
+/* The straight angle is drawn twice as wide, so its labels are bigger to read the same. */
+.geo__label.geo__label--split-wide {
+  font-size: 20px;
+}
+
+.geo__label.geo__label--ask {
+  fill: #c45f24;
+}
+
 .geo__dot {
   fill: var(--color-text);
 }
