@@ -76,7 +76,9 @@ async function main(): Promise<void> {
   if (missing > wanted.size * MAX_MISSING)
     throw new Error(`Stopping: ${missing} clips of the bank are missing; record them first.`);
   if (unused.length > inBucket.size * MAX_SHARE)
-    throw new Error(`Stopping: ${unused.length} of ${inBucket.size} clips would go; check the bank.`);
+    throw new Error(
+      `Stopping: ${unused.length} of ${inBucket.size} clips would go; check the bank.`,
+    );
 
   const manifest = await readJson<Manifest>(MANIFEST, { version: 2, clips: {} });
   const stale = Object.keys(manifest.clips).filter((id) => !wanted.has(id));
