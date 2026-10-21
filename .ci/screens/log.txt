@@ -34,5 +34,5 @@ Running 62 tests using 2 workers
   1 failed
     [ipad] › tests/e2e/screenshots6.spec.ts:177:1 › grade 1 clock and money screens ────────────────
   48 skipped
-  13 passed (5.5m)
-::notice title=🎭 Playwright Run Summary::  1 failed%0A    [ipad] › tests/e2e/screenshots6.spec.ts:177:1 › grade 1 clock and money screens ────────────────%0A  48 skipped%0A  13 passed (5.5m)
+  13 passed (5.0m)
+::notice title=🎭 Playwright Run Summary::  1 failed%0A    [ipad] › tests/e2e/screenshots6.spec.ts:177:1 › grade 1 clock and money screens ────────────────%0A  48 skipped%0A  13 passed (5.0m)

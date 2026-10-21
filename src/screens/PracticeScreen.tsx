@@ -860,7 +860,10 @@ function resultLine(
   if (world?.review === 'current' && o.newlyCompleted)
     return `${tc('practice.done.passed')} ${t('practice.done.reviewOpened')}`;
   // Nothing opened (the last station, with stations skipped on the way): what is left.
-  const left = world?.review === 'locked' ? world.stations.filter((st) => !st.warmup && st.state !== 'done').length : 0;
+  const left =
+    world?.review === 'locked'
+      ? world.stations.filter((st) => !st.warmup && st.state !== 'done').length
+      : 0;
   if (left > 0)
     return `${tc('practice.done.passed')} ${
       left === 1 ? t('practice.done.leftOne') : t('practice.done.left', { params: { n: left } })
