@@ -37,7 +37,10 @@ const BACKUP_STALE_MS = 14 * 24 * 60 * 60 * 1000;
  * Parent area. Reachable from home through the gate (or directly on first
  * run). A direct visit to /parents without having passed the gate shows it.
  */
-export function ParentScreen() {
+/** The parents' area behind the gate: the current design, or another one to compare (see app/uiVariant). */
+export function ParentScreen({
+  area: Area = ParentArea,
+}: { area?: (() => ReactNode) | undefined } = {}) {
   const unlocked = useApp((s) => s.isParentUnlocked());
   const noProfiles = useApp((s) => s.data.profiles.length === 0);
   const hasPin = useApp((s) => s.data.parent.pin !== null);
@@ -62,7 +65,7 @@ export function ParentScreen() {
       </main>
     );
   }
-  return <ParentArea />;
+  return <Area />;
 }
 
 const TAB_ICON: Record<ParentTab, IconName> = {
@@ -83,7 +86,7 @@ const TAB_LABEL = {
  * half-done form survives a switch. On a phone the sections are a tab bar at
  * the bottom, in thumb reach; on a tablet, a segmented control under the title.
  */
-function ParentArea() {
+export function ParentArea() {
   const lockParent = useApp((s) => s.lockParent);
   const unlockParent = useApp((s) => s.unlockParent);
   const [tab, setTab] = useState<ParentTab>(() => takeParentTab() ?? 'children');
@@ -169,7 +172,7 @@ const tabId = (tab: ParentTab) => `parent-tab-${tab}`;
 const panelId = (tab: ParentTab) => `parent-panel-${tab}`;
 
 /** WAI-ARIA tabs: arrow keys move between them (right is "previous" in RTL), Home/End jump. */
-function ParentTabs({ tab, onChange }: { tab: ParentTab; onChange: (tab: ParentTab) => void }) {
+export function ParentTabs({ tab, onChange }: { tab: ParentTab; onChange: (tab: ParentTab) => void }) {
   const onKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
     const i = PARENT_TABS.indexOf(tab);
     const n = PARENT_TABS.length;
@@ -216,7 +219,7 @@ function ParentTabs({ tab, onChange }: { tab: ParentTab; onChange: (tab: ParentT
   );
 }
 
-function TabPanel({
+export function TabPanel({
   tab,
   current,
   children,
@@ -240,7 +243,7 @@ function TabPanel({
 
 /* ---------- Children ---------- */
 
-function ChildrenSection({ onSettings }: { onSettings: () => void }) {
+export function ChildrenSection({ onSettings }: { onSettings: () => void }) {
   const profiles = useApp((s) => s.data.profiles);
   const addProfile = useApp((s) => s.addProfile);
   const updateProfile = useApp((s) => s.updateProfile);
@@ -345,7 +348,7 @@ function ChildrenSection({ onSettings }: { onSettings: () => void }) {
 }
 
 /** Right after a child is added: the next step is always one tap away. */
-function ChildAdded({
+export function ChildAdded({
   profile,
   canAddAnother,
   onPlay,
@@ -385,7 +388,7 @@ function ChildAdded({
 }
 
 /** One child at a glance: who, where in the journey, and what to strengthen. */
-function ChildCard({
+export function ChildCard({
   profile,
   index,
   onEdit,
@@ -445,7 +448,7 @@ function ChildCard({
 
 /* ---------- Progress, per child ---------- */
 
-function ProgressSection() {
+export function ProgressSection() {
   const profiles = useApp((s) => s.data.profiles);
   return (
     <div className="stack">
@@ -465,7 +468,7 @@ function ProgressSection() {
   );
 }
 
-function ProgressCard({ profile }: { profile: Profile }) {
+export function ProgressCard({ profile }: { profile: Profile }) {
   const progress = useApp((s) => s.data.progress[profile.id]);
   const summary = summarizeProgress(progress);
   const tc = makeT(profile.gender);
@@ -539,7 +542,7 @@ function ProgressCard({ profile }: { profile: Profile }) {
 
 /* ---------- Backup and restore ---------- */
 
-function BackupSection({ onShow }: { onShow: () => void }) {
+export function BackupSection({ onShow }: { onShow: () => void }) {
   const data = useApp((s) => s.data);
   const markBackedUp = useApp((s) => s.markBackedUp);
   const replaceData = useApp((s) => s.replaceData);
@@ -631,7 +634,7 @@ function BackupSection({ onShow }: { onShow: () => void }) {
 
 /* ---------- PIN ---------- */
 
-function SecuritySection() {
+export function SecuritySection() {
   const hasPin = useApp((s) => s.data.parent.pin !== null);
   const setPin = useApp((s) => s.setPin);
   const [choosing, setChoosing] = useState(false);
@@ -675,7 +678,7 @@ function SecuritySection() {
   );
 }
 
-function PinChooser({ onDone, onCancel }: { onDone: (pin: string) => void; onCancel: () => void }) {
+export function PinChooser({ onDone, onCancel }: { onDone: (pin: string) => void; onCancel: () => void }) {
   const [first, setFirst] = useState<string | null>(null);
   const [value, setValue] = useState('');
   const [mismatch, setMismatch] = useState(false);
@@ -716,7 +719,7 @@ function PinChooser({ onDone, onCancel }: { onDone: (pin: string) => void; onCan
 
 /* ---------- Device and storage status ---------- */
 
-function DeviceSection() {
+export function DeviceSection() {
   const storageIssue = useApp((s) => s.storageIssue);
   const persisted = useApp((s) => s.persisted);
   const standalone = isStandalone();
@@ -753,7 +756,7 @@ function DeviceSection() {
 
 /* ---------- Recordings for use without internet ---------- */
 
-function OfflineSection() {
+export function OfflineSection() {
   const profiles = useApp((s) => s.data.profiles);
   const grades = [...new Set(profiles.map((p) => p.grade))].sort((a, b) => a - b);
   if (grades.length === 0) return null;
@@ -778,7 +781,7 @@ type OfflineState =
   | { phase: 'downloading'; audio: GradeAudio; done: number }
   | { phase: 'error' };
 
-function OfflineGrade({ grade }: { grade: Grade }) {
+export function OfflineGrade({ grade }: { grade: Grade }) {
   const [state, setState] = useState<OfflineState>({ phase: 'loading' });
   const [failed, setFailed] = useState(false);
   const abort = useRef<AbortController | null>(null);
@@ -860,7 +863,7 @@ function OfflineGrade({ grade }: { grade: Grade }) {
 
 const WEEKDAYS = ['א׳', 'ב׳', 'ג׳', 'ד׳', 'ה׳', 'ו׳', 'ש׳'];
 
-function WeekReport({ profile }: { profile: Profile }) {
+export function WeekReport({ profile }: { profile: Profile }) {
   const progress = useApp((s) => s.data.progress[profile.id]);
   const week = weekSummary(progress, Date.now());
   const tc = makeT(profile.gender);
@@ -933,7 +936,7 @@ function nowAt(world: World): string {
 }
 
 /** Every world and its stations, folded: the child card already shows the current one. */
-function JourneyReport({ profile }: { profile: Profile }) {
+export function JourneyReport({ profile }: { profile: Profile }) {
   const progress = useApp((s) => s.data.progress[profile.id]);
   const worlds = worldsFor(profile.grade, progress);
   const active = activeWorld(profile.grade, progress);

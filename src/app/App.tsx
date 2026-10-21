@@ -1,3 +1,8 @@
+import { uiVariant } from './uiVariant';
+import { HomeB } from '@/screens/variants/HomeB';
+import { HomeC } from '@/screens/variants/HomeC';
+import { ParentAreaB } from '@/screens/variants/ParentAreaB';
+import { ParentAreaC } from '@/screens/variants/ParentAreaC';
 import { AlbumScreen } from '@/screens/AlbumScreen';
 import { HomeScreen } from '@/screens/HomeScreen';
 import { InfoScreen } from '@/screens/InfoScreen';
@@ -38,10 +43,12 @@ export function App() {
 
   // Stored data loads in a few milliseconds; render nothing rather than flash an empty home.
   if (!ready) return <main className="screen" aria-busy="true" />;
+  const variant = uiVariant();
 
   switch (route.name) {
     case 'home':
-      return <HomeScreen />;
+      // The entry screen's design: the current one, or B or C to compare (?ui=b).
+      return variant === 'b' ? <HomeB /> : variant === 'c' ? <HomeC /> : <HomeScreen />;
     case 'play':
       return <JourneyScreen />;
     case 'practice':
@@ -59,7 +66,11 @@ export function App() {
     case 'worlds':
       return <WorldsScreen />;
     case 'parents':
-      return <ParentScreen />;
+      return (
+        <ParentScreen
+          area={variant === 'b' ? ParentAreaB : variant === 'c' ? ParentAreaC : undefined}
+        />
+      );
     case 'install':
       return <InstallGuideScreen />;
     case 'info':

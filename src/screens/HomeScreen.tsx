@@ -132,7 +132,7 @@ export function HomeScreen() {
  * touch; where it does not (iPhone, iPad), on the first touch of the screen
  * that is not a button.
  */
-function Welcome({ onStart, onConnect }: { onStart: () => void; onConnect: () => void }) {
+export function Welcome({ onStart, onConnect }: { onStart: () => void; onConnect: () => void }) {
   const greeting = t('welcome.greeting');
   // The first word is there at once; the rest is typed after a beat.
   const firstWord = greeting.indexOf(' ') > 0 ? greeting.indexOf(' ') : greeting.length;
@@ -227,7 +227,7 @@ function Welcome({ onStart, onConnect }: { onStart: () => void; onConnect: () =>
 }
 
 /** Accessibility statement, privacy and terms: in a prominent place, on every home screen. */
-function InfoLink() {
+export function InfoLink() {
   return (
     <a
       className="info-link"
