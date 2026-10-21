@@ -10,7 +10,7 @@ import {
 } from 'react';
 import { navigate } from '@/app/router';
 import { chooseStation, clearChosenStation } from '@/app/station';
-import { dailyPool, worldPool } from '@/engine/daily';
+import { worldPool } from '@/engine/daily';
 import {
   activeWorld,
   nextStop,
@@ -25,7 +25,7 @@ import { spokenLabel } from '@/lang/spokenLabel';
 import { roundsToday } from '@/state/progress';
 import type { Profile } from '@/state/schema';
 import { useActiveProfile, useApp } from '@/state/store';
-import { currentStreak, dayKey } from '@/state/streak';
+import { currentStreak } from '@/state/streak';
 import { ageBandForGrade, applyAgeBand } from '@/ui/ageBand';
 import { Avatar } from '@/ui/Avatar';
 import { Dialog } from '@/ui/Dialog';
@@ -132,8 +132,6 @@ function Journey({ profile }: { profile: Profile }) {
     chooseStation(world.topic.id, level);
     navigate({ name: 'practice' });
   };
-  const hasDaily = dailyPool(profile.grade, progress).length > 0;
-  const dailyDone = progress?.days[dayKey(Date.now())]?.daily === true;
   // More of this world: once a station of it is passed (nothing to mix before).
   const hasWorldMix = worldPool(world, progress).length > 0;
   const canPick = profile.settings.allowLevelChange && stop.kind === 'level';
@@ -300,35 +298,18 @@ function Journey({ profile }: { profile: Profile }) {
                 : t('journeyBar.rewardLast')}
             </p>
           ) : null}
-          {hasWorldMix || hasDaily ? (
-            // Under the big button, side by side: more of this world, and the review
-            // from every world. Equal tiles, two lines of text when the screen is narrow.
+          {hasWorldMix ? (
+            // Under the big button: more of this world. (The review from every world is on
+            // the map of all worlds.)
             <div className="journey__more">
-              {hasWorldMix ? (
-                <button
-                  type="button"
-                  className="btn btn--secondary btn--small daily"
-                  onClick={() => navigate({ name: 'worldMix' })}
-                >
-                  <ShuffleIcon />
-                  <span>{t('journey.worldMix')}</span>
-                </button>
-              ) : null}
-              {hasDaily ? (
-                <button
-                  type="button"
-                  className={
-                    dailyDone
-                      ? 'btn btn--secondary btn--small daily daily--done'
-                      : 'btn btn--secondary btn--small daily'
-                  }
-                  aria-label={dailyDone ? t('journey.dailyDone') : undefined}
-                  onClick={() => navigate({ name: 'daily' })}
-                >
-                  <DailyIcon done={dailyDone} />
-                  <span>{t('journey.daily')}</span>
-                </button>
-              ) : null}
+              <button
+                type="button"
+                className="btn btn--secondary btn--small daily"
+                onClick={() => navigate({ name: 'worldMix' })}
+              >
+                <ShuffleIcon />
+                <span>{t('journey.worldMix')}</span>
+              </button>
             </div>
           ) : null}
         </section>
@@ -427,30 +408,6 @@ function ShuffleIcon() {
       <path d="M3 7h2.5c1.4 0 2.7.7 3.5 1.8l.6.8" />
       <path d="M21 18h-3a4.3 4.3 0 0 1-3.5-1.8l-.6-.8" />
       <path d="M17.5 15L21 18l-3.5 3" />
-    </svg>
-  );
-}
-
-function DailyIcon({ done }: { done: boolean }) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      aria-hidden="true"
-      className="daily__icon"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      {done ? (
-        <path d="M5 12l5 5 9-10" />
-      ) : (
-        <>
-          <path d="M4 12a8 8 0 1 0 2.3-5.7" />
-          <path d="M4 4v4h4" />
-        </>
-      )}
     </svg>
   );
 }

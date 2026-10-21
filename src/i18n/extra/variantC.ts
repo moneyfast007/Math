@@ -38,7 +38,7 @@ export const heVariantC = {
   'c.today.exercises': 'תרגילים',
   'c.today.firstTry': 'נכון בפעם הראשונה',
   'c.today.roundsLabel': 'סבבים',
-  'c.today.daily': 'כולל החזרה מכל העולמות',
+  'c.today.daily': 'כולל תרגילי חזרה מכל העולמות',
   'c.today.lastYesterday': { f: 'תרגלה אתמול', m: 'תרגל אתמול' },
   'c.today.lastOn': 'בפעם האחרונה: {date}',
   'c.today.streak': 'רצף של {count} ימים',

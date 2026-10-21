@@ -1586,8 +1586,8 @@ export const he = {
   'journey.plusiTickle': 'פלוסי. לחיצה מדגדגת אותו',
   'journey.map': 'מפת המסע',
   // Under the big button: a mixed round from every world, and more of this world.
-  'journey.daily': 'חזרה מכל העולמות',
-  'journey.dailyDone': 'חזרה מכל העולמות, נעשתה היום',
+  'journey.daily': 'תרגילי חזרה מכל העולמות',
+  'journey.dailyDone': 'תרגילי חזרה מכל העולמות, עשית היום',
   'journey.worldMix': 'עוד תרגילים בעולם הזה',
   // Phase 6: world "זוויות וצורות" (grade 4)
   'topic.angles': 'זוויות וצורות',
@@ -1848,7 +1848,7 @@ export const he = {
   'parent.week.days': 'ימי תרגול: {days} מתוך 7',
   'parent.week.exercises': '{count} תרגילים',
   'parent.week.rate': '{percent} נכון בניסיון הראשון',
-  'parent.week.daily': 'חזרה מכל העולמות: {count} פעמים',
+  'parent.week.daily': 'תרגילי חזרה מכל העולמות: {count} פעמים',
   'parent.week.chart': 'תרגילים בכל יום בשבוע האחרון',
   'parent.journey.title': 'התקדמות במסע',
   'parent.journey.world': '{name}: עברו {done} מתוך {total} תחנות',
@@ -2099,7 +2099,7 @@ export const he = {
   'practice.done.reviewOpened': 'נשאר רק אתגר הסיום, ואז נפתח העולם הבא!',
   'practice.done.worldDone': 'סיימת את כל העולם! מדבקה חדשה מחכה באלבום.',
   'practice.done.toAlbum': 'לאלבום',
-  'practice.done.daily': 'כל הכבוד! סיימת את החזרה מכל העולמות.',
+  'practice.done.daily': 'כל הכבוד! סיימת את תרגילי החזרה מכל העולמות.',
   'practice.done.worldMix': 'כל הכבוד! תרגלת עוד בעולם הזה.',
   'practice.challenge.banner': 'אתגר הסיום · צריך {n} מתוך {total} נכון בפעם הראשונה',
   'practice.done.titleAgain': 'עוד קצת, {name}!',

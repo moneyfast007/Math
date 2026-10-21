@@ -6,7 +6,7 @@ import type { Rng, Topic } from './types';
 /**
  * Mixed rounds from stations she has already passed, so what she learned is
  * not forgotten. Two kinds:
- * - "חזרה מכל העולמות" (daily): from any of her worlds; worlds where her recent
+ * - "תרגילי חזרה מכל העולמות" (daily, on the map of all worlds): from any of her worlds; worlds where her recent
  *   answers were weaker come up more often.
  * - "עוד תרגילים בעולם הזה" (world mix): from the world she is in only, every
  *   passed station alike.

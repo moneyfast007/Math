@@ -3,11 +3,13 @@ import { speaker } from '@/audio/speaker';
 import { useSpeaking } from '@/audio/useSpeaker';
 import { setReplayTopic } from '@/app/replay';
 import { navigate } from '@/app/router';
+import { dailyPool } from '@/engine/daily';
 import { worldsMap, type WorldMapEntry } from '@/engine/journey';
 import { t, type TranslationKey } from '@/i18n';
 import { gradeLabel } from '@/i18n/labels';
 import { compose } from '@/lang/compose';
 import { useActiveProfile, useApp } from '@/state/store';
+import { dayKey } from '@/state/streak';
 import { ageBandForGrade, applyAgeBand } from '@/ui/ageBand';
 import { BrandMark } from '@/ui/BrandMark';
 import { Dialog } from '@/ui/Dialog';
@@ -80,6 +82,11 @@ export function WorldsScreen() {
         </button>
       </header>
 
+      {/* Review from every world she has passed stations in: the place for it is here. */}
+      {dailyPool(profile.grade, progress).length > 0 ? (
+        <ReviewCard done={progress?.days[dayKey(Date.now())]?.daily === true} />
+      ) : null}
+
       <ol className="worlds__list" aria-label={t('worlds.list')}>
         {entries.map((entry) => (
           <WorldRow key={entry.world.topic.id} entry={entry} young={young} />
@@ -106,6 +113,49 @@ export function WorldsScreen() {
         </Dialog>
       ) : null}
     </main>
+  );
+}
+
+function ReviewCard({ done }: { done: boolean }) {
+  return (
+    <button
+      type="button"
+      className="card worlds-review"
+      aria-label={done ? t('journey.dailyDone') : t('journey.daily')}
+      onClick={() => navigate({ name: 'daily' })}
+    >
+      <span className="worlds-review__icon" aria-hidden="true">
+        <AllWorldsIcon />
+        {done ? (
+          <span className="worlds-review__check">
+            <svg viewBox="0 0 24 24">
+              <path d="M5 12.5l4.2 4.2L19 7" />
+            </svg>
+          </span>
+        ) : null}
+      </span>
+      <span className="worlds-review__text" aria-hidden="true">
+        <span className="worlds-review__title">{t('journey.daily')}</span>
+        <span className="worlds-review__sub">
+          {done ? t('worlds.review.done') : t('worlds.review.sub')}
+        </span>
+      </span>
+      <span className="worlds-review__go" aria-hidden="true">
+        ←
+      </span>
+    </button>
+  );
+}
+
+/** Three little worlds and a sparkle: exercises from all of them. */
+function AllWorldsIcon() {
+  return (
+    <svg viewBox="0 0 48 48">
+      <circle cx="16" cy="30" r="10" fill="#7fc8bd" />
+      <circle cx="32" cy="30" r="10" fill="#f2a46b" />
+      <circle cx="24" cy="16" r="10" fill="#a9b0f0" />
+      <path d="M40 4l1.6 4.4L46 10l-4.4 1.6L40 16l-1.6-4.4L34 10l4.4-1.6z" fill="#f0b42c" />
+    </svg>
   );
 }
 

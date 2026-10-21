@@ -68,12 +68,17 @@ test('the day’s review appears after a passed station and starts a round', asy
   // A child with nothing passed yet has no review to do.
   await page.getByRole('button', { name: 'רוני' }).click();
   await expect(page.getByRole('button', { name: 'יאללה, מתחילים!' })).toBeVisible();
-  await expect(page.getByRole('button', { name: 'חזרה מכל העולמות' })).toHaveCount(0);
   await expect(page.getByRole('button', { name: 'עוד תרגילים בעולם הזה' })).toHaveCount(0);
+  await page.getByRole('button', { name: 'כל העולמות', exact: true }).click();
+  await expect(page.getByRole('button', { name: /תרגילי חזרה מכל העולמות/ })).toHaveCount(0);
+  await page.getByRole('button', { name: 'חזרה למסע' }).click();
   await page.getByRole('button', { name: 'מי משחק?' }).click();
 
+  // The review from every world lives on the map of all worlds (not on the journey).
   await page.getByRole('button', { name: 'שירה' }).click();
-  await page.getByRole('button', { name: 'חזרה מכל העולמות' }).click();
+  await expect(page.getByRole('button', { name: /תרגילי חזרה מכל העולמות/ })).toHaveCount(0);
+  await page.getByRole('button', { name: 'כל העולמות', exact: true }).click();
+  await page.getByRole('button', { name: 'תרגילי חזרה מכל העולמות' }).click();
   await expect(page).toHaveURL(/\/practice\/daily$/);
   await expect(page.locator('.exercise')).toBeVisible();
   await page.getByRole('button', { name: 'סיום' }).click();

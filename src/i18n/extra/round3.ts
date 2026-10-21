@@ -25,5 +25,8 @@ export const heRound3 = {
   // Entry screen C.
   'c.home.start': 'מתחילים',
   // Parents: once, not "1 פעמים".
-  'parent.week.dailyOne': 'חזרה מכל העולמות: פעם אחת',
+  'parent.week.dailyOne': 'תרגילי חזרה מכל העולמות: פעם אחת',
+  // The map of all worlds: the review from every world lives here.
+  'worlds.review.sub': 'תרגילים מכל התחנות שעברת, מעורבבים',
+  'worlds.review.done': 'עשית היום',
 } as const;
