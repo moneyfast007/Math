@@ -36,7 +36,7 @@ export default defineConfig({
             urlPattern: ({ url }) => url.pathname.startsWith('/audio/'),
             handler: 'CacheFirst',
             options: {
-              cacheName: 'audio-v1',
+              cacheName: 'audio-v2',
               // Room for two grades downloaded for offline use on one device.
               expiration: { maxEntries: 30000, maxAgeSeconds: 60 * 60 * 24 * 365 },
               cacheableResponse: { statuses: [0, 200] },
