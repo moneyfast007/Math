@@ -10,7 +10,6 @@ import {
 import { navigate } from '@/app/router';
 import { chooseStation, clearChosenStation } from '@/app/station';
 import { dailyPool, worldPool } from '@/engine/daily';
-import { currentLevel } from '@/engine/registry';
 import {
   activeWorld,
   nextStop,
@@ -68,6 +67,12 @@ function Journey({ profile }: { profile: Profile }) {
   const [picked, setPicked] = useState<number | null>(null);
   // Back on the journey: no station is chosen any more (the big button names the next one).
   useEffect(() => clearChosenStation(), []);
+  const [note, setNote] = useState<string | null>(null);
+  useEffect(() => {
+    if (note === null) return;
+    const id = window.setTimeout(() => setNote(null), 3500);
+    return () => window.clearTimeout(id);
+  }, [note]);
   // Decided when the journey opens: the card stays for this visit, once it is remembered.
   const [intro, setIntro] = useState(() => profile.journeyIntroSeenAt === undefined);
   const startRef = useRef<HTMLButtonElement>(null);
@@ -126,12 +131,6 @@ function Journey({ profile }: { profile: Profile }) {
     chooseStation(world.topic.id, level);
     navigate({ name: 'practice' });
   };
-  const [note, setNote] = useState<string | null>(null);
-  useEffect(() => {
-    if (note === null) return;
-    const id = window.setTimeout(() => setNote(null), 3500);
-    return () => window.clearTimeout(id);
-  }, [note]);
   const hasDaily = dailyPool(profile.grade, progress).length > 0;
   const dailyDone = progress?.days[dayKey(Date.now())]?.daily === true;
   // More of this world: once a station of it is passed (nothing to mix before).
