@@ -121,7 +121,9 @@ test.describe('practice', () => {
     }
 
     await expect(page.getByRole('heading', { name: 'כל הכבוד, נועה!' })).toBeVisible();
-    await expect(page.getByText('פתרת 10 תרגילים.')).toBeVisible();
+    // Every answer right the first time: three stars, and the score in its numbers.
+    await expect(page.getByRole('img', { name: '3 כוכבים מתוך שלושה' })).toBeVisible();
+    await expect(page.getByText('10 מתוך 10 נכון בפעם הראשונה')).toBeVisible();
     // Every answer right: the station is passed and the journey moves on.
     await expect(page.getByRole('status')).toContainText('עברת את התחנה! התחנה הבאה נפתחה!');
 

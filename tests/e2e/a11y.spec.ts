@@ -82,6 +82,8 @@ test.describe('accessibility (WCAG 2.0 AA)', () => {
 
   test('first run, install guide, information page', async ({ page }) => {
     await page.goto('/');
+    // The greeting's bubble fades in for about a second: measure its colours once it is in.
+    await page.waitForTimeout(1200);
     await check(page, 'welcome');
     await page.goto('/install');
     await check(page, 'install guide');
