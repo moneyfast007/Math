@@ -42,6 +42,11 @@ jobs:
           else
             npm run tts:prune -- --out prune-keys.txt 2>&1 | tee audio-prune.log
           fi
+      - name: Show the counts on the run's page
+        if: always()
+        run: |
+          # The counts as notices, readable from the run's page without its log.
+          grep -E "clips in the bank|manifest entries|Stopping" audio-prune.log | while read -r line; do echo "::notice title=Audio prune::$line"; done
       - name: Delete them from the bucket
         if: inputs.dry_run != 'true'
         run: |
@@ -59,6 +64,7 @@ jobs:
             deleted=$((deleted + $(wc -l < "$f")))
           done
           echo "deleted $deleted clips"
+          echo "::notice title=Audio prune::deleted $deleted clips"
       - name: Commit the manifest
         if: inputs.dry_run != 'true'
         run: |
