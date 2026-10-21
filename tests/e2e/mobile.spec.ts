@@ -37,7 +37,6 @@ const WORLDS: Record<number, string[]> = {
   6: [
     'fraction-mul-div',
     'decimal-ops',
-    'percent-intro',
     'percent',
     'ratio',
     'circle-volume',
