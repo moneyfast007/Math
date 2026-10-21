@@ -155,6 +155,8 @@ export type Visual =
    * highlighted (0 = Sunday … 6 = Saturday); `tags`: a word under a day ("היום").
    */
   | { type: 'weekDays'; mark?: number; tags?: { day: number; text: string }[] }
+  /** A little scene (gan): see Scene. */
+  | ({ type: 'scene' } & Scene)
   /** An angle of `deg` degrees between a ray along the base and a second ray, the whole turned by `turn`. */
   | { type: 'angle'; deg: number; turn?: number }
   /**
@@ -314,6 +316,56 @@ export interface Polygon {
   /** Vertices (indices) marked with an arc inside the angle (which angle is asked about). */
   arcs?: number[];
 }
+
+/**
+ * A little scene for the gan worlds "מרחב ומיקום" and "מיון והשוואה": emoji and
+ * flat shapes placed on a board of `w` × `h` units (y down), over simple props.
+ * Screen right is the child's right. `then`: the same board after a change,
+ * drawn under it (before above, after below).
+ * `icon`: a small picture on an answer button.
+ */
+export interface Scene {
+  w: number;
+  h: number;
+  items: SceneItem[];
+  props?: SceneProp[];
+  then?: SceneItem[];
+  icon?: boolean;
+}
+
+export interface SceneItem {
+  x: number;
+  y: number;
+  /** An emoji, a flat shape, or a short text; `blank`: a dashed box with "?". */
+  emoji?: string;
+  shape?: ShapeItem;
+  text?: string;
+  blank?: boolean;
+  /** Height in board units (default 16). */
+  size?: number;
+  /** A ring around it (a hint points at it). */
+  ring?: boolean;
+}
+
+export type SceneProp =
+  | { kind: 'floor'; y: number }
+  /** An open box seen from the front: what is inside stands between its walls. */
+  | { kind: 'box'; x: number; y: number; w: number; h: number }
+  /** A table: its top at y, its legs down to y + h. */
+  | { kind: 'table'; x: number; y: number; w: number; h: number }
+  /** A cupboard with `n` shelves (things stand on each shelf's board). */
+  | { kind: 'shelves'; x: number; y: number; w: number; h: number; n: number }
+  /** A sorting hoop, centred on x, y. */
+  | { kind: 'hoop'; x: number; y: number; w: number; h: number }
+  /** A path through the points, in one of three colours (`tone`). */
+  | { kind: 'path'; points: [number, number][]; tone: number }
+  | { kind: 'arrow'; from: [number, number]; to: [number, number] }
+  /** A thin dashed line (pairs matched, a way measured). */
+  | { kind: 'line'; from: [number, number]; to: [number, number] }
+  /** A train going right: the engine at x (its front), `cars` cars of width `car` behind it. */
+  | { kind: 'train'; x: number; y: number; cars: number; car: number }
+  /** A word on the picture (ימין, שמאל). */
+  | { kind: 'label'; x: number; y: number; text: string };
 
 export type ShapeKind = 'circle' | 'square' | 'triangle' | 'rectangle';
 export type ShapeColor = 'red' | 'blue' | 'yellow' | 'green';

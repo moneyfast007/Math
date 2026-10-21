@@ -12,6 +12,7 @@ import {
   RulerView,
 } from './GeoVisuals';
 import { FigureView } from './FigureVisual';
+import { SceneView } from './SceneVisual';
 import { CubeStackView, SolidsView, ThingView } from './SolidsVisual';
 import { BalanceView, LengthsView, WeekView } from './MeasureVisuals';
 import { VerticalView } from './Vertical';
@@ -85,6 +86,8 @@ export function VisualView({ visual }: { visual: Visual }) {
       return <WeekView v={visual} />;
     case 'figure':
       return <FigureView v={visual} />;
+    case 'scene':
+      return <SceneView v={visual} />;
   }
 }
 
