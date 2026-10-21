@@ -486,7 +486,10 @@ const MAX_VARIANTS = 6;
 
 /** Everything an exercise says, in both genders: two seeds must agree on it to be one exercise. */
 function sayingsKey(gen: (rng: Rng, gender: Gender) => Exercise, seed: number): string {
-  return JSON.stringify([sayingsOf(gen(seededRng(seed), 'f')), sayingsOf(gen(seededRng(seed), 'm'))]);
+  return JSON.stringify([
+    sayingsOf(gen(seededRng(seed), 'f')),
+    sayingsOf(gen(seededRng(seed), 'm')),
+  ]);
 }
 
 export function defineTopic(def: TopicDef): Topic & { enumerate: (level: number) => Exercise[] } {
@@ -554,7 +557,8 @@ export function defineTopic(def: TopicDef): Topic & { enumerate: (level: number)
       const entry = from.length > 0 ? pick(rng, from) : undefined;
       if (!entry) return l.gen(rng, gender);
       // Which of its button orders: the exercise is the same, word for word.
-      const seed = entry.variants.length > 0 ? pick(rng, [entry.seed, ...entry.variants]) : entry.seed;
+      const seed =
+        entry.variants.length > 0 ? pick(rng, [entry.seed, ...entry.variants]) : entry.seed;
       return l.gen(seededRng(seed), gender);
     }
     const facts = l.facts() as readonly never[];
