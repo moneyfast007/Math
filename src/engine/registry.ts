@@ -31,6 +31,7 @@ import { percent } from './topics/percent';
 import { percentIntro } from './topics/percentIntro';
 import { ratio } from './topics/ratio';
 import { shapesTopic } from './topics/shapes';
+import { solids1 } from './topics/solids1';
 import { vertical2, vertical3, vertical4 } from './topics/vertical';
 import type { LevelInfo, Topic } from './types';
 
@@ -44,6 +45,7 @@ export const TOPICS: readonly Topic[] = [
   numbers100,
   polygons, // grades 1–2
   clockMoney1,
+  solids1,
   // Grade 2
   addSub100,
   numbers1000,
