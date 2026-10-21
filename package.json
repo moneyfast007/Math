@@ -24,6 +24,7 @@
     "tts:build": "tsx --tsconfig tsconfig.node.json scripts/tts/generate.ts",
     "tts:trim": "tsx --tsconfig tsconfig.node.json scripts/tts/trim.ts",
     "tts:reconcile": "tsx --tsconfig tsconfig.node.json scripts/tts/reconcile.ts",
+    "tts:prune": "tsx --tsconfig tsconfig.node.json scripts/tts/prune.ts",
     "check": "npm run typecheck && npm run lint && npm run format:check && npm run test"
   },
   "dependencies": {

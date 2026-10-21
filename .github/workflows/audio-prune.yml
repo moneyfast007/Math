@@ -1,0 +1,71 @@
+# Manual: deletes from the bucket the clips no phrase of the bank needs any
+# more, and drops them from the manifest. Run it with dry_run first and read
+# the counts; deleting cannot be undone (the clips would have to be recorded
+# again).
+name: Audio prune
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Only count, delete nothing'
+        required: false
+        default: 'true'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: tts-build-${{ github.ref_name }}
+  cancel-in-progress: false
+
+jobs:
+  prune:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+      AWS_DEFAULT_REGION: auto
+      R2_ENDPOINT: https://${{ vars.CF_ACCOUNT_ID || '6e361a6ea0adc5dde636c123d59a4ba0' }}.r2.cloudflarestorage.com
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm ci
+      - name: List the clips no phrase needs
+        run: |
+          set -o pipefail
+          if [ "${{ inputs.dry_run }}" = "true" ]; then
+            npm run tts:prune -- --dry-run 2>&1 | tee audio-prune.log
+          else
+            npm run tts:prune -- --out prune-keys.txt 2>&1 | tee audio-prune.log
+          fi
+      - name: Delete them from the bucket
+        if: inputs.dry_run != 'true'
+        run: |
+          set -e
+          [ -s prune-keys.txt ] || { echo "nothing to delete"; exit 0; }
+          # In batches of 1000, the most one request may delete.
+          split -l 1000 prune-keys.txt batch-
+          deleted=0
+          for f in batch-*; do
+            jq -R -s -c 'split("\n") | map(select(length > 0) | {Key: .}) | {Objects: ., Quiet: true}' "$f" > del.json
+            out=$(aws s3api delete-objects --bucket plusi-audio --delete file://del.json --endpoint-url "$R2_ENDPOINT" --output json)
+            # Quiet mode prints nothing when every key went; jq -s reads that as [].
+            errors=$(printf '%s' "$out" | jq -s '(.[0].Errors // []) | length')
+            [ "$errors" = "0" ] || { echo "$out" | jq '.Errors[:5]'; exit 1; }
+            deleted=$((deleted + $(wc -l < "$f")))
+          done
+          echo "deleted $deleted clips"
+      - name: Commit the manifest
+        if: inputs.dry_run != 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add audio/manifest.json
+          if git diff --cached --quiet; then echo "nothing new"; exit 0; fi
+          git commit -m "audio: unused clips pruned"
+          BRANCH="${{ github.ref_name }}"
+          for i in 1 2 3; do git pull --rebase origin "$BRANCH" && git push origin "HEAD:$BRANCH" && break; sleep 5; done
