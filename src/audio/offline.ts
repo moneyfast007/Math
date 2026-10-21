@@ -3,11 +3,11 @@ import { defaultFetchIndex, parseIndex } from './speaker';
 /**
  * Downloading a grade's recordings for use without internet (the parents'
  * area). Every clip of the grade goes into the same cache the service worker
- * reads clips from ("audio-v1", see vite.config.ts), so it plays offline.
+ * reads clips from ("audio-v2", see vite.config.ts), so it plays offline.
  * Clips already there are skipped; the download can be stopped and resumed.
  */
 
-const CACHE = 'audio-v1';
+const CACHE = 'audio-v2';
 const PARALLEL = 6;
 
 export interface GradeAudio {
