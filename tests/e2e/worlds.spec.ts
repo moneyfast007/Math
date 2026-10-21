@@ -123,7 +123,7 @@ test('the map of worlds: done plays again, current goes back, locked says what o
   await expect(page.getByRole('heading', { level: 1, name: 'כל העולמות' })).toBeVisible();
 
   const rows = page.getByRole('list', { name: 'העולמות לפי הסדר' }).getByRole('listitem');
-  await expect(rows).toHaveCount(4);
+  await expect(rows).toHaveCount(8);
   await expect(rows.nth(0)).toContainText('הושלם');
   await expect(rows.nth(1)).toContainText('כאן עכשיו');
   await expect(rows.nth(1)).toHaveAttribute('aria-current', 'step');
