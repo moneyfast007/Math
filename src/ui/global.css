@@ -6469,3 +6469,136 @@ details.report .report__worlds {
   width: 15px;
   height: 15px;
 }
+
+/* The cup: warm gold in every state, in a frame of its own (the glint stays inside it). */
+.node__cup {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 70%;
+  height: 70%;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.node--review .node__cup svg {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 1px 0 rgb(150 100 10 / 35%));
+}
+
+.node--review-locked {
+  background: #fff3d6;
+  border-color: #efc76a;
+}
+
+/* Little sparkles around the cup while it waits (closed or open). */
+.node__sparks {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.node__spark {
+  position: absolute;
+  color: #f0b42c;
+}
+
+.node--review .node__spark--1 {
+  width: 14px;
+  height: 14px;
+  top: -10px;
+  left: 18%;
+}
+
+.node--review .node__spark--2 {
+  width: 10px;
+  height: 10px;
+  bottom: 14%;
+  right: -9px;
+}
+
+.node--review .node__spark--3 {
+  width: 8px;
+  height: 8px;
+  top: 30%;
+  left: -8px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  /* A glint passes over the cup every few seconds. */
+  .node--review-locked .node__cup::after,
+  .node--review-current .node__cup::after {
+    content: '';
+    position: absolute;
+    inset: -20%;
+    background: linear-gradient(
+      115deg,
+      transparent 35%,
+      rgb(255 255 255 / 85%) 50%,
+      transparent 65%
+    );
+    transform: translateX(-120%);
+    animation: cup-glint 4.5s ease-in-out infinite;
+  }
+
+  .node__spark {
+    animation: spark-twinkle 2.6s ease-in-out infinite;
+  }
+
+  .node__spark--2 {
+    animation-delay: 0.9s;
+  }
+
+  .node__spark--3 {
+    animation-delay: 1.7s;
+  }
+
+  /* Open: a short wobble every few seconds — come here. */
+  .node--review-current .node__cup {
+    animation: cup-wobble 3.2s ease-in-out infinite;
+  }
+}
+
+@keyframes cup-glint {
+  0%,
+  60% {
+    transform: translateX(-120%);
+  }
+  85%,
+  100% {
+    transform: translateX(120%);
+  }
+}
+
+@keyframes spark-twinkle {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(0.7);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes cup-wobble {
+  0%,
+  70%,
+  100% {
+    transform: rotate(0);
+  }
+  76% {
+    transform: rotate(-12deg);
+  }
+  82% {
+    transform: rotate(10deg);
+  }
+  88% {
+    transform: rotate(-6deg);
+  }
+  94% {
+    transform: rotate(3deg);
+  }
+}
