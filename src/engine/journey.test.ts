@@ -18,12 +18,12 @@ const range = (from: number, to: number) =>
   Array.from({ length: to - from + 1 }, (_, i) => from + i);
 
 describe('worldFor', () => {
-  it('gan stops world 2 at level 5; a gan child placed past it still has her stations to pass', () => {
-    const fresh = worldFor(addSub20, 2, 0, undefined);
+  it('gan stops add-sub-20 (world 5) at level 5; a gan child placed past it still has her stations to pass', () => {
+    const fresh = worldFor(addSub20, 5, 0, undefined);
     expect(fresh.stations.map((s) => s.level)).toEqual([1, 2, 3, 4, 5]);
     // Gan starts at 3: stations 1–2 are warm-ups, not needed.
     expect(fresh.total).toBe(4);
-    const past = worldFor(addSub20, 2, 0, progressAt(8));
+    const past = worldFor(addSub20, 5, 0, progressAt(8));
     expect(past.stations.map((s) => s.state)).toEqual([
       'warmup',
       'warmup',
@@ -50,7 +50,7 @@ describe('worldFor', () => {
   });
 
   it('a kindergartener arrives at add-sub-20 past the counting stations (world 1 taught them)', () => {
-    const w = worldFor(addSub20, 2, 0, undefined);
+    const w = worldFor(addSub20, 5, 0, undefined);
     expect(w.stations[2]?.state).toBe('current');
     expect(w.done).toBe(0);
   });
@@ -136,10 +136,13 @@ describe('worlds', () => {
     for (const grade of [0, 1, 2, 3, 4, 5, 6] as const) {
       expect(worldsFor(grade, undefined).length, `grade ${grade}`).toBeGreaterThan(0);
     }
+    // Gan: counting and shapes, then sorting and space; adding and taking away last.
     expect(worldsFor(0, undefined).map((w) => w.topic.id)).toEqual([
       'count-10',
-      'add-sub-20',
       'shapes',
+      'sort-0',
+      'space-0',
+      'add-sub-20',
     ]);
   });
 

@@ -12,6 +12,7 @@
  */
 import { heData2 } from './extra/data2';
 import { heGan1 } from './extra/gan1';
+import { heGan2 } from './extra/gan2';
 import { heGrade4 } from './extra/grade4';
 import { heGrades23 } from './extra/grades23';
 import { heGrades56 } from './extra/grades56';
@@ -2114,6 +2115,7 @@ export const he = {
   ...heMeasure1,
   ...heScreens,
   ...heSolids1,
+  ...heGan2,
 } as const;
 
 export type HebrewKey = keyof typeof he;

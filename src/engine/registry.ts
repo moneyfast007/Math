@@ -35,6 +35,8 @@ import { percentIntro } from './topics/percentIntro';
 import { ratio } from './topics/ratio';
 import { shapesTopic } from './topics/shapes';
 import { solids1 } from './topics/solids1';
+import { sort0 } from './topics/sort0';
+import { space0 } from './topics/space0';
 import { vertical2, vertical3, vertical4 } from './topics/vertical';
 import type { LevelInfo, Topic } from './types';
 
@@ -44,6 +46,8 @@ export const TOPICS: readonly Topic[] = [
   count10,
   addSub20, // gan and grade 1
   shapesTopic,
+  sort0,
+  space0,
   // Grade 1
   numbers100,
   polygons, // grades 1–2
@@ -97,6 +101,8 @@ export function topicById(id: string): Topic | undefined {
  * grade 3's fifth world and grade 4's sixth).
  */
 const ORDER: Partial<Record<Grade, readonly Topic[]>> = {
+  // Counting and the shapes first (sorting by shape names them); adding and taking away last.
+  0: [count10, shapesTopic, sort0, space0, addSub20],
   // Patterns after the numbers to 100 they count in; solids beside the flat shapes.
   1: [addSub20, numbers100, patterns1, polygons, solids1, measure1, clockMoney1, data],
   2: [addSub100, numbers1000, moneyTopic, multIntro, clockTopic, polygons, vertical2, data],

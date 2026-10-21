@@ -3,6 +3,7 @@ import { t } from '@/i18n';
 import { digitalTime } from '@/lang/time';
 import { Bars2, DataTable, LineGraph, Pie, Tally } from './DataVisuals';
 import { AngleView, BoxView, CircleView, LinesView, PolygonView, RulerView } from './GeoVisuals';
+import { SceneView } from './SceneVisual';
 import { CubeStackView, SolidsView, ThingView } from './SolidsVisual';
 import { BalanceView, LengthsView, WeekView } from './MeasureVisuals';
 import { VerticalView } from './Vertical';
@@ -72,6 +73,8 @@ export function VisualView({ visual }: { visual: Visual }) {
       return <BalanceView v={visual} />;
     case 'weekDays':
       return <WeekView v={visual} />;
+    case 'scene':
+      return <SceneView v={visual} />;
   }
 }
 

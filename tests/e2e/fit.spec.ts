@@ -12,7 +12,7 @@ import { expect, test, type Page } from '@playwright/test';
  */
 
 const WORLDS: Record<number, string[]> = {
-  0: ['count-10', 'add-sub-20', 'shapes'],
+  0: ['count-10', 'shapes', 'sort-0', 'space-0', 'add-sub-20'],
   1: [
     'add-sub-20',
     'numbers-100',
@@ -148,7 +148,7 @@ for (const [grade, worlds] of Object.entries(WORLDS)) {
       const other = page.getByRole('button', { name: 'תחנה אחרת' });
       await expect(other).toBeVisible();
 
-      // A world can end earlier for a younger grade (gan stops at level 5 of world 2).
+      // A world can end earlier for a younger grade (gan stops add-sub-20 at level 5).
       await other.click();
       const count = await page.getByRole('dialog').getByRole('listitem').count();
       await page.keyboard.press('Escape');
