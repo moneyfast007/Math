@@ -1,0 +1,14 @@
+
+> heshbon@0.1.0 tts:build
+> tsx --tsconfig tsconfig.node.json scripts/tts/generate.ts --max-minutes 60 --concurrency 8
+
+109878 phrases in the bank, 32 to generate.
+  gemini-3.1-flash/Leda/quick: 32 clips, ~0.04 USD (Gemini 3.1 Flash TTS preview, ~1 min audio)
+  32/32
+Done. 116403 clips in audio/clips.
+
+> heshbon@0.1.0 tts:trim
+> tsx --tsconfig tsconfig.node.json scripts/tts/trim.ts --max-minutes 25
+
+32 clips to trim.
+Trimmed 32 clips; 0 failed.
