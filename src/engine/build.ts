@@ -472,6 +472,21 @@ function hashString(s: string): number {
 interface PoolEntry {
   seed: number;
   factId: string;
+  /**
+   * Other seeds that build the same exercise, word for word in both genders, with
+   * its buttons in another order. The pool fixes what is said, not where the right
+   * answer sits: without these, a level with few facts would put it on the same
+   * button most of the time.
+   */
+  variants: number[];
+}
+
+/** At most this many other button orders are kept for an exercise of a pool. */
+const MAX_VARIANTS = 6;
+
+/** Everything an exercise says, in both genders: two seeds must agree on it to be one exercise. */
+function sayingsKey(gen: (rng: Rng, gender: Gender) => Exercise, seed: number): string {
+  return JSON.stringify([sayingsOf(gen(seededRng(seed), 'f')), sayingsOf(gen(seededRng(seed), 'm'))]);
 }
 
 export function defineTopic(def: TopicDef): Topic & { enumerate: (level: number) => Exercise[] } {
@@ -496,16 +511,29 @@ export function defineTopic(def: TopicDef): Topic & { enumerate: (level: number)
     const base = hashString(`${def.id}:${level}`);
     const size = POOL_SIZE[poolKind(l.gen(seededRng(base), 'f'))];
     const out: PoolEntry[] = [];
-    const ids = new Set<string>();
+    const byId = new Map<string, PoolEntry & { said?: string; orders: Set<string> }>();
+    const order = (e: Exercise) => (e.input.type === 'choices' ? e.input.choices.join(',') : '');
     for (let k = 0; k < size * 8 && out.length < size; k++) {
       const seed = (base + k * 7919) >>> 0;
-      const factId = l.gen(seededRng(seed), 'f').factId;
-      if (ids.has(factId)) continue;
-      ids.add(factId);
-      out.push({ seed, factId });
+      const e = l.gen(seededRng(seed), 'f');
+      const known = byId.get(e.factId);
+      if (!known) {
+        const entry = { seed, factId: e.factId, variants: [], orders: new Set([order(e)]) };
+        byId.set(e.factId, entry);
+        out.push(entry);
+        continue;
+      }
+      // The same exercise again: worth keeping only as another order of its buttons.
+      if (e.input.type !== 'choices' || known.variants.length >= MAX_VARIANTS) continue;
+      if (known.orders.has(order(e))) continue;
+      known.said ??= sayingsKey(l.gen, known.seed);
+      if (sayingsKey(l.gen, seed) !== known.said) continue;
+      known.orders.add(order(e));
+      known.variants.push(seed);
     }
-    pools.set(level, out);
-    return out;
+    const pool = out.map(({ seed, factId, variants }) => ({ seed, factId, variants }));
+    pools.set(level, pool);
+    return pool;
   };
 
   const generate = (
@@ -524,7 +552,10 @@ export function defineTopic(def: TopicDef): Topic & { enumerate: (level: number)
       const notLast = pool.filter((p) => p.factId !== last);
       const from = fresh.length > 0 ? fresh : notLast.length > 0 ? notLast : pool;
       const entry = from.length > 0 ? pick(rng, from) : undefined;
-      return entry ? l.gen(seededRng(entry.seed), gender) : l.gen(rng, gender);
+      if (!entry) return l.gen(rng, gender);
+      // Which of its button orders: the exercise is the same, word for word.
+      const seed = entry.variants.length > 0 ? pick(rng, [entry.seed, ...entry.variants]) : entry.seed;
+      return l.gen(seededRng(seed), gender);
     }
     const facts = l.facts() as readonly never[];
     const build = l.build;
