@@ -25,6 +25,7 @@ import { numbers100 } from './topics/numbers100';
 import { numbers1000 } from './topics/numbers1000';
 import { numbers10000 } from './topics/numbers10000';
 import { orderOps } from './topics/orderOps';
+import { patterns1 } from './topics/patterns1';
 import { perimeterArea } from './topics/perimeterArea';
 import { polygons } from './topics/polygons';
 import { percent } from './topics/percent';
@@ -44,6 +45,7 @@ export const TOPICS: readonly Topic[] = [
   numbers100,
   polygons, // grades 1–2
   clockMoney1,
+  patterns1,
   // Grade 2
   addSub100,
   numbers1000,

@@ -15,6 +15,7 @@ import { heGrade4 } from './extra/grade4';
 import { heGrades23 } from './extra/grades23';
 import { heGrades56 } from './extra/grades56';
 import { heJourney } from './extra/journey';
+import { hePatterns1 } from './extra/patterns1';
 import { heScreens } from './extra/screens';
 import { heWorlds } from './extra/worlds';
 
@@ -2104,6 +2105,7 @@ export const he = {
   ...heGrade4,
   ...heGrades56,
   ...heWorlds,
+  ...hePatterns1,
   ...heJourney,
   ...heScreens,
 } as const;

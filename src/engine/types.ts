@@ -103,7 +103,12 @@ export type Visual =
    * Shapes in a row: a pattern (`null` is the place to fill, drawn as a dashed
    * box) or a picture to count in. Each shape has its own size and turn.
    */
-  | { type: 'shapes'; items: (ShapeItem | null)[] }
+  | {
+      type: 'shapes';
+      items: (ShapeItem | null)[];
+      /** Kept on one line, the shapes shrinking to fit (a long pattern reads in order on a phone). */
+      oneLine?: boolean;
+    }
   /** Pencils standing on one line, `lengths` in units of 1–5: which is longest? */
   | { type: 'pencils'; lengths: number[] }
   /** An angle of `deg` degrees between a ray along the base and a second ray, the whole turned by `turn`. */
