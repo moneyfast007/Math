@@ -18,7 +18,7 @@ export interface StationLayout {
 
 /** Rows sit closer than columns; a fit may stretch or squeeze them within this range. */
 const ROW_NATURAL = 0.62;
-const ROW_MIN = 0.58;
+const ROW_MIN = 0.45;
 const ROW_MAX = 0.9;
 /** Room under the first row, and above the last one (where Plusi stands beside a station). */
 const ROOM_BOTTOM = 0.4;
