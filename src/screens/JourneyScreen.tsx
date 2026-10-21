@@ -272,7 +272,6 @@ function Journey({ profile }: { profile: Profile }) {
             <div className="journey__next-text">
               {/* Where she stands in the world, right over the station it names. */}
               <p className="muted journey__progress">{progressLine(world, nextWorld)}</p>
-              <span className="station__eyebrow">{t('child.nextStation')}</span>
               <h2 id="station-title">{stopName}</h2>
             </div>
             <div className="journey__next-side">
