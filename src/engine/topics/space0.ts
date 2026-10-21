@@ -410,7 +410,7 @@ function nearFar({ trio, ref, side, ask }: NearFact, rng: Rng): Exercise {
       level: 6,
       factId: `near:${trio.map((t) => t.id).join(',')}:${ref.id}:${side}:${ask}`,
       spoken: say(K(`near.${ask}`), { ref: ref1 }),
-      visual: nearScene(order as Thing[], ref, side),
+      visual: nearScene(order, ref, side),
       options: [thingOption(ans), thingOption(mid), thingOption(end)],
       hints: [
         hint(say(K(`near.hint1.${ask}`))),

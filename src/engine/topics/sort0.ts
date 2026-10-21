@@ -1,5 +1,5 @@
 import type { TranslationKey } from '@/i18n';
-import { shown } from '@/lang/compose';
+import { shown, type Slot } from '@/lang/compose';
 import type { Noun } from '@/lang/hebrewNumbers';
 import { closed, defineTopic, exercise, hint, pictureExample, say, windowChoices } from '../build';
 import { seededRng, shuffle } from '../rng';
@@ -743,7 +743,7 @@ function pile(f: CountFact, ring = false): { visual: Visual; seed: number } {
 }
 
 function countSorted(f: CountFact, rng: Rng): Exercise {
-  const slots =
+  const slots: Record<string, Slot> =
     f.by === 'color'
       ? { colors: colorsWord(f.color), n: { n: f.n, noun: THING_NOUN } }
       : { family: FAMILY_NOUN[f.family].plural, n: { n: f.n, noun: FAMILY_NOUN[f.family] } };
@@ -752,7 +752,7 @@ function countSorted(f: CountFact, rng: Rng): Exercise {
     f.by === 'color'
       ? { by: 'color', color: nth(COLORS, COLORS.indexOf(f.color) + 1), n: exN }
       : { by: 'family', family: f.family === 'fruit' ? 'animal' : 'fruit', n: exN };
-  const exSlots =
+  const exSlots: Record<string, Slot> =
     ex.by === 'color'
       ? { colors: colorsWord(ex.color), n: { n: exN, noun: THING_NOUN } }
       : { family: FAMILY_NOUN[ex.family].plural, n: { n: exN, noun: FAMILY_NOUN[ex.family] } };

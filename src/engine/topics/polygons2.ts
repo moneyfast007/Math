@@ -1,5 +1,5 @@
 import { t, type TranslationKey } from '@/i18n';
-import { shown } from '@/lang/compose';
+import { shown, type Slot } from '@/lang/compose';
 import type { Noun } from '@/lang/hebrewNumbers';
 import {
   closed,
@@ -564,7 +564,7 @@ const problemFacts = (): Problem[] => [
     [9, 4],
     [10, 6],
   ].map(([a, b]) => ({ kind: 'fence', a, b }) as Problem),
-  ...range(3, 9).map((a) => ({ kind: 'frame', a }) as Problem),
+  ...range(3, 9).map((a): Problem => ({ kind: 'frame', a })),
   ...[
     [2, 3],
     [2, 5],
@@ -650,7 +650,7 @@ function problem(p: Problem): Exercise {
   const sides = isFence ? [p.a, p.b, p.a, p.b] : [p.a, p.a, p.a, p.a];
   const noun = isFence ? METER : CM;
   const key = isFence ? 'fence' : 'frame';
-  const slots = isFence
+  const slots: Record<string, Slot> = isFence
     ? { a: { n: p.a, noun: METER }, b: { n: p.b, noun: METER } }
     : { a: { n: p.a, noun: CM } };
   const spoken = say(K(`prob.${key}.prompt`), slots);

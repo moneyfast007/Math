@@ -179,7 +179,7 @@ describe('angles-4 (grade 4)', () => {
       const pts = quadFromAngles(angles);
       expect(pts).toHaveLength(4);
       angles.forEach((a, i) =>
-        expect(Math.abs(vertexAngle(pts, i) - a), `${angles}`).toBeLessThan(2.5),
+        expect(Math.abs(vertexAngle(pts, i) - a), angles.join(',')).toBeLessThan(2.5),
       );
     }
     for (const e of angles4.enumerate(6)) {
