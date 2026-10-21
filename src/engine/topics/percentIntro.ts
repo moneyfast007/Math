@@ -590,10 +590,10 @@ function storyBank(): string[] {
 export const percentIntro = defineTopic({
   id: ID,
   labelKey: 'topic.percentIntro',
-  // Grade 5 meets percent (levels 1–5); grade 6 goes on to a percent of a quantity (6–10).
-  grades: [5, 6],
-  startLevel: (grade) => (grade === 6 ? 6 : 1),
-  lastLevel: (grade) => (grade === 5 ? 5 : 10),
+  // Grade 5 only, all ten stations: grade 6 has its own world of percent ("אחוזים"),
+  // which starts from a percent of a quantity, where this world ends.
+  grades: [5],
+  startLevel: () => 1,
   extraBank: storyBank,
   levels: [
     closed(
