@@ -300,7 +300,9 @@ function seqExample(f: SeqFact, answer: number, gender: Gender): Hint {
     starts.find((s) => {
       const e = exTerms(s);
       return e.at(-1) !== answer && !e.some((x) => terms.includes(x));
-    }) ?? (starts[0] as number);
+    }) ??
+    starts[0] ??
+    1;
   const e = exTerms(start) as [number, number, number, number];
   return exampleHint(
     e.join(', '),

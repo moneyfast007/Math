@@ -1,5 +1,5 @@
 import { t, type TranslationKey } from '@/i18n';
-import { shown } from '@/lang/compose';
+import { shown, type Slot } from '@/lang/compose';
 import type { Gender } from '@/lang/gender';
 import type { Noun } from '@/lang/hebrewNumbers';
 import {
@@ -739,7 +739,7 @@ function numberStory(
         : STORY_WEIGHTS.map(([, , a, b]) => [a, b]);
   const [ea, eb] = list.find(([p, q]) => (op === '+' ? p + q : p - q) !== ans) as [number, number];
   const noun = f.kind === 'weights' ? CUBE : CLIP;
-  const slots =
+  const slots: Record<string, Slot> =
     f.kind === 'weights'
       ? { x: f.x.name, y: f.y.name, a: { n: f.a, noun }, b: { n: f.b, noun } }
       : { name: who(f.who).name, a: { n: f.a, noun }, b: { n: f.b, noun } };

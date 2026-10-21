@@ -106,6 +106,11 @@ function Lying({ thing, x0, x1, y }: { thing: MeasureThing; x0: number; x1: numb
       );
     default:
       return null;
+    case 'tower':
+    case 'tree':
+    case 'flower':
+    case 'bottle':
+      return null;
   }
 }
 
@@ -213,6 +218,11 @@ function Standing({
       );
     }
     default:
+      return null;
+    case 'pencil':
+    case 'ribbon':
+    case 'snake':
+    case 'brush':
       return null;
   }
 }

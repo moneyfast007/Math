@@ -226,7 +226,10 @@ function Body({ item, id }: { item: SolidItem; id: string }): ReactNode {
       return <Cylinder item={item} id={id} />;
     case 'cone':
       return <Cone item={item} id={id} />;
-    default:
+    case 'circle':
+    case 'square':
+    case 'triangle':
+    case 'rectangle':
       return <Flat kind={item.kind} />;
   }
 }
