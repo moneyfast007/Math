@@ -572,7 +572,13 @@ function WorldMap({
           aria-label={t(`journey.review.${world.review}`)}
           onClick={() => (world.review === 'locked' ? onLocked('review') : onReview())}
         >
-          <StarIcon />
+          <TrophyIcon />
+          {/* Closed: a small lock in its corner says so (and why, when tapped). */}
+          {world.review === 'locked' ? (
+            <span className="node__lock" aria-hidden="true">
+              <Icon name="lock" />
+            </span>
+          ) : null}
           {!young ? <span className="node__caption">{t('journey.review')}</span> : null}
           {world.reviewStars > 0 ? (
             <span className="node__stars node__stars--review">
@@ -672,10 +678,12 @@ function CheckIcon() {
   );
 }
 
-function StarIcon() {
+/** The final challenge: a cup, not a star (stars are each round's score). */
+function TrophyIcon() {
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor">
-      <path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z" />
+      <path d="M7 3h10v2h3.2v2.2a4.6 4.6 0 0 1-4 4.56A5.5 5.5 0 0 1 13 14.7V17h3v2.5H8V17h3v-2.3a5.5 5.5 0 0 1-3.2-2.94 4.6 4.6 0 0 1-4-4.56V5H7V3zm0 4H5.9v.2c0 1.1.6 2.06 1.5 2.5A5.6 5.6 0 0 1 7 8V7zm10 0v1c0 .6-.1 1.2-.3 1.7a2.8 2.8 0 0 0 1.4-2.5V7H17z" />
+      <rect x="6.5" y="20" width="11" height="1.8" rx="0.9" />
     </svg>
   );
 }

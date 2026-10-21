@@ -6439,3 +6439,33 @@ details.report .report__worlds {
   text-align: center;
   border-radius: 18px;
 }
+
+/* The final challenge's tile: solid outline (not an empty slot); closed, a small lock in its corner. */
+.node--review {
+  border-style: solid;
+}
+
+.node--review-locked {
+  background: #fbf0d6;
+  color: #c79a3a;
+  border-color: #e6c477;
+}
+
+.node__lock {
+  position: absolute;
+  top: -8px;
+  inset-inline-start: -8px;
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--color-surface);
+  color: var(--color-text-muted);
+  box-shadow: var(--shadow-sm);
+}
+
+.node__lock svg {
+  width: 15px;
+  height: 15px;
+}
