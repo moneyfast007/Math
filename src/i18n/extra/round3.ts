@@ -24,6 +24,12 @@ export const heRound3 = {
   'goal.reachedChild': 'סיימת להיום',
   // Entry screen C.
   'c.home.start': 'מתחילים',
+  // Back after two days or more without playing: Plusi says he missed her (once that day).
+  'c.welcomeBack.title': { f: 'ברוכה השבה, {name}!', m: 'ברוך שובך, {name}!' },
+  'journey.welcomeBack.spoken': { f: 'התגעגעתי! ברוכה השבה!', m: 'התגעגעתי! ברוך שובך!' },
+  'journey.welcomeBack.many': 'התגעגעתי! ברוכים השבים!',
+  'c.welcomeBack.missed': 'התגעגעתי!',
+  'c.welcomeBack.titleMany': 'ברוכים השבים!',
   // Parents: once, not "1 פעמים".
   'parent.week.dailyOne': 'תרגילי חזרה מכל העולמות: פעם אחת',
   // The map of all worlds: the review from every world lives here.

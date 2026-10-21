@@ -249,8 +249,8 @@ function KidRow({
   const share = world ? Math.round((world.done / world.total) * 100) : 0;
   const todayLine = todayLineOf(profile.settings.dailyGoal, today);
   return (
-    <button type="button" className={`c-row profile-card--c${index % 6}`} onClick={onPlay}>
-      <span className="c-row__avatar">
+    <button type="button" className={`c-kidrow profile-card--c${index % 6}`} onClick={onPlay}>
+      <span className="c-kidrow__avatar">
         <Avatar id={profile.avatar} size="md" decorative />
         {today.practised ? (
           <span className="c-kid__done">
@@ -259,28 +259,28 @@ function KidRow({
           </span>
         ) : null}
       </span>
-      <span className="c-row__body">
-        <span className="c-row__top">
-          <span className="c-row__name">{profile.name}</span>
+      <span className="c-kidrow__body">
+        <span className="c-kidrow__top">
+          <span className="c-kidrow__name">{profile.name}</span>
           {stars > 0 ? <StarCount stars={stars} /> : null}
         </span>
         {world ? (
-          <span className="c-row__where">
+          <span className="c-kidrow__where">
             {world.completed ? tc('parentArea.allWorldsDone') : worldName(world)}
           </span>
         ) : null}
         {world && !world.completed ? (
-          <span className="meter c-row__meter" aria-hidden="true">
+          <span className="meter c-kidrow__meter" aria-hidden="true">
             <span style={{ width: `${share}%` }} />
           </span>
         ) : null}
         {todayLine ? (
-          <span className={today.practised ? 'c-row__today c-row__today--on' : 'c-row__today'}>
+          <span className={today.practised ? 'c-kidrow__today c-kidrow__today--on' : 'c-kidrow__today'}>
             {todayLine}
           </span>
         ) : null}
       </span>
-      <span className="c-row__go" aria-hidden="true">
+      <span className="c-kidrow__go" aria-hidden="true">
         {never ? t('c.home.start') : t('c.home.continue')}
         <span className="c-hero__arrow">←</span>
       </span>

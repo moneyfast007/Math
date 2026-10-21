@@ -45,7 +45,7 @@ test('several children: the same card for each, in the family order, none put fi
   await createChild(page, 'אורי', 'גן חובה');
   await page.getByRole('button', { name: 'סיימתי, למסך הבית' }).first().click();
 
-  const rows = page.locator('.c-row');
+  const rows = page.locator('.c-kidrow');
   await expect(rows).toHaveCount(2);
   await expect(rows.nth(0)).toContainText('נועה');
   await expect(rows.nth(1)).toContainText('אורי');

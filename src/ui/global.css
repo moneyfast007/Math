@@ -6687,28 +6687,6 @@ details.report .report__worlds {
   font-weight: 800;
 }
 
-/* Over the final challenge: the name of the station the big button starts. */
-.node__station {
-  position: absolute;
-  bottom: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  margin-bottom: 10px;
-  width: max-content;
-  max-width: min(14em, 62vw);
-  padding: 3px 10px;
-  border-radius: var(--radius-pill);
-  background: var(--color-surface);
-  box-shadow: var(--shadow-sm);
-  font-family: var(--font-sans);
-  font-size: var(--text-sm);
-  font-weight: 800;
-  line-height: 1.25;
-  color: var(--color-accent-strong);
-  text-align: center;
-  pointer-events: none;
-}
-
 .journey__next-text > .journey__progress {
   margin: 0;
   font-size: var(--text-sm);

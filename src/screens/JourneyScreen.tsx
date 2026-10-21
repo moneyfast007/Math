@@ -238,7 +238,6 @@ function Journey({ profile }: { profile: Profile }) {
           <WorldMap
             world={world}
             young={young}
-            stationName={stop.kind === 'level' ? stopName : null}
             overlay={
               // Over the map, not above it: the world's row and the next station's card stay put.
               intro ? (
@@ -433,7 +432,6 @@ function AlbumIcon() {
 function WorldMap({
   world,
   young,
-  stationName,
   overlay,
   canPick,
   note,
@@ -443,8 +441,6 @@ function WorldMap({
 }: {
   world: World;
   young: boolean;
-  /** The name of the station the big button starts, over the final challenge (none for the challenge itself). */
-  stationName: string | null;
   /** Shown over the map (the first-time explainer). */
   overlay: ReactNode;
   /** The parent lets her choose any station, ahead too (else the open ones only). */
@@ -535,11 +531,6 @@ function WorldMap({
           onClick={() => (world.review === 'locked' ? onLocked('review') : onReview())}
         >
           {/* The cup in its own frame: the glint passes over it, and it wobbles once open. */}
-          {stationName ? (
-            <span className="node__station" aria-hidden="true">
-              {stationName}
-            </span>
-          ) : null}
           <span className="node__cup">
             <TrophyIcon />
           </span>
