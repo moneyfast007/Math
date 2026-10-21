@@ -14,6 +14,14 @@ export default defineConfig({
     baseURL: 'http://localhost:4173',
     trace: 'on-first-retry',
     locale: 'he-IL',
+    // Most specs walk through design A of the entry screen and the parents' area; the
+    // default design (C) has its own spec, which switches with ?ui=c.
+    storageState: {
+      cookies: [],
+      origins: [
+        { origin: 'http://localhost:4173', localStorage: [{ name: 'ui-variant', value: 'a' }] },
+      ],
+    },
   },
   projects: [
     {

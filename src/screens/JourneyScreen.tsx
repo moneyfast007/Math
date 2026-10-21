@@ -8,9 +8,17 @@ import {
   type RefObject,
 } from 'react';
 import { navigate } from '@/app/router';
+import { chooseStation, clearChosenStation } from '@/app/station';
 import { dailyPool, worldPool } from '@/engine/daily';
 import { currentLevel } from '@/engine/registry';
-import { activeWorld, nextStop, worldsFor, type World, type WorldStation } from '@/engine/journey';
+import {
+  activeWorld,
+  nextStop,
+  worldsFor,
+  type NextStop,
+  type World,
+  type WorldStation,
+} from '@/engine/journey';
 import { makeT, t, type TranslationKey } from '@/i18n';
 import { gradeLabel } from '@/i18n/labels';
 import { spokenLabel } from '@/lang/spokenLabel';
@@ -55,9 +63,11 @@ export function JourneyScreen() {
 
 function Journey({ profile }: { profile: Profile }) {
   const progress = useApp((s) => s.data.progress[profile.id]);
-  const setTopicLevel = useApp((s) => s.setTopicLevel);
   const markIntroSeen = useApp((s) => s.markJourneyIntroSeen);
   const [picking, setPicking] = useState(false);
+  const [picked, setPicked] = useState<number | null>(null);
+  // Back on the journey: no station is chosen any more (the big button names the next one).
+  useEffect(() => clearChosenStation(), []);
   // Decided when the journey opens: the card stays for this visit, once it is remembered.
   const [intro, setIntro] = useState(() => profile.journeyIntroSeenAt === undefined);
   const startRef = useRef<HTMLButtonElement>(null);
@@ -83,9 +93,13 @@ function Journey({ profile }: { profile: Profile }) {
       </main>
     );
   }
-  const stop = nextStop(world);
+  // A station chosen in "תחנה אחרת" is the next stop for this visit; where she is stays.
+  const stop: NextStop = picked !== null ? { kind: 'level', level: picked } : nextStop(world);
   const level =
-    world.stations.find((s) => s.state === 'current')?.level ?? world.stations.at(-1)?.level ?? 1;
+    picked ??
+    world.stations.find((s) => s.state === 'current')?.level ??
+    world.stations.at(-1)?.level ??
+    1;
   const stopStation =
     stop.kind === 'level' ? world.stations.find((s) => s.level === stop.level) : undefined;
   const stopName = stopStation
@@ -101,11 +115,23 @@ function Journey({ profile }: { profile: Profile }) {
   const streak = currentStreak(progress?.streak ?? { count: 0, lastDay: null }, Date.now());
 
   const start = () => {
-    // The station to play may not be the level she is at (one she skipped, after the last).
-    if (stop.kind === 'level' && stop.level !== currentLevel(world.topic, profile.grade, progress))
-      setTopicLevel(profile.id, world.topic.id, stop.level);
+    // The station the card names is the one played (the level she is at, one she skipped,
+    // one chosen in the list); where she is on the journey stays.
+    if (stop.kind === 'level') chooseStation(world.topic.id, stop.level);
+    else clearChosenStation();
     navigate({ name: stop.kind === 'review' ? 'review' : 'practice' });
   };
+  /** A station chosen on the map or in the list: that very station, now. */
+  const play = (level: number) => {
+    chooseStation(world.topic.id, level);
+    navigate({ name: 'practice' });
+  };
+  const [note, setNote] = useState<string | null>(null);
+  useEffect(() => {
+    if (note === null) return;
+    const id = window.setTimeout(() => setNote(null), 3500);
+    return () => window.clearTimeout(id);
+  }, [note]);
   const hasDaily = dailyPool(profile.grade, progress).length > 0;
   const dailyDone = progress?.days[dayKey(Date.now())]?.daily === true;
   // More of this world: once a station of it is passed (nothing to mix before).
@@ -149,7 +175,7 @@ function Journey({ profile }: { profile: Profile }) {
                 }
               >
                 {today >= goal
-                  ? t('goal.reached')
+                  ? t('goal.reachedChild')
                   : t('goal.progress', { params: { done: today, goal } })}
               </span>
             </div>
@@ -225,14 +251,17 @@ function Journey({ profile }: { profile: Profile }) {
                 />
               ) : null
             }
-            onPick={
-              profile.settings.allowLevelChange
-                ? (s) => {
-                    setTopicLevel(profile.id, world.topic.id, s.level);
-                    navigate({ name: 'practice' });
-                  }
-                : undefined
+            canPick={profile.settings.allowLevelChange}
+            note={note}
+            onPick={(s) => play(s.level)}
+            onLocked={(s) =>
+              setNote(
+                s === 'review'
+                  ? tc('journey.note.reviewLocked')
+                  : t('journey.note.stationLocked', { params: { n: s.level } }),
+              )
             }
+            onReview={() => navigate({ name: 'review' })}
           />
         </div>
 
@@ -312,7 +341,7 @@ function Journey({ profile }: { profile: Profile }) {
                 className={l.level === level ? 'level-item level-item--current' : 'level-item'}
                 aria-current={l.level === level ? 'true' : undefined}
                 onClick={() => {
-                  setTopicLevel(profile.id, world.topic.id, l.level);
+                  setPicked(l.level);
                   setPicking(false);
                 }}
               >
@@ -443,13 +472,23 @@ function WorldMap({
   world,
   young,
   overlay,
+  canPick,
+  note,
   onPick,
+  onLocked,
+  onReview,
 }: {
   world: World;
   young: boolean;
   /** Shown over the map (the first-time explainer). */
   overlay: ReactNode;
-  onPick: ((s: WorldStation) => void) | undefined;
+  /** The parent lets her choose any station, ahead too (else the open ones only). */
+  canPick: boolean;
+  /** A short line over the map's foot (why a station is closed), or none. */
+  note: string | null;
+  onPick: (s: WorldStation) => void;
+  onLocked: (s: WorldStation | 'review') => void;
+  onReview: () => void;
 }) {
   const boxRef = useRef<HTMLDivElement>(null);
   const box = useBoxSize(boxRef);
@@ -506,29 +545,29 @@ function WorldMap({
               ) : null}
             </>
           );
-          return onPick && s.state !== 'locked' ? (
+          // Every station is a button: an open one starts that station, a closed one
+          // says when it opens (or, where the parent allows choosing, starts it too).
+          const open = s.state !== 'locked' || canPick;
+          return (
             <button
               key={s.level}
               type="button"
               className={cls}
               style={style}
               aria-label={label}
-              onClick={() => onPick(s)}
+              onClick={() => (open ? onPick(s) : onLocked(s))}
             >
               {content}
             </button>
-          ) : (
-            <div key={s.level} className={cls} style={style} role="img" aria-label={label}>
-              {content}
-            </div>
           );
         })}
 
-        <div
+        <button
+          type="button"
           className={`node node--review node--review-${world.review}`}
           style={{ left: `${reviewPoint.x}%`, top: `${(reviewPoint.y / height) * 100}%` }}
-          role="img"
           aria-label={t(`journey.review.${world.review}`)}
+          onClick={() => (world.review === 'locked' ? onLocked('review') : onReview())}
         >
           <StarIcon />
           {!young ? <span className="node__caption">{t('journey.review')}</span> : null}
@@ -537,7 +576,7 @@ function WorldMap({
               <Stars n={world.reviewStars} label={false} />
             </span>
           ) : null}
-        </div>
+        </button>
 
         {plusiAt ? (
           <MapPlusi
@@ -547,6 +586,10 @@ function WorldMap({
           />
         ) : null}
       </section>
+      {/* Always there, so a screen reader hears the line when it comes. */}
+      <p className={note ? 'journey__note journey__note--on' : 'journey__note'} role="status">
+        {note ?? ''}
+      </p>
     </div>
   );
 }

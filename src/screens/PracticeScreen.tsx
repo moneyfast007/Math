@@ -9,6 +9,7 @@ import {
 } from 'react';
 import { replayTopic } from '@/app/replay';
 import { navigate } from '@/app/router';
+import { chosenStation } from '@/app/station';
 import { dailyPool, pickDaily, worldPool, type DailyItem } from '@/engine/daily';
 import { activeWorld, nextStop, worldsFor } from '@/engine/journey';
 import { pick } from '@/engine/rng';
@@ -28,6 +29,8 @@ import {
   roundsToday,
   STATION_PASS_RATE,
   starsFor,
+  medalsFor,
+  totalStars,
   type RoundOutcome,
 } from '@/state/progress';
 import { Stars } from '@/ui/Stars';
@@ -133,9 +136,20 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
       if (!topic) throw new Error('No topic for this grade');
       const stop = nextStop(world);
       const stored = currentLevel(topic, profile.grade, progress);
+      // A station chosen on the map (one passed, skipped, or ahead): that one, as chosen.
+      const chosen = chosenStation(topic.id);
+      const picked =
+        chosen !== null && levelsFor(topic, profile.grade).some((l) => l.level === chosen)
+          ? chosen
+          : null;
       return {
         topic,
-        level: mode === 'level' && stop.kind === 'level' ? stop.level : stored,
+        level:
+          mode === 'level' && picked !== null
+            ? picked
+            : mode === 'level' && stop.kind === 'level'
+              ? stop.level
+              : stored,
         stored,
       };
     },
@@ -307,13 +321,19 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
     const today = roundsToday(appProgress(profile.id), Date.now());
     const goalLine = !goal
       ? null
-      : today === goal
-        ? t('goal.doneNow')
-        : today === goal - 1
-          ? t('goal.oneLeft')
-          : today === goal - 2
-            ? t('goal.twoLeft')
-            : null;
+      : today > goal
+        ? t('goal.doneAlready')
+        : today === goal
+          ? t('goal.doneNow')
+          : today === goal - 1
+            ? t('goal.oneLeft')
+            : today === goal - 2
+              ? t('goal.twoLeft')
+              : null;
+    // Ten more stars make a medal in the album: said when this round crossed the line.
+    const gained = outcome ? Math.max(0, outcome.stars - outcome.bestBefore) : 0;
+    const starsNow = totalStars(appProgress(profile.id));
+    const newMedal = gained > 0 && medalsFor(starsNow) > medalsFor(starsNow - gained);
     // The final challenge passed: the world is finished, a celebration of its own.
     if (outcome?.worldCompleted && !mixed && !replaying) {
       const worlds = worldsFor(profile.grade, appProgress(profile.id));
@@ -332,10 +352,7 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
     // A plain station round (not the daily review, not a world played again, not the
     // end of a world): passed leads straight to the next station, otherwise the same again.
     const stationRound = !mixed && !replaying && outcome !== null && !outcome.worldCompleted;
-    const playAgain = () => {
-      // The next station when one opened, else the same station again (never the easier
-      // level a stuck round dropped to).
-      const level = outcome?.advancedTo ?? stateRef.current.startLevel;
+    const startAt = (level: number) => {
       setNotice(null);
       setValue('');
       setTried([]);
@@ -344,10 +361,22 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
       stateRef.current = fresh;
       setS(fresh);
     };
-    // The next station straight away; when there is none to start from here (the review
-    // just opened, an old station played again), the journey, whose big button starts it.
+    // The same station again (never the easier level a stuck round dropped to).
+    const playAgain = () => startAt(stateRef.current.startLevel);
+    // Where the journey goes on from here: the first station of this world still to pass
+    // (never one already passed), or its final challenge once they all are.
+    const after = !mixed && !replaying ? activeWorld(profile.grade, appProgress(profile.id)) : undefined;
+    const ahead =
+      after && after.topic.id === topic.id
+        ? after.stations.some((st) => st.state === 'current')
+          ? nextStop(after)
+          : after.review === 'current'
+            ? ({ kind: 'review' } as const)
+            : null
+        : null;
     const goNext = () => {
-      if (typeof outcome?.advancedTo === 'number') playAgain();
+      if (ahead?.kind === 'level') startAt(ahead.level);
+      else if (ahead?.kind === 'review') navigate({ name: 'review' });
       else navigate({ name: 'play' });
     };
     // The round's stars, from its first-try answers; a station's best is kept on the map.
@@ -391,13 +420,18 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
               <span>{result}</span>
             </div>
           ) : null}
+          {newMedal ? <p className="done__record">{t('practice.done.medal')}</p> : null}
           {goalLine ? <p className="done__goal">{goalLine}</p> : null}
           {stationRound ? (
             // A station round: one big way on (the next station, or the same one again),
             // and a small way out to the map.
             <div className="stack done__actions" style={{ alignItems: 'center' }}>
               <button type="button" className="btn btn--hero" onClick={passed ? goNext : playAgain}>
-                {passed ? t('practice.done.next') : t('practice.done.again')}
+                {!passed
+                  ? t('practice.done.again')
+                  : ahead?.kind === 'review'
+                    ? t('journey.start.review')
+                    : t('practice.done.next')}
               </button>
               <button
                 type="button"
@@ -448,6 +482,7 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
     <main
       className={mode === 'review' ? 'screen practice practice--challenge' : 'screen practice'}
       data-screen="practice"
+      data-station={review ? undefined : s.startLevel}
     >
       <header className="practice__bar">
         <div className="practice__side">
@@ -798,10 +833,13 @@ function resultLine(
   // The round went easier for a while: practice, not a pass; the station comes again.
   if (!o.passed && eased) return t('practice.done.eased');
   if (!o.passed) return t('practice.done.notPassed');
-  if (o.advancedTo !== null)
-    return `${tc('practice.done.passed')} ${t('practice.done.nextOpened')}`;
-  // Passed the last level: is the review open now?
   const world = activeWorld(grade, appProgress(profileId));
+  // A station opened only if it is now the one to play (not one passed before).
+  const opened =
+    o.advancedTo !== null &&
+    world?.stations.find((st) => st.level === o.advancedTo)?.state === 'current';
+  if (opened) return `${tc('practice.done.passed')} ${t('practice.done.nextOpened')}`;
+  // Passed the last station needed: is the review open now?
   if (world?.review === 'current' && o.newlyCompleted)
     return `${tc('practice.done.passed')} ${t('practice.done.reviewOpened')}`;
   return tc('practice.done.passed');

@@ -6242,3 +6242,185 @@ details.report .report__worlds {
   width: 1em;
   height: 1em;
 }
+
+/* Why a station is still closed: a short line at the foot of the map, for a few seconds. */
+.journey__note {
+  position: absolute;
+  inset-inline: var(--space-3, 12px);
+  bottom: var(--space-2, 8px);
+  margin: 0 auto;
+  max-width: 28rem;
+  padding: 10px 16px;
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-md, 0 4px 14px rgb(0 0 0 / 12%));
+  color: var(--color-text);
+  font-weight: 700;
+  text-align: center;
+  z-index: 3;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s var(--ease);
+}
+
+.journey__note--on {
+  opacity: 1;
+}
+
+.journey__note:empty {
+  padding: 0;
+  box-shadow: none;
+}
+
+/* Album: the stars collected and a medal for every ten. */
+.medals {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+}
+
+.medals__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.medals__title {
+  font-size: var(--text-md);
+}
+
+.medals__stars {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 800;
+}
+
+.medals__star {
+  width: 1.3em;
+  height: 1.3em;
+  fill: #f2b632;
+}
+
+.medals__row {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.medal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  width: 64px;
+  text-align: center;
+}
+
+.medal__art,
+.medal__empty {
+  width: 56px;
+  height: 56px;
+}
+
+.medal__empty {
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 2px dashed var(--color-border);
+}
+
+.medal__ghost {
+  width: 50%;
+  height: 50%;
+  fill: var(--color-border);
+}
+
+.medal__n {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--color-text-muted);
+}
+
+.medal--next {
+  width: auto;
+  max-width: 120px;
+}
+
+.medal--earned .medal__art {
+  animation: plusi-in var(--dur-med) var(--ease);
+}
+
+/* The end of a round fits one phone screen: the message keeps its width, the button stays in view. */
+.practice[data-screen='practice-done'] > .done {
+  width: 100%;
+  max-width: 40rem;
+  align-self: center;
+  margin-top: var(--space-2);
+  gap: var(--space-2);
+}
+
+.done > .feedback {
+  width: 100%;
+  max-width: 34rem;
+  padding-block: 6px;
+  line-height: 1.3;
+}
+
+.done > .feedback > span:last-child {
+  flex: 1;
+  min-width: 0;
+  text-align: start;
+}
+
+@media (max-height: 900px) {
+  .done > .plusi {
+    width: min(112px, 12vh);
+    height: auto;
+  }
+
+  .done > h1 {
+    font-size: clamp(26px, 7vw, 38px);
+  }
+
+  .done__body {
+    font-size: var(--text-md);
+  }
+}
+
+@media (max-width: 480px) {
+  .practice[data-screen='practice-done'] > .done {
+    padding-inline: var(--space-1);
+  }
+
+  .done > .feedback {
+    padding-inline: 10px;
+    font-size: 20px;
+  }
+
+  .done > .feedback .speaker__btn {
+    width: 52px;
+    height: 52px;
+  }
+
+  .done__need,
+  .done__goal {
+    font-size: 18px;
+  }
+
+  .done__body {
+    font-size: 20px;
+  }
+
+  .done > .plusi {
+    width: min(96px, 10vh);
+    height: auto;
+  }
+}

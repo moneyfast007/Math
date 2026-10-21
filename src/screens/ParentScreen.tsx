@@ -899,7 +899,9 @@ export function WeekReport({ profile }: { profile: Profile }) {
           {week.dailyReviews > 0 ? (
             <>
               {' · '}
-              {t('parent.week.daily', { params: { count: week.dailyReviews } })}
+              {week.dailyReviews === 1
+                ? t('parent.week.dailyOne')
+                : t('parent.week.daily', { params: { count: week.dailyReviews } })}
             </>
           ) : null}
         </span>

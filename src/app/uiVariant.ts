@@ -1,8 +1,9 @@
 /**
- * Which design of the entry screen and the parents' area to show: 'a' (the
- * current one), 'b' or 'c'. Chosen with `?ui=b` in the address, remembered on
- * this device (browser storage, a convenience only); `?ui=a` goes back.
- * For comparing designs; every child-facing behaviour stays the same.
+ * Which design of the entry screen and the parents' area to show: 'c' (the one
+ * chosen after the persona review, and the default), or 'a' (the first one) and
+ * 'b' while they are kept for comparison. Chosen with `?ui=a` in the address,
+ * remembered on this device (browser storage, a convenience only); `?ui=c` goes
+ * back. Every child-facing behaviour stays the same.
  */
 export type UiVariant = 'a' | 'b' | 'c';
 
@@ -20,8 +21,8 @@ export function uiVariant(): UiVariant {
       return fromUrl;
     }
     const kept = localStorage.getItem(KEY);
-    return isVariant(kept) ? kept : 'a';
+    return isVariant(kept) ? kept : 'c';
   } catch {
-    return 'a';
+    return 'c';
   }
 }

@@ -4,6 +4,8 @@ import {
   recordAttempt,
   REVIEW_PASS_RATE,
   starsFor,
+  totalStars,
+  medalsFor,
   summarizeProgress,
 } from './progress';
 import {
@@ -164,9 +166,11 @@ describe('completeRound', () => {
   });
 
   it('gives stars for the first-try share and keeps the best per station', () => {
+    // Three stars are for a perfect round only.
     expect([starsFor(10, 10), starsFor(9, 10), starsFor(8, 10), starsFor(7, 10)]).toEqual([
-      3, 3, 2, 2,
+      3, 2, 2, 2,
     ]);
+    expect([starsFor(5, 5), starsFor(4, 5), starsFor(0, 0)]).toEqual([3, 2, 0]);
     expect([starsFor(6, 10), starsFor(4, 10), starsFor(3, 10)]).toEqual([1, 1, 0]);
     // The final challenge's two stars are its own pass mark.
     expect(starsFor(7, 10, REVIEW_PASS_RATE)).toBe(1);
@@ -214,6 +218,24 @@ describe('completeRound', () => {
     });
     expect(again.newlyCompleted).toBe(false);
     expect(again.progress.topics['t']?.completedLevels).toEqual([2]);
+  });
+
+  it('passing a station ahead (chosen on the map) moves her on from there', () => {
+    const out = completeRound(base(3), { topicId: 't', station: 8, firstTry: 8, length: 10, at: day });
+    expect(out.advancedTo).toBe(9);
+    expect(out.progress.topics['t']).toMatchObject({ level: 9, completedLevels: [8] });
+    // Not passed: where she is stays.
+    const miss = completeRound(base(3), { topicId: 't', station: 8, firstTry: 3, length: 10, at: day });
+    expect(miss.progress.topics['t']?.level).toBe(3);
+  });
+
+  it('counts the stars collected and the medals they make', () => {
+    const p = base(3);
+    p.topics['t'] = { ...emptyTopicStats(3), stars: { '1': 3, '2': 2, review: 3 } };
+    p.topics['u'] = { ...emptyTopicStats(1), stars: { '1': 3 } };
+    expect(totalStars(p)).toBe(11);
+    expect(totalStars(undefined)).toBe(0);
+    expect([medalsFor(9), medalsFor(10), medalsFor(29), medalsFor(30)]).toEqual([0, 1, 2, 3]);
   });
 
   it('the top level has nowhere to advance to', () => {

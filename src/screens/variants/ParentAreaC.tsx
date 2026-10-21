@@ -356,9 +356,11 @@ function TodayCard({ profile, index, now }: { profile: Profile; index: number; n
   const tip = guidance(profile, progress, now);
   const streak = progress ? currentStreak(progress.streak, now) : 0;
 
-  const roundsText = goal
-    ? t('c.today.rounds', { params: { done: today.rounds, goal } })
-    : String(today.rounds);
+  // "1 מתוך 2" on the way; once the goal is met, the rounds alone (never "5 מתוך 1").
+  const roundsText =
+    goal && today.rounds < goal
+      ? t('c.today.rounds', { params: { done: today.rounds, goal } })
+      : String(today.rounds);
 
   return (
     <article className="c-card" aria-label={profile.name}>

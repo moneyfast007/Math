@@ -5,7 +5,8 @@ import { makeT, t } from '@/i18n';
 import { ParentGate } from '@/parent/ParentGate';
 import { requestParentTab } from '@/parent/tab';
 import { isStandalone } from '@/pwa/standalone';
-import type { Profile } from '@/state/schema';
+import { summarizeProgress, totalStars } from '@/state/progress';
+import type { Profile, ProfileProgress } from '@/state/schema';
 import { useApp } from '@/state/store';
 import { applyAgeBand } from '@/ui/ageBand';
 import { Avatar } from '@/ui/Avatar';
@@ -15,15 +16,15 @@ import { LongPressButton } from '@/ui/LongPressButton';
 import { Plusi } from '@/ui/Plusi';
 import { InfoLink } from '../HomeScreen';
 import { whoIsPlayingTitle } from '../homeTitle';
-import { lastPlayed, nowAt, requestNewChild, todayOf, worldName } from './cShared';
+import { nowAt, requestNewChild, todayOf, worldName, type Today } from './cShared';
 import './c.css';
 
 /**
- * Design C of the entry screen: calm and minimal. The child who played last
- * gets one big "continue" card (where she is in her journey, how today is
- * going); the others are small cards under it. On a first visit, a short
- * welcome with what a parent wants to know, and one button straight into
- * creating the first child.
+ * Design C of the entry screen: calm and minimal. One child gets one big
+ * "continue" card (where she is in her journey, how today is going, her stars);
+ * several children get one card each, all the same size and in the family's
+ * order, so no one is put first. On a first visit, a short welcome with what a
+ * parent wants to know, and one button straight into creating the first child.
  */
 export function HomeC() {
   const profiles = useApp((s) => s.data.profiles);
@@ -65,13 +66,11 @@ export function HomeC() {
     selectProfile(p.id);
     navigate({ name: 'play' });
   };
-  const hero = lastPlayed(profiles, progress) ?? profiles[0];
-  const others = profiles.filter((p) => p.id !== hero?.id);
+  const only = profiles.length === 1 ? profiles[0] : undefined;
   const now = Date.now();
-  const title =
-    profiles.length === 1 && hero
-      ? t('child.hello', { params: { name: hero.name } })
-      : whoIsPlayingTitle(profiles.map((p) => p.gender));
+  const title = only
+    ? t('child.hello', { params: { name: only.name } })
+    : whoIsPlayingTitle(profiles.map((p) => p.gender));
 
   return (
     <main className="screen c-home" data-screen="home">
@@ -84,45 +83,23 @@ export function HomeC() {
           </div>
         </header>
 
-        {hero ? (
-          <HeroCard
-            profile={hero}
-            index={profiles.indexOf(hero)}
-            now={now}
-            onPlay={() => play(hero)}
-          />
-        ) : null}
-
-        {others.length > 0 ? (
-          <section className="c-home__others" aria-labelledby="c-others">
-            <h2 id="c-others" className="c-home__others-title">
-              {t('c.home.others')}
-            </h2>
-            <ul className="c-home__list" role="list">
-              {others.map((p) => {
-                const today = todayOf(progress[p.id], now);
-                return (
-                  <li key={p.id}>
-                    <button
-                      type="button"
-                      className={`c-kid profile-card--c${profiles.indexOf(p) % 6}`}
-                      onClick={() => play(p)}
-                    >
-                      <Avatar id={p.avatar} size="md" decorative />
-                      <span className="c-kid__name">{p.name}</span>
-                      {today.practised ? (
-                        <span className="c-kid__done">
-                          <Check />
-                          <span className="visually-hidden">{t('c.home.playedToday')}</span>
-                        </span>
-                      ) : null}
-                    </button>
-                  </li>
-                );
-              })}
-            </ul>
-          </section>
-        ) : null}
+        {only ? (
+          <HeroCard profile={only} index={0} now={now} onPlay={() => play(only)} />
+        ) : (
+          <ul className="c-home__list c-home__list--rows" role="list">
+            {profiles.map((p, i) => (
+              <li key={p.id}>
+                <KidRow
+                  profile={p}
+                  progress={progress[p.id]}
+                  index={i}
+                  now={now}
+                  onPlay={() => play(p)}
+                />
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
 
       <footer className="home__footer c-home__footer">
@@ -179,16 +156,9 @@ function HeroCard({
   const tc = makeT(profile.gender);
   const share = world ? Math.round((world.done / world.total) * 100) : 0;
 
-  let todayLine: string | null = null;
-  if (goal && today.rounds >= goal) todayLine = t('c.home.todayDone');
-  else if (goal && today.rounds > 0)
-    todayLine =
-      goal === 1
-        ? t('c.home.todayRoundsOne', { params: { done: today.rounds } })
-        : t('c.home.todayRounds', { params: { done: today.rounds, goal } });
-  else if (goal)
-    todayLine = goal === 1 ? t('c.home.todayGoalOne') : t('c.home.todayGoal', { params: { goal } });
-  else if (today.practised) todayLine = t('c.home.todayPlayed');
+  const todayLine = todayLineOf(goal, today);
+  const stars = totalStars(progress);
+  const never = summarizeProgress(progress).lastPracticedAt === null;
 
   return (
     <button type="button" className={`c-hero profile-card--c${index % 6}`} onClick={onPlay}>
@@ -215,11 +185,103 @@ function HeroCard({
           </span>
         ) : null}
       </span>
+      {stars > 0 ? <StarCount stars={stars} /> : null}
       <span className="c-hero__go">
-        {t('c.home.continue')}
+        {never ? t('c.home.start') : t('c.home.continue')}
         <span className="c-hero__arrow" aria-hidden="true">
           ←
         </span>
+      </span>
+    </button>
+  );
+}
+
+/** How today is going, in a few words; null when there is nothing to say. */
+function todayLineOf(goal: Profile['settings']['dailyGoal'], today: Today): string | null {
+  if (goal && today.rounds >= goal) return t('c.home.todayDone');
+  if (goal && today.rounds > 0)
+    return goal === 1
+      ? t('c.home.todayRoundsOne', { params: { done: today.rounds } })
+      : t('c.home.todayRounds', { params: { done: today.rounds, goal } });
+  if (goal) return goal === 1 ? t('c.home.todayGoalOne') : t('c.home.todayGoal', { params: { goal } });
+  if (today.practised) return t('c.home.todayPlayed');
+  return null;
+}
+
+/** The stars she collected: a gold star and the number (said in full to a screen reader). */
+function StarCount({ stars }: { stars: number }) {
+  return (
+    <span className="c-stars">
+      <svg viewBox="0 0 24 24" aria-hidden="true" className="c-stars__icon">
+        <path d="M12 2.6l2.9 6 6.5.8-4.8 4.5 1.2 6.5L12 17.3l-5.8 3.1 1.2-6.5L2.6 9.4l6.5-.8z" />
+      </svg>
+      <span className="visually-hidden">
+        {stars === 1 ? t('b.home.starsOne') : t('b.home.stars', { params: { count: stars } })}
+      </span>
+      <span aria-hidden="true">{stars}</span>
+    </span>
+  );
+}
+
+/**
+ * One child of several: the same card for each, in the family's order. The whole
+ * card is the button: her face and name, where she is, today, her stars.
+ */
+function KidRow({
+  profile,
+  progress,
+  index,
+  now,
+  onPlay,
+}: {
+  profile: Profile;
+  progress: ProfileProgress | undefined;
+  index: number;
+  now: number;
+  onPlay: () => void;
+}) {
+  const world = activeWorld(profile.grade, progress);
+  const today = todayOf(progress, now);
+  const tc = makeT(profile.gender);
+  const stars = totalStars(progress);
+  const never = summarizeProgress(progress).lastPracticedAt === null;
+  const share = world ? Math.round((world.done / world.total) * 100) : 0;
+  const todayLine = todayLineOf(profile.settings.dailyGoal, today);
+  return (
+    <button type="button" className={`c-row profile-card--c${index % 6}`} onClick={onPlay}>
+      <span className="c-row__avatar">
+        <Avatar id={profile.avatar} size="md" decorative />
+        {today.practised ? (
+          <span className="c-kid__done">
+            <Check />
+            <span className="visually-hidden">{tc('c.home.playedToday')}</span>
+          </span>
+        ) : null}
+      </span>
+      <span className="c-row__body">
+        <span className="c-row__top">
+          <span className="c-row__name">{profile.name}</span>
+          {stars > 0 ? <StarCount stars={stars} /> : null}
+        </span>
+        {world ? (
+          <span className="c-row__where">
+            {world.completed ? tc('parentArea.allWorldsDone') : worldName(world)}
+          </span>
+        ) : null}
+        {world && !world.completed ? (
+          <span className="meter c-row__meter" aria-hidden="true">
+            <span style={{ width: `${share}%` }} />
+          </span>
+        ) : null}
+        {todayLine ? (
+          <span className={today.practised ? 'c-row__today c-row__today--on' : 'c-row__today'}>
+            {todayLine}
+          </span>
+        ) : null}
+      </span>
+      <span className="c-row__go" aria-hidden="true">
+        {never ? t('c.home.start') : t('c.home.continue')}
+        <span className="c-hero__arrow">←</span>
       </span>
     </button>
   );

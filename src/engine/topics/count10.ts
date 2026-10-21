@@ -97,7 +97,8 @@ function count(level: number, { n, v }: Variant, rng: Rng): Exercise {
     spoken: { text: prompt, parts: [prompt] },
     visual: { type: 'objects', kind: noun, groups: [n] },
     answer: n,
-    input: { type: 'choices', choices: near(rng, n, 1, 10) },
+    // 0 may be a button too: then a small count is not always the smallest button.
+    input: { type: 'choices', choices: near(rng, n, 0, 10) },
     hints: [
       hint(say('hint.count.1')),
       // "Rows of five" means nothing for one or two pictures.

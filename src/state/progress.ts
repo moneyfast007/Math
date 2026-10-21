@@ -106,9 +106,9 @@ export interface RoundResult {
 }
 
 /**
- * Stars for a round, from its share of first-try answers: three from 90%, two from
- * the pass mark (70% for a station, 80% for the final challenge), one from 40%. Two
- * stars and more is a pass.
+ * Stars for a round, from its first-try answers: three for all of them (a perfect
+ * round, worth chasing), two from the pass mark (70% for a station, 80% for the final
+ * challenge), one from 40%. Two stars and more is a pass.
  */
 export function starsFor(
   firstTry: number,
@@ -116,7 +116,24 @@ export function starsFor(
   passRate: number = STATION_PASS_RATE,
 ): 0 | 1 | 2 | 3 {
   const rate = length > 0 ? firstTry / length : 0;
-  return rate >= 0.9 ? 3 : rate >= passRate ? 2 : rate >= 0.4 ? 1 : 0;
+  return length > 0 && firstTry >= length ? 3 : rate >= passRate ? 2 : rate >= 0.4 ? 1 : 0;
+}
+
+/** Stars collected toward one star medal in the album. */
+export const STARS_PER_MEDAL = 10;
+
+/** Every station's best stars (and every final challenge's), added up. */
+export function totalStars(progress: ProfileProgress | undefined): number {
+  let n = 0;
+  for (const s of Object.values(progress?.topics ?? {})) {
+    for (const v of Object.values(s.stars ?? {})) n += v;
+  }
+  return n;
+}
+
+/** Star medals earned with this many stars. */
+export function medalsFor(stars: number): number {
+  return Math.floor(Math.max(0, stars) / STARS_PER_MEDAL);
 }
 
 /** The best stars recorded for a station ('review' for the final challenge), or 0. */
@@ -187,9 +204,10 @@ export function completeRound(progress: ProfileProgress, r: RoundResult): RoundO
   const completedLevels = newlyCompleted
     ? [...prev.completedLevels, r.station].sort((a, b) => a - b)
     : prev.completedLevels;
-  // Move on only from the level she is at now; a revisit of an old station stays put.
+  // Move on from the level she is at, or from a station ahead of it she chose and passed;
+  // a revisit of an old station stays put (where she is never moves back).
   const advancedTo =
-    passed && prev.level === r.station && r.station < Math.min(MAX_LEVEL, r.lastLevel ?? MAX_LEVEL)
+    passed && r.station >= prev.level && r.station < Math.min(MAX_LEVEL, r.lastLevel ?? MAX_LEVEL)
       ? r.station + 1
       : null;
   // A round that eased to an easier level shows its stars but can earn at most one.

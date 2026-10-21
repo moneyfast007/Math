@@ -14,15 +14,14 @@ export const heVariantC = {
 
   // Entry screen: children
   'c.home.continue': 'ממשיכים',
-  'c.home.others': 'עוד במשפחה',
   'c.home.stations': '{done} מתוך {total} תחנות',
   'c.home.todayRounds': 'היום: {done} מתוך {goal} סבבים',
   'c.home.todayRoundsOne': 'היום: {done} מתוך סבב אחד',
   'c.home.todayDone': 'היעד של היום הושג',
-  'c.home.todayPlayed': 'כבר שיחקו היום',
+  'c.home.todayPlayed': 'כבר שיחקת היום',
   'c.home.todayGoal': 'היעד להיום: {goal} סבבים',
   'c.home.todayGoalOne': 'היעד להיום: סבב אחד',
-  'c.home.playedToday': 'שיחקו היום',
+  'c.home.playedToday': { f: 'שיחקה היום', m: 'שיחק היום' },
 
   // Parents' area: the three questions
   'c.tabs': 'אזור ההורים',
@@ -39,7 +38,7 @@ export const heVariantC = {
   'c.today.exercises': 'תרגילים',
   'c.today.firstTry': 'נכון בפעם הראשונה',
   'c.today.roundsLabel': 'סבבים',
-  'c.today.daily': 'כולל החזרה של היום',
+  'c.today.daily': 'כולל החזרה מכל העולמות',
   'c.today.lastYesterday': { f: 'תרגלה אתמול', m: 'תרגל אתמול' },
   'c.today.lastOn': 'בפעם האחרונה: {date}',
   'c.today.streak': 'רצף של {count} ימים',

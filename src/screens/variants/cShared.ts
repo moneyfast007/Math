@@ -1,7 +1,6 @@
 import { t, makeT, type TranslationKey } from '@/i18n';
 import { topicLabel } from '@/i18n/labels';
 import { nextStop, type World } from '@/engine/journey';
-import { summarizeProgress } from '@/state/progress';
 import type { Profile, ProfileProgress } from '@/state/schema';
 import { dayKey } from '@/state/streak';
 
@@ -23,29 +22,6 @@ export function takeNewChild(): boolean {
   const asked = newChildRequested;
   newChildRequested = false;
   return asked;
-}
-
-/* ---------- Who played last ---------- */
-
-function lastPlayedAt(progress: ProfileProgress | undefined): number {
-  return summarizeProgress(progress).lastPracticedAt ?? 0;
-}
-
-/** The child who practised most recently; the first one when nobody has yet. */
-export function lastPlayed(
-  profiles: readonly Profile[],
-  progress: Readonly<Record<string, ProfileProgress>>,
-): Profile | undefined {
-  let best: Profile | undefined;
-  let bestAt = -1;
-  for (const p of profiles) {
-    const at = lastPlayedAt(progress[p.id]);
-    if (at > bestAt) {
-      best = p;
-      bestAt = at;
-    }
-  }
-  return best;
 }
 
 /* ---------- Today ---------- */

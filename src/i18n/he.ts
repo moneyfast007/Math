@@ -25,6 +25,7 @@ import { heScreens } from './extra/screens';
 import { heSolids1 } from './extra/solids1';
 import { heVariantB } from './extra/variantB';
 import { heVariantC } from './extra/variantC';
+import { heRound3 } from './extra/round3';
 import { heWorlds } from './extra/worlds';
 
 export const he = {
@@ -2142,6 +2143,7 @@ export const he = {
   ...heGan2,
   ...heVariantB,
   ...heVariantC,
+  ...heRound3,
 } as const;
 
 export type HebrewKey = keyof typeof he;

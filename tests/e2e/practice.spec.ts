@@ -136,6 +136,11 @@ test.describe('practice', () => {
     await expect(page.getByRole('button', { name: 'תחנה 1, הושלמה' })).toBeVisible();
     await expect(page.getByRole('button', { name: 'תחנה 2, התחנה הבאה' })).toBeVisible();
     await expect(page.getByText('תחנה 2 מתוך 10')).toBeVisible();
+    // A passed station on the map plays that very station again; where she is stays.
+    await page.getByRole('button', { name: 'תחנה 1, הושלמה' }).click();
+    await expect(page.locator('main[data-screen="practice"]')).toHaveAttribute('data-station', '1');
+    await page.getByRole('button', { name: 'סיום' }).click();
+    await expect(page.getByRole('button', { name: 'תחנה 2, התחנה הבאה' })).toBeVisible();
 
     // The parent sees it.
     await page.getByRole('button', { name: 'מי משחק?' }).click();
@@ -246,8 +251,10 @@ test.describe('practice', () => {
     await expect(
       page.getByRole('heading', { level: 2, name: 'מספר חסר', exact: true }),
     ).toBeVisible();
-    await expect(page.getByRole('button', { name: 'תחנה 9, התחנה הבאה' })).toBeVisible();
+    // The choice is for this round: where she is on the map stays.
+    await expect(page.getByRole('button', { name: 'תחנה 1, התחנה הבאה' })).toBeVisible();
     await page.getByRole('button', { name: 'יאללה, מתחילים!' }).click();
+    await expect(page.locator('main[data-screen="practice"]')).toHaveAttribute('data-station', '9');
     await expect(page.locator('.exercise [data-math]')).toContainText('?');
     await expect(page.getByRole('heading', { name: 'איזה מספר חסר?' })).toBeVisible();
   });
