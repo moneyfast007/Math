@@ -13,8 +13,8 @@ type Lengths = Extract<Visual, { type: 'lengths' }>;
 /** One unit (a paper clip) lying down, and standing up. */
 const U = 28;
 const SU = 22;
-/** Lying things are drawn on a track nine clips long, so every picture has the same scale. */
-const TRACK = 9;
+/** A lying picture is never scaled up beyond the size of a thing three clips long. */
+const MIN_UNITS = 3;
 
 const INK = 'var(--color-text)';
 const MUTED = 'var(--color-text-muted)';
@@ -262,7 +262,7 @@ function svg(width: number, height: number, cssWidth: string, children: ReactNod
       dir="ltr"
       data-visual={name}
       aria-hidden="true"
-      style={{ display: 'flex', justifyContent: 'center' }}
+      style={{ display: 'flex', justifyContent: 'center', width: '100%', alignSelf: 'stretch' }}
     >
       <svg viewBox={`0 0 ${width} ${height}`} style={style}>
         {children}
@@ -285,21 +285,31 @@ export function LengthsView({ v }: { v: Lengths }) {
         'lengths',
       );
     }
+    // Mirrored like the big picture: it starts on the right and points left.
     return svg(
       3 * U + 8,
       26,
       'min(110px, 26vw)',
-      <Lying thing={item.thing} x0={4} x1={4 + 3 * U} y={13} />,
+      <g transform={`translate(${3 * U + 8} 0) scale(-1 1)`}>
+        <Lying thing={item.thing} x0={4} x1={4 + 3 * U} y={13} />
+      </g>,
       'lengths',
     );
   }
   return v.stand ? <StandingRow v={v} /> : <LyingRows v={v} />;
 }
 
+/**
+ * Lying things, drawn left to right and then mirrored as a whole: the start line
+ * is on the right and everything extends to the left, the way a Hebrew reader
+ * looks (the clips are counted from the right). The picture fills the width it
+ * is given, the longest thing about 88% of it; a very short set (under three
+ * clips) is not blown up beyond the size of three.
+ */
 function LyingRows({ v }: { v: Lengths }) {
-  const x0 = 14;
-  const units = Math.max(TRACK, ...v.items.map((i) => i.len));
-  const width = x0 + units * U + 10;
+  const units = Math.max(MIN_UNITS, ...v.items.map((i) => i.len));
+  const width = (units * U) / 0.88;
+  const x0 = width * 0.07;
   const band = 24;
   const clipBand = v.clips ? 18 : 0;
   const gap = 14;
@@ -309,8 +319,8 @@ function LyingRows({ v }: { v: Lengths }) {
   return svg(
     width,
     height,
-    'min(340px, 88vw)',
-    <>
+    'min(440px, 100%)',
+    <g transform={`translate(${width} 0) scale(-1 1)`}>
       {/* The start line: everything is measured from here. */}
       <line x1={x0} y1={2} x2={x0} y2={height - 2} stroke={MUTED} {...dash} />
       {v.guide !== undefined ? (
@@ -348,7 +358,7 @@ function LyingRows({ v }: { v: Lengths }) {
           </g>
         );
       })}
-    </>,
+    </g>,
     'lengths',
   );
 }
