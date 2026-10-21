@@ -705839,6 +705839,12 @@
       "voice": "gemini-3.1-flash/Leda/quick",
       "bytes": 70701,
       "trimmed": true
+    },
+    "17cc4d8e1f243122": {
+      "text": "לפי הגרף: בכמה עלה המספר מיום ראשון ליום שני?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 18477,
+      "trimmed": true
     }
   }
 }
