@@ -212,7 +212,6 @@ export const he = {
   'parent.device.recovered':
     'הנתונים שבמכשיר היו פגומים, ולכן התחלנו מחדש. עותק שלהם נשמר בצד. אם יש לכם גיבוי, שחזרו ממנו.',
   'parent.device.installGuide': 'איך מוסיפים למסך הבית',
-  'parent.device.playground': 'בדיקת תצוגה',
 
   // Profile form
   'profile.newTitle': 'פרופיל חדש',
@@ -371,6 +370,7 @@ export const he = {
   },
   'explain.offByOne': { f: 'ממש קרוב! נסי לספור שוב לאט.', m: 'ממש קרוב! נסה לספור שוב לאט.' },
   'explain.offByTen': { f: 'קרוב! בדקי שוב את העשרות.', m: 'קרוב! בדוק שוב את העשרות.' },
+  'explain.offByHundred': { f: 'קרוב! בדקי שוב את המאות.', m: 'קרוב! בדוק שוב את המאות.' },
   'explain.offByOne.mul': {
     f: 'ממש קרוב! בדקי שוב בלוח הכפל.',
     m: 'ממש קרוב! בדוק שוב בלוח הכפל.',
@@ -646,7 +646,7 @@ export const he = {
     f: 'ל{name} יש {a}. ל{other} יש {b}. בכמה {plural} יש ל{name} יותר?',
     m: 'ל{name} יש {a}. ל{other} יש {b}. בכמה {plural} יש ל{name} יותר?',
   },
-  'wp.compare.hint1': '"בכמה יותר" זה ההפרש בין שני המספרים: מחסרים את הקטן מהגדול.',
+  'wp.compare.hint1': '"בכמה יותר" זה ההפרש בין שני המספרים: המספר הגדול פחות המספר הקטן.',
 
   // Phase 5: world 5, grade 2: multiplication and division, first steps
   'topic.multIntro': 'כפל וחילוק: היכרות',
@@ -1842,7 +1842,7 @@ export const he = {
   'parent.week.daily': 'חזרה מכל העולמות: {count} פעמים',
   'parent.week.chart': 'תרגילים בכל יום בשבוע האחרון',
   'parent.journey.title': 'התקדמות במסע',
-  'parent.journey.world': '{name}: {done} מתוך {total} תחנות',
+  'parent.journey.world': '{name}: עברו {done} מתוך {total} תחנות',
   'parent.journey.worldDone': '{name}: הושלם',
 
   // Phase 6: recordings for use without internet (parents)
@@ -2060,6 +2060,7 @@ export const he = {
   'journey.streak': { f: 'את מתרגלת {count} ימים ברצף!', m: 'אתה מתרגל {count} ימים ברצף!' },
   'journey.streak.one': { f: 'יום ראשון ברצף. יאללה!', m: 'יום ראשון ברצף. יאללה!' },
   'journey.streak.short': '{count} ימים ברצף',
+  'journey.streak.shortOne': 'יום אחד ברצף',
   'journey.streak.none': 'בלי רצף עדיין',
   'journey.start.review': 'יאללה, לאתגר הסיום!',
 
@@ -2091,6 +2092,7 @@ export const he = {
   'practice.done.toAlbum': 'לאלבום',
   'practice.done.daily': 'כל הכבוד! סיימת את החזרה מכל העולמות.',
   'practice.done.worldMix': 'כל הכבוד! תרגלת עוד בעולם הזה.',
+  'practice.done.eased': 'תרגלנו קצת יותר בקל. בסבב הבא ננסה שוב את התחנה הזאת.',
   'practice.worldMix.body': 'תרגילים מהתחנות שכבר עברת בעולם הזה, מעורבבים.',
   'practice.done.replay': 'כל הכבוד! חזרת על העולם הזה.',
   'practice.done.toJourney': 'למסע',

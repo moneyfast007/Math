@@ -98,6 +98,11 @@ export interface RoundResult {
   at: number;
   /** The world's last level for this child (a younger grade may end earlier); 10 when absent. */
   lastLevel?: number;
+  /**
+   * The round dropped to an easier level part of the way (the child was stuck): it
+   * counts for the streak, but it does not pass the station it was for.
+   */
+  eased?: boolean;
 }
 
 export interface RoundOutcome {
@@ -146,7 +151,7 @@ export function completeRound(progress: ProfileProgress, r: RoundResult): RoundO
     };
   }
 
-  const passed = rate >= STATION_PASS_RATE;
+  const passed = rate >= STATION_PASS_RATE && r.eased !== true;
   const newlyCompleted = passed && !prev.completedLevels.includes(r.station);
   const completedLevels = newlyCompleted
     ? [...prev.completedLevels, r.station].sort((a, b) => a - b)

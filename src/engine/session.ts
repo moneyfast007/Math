@@ -48,12 +48,22 @@ export function roundLength(band: AgeBand, choice: RoundLength = 'normal'): numb
 
 export const MAX_TRIES = 3;
 
+/** The round dropped below its station to help a stuck child: it cannot pass the station. */
+export function droppedLevel(s: SessionState): boolean {
+  return s.level < s.startLevel;
+}
+
 export type Phase = 'answering' | 'wrong' | 'correct' | 'revealed' | 'finished';
 export type Outcome = 'first' | 'later' | 'revealed';
 
 export interface SessionState {
   topicId: string;
   level: number;
+  /**
+   * The station the round is for. The round may drop to an easier level when the
+   * child is stuck (`level` then is lower), but the round still belongs to this one.
+   */
+  startLevel: number;
   minLevel: number;
   maxLevel: number;
   length: number;
@@ -108,6 +118,7 @@ export function startSession(o: StartOptions): SessionState {
   return {
     topicId: o.topicId,
     level: o.level,
+    startLevel: o.level,
     minLevel: o.minLevel,
     maxLevel: o.maxLevel,
     length: roundLength(o.band, o.roundLength),

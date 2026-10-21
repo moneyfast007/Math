@@ -219,7 +219,7 @@ export const heWorlds = {
   'ex.data.least.solution': 'הכי מעט ילדים בחרו {item}.',
   'ex.data.most.hint2': 'נשווה את הגבהים של כל העמודות.',
   'ex.data.more.prompt': 'לפי הגרף: בכמה ילדים יותר בחרו {a} מאשר {b}?',
-  'ex.data.more.hint1': 'בכמה יותר: מחסרים את המספר הקטן מהגדול.',
+  'ex.data.more.hint1': 'בכמה יותר: המספר הגדול פחות המספר הקטן.',
   'ex.data.more.hint2': 'נקרא כמה בחרו {a} וכמה בחרו {b}.',
   'ex.data.more.example': 'אם שמונה בחרו דבר אחד וחמישה דבר אחר, ההפרש הוא {d}.',
   'ex.data.more.solution': 'ההפרש בין {a} ל{b} הוא {d} ילדים.',

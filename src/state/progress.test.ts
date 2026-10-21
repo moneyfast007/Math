@@ -143,6 +143,20 @@ describe('completeRound', () => {
     expect(out.progress.streak.count).toBe(1);
   });
 
+  it('a round that eased to a lower level never passes its station, whatever the score', () => {
+    const out = completeRound(base(3), {
+      topicId: 't',
+      station: 3,
+      firstTry: 9,
+      length: 10,
+      at: day,
+      eased: true,
+    });
+    expect(out.passed).toBe(false);
+    expect(out.advancedTo).toBeNull();
+    expect(out.progress.topics['t']).toMatchObject({ level: 3, completedLevels: [] });
+  });
+
   it('revisiting an earlier station does not move the level', () => {
     const p = base(7);
     const out = completeRound(p, { topicId: 't', station: 2, firstTry: 10, length: 10, at: day });

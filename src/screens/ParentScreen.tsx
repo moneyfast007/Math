@@ -746,13 +746,6 @@ function DeviceSection() {
         >
           {t('parent.device.installGuide')}
         </button>
-        <button
-          type="button"
-          className="btn btn--ghost"
-          onClick={() => navigate({ name: 'playground' })}
-        >
-          {t('parent.device.playground')}
-        </button>
       </div>
     </SettingsCard>
   );
@@ -922,6 +915,14 @@ function WeekReport({ profile }: { profile: Profile }) {
   );
 }
 
+/**
+ * A name kept whole inside a sentence: "חיבור וחיסור עד 100" before a colon would
+ * otherwise have its number carried across the colon by the bidi algorithm.
+ */
+function isolate(name: string): string {
+  return `\u2068${name}\u2069`;
+}
+
 /** Where the child is in a world: the station the big button starts, by number and name. */
 function nowAt(world: World): string {
   const stop = nextStop(world);
@@ -944,9 +945,14 @@ function JourneyReport({ profile }: { profile: Profile }) {
           <li key={w.topic.id} className="report__world">
             <span>
               {w.completed
-                ? t('parent.journey.worldDone', { params: { name: topicLabel(w.topic.id) } })
+                ? t('parent.journey.worldDone', { params: { name: isolate(topicLabel(w.topic.id)) } })
                 : t('parent.journey.world', {
-                    params: { name: topicLabel(w.topic.id), done: w.done, total: w.total },
+                    params: {
+                      name: isolate(topicLabel(w.topic.id)),
+                      // Counted as on the child's map: every station of her grade, the passed ones.
+                      done: w.stations.filter((s) => s.state === 'done').length,
+                      total: w.stations.length,
+                    },
                   })}
               {w.topic.id === active?.topic.id && !w.completed ? (
                 <span className="muted report__now">{nowAt(w)}</span>

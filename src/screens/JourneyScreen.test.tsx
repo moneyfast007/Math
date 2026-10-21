@@ -30,6 +30,16 @@ describe('journey map layout', () => {
     expect(points[3]?.x).toBeLessThan(points[4]?.x ?? 0);
   });
 
+  it('never puts a station less than a row below the one above it (the final challenge on a wide map)', () => {
+    for (const perRow of [3, 4, 5, 6]) {
+      const { points, rowGap } = layoutStations(11, perRow, 40);
+      for (const p of points)
+        for (const q of points)
+          if (p !== q && Math.abs(p.x - q.x) < 0.01)
+            expect(Math.abs(p.y - q.y)).toBeGreaterThanOrEqual(rowGap - 0.01);
+    }
+  });
+
   it('spreads or closes up the rows to fill the height it is given, within limits', () => {
     const natural = layoutStations(11, 3);
     const tall = layoutStations(11, 3, 120);

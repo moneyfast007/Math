@@ -167,16 +167,21 @@ test.describe('practice', () => {
     const hintButton = page.getByRole('button', { name: 'רמז', exact: true });
     for (let i = 1; i <= 3; i++) {
       await hintButton.click();
-      await expect(page.getByText(`רמז ${i}`, { exact: true })).toBeVisible();
+      // One hint at a time, the newest; the earlier ones are tabs above it.
+      await expect(page.locator('.hint .hint__head')).toContainText(`רמז ${i}`);
     }
     await expect(hintButton).toBeDisabled();
+    await expect(page.getByRole('tab')).toHaveCount(3);
     // The third hint carries the worked example (a solved exercise).
-    await expect(page.locator('.hint').nth(2).locator('[data-math]')).toHaveCount(1);
+    await expect(page.locator('.hint [data-math]')).toHaveCount(1);
+    // Back to the first hint with its tab.
+    await page.getByRole('tab', { name: 'רמז 1' }).click();
+    await expect(page.locator('.hint .hint__head')).toContainText('רמז 1');
 
     await submit(page, wrong);
     await submit(page, wrong);
     await expect(page.locator('.feedback--reveal')).toContainText(`התשובה היא ${answer}.`);
-    await expect(page.locator('.exercise .slot--done')).toHaveText(String(answer));
+    await expect(page.locator('.exercise .slot--shown')).toHaveText(String(answer));
     await page.getByRole('button', { name: 'הבא' }).click();
     await expect(page.getByRole('progressbar')).toHaveAttribute('aria-valuenow', '1');
   });

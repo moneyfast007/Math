@@ -16,6 +16,7 @@ import { currentLevel, levelsFor, topicById } from '@/engine/registry';
 import {
   completedExercise,
   reduce,
+  droppedLevel,
   startSession,
   type SessionAction,
   type SessionState,
@@ -102,7 +103,6 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
   const completeRound = useApp((s) => s.completeRound);
   const completeDaily = useApp((s) => s.completeDaily);
   const completeMixed = useApp((s) => s.completeMixed);
-  const setTopicLevel = useApp((s) => s.setTopicLevel);
   const band = ageBandForGrade(profile.grade);
   const tc = makeT(profile.gender);
   const rng = () => Math.random();
@@ -190,13 +190,14 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
     shrinkOnly: s.phase === 'correct' || s.phase === 'revealed',
   });
 
-  // A new hint scrolls into view in its panel (which scrolls by itself, never the page).
+  // The hint shown: the newest, unless the child taps back to an earlier one.
+  const [hintView, setHintView] = useState<number | null>(null);
+  useEffect(() => setHintView(null), [s.hintsShown, s.done, s.exercise.factId]);
+  const shownHint = Math.min(hintView ?? s.hintsShown - 1, Math.max(0, s.hintsShown - 1));
+  // A hint opens at its top in its panel (which scrolls by itself, never the page).
   useLayoutEffect(() => {
-    const panel = hintsRef.current;
-    const last = panel?.lastElementChild;
-    if (!panel || !(last instanceof HTMLElement)) return;
-    panel.scrollTop = Math.max(0, last.offsetTop - 8);
-  }, [s.hintsShown]);
+    if (hintsRef.current) hintsRef.current.scrollTop = 0;
+  }, [shownHint, s.hintsShown]);
 
   useEffect(() => applyAgeBand(band), [band]);
   useEffect(() => setSoundsEnabled(profile.settings.sounds !== false), [profile.settings.sounds]);
@@ -213,17 +214,18 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
       recordAttempt(profile.id, {
         topicId: exTopic.id,
         // A review round is scored, but never moves the level the child is at.
+        // A review round is scored, but never moves the level the child is at; nor does
+        // a round that eased to a lower level for a while (it is still that station's).
         level: mixed
           ? currentLevel(exTopic, profile.grade, appProgress(profile.id))
           : review
             ? station.stored
-            : before.level,
+            : before.startLevel,
         correct: outcome === 'first',
         at: Date.now(),
         ...(outcome !== 'first' && after.firstMistake ? { mistake: after.firstMistake } : {}),
       });
     }
-    if (action.type === 'changeLevel') setTopicLevel(profile.id, topic.id, after.level);
     if (after.phase === 'finished' && before.phase !== 'finished' && daily) {
       completeDaily(profile.id);
     } else if (after.phase === 'finished' && before.phase !== 'finished' && mixed) {
@@ -232,11 +234,12 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
       setOutcome(
         completeRound(profile.id, {
           topicId: topic.id,
-          station: review ? 'review' : after.level,
+          station: review ? 'review' : after.startLevel,
           firstTry: after.firstTryCount,
           length: after.length,
           at: Date.now(),
           lastLevel: gradeLevels.at(-1)?.level ?? 10,
+          ...(droppedLevel(after) ? { eased: true } : {}),
         }),
       );
     }
@@ -285,7 +288,7 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
         : replaying
           ? t('practice.done.replay')
           : null;
-    const result = praise ?? (outcome ? resultLine(outcome, tc, profile.id, profile.grade) : null);
+    const result = praise ?? (outcome ? resultLine(outcome, tc, profile.id, profile.grade, droppedLevel(s)) : null);
     const passed = praise !== null || outcome?.passed === true;
     const spoken =
       praise ?? (passed ? tc('practice.done.passedSpoken') : t('practice.done.notPassed'));
@@ -320,7 +323,9 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
     // end of a world): passed leads straight to the next station, otherwise the same again.
     const stationRound = !mixed && !replaying && outcome !== null && !outcome.worldCompleted;
     const playAgain = () => {
-      const level = outcome?.advancedTo ?? stateRef.current.level;
+      // The next station when one opened, else the same station again (never the easier
+      // level a stuck round dropped to).
+      const level = outcome?.advancedTo ?? stateRef.current.startLevel;
       setNotice(null);
       setValue('');
       setTried([]);
@@ -475,7 +480,14 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
           <MathExpr block label={e.spokenText}>
             {before}
             {hasSlot ? (
-              <span className={finished ? 'slot slot--done' : 'slot'}>{slotValue}</span>
+              <span
+                className={
+                  // Shown after the tries: the answer, in the colour of "here it is", not of "right!".
+                  s.phase === 'correct' ? 'slot slot--done' : finished ? 'slot slot--shown' : 'slot'
+                }
+              >
+                {slotValue}
+              </span>
             ) : null}
             {after}
           </MathExpr>
@@ -505,17 +517,38 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
 
       {s.hintsShown > 0 ? (
         <section ref={hintsRef} className="hints stack" aria-label={t('action.hint')}>
-          {e.hints.slice(0, s.hintsShown).map((h, i) => (
-            <article key={i} className="hint card">
-              <div className="hint__head">
-                <SpeakerButton text={h.spoken} parts={h.spokenParts} />
-                <strong>{t('practice.hintTitle', { params: { n: i + 1 } })}</strong>
-              </div>
-              <p>{h.text}</p>
-              {h.visual ? <VisualView visual={h.visual} /> : null}
-              {h.example ? <MathExpr block>{h.example.display}</MathExpr> : null}
-            </article>
-          ))}
+          {/* One hint at a time, the newest; the earlier ones a tap away, never half hidden. */}
+          {s.hintsShown > 1 ? (
+            <div className="hints__tabs" role="tablist" aria-label={t('action.hint')}>
+              {e.hints.slice(0, s.hintsShown).map((_, i) => (
+                <button
+                  key={i}
+                  type="button"
+                  role="tab"
+                  aria-selected={i === shownHint}
+                  className={i === shownHint ? 'hints__tab hints__tab--on' : 'hints__tab'}
+                  onClick={() => setHintView(i)}
+                >
+                  {t('practice.hintTitle', { params: { n: i + 1 } })}
+                </button>
+              ))}
+            </div>
+          ) : null}
+          {(() => {
+            const h = e.hints[shownHint];
+            if (!h) return null;
+            return (
+              <article key={shownHint} className="hint card">
+                <div className="hint__head">
+                  <SpeakerButton text={h.spoken} parts={h.spokenParts} />
+                  <strong>{t('practice.hintTitle', { params: { n: shownHint + 1 } })}</strong>
+                </div>
+                <p>{h.text}</p>
+                {h.visual ? <VisualView visual={h.visual} /> : null}
+                {h.example ? <MathExpr block>{h.example.display}</MathExpr> : null}
+              </article>
+            );
+          })()}
         </section>
       ) : null}
 
@@ -690,8 +723,16 @@ function appProgress(profileId: string) {
 }
 
 /** What the round meant for the journey, in one sentence. */
-function resultLine(o: RoundOutcome, tc: TC, profileId: string, grade: Profile['grade']): string {
+function resultLine(
+  o: RoundOutcome,
+  tc: TC,
+  profileId: string,
+  grade: Profile['grade'],
+  eased: boolean,
+): string {
   if (o.worldCompleted) return t('practice.done.worldDone');
+  // The round went easier for a while: practice, not a pass; the station comes again.
+  if (!o.passed && eased) return t('practice.done.eased');
   if (!o.passed) return t('practice.done.notPassed');
   if (o.advancedTo !== null)
     return `${tc('practice.done.passed')} ${t('practice.done.nextOpened')}`;
@@ -825,6 +866,9 @@ function explanation(s: SessionState, tc: TC): string {
     return tc('explain.offByOne.add');
   // "Check the tens" only where there are tens to check.
   if (m === 'offByTen' && e.answer < 10) return nudge(s, tc);
+  // A hundred off (2905 for 3005): the hundreds, not the tens.
+  if (m === 'offByTen' && s.lastValue !== null && Math.abs(s.lastValue - e.answer) === 100)
+    return tc('explain.offByHundred');
   if (m === 'placeValue') {
     if (/ס״מ|מ׳|מ״מ|ק״מ|ק״ג|גרם|ליטר/.test(`${e.prompt} ${e.display}`))
       return tc('explain.placeValue.units');

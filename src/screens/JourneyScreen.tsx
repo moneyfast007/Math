@@ -137,7 +137,7 @@ function Journey({ profile }: { profile: Profile }) {
             <div
               className="journey__tool journey__goal"
               role="img"
-              aria-label={`${t('journey.streak.short', { params: { count: streak } })}. ${t('goal.label', { params: { done: Math.min(today, goal), goal } })}`}
+              aria-label={`${streakLabel(streak)}. ${t('goal.label', { params: { done: Math.min(today, goal), goal } })}`}
             >
               <StreakChip count={streak} decorative />
               <span
@@ -343,6 +343,11 @@ function progressLine(world: World, nextWorld: number | null): string {
   return t('journey.stationOf', { params: { n, total } });
 }
 
+/** "3 ימים ברצף", and for one day "יום אחד ברצף" (not "1 ימים"). */
+function streakLabel(count: number): string {
+  return count === 1 ? t('journey.streak.shortOne') : t('journey.streak.short', { params: { count } });
+}
+
 /** Days in a row; shown from the first day (no chip at all before it). */
 function StreakChip({ count, decorative = false }: { count: number; decorative?: boolean }) {
   return (
@@ -350,7 +355,7 @@ function StreakChip({ count, decorative = false }: { count: number; decorative?:
       className={count > 0 ? 'streak streak--on' : 'streak'}
       {...(decorative
         ? { 'aria-hidden': true }
-        : { role: 'img', 'aria-label': t('journey.streak.short', { params: { count } }) })}
+        : { role: 'img', 'aria-label': streakLabel(count) })}
     >
       <svg viewBox="0 0 24 24" aria-hidden="true" className="streak__icon">
         <path
@@ -549,7 +554,8 @@ function MapPlusi({ x, y, mood }: { x: number; y: number; mood: 'happy' | 'cheer
   return (
     <button
       type="button"
-      className="map__plusi"
+      // Beside the station on the left, unless the station is near the left edge: then on its right.
+      className={x < 30 ? 'map__plusi map__plusi--right' : 'map__plusi'}
       style={{ left: `${x}%`, top: `${y}%` }}
       aria-label={t('journey.plusiTickle')}
       data-tickled={tickled ? '' : undefined}

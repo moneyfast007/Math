@@ -886,6 +886,11 @@ ol.steps {
   color: var(--color-success);
 }
 
+.slot--shown {
+  border-bottom-color: var(--color-accent);
+  color: var(--color-accent-strong);
+}
+
 /* Pictures to count */
 .objects {
   display: flex;
@@ -1395,6 +1400,10 @@ ol.steps {
   background: none;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
+}
+
+.map__plusi--right {
+  transform: translate(-50%, -50%) translate(85%, -75%);
 }
 
 .map__plusi:focus-visible {
@@ -4806,6 +4815,27 @@ details.report .report__worlds {
   .album__status {
     padding: var(--space-2);
   }
+
+  /* The line beside Plusi and the speaker reads as a sentence, not a word a line. */
+  .album__line,
+  :root[data-age='young'] .album__line {
+    font-size: 18px;
+    line-height: 1.35;
+  }
+
+  .album__status .speaker__btn {
+    width: 48px;
+    height: 48px;
+  }
+
+  .album__status .plusi {
+    width: 44px;
+    height: 44px;
+  }
+
+  :root[data-age='young'] .album .screen__header .muted {
+    font-size: 16px;
+  }
 }
 
 /* ---------- Install guide and information page ---------- */
@@ -5030,6 +5060,32 @@ details.report .report__worlds {
   overflow-y: auto;
   overscroll-behavior: contain;
   gap: var(--space-2);
+}
+
+/* Earlier hints as small tabs above the one shown. */
+.hints__tabs {
+  display: flex;
+  gap: var(--space-1);
+  justify-content: flex-start;
+}
+
+.hints__tab {
+  min-height: 36px;
+  padding: 0 var(--space-2);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  background: var(--color-surface);
+  color: var(--color-text-muted);
+  font: inherit;
+  font-size: var(--text-sm);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.hints__tab--on {
+  border-color: var(--color-accent);
+  background: var(--color-accent-soft);
+  color: var(--color-accent-strong);
 }
 
 .practice[data-screen='practice'] > .hints > * {

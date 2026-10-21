@@ -18,7 +18,7 @@ export interface StationLayout {
 
 /** Rows sit closer than columns; a fit may stretch or squeeze them within this range. */
 const ROW_NATURAL = 0.62;
-const ROW_MIN = 0.45;
+const ROW_MIN = 0.58;
 const ROW_MAX = 0.9;
 /** Room under the first row, and above the last one (where Plusi stands beside a station). */
 const ROOM_BOTTOM = 0.4;
@@ -45,9 +45,11 @@ export function layoutStations(count: number, perRow: number, fitHeight?: number
   for (let i = 0; i < count; i++) {
     const row = Math.floor(i / perRow);
     const col = i % perRow;
-    const x = row % 2 === 0 ? xs[col] : xs[perRow - 1 - col];
-    // Every other column sits a little higher, so the path meanders instead of boxing.
-    const y = height - rowGap * 0.7 - row * rowGap - (col % 2 === 1 ? rowGap * 0.22 : 0);
+    const place = row % 2 === 0 ? col : perRow - 1 - col;
+    const x = xs[place];
+    // Every other column sits a little higher, so the path meanders instead of boxing; by
+    // the column on the map, so a station is never nearer than a row to the one above it.
+    const y = height - rowGap * 0.7 - row * rowGap - (place % 2 === 1 ? rowGap * 0.22 : 0);
     points.push({ x: x ?? 50, y });
   }
   return { points, height, rowGap };
@@ -76,7 +78,8 @@ export function fitStations(
 ): FittedMap {
   const preferred = young ? 4 : 3;
   const boxWidth = Math.min(box.width, MAP_MAX_WIDTH);
-  const candidates = young ? [3, 4, 5] : [3, 4, 5, 6];
+  // Six a row would set the final challenge right above the second station, too close.
+  const candidates = [3, 4, 5];
   let best: FittedMap | undefined;
   let bestScore = -1;
   for (const perRow of candidates) {

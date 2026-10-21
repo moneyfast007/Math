@@ -468,6 +468,16 @@ function hashString(s: string): number {
   return h >>> 0;
 }
 
+/**
+ * A fact as the child meets it: the two numbers of a product or a sum in either order
+ * are one fact ("mul:6×2" and "mul:2×6"), so a round does not give one right after the other.
+ */
+export function sameFact(factId: string): string {
+  return factId.replace(/(\d+)([×+])(\d+)/g, (m, a: string, op: string, b: string) =>
+    Number(a) <= Number(b) ? m : `${b}${op}${a}`,
+  );
+}
+
 /** One exercise of a pool: the seed that builds it (in either gender) and its fact. */
 interface PoolEntry {
   seed: number;
@@ -546,12 +556,15 @@ export function defineTopic(def: TopicDef): Topic & { enumerate: (level: number)
     avoid?: string | readonly string[],
   ): Exercise => {
     const l = levelDef(level);
-    const seen = new Set(avoid === undefined ? [] : typeof avoid === 'string' ? [avoid] : avoid);
+    // Compared as a child sees them: 6 × 2 right after 2 × 6 is the same exercise again.
+    const seen = new Set(
+      (avoid === undefined ? [] : typeof avoid === 'string' ? [avoid] : avoid).map(sameFact),
+    );
     const last = typeof avoid === 'string' ? avoid : avoid?.at(-1);
     if ('gen' in l) {
       // From the level's pool: nothing seen in this round, at least never the same twice running.
       const pool = poolOf(level);
-      const fresh = pool.filter((p) => !seen.has(p.factId));
+      const fresh = pool.filter((p) => !seen.has(sameFact(p.factId)));
       const notLast = pool.filter((p) => p.factId !== last);
       const from = fresh.length > 0 ? fresh : notLast.length > 0 ? notLast : pool;
       const entry = from.length > 0 ? pick(rng, from) : undefined;
@@ -564,7 +577,7 @@ export function defineTopic(def: TopicDef): Topic & { enumerate: (level: number)
     const facts = l.facts() as readonly never[];
     const build = l.build;
     const ids = facts.map((f) => build(f, () => 0, gender).factId);
-    const fresh = facts.filter((_, i) => !seen.has(ids[i] ?? ''));
+    const fresh = facts.filter((_, i) => !seen.has(sameFact(ids[i] ?? '')));
     const notLast = facts.filter((_, i) => ids[i] !== last);
     const pool = fresh.length > 0 ? fresh : notLast.length > 0 ? notLast : facts;
     return build(pick(rng, pool), rng, gender);
