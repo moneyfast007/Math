@@ -223,7 +223,6 @@ function Journey({ profile }: { profile: Profile }) {
                     params: { index: world.index, name: t(world.topic.labelKey as TranslationKey) },
                   })}
                 </h2>
-                <p className="muted journey__progress">{progressLine(world, nextWorld)}</p>
               </div>
             ) : null}
             <button
@@ -239,6 +238,7 @@ function Journey({ profile }: { profile: Profile }) {
           <WorldMap
             world={world}
             young={young}
+            stationName={stop.kind === 'level' ? stopName : null}
             overlay={
               // Over the map, not above it: the world's row and the next station's card stay put.
               intro ? (
@@ -270,6 +270,8 @@ function Journey({ profile }: { profile: Profile }) {
         <section className="station card journey__next" aria-labelledby="station-title">
           <div className="journey__next-row">
             <div className="journey__next-text">
+              {/* Where she stands in the world, right over the station it names. */}
+              <p className="muted journey__progress">{progressLine(world, nextWorld)}</p>
               <span className="station__eyebrow">{t('child.nextStation')}</span>
               <h2 id="station-title">{stopName}</h2>
             </div>
@@ -432,6 +434,7 @@ function AlbumIcon() {
 function WorldMap({
   world,
   young,
+  stationName,
   overlay,
   canPick,
   note,
@@ -441,6 +444,8 @@ function WorldMap({
 }: {
   world: World;
   young: boolean;
+  /** The name of the station the big button starts, over the final challenge (none for the challenge itself). */
+  stationName: string | null;
   /** Shown over the map (the first-time explainer). */
   overlay: ReactNode;
   /** The parent lets her choose any station, ahead too (else the open ones only). */
@@ -531,6 +536,11 @@ function WorldMap({
           onClick={() => (world.review === 'locked' ? onLocked('review') : onReview())}
         >
           {/* The cup in its own frame: the glint passes over it, and it wobbles once open. */}
+          {stationName ? (
+            <span className="node__station" aria-hidden="true">
+              {stationName}
+            </span>
+          ) : null}
           <span className="node__cup">
             <TrophyIcon />
           </span>
