@@ -2378,9 +2378,34 @@ ol.steps {
 }
 
 /* A picture to count in (eight shapes or more) stays on one line. */
-.exercise .shapes:has(> :nth-child(8)) .shape {
+.exercise .shapes:not(.shapes--line):has(> :nth-child(8)) .shape {
   width: 64px;
   height: 64px;
+}
+
+/* A long pattern on one line (grade 1): the shapes and the gap shrink together to fit. */
+.shapes--line {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 560px;
+  flex-wrap: nowrap;
+  gap: 6px;
+  padding: var(--space-3) var(--space-2);
+}
+
+.shapes--line > .shape,
+.shapes--line > .shapes__blank {
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: 64px;
+  width: auto;
+  height: auto;
+  aspect-ratio: 1;
+}
+
+.shapes--line > .shapes__blank {
+  border-width: 3px;
+  font-size: var(--text-md);
 }
 
 /* Parents: recordings for use without internet */
