@@ -324,14 +324,7 @@ export interface SolidItem {
 
 /** Things to compare and measure: four that lie down, four that stand. */
 export type MeasureThing =
-  | 'pencil'
-  | 'ribbon'
-  | 'snake'
-  | 'brush'
-  | 'tower'
-  | 'tree'
-  | 'flower'
-  | 'bottle';
+  'pencil' | 'ribbon' | 'snake' | 'brush' | 'tower' | 'tree' | 'flower' | 'bottle';
 
 /** What lies on one pan of a balance. */
 export interface BalancePan {

@@ -230,8 +230,10 @@ function grow({ first, step, groups, noun }: GrowFact, rng: Rng, gender: Gender)
     [1, 3, 5],
     [3, 4, 5],
   ];
-  const ex = examples.find((e) => (e[2] as number) * 2 - (e[1] as number) !== answer &&
-    e.join() !== sizes.slice(0, 3).join()) as number[];
+  const ex = examples.find(
+    (e) =>
+      (e[2] as number) * 2 - (e[1] as number) !== answer && e.join() !== sizes.slice(0, 3).join(),
+  ) as number[];
   const exStep = (ex[1] as number) - (ex[0] as number);
   const exNext = (ex[2] as number) + exStep;
   return exercise({
@@ -275,7 +277,8 @@ type SeqFact = { start: number; step: number; dir: 1 | -1; gap: number };
 type SeqInput = 'numpad' | 'choices';
 
 const LEN = 5;
-const termsOf = ({ start, step, dir }: SeqFact) => range(0, LEN - 1).map((i) => start + dir * step * i);
+const termsOf = ({ start, step, dir }: SeqFact) =>
+  range(0, LEN - 1).map((i) => start + dir * step * i);
 
 /** Another sequence of the same rule for hint 3: no number in common, and another answer. */
 const EXAMPLE_STARTS: Record<string, number[]> = {
@@ -399,7 +402,11 @@ const twoGaps = (i: number) => [1 + (i % 4), 1 + ((i + 2) % 4)];
 /** Counting on by one: from each ten, once across the next ten (6, 7, 8, 9, 10) and once inside it. */
 const forwardStarts = range(0, 9).flatMap((t10) => [t10 * 10 + 6, t10 * 10 + 1]);
 /** Counting back: across a ten (12, 11, 10, 9, 8), and inside one. */
-const backStarts = [...range(1, 9).map((t10) => t10 * 10 + 2), 100, ...range(0, 9).map((t10) => t10 * 10 + 9)];
+const backStarts = [
+  ...range(1, 9).map((t10) => t10 * 10 + 2),
+  100,
+  ...range(0, 9).map((t10) => t10 * 10 + 9),
+];
 
 /* ---------- Level 8: even and odd ---------- */
 
@@ -568,12 +575,7 @@ export const patterns1 = defineTopic({
     ),
     closed(
       L(6),
-      seqFacts(
-        range(0, 75, 5),
-        5,
-        1,
-        (i) => [1 + (i % 4), 1 + ((i + 2) % 4)],
-      ),
+      seqFacts(range(0, 75, 5), 5, 1, (i) => [1 + (i % 4), 1 + ((i + 2) % 4)]),
       sequence(6, 'choices'),
     ),
     closed(

@@ -231,7 +231,7 @@ type RollFact = { ask: 'roll' | 'not'; answer: SolidKind; others: SolidKind[]; v
 
 const ROLLERS: SolidKind[] = ['sphere', 'cylinder'];
 const SITTERS: SolidKind[] = ['cube', 'box', 'pyramid'];
-const pairsOf = <T,>(xs: readonly T[]): T[][] =>
+const pairsOf = <T>(xs: readonly T[]): T[][] =>
   xs.flatMap((a, i) => xs.slice(i + 1).map((b) => [a, b]));
 
 const rollFacts = (): RollFact[] => [
@@ -636,9 +636,7 @@ export const solids1 = defineTopic({
     closed(
       L(8),
       () =>
-        (Object.keys(VERTICES) as SolidKind[]).flatMap((kind) =>
-          [0, 1].map((v) => ({ kind, v })),
-        ),
+        (Object.keys(VERTICES) as SolidKind[]).flatMap((kind) => [0, 1].map((v) => ({ kind, v }))),
       countParts('vertices'),
     ),
     closed(L(9), () => BUILDINGS, cubes),

@@ -45,14 +45,7 @@ const WORLDS: Record<number, string[]> = {
     'data-stats',
   ],
   5: ['fraction-ops', 'decimals', 'percent-intro', 'order-ops', 'areas', 'data-stats'],
-  6: [
-    'fraction-mul-div',
-    'decimal-ops',
-    'percent',
-    'ratio',
-    'circle-volume',
-    'data-stats',
-  ],
+  6: ['fraction-mul-div', 'decimal-ops', 'percent', 'ratio', 'circle-volume', 'data-stats'],
 };
 
 const PHONES = [

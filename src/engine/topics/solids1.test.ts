@@ -49,10 +49,16 @@ describe('solids-1', () => {
       const right = rightKind(e);
       if (ask === 'solid') {
         expect(right, e.factId).toBe(solid);
-        expect(kinds.filter((k) => !flat.includes(k)), e.factId).toHaveLength(1);
+        expect(
+          kinds.filter((k) => !flat.includes(k)),
+          e.factId,
+        ).toHaveLength(1);
       } else {
         expect(flat.includes(right), e.factId).toBe(true);
-        expect(kinds.filter((k) => flat.includes(k)), e.factId).toHaveLength(1);
+        expect(
+          kinds.filter((k) => flat.includes(k)),
+          e.factId,
+        ).toHaveLength(1);
       }
     }
   });
@@ -84,8 +90,7 @@ describe('solids-1', () => {
       [8, vertices],
     ] as const) {
       for (const e of all(level)) {
-        const kind = ((e.visual as Extract<Visual, { type: 'solids' }>).items[0] as SolidItem)
-          .kind;
+        const kind = ((e.visual as Extract<Visual, { type: 'solids' }>).items[0] as SolidItem).kind;
         expect(e.answer, e.factId).toBe(table[kind]);
         // The worked example is another solid with another count.
         const ex = e.hints[2].visual as Extract<Visual, { type: 'solids' }>;
@@ -144,7 +149,10 @@ describe('solids-1', () => {
       const v = e.visual as Extract<Visual, { type: 'cubeStack' }>;
       expect(e.answer, e.factId).toBe(v.columns.reduce((s, x) => s + x, 0));
       const ex = e.hints[2].visual as Extract<Visual, { type: 'cubeStack' }>;
-      expect(ex.columns.reduce((s, x) => s + x, 0), e.factId).not.toBe(e.answer);
+      expect(
+        ex.columns.reduce((s, x) => s + x, 0),
+        e.factId,
+      ).not.toBe(e.answer);
     }
   });
 

@@ -4,8 +4,7 @@ import { seededRng } from '../rng';
 import type { Exercise, ShapeItem } from '../types';
 import { patterns1 } from './patterns1';
 
-const all = (level: number): Exercise[] =>
-  patterns1.enumerate(level).filter((_, i) => i % 2 === 0);
+const all = (level: number): Exercise[] => patterns1.enumerate(level).filter((_, i) => i % 2 === 0);
 
 /** Exercises with their buttons in random orders, as a child gets them. */
 const played = (level: number): Exercise[] => {
@@ -46,7 +45,9 @@ describe('patterns-1', () => {
         if (s) byLetter.set(c, key(s));
       });
       expect(byLetter.size, e.factId).toBe(letters.length);
-      expect(key(right), e.factId).toBe(byLetter.get(unit[shownItems.length % unit.length] as string));
+      expect(key(right), e.factId).toBe(
+        byLetter.get(unit[shownItems.length % unit.length] as string),
+      );
       const others = e.input.choices.filter((c) => c !== e.answer).map(pick);
       for (const o of others) {
         const same = Number(o.shape === right.shape) + Number(o.color === right.color);
@@ -107,7 +108,10 @@ describe('patterns-1', () => {
       const even = e.factId.startsWith('even:even');
       const nums = e.input.labels.map(Number);
       nums.forEach((n, i) => expect(n % 2 === (even ? 0 : 1), e.factId).toBe(i === e.answer));
-      expect([...nums].sort((a, b) => a - b), e.factId).toEqual(nums);
+      expect(
+        [...nums].sort((a, b) => a - b),
+        e.factId,
+      ).toEqual(nums);
     }
   });
 
