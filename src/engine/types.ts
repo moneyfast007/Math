@@ -157,6 +157,11 @@ export type Visual =
   | { type: 'weekDays'; mark?: number; tags?: { day: number; text: string }[] }
   /** An angle of `deg` degrees between a ray along the base and a second ray, the whole turned by `turn`. */
   | { type: 'angle'; deg: number; turn?: number }
+  /**
+   * A right angle (90) or a straight one (180) cut in two by a ray: one part
+   * labelled with its degrees, the other with "?".
+   */
+  | { type: 'angleSplit'; total: 90 | 180; part: number }
   /** Two straight lines: parallel, perpendicular, or crossing at a slant. */
   | { type: 'lines'; kind: 'parallel' | 'perpendicular' | 'crossing'; turn?: number }
   /** A polygon in a 100 × 100 box (y down), with optional marks (see Polygon). */
@@ -293,6 +298,8 @@ export interface Polygon {
   extend?: { from: [number, number]; to: [number, number] };
   /** Draw every diagonal. */
   diagonals?: boolean;
+  /** Vertices (indices) marked with an arc inside the angle (which angle is asked about). */
+  arcs?: number[];
 }
 
 export type ShapeKind = 'circle' | 'square' | 'triangle' | 'rectangle';

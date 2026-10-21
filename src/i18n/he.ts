@@ -10,6 +10,7 @@
  * Adding a language later means adding `en.ts` with the same keys; the type
  * system will point out anything missing.
  */
+import { heAngles4 } from './extra/angles4';
 import { heData2 } from './extra/data2';
 import { heGan1 } from './extra/gan1';
 import { heGrade4 } from './extra/grade4';
@@ -1585,10 +1586,10 @@ export const he = {
   'level.angles.4': 'משולשים לפי הצלעות',
   'level.angles.5': 'משולשים לפי הזוויות',
   'level.angles.6': 'מרובעים',
-  'level.angles.7': 'סכום הזוויות במשולש',
-  'level.angles.8': 'אלכסונים',
-  'level.angles.9': 'קווי סימטריה',
-  'level.angles.10': 'נכון או לא נכון?',
+  'level.angles.7': 'זוויות בשעון',
+  'level.angles.8': 'זוויות בצורות',
+  'level.angles.9': 'ריבוע, מלבן ומעוין',
+  'level.angles.10': 'קו סימטריה?',
   'ex.angles.kind.prompt': 'איזו זווית זאת?',
   'ex.angles.kind.hint1': 'משווים לפינה של דף: זווית ישרה היא בדיוק כמו הפינה.',
   'ex.angles.kind.hint2': 'זווית חדה סגורה יותר מזווית ישרה, וזווית קהה פתוחה יותר ממנה.',
@@ -2114,6 +2115,7 @@ export const he = {
   ...heMeasure1,
   ...heScreens,
   ...heSolids1,
+  ...heAngles4,
 } as const;
 
 export type HebrewKey = keyof typeof he;

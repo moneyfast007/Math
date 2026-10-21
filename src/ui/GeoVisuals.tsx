@@ -50,6 +50,64 @@ export function AngleView({ v }: { v: Extract<Visual, { type: 'angle' }> }) {
   );
 }
 
+/** A right or straight angle cut in two: arcs for both parts, the known one's degrees, "?" in the other. */
+export function AngleSplitView({ v }: { v: Extract<Visual, { type: 'angleSplit' }> }) {
+  const straight = v.total === 180;
+  const o: P = straight ? [100, 100] : [14, 100];
+  const r = 90;
+  const at = (deg: number, k: number): P => [
+    o[0] + k * Math.cos(rad(-deg)),
+    o[1] + k * Math.sin(rad(-deg)),
+  ];
+  const arc = (from: number, to: number, k: number) => {
+    const p = at(from, k);
+    const q = at(to, k);
+    return `M${fmt(p[0])} ${fmt(p[1])} A${k} ${k} 0 0 0 ${fmt(q[0])} ${fmt(q[1])}`;
+  };
+  // A label in the middle of its part, far enough out to sit clear of both rays.
+  const label = (from: number, to: number, text: string, cls: string) => {
+    const half = (to - from) / 2;
+    const k = Math.min(72, Math.max(48, (straight ? 17 : 13) / Math.sin(rad(half))));
+    const p = at(from + half, k);
+    return (
+      <text
+        x={fmt(p[0])}
+        y={fmt(p[1])}
+        className={`geo__label ${straight ? 'geo__label--split-wide' : 'geo__label--split'} ${cls}`}
+        textAnchor="middle"
+        dominantBaseline="central"
+      >
+        {text}
+      </text>
+    );
+  };
+  const box = straight ? '-2 2 204 108' : '2 2 112 108';
+  return (
+    <div className="geo" dir="ltr" data-visual="angleSplit" aria-hidden="true">
+      <svg viewBox={box} className="geo__svg">
+        {[0, v.part, v.total].map((deg) => {
+          const p = at(deg, r);
+          return (
+            <line
+              key={deg}
+              x1={o[0]}
+              y1={o[1]}
+              x2={fmt(p[0])}
+              y2={fmt(p[1])}
+              className="geo__ray"
+            />
+          );
+        })}
+        <path d={arc(0, v.part, 24)} className="geo__mark" />
+        <path d={arc(v.part, v.total, 31)} className="geo__mark geo__mark--other" />
+        {label(0, v.part, `${v.part}°`, '')}
+        {label(v.part, v.total, '?', 'geo__label--ask')}
+        <circle cx={o[0]} cy={o[1]} r="3.5" className="geo__dot" />
+      </svg>
+    </div>
+  );
+}
+
 export function LinesView({ v }: { v: Extract<Visual, { type: 'lines' }> }) {
   const turn = v.turn ?? 0;
   const line = (cx: number, cy: number, deg: number) => {
@@ -152,6 +210,23 @@ export function PolygonView({ v }: { v: Polygon }) {
             ) : null}
           </>
         ) : null}
+        {(v.arcs ?? []).map((i) => {
+          const p = pts[i] as P;
+          const a = unit(sub(pts[(i + n - 1) % n] as P, p));
+          const b = unit(sub(pts[(i + 1) % n] as P, p));
+          const r = 16;
+          const q1 = add(p, scale(a, r));
+          const q2 = add(p, scale(b, r));
+          // Screen y runs down: a positive cross product turns clockwise, SVG's sweep 1.
+          const sweep = a[0] * b[1] - a[1] * b[0] > 0 ? 1 : 0;
+          return (
+            <path
+              key={`c${i}`}
+              d={`M${fmt(q1[0])} ${fmt(q1[1])} A${r} ${r} 0 0 ${sweep} ${fmt(q2[0])} ${fmt(q2[1])}`}
+              className="geo__mark geo__mark--arc"
+            />
+          );
+        })}
         {(v.rightAngles ?? []).map((i) => {
           const p = pts[i] as P;
           const a = unit(sub(pts[(i + n - 1) % n] as P, p));
