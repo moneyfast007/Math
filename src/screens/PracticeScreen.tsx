@@ -365,7 +365,8 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
     const playAgain = () => startAt(stateRef.current.startLevel);
     // Where the journey goes on from here: the first station of this world still to pass
     // (never one already passed), or its final challenge once they all are.
-    const after = !mixed && !replaying ? activeWorld(profile.grade, appProgress(profile.id)) : undefined;
+    const after =
+      !mixed && !replaying ? activeWorld(profile.grade, appProgress(profile.id)) : undefined;
     const ahead =
       after && after.topic.id === topic.id
         ? after.stations.some((st) => st.state === 'current')

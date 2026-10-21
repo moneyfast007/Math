@@ -221,11 +221,23 @@ describe('completeRound', () => {
   });
 
   it('passing a station ahead (chosen on the map) moves her on from there', () => {
-    const out = completeRound(base(3), { topicId: 't', station: 8, firstTry: 8, length: 10, at: day });
+    const out = completeRound(base(3), {
+      topicId: 't',
+      station: 8,
+      firstTry: 8,
+      length: 10,
+      at: day,
+    });
     expect(out.advancedTo).toBe(9);
     expect(out.progress.topics['t']).toMatchObject({ level: 9, completedLevels: [8] });
     // Not passed: where she is stays.
-    const miss = completeRound(base(3), { topicId: 't', station: 8, firstTry: 3, length: 10, at: day });
+    const miss = completeRound(base(3), {
+      topicId: 't',
+      station: 8,
+      firstTry: 3,
+      length: 10,
+      at: day,
+    });
     expect(miss.progress.topics['t']?.level).toBe(3);
   });
 

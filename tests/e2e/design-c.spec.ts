@@ -49,9 +49,9 @@ test('several children: the same card for each, in the family order, none put fi
   await expect(rows).toHaveCount(2);
   await expect(rows.nth(0)).toContainText('נועה');
   await expect(rows.nth(1)).toContainText('אורי');
-  expect(await page.evaluate(() => document.scrollingElement?.scrollWidth ?? 0)).toBeLessThanOrEqual(
-    await page.evaluate(() => window.innerWidth),
-  );
+  expect(
+    await page.evaluate(() => document.scrollingElement?.scrollWidth ?? 0),
+  ).toBeLessThanOrEqual(await page.evaluate(() => window.innerWidth));
   const results = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa']).analyze();
   expect(results.violations.map((v) => v.id)).toEqual([]);
   await rows.nth(1).click();

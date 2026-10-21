@@ -203,7 +203,8 @@ function todayLineOf(goal: Profile['settings']['dailyGoal'], today: Today): stri
     return goal === 1
       ? t('c.home.todayRoundsOne', { params: { done: today.rounds } })
       : t('c.home.todayRounds', { params: { done: today.rounds, goal } });
-  if (goal) return goal === 1 ? t('c.home.todayGoalOne') : t('c.home.todayGoal', { params: { goal } });
+  if (goal)
+    return goal === 1 ? t('c.home.todayGoalOne') : t('c.home.todayGoal', { params: { goal } });
   if (today.practised) return t('c.home.todayPlayed');
   return null;
 }
