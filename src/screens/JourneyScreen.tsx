@@ -93,6 +93,7 @@ function Journey({ profile }: { profile: Profile }) {
   // The world after this one, if the grade has one: the final challenge opens it.
   const nextWorld =
     worldsFor(profile.grade, progress).length > world.index ? world.index + 1 : null;
+  const longName = profile.name.length > 10;
   const streak = currentStreak(progress?.streak ?? { count: 0, lastDay: null }, Date.now());
 
   const start = () => {
@@ -113,7 +114,16 @@ function Journey({ profile }: { profile: Profile }) {
         <div className="journey__who">
           <Avatar id={profile.avatar} size="lg" decorative />
           <div>
-            <h1 className="journey__hello">{tc('child.hello', { name: profile.name })}</h1>
+            {/* A long name (over ten letters) is said alone, so it has the room for itself. */}
+            <h1
+              className={longName ? 'journey__hello journey__hello--long' : 'journey__hello'}
+              aria-label={longName ? tc('child.hello', { name: profile.name }) : undefined}
+            >
+              {/* A hyphenated name may break after its hyphen, not in the middle of a part. */}
+              {longName
+                ? profile.name.replace(/-/g, '-\u200b')
+                : tc('child.hello', { name: profile.name })}
+            </h1>
             {!young ? <p className="muted journey__grade">{gradeLabel(profile.grade)}</p> : null}
           </div>
         </div>

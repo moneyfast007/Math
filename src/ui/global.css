@@ -5079,10 +5079,19 @@ details.report .report__worlds {
 }
 
 .journey__hello {
+  /* A long name takes a second line rather than being cut after a few letters. */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
   overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  line-height: 1.2;
+  overflow-wrap: break-word;
+  line-height: 1.15;
+}
+
+/* A long name (over ten letters) is a little smaller, so it mostly fits on two lines. */
+.journey__hello--long {
+  font-size: calc(var(--text-lg) * 0.85);
 }
 
 .journey__tools {
@@ -5360,6 +5369,21 @@ details.report .report__worlds {
 
   :root[data-age='young'] .journey__hello {
     font-size: 22px;
+  }
+
+  .journey__hello.journey__hello--long,
+  :root[data-age='young'] .journey__hello.journey__hello--long {
+    font-size: 18px;
+  }
+
+  /* The narrowest phones leave the name about 80px beside the tools: three short lines. */
+  @media (max-width: 340px) {
+    .journey__hello.journey__hello--long,
+    :root[data-age='young'] .journey__hello.journey__hello--long {
+      font-size: 16px;
+      -webkit-line-clamp: 3;
+      line-clamp: 3;
+    }
   }
 
   .journey__grade {
