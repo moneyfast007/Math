@@ -1,6 +1,7 @@
 import type { ClockTime, ShapeItem, Visual } from '@/engine/types';
 import { t } from '@/i18n';
 import { digitalTime } from '@/lang/time';
+import { Bars2, DataTable, LineGraph, Pie, Tally } from './DataVisuals';
 import { AngleView, BoxView, CircleView, LinesView, PolygonView, RulerView } from './GeoVisuals';
 import { CubeStackView, SolidsView, ThingView } from './SolidsVisual';
 import { BalanceView, LengthsView, WeekView } from './MeasureVisuals';
@@ -49,6 +50,16 @@ export function VisualView({ visual }: { visual: Visual }) {
       return <CircleView v={visual} />;
     case 'bars':
       return <Bars v={visual} />;
+    case 'tally':
+      return <Tally v={visual} />;
+    case 'table':
+      return <DataTable v={visual} />;
+    case 'bars2':
+      return <Bars2 v={visual} />;
+    case 'lineGraph':
+      return <LineGraph v={visual} />;
+    case 'pie':
+      return <Pie v={visual} />;
     case 'grid':
       return <Grid v={visual} />;
     case 'items':
@@ -575,14 +586,19 @@ function Pencils({ v }: { v: Extract<Visual, { type: 'pencils' }> }) {
   );
 }
 
-/** A bar chart of a survey: one bar per answer, the scale on the left in steps. */
+/**
+ * A bar chart of a survey: one bar per answer, the scale on the left in steps.
+ * With an icon on every bar, a picture graph: one icon per child, stacked.
+ */
 function Bars({ v }: { v: Extract<Visual, { type: 'bars' }> }) {
   const step = v.step ?? 1;
   const top = Math.max(...v.bars.map((b) => b.value));
   const max = Math.ceil(top / step) * step + step;
   const lines = max / step;
+  const pictures = v.bars.every((b) => b.icon);
   const W = 300;
-  const H = 180;
+  // Taller for pictures, so each one is big enough to count.
+  const H = pictures ? 230 : 180;
   const left = 34;
   const bottom = 26;
   const plotH = H - bottom - 8;
@@ -628,6 +644,28 @@ function Bars({ v }: { v: Extract<Visual, { type: 'bars' }> }) {
         ))}
         {v.bars.map((b, i) => {
           const x = left + i * slot + slot * 0.2;
+          if (pictures) {
+            const cell = y(0) - y(1);
+            return (
+              <g key={b.label}>
+                {Array.from({ length: b.value }, (_, k) => (
+                  <text
+                    key={k}
+                    x={x + slot * 0.3}
+                    y={y(k + 0.5)}
+                    textAnchor="middle"
+                    dominantBaseline="central"
+                    fontSize={Math.min(cell * 0.85, slot * 0.6)}
+                  >
+                    {b.icon}
+                  </text>
+                ))}
+                <text x={x + slot * 0.3} y={H - 8} textAnchor="middle" className="bars__label">
+                  {b.label}
+                </text>
+              </g>
+            );
+          }
           return (
             <g key={b.label}>
               <rect

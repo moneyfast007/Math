@@ -10,6 +10,7 @@ import { clockTopic } from './topics/clock';
 import { clockMoney1 } from './topics/clockMoney1';
 import { count10 } from './topics/count10';
 import { data } from './topics/data';
+import { dataStats } from './topics/dataStats';
 import { decimalOps } from './topics/decimalOps';
 import { decimals } from './topics/decimals';
 import { divisibility } from './topics/divisibility';
@@ -82,7 +83,8 @@ export const TOPICS: readonly Topic[] = [
   percent,
   ratio,
   circleVolume,
-  data, // grades 2–6, last in each
+  data, // grades 1–3, last in each
+  dataStats, // grades 4–6, last in each
 ];
 
 export function topicById(id: string): Topic | undefined {
@@ -96,7 +98,7 @@ export function topicById(id: string): Topic | undefined {
  */
 const ORDER: Partial<Record<Grade, readonly Topic[]>> = {
   // Patterns after the numbers to 100 they count in; solids beside the flat shapes.
-  1: [addSub20, numbers100, patterns1, polygons, solids1, measure1, clockMoney1],
+  1: [addSub20, numbers100, patterns1, polygons, solids1, measure1, clockMoney1, data],
   2: [addSub100, numbers1000, moneyTopic, multIntro, clockTopic, polygons, vertical2, data],
   4: [
     bigNumbers,
@@ -106,10 +108,10 @@ const ORDER: Partial<Record<Grade, readonly Topic[]>> = {
     perimeterArea,
     anglesTopic,
     vertical4,
-    data,
+    dataStats,
   ],
-  5: [fractionOps, decimals, percentIntro, orderOps, areasTopic, data],
-  6: [fractionMulDiv, decimalOps, percentIntro, percent, ratio, circleVolume, data],
+  5: [fractionOps, decimals, percentIntro, orderOps, areasTopic, dataStats],
+  6: [fractionMulDiv, decimalOps, percentIntro, percent, ratio, circleVolume, dataStats],
 };
 
 /** The worlds of the child's grade, in curriculum order (every grade has some). */

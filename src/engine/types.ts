@@ -166,7 +166,29 @@ export type Visual =
   /** A box drawn in perspective; `cubes` draws the unit cubes, `labels` its edges. */
   | { type: 'box'; l: number; w: number; h: number; cubes?: boolean; unit?: string }
   /** A bar chart: one bar per answer of a survey, the scale on the left in steps of `step`. */
-  | { type: 'bars'; bars: { label: string; value: number }[]; step?: number; title?: string }
+  /** `icon` on every bar: a picture graph, one icon per unit stacked in the column (grade 1). */
+  | {
+      type: 'bars';
+      bars: { label: string; value: number; icon?: string }[];
+      step?: number;
+      title?: string;
+    }
+  /** Tally marks, one row per answer (`label` on the right; none for a single tally on a button). */
+  | { type: 'tally'; rows: { label?: string; count: number }[]; title?: string }
+  /** A small table: a header row, then rows of cells ("?" for the asked one). */
+  | { type: 'table'; head: string[]; rows: (string | number)[][]; title?: string }
+  /** A double bar chart: two bars per answer, one per group (`series`: their names, in the legend). */
+  | {
+      type: 'bars2';
+      groups: { label: string; a: number; b: number }[];
+      series: [string, string];
+      step: number;
+      title?: string;
+    }
+  /** A line graph: one point per label (days), joined, over a scale in steps of `step`. */
+  | { type: 'lineGraph'; points: { label: string; value: number }[]; step: number; title?: string }
+  /** A pie chart in `of` equal parts (4 or 10, drawn as faint guides); each slice is `parts` of them. */
+  | { type: 'pie'; slices: { label: string; parts: number }[]; of: number; title?: string }
   /**
    * A grid of rows × cols squares. `shaded`: the first so many squares, row by
    * row (a hundred grid: 37 of 100). `band`: an area model, the first `cols`

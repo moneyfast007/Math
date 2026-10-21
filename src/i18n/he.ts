@@ -10,6 +10,7 @@
  * Adding a language later means adding `en.ts` with the same keys; the type
  * system will point out anything missing.
  */
+import { heData2 } from './extra/data2';
 import { heGan1 } from './extra/gan1';
 import { heGrade4 } from './extra/grade4';
 import { heGrades23 } from './extra/grades23';
@@ -2108,6 +2109,7 @@ export const he = {
   ...heGrades56,
   ...heWorlds,
   ...hePatterns1,
+  ...heData2,
   ...heJourney,
   ...heMeasure1,
   ...heScreens,

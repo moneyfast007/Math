@@ -19,6 +19,7 @@ const WORLDS: Record<number, string[]> = {
     'solids-1',
     'measure-1',
     'clock-money-1',
+    'data',
   ],
   2: [
     'add-sub-100',
@@ -39,16 +40,16 @@ const WORLDS: Record<number, string[]> = {
     'perimeter-area',
     'angles',
     'vertical-4',
-    'data',
+    'data-stats',
   ],
-  5: ['fraction-ops', 'decimals', 'percent-intro', 'order-ops', 'areas', 'data'],
+  5: ['fraction-ops', 'decimals', 'percent-intro', 'order-ops', 'areas', 'data-stats'],
   6: [
     'fraction-mul-div',
     'decimal-ops',
     'percent',
     'ratio',
     'circle-volume',
-    'data',
+    'data-stats',
   ],
 };
 

@@ -121,7 +121,9 @@ describe('worlds', () => {
   it('lists the grade’s topics in order and picks the first unfinished one', () => {
     const worlds = worldsFor(1, undefined);
     expect(worlds.map((w) => w.index)).toEqual(range(1, worlds.length));
-    expect(worlds.length).toBeGreaterThanOrEqual(7);
+    expect(worlds.length).toBeGreaterThanOrEqual(8);
+    // Data is grade 1's last world, as in every grade that has it.
+    expect(worlds.at(-1)?.topic.id).toBe('data');
     expect(worlds[0]?.topic.id).toBe(addSub20.id);
     expect(activeWorld(1, undefined)?.topic.id).toBe(addSub20.id);
     expect(stickersEarned(worlds)).toBe(0);
@@ -188,6 +190,7 @@ describe('worldsMap', () => {
       ['solids-1', 'locked'],
       ['measure-1', 'locked'],
       ['clock-money-1', 'locked'],
+      ['data', 'locked'],
     ]);
     // World 4 is already done, so world 5 opens after world 3.
     expect(map[4]?.after?.topic.id).toBe('patterns-1');
