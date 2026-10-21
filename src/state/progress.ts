@@ -193,7 +193,8 @@ export function completeRound(progress: ProfileProgress, r: RoundResult): RoundO
       ? r.station + 1
       : null;
   // A round that eased to an easier level shows its stars but can earn at most one.
-  const stars = r.eased === true ? Math.min(1, starsFor(r.firstTry, r.length)) : starsFor(r.firstTry, r.length);
+  const stars =
+    r.eased === true ? Math.min(1, starsFor(r.firstTry, r.length)) : starsFor(r.firstTry, r.length);
   const stats: TopicStats = withBest(
     { ...prev, level: advancedTo ?? prev.level, completedLevels, lastPracticedAt: r.at },
     r.station,

@@ -460,7 +460,10 @@ export const he = {
   'practice.countTogether': 'נספור יחד',
   'feedback.correctLater': { f: 'נכון! תיקנת את עצמך.', m: 'נכון! תיקנת את עצמך.' },
   'feedback.almost': { f: 'כמעט. בואי ננסה ביחד', m: 'כמעט. בוא ננסה ביחד' },
-  'feedback.notQuite': { f: 'לא בדיוק. נסי שוב, או בקשי רמז.', m: 'לא בדיוק. נסה שוב, או בקש רמז.' },
+  'feedback.notQuite': {
+    f: 'לא בדיוק. נסי שוב, או בקשי רמז.',
+    m: 'לא בדיוק. נסה שוב, או בקש רמז.',
+  },
   'feedback.keepGoing': { f: 'את בדרך הנכונה', m: 'אתה בדרך הנכונה' },
 
   // Audio

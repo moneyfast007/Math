@@ -15,11 +15,7 @@ export function Stars({
   label?: boolean;
 }) {
   const name =
-    n === 0
-      ? t('stars.none')
-      : n === 1
-        ? t('stars.one')
-        : t('stars.many', { params: { n } });
+    n === 0 ? t('stars.none') : n === 1 ? t('stars.one') : t('stars.many', { params: { n } });
   return (
     <span
       className={`stars stars--${size}`}

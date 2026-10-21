@@ -169,10 +169,13 @@ function Objects({
     });
     setCounted([]);
     const timers = order.map((place, k) =>
-      window.setTimeout(() => {
-        setCounted(order.slice(0, k + 1));
-        sayCount(k + 1);
-      }, COUNT_STEP_MS * (k + 1)),
+      window.setTimeout(
+        () => {
+          setCounted(order.slice(0, k + 1));
+          sayCount(k + 1);
+        },
+        COUNT_STEP_MS * (k + 1),
+      ),
     );
     return () => timers.forEach((id) => window.clearTimeout(id));
   }, [countToken, v.groups, removed]);
@@ -202,9 +205,7 @@ function Objects({
           return (
             <span
               key={i}
-              className={
-                isRemoved(i) ? 'obj obj--removed' : n >= 0 ? 'obj obj--counted' : 'obj'
-              }
+              className={isRemoved(i) ? 'obj obj--removed' : n >= 0 ? 'obj obj--counted' : 'obj'}
               onClick={interactive ? () => tap(place) : undefined}
             >
               {kind.emoji}

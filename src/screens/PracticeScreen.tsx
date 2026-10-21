@@ -877,7 +877,9 @@ function Feedback({ state: s, tc }: { state: SessionState; tc: TC }) {
     const text = tc(first ? 'feedback.correct' : 'feedback.correctLater');
     return (
       <div
-        className={first ? 'feedback feedback--correct' : 'feedback feedback--correct feedback--later'}
+        className={
+          first ? 'feedback feedback--correct' : 'feedback feedback--correct feedback--later'
+        }
         role="status"
       >
         <SpeakerButton text={text} />

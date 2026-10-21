@@ -172,7 +172,13 @@ const tabId = (tab: ParentTab) => `parent-tab-${tab}`;
 const panelId = (tab: ParentTab) => `parent-panel-${tab}`;
 
 /** WAI-ARIA tabs: arrow keys move between them (right is "previous" in RTL), Home/End jump. */
-export function ParentTabs({ tab, onChange }: { tab: ParentTab; onChange: (tab: ParentTab) => void }) {
+export function ParentTabs({
+  tab,
+  onChange,
+}: {
+  tab: ParentTab;
+  onChange: (tab: ParentTab) => void;
+}) {
   const onKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
     const i = PARENT_TABS.indexOf(tab);
     const n = PARENT_TABS.length;
@@ -678,7 +684,13 @@ export function SecuritySection() {
   );
 }
 
-export function PinChooser({ onDone, onCancel }: { onDone: (pin: string) => void; onCancel: () => void }) {
+export function PinChooser({
+  onDone,
+  onCancel,
+}: {
+  onDone: (pin: string) => void;
+  onCancel: () => void;
+}) {
   const [first, setFirst] = useState<string | null>(null);
   const [value, setValue] = useState('');
   const [mismatch, setMismatch] = useState(false);
