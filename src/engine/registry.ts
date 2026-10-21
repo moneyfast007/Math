@@ -18,6 +18,7 @@ import { fractionOps } from './topics/fractionOps';
 import { fractions1 } from './topics/fractions1';
 import { longMulDiv } from './topics/longMulDiv';
 import { measureTopic } from './topics/measure';
+import { measure1 } from './topics/measure1';
 import { moneyTopic } from './topics/money';
 import { multIntro } from './topics/multIntro';
 import { multTable } from './topics/multTable';
@@ -44,6 +45,7 @@ export const TOPICS: readonly Topic[] = [
   numbers100,
   polygons, // grades 1–2
   clockMoney1,
+  measure1,
   // Grade 2
   addSub100,
   numbers1000,

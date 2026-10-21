@@ -106,6 +106,41 @@ export type Visual =
   | { type: 'shapes'; items: (ShapeItem | null)[] }
   /** Pencils standing on one line, `lengths` in units of 1–5: which is longest? */
   | { type: 'pencils'; lengths: number[] }
+  /**
+   * World "מדידה ראשונה" (grade 1): things lying from one start line, or standing
+   * on one floor (`stand`), each `len` units long (2–9). `clips`: a row of paper
+   * clips under each lying thing, one per unit; `alt`: the clips in two colours
+   * (easier to count); `extra`: the first thing's clips from this one on are
+   * coloured (how much longer it is). `guide`: a dashed line where this many
+   * units end. `icon`: one thing, small and not to scale (an answer button).
+   */
+  | {
+      type: 'lengths';
+      items: { thing: MeasureThing; len: number }[];
+      stand?: boolean;
+      clips?: boolean;
+      alt?: boolean;
+      extra?: number;
+      guide?: number;
+      icon?: boolean;
+    }
+  /**
+   * A balance with something on each pan: an emoji, or `cubes` (unit weights).
+   * `down`: the heavier side, which hangs lower (level when absent); `arrows`
+   * shows which way each pan went.
+   */
+  | {
+      type: 'balance';
+      left: BalancePan;
+      right: BalancePan;
+      down?: 'left' | 'right';
+      arrows?: boolean;
+    }
+  /**
+   * The seven days of the week as cards, Sunday on the right. `mark`: a day
+   * highlighted (0 = Sunday … 6 = Saturday); `tags`: a word under a day ("היום").
+   */
+  | { type: 'weekDays'; mark?: number; tags?: { day: number; text: string }[] }
   /** An angle of `deg` degrees between a ray along the base and a second ray, the whole turned by `turn`. */
   | { type: 'angle'; deg: number; turn?: number }
   /** Two straight lines: parallel, perpendicular, or crossing at a slant. */
@@ -234,6 +269,23 @@ export interface ShapeItem {
   size?: number;
   /** Degrees clockwise (default 0). */
   turn?: number;
+}
+
+/** Things to compare and measure: four that lie down, four that stand. */
+export type MeasureThing =
+  | 'pencil'
+  | 'ribbon'
+  | 'snake'
+  | 'brush'
+  | 'tower'
+  | 'tree'
+  | 'flower'
+  | 'bottle';
+
+/** What lies on one pan of a balance. */
+export interface BalancePan {
+  emoji?: string;
+  cubes?: number;
 }
 
 export interface ClockTime {
