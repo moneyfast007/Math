@@ -168,7 +168,7 @@ function Objects({
       for (let i = 0; i < count; i++, at++) if (!(g === 0 && i >= count - removed)) order.push(at);
     });
     setCounted([]);
-    const timers = order.map((place, k) =>
+    const timers = order.map((_, k) =>
       window.setTimeout(
         () => {
           setCounted(order.slice(0, k + 1));
