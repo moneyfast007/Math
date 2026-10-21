@@ -273,7 +273,7 @@ test.describe('journey', () => {
     await expect(map.locator('.node')).toHaveCount(11);
     await expect(map.locator('.node--warmup')).toHaveCount(3);
     await expect(map.locator('.node--done')).toHaveCount(0);
-    await expect(map.getByRole('img', { name: 'אתגר הסיום, עדיין סגור' })).toBeVisible();
+    await expect(map.getByRole('button', { name: 'אתגר הסיום, עדיין סגור' })).toBeVisible();
     await expect(map.locator('.plusi')).toBeVisible();
     await expect(page.getByText('עולם 1 · חיבור וחיסור עד 20')).toBeVisible();
     await expect(page.getByText('תחנה 4 מתוך 10')).toBeVisible();

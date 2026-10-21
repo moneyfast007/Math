@@ -323,7 +323,7 @@
 .c-row__today {
   font-size: 14px;
   font-weight: 700;
-  color: var(--color-text-muted);
+  color: var(--color-text);
 }
 
 .c-row__today--on {
@@ -338,7 +338,8 @@
   min-height: var(--tap-min);
   padding: 0 var(--space-2);
   border-radius: var(--radius-pill);
-  background: var(--color-accent);
+  /* The darker teal: white text this size needs the full contrast (WCAG 1.4.3). */
+  background: var(--color-accent-strong);
   color: var(--color-text-on-accent);
   font-size: 17px;
   font-weight: 800;
