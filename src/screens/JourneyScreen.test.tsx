@@ -12,7 +12,7 @@ import { JourneyScreen } from './JourneyScreen';
 import { WorldsScreen } from './WorldsScreen';
 import { Plusi } from '@/ui/Plusi';
 import { Sticker } from '@/ui/Sticker';
-import { stickerForWorld } from '@/ui/stickers';
+import { STICKER_IDS, stickerForWorld } from '@/ui/stickers';
 
 describe('journey map layout', () => {
   it('snakes bottom-up, right-to-left first, inside a 100-wide map', () => {
@@ -89,9 +89,13 @@ describe('stickers', () => {
   it('are fixed per world and cycle past the drawings', () => {
     expect(stickerForWorld(1)).toBe('balloon');
     expect(stickerForWorld(2)).toBe('boat');
-    expect(stickerForWorld(7)).toBe('balloon');
+    expect(stickerForWorld(7)).toBe('train');
+    expect(stickerForWorld(8)).toBe('rainbow');
+    expect(stickerForWorld(9)).toBe('balloon');
     render(<Sticker id="boat" />);
     expect(screen.getByRole('img', { name: 'סירה' })).toBeInTheDocument();
+    // Eight drawings for at most eight worlds: no grade sees one twice.
+    expect(new Set(STICKER_IDS).size).toBe(8);
   });
 });
 

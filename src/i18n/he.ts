@@ -2076,6 +2076,8 @@ export const he = {
   'sticker.star': 'כוכב',
   'sticker.flower': 'פרח',
   'sticker.rocket': 'חללית',
+  'sticker.train': 'רכבת',
+  'sticker.rainbow': 'קשת בענן',
 
   'practice.done.passed': { f: 'עברת את התחנה!', m: 'עברת את התחנה!' },
   'practice.done.passedSpoken': { f: 'כל הכבוד! עברת את התחנה!', m: 'כל הכבוד! עברת את התחנה!' },

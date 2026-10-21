@@ -278,9 +278,11 @@ test.describe('journey', () => {
     await expect(page).toHaveURL(/\/album$/);
     await expect(page.getByRole('heading', { name: 'האלבום של נועה' })).toBeVisible();
     await expect(page.getByText('עוד אין מדבקות. העולם הראשון מחכה!')).toBeVisible();
-    // Eight worlds and six drawings: the drawings come round again after the sixth.
-    await expect(page.getByRole('img', { name: 'מדבקה סגורה: בלון' }).first()).toBeVisible();
-    await expect(page.getByRole('img', { name: 'מדבקה סגורה: סירה' }).first()).toBeVisible();
+    // Eight worlds and eight drawings: each world has its own, none comes twice.
+    await expect(page.getByRole('img', { name: 'מדבקה סגורה: בלון' })).toHaveCount(1);
+    await expect(page.getByRole('img', { name: 'מדבקה סגורה: סירה' })).toHaveCount(1);
+    await expect(page.getByRole('img', { name: 'מדבקה סגורה: רכבת' })).toHaveCount(1);
+    await expect(page.getByRole('img', { name: 'מדבקה סגורה: קשת בענן' })).toHaveCount(1);
     await page.getByRole('button', { name: 'חזרה למסע' }).click();
     await expect(page).toHaveURL(/\/play$/);
   });

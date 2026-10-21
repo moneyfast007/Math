@@ -94,5 +94,44 @@ function Art({ id }: { id: StickerId }) {
           <path d="M46 64h8l-4 14z" fill="#fbeccf" />
         </>
       );
+    case 'train':
+      return (
+        <>
+          <path d="M8 88h84" stroke="#7a6a60" strokeWidth="3" strokeLinecap="round" />
+          <circle cx="24" cy="18" r="5" fill="#d8efec" />
+          <circle cx="32" cy="10" r="6" fill="#d8efec" />
+          <rect x="22" y="26" width="12" height="18" rx="2" fill="#434ab3" />
+          <rect x="18" y="22" width="20" height="7" rx="3" fill="#434ab3" />
+          <rect x="14" y="42" width="44" height="28" rx="7" fill="#e8793a" />
+          <rect x="20" y="46" width="24" height="6" rx="3" fill="#ffffff" opacity="0.4" />
+          <rect x="54" y="26" width="30" height="44" rx="3" fill="#5b63d6" />
+          <rect x="50" y="20" width="38" height="8" rx="3" fill="#434ab3" />
+          <rect x="60" y="33" width="18" height="15" rx="3" fill="#d8efec" />
+          <path d="M14 62L6 76h12z" fill="#c45f24" />
+          <circle cx="28" cy="76" r="8" fill="#7a6a60" />
+          <circle cx="28" cy="76" r="3" fill="#fbeccf" />
+          <circle cx="46" cy="76" r="8" fill="#7a6a60" />
+          <circle cx="46" cy="76" r="3" fill="#fbeccf" />
+          <circle cx="70" cy="74" r="10" fill="#7a6a60" />
+          <circle cx="70" cy="74" r="4" fill="#fbeccf" />
+        </>
+      );
+    case 'rainbow':
+      return (
+        <>
+          <path d="M12 70a38 38 0 0 1 76 0" fill="none" stroke="#e8793a" strokeWidth="8" />
+          <path d="M20 70a30 30 0 0 1 60 0" fill="none" stroke="#e2a33b" strokeWidth="8" />
+          <path d="M28 70a22 22 0 0 1 44 0" fill="none" stroke="#4f9d5d" strokeWidth="8" />
+          <path d="M36 70a14 14 0 0 1 28 0" fill="none" stroke="#5b63d6" strokeWidth="8" />
+          <circle cx="12" cy="74" r="8" fill="#d8efec" />
+          <circle cx="22" cy="70" r="10" fill="#d8efec" />
+          <circle cx="32" cy="76" r="7" fill="#d8efec" />
+          <rect x="6" y="74" width="30" height="9" rx="4.5" fill="#d8efec" />
+          <circle cx="88" cy="74" r="8" fill="#d8efec" />
+          <circle cx="78" cy="70" r="10" fill="#d8efec" />
+          <circle cx="68" cy="76" r="7" fill="#d8efec" />
+          <rect x="64" y="74" width="30" height="9" rx="4.5" fill="#d8efec" />
+        </>
+      );
   }
 }
