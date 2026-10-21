@@ -73,13 +73,17 @@ export function WorldsScreen() {
             <PlusiSays line={line} text={spoken.text} parts={spoken.parts} cheering={done > 0} />
           </div>
         </div>
-        <button
-          type="button"
-          className="btn btn--secondary"
-          onClick={() => navigate({ name: 'play' })}
-        >
-          {t('album.back')}
-        </button>
+        {/* The current world's card leads back to the journey; once every world is
+            finished there is none, and this is the way back. */}
+        {entries.some((e) => e.state === 'current') ? null : (
+          <button
+            type="button"
+            className="btn btn--secondary"
+            onClick={() => navigate({ name: 'play' })}
+          >
+            {t('album.back')}
+          </button>
+        )}
       </header>
 
       {/* Review from every world she has passed stations in: the place for it is here. */}
@@ -186,6 +190,7 @@ function WorldRow({ entry, young }: { entry: WorldMapEntry; young: boolean }) {
         </h2>
         <p className="world-row__state">
           <span className={`world-row__chip world-row__chip--${state}`}>
+            {state === 'done' ? <CheckMark /> : null}
             {t(`worlds.state.${state}`)}
           </span>
           {state === 'current' ? (
@@ -218,6 +223,7 @@ function WorldRow({ entry, young }: { entry: WorldMapEntry; young: boolean }) {
             navigate({ name: 'replay' });
           }}
         >
+          <ReplayMark />
           {t('album.replay')}
         </button>
       ) : state === 'current' ? (
@@ -230,6 +236,24 @@ function WorldRow({ entry, young }: { entry: WorldMapEntry; young: boolean }) {
         </button>
       ) : null}
     </li>
+  );
+}
+
+function CheckMark() {
+  return (
+    <svg viewBox="0 0 24 24" className="world-row__check" aria-hidden="true">
+      <path d="M5 12.5l4.2 4.2L19 7" />
+    </svg>
+  );
+}
+
+/** Round arrows: this world, played again. */
+function ReplayMark() {
+  return (
+    <svg viewBox="0 0 24 24" className="world-row__replay" aria-hidden="true">
+      <path d="M4 12a8 8 0 1 0 2.3-5.7" />
+      <path d="M4 4v4h4" />
+    </svg>
   );
 }
 
