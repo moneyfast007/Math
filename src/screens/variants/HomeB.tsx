@@ -245,7 +245,10 @@ function KidCard({
           {goal ? (
             <span className="kid-card__dots" aria-hidden="true">
               {Array.from({ length: goal }, (_, i) => (
-                <span key={i} className={i < today.rounds ? 'kid-card__dot kid-card__dot--on' : 'kid-card__dot'} />
+                <span
+                  key={i}
+                  className={i < today.rounds ? 'kid-card__dot kid-card__dot--on' : 'kid-card__dot'}
+                />
               ))}
             </span>
           ) : null}

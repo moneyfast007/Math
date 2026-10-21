@@ -209,7 +209,12 @@ export function ParentAreaB() {
 
       {profiles.length > 0 ? (
         <div className="pb-add">
-          <button type="button" className="child-add" disabled={full} onClick={() => setCreating(true)}>
+          <button
+            type="button"
+            className="child-add"
+            disabled={full}
+            onClick={() => setCreating(true)}
+          >
             <span className="child-add__icon">
               <Icon name="plus" />
             </span>
@@ -383,7 +388,9 @@ function ChildToday({ profile, index, now }: { profile: Profile; index: number; 
         <p className="pb-today pb-today--empty">
           {summary.lastPracticedAt === null
             ? tc('b.parent.notToday.never')
-            : t('b.parent.notToday.last', { params: { date: formatDate(summary.lastPracticedAt) } })}
+            : t('b.parent.notToday.last', {
+                params: { date: formatDate(summary.lastPracticedAt) },
+              })}
         </p>
       )}
 
@@ -391,7 +398,9 @@ function ChildToday({ profile, index, now }: { profile: Profile; index: number; 
         <div className="pb-where">
           <span className="pb-where__label">{t('b.parent.where')}</span>
           <span className="pb-where__world">
-            {t('journey.world', { params: { index: world.index, name: topicLabel(world.topic.id) } })}
+            {t('journey.world', {
+              params: { index: world.index, name: topicLabel(world.topic.id) },
+            })}
           </span>
           <span className="muted">
             {world.completed ? tc('parentArea.allWorldsDone') : nowAt(world)}
@@ -449,7 +458,9 @@ function ChildToday({ profile, index, now }: { profile: Profile; index: number; 
               {summary.successRate !== null && summary.attempts >= 20 ? (
                 <>
                   {' · '}
-                  {t('parent.successRate', { params: { percent: formatPercent(summary.successRate) } })}
+                  {t('parent.successRate', {
+                    params: { percent: formatPercent(summary.successRate) },
+                  })}
                 </>
               ) : null}
             </p>
@@ -500,10 +511,19 @@ function adviceFor(
   const top = summary.topMistakes[0];
   if (top && top.count >= TIP_MIN_MISTAKES) {
     const key = `b.tip.${top.kind}`;
-    if (isKey(key)) return { kind: 'mistake', text: tc(key), label: `${t('parent.commonMistakes')} ${mistakeLabel(top.kind)}` };
+    if (isKey(key))
+      return {
+        kind: 'mistake',
+        text: tc(key),
+        label: `${t('parent.commonMistakes')} ${mistakeLabel(top.kind)}`,
+      };
   }
   const weak = summary.struggling[0];
-  if (weak) return { kind: 'topic', text: t('b.parent.tip.topic', { params: { topic: topicLabel(weak) } }) };
+  if (weak)
+    return {
+      kind: 'topic',
+      text: t('b.parent.tip.topic', { params: { topic: topicLabel(weak) } }),
+    };
   if (summary.attempts >= 10) return { kind: 'good', text: tc('b.parent.tip.good') };
   return null;
 }
@@ -566,7 +586,11 @@ function ChildSettings({
             </>
           ) : null}
         </span>
-        <button type="button" className="btn btn--secondary btn--small pb-settings__edit" onClick={onEdit}>
+        <button
+          type="button"
+          className="btn btn--secondary btn--small pb-settings__edit"
+          onClick={onEdit}
+        >
           {t('b.parent.settings.edit')}
           <span className="visually-hidden"> {profile.name}</span>
         </button>
@@ -601,7 +625,11 @@ function ChildSettings({
               />
               <span>{g === 0 ? t('profile.dailyGoal.off') : g}</span>
               <span className="pb-seg__detail">
-                {g === 0 ? t('b.parent.goal.none') : g === 1 ? t('b.parent.goal.round') : t('b.parent.goal.rounds')}
+                {g === 0
+                  ? t('b.parent.goal.none')
+                  : g === 1
+                    ? t('b.parent.goal.round')
+                    : t('b.parent.goal.rounds')}
               </span>
             </label>
           ))}
@@ -610,7 +638,12 @@ function ChildSettings({
 
       <div className="pb-switches">
         <label className="pb-switch">
-          <input type="checkbox" role="switch" checked={sounds} onChange={(e) => save({ sounds: e.target.checked })} />
+          <input
+            type="checkbox"
+            role="switch"
+            checked={sounds}
+            onChange={(e) => save({ sounds: e.target.checked })}
+          />
           <span className="pb-switch__track" aria-hidden="true" />
           <span>{t('profile.sounds')}</span>
         </label>
@@ -625,7 +658,6 @@ function ChildSettings({
           <span>{t('profile.allowLevelChange')}</span>
         </label>
       </div>
-
     </section>
   );
 }
@@ -678,7 +710,9 @@ function DeviceGroup({
             <span className="pb-device__title">{t('b.parent.device.title')}</span>
             <span className="muted pb-device__summary">{t('b.parent.device.summary')}</span>
           </span>
-          {attention ? <span className="pb-device__flag">{t('b.parent.device.attention')}</span> : null}
+          {attention ? (
+            <span className="pb-device__flag">{t('b.parent.device.attention')}</span>
+          ) : null}
           <span className="pb-chevron" aria-hidden="true" />
         </button>
       </h2>

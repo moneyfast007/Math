@@ -22,10 +22,18 @@
 }
 
 /* As wide as its cards need (about 230px each), centred. */
-.home-b__cards[data-count='1'] { max-width: 260px; }
-.home-b__cards[data-count='2'] { max-width: 500px; }
-.home-b__cards[data-count='3'] { max-width: 740px; }
-.home-b__cards[data-count='4'] { max-width: 1000px; }
+.home-b__cards[data-count='1'] {
+  max-width: 260px;
+}
+.home-b__cards[data-count='2'] {
+  max-width: 500px;
+}
+.home-b__cards[data-count='3'] {
+  max-width: 740px;
+}
+.home-b__cards[data-count='4'] {
+  max-width: 1000px;
+}
 
 .kid-card {
   --kid-tint: #fde3d2;
@@ -49,11 +57,21 @@
     box-shadow var(--dur-fast) var(--ease);
 }
 
-.kid-card--c1 { --kid-tint: #d8efec; }
-.kid-card--c2 { --kid-tint: #e2e3f8; }
-.kid-card--c3 { --kid-tint: #fbeccf; }
-.kid-card--c4 { --kid-tint: #e6f2dc; }
-.kid-card--c5 { --kid-tint: #f6e1ec; }
+.kid-card--c1 {
+  --kid-tint: #d8efec;
+}
+.kid-card--c2 {
+  --kid-tint: #e2e3f8;
+}
+.kid-card--c3 {
+  --kid-tint: #fbeccf;
+}
+.kid-card--c4 {
+  --kid-tint: #e6f2dc;
+}
+.kid-card--c5 {
+  --kid-tint: #f6e1ec;
+}
 
 .kid-card:active {
   transform: scale(0.97);
@@ -300,12 +318,24 @@
   }
 }
 
-.parent-b .pb-c0 { --kid-tint: #fde3d2; }
-.parent-b .pb-c1 { --kid-tint: #d8efec; }
-.parent-b .pb-c2 { --kid-tint: #e2e3f8; }
-.parent-b .pb-c3 { --kid-tint: #fbeccf; }
-.parent-b .pb-c4 { --kid-tint: #e6f2dc; }
-.parent-b .pb-c5 { --kid-tint: #f6e1ec; }
+.parent-b .pb-c0 {
+  --kid-tint: #fde3d2;
+}
+.parent-b .pb-c1 {
+  --kid-tint: #d8efec;
+}
+.parent-b .pb-c2 {
+  --kid-tint: #e2e3f8;
+}
+.parent-b .pb-c3 {
+  --kid-tint: #fbeccf;
+}
+.parent-b .pb-c4 {
+  --kid-tint: #e6f2dc;
+}
+.parent-b .pb-c5 {
+  --kid-tint: #f6e1ec;
+}
 
 .pb-hero {
   display: flex;

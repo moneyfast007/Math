@@ -209,11 +209,7 @@ function HeroCard({
           </span>
         ) : null}
         {todayLine ? (
-          <span
-            className={
-              today.practised ? 'c-hero__today c-hero__today--on' : 'c-hero__today'
-            }
-          >
+          <span className={today.practised ? 'c-hero__today c-hero__today--on' : 'c-hero__today'}>
             {today.practised ? <Check /> : null}
             {todayLine}
           </span>

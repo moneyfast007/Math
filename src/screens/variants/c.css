@@ -99,7 +99,6 @@
   font-size: 112px;
 }
 
-
 .c-hero__body {
   display: flex;
   flex-direction: column;
@@ -276,14 +275,12 @@
   .c-hero__avatar .avatar--lg {
     font-size: 88px;
   }
-
 }
 
 @media (max-height: 760px) and (max-width: 560px) {
   .c-hero__avatar .avatar--lg {
     font-size: 72px;
   }
-
 
   .c-hero__name {
     font-size: var(--text-lg);
@@ -492,7 +489,6 @@
   height: 52px;
   border-radius: 50%;
 }
-
 
 .c-card__who {
   display: flex;

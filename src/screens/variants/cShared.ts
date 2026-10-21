@@ -129,7 +129,11 @@ const STRUGGLE_MIN = 5;
  * coming back (in today's topics when she practised today), else a topic that
  * is still hard, else a word on a good day. Null when there is nothing to say.
  */
-export function guidance(profile: Profile, progress: ProfileProgress | undefined, now: number): string | null {
+export function guidance(
+  profile: Profile,
+  progress: ProfileProgress | undefined,
+  now: number,
+): string | null {
   const tc = makeT(profile.gender);
   const today = todayOf(progress, now);
   const key = dayKey(now);

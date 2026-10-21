@@ -39,7 +39,11 @@ import './c.css';
 
 type CTab = 'today' | 'progress' | 'settings';
 const TABS: readonly CTab[] = ['today', 'progress', 'settings'];
-const TAB_ICON: Record<CTab, IconName> = { today: 'children', progress: 'progress', settings: 'settings' };
+const TAB_ICON: Record<CTab, IconName> = {
+  today: 'children',
+  progress: 'progress',
+  settings: 'settings',
+};
 const TAB_LABEL = {
   today: 'c.tab.today',
   progress: 'c.tab.progress',
@@ -262,7 +266,12 @@ function CTabs({ tab, onChange }: { tab: CTab; onChange: (tab: CTab) => void }) 
     document.getElementById(tabId(next))?.focus();
   };
   return (
-    <div className="parent-tabs c-tabs" role="tablist" aria-label={t('c.tabs')} onKeyDown={onKeyDown}>
+    <div
+      className="parent-tabs c-tabs"
+      role="tablist"
+      aria-label={t('c.tabs')}
+      onKeyDown={onKeyDown}
+    >
       {TABS.map((name) => (
         <button
           key={name}
@@ -398,7 +407,10 @@ function TodayCard({ profile, index, now }: { profile: Profile; index: number; n
             <dd>
               {today.correct}
               {today.exercises > 0 ? (
-                <span className="c-num__of"> ({formatPercent(today.correct / today.exercises)})</span>
+                <span className="c-num__of">
+                  {' '}
+                  ({formatPercent(today.correct / today.exercises)})
+                </span>
               ) : null}
             </dd>
           </div>
@@ -478,7 +490,8 @@ function ProgressCardC({ profile, index }: { profile: Profile; index: number }) 
             <ul className="c-facts" role="list">
               {summary.strong.length > 0 ? (
                 <li className="c-fact c-fact--strong">
-                  <strong>{t('c.progress.strong')}</strong> {summary.strong.map(topicLabel).join(', ')}
+                  <strong>{t('c.progress.strong')}</strong>{' '}
+                  {summary.strong.map(topicLabel).join(', ')}
                 </li>
               ) : null}
               {summary.struggling.length > 0 ? (
@@ -591,7 +604,9 @@ function ChildSettings({
       allowLevelChange: merged.allowLevelChange,
       ...(merged.sounds ? {} : { sounds: false }),
       ...(merged.roundLength === 'normal' ? {} : { roundLength: merged.roundLength }),
-      ...(merged.goal === 1 || merged.goal === 2 || merged.goal === 3 ? { dailyGoal: merged.goal } : {}),
+      ...(merged.goal === 1 || merged.goal === 2 || merged.goal === 3
+        ? { dailyGoal: merged.goal }
+        : {}),
     };
     updateProfile(profile.id, {
       name: profile.name,
@@ -633,7 +648,10 @@ function ChildSettings({
         <Segmented
           label={t('profile.roundLength')}
           value={roundLength}
-          options={ROUND_LENGTH_OPTIONS.map((o) => ({ value: o, label: t(`profile.roundLength.${o}`) }))}
+          options={ROUND_LENGTH_OPTIONS.map((o) => ({
+            value: o,
+            label: t(`profile.roundLength.${o}`),
+          }))}
           onChange={(v) => change({ roundLength: v })}
           hint={t('c.settings.roundCount', { params: { count: counts[roundLength] } })}
         />
@@ -691,7 +709,14 @@ function DeviceList({
   const storageIssue = useApp((s) => s.storageIssue);
   const stale = lastBackupAt !== null && Date.now() - lastBackupAt > BACKUP_STALE_MS;
 
-  const row = (item: DeviceItem, icon: IconName, title: string, status: string, body: ReactNode, warn = false) => (
+  const row = (
+    item: DeviceItem,
+    icon: IconName,
+    title: string,
+    status: string,
+    body: ReactNode,
+    warn = false,
+  ) => (
     <details
       className="c-row"
       open={open[item] === true}
@@ -705,7 +730,9 @@ function DeviceList({
           <Icon name={icon} />
         </span>
         <span className="c-row__title">{title}</span>
-        <span className={warn ? 'c-row__status c-row__status--warn' : 'c-row__status'}>{status}</span>
+        <span className={warn ? 'c-row__status c-row__status--warn' : 'c-row__status'}>
+          {status}
+        </span>
         <span className="c-row__chev" aria-hidden="true" />
       </summary>
       <div className="c-row__body">{body}</div>
@@ -714,7 +741,13 @@ function DeviceList({
 
   return (
     <div className="c-rows">
-      {row('sync', 'sync', t('c.device.sync'), linked ? t('c.device.syncOn') : t('c.device.syncOff'), <SyncSection />)}
+      {row(
+        'sync',
+        'sync',
+        t('c.device.sync'),
+        linked ? t('c.device.syncOn') : t('c.device.syncOff'),
+        <SyncSection />,
+      )}
       {row(
         'backup',
         'backup',
@@ -727,9 +760,21 @@ function DeviceList({
         <BackupSection onShow={onBackupFile} />,
         stale,
       )}
-      {row('pin', 'lock', t('c.device.pin'), hasPin ? t('c.device.pinOn') : t('c.device.pinOff'), <SecuritySection />)}
+      {row(
+        'pin',
+        'lock',
+        t('c.device.pin'),
+        hasPin ? t('c.device.pinOn') : t('c.device.pinOff'),
+        <SecuritySection />,
+      )}
       {hasChildren
-        ? row('offline', 'headphones', t('c.device.offline'), t('c.device.offlineHint'), <OfflineSection />)
+        ? row(
+            'offline',
+            'headphones',
+            t('c.device.offline'),
+            t('c.device.offlineHint'),
+            <OfflineSection />,
+          )
         : null}
       {row(
         'install',
