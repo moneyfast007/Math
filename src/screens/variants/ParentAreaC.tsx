@@ -22,7 +22,6 @@ import { useSync } from '@/sync';
 import { ageBandForGrade } from '@/ui/ageBand';
 import { Avatar } from '@/ui/Avatar';
 import { BrandMark } from '@/ui/BrandMark';
-import { ConfirmDialog } from '@/ui/Dialog';
 import { Icon, type IconName } from '@/ui/Icon';
 import { Plusi } from '@/ui/Plusi';
 import {
@@ -84,7 +83,6 @@ export function ParentAreaC() {
     asked.tab === 'settings' ? { sync: true } : {},
   );
   const [editing, setEditing] = useState<Profile | 'new' | null>(asked.newChild ? 'new' : null);
-  const [deleting, setDeleting] = useState<Profile | null>(null);
   const [added, setAdded] = useState<Profile | null>(null);
   const full = profiles.length >= MAX_PROFILES;
 
@@ -155,7 +153,6 @@ export function ParentAreaC() {
               profile={p}
               index={i}
               onEdit={() => setEditing(p)}
-              onDelete={() => setDeleting(p)}
             />
           ))}
           <button type="button" className="c-add" disabled={full} onClick={() => setEditing('new')}>
@@ -203,20 +200,6 @@ export function ParentAreaC() {
             setEditing(null);
           }}
           onClose={() => setEditing(null)}
-        />
-      ) : null}
-
-      {deleting ? (
-        <ConfirmDialog
-          title={t('profile.deleteTitle', { params: { name: deleting.name } })}
-          body={t('profile.deleteBody', { params: { name: deleting.name } })}
-          confirmLabel={t('profile.deleteConfirm')}
-          danger
-          onConfirm={() => {
-            removeProfile(deleting.id);
-            setDeleting(null);
-          }}
-          onCancel={() => setDeleting(null)}
         />
       ) : null}
 
@@ -578,12 +561,10 @@ function ChildSettings({
   profile,
   index,
   onEdit,
-  onDelete,
 }: {
   profile: Profile;
   index: number;
   onEdit: () => void;
-  onDelete: () => void;
 }) {
   const updateProfile = useApp((s) => s.updateProfile);
   const [saved, setSaved] = useState(0);
@@ -637,10 +618,6 @@ function ChildSettings({
         <span className="c-card__actions">
           <button type="button" className="btn btn--secondary btn--small" onClick={onEdit}>
             {t('parent.edit')}
-            <span className="visually-hidden"> {profile.name}</span>
-          </button>
-          <button type="button" className="btn btn--ghost btn--small" onClick={onDelete}>
-            {t('c.settings.delete')}
             <span className="visually-hidden"> {profile.name}</span>
           </button>
         </span>

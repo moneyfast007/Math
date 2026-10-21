@@ -1,5 +1,6 @@
 import { t, makeT, type TranslationKey } from '@/i18n';
 import { topicLabel } from '@/i18n/labels';
+import { summarizeProgress } from '@/state/progress';
 import { nextStop, type World } from '@/engine/journey';
 import type { Profile, ProfileProgress } from '@/state/schema';
 import { dayKey } from '@/state/streak';
@@ -139,4 +140,51 @@ export function guidance(
   if (hard) return tc('c.tip.struggling', { topic: isolate(topicLabel(hard.id)) });
 
   return today.practised ? t('c.tip.steady') : null;
+}
+
+/* ---------- Welcome back ---------- */
+
+const WELCOME_KEY = 'welcome-back';
+
+/** Calendar days between two moments (by the local date, not 24-hour periods). */
+function daysBetween(a: number, b: number): number {
+  const day = (x: number) => {
+    const d = new Date(x);
+    return Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()) / 86_400_000;
+  };
+  return Math.round(day(b) - day(a));
+}
+
+/** Two days or more since she last played (never for a child who has not played yet). */
+export function backAfterBreak(progress: ProfileProgress | undefined, now: number): boolean {
+  const last = summarizeProgress(progress).lastPracticedAt;
+  return last !== null && daysBetween(last, now) >= 2;
+}
+
+/** The welcome back is said once a day per child: kept on this device (a convenience only). */
+function welcomedToday(id: string, now: number): boolean {
+  try {
+    const kept = JSON.parse(localStorage.getItem(WELCOME_KEY) ?? '{}') as Record<string, unknown>;
+    return kept[id] === dayKey(now);
+  } catch {
+    return false;
+  }
+}
+
+export function markWelcomed(id: string, now: number): void {
+  try {
+    const kept = JSON.parse(localStorage.getItem(WELCOME_KEY) ?? '{}') as Record<string, unknown>;
+    localStorage.setItem(WELCOME_KEY, JSON.stringify({ ...kept, [id]: dayKey(now) }));
+  } catch {
+    // Without storage the welcome may come again today; nothing else depends on it.
+  }
+}
+
+/** Should Plusi welcome this child back now? */
+export function welcomeBack(
+  profile: Profile,
+  progress: ProfileProgress | undefined,
+  now: number,
+): boolean {
+  return backAfterBreak(progress, now) && !welcomedToday(profile.id, now);
 }

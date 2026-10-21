@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { speaker } from '@/audio/speaker';
 import { navigate } from '@/app/router';
 import { activeWorld } from '@/engine/journey';
 import { makeT, t } from '@/i18n';
@@ -14,9 +15,18 @@ import { BrandMark } from '@/ui/BrandMark';
 import { Icon } from '@/ui/Icon';
 import { LongPressButton } from '@/ui/LongPressButton';
 import { Plusi } from '@/ui/Plusi';
+import { SpeakerButton } from '@/ui/SpeakerButton';
 import { InfoLink } from '../HomeScreen';
 import { whoIsPlayingTitle } from '../homeTitle';
-import { nowAt, requestNewChild, todayOf, worldName, type Today } from './cShared';
+import {
+  markWelcomed,
+  nowAt,
+  requestNewChild,
+  todayOf,
+  welcomeBack,
+  worldName,
+  type Today,
+} from './cShared';
 import './c.css';
 
 /**
@@ -63,25 +73,46 @@ export function HomeC() {
   }
 
   const play = (p: Profile) => {
+    // Once she is in, the welcome back is done for today.
+    markWelcomed(p.id, Date.now());
     selectProfile(p.id);
     navigate({ name: 'play' });
   };
   const only = profiles.length === 1 ? profiles[0] : undefined;
   const now = Date.now();
-  const title = only
-    ? t('child.hello', { params: { name: only.name } })
-    : whoIsPlayingTitle(profiles.map((p) => p.gender));
+  // Back after two days or more: Plusi says he missed her (once that day).
+  const back = only
+    ? welcomeBack(only, progress[only.id], now)
+    : profiles.some((p) => welcomeBack(p, progress[p.id], now));
+  const title = back
+    ? only
+      ? makeT(only.gender)('c.welcomeBack.title', { name: only.name })
+      : t('c.welcomeBack.titleMany')
+    : only
+      ? t('child.hello', { params: { name: only.name } })
+      : whoIsPlayingTitle(profiles.map((p) => p.gender));
+  const spokenBack = only
+    ? makeT(only.gender)('journey.welcomeBack.spoken')
+    : t('journey.welcomeBack.many');
 
   return (
     <main className="screen c-home" data-screen="home">
       <BrandMark />
       <div className="c-home__center">
-        <header className="c-home__ask">
-          <Plusi size={72} decorative className="c-home__plusi" />
+        <header className={back ? 'c-home__ask c-home__ask--back' : 'c-home__ask'}>
+          <Plusi
+            size={72}
+            mood={back ? 'cheering' : 'happy'}
+            decorative
+            className={back ? 'c-home__plusi c-home__plusi--back' : 'c-home__plusi'}
+          />
           <div className="bubble c-home__bubble">
+            {back ? <p className="c-home__missed">{t('c.welcomeBack.missed')}</p> : null}
             <h1 className="c-home__title">{title}</h1>
+            {back ? <SpeakerButton text={spokenBack} /> : null}
           </div>
         </header>
+        {back ? <SayOnce text={spokenBack} /> : null}
 
         {only ? (
           <HeroCard profile={only} index={0} now={now} onPlay={() => play(only)} />
@@ -135,6 +166,38 @@ export function HomeC() {
       ) : null}
     </main>
   );
+}
+
+/**
+ * Says the welcome back aloud once, when Plusi has popped in. Where the browser
+ * allows no sound before a touch (iPhone, iPad), on the first touch of the screen
+ * that is not a button (a button does what it says).
+ */
+function SayOnce({ text }: { text: string }) {
+  useEffect(() => {
+    let heard = false;
+    const play = () => {
+      void speaker.speak(text).then((result) => {
+        if (result === 'clip') heard = true;
+      });
+    };
+    const timer = window.setTimeout(play, 800);
+    const onTouch = (event: PointerEvent) => {
+      if ((event.target as Element | null)?.closest('button, a, input, label')) return;
+      if (!heard) {
+        heard = true;
+        play();
+      }
+      document.removeEventListener('pointerdown', onTouch);
+    };
+    document.addEventListener('pointerdown', onTouch);
+    return () => {
+      window.clearTimeout(timer);
+      document.removeEventListener('pointerdown', onTouch);
+      speaker.stop();
+    };
+  }, [text]);
+  return null;
 }
 
 /** The big "continue" card: one tap anywhere on it starts where she stopped. */
