@@ -536,8 +536,7 @@ function train(animals: readonly Thing[], arrow = false): Visual {
 }
 
 type TrainFact =
-  | { line: Thing[]; kind: 'who'; car: 2 | 3 }
-  | { line: Thing[]; kind: 'which'; car: number };
+  { line: Thing[]; kind: 'who'; car: 2 | 3 } | { line: Thing[]; kind: 'which'; car: number };
 
 function trainExercise(f: TrainFact, rng: Rng): Exercise {
   const { line } = f;

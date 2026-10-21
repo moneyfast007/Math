@@ -378,11 +378,10 @@ function sizeRow(t: Thing, sizes: number[], gap: number | null, arrow = false): 
           ]
         : []),
     ],
-    items: sizes.map(
-      (s, i): SceneItem =>
-        i === gap
-          ? { blank: true, x: xs[i] as number, y: 17, size: 12 }
-          : at(t, xs[i] as number, 25 - s / 2, s),
+    items: sizes.map((s, i): SceneItem =>
+      i === gap
+        ? { blank: true, x: xs[i] as number, y: 17, size: 12 }
+        : at(t, xs[i] as number, 25 - s / 2, s),
     ),
   };
 }
@@ -698,8 +697,7 @@ function compare({ pair, a, b, ask }: CompareFact, rng: Rng): Exercise {
 
 type Family2 = 'fruit' | 'animal';
 type CountFact =
-  | { by: 'color'; color: Color; n: number }
-  | { by: 'family'; family: Family2; n: number };
+  { by: 'color'; color: Color; n: number } | { by: 'family'; family: Family2; n: number };
 
 const PLACES: [number, number][] = [
   [86, 13],
@@ -1013,9 +1011,13 @@ export const sort0 = defineTopic({
         ),
         ...SHAPE_COLOR.flatMap(({ shapes, colors }) =>
           [true, false].flatMap((firstShape) =>
-            [true, false].map(
-              (first): TwoFact => ({ by: 'shapeColor', shapes, colors, firstShape, first }),
-            ),
+            [true, false].map((first): TwoFact => ({
+              by: 'shapeColor',
+              shapes,
+              colors,
+              firstShape,
+              first,
+            })),
           ),
         ),
       ],
