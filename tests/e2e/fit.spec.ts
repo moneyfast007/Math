@@ -13,7 +13,7 @@ import { expect, test, type Page } from '@playwright/test';
 
 const WORLDS: Record<number, string[]> = {
   0: ['count-10', 'add-sub-20', 'shapes'],
-  1: ['add-sub-20', 'numbers-100', 'polygons', 'clock-money-1'],
+  1: ['add-sub-20', 'numbers-100', 'polygons', 'clock-money-1', 'data'],
   2: [
     'add-sub-100',
     'numbers-1000',
@@ -33,9 +33,9 @@ const WORLDS: Record<number, string[]> = {
     'perimeter-area',
     'angles',
     'vertical-4',
-    'data',
+    'data-stats',
   ],
-  5: ['fraction-ops', 'decimals', 'percent-intro', 'order-ops', 'areas', 'data'],
+  5: ['fraction-ops', 'decimals', 'percent-intro', 'order-ops', 'areas', 'data-stats'],
   6: [
     'fraction-mul-div',
     'decimal-ops',
@@ -43,7 +43,7 @@ const WORLDS: Record<number, string[]> = {
     'percent',
     'ratio',
     'circle-volume',
-    'data',
+    'data-stats',
   ],
 };
 

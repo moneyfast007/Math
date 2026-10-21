@@ -224,8 +224,12 @@ describe('<WorldsScreen>', () => {
     render(<WorldsScreen />);
     const list = screen.getByRole('list', { name: 'העולמות לפי הסדר' });
     const rows = within(list).getAllByRole('listitem');
-    expect(rows).toHaveLength(4);
-    expect(rows.map((r) => within(r).getByRole('heading').textContent)).toEqual([
+    // Grade 1's worlds, the data world last.
+    expect(rows.length).toBeGreaterThanOrEqual(5);
+    expect(within(rows.at(-1) as HTMLElement).getByRole('heading').textContent).toMatch(
+      new RegExp(`· ${t('topic.data')}$`),
+    );
+    expect(rows.slice(0, 4).map((r) => within(r).getByRole('heading').textContent)).toEqual([
       `עולם 1 · ${t('topic.addSub20')}`,
       `עולם 2 · ${t('topic.numbers100')}`,
       expect.stringMatching(/^עולם 3 · /),
