@@ -948,7 +948,9 @@ export function JourneyReport({ profile }: { profile: Profile }) {
           <li key={w.topic.id} className="report__world">
             <span>
               {w.completed
-                ? t('parent.journey.worldDone', { params: { name: isolate(topicLabel(w.topic.id)) } })
+                ? t('parent.journey.worldDone', {
+                    params: { name: isolate(topicLabel(w.topic.id)) },
+                  })
                 : t('parent.journey.world', {
                     params: {
                       name: isolate(topicLabel(w.topic.id)),

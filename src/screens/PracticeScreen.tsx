@@ -296,7 +296,9 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
         : replaying
           ? t('practice.done.replay')
           : null;
-    const result = praise ?? (outcome ? resultLine(outcome, tc, profile.id, profile.grade, droppedLevel(s)) : null);
+    const result =
+      praise ??
+      (outcome ? resultLine(outcome, tc, profile.id, profile.grade, droppedLevel(s)) : null);
     const passed = praise !== null || outcome?.passed === true;
     const spoken =
       praise ?? (passed ? tc('practice.done.passedSpoken') : t('practice.done.notPassed'));

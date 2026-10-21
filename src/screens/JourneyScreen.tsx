@@ -346,7 +346,9 @@ function progressLine(world: World, nextWorld: number | null): string {
 
 /** "3 ימים ברצף", and for one day "יום אחד ברצף" (not "1 ימים"). */
 function streakLabel(count: number): string {
-  return count === 1 ? t('journey.streak.shortOne') : t('journey.streak.short', { params: { count } });
+  return count === 1
+    ? t('journey.streak.shortOne')
+    : t('journey.streak.short', { params: { count } });
 }
 
 /** Days in a row; shown from the first day (no chip at all before it). */
