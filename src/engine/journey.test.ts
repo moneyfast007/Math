@@ -120,7 +120,8 @@ describe('worldFor', () => {
 describe('worlds', () => {
   it('lists the grade’s topics in order and picks the first unfinished one', () => {
     const worlds = worldsFor(1, undefined);
-    expect(worlds.map((w) => w.index)).toEqual([1, 2, 3, 4, 5]);
+    expect(worlds.map((w) => w.index)).toEqual(range(1, worlds.length));
+    expect(worlds.length).toBeGreaterThanOrEqual(7);
     expect(worlds[0]?.topic.id).toBe(addSub20.id);
     expect(activeWorld(1, undefined)?.topic.id).toBe(addSub20.id);
     expect(stickersEarned(worlds)).toBe(0);
@@ -163,9 +164,12 @@ describe('worldsFor', () => {
 describe('worldsMap', () => {
   it('a new child: the first world is open, every other one waits for the one before it', () => {
     const map = worldsMap(1, undefined);
-    expect(map.map((e) => e.state)).toEqual(['current', 'locked', 'locked', 'locked', 'locked']);
+    expect(map.map((e) => e.state)).toEqual([
+      'current',
+      ...Array.from({ length: map.length - 1 }, () => 'locked'),
+    ]);
     expect(map[0]?.after).toBeNull();
-    expect(map.slice(1).map((e) => e.after?.index)).toEqual([1, 2, 3, 4]);
+    expect(map.slice(1).map((e) => e.after?.index)).toEqual(range(1, map.length - 1));
   });
 
   it('finished worlds are done wherever they are; a locked one waits for the closest unfinished', () => {
@@ -179,12 +183,14 @@ describe('worldsMap', () => {
     expect(map.map((e) => [e.world.topic.id, e.state])).toEqual([
       ['add-sub-20', 'done'],
       ['numbers-100', 'current'],
+      ['patterns-1', 'locked'],
       ['polygons', 'done'],
-      ['clock-money-1', 'locked'],
+      ['solids-1', 'locked'],
       ['measure-1', 'locked'],
+      ['clock-money-1', 'locked'],
     ]);
-    // World 3 is already done, so world 4 opens after world 2.
-    expect(map[3]?.after?.topic.id).toBe('numbers-100');
+    // World 4 is already done, so world 5 opens after world 3.
+    expect(map[4]?.after?.topic.id).toBe('patterns-1');
     // The current world is the one the journey shows.
     expect(map.find((e) => e.state === 'current')?.world.topic.id).toBe(
       activeWorld(1, p)?.topic.id,

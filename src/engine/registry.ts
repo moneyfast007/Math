@@ -95,6 +95,8 @@ export function topicById(id: string): Topic | undefined {
  * grade 3's fifth world and grade 4's sixth).
  */
 const ORDER: Partial<Record<Grade, readonly Topic[]>> = {
+  // Patterns after the numbers to 100 they count in; solids beside the flat shapes.
+  1: [addSub20, numbers100, patterns1, polygons, solids1, measure1, clockMoney1],
   2: [addSub100, numbers1000, moneyTopic, multIntro, clockTopic, polygons, vertical2, data],
   4: [
     bigNumbers,
