@@ -61,10 +61,10 @@ describe('more of this world', () => {
 
   it('leaves out the warm-up stations shown as done but never practised', async () => {
     const { worldsFor } = await import('./journey');
-    // Grade 2 starts polygons at station 6: stations 1–5 are warm-ups, not passed by her.
+    // Grade 2 starts data at station 3: stations 1–2 are warm-ups, not passed by her.
     const p = emptyProgress();
-    p.topics['polygons'] = { ...emptyTopicStats(7), completedLevels: [6] };
-    const polygons = worldsFor(2, p).find((w) => w.topic.id === 'polygons')!;
-    expect(worldPool(polygons, p).map((i) => i.level)).toEqual([6]);
+    p.topics['data'] = { ...emptyTopicStats(4), completedLevels: [3] };
+    const data = worldsFor(2, p).find((w) => w.topic.id === 'data')!;
+    expect(worldPool(data, p).map((i) => i.level)).toEqual([3]);
   });
 });

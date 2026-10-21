@@ -11,6 +11,7 @@ import {
   PolygonView,
   RulerView,
 } from './GeoVisuals';
+import { FigureView } from './FigureVisual';
 import { CubeStackView, SolidsView, ThingView } from './SolidsVisual';
 import { BalanceView, LengthsView, WeekView } from './MeasureVisuals';
 import { VerticalView } from './Vertical';
@@ -82,6 +83,8 @@ export function VisualView({ visual }: { visual: Visual }) {
       return <BalanceView v={visual} />;
     case 'weekDays':
       return <WeekView v={visual} />;
+    case 'figure':
+      return <FigureView v={visual} />;
   }
 }
 

@@ -8,7 +8,7 @@ import { expect, test, type Page } from '@playwright/test';
  */
 
 const WORLDS: Record<number, string[]> = {
-  2: ['add-sub-100', 'numbers-1000', 'money', 'mult-intro', 'clock', 'polygons', 'vertical-2'],
+  2: ['add-sub-100', 'numbers-1000', 'money', 'mult-intro', 'clock', 'polygons-2', 'vertical-2'],
 };
 
 const done = {

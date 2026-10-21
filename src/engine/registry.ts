@@ -31,6 +31,7 @@ import { orderOps } from './topics/orderOps';
 import { patterns1 } from './topics/patterns1';
 import { perimeterArea } from './topics/perimeterArea';
 import { polygons } from './topics/polygons';
+import { polygons2 } from './topics/polygons2';
 import { percent } from './topics/percent';
 import { percentIntro } from './topics/percentIntro';
 import { ratio } from './topics/ratio';
@@ -47,7 +48,7 @@ export const TOPICS: readonly Topic[] = [
   shapesTopic,
   // Grade 1
   numbers100,
-  polygons, // grades 1–2
+  polygons,
   clockMoney1,
   patterns1,
   solids1,
@@ -58,6 +59,7 @@ export const TOPICS: readonly Topic[] = [
   moneyTopic,
   multIntro,
   clockTopic,
+  polygons2,
   vertical2,
   // Grade 3
   multTable,
@@ -101,7 +103,7 @@ export function topicById(id: string): Topic | undefined {
 const ORDER: Partial<Record<Grade, readonly Topic[]>> = {
   // Patterns after the numbers to 100 they count in; solids beside the flat shapes.
   1: [addSub20, numbers100, patterns1, polygons, solids1, measure1, clockMoney1, data],
-  2: [addSub100, numbers1000, moneyTopic, multIntro, clockTopic, polygons, vertical2, data],
+  2: [addSub100, numbers1000, moneyTopic, multIntro, clockTopic, polygons2, vertical2, data],
   4: [
     bigNumbers,
     longMulDiv,

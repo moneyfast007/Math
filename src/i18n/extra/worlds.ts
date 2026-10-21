@@ -132,18 +132,13 @@ export const heWorlds = {
   },
   'wp.n1000.sub.hint1': 'נתנו: מחסרים.',
 
-  // World: polygons and angles (grades 1–2)
-  'topic.polygons': 'מצולעים וזוויות',
+  // World: polygons (grade 1); its levels 6–10, and grade 2's world, in ./polygons2.ts.
+  'topic.polygons': 'מצולעים',
   'level.polygons.1': 'כמה צלעות?',
   'level.polygons.2': 'כמה קודקודים?',
   'level.polygons.3': 'איך קוראים לצורה?',
   'level.polygons.4': 'איפה המצולע?',
   'level.polygons.5': 'למי יותר צלעות?',
-  'level.polygons.6': 'זווית ישרה',
-  'level.polygons.7': 'כמה זוויות ישרות?',
-  'level.polygons.8': 'איזו זווית ישרה?',
-  'level.polygons.9': 'כל הצלעות שוות',
-  'level.polygons.10': 'היקף',
   'ex.poly.sides.prompt': 'כמה צלעות יש לצורה?',
   'ex.poly.sides.hint1': 'צלע היא קו ישר אחד של הצורה. נספור אותן מסביב, כל אחת פעם אחת.',
   'ex.poly.sides.example': 'לצורה הזאת יש {n} צלעות.',

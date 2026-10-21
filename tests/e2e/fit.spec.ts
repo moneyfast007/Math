@@ -29,7 +29,7 @@ const WORLDS: Record<number, string[]> = {
     'money',
     'mult-intro',
     'clock',
-    'polygons',
+    'polygons-2',
     'vertical-2',
     'data',
   ],
