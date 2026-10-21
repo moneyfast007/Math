@@ -109,6 +109,15 @@ export type Visual =
       /** Kept on one line, the shapes shrinking to fit (a long pattern reads in order on a phone). */
       oneLine?: boolean;
     }
+  /**
+   * Solids (גופים) in a row, drawn in 3D with light and shade; a flat shape among
+   * them is drawn flat, as on paper. `stacked`: the items one on top of the other.
+   */
+  | { type: 'solids'; items: SolidItem[]; stacked?: boolean }
+  /** Unit cubes in columns standing side by side, one deep, so every cube shows. */
+  | { type: 'cubeStack'; columns: number[] }
+  /** One everyday thing, drawn big (an emoji): which solid does it look like? */
+  | { type: 'thing'; emoji: string }
   /** Pencils standing on one line, `lengths` in units of 1–5: which is longest? */
   | { type: 'pencils'; lengths: number[] }
   /** An angle of `deg` degrees between a ray along the base and a second ray, the whole turned by `turn`. */
@@ -239,6 +248,21 @@ export interface ShapeItem {
   size?: number;
   /** Degrees clockwise (default 0). */
   turn?: number;
+}
+
+/** `pyramid` stands on a square, `pyramid3` on a triangle. */
+export type SolidKind = 'cube' | 'box' | 'sphere' | 'cylinder' | 'cone' | 'pyramid' | 'pyramid3';
+
+export interface SolidItem {
+  /** A solid, or a flat shape (drawn flat, for "a solid or a flat shape?"). */
+  kind: SolidKind | ShapeKind;
+  color: ShapeColor;
+  /** One face (or the base) painted in another colour, to ask about it. */
+  mark?: 'front' | 'top' | 'side' | 'base';
+  /** The hidden edges drawn dashed, to count faces and vertices at the back. */
+  seeThrough?: boolean;
+  /** A cylinder lying on its side (it rolls). */
+  lying?: boolean;
 }
 
 export interface ClockTime {
