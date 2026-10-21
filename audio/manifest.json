@@ -716107,6 +716107,30 @@
       "sent": "במרובע יש זווית של שישים וחמש מעלות, זווית של מאה וְחֲמֵשׁ עֶשְׂרֵה מעלות וזווית של מאה וְחֲמֵשׁ עֶשְׂרֵה מעלות. כמה מעלות יש בזווית הרביעית?",
       "bytes": 51021,
       "trimmed": true
+    },
+    "59ef77920f692b75": {
+      "text": "ארנבים",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 4653,
+      "trimmed": true
+    },
+    "d22398660cb7a2c5": {
+      "text": "זוגות שמתאימים",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 6669,
+      "trimmed": true
+    },
+    "e96f0897e58abfca": {
+      "text": "לאן מוביל השביל של הדוב?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 9549,
+      "trimmed": true
+    },
+    "ab449bfdecd5f711": {
+      "text": "בתמונה הזאת הברווז מעל השולחן.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 11949,
+      "trimmed": true
     }
   }
 }
