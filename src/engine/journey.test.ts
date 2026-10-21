@@ -120,7 +120,7 @@ describe('worldFor', () => {
 describe('worlds', () => {
   it('lists the grade’s topics in order and picks the first unfinished one', () => {
     const worlds = worldsFor(1, undefined);
-    expect(worlds.map((w) => w.index)).toEqual([1, 2, 3, 4]);
+    expect(worlds.map((w) => w.index)).toEqual([1, 2, 3, 4, 5]);
     expect(worlds[0]?.topic.id).toBe(addSub20.id);
     expect(activeWorld(1, undefined)?.topic.id).toBe(addSub20.id);
     expect(stickersEarned(worlds)).toBe(0);
@@ -163,9 +163,9 @@ describe('worldsFor', () => {
 describe('worldsMap', () => {
   it('a new child: the first world is open, every other one waits for the one before it', () => {
     const map = worldsMap(1, undefined);
-    expect(map.map((e) => e.state)).toEqual(['current', 'locked', 'locked', 'locked']);
+    expect(map.map((e) => e.state)).toEqual(['current', 'locked', 'locked', 'locked', 'locked']);
     expect(map[0]?.after).toBeNull();
-    expect(map.slice(1).map((e) => e.after?.index)).toEqual([1, 2, 3]);
+    expect(map.slice(1).map((e) => e.after?.index)).toEqual([1, 2, 3, 4]);
   });
 
   it('finished worlds are done wherever they are; a locked one waits for the closest unfinished', () => {
@@ -181,6 +181,7 @@ describe('worldsMap', () => {
       ['numbers-100', 'current'],
       ['polygons', 'done'],
       ['clock-money-1', 'locked'],
+      ['measure-1', 'locked'],
     ]);
     // World 3 is already done, so world 4 opens after world 2.
     expect(map[3]?.after?.topic.id).toBe('numbers-100');

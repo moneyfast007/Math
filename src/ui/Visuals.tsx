@@ -3,6 +3,7 @@ import { t } from '@/i18n';
 import { digitalTime } from '@/lang/time';
 import { AngleView, BoxView, CircleView, LinesView, PolygonView, RulerView } from './GeoVisuals';
 import { CubeStackView, SolidsView, ThingView } from './SolidsVisual';
+import { BalanceView, LengthsView, WeekView } from './MeasureVisuals';
 import { VerticalView } from './Vertical';
 
 /** Renders an exercise or hint picture. Always left-to-right, like the arithmetic. */
@@ -54,6 +55,12 @@ export function VisualView({ visual }: { visual: Visual }) {
       return <Items v={visual} />;
     case 'vertical':
       return <VerticalView visual={visual} />;
+    case 'lengths':
+      return <LengthsView v={visual} />;
+    case 'balance':
+      return <BalanceView v={visual} />;
+    case 'weekDays':
+      return <WeekView v={visual} />;
   }
 }
 
