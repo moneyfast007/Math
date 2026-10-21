@@ -23,7 +23,7 @@ import {
   type SessionState,
 } from '@/engine/session';
 import type { Exercise, Topic } from '@/engine/types';
-import { makeT, t } from '@/i18n';
+import { makeT, t, type TranslationKey } from '@/i18n';
 import {
   REVIEW_PASS_RATE,
   roundsToday,
@@ -432,7 +432,9 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
                   ? t('practice.done.again')
                   : ahead?.kind === 'review'
                     ? t('journey.start.review')
-                    : t('practice.done.next')}
+                    : ahead?.kind === 'level' && ahead.level !== s.startLevel + 1
+                      ? t('practice.done.toStation', { params: { n: ahead.level } })
+                      : t('practice.done.next')}
               </button>
               <button
                 type="button"
@@ -515,6 +517,20 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
       {notice ? (
         <p className="notice notice--ok" role="status">
           {notice}
+        </p>
+      ) : null}
+      {/* A station round names its station, so it is never mistaken for the final challenge. */}
+      {mode === 'level' ? (
+        <p className="station-line">
+          {t('practice.station', {
+            params: {
+              n: s.startLevel,
+              name: (() => {
+                const key = gradeLevels.find((l) => l.level === s.startLevel)?.labelKey;
+                return key ? t(key as TranslationKey) : '';
+              })(),
+            },
+          })}
         </p>
       ) : null}
       {/* The final challenge looks like one: a gold banner with what it takes, all round. */}
@@ -843,6 +859,12 @@ function resultLine(
   // Passed the last station needed: is the review open now?
   if (world?.review === 'current' && o.newlyCompleted)
     return `${tc('practice.done.passed')} ${t('practice.done.reviewOpened')}`;
+  // Nothing opened (the last station, with stations skipped on the way): what is left.
+  const left = world?.review === 'locked' ? world.stations.filter((st) => !st.warmup && st.state !== 'done').length : 0;
+  if (left > 0)
+    return `${tc('practice.done.passed')} ${
+      left === 1 ? t('practice.done.leftOne') : t('practice.done.left', { params: { n: left } })
+    }`;
   return tc('practice.done.passed');
 }
 

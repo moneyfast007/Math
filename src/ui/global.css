@@ -6424,3 +6424,18 @@ details.report .report__worlds {
     height: auto;
   }
 }
+
+/* A station round names its station, quietly, above the exercise. */
+.station-line {
+  margin: 0;
+  text-align: center;
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: var(--color-text-muted);
+  line-height: 1.3;
+}
+
+.challenge-banner {
+  text-align: center;
+  border-radius: 18px;
+}

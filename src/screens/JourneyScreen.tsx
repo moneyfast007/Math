@@ -136,6 +136,8 @@ function Journey({ profile }: { profile: Profile }) {
   // More of this world: once a station of it is passed (nothing to mix before).
   const hasWorldMix = worldPool(world, progress).length > 0;
   const canPick = profile.settings.allowLevelChange && stop.kind === 'level';
+  /** Stations still to pass before the final challenge opens (warm-ups are never needed). */
+  const left = world.stations.filter((st) => !st.warmup && st.state !== 'done').length;
 
   return (
     <main className="screen journey" data-screen="play">
@@ -256,7 +258,9 @@ function Journey({ profile }: { profile: Profile }) {
             onLocked={(s) =>
               setNote(
                 s === 'review'
-                  ? tc('journey.note.reviewLocked')
+                  ? left === 1
+                    ? t('journey.note.reviewLeftOne')
+                    : t('journey.note.reviewLeft', { params: { n: left } })
                   : t('journey.note.stationLocked', { params: { n: s.level } }),
               )
             }

@@ -2101,7 +2101,7 @@ export const he = {
   'practice.done.toAlbum': 'לאלבום',
   'practice.done.daily': 'כל הכבוד! סיימת את החזרה מכל העולמות.',
   'practice.done.worldMix': 'כל הכבוד! תרגלת עוד בעולם הזה.',
-  'practice.challenge.banner': 'אתגר הסיום · צריך {n} מתוך {total}',
+  'practice.challenge.banner': 'אתגר הסיום · צריך {n} מתוך {total} נכון בפעם הראשונה',
   'practice.done.titleAgain': 'עוד קצת, {name}!',
   'practice.done.score': '{n} מתוך {total} נכון בפעם הראשונה',
   'practice.done.need': 'כדי לעבור את התחנה צריך {n} מתוך {total}.',

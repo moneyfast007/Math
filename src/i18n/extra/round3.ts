@@ -4,10 +4,13 @@
  */
 export const heRound3 = {
   'journey.note.stationLocked': 'עוד לא הגעת לתחנה {n}. כל תחנה שעוברים פותחת את הבאה.',
-  'journey.note.reviewLocked': {
-    f: 'אתגר הסיום ייפתח כשתעברי את כל התחנות.',
-    m: 'אתגר הסיום ייפתח כשתעבור את כל התחנות.',
-  },
+  'journey.note.reviewLeft': 'אתגר הסיום ייפתח אחרי עוד {n} תחנות.',
+  'journey.note.reviewLeftOne': 'אתגר הסיום ייפתח אחרי עוד תחנה אחת.',
+  // Practice: which station this is; after a station, what is left before the challenge.
+  'practice.station': 'תחנה {n} · {name}',
+  'practice.done.left': 'נשארו עוד {n} תחנות, ואז אתגר הסיום נפתח.',
+  'practice.done.leftOne': 'נשארה עוד תחנה אחת, ואז אתגר הסיום נפתח.',
+  'practice.done.toStation': 'לתחנה {n}',
   // Album: the stars collected and a medal for every ten (shown, not spoken).
   'medals.title': 'מדליות כוכבים',
   'medals.stars': '{count} כוכבים',
