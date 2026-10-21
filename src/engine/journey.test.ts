@@ -177,8 +177,8 @@ describe('worldsMap', () => {
   it('finished worlds are done wherever they are; a locked one waits for the closest unfinished', () => {
     const p = progressAt(10, range(1, 10), true); // world 1 (add-sub-20) finished
     p.topics['polygons'] = {
-      ...emptyTopicStats(5),
-      completedLevels: range(1, 5),
+      ...emptyTopicStats(10),
+      completedLevels: range(1, 10),
       reviewPassed: true,
     };
     const map = worldsMap(1, p);

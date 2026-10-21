@@ -207,6 +207,12 @@ export type Visual =
   /** A circle with its radius or diameter drawn and labelled. */
   | { type: 'circle'; mark: 'radius' | 'diameter'; label: string }
   /**
+   * A picture drawn from parts (worlds "מצולעים", "מצולעים, זוויות ומדידה"): each part
+   * an SVG path in a `w` × `h` box (y down). `paper`: squared paper under it, one
+   * square per unit; `axis`: a dashed line down at this x (a line of symmetry).
+   */
+  | { type: 'figure'; w: number; h: number; parts: FigurePart[]; paper?: boolean; axis?: number }
+  /**
    * A column (vertical) exercise, drawn as in the notebook: solved up to step
    * `upto` (all of it by default), with the carry and borrow marks. `wrong`
    * writes a wrong digit in one cell (find the mistake); `missing` hides one
@@ -275,6 +281,13 @@ export interface VerticalMark {
   group: number;
   /** The top digit in this column is crossed out (it was borrowed from). */
   strike?: boolean;
+}
+
+/** One part of a figure: a filled shape (a colour, or `plain`), or a `line` drawn alone. */
+export interface FigurePart {
+  d: string;
+  color?: ShapeColor | 'plain';
+  line?: boolean;
 }
 
 export interface Polygon {

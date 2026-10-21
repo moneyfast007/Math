@@ -1,0 +1,84 @@
+/* ---------- Figures (worlds "מצולעים", "מצולעים, זוויות ומדידה") ---------- */
+
+.figure__svg {
+  max-height: min(240px, 30vh);
+}
+
+.choice-big--picture .figure__svg {
+  max-height: min(120px, 16vh);
+}
+
+.figure__svg * {
+  vector-effect: non-scaling-stroke;
+}
+
+.figure__paper {
+  stroke: var(--color-border);
+  stroke-width: 1.5;
+}
+
+.figure__part {
+  stroke: var(--color-text);
+  stroke-width: 2.5;
+  stroke-linejoin: round;
+}
+
+.figure__part--plain {
+  fill: var(--color-accent-soft);
+  stroke: var(--color-accent-strong);
+}
+
+.figure__part--red {
+  fill: #e8604c;
+}
+
+.figure__part--blue {
+  fill: #5b63d6;
+}
+
+.figure__part--yellow {
+  fill: #f0b429;
+}
+
+.figure__part--green {
+  fill: #3f9e5a;
+}
+
+.figure__line {
+  fill: none;
+  stroke-width: 6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.figure__line--plain {
+  stroke: var(--color-accent-strong);
+}
+
+.figure__line--red {
+  stroke: #e8604c;
+}
+
+.figure__line--blue {
+  stroke: #5b63d6;
+}
+
+.figure__line--yellow {
+  stroke: #f0b429;
+}
+
+.figure__line--green {
+  stroke: #3f9e5a;
+}
+
+.figure__axis {
+  stroke: #c45f24;
+  stroke-width: 2.5;
+  stroke-dasharray: 7 6;
+}
+
+/* Shapes on squared paper are counted square by square: bigger buttons. */
+.choice-big--picture .figure--paper .figure__svg {
+  width: min(200px, 40vw);
+  max-height: min(150px, 20vh);
+}
