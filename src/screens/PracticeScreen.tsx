@@ -23,7 +23,14 @@ import {
 } from '@/engine/session';
 import type { Exercise, Topic } from '@/engine/types';
 import { makeT, t } from '@/i18n';
-import { roundsToday, type RoundOutcome } from '@/state/progress';
+import {
+  REVIEW_PASS_RATE,
+  roundsToday,
+  STATION_PASS_RATE,
+  starsFor,
+  type RoundOutcome,
+} from '@/state/progress';
+import { Stars } from '@/ui/Stars';
 import type { Profile } from '@/state/schema';
 import { appStore, useActiveProfile, useApp } from '@/state/store';
 import { ageBandForGrade, applyAgeBand } from '@/ui/ageBand';
@@ -192,6 +199,7 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
 
   // The hint shown: the newest, unless the child taps back to an earlier one.
   const [hintView, setHintView] = useState<number | null>(null);
+  const [countToken, setCountToken] = useState(0);
   useEffect(() => setHintView(null), [s.hintsShown, s.done, s.exercise.factId]);
   const shownHint = Math.min(hintView ?? s.hintsShown - 1, Math.max(0, s.hintsShown - 1));
   // A hint opens at its top in its panel (which scrolls by itself, never the page).
@@ -340,16 +348,38 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
       if (typeof outcome?.advancedTo === 'number') playAgain();
       else navigate({ name: 'play' });
     };
+    // The round's stars, from its first-try answers; a station's best is kept on the map.
+    const stars = outcome?.stars ?? starsFor(s.firstTryCount, s.length);
+    const record = outcome !== null && outcome.bestBefore > 0 && outcome.stars > outcome.bestBefore;
+    const passRate = mode === 'review' ? REVIEW_PASS_RATE : STATION_PASS_RATE;
+    const need = Math.ceil(passRate * s.length - 1e-9);
     return (
       <main className="screen practice" data-screen="practice-done">
-        <section className="stack done" style={{ alignItems: 'center', textAlign: 'center' }}>
+        <section
+          className={passed ? 'stack done done--passed' : 'stack done done--again'}
+          style={{ alignItems: 'center', textAlign: 'center' }}
+        >
           <Plusi
             mood={passed ? 'cheering' : 'happy'}
-            size={band === 'young' ? 160 : 128}
+            size={band === 'young' ? 140 : 112}
             decorative
           />
-          <h1>{t('practice.done.title', { params: { name: profile.name } })}</h1>
-          <p className="done__body">{t('practice.done.body', { params: { count: s.done } })}</p>
+          <h1>
+            {passed
+              ? t('practice.done.title', { params: { name: profile.name } })
+              : t('practice.done.titleAgain', { params: { name: profile.name } })}
+          </h1>
+          <Stars n={stars} size="lg" />
+          {record ? <p className="done__record">{t('practice.done.record')}</p> : null}
+          <p className="done__body">
+            {t('practice.done.score', { params: { n: s.firstTryCount, total: s.length } })}
+          </p>
+          {/* Not passed: what it takes, in the round's own numbers. */}
+          {!passed && stationRound ? (
+            <p className="done__need">
+              {t('practice.done.need', { params: { n: need, total: s.length } })}
+            </p>
+          ) : null}
           {result ? (
             <div
               className={passed ? 'feedback feedback--correct' : 'feedback feedback--almost'}
@@ -401,6 +431,8 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
 
   const e = s.exercise;
   const finished = s.phase === 'correct' || s.phase === 'revealed';
+  // Things to count (not a frame): each can be tapped, and counted together after a miss.
+  const countable = e.visual?.type === 'objects' && !e.visual.frame;
   // A long typed number is easier to check with separators (1,462,743), as everywhere else.
   const slotValue = finished
     ? answerLabel(e)
@@ -411,7 +443,10 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
   const [before, after] = e.display ? splitAtSlot(e.display) : ['', ''];
 
   return (
-    <main className="screen practice" data-screen="practice">
+    <main
+      className={mode === 'review' ? 'screen practice practice--challenge' : 'screen practice'}
+      data-screen="practice"
+    >
       <header className="practice__bar">
         <div className="practice__side">
           <button
@@ -433,7 +468,8 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
               decorative
               className="practice__plusi"
             />
-            {s.phase === 'correct' ? <Confetti /> : null}
+            {/* Confetti for right the first time only: fixing it is praised, not celebrated. */}
+            {s.phase === 'correct' && s.history.at(-1) === 'first' ? <Confetti /> : null}
           </span>
         </div>
       </header>
@@ -443,7 +479,16 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
           {notice}
         </p>
       ) : null}
-      {review && s.done === 0 && s.phase === 'answering' ? (
+      {/* The final challenge looks like one: a gold banner with what it takes, all round. */}
+      {mode === 'review' ? (
+        <p className="challenge-banner" role="note">
+          <StarBadge />
+          {t('practice.challenge.banner', {
+            params: { n: Math.ceil(REVIEW_PASS_RATE * s.length - 1e-9), total: s.length },
+          })}
+        </p>
+      ) : null}
+      {review && mode !== 'review' && s.done === 0 && s.phase === 'answering' ? (
         <p className="notice" role="status">
           {t(mode === 'worldMix' ? 'practice.worldMix.body' : 'practice.review.body')}
         </p>
@@ -465,7 +510,24 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
           <SpeakerButton text={e.spokenText} parts={e.spokenParts} size="lg" />
           <h1 className="exercise__title">{groupDigits(e.prompt)}</h1>
         </div>
-        {e.visual ? <VisualView visual={e.visual} /> : null}
+        {e.visual ? (
+          <VisualView
+            key={`${s.done}:${e.factId}`}
+            visual={e.visual}
+            interactive={countable}
+            countToken={countToken}
+          />
+        ) : null}
+        {/* After a miss on a picture to count: count it together, aloud, one by one. */}
+        {countable && s.phase === 'wrong' ? (
+          <button
+            type="button"
+            className="btn btn--secondary btn--small practice__count"
+            onClick={() => setCountToken((k) => k + 1)}
+          >
+            {t('practice.countTogether')}
+          </button>
+        ) : null}
         {e.input.type === 'vertical' ? (
           // Written in columns: the grid, what to do, and its own number pad.
           <ColumnWork
@@ -751,6 +813,14 @@ function plusiMood(s: SessionState): PlusiMood {
   return 'happy';
 }
 
+function StarBadge() {
+  return (
+    <svg viewBox="0 0 24 24" className="challenge-banner__star" aria-hidden="true">
+      <path d="M12 2.6l2.9 6 6.5.8-4.8 4.5 1.2 6.5L12 17.3l-5.8 3.1 1.2-6.5L2.6 9.4l6.5-.8z" />
+    </svg>
+  );
+}
+
 /** A few coloured dots that burst and fade on a right answer. Decorative only. */
 function Confetti() {
   return (
@@ -801,9 +871,13 @@ type TC = ReturnType<typeof makeT>;
 function Feedback({ state: s, tc }: { state: SessionState; tc: TC }) {
   const e = s.exercise;
   if (s.phase === 'correct') {
-    const text = tc('feedback.correct');
+    const first = s.history.at(-1) === 'first';
+    const text = tc(first ? 'feedback.correct' : 'feedback.correctLater');
     return (
-      <div className="feedback feedback--correct" role="status">
+      <div
+        className={first ? 'feedback feedback--correct' : 'feedback feedback--correct feedback--later'}
+        role="status"
+      >
         <SpeakerButton text={text} />
         <span>{text}</span>
       </div>

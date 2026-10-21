@@ -108,6 +108,11 @@ export interface TopicStats {
   completedLevels: number[];
   /** The topic's final station, a mixed review of all levels, was passed (phase 4). */
   reviewPassed: boolean;
+  /**
+   * The best stars (1–3) earned in a round of each station: '1'…'10', and 'review'
+   * for the final challenge. Optional, so older data stays valid.
+   */
+  stars?: Record<string, number>;
 }
 
 /**

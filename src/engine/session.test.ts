@@ -4,6 +4,7 @@ import { seededRng } from './rng';
 import {
   completedExercise,
   MAX_TRIES,
+  maxTriesFor,
   reduce,
   ROUND_LENGTH,
   ROUND_LENGTHS,
@@ -62,6 +63,21 @@ describe('practice session', () => {
         expect(Math.ceil(n * 0.7 - 1e-9) / n).toBeLessThanOrEqual(strictest);
       }
     }
+  });
+
+  it('with three buttons, two wrong taps show the answer: the last button is not a win', () => {
+    const s0 = start();
+    const choices = { ...s0, exercise: { ...s0.exercise, input: { type: 'choices' as const, choices: [1, 2, 3] }, answer: 3 } };
+    expect(maxTriesFor(choices.exercise)).toBe(2);
+    let s = reduce(choices, { type: 'answer', value: 1 });
+    expect(s.phase).toBe('wrong');
+    s = reduce(s, { type: 'answer', value: 2 });
+    expect(s.phase).toBe('revealed');
+    expect(s.history).toEqual(['revealed']);
+    // Yes or no: one try.
+    expect(maxTriesFor({ ...s0.exercise, input: { type: 'choices', choices: [0, 1] } })).toBe(1);
+    // Typed answers keep three tries.
+    expect(maxTriesFor({ ...s0.exercise, input: { type: 'numpad', maxDigits: 2 } })).toBe(MAX_TRIES);
   });
 
   it('accepts an answer equal give or take floating-point noise', () => {

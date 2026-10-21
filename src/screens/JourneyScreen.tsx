@@ -25,6 +25,7 @@ import { Icon } from '@/ui/Icon';
 import { playGiggle } from '@/ui/fanfare';
 import { Plusi } from '@/ui/Plusi';
 import { SpeakerButton } from '@/ui/SpeakerButton';
+import { Stars } from '@/ui/Stars';
 import { JourneyIntroCard, WorldsIcon } from './JourneyIntro';
 import { fitStations, layoutStations, pathThrough, type Point } from './journeyLayout';
 
@@ -488,12 +489,21 @@ function WorldMap({
           const label = t(`journey.station.${s.state}`, { params: { n: s.level } });
           const cls = `node node--${s.state}`;
           const style = { left: `${p.x}%`, top: `${(p.y / height) * 100}%` };
-          const content =
-            s.state === 'done' ? (
-              <CheckIcon />
-            ) : (
-              <span className="node__num">{young ? '' : s.level}</span>
-            );
+          const content = (
+            <>
+              {s.state === 'done' ? (
+                <CheckIcon />
+              ) : (
+                <span className="node__num">{young ? '' : s.level}</span>
+              )}
+              {/* The best stars of this station, under it. */}
+              {s.stars > 0 ? (
+                <span className="node__stars">
+                  <Stars n={s.stars} label={false} />
+                </span>
+              ) : null}
+            </>
+          );
           return onPick && s.state !== 'locked' ? (
             <button
               key={s.level}
@@ -520,6 +530,11 @@ function WorldMap({
         >
           <StarIcon />
           {!young ? <span className="node__caption">{t('journey.review')}</span> : null}
+          {world.reviewStars > 0 ? (
+            <span className="node__stars node__stars--review">
+              <Stars n={world.reviewStars} label={false} />
+            </span>
+          ) : null}
         </div>
 
         {plusiAt ? (

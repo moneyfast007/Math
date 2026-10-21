@@ -891,6 +891,45 @@ ol.steps {
   color: var(--color-accent-strong);
 }
 
+/* The exercise's picture: a thing tapped (or counted together) gets its number. */
+.objects--tappable .obj {
+  position: relative;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.obj--counted {
+  filter: drop-shadow(0 0 6px rgb(242 181 58 / 80%));
+}
+
+.obj__n {
+  position: absolute;
+  top: -0.25em;
+  right: -0.3em;
+  min-width: 1.6em;
+  height: 1.6em;
+  padding: 0 0.2em;
+  border-radius: 999px;
+  background: var(--color-accent-strong);
+  color: #fff;
+  font-family: var(--font-math);
+  font-size: 0.4em;
+  font-weight: 800;
+  line-height: 1.6em;
+  text-align: center;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .obj__n {
+    animation: pop 0.25s ease-out both;
+  }
+}
+
+.practice__count {
+  align-self: center;
+}
+
 /* Pictures to count */
 .objects {
   display: flex;
@@ -1141,6 +1180,121 @@ ol.steps {
 
 .done__body {
   font-size: var(--text-lg);
+  margin: 0;
+}
+
+/* Passed and "not yet" look different at a glance, before a word is read. */
+.done {
+  padding: var(--space-4) var(--space-3);
+  border-radius: var(--radius-lg);
+}
+
+.done--passed {
+  background: linear-gradient(180deg, #fff6dc 0%, var(--color-bg) 70%);
+}
+
+.done--again {
+  background: linear-gradient(180deg, var(--color-accent-soft) 0%, var(--color-bg) 70%);
+}
+
+.done__record {
+  margin: 0;
+  padding: 4px 14px;
+  border-radius: var(--radius-pill);
+  background: var(--color-almost);
+  color: #fff;
+  font-weight: 800;
+}
+
+.done__need {
+  margin: 0;
+  font-weight: 700;
+  color: var(--color-accent-strong);
+}
+
+/* The final challenge: a gold banner and gold progress dots. */
+.challenge-banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin: 0;
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
+  background: #fff1cc;
+  border: 1.5px solid #f2b53a;
+  color: #8a5a10;
+  font-weight: 800;
+  font-size: var(--text-sm);
+  line-height: 1.3;
+}
+
+.challenge-banner__star {
+  flex: none;
+  width: 18px;
+  height: 18px;
+  fill: #f2b53a;
+}
+
+.practice--challenge .progress-dots .dot--done,
+.practice--challenge .progress-dots .dot--current {
+  background: #f2b53a;
+}
+
+/* Stars: gold when earned, an outline when not; on the end of a round they pop in. */
+.stars {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  direction: ltr;
+}
+
+.star {
+  width: 14px;
+  height: 14px;
+  fill: none;
+  stroke: #d8c39a;
+  stroke-width: 2;
+  stroke-linejoin: round;
+}
+
+.star--on {
+  fill: #f2b53a;
+  stroke: #d99a1b;
+}
+
+.stars--lg {
+  gap: 10px;
+}
+
+.stars--lg .star {
+  width: 56px;
+  height: 56px;
+  stroke-width: 1.6;
+}
+
+.stars--lg .star:nth-child(2) {
+  width: 68px;
+  height: 68px;
+  margin-top: -14px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .stars--lg .star--on {
+    animation: star-pop 0.5s cubic-bezier(0.3, 1.6, 0.5, 1) both;
+  }
+}
+
+@keyframes star-pop {
+  from {
+    transform: scale(0.2) rotate(-30deg);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1) rotate(0);
+    opacity: 1;
+  }
 }
 
 /* ---------- Phase 4: Plusi, the journey, the album ---------- */
@@ -1387,6 +1541,30 @@ ol.steps {
   font-weight: 700;
   color: var(--color-text-muted);
   white-space: nowrap;
+}
+
+/* A station's best stars: a small row overlapping its bottom edge. */
+.node__stars {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translate(-50%, -45%);
+  padding: 1px 4px;
+  border-radius: var(--radius-pill);
+  background: var(--color-surface);
+  box-shadow: 0 1px 3px rgb(0 0 0 / 12%);
+  line-height: 0;
+}
+
+.node__stars .star {
+  width: clamp(9px, calc(var(--node) * 0.2), 14px);
+  height: clamp(9px, calc(var(--node) * 0.2), 14px);
+}
+
+/* The final challenge's caption is under it: its stars go above. */
+.node__stars--review {
+  top: 0;
+  transform: translate(-50%, -75%);
 }
 
 .map__plusi {

@@ -72,7 +72,24 @@ function diffTopic(own: TopicStats | undefined, prev: TopicStats | undefined, ne
     mistakes,
     completedLevels: union(own?.completedLevels ?? [], next.completedLevels),
     reviewPassed: (own?.reviewPassed ?? false) || next.reviewPassed,
+    ...withStars(bestStars(own?.stars, next.stars)),
   };
+}
+
+/** The better of two records of best stars, station by station. */
+function bestStars(
+  a: Record<string, number> | undefined,
+  b: Record<string, number> | undefined,
+): Record<string, number> | undefined {
+  if (!a) return b;
+  if (!b) return a;
+  const out = { ...a };
+  for (const [k, n] of Object.entries(b)) out[k] = Math.max(out[k] ?? 0, n);
+  return out;
+}
+
+function withStars(stars: Record<string, number> | undefined): { stars?: Record<string, number> } {
+  return stars && Object.keys(stars).length > 0 ? { stars } : {};
 }
 
 function diffDay(own: DayStats | undefined, prev: DayStats | undefined, next: DayStats): DayStats {
@@ -176,8 +193,10 @@ function mergeTopic(parts: { stats: TopicStats; levelAt: number }[]): TopicStats
   let lastPracticedAt = 0;
   let completedLevels: number[] = [];
   let reviewPassed = false;
+  let stars: Record<string, number> | undefined;
   const mistakes: Record<string, number> = {};
   for (const { stats } of parts) {
+    stars = bestStars(stars, stats.stars);
     attempts += stats.attempts;
     correct += stats.correct;
     lastPracticedAt = Math.max(lastPracticedAt, stats.lastPracticedAt);
@@ -205,6 +224,7 @@ function mergeTopic(parts: { stats: TopicStats; levelAt: number }[]): TopicStats
     mistakes,
     completedLevels,
     reviewPassed,
+    ...withStars(stars),
   };
 }
 

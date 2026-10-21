@@ -126,6 +126,14 @@ function parseTopicStats(value: unknown, where: string): TopicStats {
   ].sort((a, b) => a - b);
   const reviewPassed = s['reviewPassed'] ?? false;
   if (typeof reviewPassed !== 'boolean') fail(`${where}: סיכום לא חוקי`);
+  // Added later and optional: the best stars per station.
+  const stars: Record<string, number> = {};
+  if (s['stars'] !== undefined) {
+    for (const [key, n] of Object.entries(record(s['stars'], `${where}, כוכבים`))) {
+      if (!/^(10|[1-9]|review)$/.test(key)) fail(`${where}: כוכבים לא חוקיים`);
+      stars[key] = intInRange(n, 1, 3, `${where}, כוכבים`);
+    }
+  }
   return {
     level: intInRange(s['level'], MIN_LEVEL, MAX_LEVEL, `${where}, רמה`),
     attempts,
@@ -135,6 +143,7 @@ function parseTopicStats(value: unknown, where: string): TopicStats {
     mistakes,
     completedLevels,
     reviewPassed,
+    ...(Object.keys(stars).length > 0 ? { stars } : {}),
   };
 }
 

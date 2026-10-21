@@ -48,6 +48,16 @@ export function roundLength(band: AgeBand, choice: RoundLength = 'normal'): numb
 
 export const MAX_TRIES = 3;
 
+/**
+ * Tries before the answer is shown. With buttons, never so many that the last one is
+ * the only button left: tapping through three buttons is not finding the answer.
+ */
+export function maxTriesFor(e: Exercise): number {
+  return e.input.type === 'choices'
+    ? Math.max(1, Math.min(MAX_TRIES, e.input.choices.length - 1))
+    : MAX_TRIES;
+}
+
 /** The round dropped below its station to help a stuck child: it cannot pass the station. */
 export function droppedLevel(s: SessionState): boolean {
   return s.level < s.startLevel;
@@ -191,7 +201,7 @@ export function reduce(s: SessionState, a: SessionAction): SessionState {
         lastMistake: mistake,
         firstMistake: s.firstMistake ?? mistake ?? 'other',
       };
-      return tries >= MAX_TRIES
+      return tries >= maxTriesFor(s.exercise)
         ? complete(next, 'revealed', 'revealed')
         : { ...next, phase: 'wrong' };
     }

@@ -1,5 +1,8 @@
 import type { ClockTime, ShapeItem, Visual } from '@/engine/types';
 import { t } from '@/i18n';
+import { useEffect, useRef, useState } from 'react';
+import { speaker } from '@/audio/speaker';
+import { numberToWords } from '@/lang/hebrewNumbers';
 import { digitalTime } from '@/lang/time';
 import { Bars2, DataTable, LineGraph, Pie, Tally } from './DataVisuals';
 import {
@@ -17,11 +20,23 @@ import { CubeStackView, SolidsView, ThingView } from './SolidsVisual';
 import { BalanceView, LengthsView, WeekView } from './MeasureVisuals';
 import { VerticalView } from './Vertical';
 
-/** Renders an exercise or hint picture. Always left-to-right, like the arithmetic. */
-export function VisualView({ visual }: { visual: Visual }) {
+/**
+ * Renders an exercise or hint picture. Always left-to-right, like the arithmetic.
+ * `interactive`: the exercise's own picture, where things to count can be tapped
+ * (each gets the next number); a new `countToken` counts them all aloud, one by one.
+ */
+export function VisualView({
+  visual,
+  interactive = false,
+  countToken = 0,
+}: {
+  visual: Visual;
+  interactive?: boolean;
+  countToken?: number;
+}) {
   switch (visual.type) {
     case 'objects':
-      return <Objects v={visual} />;
+      return <Objects v={visual} interactive={interactive} countToken={countToken} />;
     case 'numberLine':
       return <NumberLine v={visual} />;
     case 'fraction':
@@ -123,20 +138,80 @@ function Frame({ v, frame }: { v: Extract<Visual, { type: 'objects' }>; frame: 5
   );
 }
 
-function Objects({ v }: { v: Extract<Visual, { type: 'objects' }> }) {
-  if (v.frame) return <Frame v={v} frame={v.frame} />;
+/** Says a number while counting ("אחת, שתיים, שלוש…"), in the counting form. */
+function sayCount(n: number): void {
+  void speaker.speak(numberToWords(n, 'f'));
+}
+
+/** Gap between two numbers when counting together, ms. */
+const COUNT_STEP_MS = 750;
+
+function Objects({
+  v,
+  interactive,
+  countToken,
+}: {
+  v: Extract<Visual, { type: 'objects' }>;
+  interactive: boolean;
+  countToken: number;
+}) {
   const removed = v.removed ?? 0;
+  // The order things were counted in: their places among all the things (group by group).
+  const [counted, setCounted] = useState<number[]>([]);
+  const firstToken = useRef(countToken);
+  useEffect(() => {
+    if (countToken === firstToken.current) return;
+    // Counting together: every thing still there, one by one, each with its number.
+    const order: number[] = [];
+    let at = 0;
+    v.groups.forEach((count, g) => {
+      for (let i = 0; i < count; i++, at++) if (!(g === 0 && i >= count - removed)) order.push(at);
+    });
+    setCounted([]);
+    const timers = order.map((place, k) =>
+      window.setTimeout(() => {
+        setCounted(order.slice(0, k + 1));
+        sayCount(k + 1);
+      }, COUNT_STEP_MS * (k + 1)),
+    );
+    return () => timers.forEach((id) => window.clearTimeout(id));
+  }, [countToken, v.groups, removed]);
+  if (v.frame) return <Frame v={v} frame={v.frame} />;
+  const tap = (place: number) => {
+    if (!interactive || counted.includes(place)) return;
+    setCounted([...counted, place]);
+    sayCount(counted.length + 1);
+  };
+  let offset = 0;
   return (
-    <div className="objects" dir="ltr" aria-hidden="true" data-visual="objects">
+    <div
+      className={interactive ? 'objects objects--tappable' : 'objects'}
+      dir="ltr"
+      aria-hidden="true"
+      data-visual="objects"
+    >
       {v.groups.map((count, g) => {
         // Crossed-out items are the last ones of the first group.
         const isRemoved = (i: number) => g === 0 && i >= count - removed;
         const kind = v.kinds?.[g] ?? v.kind;
-        const items = Array.from({ length: count }, (_, i) => (
-          <span key={i} className={isRemoved(i) ? 'obj obj--removed' : 'obj'}>
-            {kind.emoji}
-          </span>
-        ));
+        const base = offset;
+        offset += count;
+        const items = Array.from({ length: count }, (_, i) => {
+          const place = base + i;
+          const n = counted.indexOf(place);
+          return (
+            <span
+              key={i}
+              className={
+                isRemoved(i) ? 'obj obj--removed' : n >= 0 ? 'obj obj--counted' : 'obj'
+              }
+              onClick={interactive ? () => tap(place) : undefined}
+            >
+              {kind.emoji}
+              {n >= 0 ? <b className="obj__n">{n + 1}</b> : null}
+            </span>
+          );
+        });
         return (
           <div
             key={g}

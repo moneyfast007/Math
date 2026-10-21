@@ -32,6 +32,8 @@ export interface WorldStation {
   state: StationState;
   /** Before the grade's starting station: optional, never needed to finish the world. */
   warmup: boolean;
+  /** The best stars (0–3) of a round of this station. */
+  stars: number;
 }
 
 export interface World {
@@ -40,6 +42,8 @@ export interface World {
   index: number;
   stations: WorldStation[];
   review: ReviewState;
+  /** The best stars (0–3) of the final challenge. */
+  reviewStars: number;
   /** Stations done out of the stations needed (her grade's levels plus the review). */
   done: number;
   total: number;
@@ -78,7 +82,8 @@ export function worldFor(
           : l.level < reach
             ? 'skipped'
             : 'locked';
-    return { level: l.level, labelKey: l.labelKey, state, warmup };
+    const stars = stats?.stars?.[String(l.level)] ?? 0;
+    return { level: l.level, labelKey: l.labelKey, state, warmup, stars };
   });
   const lastDone = needed.length > 0 && needed.every((l) => completed.has(l.level));
   const review: ReviewState = stats?.reviewPassed ? 'done' : lastDone ? 'current' : 'locked';
@@ -89,6 +94,7 @@ export function worldFor(
     index,
     stations,
     review,
+    reviewStars: stats?.stars?.['review'] ?? 0,
     done,
     total: needed.length + 1,
     completed: review === 'done' && lastDone,

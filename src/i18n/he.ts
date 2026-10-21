@@ -456,8 +456,11 @@ export const he = {
 
   // Feedback (never a red X, never a failure sound)
   'feedback.correct': { f: 'נכון! כל הכבוד', m: 'נכון! כל הכבוד' },
+  // Right on a second try: praised for fixing it, quieter than right the first time.
+  'practice.countTogether': 'נספור יחד',
+  'feedback.correctLater': { f: 'נכון! תיקנת את עצמך.', m: 'נכון! תיקנת את עצמך.' },
   'feedback.almost': { f: 'כמעט. בואי ננסה ביחד', m: 'כמעט. בוא ננסה ביחד' },
-  'feedback.notQuite': { f: 'לא בדיוק. בואי נבדוק ביחד', m: 'לא בדיוק. בוא נבדוק ביחד' },
+  'feedback.notQuite': { f: 'לא בדיוק. נסי שוב, או בקשי רמז.', m: 'לא בדיוק. נסה שוב, או בקש רמז.' },
   'feedback.keepGoing': { f: 'את בדרך הנכונה', m: 'אתה בדרך הנכונה' },
 
   // Audio
@@ -2092,6 +2095,14 @@ export const he = {
   'practice.done.toAlbum': 'לאלבום',
   'practice.done.daily': 'כל הכבוד! סיימת את החזרה מכל העולמות.',
   'practice.done.worldMix': 'כל הכבוד! תרגלת עוד בעולם הזה.',
+  'practice.challenge.banner': 'אתגר הסיום · צריך {n} מתוך {total}',
+  'practice.done.titleAgain': 'עוד קצת, {name}!',
+  'practice.done.score': '{n} מתוך {total} נכון בפעם הראשונה',
+  'practice.done.need': 'כדי לעבור את התחנה צריך {n} מתוך {total}.',
+  'practice.done.record': 'שיא חדש בתחנה הזאת!',
+  'stars.none': 'עוד בלי כוכבים',
+  'stars.one': 'כוכב אחד מתוך שלושה',
+  'stars.many': '{n} כוכבים מתוך שלושה',
   'practice.done.eased': 'תרגלנו קצת יותר בקל. בסבב הבא ננסה שוב את התחנה הזאת.',
   'practice.worldMix.body': 'תרגילים מהתחנות שכבר עברת בעולם הזה, מעורבבים.',
   'practice.done.replay': 'כל הכבוד! חזרת על העולם הזה.',

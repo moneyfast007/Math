@@ -1,5 +1,11 @@
 import { describe, expect, it } from 'vitest';
-import { completeRound, recordAttempt, summarizeProgress } from './progress';
+import {
+  completeRound,
+  recordAttempt,
+  REVIEW_PASS_RATE,
+  starsFor,
+  summarizeProgress,
+} from './progress';
 import {
   emptyProgress,
   emptyTopicStats,
@@ -155,6 +161,23 @@ describe('completeRound', () => {
     expect(out.passed).toBe(false);
     expect(out.advancedTo).toBeNull();
     expect(out.progress.topics['t']).toMatchObject({ level: 3, completedLevels: [] });
+  });
+
+  it('gives stars for the first-try share and keeps the best per station', () => {
+    expect([starsFor(10, 10), starsFor(9, 10), starsFor(8, 10), starsFor(7, 10)]).toEqual([3, 3, 2, 2]);
+    expect([starsFor(6, 10), starsFor(4, 10), starsFor(3, 10)]).toEqual([1, 1, 0]);
+    // The final challenge's two stars are its own pass mark.
+    expect(starsFor(7, 10, REVIEW_PASS_RATE)).toBe(1);
+    const first = completeRound(base(3), { topicId: 't', station: 3, firstTry: 7, length: 10, at: day });
+    expect(first.stars).toBe(2);
+    expect(first.bestBefore).toBe(0);
+    expect(first.progress.topics['t']?.stars).toEqual({ '3': 2 });
+    const better = completeRound(first.progress, { topicId: 't', station: 3, firstTry: 10, length: 10, at: day });
+    expect(better.bestBefore).toBe(2);
+    expect(better.progress.topics['t']?.stars).toEqual({ '3': 3 });
+    const worse = completeRound(better.progress, { topicId: 't', station: 3, firstTry: 5, length: 10, at: day });
+    expect(worse.stars).toBe(1);
+    expect(worse.progress.topics['t']?.stars).toEqual({ '3': 3 });
   });
 
   it('revisiting an earlier station does not move the level', () => {

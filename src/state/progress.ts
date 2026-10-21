@@ -105,9 +105,37 @@ export interface RoundResult {
   eased?: boolean;
 }
 
+/**
+ * Stars for a round, from its share of first-try answers: three from 90%, two from
+ * the pass mark (70% for a station, 80% for the final challenge), one from 40%. Two
+ * stars and more is a pass.
+ */
+export function starsFor(
+  firstTry: number,
+  length: number,
+  passRate: number = STATION_PASS_RATE,
+): 0 | 1 | 2 | 3 {
+  const rate = length > 0 ? firstTry / length : 0;
+  return rate >= 0.9 ? 3 : rate >= passRate ? 2 : rate >= 0.4 ? 1 : 0;
+}
+
+/** The best stars recorded for a station ('review' for the final challenge), or 0. */
+export function bestStarsOf(stats: TopicStats | undefined, station: number | 'review'): number {
+  return stats?.stars?.[String(station)] ?? 0;
+}
+
+/** The record of best stars with this round's, when it beats the old one. */
+function withBest(stats: TopicStats, station: number | 'review', stars: number): TopicStats {
+  if (stars <= bestStarsOf(stats, station)) return stats;
+  return { ...stats, stars: { ...(stats.stars ?? {}), [String(station)]: stars } };
+}
+
 export interface RoundOutcome {
   progress: ProfileProgress;
   passed: boolean;
+  /** This round's stars (0–3; a round that eased gets none past one), and the best before it. */
+  stars: number;
+  bestBefore: number;
   /** The station was passed for the first time. */
   newlyCompleted: boolean;
   /** The level moved on to after passing (null when it did not change). */
@@ -132,11 +160,12 @@ export function completeRound(progress: ProfileProgress, r: RoundResult): RoundO
   if (r.station === 'review') {
     const passed = rate >= REVIEW_PASS_RATE;
     const newlyCompleted = passed && !prev.reviewPassed;
-    const stats: TopicStats = {
-      ...prev,
-      reviewPassed: prev.reviewPassed || passed,
-      lastPracticedAt: r.at,
-    };
+    const stars = starsFor(r.firstTry, r.length, REVIEW_PASS_RATE);
+    const stats: TopicStats = withBest(
+      { ...prev, reviewPassed: prev.reviewPassed || passed, lastPracticedAt: r.at },
+      'review',
+      stars,
+    );
     return {
       progress: {
         ...progress,
@@ -145,6 +174,8 @@ export function completeRound(progress: ProfileProgress, r: RoundResult): RoundO
         days: bumpDay(progress.days, r.at, (d) => ({ ...d, rounds: d.rounds + 1 })),
       },
       passed,
+      stars,
+      bestBefore: bestStarsOf(prev, 'review'),
       newlyCompleted,
       advancedTo: null,
       worldCompleted: newlyCompleted,
@@ -161,12 +192,13 @@ export function completeRound(progress: ProfileProgress, r: RoundResult): RoundO
     passed && prev.level === r.station && r.station < Math.min(MAX_LEVEL, r.lastLevel ?? MAX_LEVEL)
       ? r.station + 1
       : null;
-  const stats: TopicStats = {
-    ...prev,
-    level: advancedTo ?? prev.level,
-    completedLevels,
-    lastPracticedAt: r.at,
-  };
+  // A round that eased to an easier level shows its stars but can earn at most one.
+  const stars = r.eased === true ? Math.min(1, starsFor(r.firstTry, r.length)) : starsFor(r.firstTry, r.length);
+  const stats: TopicStats = withBest(
+    { ...prev, level: advancedTo ?? prev.level, completedLevels, lastPracticedAt: r.at },
+    r.station,
+    stars,
+  );
   return {
     progress: {
       ...progress,
@@ -175,6 +207,8 @@ export function completeRound(progress: ProfileProgress, r: RoundResult): RoundO
       days: bumpDay(progress.days, r.at, (d) => ({ ...d, rounds: d.rounds + 1 })),
     },
     passed,
+    stars,
+    bestBefore: bestStarsOf(prev, r.station),
     newlyCompleted,
     advancedTo,
     worldCompleted: false,
