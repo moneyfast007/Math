@@ -22,7 +22,7 @@ import {
 } from '@/engine/session';
 import type { Exercise, Topic } from '@/engine/types';
 import { makeT, t } from '@/i18n';
-import type { RoundOutcome } from '@/state/progress';
+import { roundsToday, type RoundOutcome } from '@/state/progress';
 import type { Profile } from '@/state/schema';
 import { appStore, useActiveProfile, useApp } from '@/state/store';
 import { ageBandForGrade, applyAgeBand } from '@/ui/ageBand';
@@ -289,6 +289,18 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
     const passed = praise !== null || outcome?.passed === true;
     const spoken =
       praise ?? (passed ? tc('practice.done.passedSpoken') : t('practice.done.notPassed'));
+    // The daily goal, when the parent set one: reached just now, or how many rounds are left.
+    const goal = profile.settings.dailyGoal;
+    const today = roundsToday(appProgress(profile.id), Date.now());
+    const goalLine = !goal
+      ? null
+      : today === goal
+        ? t('goal.doneNow')
+        : today === goal - 1
+          ? t('goal.oneLeft')
+          : today === goal - 2
+            ? t('goal.twoLeft')
+            : null;
     // The final challenge passed: the world is finished, a celebration of its own.
     if (outcome?.worldCompleted && !mixed && !replaying) {
       const worlds = worldsFor(profile.grade, appProgress(profile.id));
@@ -342,6 +354,7 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
               <span>{result}</span>
             </div>
           ) : null}
+          {goalLine ? <p className="done__goal">{goalLine}</p> : null}
           {stationRound ? (
             // A station round: one big way on (the next station, or the same one again),
             // and a small way out to the map.

@@ -239,6 +239,24 @@ describe('the week and the days of practice (schema 3)', () => {
     expect(p.days['2026-10-18']?.rounds).toBe(2);
   });
 
+  it('counts today\'s rounds for the daily goal, and the days of the week that reached it', async () => {
+    const { completeMixedRound, completeDaily, roundsToday, goalDays, weekSummary } =
+      await import('./progress');
+    const { emptyProgress } = await import('./schema');
+    const day = new Date(2026, 9, 18, 10).getTime();
+    const before = new Date(2026, 9, 16, 10).getTime();
+    let p = emptyProgress();
+    expect(roundsToday(p, day)).toBe(0);
+    p = completeMixedRound(p, before);
+    p = completeMixedRound(p, before);
+    p = completeMixedRound(p, day);
+    p = completeDaily(p, day);
+    expect(roundsToday(p, day)).toBe(2);
+    const week = weekSummary(p, day);
+    expect(goalDays(week, 2)).toBe(2);
+    expect(goalDays(week, 3)).toBe(0);
+  });
+
   it('counts a mixed round of this world for the streak and the day, and marks nothing', async () => {
     const { completeMixedRound, weekSummary } = await import('./progress');
     const { emptyProgress } = await import('./schema');

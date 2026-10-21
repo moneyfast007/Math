@@ -256,6 +256,8 @@ export interface WeekDay {
   exercises: number;
   correct: number;
   daily: boolean;
+  /** Rounds finished that day (stations, the final challenge, mixed rounds). */
+  rounds: number;
 }
 
 export interface WeekSummary {
@@ -266,6 +268,16 @@ export interface WeekSummary {
   /** First-try rate over the week, or null without exercises. */
   rate: number | null;
   dailyReviews: number;
+}
+
+/** Rounds finished today: what the daily goal counts. */
+export function roundsToday(progress: ProfileProgress | undefined, now: number): number {
+  return progress?.days[dayKey(now)]?.rounds ?? 0;
+}
+
+/** Days of the week whose rounds reached the goal. */
+export function goalDays(week: WeekSummary, goal: number): number {
+  return week.days.filter((d) => d.rounds >= goal).length;
 }
 
 /** The last seven days of practice, for the parents' report. */
@@ -282,6 +294,7 @@ export function weekSummary(progress: ProfileProgress | undefined, now: number):
       exercises: d?.exercises ?? 0,
       correct: d?.correct ?? 0,
       daily: d?.daily ?? false,
+      rounds: d?.rounds ?? 0,
     });
   }
   const exercises = days.reduce((n, d) => n + d.exercises, 0);

@@ -18,7 +18,7 @@ import { useSync } from '@/sync';
 import { isStandalone } from '@/pwa/standalone';
 import { backupFileName, deliverFile, readBackupFile, serializeBackup } from '@/state/backup';
 import { PIN_LENGTH } from '@/state/pin';
-import { summarizeProgress, weekSummary } from '@/state/progress';
+import { goalDays, summarizeProgress, weekSummary } from '@/state/progress';
 import { activeWorld, nextStop, worldsFor, type World } from '@/engine/journey';
 import { MAX_PROFILES, type AppData, type Profile } from '@/state/schema';
 import type { Grade } from '@/ui/ageBand';
@@ -896,6 +896,16 @@ function WeekReport({ profile }: { profile: Profile }) {
           ) : null}
         </span>
       )}
+      {profile.settings.dailyGoal ? (
+        <span>
+          {t(profile.settings.dailyGoal === 1 ? 'parent.goalOne' : 'parent.goal', {
+            params: {
+              goal: profile.settings.dailyGoal,
+              days: goalDays(week, profile.settings.dailyGoal),
+            },
+          })}
+        </span>
+      ) : null}
       <div className="week" role="img" aria-label={t('parent.week.chart')}>
         {week.days.map((d) => (
           <div key={d.key} className="week__day">

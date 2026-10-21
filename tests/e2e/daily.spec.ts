@@ -101,7 +101,7 @@ test('more exercises in this world start a mixed round that changes nothing on t
           grade: 2,
           gender: 'f',
           createdAt: 1,
-          settings: { allowLevelChange: true, roundLength: 'short' },
+          settings: { allowLevelChange: true, roundLength: 'short', dailyGoal: 2 },
         },
       ],
       progress: {
@@ -139,6 +139,8 @@ test('more exercises in this world start a mixed round that changes nothing on t
   await page.getByRole('button', { name: 'סיימתי, למסך הבית' }).first().click();
   await page.getByRole('button', { name: 'שירה' }).click();
   await expect(page.getByText('תחנה 4 מתוך 10')).toBeVisible();
+  // The daily goal the parent set: today's rounds, under the streak.
+  await expect(page.getByRole('img', { name: /יעד יומי: 0 מתוך 2 סבבים היום/ })).toBeVisible();
 
   await page.getByRole('button', { name: 'עוד תרגילים בעולם הזה' }).click();
   await expect(page).toHaveURL(/\/practice\/world$/);

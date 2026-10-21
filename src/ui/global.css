@@ -1127,6 +1127,13 @@ ol.steps {
   margin-top: var(--space-5);
 }
 
+/* After a round: today's rounds toward the daily goal, one quiet line. */
+.done__goal {
+  margin: 0;
+  font-weight: 700;
+  color: var(--color-accent-strong);
+}
+
 .done__body {
   font-size: var(--text-lg);
 }
@@ -5139,8 +5146,14 @@ details.report .report__worlds {
   color: var(--color-text-muted);
 }
 
-.journey__tools > .streak {
+.journey__tools > .streak,
+.journey__goal > .streak {
   min-height: var(--tool, var(--tap-min));
+}
+
+/* Today's rounds toward the daily goal, under the streak like the other tools' names. */
+.journey__goal-label--done {
+  color: var(--color-accent-strong);
 }
 
 /* The world's row: its name and the progress under it at the start, "כל העולמות" at the end. */
@@ -5399,11 +5412,13 @@ details.report .report__worlds {
     font-size: 12px;
   }
 
-  .journey__tools > .streak {
+  .journey__tools > .streak,
+  .journey__goal > .streak {
     padding: 0 8px;
     font-size: 15px;
   }
 
+  .journey__goal > .streak .streak__icon,
   .journey__tools > .streak .streak__icon {
     width: 18px;
     height: 18px;

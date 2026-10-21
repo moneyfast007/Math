@@ -30,6 +30,13 @@ export function isRoundLength(value: unknown): value is RoundLength {
   return ROUND_LENGTH_OPTIONS.includes(value as RoundLength);
 }
 
+/** A day's goal in rounds; a parent's choice, off when absent. */
+export type DailyGoal = 1 | 2 | 3;
+export const DAILY_GOAL_OPTIONS: readonly DailyGoal[] = [1, 2, 3];
+export function isDailyGoal(value: unknown): value is DailyGoal {
+  return DAILY_GOAL_OPTIONS.includes(value as DailyGoal);
+}
+
 export interface ProfileSettings {
   /** Whether the child may change the difficulty level herself. */
   allowLevelChange: boolean;
@@ -37,6 +44,8 @@ export interface ProfileSettings {
   sounds?: boolean;
   /** Exercises per round, relative to the child's age (engine/session ROUND_LENGTHS). Absent: normal. */
   roundLength?: RoundLength;
+  /** Rounds a day the parent asks for, shown to the child on the journey. Absent: no goal. */
+  dailyGoal?: DailyGoal;
 }
 
 export interface Profile {

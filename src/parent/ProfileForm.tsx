@@ -5,8 +5,10 @@ import type { Gender } from '@/lang/gender';
 import { AVATARS, type AvatarId } from '@/profiles/avatars';
 import { ROUND_LENGTHS } from '@/engine/session';
 import {
+  DAILY_GOAL_OPTIONS,
   MAX_NAME_LENGTH,
   ROUND_LENGTH_OPTIONS,
+  type DailyGoal,
   type Profile,
   type ProfileInput,
   type RoundLength,
@@ -39,6 +41,7 @@ export function ProfileForm({ profile, onSave, onDelete, onClose }: ProfileFormP
   const [roundLength, setRoundLength] = useState<RoundLength>(
     profile?.settings.roundLength ?? 'normal',
   );
+  const [dailyGoal, setDailyGoal] = useState<DailyGoal | 0>(profile?.settings.dailyGoal ?? 0);
   const [error, setError] = useState(false);
   const [confirmDelete, setConfirmDelete] = useState(false);
 
@@ -57,6 +60,7 @@ export function ProfileForm({ profile, onSave, onDelete, onClose }: ProfileFormP
         allowLevelChange,
         ...(sounds ? {} : { sounds: false }),
         ...(roundLength === 'normal' ? {} : { roundLength }),
+        ...(dailyGoal === 0 ? {} : { dailyGoal }),
       },
     });
   };
@@ -207,6 +211,25 @@ export function ProfileForm({ profile, onSave, onDelete, onClose }: ProfileFormP
             ))}
           </div>
           <p className="muted field__hint">{t('profile.roundLength.hint')}</p>
+        </fieldset>
+
+        <fieldset className="field">
+          <legend>{t('profile.dailyGoal')}</legend>
+          <div className="choices">
+            {([0, ...DAILY_GOAL_OPTIONS] as const).map((g) => (
+              <label key={g} className="choice">
+                <input
+                  type="radio"
+                  name="dailyGoal"
+                  value={g}
+                  checked={dailyGoal === g}
+                  onChange={() => setDailyGoal(g)}
+                />
+                {t(g === 0 ? 'profile.dailyGoal.off' : `profile.dailyGoal.${g}`)}
+              </label>
+            ))}
+          </div>
+          <p className="muted field__hint">{t('profile.dailyGoal.hint')}</p>
         </fieldset>
 
         <label className="toggle">

@@ -10,6 +10,7 @@ import {
   SCHEMA_VERSION,
   SUPPORTED_SCHEMA_VERSIONS,
   emptyStreak,
+  isDailyGoal,
   isRoundLength,
   type AppData,
   type DayStats,
@@ -80,6 +81,8 @@ function parseProfile(value: unknown, index: number): Profile {
   if (sounds !== undefined && typeof sounds !== 'boolean') fail(`${where}: הגדרה לא חוקית`);
   const roundLength = settings['roundLength'];
   if (roundLength !== undefined && !isRoundLength(roundLength)) fail(`${where}: הגדרה לא חוקית`);
+  const dailyGoal = settings['dailyGoal'];
+  if (dailyGoal !== undefined && !isDailyGoal(dailyGoal)) fail(`${where}: הגדרה לא חוקית`);
   // Added later and optional: absent in older data.
   const introSeen = p['journeyIntroSeenAt'];
   return {
@@ -94,6 +97,7 @@ function parseProfile(value: unknown, index: number): Profile {
       ...(sounds === undefined ? {} : { sounds }),
       // 'normal' is the absent value; a backup that spells it out comes back without it.
       ...(roundLength === undefined || roundLength === 'normal' ? {} : { roundLength }),
+      ...(dailyGoal === undefined ? {} : { dailyGoal }),
     },
     ...(introSeen === undefined
       ? {}

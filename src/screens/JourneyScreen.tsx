@@ -14,6 +14,7 @@ import { activeWorld, nextStop, worldsFor, type World, type WorldStation } from 
 import { makeT, t, type TranslationKey } from '@/i18n';
 import { gradeLabel } from '@/i18n/labels';
 import { spokenLabel } from '@/lang/spokenLabel';
+import { roundsToday } from '@/state/progress';
 import type { Profile } from '@/state/schema';
 import { useActiveProfile, useApp } from '@/state/store';
 import { currentStreak, dayKey } from '@/state/streak';
@@ -94,6 +95,8 @@ function Journey({ profile }: { profile: Profile }) {
   const nextWorld =
     worldsFor(profile.grade, progress).length > world.index ? world.index + 1 : null;
   const longName = profile.name.length > 10;
+  const goal = profile.settings.dailyGoal;
+  const today = roundsToday(progress, Date.now());
   const streak = currentStreak(progress?.streak ?? { count: 0, lastDay: null }, Date.now());
 
   const start = () => {
@@ -129,7 +132,29 @@ function Journey({ profile }: { profile: Profile }) {
         </div>
         {/* Small tools with a word under each, so the child's name keeps the room. */}
         <div className="journey__tools">
-          {streak > 0 ? <StreakChip count={streak} /> : null}
+          {goal ? (
+            // With a daily goal: the streak, and today's rounds toward the goal under it.
+            <div
+              className="journey__tool journey__goal"
+              role="img"
+              aria-label={`${t('journey.streak.short', { params: { count: streak } })}. ${t('goal.label', { params: { done: Math.min(today, goal), goal } })}`}
+            >
+              <StreakChip count={streak} decorative />
+              <span
+                className={
+                  today >= goal
+                    ? 'journey__tool-label journey__goal-label journey__goal-label--done'
+                    : 'journey__tool-label journey__goal-label'
+                }
+              >
+                {today >= goal
+                  ? t('goal.reached')
+                  : t('goal.progress', { params: { done: today, goal } })}
+              </span>
+            </div>
+          ) : streak > 0 ? (
+            <StreakChip count={streak} />
+          ) : null}
           <button
             type="button"
             className="journey__tool"
@@ -319,12 +344,13 @@ function progressLine(world: World, nextWorld: number | null): string {
 }
 
 /** Days in a row; shown from the first day (no chip at all before it). */
-function StreakChip({ count }: { count: number }) {
+function StreakChip({ count, decorative = false }: { count: number; decorative?: boolean }) {
   return (
     <div
-      className="streak streak--on"
-      role="img"
-      aria-label={t('journey.streak.short', { params: { count } })}
+      className={count > 0 ? 'streak streak--on' : 'streak'}
+      {...(decorative
+        ? { 'aria-hidden': true }
+        : { role: 'img', 'aria-label': t('journey.streak.short', { params: { count } }) })}
     >
       <svg viewBox="0 0 24 24" aria-hidden="true" className="streak__icon">
         <path

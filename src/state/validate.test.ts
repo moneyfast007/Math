@@ -137,6 +137,18 @@ describe('parseAppData', () => {
     expect(parseAppData(makeData({ profiles: [bad] })).ok).toBe(false);
   });
 
+  it('keeps a daily goal of 1 to 3 rounds; any other value is rejected', () => {
+    const base = makeProfile();
+    const two = { ...base, settings: { ...base.settings, dailyGoal: 2 as const } };
+    const result = parseAppData(clone(makeData({ profiles: [two] })));
+    expect(result.ok).toBe(true);
+    if (result.ok) expect(result.data.profiles[0]?.settings.dailyGoal).toBe(2);
+    for (const dailyGoal of [0, 4, '2']) {
+      const bad = { ...base, settings: { ...base.settings, dailyGoal } } as never;
+      expect(parseAppData(makeData({ profiles: [bad] })).ok).toBe(false);
+    }
+  });
+
   it('trims names', () => {
     const result = parseAppData(makeData({ profiles: [makeProfile({ name: '  נועה  ' })] }));
     expect(result.ok && result.data.profiles[0]?.name).toBe('נועה');
