@@ -104,8 +104,6 @@ function Lying({ thing, x0, x1, y }: { thing: MeasureThing; x0: number; x1: numb
           />
         </g>
       );
-    default:
-      return null;
     case 'tower':
     case 'tree':
     case 'flower':
@@ -217,8 +215,6 @@ function Standing({
         </g>
       );
     }
-    default:
-      return null;
     case 'pencil':
     case 'ribbon':
     case 'snake':
