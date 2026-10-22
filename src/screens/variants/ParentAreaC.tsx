@@ -148,12 +148,7 @@ export function ParentAreaC() {
             {t('c.settings.children')}
           </h3>
           {profiles.map((p, i) => (
-            <ChildSettings
-              key={p.id}
-              profile={p}
-              index={i}
-              onEdit={() => setEditing(p)}
-            />
+            <ChildSettings key={p.id} profile={p} index={i} onEdit={() => setEditing(p)} />
           ))}
           <button type="button" className="c-add" disabled={full} onClick={() => setEditing('new')}>
             <Icon name="plus" />

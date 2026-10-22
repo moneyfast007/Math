@@ -338,7 +338,9 @@ function KidRow({
           </span>
         ) : null}
         {todayLine ? (
-          <span className={today.practised ? 'c-kidrow__today c-kidrow__today--on' : 'c-kidrow__today'}>
+          <span
+            className={today.practised ? 'c-kidrow__today c-kidrow__today--on' : 'c-kidrow__today'}
+          >
             {todayLine}
           </span>
         ) : null}
