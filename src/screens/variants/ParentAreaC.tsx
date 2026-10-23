@@ -8,7 +8,7 @@ import { ProfileForm } from '@/parent/ProfileForm';
 import { SyncSection } from '@/parent/SyncSection';
 import { takeParentTab } from '@/parent/tab';
 import { isStandalone } from '@/pwa/standalone';
-import { summarizeProgress } from '@/state/progress';
+import { goalDays, summarizeProgress, weekSummary } from '@/state/progress';
 import {
   DAILY_GOAL_OPTIONS,
   MAX_PROFILES,
@@ -32,7 +32,6 @@ import {
   OfflineSection,
   PinBanner,
   SecuritySection,
-  WeekReport,
 } from '../ParentScreen';
 import { guidance, isYesterday, nowAt, takeNewChild, todayOf, worldName } from './cShared';
 import './c.css';
@@ -441,6 +440,79 @@ function ProgressPanel() {
   );
 }
 
+const WEEKDAY_LETTERS = ['א׳', 'ב׳', 'ג׳', 'ד׳', 'ה׳', 'ו׳', 'ש׳'];
+
+/**
+ * The week at a glance: three numbers, the exercises of each day, and under each
+ * day a dot that fills when the daily goal was met. The review from every world,
+ * when there was one, in a small line under it.
+ */
+function WeekReportC({ profile }: { profile: Profile }) {
+  const progress = useApp((s) => s.data.progress[profile.id]);
+  const week = weekSummary(progress, Date.now());
+  const tc = makeT(profile.gender);
+  const goal = profile.settings.dailyGoal;
+  const most = Math.max(1, ...week.days.map((d) => d.exercises));
+  const met = goal ? goalDays(week, goal) : 0;
+  return (
+    <section className="c-week" aria-label={t('c.week.title')}>
+      <h3 className="c-week__title">{t('c.week.title')}</h3>
+      {week.exercises === 0 ? (
+        <p className="muted">{tc('parent.week.none')}</p>
+      ) : (
+        <dl className="c-nums">
+          <div className="c-num">
+            <dt>{t('c.week.days')}</dt>
+            <dd>
+              {week.daysPracticed}
+              <span className="c-num__of">/7</span>
+            </dd>
+          </div>
+          <div className="c-num">
+            <dt>{t('c.today.exercises')}</dt>
+            <dd>{week.exercises}</dd>
+          </div>
+          <div className="c-num">
+            <dt>{t('c.today.firstTry')}</dt>
+            <dd>{week.rate !== null ? formatPercent(week.rate) : '–'}</dd>
+          </div>
+        </dl>
+      )}
+      <div className="week c-week__chart" role="img" aria-label={t('parent.week.chart')}>
+        {week.days.map((d) => (
+          <div key={d.key} className="week__day">
+            <span className="week__count">{d.exercises > 0 ? d.exercises : ''}</span>
+            <span
+              className={d.exercises > 0 ? 'week__bar week__bar--on' : 'week__bar'}
+              style={{ height: `${Math.round((d.exercises / most) * 100)}%` }}
+            />
+            <span className="week__label">{WEEKDAY_LETTERS[d.weekday]}</span>
+            {goal ? (
+              <span
+                className={d.rounds >= goal ? 'c-week__dot c-week__dot--on' : 'c-week__dot'}
+                aria-hidden="true"
+              />
+            ) : null}
+          </div>
+        ))}
+      </div>
+      {goal ? (
+        <p className="c-week__goal">
+          <span className="c-week__dot c-week__dot--on" aria-hidden="true" />
+          {t(goal === 1 ? 'c.week.goalOne' : 'c.week.goal', { params: { goal, days: met } })}
+        </p>
+      ) : null}
+      {week.dailyReviews > 0 ? (
+        <p className="muted c-week__extra">
+          {week.dailyReviews === 1
+            ? t('parent.week.dailyOne')
+            : t('parent.week.daily', { params: { count: week.dailyReviews } })}
+        </p>
+      ) : null}
+    </section>
+  );
+}
+
 function ProgressCardC({ profile, index }: { profile: Profile; index: number }) {
   const progress = useApp((s) => s.data.progress[profile.id]);
   const summary = summarizeProgress(progress);
@@ -476,7 +548,7 @@ function ProgressCardC({ profile, index }: { profile: Profile; index: number }) 
         <p className="muted">{tc('parent.noPracticeYet')}</p>
       ) : (
         <>
-          <WeekReport profile={profile} />
+          <WeekReportC profile={profile} />
           {summary.strong.length > 0 || summary.struggling.length > 0 ? (
             <ul className="c-facts" role="list">
               {summary.strong.length > 0 ? (
@@ -493,13 +565,6 @@ function ProgressCardC({ profile, index }: { profile: Profile; index: number }) 
               ) : null}
             </ul>
           ) : null}
-          <p className="muted">
-            {summary.successRate !== null && summary.attempts >= 20
-              ? t('c.progress.totalRate', {
-                  params: { count: summary.attempts, percent: formatPercent(summary.successRate) },
-                })
-              : t('c.progress.total', { params: { count: summary.attempts } })}
-          </p>
           <div className="c-folds">
             <JourneyReport profile={profile} />
             {summary.topMistakes.length > 0 ? (
@@ -518,6 +583,14 @@ function ProgressCardC({ profile, index }: { profile: Profile; index: number }) 
               </details>
             ) : null}
           </div>
+          {/* Since the start, small, at the foot of the card. */}
+          <p className="muted c-total">
+            {summary.successRate !== null && summary.attempts >= 20
+              ? t('c.progress.totalRate', {
+                  params: { count: summary.attempts, percent: formatPercent(summary.successRate) },
+                })
+              : t('c.progress.total', { params: { count: summary.attempts } })}
+          </p>
         </>
       )}
     </article>
@@ -532,18 +605,31 @@ function Segmented<V extends string | number>({
   options,
   onChange,
   hint,
+  saved = false,
 }: {
   label: string;
   value: V;
   options: readonly { value: V; label: string }[];
   onChange: (value: V) => void;
   hint?: string | undefined;
+  /** Just changed and saved: a green check and "נשמר" beside the label for a moment. */
+  saved?: boolean;
 }) {
   const id = useId();
   return (
     <div className="c-setting">
-      <span className="c-setting__label" id={id}>
-        {label}
+      <span className="c-setting__head">
+        <span className="c-setting__label" id={id}>
+          {label}
+        </span>
+        {saved ? (
+          <span className="c-setting__saved" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path d="M5 12.5l4.2 4.2L19 7" />
+            </svg>
+            {t('c.settings.saved')}
+          </span>
+        ) : null}
       </span>
       <div className="c-seg" role="group" aria-labelledby={id}>
         {options.map((o) => (
@@ -573,7 +659,7 @@ function ChildSettings({
   onEdit: () => void;
 }) {
   const updateProfile = useApp((s) => s.updateProfile);
-  const [saved, setSaved] = useState(0);
+  const [saved, setSaved] = useState<string | null>(null);
   const timer = useRef<number | undefined>(undefined);
   useEffect(() => () => window.clearTimeout(timer.current), []);
 
@@ -582,7 +668,7 @@ function ChildSettings({
   const goal = s.dailyGoal ?? 0;
   const sounds = s.sounds ?? true;
 
-  const change = (next: Partial<ProfileSettings> & { goal?: number }) => {
+  const change = (field: string, next: Partial<ProfileSettings> & { goal?: number }) => {
     const merged = {
       allowLevelChange: next.allowLevelChange ?? s.allowLevelChange,
       sounds: next.sounds ?? sounds,
@@ -604,9 +690,9 @@ function ChildSettings({
       gender: profile.gender,
       settings,
     });
-    setSaved((n) => n + 1);
+    setSaved(field);
     window.clearTimeout(timer.current);
-    timer.current = window.setTimeout(() => setSaved(0), 2000);
+    timer.current = window.setTimeout(() => setSaved(null), 2500);
   };
 
   const counts = ROUND_LENGTHS[ageBandForGrade(profile.grade)];
@@ -637,7 +723,8 @@ function ChildSettings({
             value: o,
             label: t(`profile.roundLength.${o}`),
           }))}
-          onChange={(v) => change({ roundLength: v })}
+          onChange={(v) => change('roundLength', { roundLength: v })}
+          saved={saved === 'roundLength'}
           hint={t('c.settings.roundCount', { params: { count: counts[roundLength] } })}
         />
         <Segmented
@@ -647,7 +734,8 @@ function ChildSettings({
             { value: 0, label: t('c.settings.goalOff') },
             ...DAILY_GOAL_OPTIONS.map((g) => ({ value: g, label: String(g) })),
           ]}
-          onChange={(v) => change({ goal: v })}
+          onChange={(v) => change('goal', { goal: v })}
+          saved={saved === 'goal'}
           hint={goal ? t('c.settings.goalUnit') : undefined}
         />
         <Segmented
@@ -657,7 +745,8 @@ function ChildSettings({
             { value: 'on', label: t('c.settings.soundsOn') },
             { value: 'off', label: t('c.settings.soundsOff') },
           ]}
-          onChange={(v) => change({ sounds: v === 'on' })}
+          onChange={(v) => change('sounds', { sounds: v === 'on' })}
+          saved={saved === 'sounds'}
         />
         <Segmented
           label={t('c.settings.level')}
@@ -666,11 +755,13 @@ function ChildSettings({
             { value: 'yes', label: t('c.settings.levelYes') },
             { value: 'no', label: t('c.settings.levelNo') },
           ]}
-          onChange={(v) => change({ allowLevelChange: v === 'yes' })}
+          onChange={(v) => change('level', { allowLevelChange: v === 'yes' })}
+          saved={saved === 'level'}
         />
       </div>
-      <p className="c-saved" role="status">
-        {saved > 0 ? t('c.settings.saved') : ''}
+      {/* For a screen reader: the check beside the setting is only seen. */}
+      <p className="visually-hidden" role="status">
+        {saved !== null ? t('c.settings.saved') : ''}
       </p>
     </article>
   );

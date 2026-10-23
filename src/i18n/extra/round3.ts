@@ -27,6 +27,11 @@ export const heRound3 = {
   'pinOffer.banner': 'רוצים קוד בן 4 ספרות במקום תרגיל הכפל בכניסה?',
   'pinOffer.choose': 'בחירת קוד',
   'pinOffer.later': 'לא עכשיו',
+  // Parents (C): the week at a glance.
+  'c.week.title': 'השבוע',
+  'c.week.days': 'ימי תרגול',
+  'c.week.goal': 'יעד: {goal} סבבים ביום · הושג ב-{days} מתוך 7 ימים',
+  'c.week.goalOne': 'יעד: סבב אחד ביום · הושג ב-{days} מתוך 7 ימים',
   // Entry screen C.
   'c.home.start': 'מתחילים',
   // Back after two days or more without playing: Plusi says he missed her (once that day).

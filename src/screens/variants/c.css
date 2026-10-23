@@ -1072,3 +1072,80 @@ details[open] > summary .c-row__chev {
       welcome-wave 1000ms ease-in-out 700ms 2;
   }
 }
+
+/* A setting just saved: a green check and "נשמר" beside its name. */
+.c-setting__head {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.c-setting__saved {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 1px 10px;
+  border-radius: var(--radius-pill);
+  background: var(--color-success-soft);
+  color: #2f6b3a;
+  font-size: 14px;
+  font-weight: 800;
+  animation: plusi-in var(--dur-fast) var(--ease);
+}
+
+.c-setting__saved svg {
+  width: 1em;
+  height: 1em;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* The week: three numbers, the days, a goal dot under each day. */
+.c-week {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.c-week__title {
+  margin: 0;
+  font-size: var(--text-sm);
+  font-weight: 800;
+  color: var(--color-text-muted);
+}
+
+.c-week__chart .week__day {
+  gap: 4px;
+}
+
+.c-week__dot {
+  display: inline-block;
+  flex: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 2px solid var(--color-border);
+  background: var(--color-surface);
+}
+
+.c-week__dot--on {
+  border-color: var(--color-success);
+  background: var(--color-success);
+}
+
+.c-week__goal {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  margin: 0;
+  font-size: 15px;
+}
+
+.c-week__extra,
+.c-total {
+  margin: 0;
+  font-size: 14px;
+}
