@@ -28,6 +28,7 @@ import { applyAgeBand } from '@/ui/ageBand';
 import { Avatar } from '@/ui/Avatar';
 import { ConfirmDialog, Dialog } from '@/ui/Dialog';
 import { Icon, type IconName } from '@/ui/Icon';
+import { applyPlusiColor } from '@/ui/plusiColor';
 import { dayKey } from '@/state/streak';
 import { NumberPad } from '@/ui/NumberPad';
 import { Plusi } from '@/ui/Plusi';
@@ -48,7 +49,10 @@ export function ParentScreen({
   const verifyPin = useApp((s) => s.verifyPin);
   const unlockParent = useApp((s) => s.unlockParent);
 
-  useEffect(() => applyAgeBand('older'), []);
+  useEffect(() => {
+    applyAgeBand('older');
+    applyPlusiColor(undefined);
+  }, []);
 
   if (!unlocked && !noProfiles) {
     return (

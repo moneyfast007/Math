@@ -8,6 +8,7 @@ import { MAX_PROFILES, type Profile, type ProfileProgress } from '@/state/schema
 import { dayKey } from '@/state/streak';
 import { useApp } from '@/state/store';
 import { applyAgeBand } from '@/ui/ageBand';
+import { applyPlusiColor } from '@/ui/plusiColor';
 import { Avatar } from '@/ui/Avatar';
 import { BrandMark } from '@/ui/BrandMark';
 import { Icon } from '@/ui/Icon';
@@ -61,6 +62,7 @@ export function HomeB() {
     lockParent();
     selectProfile(null);
     applyAgeBand('middle');
+    applyPlusiColor(undefined);
   }, [lockParent, selectProfile]);
 
   const openParents = () => {

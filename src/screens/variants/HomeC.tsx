@@ -10,6 +10,7 @@ import { summarizeProgress, totalStars } from '@/state/progress';
 import type { Profile, ProfileProgress } from '@/state/schema';
 import { useApp } from '@/state/store';
 import { applyAgeBand } from '@/ui/ageBand';
+import { applyPlusiColor } from '@/ui/plusiColor';
 import { Avatar } from '@/ui/Avatar';
 import { BrandMark } from '@/ui/BrandMark';
 import { Icon } from '@/ui/Icon';
@@ -50,6 +51,7 @@ export function HomeC() {
     lockParent();
     selectProfile(null);
     applyAgeBand('middle');
+    applyPlusiColor(undefined);
   }, [lockParent, selectProfile]);
 
   const openParents = () => {

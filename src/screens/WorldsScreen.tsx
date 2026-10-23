@@ -14,6 +14,7 @@ import { ageBandForGrade, applyAgeBand } from '@/ui/ageBand';
 import { BrandMark } from '@/ui/BrandMark';
 import { Dialog } from '@/ui/Dialog';
 import { Plusi } from '@/ui/Plusi';
+import { applyPlusiColor } from '@/ui/plusiColor';
 import { Sticker } from '@/ui/Sticker';
 import { stickerForWorld } from '@/ui/stickers';
 import { IntroSpeaker, JourneySteps, LockIcon } from './JourneyIntro';
@@ -31,7 +32,10 @@ export function WorldsScreen() {
 
   useEffect(() => {
     if (!profile) navigate({ name: 'home' }, { replace: true });
-    else applyAgeBand(ageBandForGrade(profile.grade));
+    else {
+      applyAgeBand(ageBandForGrade(profile.grade));
+      applyPlusiColor(profile.plusiColor);
+    }
   }, [profile]);
   if (!profile) return null;
 

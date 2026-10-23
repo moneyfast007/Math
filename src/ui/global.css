@@ -1300,8 +1300,14 @@ ol.steps {
 /* ---------- Phase 4: Plusi, the journey, the album ---------- */
 
 .plusi {
-  color: var(--color-accent);
+  /* The child's own colour on her screens (ui/plusiColor.ts), else the age band's. */
+  color: var(--plusi-color, var(--color-accent));
   display: block;
+}
+
+/* The logo keeps the app's colour. */
+.brandmark .plusi {
+  color: var(--color-accent);
 }
 
 .icon-btn {
@@ -6915,4 +6921,102 @@ body::before {
   background: var(--color-bg);
   z-index: 1000;
   pointer-events: none;
+}
+
+/* "הפלוסי שלי": the colours, a Plusi in each; closed ones show the medal that opens them. */
+.plusi-picker__intro {
+  margin: 0 0 var(--space-2);
+  font-weight: 700;
+}
+
+.plusi-picker {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-2);
+}
+
+.plusi-swatch {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  aspect-ratio: 1;
+  padding: 10%;
+  border-radius: var(--radius-md);
+  border: 3px solid transparent;
+  background: var(--color-surface-alt, #fff);
+}
+
+.plusi-swatch--on {
+  border-color: var(--color-accent-strong);
+  background: var(--color-accent-soft);
+}
+
+.plusi-swatch:disabled {
+  opacity: 0.45;
+}
+
+.plusi-swatch__plusi {
+  display: block;
+  width: 100%;
+}
+
+.plusi-swatch__lock {
+  position: absolute;
+  bottom: 4px;
+  inset-inline-end: 4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 1px 6px;
+  border-radius: var(--radius-pill);
+  background: var(--color-surface);
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--color-text);
+}
+
+.plusi-swatch__lock svg {
+  width: 12px;
+  height: 12px;
+}
+
+.plusi-picker__note {
+  margin: var(--space-2) 0 0;
+  font-size: 14px;
+}
+
+/* After a tickle: a small paint brush beside Plusi for a few seconds. */
+.map__paint {
+  position: absolute;
+  z-index: 4;
+  transform: translate(-50%, -50%) translate(-55%, -330%);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  min-height: 40px;
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
+  border: 0;
+  background: var(--color-surface);
+  box-shadow: var(--shadow-md);
+  color: var(--color-text);
+  font-weight: 800;
+  font-size: 15px;
+  white-space: nowrap;
+  animation: plusi-in var(--dur-fast) var(--ease);
+}
+
+.album__plusi {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.album__plusi .plusi {
+  width: 28px;
+  height: 28px;
 }

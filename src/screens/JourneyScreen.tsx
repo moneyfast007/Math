@@ -32,6 +32,8 @@ import { Dialog } from '@/ui/Dialog';
 import { Icon } from '@/ui/Icon';
 import { playGiggle } from '@/ui/fanfare';
 import { Plusi } from '@/ui/Plusi';
+import { PlusiPicker } from '@/ui/PlusiPicker';
+import { applyPlusiColor } from '@/ui/plusiColor';
 import { SpeakerButton } from '@/ui/SpeakerButton';
 import { Stars } from '@/ui/Stars';
 import { JourneyIntroCard, WorldsIcon } from './JourneyIntro';
@@ -55,7 +57,10 @@ export function JourneyScreen() {
   const profile = useActiveProfile();
   useEffect(() => {
     if (!profile) navigate({ name: 'home' }, { replace: true });
-    else applyAgeBand(ageBandForGrade(profile.grade));
+    else {
+      applyAgeBand(ageBandForGrade(profile.grade));
+      applyPlusiColor(profile.plusiColor);
+    }
   }, [profile]);
   if (!profile) return null;
   return <Journey key={profile.id} profile={profile} />;
@@ -65,6 +70,7 @@ function Journey({ profile }: { profile: Profile }) {
   const progress = useApp((s) => s.data.progress[profile.id]);
   const markIntroSeen = useApp((s) => s.markJourneyIntroSeen);
   const [picking, setPicking] = useState(false);
+  const [painting, setPainting] = useState(false);
   // A station chosen on the map or in "תחנה אחרת" (or the final challenge): Plusi hops
   // there, the card names it, and the big button starts it. Where she is stays.
   const [picked, setPicked] = useState<number | 'review' | null>(null);
@@ -254,6 +260,7 @@ function Journey({ profile }: { profile: Profile }) {
             canPick={profile.settings.allowLevelChange}
             note={note}
             picked={picked}
+            onPaint={() => setPainting(true)}
             onPick={(s) => setPicked(s.level)}
             onLocked={(s) =>
               setNote(
@@ -326,6 +333,7 @@ function Journey({ profile }: { profile: Profile }) {
         </section>
       </div>
 
+      {painting ? <PlusiPicker profile={profile} onClose={() => setPainting(false)} /> : null}
       {picking ? (
         <Dialog title={t('child.pickLevel')} onClose={() => setPicking(false)}>
           <div className="level-list" role="list">
@@ -443,6 +451,7 @@ function AlbumIcon() {
 function WorldMap({
   world,
   young,
+  onPaint,
   overlay,
   canPick,
   note,
@@ -453,6 +462,8 @@ function WorldMap({
 }: {
   world: World;
   young: boolean;
+  /** Opens "הפלוסי שלי". */
+  onPaint: () => void;
   /** Shown over the map (the first-time explainer). */
   overlay: ReactNode;
   /** The parent lets her choose any station, ahead too (else the open ones only). */
@@ -590,6 +601,7 @@ function WorldMap({
             y={(plusiAt.y / height) * 100}
             mood={world.completed ? 'cheering' : 'happy'}
             teleport={teleport}
+            onPaint={onPaint}
           />
         ) : null}
       </section>
@@ -647,46 +659,96 @@ function MapPlusi({
   y,
   mood,
   teleport = 'idle',
+  onPaint,
 }: {
   x: number;
   y: number;
   mood: 'happy' | 'cheering';
   /** Vanishing where he was, or popping up at the chosen station. */
   teleport?: Teleport;
+  /** Opens "הפלוסי שלי" (offered for a few seconds after a tickle). */
+  onPaint: () => void;
 }) {
   const [tickled, setTickled] = useState(false);
+  const [paint, setPaint] = useState(false);
   const timer = useRef<number | null>(null);
-  useEffect(() => () => window.clearTimeout(timer.current ?? undefined), []);
+  const paintTimer = useRef<number | null>(null);
+  useEffect(
+    () => () => {
+      window.clearTimeout(timer.current ?? undefined);
+      window.clearTimeout(paintTimer.current ?? undefined);
+    },
+    [],
+  );
   const tickle = () => {
     playGiggle();
     setTickled(false);
+    // A tickle still tickles; then a little brush offers to paint him, for a few seconds.
+    setPaint(true);
+    window.clearTimeout(paintTimer.current ?? undefined);
+    paintTimer.current = window.setTimeout(() => setPaint(false), 3500);
     // Restart the wiggle even mid-wiggle: off for a frame, then on.
     window.requestAnimationFrame(() => setTickled(true));
     window.clearTimeout(timer.current ?? undefined);
     timer.current = window.setTimeout(() => setTickled(false), 1100);
   };
   return (
-    <button
-      type="button"
-      // Beside the station on the left, unless the station is near the left edge: then on its right.
-      className={x < 30 ? 'map__plusi map__plusi--right' : 'map__plusi'}
-      style={{ left: `${x}%`, top: `${y}%` }}
-      aria-label={t('journey.plusiTickle')}
-      data-tickled={tickled ? '' : undefined}
-      data-teleport={teleport === 'idle' ? undefined : teleport}
-      onClick={tickle}
-    >
-      <span className="map__plusi-body">
-        <Plusi mood={tickled ? 'cheering' : mood} size="100%" decorative />
-      </span>
-      {teleport !== 'idle' ? (
-        <span className="map__sparks" aria-hidden="true">
-          {[0, 1, 2, 3, 4, 5].map((i) => (
-            <span key={i} className={`map__spark map__spark--${i}`} />
-          ))}
+    <>
+      <button
+        type="button"
+        // Beside the station on the left, unless the station is near the left edge: then on its right.
+        className={x < 30 ? 'map__plusi map__plusi--right' : 'map__plusi'}
+        style={{ left: `${x}%`, top: `${y}%` }}
+        aria-label={t('journey.plusiTickle')}
+        data-tickled={tickled ? '' : undefined}
+        data-teleport={teleport === 'idle' ? undefined : teleport}
+        onClick={tickle}
+      >
+        <span className="map__plusi-body">
+          <Plusi mood={tickled ? 'cheering' : mood} size="100%" decorative />
         </span>
+        {teleport !== 'idle' ? (
+          <span className="map__sparks" aria-hidden="true">
+            {[0, 1, 2, 3, 4, 5].map((i) => (
+              <span key={i} className={`map__spark map__spark--${i}`} />
+            ))}
+          </span>
+        ) : null}
+      </button>
+      {paint ? (
+        <button
+          type="button"
+          className="map__paint"
+          style={{ left: `${x}%`, top: `${y}%` }}
+          onClick={() => {
+            setPaint(false);
+            onPaint();
+          }}
+        >
+          <BrushIcon />
+          {t('plusiColor.paint')}
+        </button>
       ) : null}
-    </button>
+    </>
+  );
+}
+
+function BrushIcon() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      width="18"
+      height="18"
+      aria-hidden="true"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M18.4 2.6a2 2 0 0 1 2.9 2.9L11 15.8 8.2 13z" />
+      <path d="M7.5 14.5c-2 0-3.5 1.6-3.5 3.5 0 1.1-.6 2-2 2.5 1 .9 2.5 1.5 4 1.5 2.5 0 4.5-2 4.5-4.5z" />
+    </svg>
   );
 }
 

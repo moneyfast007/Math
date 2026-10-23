@@ -41,6 +41,7 @@ import { MathExpr } from '@/ui/MathExpr';
 import { groupDigits } from '@/lang/groupDigits';
 import { NumberPad } from '@/ui/NumberPad';
 import { Plusi, type PlusiMood } from '@/ui/Plusi';
+import { applyPlusiColor } from '@/ui/plusiColor';
 import { SpeakerButton } from '@/ui/SpeakerButton';
 import { ColumnWork } from '@/ui/Vertical';
 import { playAlmost, playCorrect, setSoundsEnabled } from '@/ui/sounds';
@@ -222,6 +223,7 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
   }, [shownHint, s.hintsShown]);
 
   useEffect(() => applyAgeBand(band), [band]);
+  useEffect(() => applyPlusiColor(profile.plusiColor), [profile.plusiColor]);
   useEffect(() => setSoundsEnabled(profile.settings.sounds !== false), [profile.settings.sounds]);
 
   const apply = (action: SessionAction) => {

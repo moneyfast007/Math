@@ -7,6 +7,7 @@ import { requestParentTab } from '@/parent/tab';
 import { isStandalone } from '@/pwa/standalone';
 import { useApp } from '@/state/store';
 import { applyAgeBand } from '@/ui/ageBand';
+import { applyPlusiColor } from '@/ui/plusiColor';
 import { Avatar } from '@/ui/Avatar';
 import { Icon } from '@/ui/Icon';
 import { LongPressButton } from '@/ui/LongPressButton';
@@ -38,6 +39,7 @@ export function HomeScreen() {
     lockParent();
     selectProfile(null);
     applyAgeBand('middle');
+    applyPlusiColor(undefined);
   }, [lockParent, selectProfile]);
 
   const openParents = () => {

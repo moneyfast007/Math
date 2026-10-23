@@ -32,6 +32,22 @@ export const heRound3 = {
   'c.week.days': 'ימי תרגול',
   'c.week.goal': 'יעד: {goal} סבבים ביום · הושג ב-{days} מתוך 7 ימים',
   'c.week.goalOne': 'יעד: סבב אחד ביום · הושג ב-{days} מתוך 7 ימים',
+  // "הפלוסי שלי": the colour of the child's Plusi (shown, not spoken).
+  'plusiColor.title': 'הפלוסי שלי',
+  'plusiColor.intro': 'באיזה צבע פלוסי ילווה אותך?',
+  'plusiColor.note': 'עוד צבעים נפתחים עם מדליות הכוכבים באלבום.',
+  'plusiColor.paint': 'לצבוע אותי?',
+  'plusiColor.open': 'הפלוסי שלי',
+  'plusiColor.locked': 'נפתח במדליה {n}',
+  'plusiColor.lockedOne': 'נפתח במדליה הראשונה',
+  'plusiColor.usual': 'הצבע הרגיל',
+  'plusiColor.pink': 'ורוד',
+  'plusiColor.blue': 'כחול',
+  'plusiColor.green': 'ירוק',
+  'plusiColor.purple': 'סגול',
+  'plusiColor.red': 'אדום',
+  'plusiColor.gold': 'זהב',
+  'plusiColor.navy': 'כחול לילה',
   // Entry screen C.
   'c.home.start': 'מתחילים',
   // Back after two days or more without playing: Plusi says he missed her (once that day).

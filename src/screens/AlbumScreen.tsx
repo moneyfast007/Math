@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { setReplayTopic } from '@/app/replay';
 import { navigate } from '@/app/router';
 import { stickersEarned, worldsFor } from '@/engine/journey';
@@ -9,6 +9,8 @@ import { useActiveProfile, useApp } from '@/state/store';
 import { ageBandForGrade, applyAgeBand } from '@/ui/ageBand';
 import { BrandMark } from '@/ui/BrandMark';
 import { Plusi } from '@/ui/Plusi';
+import { PlusiPicker } from '@/ui/PlusiPicker';
+import { applyPlusiColor } from '@/ui/plusiColor';
 import { SpeakerButton } from '@/ui/SpeakerButton';
 import { Sticker } from '@/ui/Sticker';
 import { stickerForWorld, stickerLabel } from '@/ui/stickers';
@@ -21,10 +23,14 @@ import { stickerForWorld, stickerLabel } from '@/ui/stickers';
 export function AlbumScreen() {
   const profile = useActiveProfile();
   const progress = useApp((s) => (profile ? s.data.progress[profile.id] : undefined));
+  const [painting, setPainting] = useState(false);
 
   useEffect(() => {
     if (!profile) navigate({ name: 'home' }, { replace: true });
-    else applyAgeBand(ageBandForGrade(profile.grade));
+    else {
+      applyAgeBand(ageBandForGrade(profile.grade));
+      applyPlusiColor(profile.plusiColor);
+    }
   }, [profile]);
   if (!profile) return null;
 
@@ -64,6 +70,16 @@ export function AlbumScreen() {
           {t('album.back')}
         </button>
       </header>
+
+      <button
+        type="button"
+        className="btn btn--secondary btn--small album__plusi"
+        onClick={() => setPainting(true)}
+      >
+        <Plusi size={28} decorative />
+        {t('plusiColor.open')}
+      </button>
+      {painting ? <PlusiPicker profile={profile} onClose={() => setPainting(false)} /> : null}
 
       <section className="card album__status">
         <Plusi mood={earned > 0 ? 'cheering' : 'happy'} size={56} decorative />
