@@ -6803,12 +6803,97 @@ details.report .report__worlds {
   gap: var(--space-1);
 }
 
-/* Plusi drives to a chosen station along the path, gliding from one station to the next. */
-.map__plusi {
-  transition:
-    left 0.3s var(--ease),
-    top 0.3s var(--ease),
-    transform 0.3s var(--ease);
+/* Plusi teleports to a chosen station: a swirl out where he was, a pop where he lands. */
+@media (prefers-reduced-motion: no-preference) {
+  .map__plusi[data-teleport='out'] .map__plusi-body {
+    animation: plusi-vanish 320ms ease-in forwards;
+  }
+
+  .map__plusi[data-teleport='in'] .map__plusi-body {
+    animation: plusi-appear 420ms cubic-bezier(0.3, 1.6, 0.5, 1) both;
+  }
+}
+
+@keyframes plusi-vanish {
+  to {
+    transform: scale(0.1) rotate(300deg);
+    opacity: 0;
+  }
+}
+
+@keyframes plusi-appear {
+  from {
+    transform: scale(0.1) rotate(-200deg);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1) rotate(0);
+    opacity: 1;
+  }
+}
+
+.map__sparks {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.map__spark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 14%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #f0b42c;
+  opacity: 0;
+  animation: spark-burst 420ms ease-out both;
+}
+
+.map__spark--1 {
+  background: #7fc8bd;
+}
+.map__spark--3 {
+  background: #f2a46b;
+}
+.map__spark--5 {
+  background: #a9b0f0;
+}
+
+.map__spark--0 {
+  --dx: 0%;
+  --dy: -320%;
+}
+.map__spark--1 {
+  --dx: 280%;
+  --dy: -160%;
+}
+.map__spark--2 {
+  --dx: 280%;
+  --dy: 160%;
+}
+.map__spark--3 {
+  --dx: 0%;
+  --dy: 320%;
+}
+.map__spark--4 {
+  --dx: -280%;
+  --dy: 160%;
+}
+.map__spark--5 {
+  --dx: -280%;
+  --dy: -160%;
+}
+
+@keyframes spark-burst {
+  0% {
+    transform: translate(-50%, -50%) scale(0.4);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(0.2);
+    opacity: 0;
+  }
 }
 
 /* The station chosen for this visit: a ring around it, like the one Plusi stands by. */
@@ -6816,4 +6901,18 @@ details.report .report__worlds {
   box-shadow:
     0 0 0 4px var(--color-surface),
     0 0 0 8px var(--color-accent);
+}
+
+/* Installed to the home screen: the strip under the status bar is plain background, so
+   the system's soft blur at the top edge has nothing of the page to smear. */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: env(safe-area-inset-top);
+  background: var(--color-bg);
+  z-index: 1000;
+  pointer-events: none;
 }

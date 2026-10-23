@@ -483,9 +483,8 @@ function WorldMap({
         ? world.stations.findIndex((s) => s.level === picked)
         : -1;
   const target = pickedIndex >= 0 ? pickedIndex : currentIndex >= 0 ? currentIndex : all - 1;
-  const { at: plusiIndex, legMs } = useDrive(target);
+  const { at: plusiIndex, phase: teleport } = useTeleport(target);
   const plusiAt = points[plusiIndex];
-  const hopping = plusiIndex !== target;
   const reviewPoint = points[all - 1] as Point;
   const mapStyle: CSSProperties & { '--cell'?: string } = fitted
     ? {
@@ -590,8 +589,7 @@ function WorldMap({
             x={plusiAt.x}
             y={(plusiAt.y / height) * 100}
             mood={world.completed ? 'cheering' : 'happy'}
-            moving={hopping}
-            legMs={legMs}
+            teleport={teleport}
           />
         ) : null}
       </section>
@@ -609,19 +607,19 @@ function WorldMap({
  * a child can play with him without leaving the map.
  */
 /**
- * Where Plusi stands, driving to a new station along the path, through every
- * station on the way, at an even speed (quicker legs when the way is long; at
- * once with reduced motion). Each leg's time is also the length of its glide.
+ * Where Plusi stands, and the teleport when a station is chosen: he vanishes in a
+ * swirl of sparkles where he was and pops up beside the chosen station (at once,
+ * with no swirl, under reduced motion).
  */
-function useDrive(target: number): { at: number; legMs: number } {
+type Teleport = 'idle' | 'out' | 'in';
+const TELEPORT_OUT_MS = 320;
+const TELEPORT_IN_MS = 420;
+
+function useTeleport(target: number): { at: number; phase: Teleport } {
   const [at, setAt] = useState(target);
-  const leg = useRef(300);
-  const from = useRef(target);
+  const [phase, setPhase] = useState<Teleport>('idle');
   useEffect(() => {
-    if (at === target) {
-      from.current = target;
-      return;
-    }
+    if (at === target) return;
     const reduced =
       typeof window.matchMedia === 'function' &&
       window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -629,27 +627,32 @@ function useDrive(target: number): { at: number; legMs: number } {
       setAt(target);
       return;
     }
-    // The whole trip takes about a second and a half, whatever its length.
-    leg.current = Math.max(160, Math.min(420, 1500 / Math.abs(target - from.current)));
-    const id = window.setTimeout(() => setAt((x) => x + Math.sign(target - x)), leg.current);
-    return () => window.clearTimeout(id);
+    setPhase('out');
+    const out = window.setTimeout(() => {
+      setAt(target);
+      setPhase('in');
+    }, TELEPORT_OUT_MS);
+    return () => window.clearTimeout(out);
   }, [at, target]);
-  return { at, legMs: leg.current };
+  useEffect(() => {
+    if (phase !== 'in') return;
+    const id = window.setTimeout(() => setPhase('idle'), TELEPORT_IN_MS);
+    return () => window.clearTimeout(id);
+  }, [phase]);
+  return { at, phase };
 }
 
 function MapPlusi({
   x,
   y,
   mood,
-  moving = false,
-  legMs = 300,
+  teleport = 'idle',
 }: {
   x: number;
   y: number;
   mood: 'happy' | 'cheering';
-  /** On the way to another station: an even glide from station to station. */
-  moving?: boolean;
-  legMs?: number;
+  /** Vanishing where he was, or popping up at the chosen station. */
+  teleport?: Teleport;
 }) {
   const [tickled, setTickled] = useState(false);
   const timer = useRef<number | null>(null);
@@ -667,19 +670,22 @@ function MapPlusi({
       type="button"
       // Beside the station on the left, unless the station is near the left edge: then on its right.
       className={x < 30 ? 'map__plusi map__plusi--right' : 'map__plusi'}
-      style={{
-        left: `${x}%`,
-        top: `${y}%`,
-        ...(moving ? { transitionDuration: `${legMs}ms`, transitionTimingFunction: 'linear' } : {}),
-      }}
+      style={{ left: `${x}%`, top: `${y}%` }}
       aria-label={t('journey.plusiTickle')}
       data-tickled={tickled ? '' : undefined}
-      data-moving={moving ? '' : undefined}
+      data-teleport={teleport === 'idle' ? undefined : teleport}
       onClick={tickle}
     >
       <span className="map__plusi-body">
         <Plusi mood={tickled ? 'cheering' : mood} size="100%" decorative />
       </span>
+      {teleport !== 'idle' ? (
+        <span className="map__sparks" aria-hidden="true">
+          {[0, 1, 2, 3, 4, 5].map((i) => (
+            <span key={i} className={`map__spark map__spark--${i}`} />
+          ))}
+        </span>
+      ) : null}
     </button>
   );
 }

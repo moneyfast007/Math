@@ -1,3 +1,4 @@
+import { isPlusiColor } from '@/ui/plusiColor';
 import { isAvatarId } from '@/profiles/avatars';
 import type { Grade } from '@/ui/ageBand';
 import {
@@ -85,6 +86,8 @@ function parseProfile(value: unknown, index: number): Profile {
   if (dailyGoal !== undefined && !isDailyGoal(dailyGoal)) fail(`${where}: הגדרה לא חוקית`);
   // Added later and optional: absent in older data.
   const introSeen = p['journeyIntroSeenAt'];
+  // A colour this version does not know is simply left out (the usual one).
+  const plusiColor = p['plusiColor'];
   return {
     id: nonEmptyString(p['id'], 64, `${where}, מזהה`),
     name: nonEmptyString(p['name'], MAX_NAME_LENGTH, `${where}, שם`),
@@ -102,6 +105,7 @@ function parseProfile(value: unknown, index: number): Profile {
     ...(introSeen === undefined
       ? {}
       : { journeyIntroSeenAt: finiteNumber(introSeen, `${where}, הסבר המסע`) }),
+    ...(isPlusiColor(plusiColor) ? { plusiColor } : {}),
   };
 }
 

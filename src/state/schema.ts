@@ -1,3 +1,4 @@
+import type { PlusiColorId } from '@/ui/plusiColor';
 import type { Gender } from '@/lang/gender';
 import type { AvatarId } from '@/profiles/avatars';
 import type { Grade } from '@/ui/ageBand';
@@ -63,6 +64,8 @@ export interface Profile {
    * before it existed stay valid without a schema change.
    */
   journeyIntroSeenAt?: number;
+  /** The colour of her Plusi (absent: the usual one). Optional, like the field above. */
+  plusiColor?: PlusiColorId;
 }
 
 /** What a parent fills in; id and timestamps are added by the store. */

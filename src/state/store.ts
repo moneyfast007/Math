@@ -1,3 +1,4 @@
+import type { PlusiColorId } from '@/ui/plusiColor';
 import { useStore } from 'zustand';
 import { createStore, type StoreApi } from 'zustand/vanilla';
 import { createPinRecord, verifyPin as checkPin } from './pin';
@@ -78,6 +79,8 @@ export interface AppState {
   completeMixed: (profileId: string) => void;
   /** The journey's first-time explainer was shown: it does not open by itself again. */
   markJourneyIntroSeen: (profileId: string) => void;
+  /** The child chose a colour for her Plusi. */
+  setPlusiColor: (profileId: string, color: PlusiColorId) => void;
 }
 
 export type AppStore = StoreApi<AppState>;
@@ -256,6 +259,18 @@ export function createAppStore(storage: StorageAdapter, clock: () => number = Da
         commit({
           ...data,
           profiles: data.profiles.map((p) => (p.id === profileId ? seen : p)),
+        });
+      },
+
+      setPlusiColor: (profileId, color) => {
+        const { data } = get();
+        const profile = data.profiles.find((p) => p.id === profileId);
+        if (!profile || profile.plusiColor === color) return;
+        const next: Profile = { ...profile, plusiColor: color };
+        if (color === 'usual') delete next.plusiColor;
+        commit({
+          ...data,
+          profiles: data.profiles.map((p) => (p.id === profileId ? next : p)),
         });
       },
 
