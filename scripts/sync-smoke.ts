@@ -4,9 +4,9 @@
  * deletes the family. Prints status codes only (never tokens or codes).
  * Run by the "Sync smoke test" workflow; its result is the workflow's result.
  *
- *   npx tsx scripts/sync-smoke.ts https://math.assafkutai.workers.dev
+ *   npx tsx scripts/sync-smoke.ts https://plusi.app
  */
-const base = process.argv[2] ?? 'https://math.assafkutai.workers.dev';
+const base = process.argv[2] ?? 'https://plusi.app';
 
 async function post(path: string, body: unknown, token?: string): Promise<Record<string, unknown>> {
   const headers: Record<string, string> = { 'content-type': 'application/json' };

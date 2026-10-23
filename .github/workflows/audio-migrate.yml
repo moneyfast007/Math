@@ -50,8 +50,8 @@ jobs:
           ID=$(python3 -c "import json;print(next(iter(json.load(open('audio/manifest.json'))['clips'])))")
           {
             echo "clip $ID"
-            curl -s -o /dev/null -w "GET %{http_code} %{content_type} %{size_download} bytes\n" "https://math.assafkutai.workers.dev/audio/$ID.mp3"
-            curl -s -o /dev/null -H "Range: bytes=0-1" -w "RANGE %{http_code} %{size_download} bytes\n" "https://math.assafkutai.workers.dev/audio/$ID.mp3"
+            curl -s -o /dev/null -w "GET %{http_code} %{content_type} %{size_download} bytes\n" "https://plusi.app/audio/$ID.mp3"
+            curl -s -o /dev/null -H "Range: bytes=0-1" -w "RANGE %{http_code} %{size_download} bytes\n" "https://plusi.app/audio/$ID.mp3"
           } | tee check.txt
           git fetch origin tts-log || true
           git checkout -B tts-log

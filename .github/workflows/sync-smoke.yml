@@ -16,4 +16,4 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - run: npx --yes tsx@4 scripts/sync-smoke.ts https://math.assafkutai.workers.dev
+      - run: npx --yes tsx@4 scripts/sync-smoke.ts https://plusi.app
