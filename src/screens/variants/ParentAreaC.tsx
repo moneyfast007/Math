@@ -313,13 +313,22 @@ function TodayPanel({ onAdd, onRestore }: { onAdd: () => void; onRestore: () => 
           </p>
         </div>
       ) : (
-        <ul className="c-list" role="list">
-          {profiles.map((p, i) => (
-            <li key={p.id}>
-              <TodayCard profile={p} index={i} now={now} />
-            </li>
-          ))}
-        </ul>
+        <>
+          <ul className="c-list" role="list">
+            {profiles.map((p, i) => (
+              <li key={p.id}>
+                <TodayCard profile={p} index={i} now={now} />
+              </li>
+            ))}
+          </ul>
+          {/* Another child, right here too (also under "הגדרות"). */}
+          {profiles.length < MAX_PROFILES ? (
+            <button type="button" className="c-add" onClick={onAdd}>
+              <Icon name="plus" />
+              {t('parent.addChild')}
+            </button>
+          ) : null}
+        </>
       )}
     </>
   );
