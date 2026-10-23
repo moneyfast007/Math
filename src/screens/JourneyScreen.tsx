@@ -65,7 +65,9 @@ function Journey({ profile }: { profile: Profile }) {
   const progress = useApp((s) => s.data.progress[profile.id]);
   const markIntroSeen = useApp((s) => s.markJourneyIntroSeen);
   const [picking, setPicking] = useState(false);
-  const [picked, setPicked] = useState<number | null>(null);
+  // A station chosen on the map or in "תחנה אחרת" (or the final challenge): Plusi hops
+  // there, the card names it, and the big button starts it. Where she is stays.
+  const [picked, setPicked] = useState<number | 'review' | null>(null);
   // Back on the journey: no station is chosen any more (the big button names the next one).
   useEffect(() => clearChosenStation(), []);
   const [note, setNote] = useState<string | null>(null);
@@ -99,10 +101,14 @@ function Journey({ profile }: { profile: Profile }) {
       </main>
     );
   }
-  // A station chosen in "תחנה אחרת" is the next stop for this visit; where she is stays.
-  const stop: NextStop = picked !== null ? { kind: 'level', level: picked } : nextStop(world);
+  const stop: NextStop =
+    picked === 'review'
+      ? { kind: 'review' }
+      : picked !== null
+        ? { kind: 'level', level: picked }
+        : nextStop(world);
   const level =
-    picked ??
+    (typeof picked === 'number' ? picked : null) ??
     world.stations.find((s) => s.state === 'current')?.level ??
     world.stations.at(-1)?.level ??
     1;
@@ -126,11 +132,6 @@ function Journey({ profile }: { profile: Profile }) {
     if (stop.kind === 'level') chooseStation(world.topic.id, stop.level);
     else clearChosenStation();
     navigate({ name: stop.kind === 'review' ? 'review' : 'practice' });
-  };
-  /** A station chosen on the map or in the list: that very station, now. */
-  const play = (level: number) => {
-    chooseStation(world.topic.id, level);
-    navigate({ name: 'practice' });
   };
   // More of this world: once a station of it is passed (nothing to mix before).
   const hasWorldMix = worldPool(world, progress).length > 0;
@@ -252,7 +253,8 @@ function Journey({ profile }: { profile: Profile }) {
             }
             canPick={profile.settings.allowLevelChange}
             note={note}
-            onPick={(s) => play(s.level)}
+            picked={picked}
+            onPick={(s) => setPicked(s.level)}
             onLocked={(s) =>
               setNote(
                 s === 'review'
@@ -262,7 +264,7 @@ function Journey({ profile }: { profile: Profile }) {
                   : t('journey.note.stationLocked', { params: { n: s.level } }),
               )
             }
-            onReview={() => navigate({ name: 'review' })}
+            onReview={() => setPicked('review')}
           />
         </div>
 
@@ -270,7 +272,16 @@ function Journey({ profile }: { profile: Profile }) {
           <div className="journey__next-row">
             <div className="journey__next-text">
               {/* Where she stands in the world, right over the station it names. */}
-              <p className="muted journey__progress">{progressLine(world, nextWorld)}</p>
+              <p className="muted journey__progress">
+                {typeof picked === 'number'
+                  ? t('journey.stationOf', {
+                      params: {
+                        n: world.stations.findIndex((st) => st.level === picked) + 1,
+                        total: world.stations.length,
+                      },
+                    })
+                  : progressLine(world, nextWorld)}
+              </p>
               <h2 id="station-title">{stopName}</h2>
             </div>
             <div className="journey__next-side">
@@ -435,6 +446,7 @@ function WorldMap({
   overlay,
   canPick,
   note,
+  picked,
   onPick,
   onLocked,
   onReview,
@@ -447,6 +459,8 @@ function WorldMap({
   canPick: boolean;
   /** A short line over the map's foot (why a station is closed), or none. */
   note: string | null;
+  /** The station chosen for this visit (Plusi hops there), if any. */
+  picked: number | 'review' | null;
   onPick: (s: WorldStation) => void;
   onLocked: (s: WorldStation | 'review') => void;
   onReview: () => void;
@@ -462,7 +476,16 @@ function WorldMap({
   const walked = currentIndex >= 0 ? currentIndex : world.review === 'locked' ? 0 : all - 1;
   const donePath = pathThrough(points.slice(0, walked + 1));
   const restPath = pathThrough(points.slice(walked));
-  const plusiAt = currentIndex >= 0 ? points[currentIndex] : points[all - 1];
+  const pickedIndex =
+    picked === 'review'
+      ? all - 1
+      : picked !== null
+        ? world.stations.findIndex((s) => s.level === picked)
+        : -1;
+  const target = pickedIndex >= 0 ? pickedIndex : currentIndex >= 0 ? currentIndex : all - 1;
+  const plusiIndex = useHops(target);
+  const plusiAt = points[plusiIndex];
+  const hopping = plusiIndex !== target;
   const reviewPoint = points[all - 1] as Point;
   const mapStyle: CSSProperties & { '--cell'?: string } = fitted
     ? {
@@ -489,7 +512,10 @@ function WorldMap({
         {world.stations.map((s, i) => {
           const p = points[i] as Point;
           const label = t(`journey.station.${s.state}`, { params: { n: s.level } });
-          const cls = `node node--${s.state}`;
+          const cls =
+            i === pickedIndex && s.state !== 'current'
+              ? `node node--${s.state} node--picked`
+              : `node node--${s.state}`;
           const style = { left: `${p.x}%`, top: `${(p.y / height) * 100}%` };
           const content = (
             <>
@@ -525,7 +551,11 @@ function WorldMap({
 
         <button
           type="button"
-          className={`node node--review node--review-${world.review}`}
+          className={
+            pickedIndex === all - 1
+              ? `node node--review node--review-${world.review} node--picked`
+              : `node node--review node--review-${world.review}`
+          }
           style={{ left: `${reviewPoint.x}%`, top: `${(reviewPoint.y / height) * 100}%` }}
           aria-label={t(`journey.review.${world.review}`)}
           onClick={() => (world.review === 'locked' ? onLocked('review') : onReview())}
@@ -560,6 +590,7 @@ function WorldMap({
             x={plusiAt.x}
             y={(plusiAt.y / height) * 100}
             mood={world.completed ? 'cheering' : 'happy'}
+            hopping={hopping}
           />
         ) : null}
       </section>
@@ -576,7 +607,40 @@ function WorldMap({
  * tickles him (a wiggle, a cheer and a giggle). The tap does nothing else, so
  * a child can play with him without leaving the map.
  */
-function MapPlusi({ x, y, mood }: { x: number; y: number; mood: 'happy' | 'cheering' }) {
+/**
+ * Where Plusi stands, walking to a new station one station at a time along the
+ * path (each hop quicker when the way is long; at once with reduced motion).
+ */
+function useHops(target: number): number {
+  const [at, setAt] = useState(target);
+  useEffect(() => {
+    if (at === target) return;
+    const reduced =
+      typeof window.matchMedia === 'function' &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduced) {
+      setAt(target);
+      return;
+    }
+    const step = Math.max(140, Math.min(320, 1300 / Math.abs(target - at)));
+    const id = window.setTimeout(() => setAt((x) => x + Math.sign(target - x)), step);
+    return () => window.clearTimeout(id);
+  }, [at, target]);
+  return at;
+}
+
+function MapPlusi({
+  x,
+  y,
+  mood,
+  hopping = false,
+}: {
+  x: number;
+  y: number;
+  mood: 'happy' | 'cheering';
+  /** On the way to another station: a little hop with each step. */
+  hopping?: boolean;
+}) {
   const [tickled, setTickled] = useState(false);
   const timer = useRef<number | null>(null);
   useEffect(() => () => window.clearTimeout(timer.current ?? undefined), []);
@@ -596,6 +660,7 @@ function MapPlusi({ x, y, mood }: { x: number; y: number; mood: 'happy' | 'cheer
       style={{ left: `${x}%`, top: `${y}%` }}
       aria-label={t('journey.plusiTickle')}
       data-tickled={tickled ? '' : undefined}
+      data-hopping={hopping ? '' : undefined}
       onClick={tickle}
     >
       <span className="map__plusi-body">

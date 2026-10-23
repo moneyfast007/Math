@@ -138,6 +138,9 @@ test.describe('practice', () => {
     await expect(page.getByText('תחנה 2 מתוך 10')).toBeVisible();
     // A passed station on the map plays that very station again; where she is stays.
     await page.getByRole('button', { name: 'תחנה 1, הושלמה' }).click();
+    // Plusi hops there and the card names it; the big button starts it.
+    await expect(page.locator('.journey__next')).toContainText('תחנה 1 מתוך 10');
+    await page.getByRole('button', { name: 'יאללה, מתחילים!' }).click();
     await expect(page.locator('main[data-screen="practice"]')).toHaveAttribute('data-station', '1');
     await page.getByRole('button', { name: 'סיום' }).click();
     await expect(page.getByRole('button', { name: 'תחנה 2, התחנה הבאה' })).toBeVisible();
@@ -282,6 +285,7 @@ test.describe('journey', () => {
 
     // A warm-up station can be played: a shortcut to that level.
     await map.getByRole('button', { name: 'תחנה 3, חימום' }).click();
+    await page.getByRole('button', { name: 'יאללה, מתחילים!' }).click();
     await expect(page).toHaveURL(/\/practice$/);
     // Level 3: adding with pictures.
     await expect(page.locator('.exercise .obj').first()).toBeVisible();
