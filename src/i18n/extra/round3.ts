@@ -22,6 +22,11 @@ export const heRound3 = {
   'practice.done.medal': 'מדליית כוכבים חדשה באלבום!',
   'goal.doneAlready': 'סיימת את היעד של היום. אפשר להמשיך בשביל הכיף!',
   'goal.reachedChild': 'סיימת להיום',
+  // A code of their own instead of the multiplication question at the parents' gate.
+  'pinOffer.body': 'בכניסה לאזור ההורים מופיע תרגיל כפל. רוצים במקומו קוד אישי?',
+  'pinOffer.banner': 'רוצים קוד בן 4 ספרות במקום תרגיל הכפל בכניסה?',
+  'pinOffer.choose': 'בחירת קוד',
+  'pinOffer.later': 'לא עכשיו',
   // Entry screen C.
   'c.home.start': 'מתחילים',
   // Back after two days or more without playing: Plusi says he missed her (once that day).

@@ -30,6 +30,7 @@ import {
   DeviceSection,
   JourneyReport,
   OfflineSection,
+  PinBanner,
   SecuritySection,
   WeekReport,
 } from '../ParentScreen';
@@ -314,6 +315,7 @@ function TodayPanel({ onAdd, onRestore }: { onAdd: () => void; onRestore: () => 
         </div>
       ) : (
         <>
+          <PinBanner />
           <ul className="c-list" role="list">
             {profiles.map((p, i) => (
               <li key={p.id}>

@@ -6753,3 +6753,52 @@ details.report .report__worlds {
     min-width: 50%;
   }
 }
+
+/* A code instead of the multiplication question: offered after the first child, and once on "מה היה היום?". */
+.pin-offer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-1);
+  margin-top: var(--space-2);
+  padding: var(--space-2);
+  border-radius: var(--radius-md);
+  background: var(--color-accent-soft);
+}
+
+.pin-offer p {
+  margin: 0;
+}
+
+.pin-banner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-3);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-md);
+  background: var(--color-accent-soft);
+}
+
+.pin-banner__icon {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--color-surface);
+  color: var(--color-accent-strong);
+}
+
+.pin-banner__text {
+  flex: 1;
+  min-width: 12em;
+  margin: 0;
+  font-weight: 700;
+}
+
+.pin-banner__actions {
+  display: flex;
+  gap: var(--space-1);
+}

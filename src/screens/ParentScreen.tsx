@@ -28,6 +28,7 @@ import { applyAgeBand } from '@/ui/ageBand';
 import { Avatar } from '@/ui/Avatar';
 import { ConfirmDialog, Dialog } from '@/ui/Dialog';
 import { Icon, type IconName } from '@/ui/Icon';
+import { dayKey } from '@/state/streak';
 import { NumberPad } from '@/ui/NumberPad';
 import { Plusi } from '@/ui/Plusi';
 
@@ -353,6 +354,88 @@ export function ChildrenSection({ onSettings }: { onSettings: () => void }) {
   );
 }
 
+/* ---------- Offering a code instead of the multiplication question ---------- */
+
+const PIN_OFFER_KEY = 'pin-offer';
+
+/** When the code was last offered ('done' once chosen or dismissed). Browser storage: a convenience. */
+function pinOffer(): string | null {
+  try {
+    return localStorage.getItem(PIN_OFFER_KEY);
+  } catch {
+    return 'done';
+  }
+}
+
+/** Offered today (right after the first child): the banner waits for another day. */
+export function markPinOffered(): void {
+  try {
+    if (pinOffer() !== 'done') localStorage.setItem(PIN_OFFER_KEY, dayKey(Date.now()));
+  } catch {
+    // Without storage the offer may come again; nothing depends on it.
+  }
+}
+
+export function dismissPinOffer(): void {
+  try {
+    localStorage.setItem(PIN_OFFER_KEY, 'done');
+  } catch {
+    // As above.
+  }
+}
+
+/** Show the one-time banner: no code yet, never dismissed, and not offered earlier today. */
+export function showPinBanner(hasPin: boolean): boolean {
+  if (hasPin) return false;
+  const kept = pinOffer();
+  return kept !== 'done' && kept !== dayKey(Date.now());
+}
+
+/**
+ * Once, at the top of "מה היה היום?": a code instead of the multiplication question.
+ * Choosing or closing it is the end of it (the setting stays under "הגדרות").
+ */
+export function PinBanner() {
+  const hasPin = useApp((s) => s.data.parent.pin !== null);
+  const setPin = useApp((s) => s.setPin);
+  const [shown, setShown] = useState(() => showPinBanner(hasPin));
+  const [choosing, setChoosing] = useState(false);
+  if (!shown || hasPin) return null;
+  return (
+    <div className="pin-banner" role="note">
+      <span className="pin-banner__icon" aria-hidden="true">
+        <Icon name="lock" />
+      </span>
+      <p className="pin-banner__text">{t('pinOffer.banner')}</p>
+      <div className="pin-banner__actions">
+        <button type="button" className="btn btn--small" onClick={() => setChoosing(true)}>
+          {t('pinOffer.choose')}
+        </button>
+        <button
+          type="button"
+          className="btn btn--ghost btn--small"
+          onClick={() => {
+            dismissPinOffer();
+            setShown(false);
+          }}
+        >
+          {t('pinOffer.later')}
+        </button>
+      </div>
+      {choosing ? (
+        <PinChooser
+          onDone={(pin) => {
+            setChoosing(false);
+            dismissPinOffer();
+            void setPin(pin).then(() => setShown(false));
+          }}
+          onCancel={() => setChoosing(false)}
+        />
+      ) : null}
+    </div>
+  );
+}
+
 /** Right after a child is added: the next step is always one tap away. */
 export function ChildAdded({
   profile,
@@ -368,6 +451,28 @@ export function ChildAdded({
   onClose: () => void;
 }) {
   const tc = makeT(profile.gender);
+  const hasPin = useApp((s) => s.data.parent.pin !== null);
+  const setPin = useApp((s) => s.setPin);
+  const [choosingPin, setChoosingPin] = useState(false);
+  // The parent is inside the parents' area now: the moment to offer a code of their own
+  // instead of the multiplication question (a child at the gate could not choose one).
+  const [offerPin] = useState(() => !hasPin);
+  const [pinSaved, setPinSaved] = useState(false);
+  // Offered now; if it is put off, the banner on "מה היה היום?" asks again another day.
+  useEffect(() => {
+    if (offerPin) markPinOffered();
+  }, [offerPin]);
+  if (choosingPin) {
+    return (
+      <PinChooser
+        onDone={(pin) => {
+          setChoosingPin(false);
+          void setPin(pin).then(() => setPinSaved(true));
+        }}
+        onCancel={() => setChoosingPin(false)}
+      />
+    );
+  }
   return (
     <Dialog
       title={tc('parent.added.title', { name: profile.name })}
@@ -389,6 +494,27 @@ export function ChildAdded({
         <Avatar id={profile.avatar} size="lg" decorative />
         <p>{tc('parent.added.body')}</p>
       </div>
+      {offerPin ? (
+        <div className="pin-offer">
+          {pinSaved ? (
+            <p className="notice notice--ok" role="status">
+              {t('parent.security.saved')}
+            </p>
+          ) : (
+            <>
+              <p>{t('pinOffer.body')}</p>
+              <button
+                type="button"
+                className="btn btn--secondary btn--small"
+                onClick={() => setChoosingPin(true)}
+              >
+                <Icon name="lock" />
+                {t('pinOffer.choose')}
+              </button>
+            </>
+          )}
+        </div>
+      ) : null}
     </Dialog>
   );
 }
