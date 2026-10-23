@@ -28,6 +28,7 @@ import { applyAgeBand } from '@/ui/ageBand';
 import { Avatar } from '@/ui/Avatar';
 import { ConfirmDialog, Dialog } from '@/ui/Dialog';
 import { Icon, type IconName } from '@/ui/Icon';
+import { PinDots } from '@/parent/PinDots';
 import { applyPlusiColor } from '@/ui/plusiColor';
 import { dayKey } from '@/state/streak';
 import { NumberPad } from '@/ui/NumberPad';
@@ -402,7 +403,13 @@ export function showPinBanner(hasPin: boolean): boolean {
 export function PinBanner() {
   const hasPin = useApp((s) => s.data.parent.pin !== null);
   const setPin = useApp((s) => s.setPin);
-  const [shown, setShown] = useState(() => showPinBanner(hasPin));
+  // Decided a moment after it appears: a code just offered with a new child waits for another day.
+  const [shown, setShown] = useState(false);
+  useEffect(() => {
+    const id = window.setTimeout(() => setShown(showPinBanner(hasPin)), 0);
+    return () => window.clearTimeout(id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   const [choosing, setChoosing] = useState(false);
   if (!shown || hasPin) return null;
   return (
@@ -502,7 +509,7 @@ export function ChildAdded({
         <div className="pin-offer">
           {pinSaved ? (
             <p className="notice notice--ok" role="status">
-              {t('parent.security.saved')}
+              {t('parent.security.savedHint')}
             </p>
           ) : (
             <>
@@ -847,7 +854,7 @@ export function PinChooser({
       <div className="gate stack">
         <p>{prompt}</p>
         <output className="gate__value" dir="ltr">
-          {'•'.repeat(value.length) || ' '}
+          <PinDots count={value.length} />
         </output>
         <p className="gate__error" role="alert">
           {mismatch ? t('parent.security.mismatch') : ' '}
@@ -1050,10 +1057,13 @@ export function WeekReport({ profile }: { profile: Profile }) {
         {week.days.map((d) => (
           <div key={d.key} className="week__day">
             <span className="week__count">{d.exercises > 0 ? d.exercises : ''}</span>
-            <span
-              className={d.exercises > 0 ? 'week__bar week__bar--on' : 'week__bar'}
-              style={{ height: `${Math.round((d.exercises / most) * 100)}%` }}
-            />
+            {/* The bars share one track, so their heights are true to the numbers. */}
+            <span className="week__track">
+              <span
+                className={d.exercises > 0 ? 'week__bar week__bar--on' : 'week__bar'}
+                style={{ height: `${Math.round((d.exercises / most) * 100)}%` }}
+              />
+            </span>
             <span className="week__label">{WEEKDAYS[d.weekday]}</span>
           </div>
         ))}
@@ -1082,8 +1092,11 @@ function nowAt(world: World): string {
 /** Every world and its stations, folded: the child card already shows the current one. */
 export function JourneyReport({ profile }: { profile: Profile }) {
   const progress = useApp((s) => s.data.progress[profile.id]);
-  const worlds = worldsFor(profile.grade, progress);
+  const all = worldsFor(profile.grade, progress);
   const active = activeWorld(profile.grade, progress);
+  // The worlds she has been in; the ones not started yet are counted in one line.
+  const worlds = all.filter((w) => w.done > 0 || w.topic.id === active?.topic.id);
+  const later = all.length - worlds.length;
   return (
     <details className="report more">
       <summary>{t('parent.journey.title')}</summary>
@@ -1107,10 +1120,20 @@ export function JourneyReport({ profile }: { profile: Profile }) {
                 <span className="muted report__now">{nowAt(w)}</span>
               ) : null}
             </span>
-            <progress max={w.total} value={w.done} className="report__bar" />
+            {/* Fills from the right, like every bar here. */}
+            <span className="meter report__bar" aria-hidden="true">
+              <span style={{ width: `${Math.round((w.done / Math.max(1, w.total)) * 100)}%` }} />
+            </span>
           </li>
         ))}
       </ul>
+      {later > 0 ? (
+        <p className="muted report__later">
+          {later === 1
+            ? t('parent.journey.laterOne')
+            : t('parent.journey.later', { params: { n: later } })}
+        </p>
+      ) : null}
     </details>
   );
 }

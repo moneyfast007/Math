@@ -1149,3 +1149,114 @@ details[open] > summary .c-row__chev {
   margin: 0;
   font-size: 14px;
 }
+
+/* Progress: the family at a glance, one row per child (a tap goes to her card). */
+.c-family {
+  list-style: none;
+  margin: 0 0 var(--space-3);
+  padding: var(--space-1);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+}
+
+.c-family__row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: var(--tap-min);
+  padding: 6px var(--space-2);
+  border-radius: var(--radius-md);
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.c-family__row:active {
+  background: var(--color-accent-soft);
+}
+
+.c-family__name {
+  font-weight: 800;
+}
+
+.c-family__state {
+  margin-inline-start: auto;
+  padding: 2px 10px;
+  border-radius: var(--radius-pill);
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.c-family__row--today .c-family__state {
+  background: var(--color-success-soft);
+  color: #2f6b3a;
+}
+
+.c-family__row--recent .c-family__state {
+  background: var(--color-surface-alt, #f5efe6);
+}
+
+.c-family__row--quiet .c-family__state,
+.c-family__row--new .c-family__state {
+  background: var(--color-almost-soft);
+  color: #7a4d0b;
+}
+
+/* Easier to read: the words under the numbers and the day letters. */
+.c-week .c-num dt {
+  font-size: 15px;
+  color: var(--color-text);
+}
+
+.c-week .week__label,
+.c-week .week__count {
+  font-size: 14px;
+}
+
+/* Folded sections look like what they are: a full-width row that opens below. */
+.c-folds > details > summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: var(--tap-min);
+  padding: 6px var(--space-2);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-alt, #f5efe6);
+  font-weight: 800;
+  cursor: pointer;
+  list-style: none;
+}
+
+.c-folds > details > summary::-webkit-details-marker {
+  display: none;
+}
+
+.c-folds > details > summary::after {
+  content: '';
+  width: 10px;
+  height: 10px;
+  border-inline-end: 2.5px solid currentColor;
+  border-bottom: 2.5px solid currentColor;
+  transform: rotate(45deg);
+  transition: transform var(--dur-fast) var(--ease);
+}
+
+.c-folds > details[open] > summary::after {
+  transform: rotate(-135deg);
+}
+
+.c-folds > details + details {
+  margin-top: var(--space-2);
+}
+
+.c-folds > details > summary::before {
+  display: none;
+}
+
+.c-folds > details > summary {
+  color: var(--color-text);
+  font-size: var(--text-md);
+}

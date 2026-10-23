@@ -9,7 +9,7 @@ export const heScreens = {
     'היי, אני פלוסי! איתי כל תרגיל הוא הרפתקה קטנה, כל טעות היא עוד צעד, ולאט לאט נהיים אלופים. בואו נשחק!',
   'welcome.forParents': 'הורה יוצר פרופיל לכל ילד או ילדה. זה לוקח דקה.',
   'welcome.haveData': 'כבר יש לכם פלוסי במכשיר אחר, או קובץ גיבוי?',
-  'welcome.connect': 'חיבור או שחזור',
+  'welcome.connect': 'התחברות או שחזור מגיבוי',
 
   // Child picker. Mixed boys and girls: a form that is the same for both.
   'home.whoIsPlaying.mixed': 'מי רוצה לשחק היום?',

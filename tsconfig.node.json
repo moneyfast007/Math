@@ -32,6 +32,7 @@
     "src/audio",
     "src/profiles",
     "src/ui/ageBand.ts",
+    "src/ui/plusiColor.ts",
     "src/engine",
     "src/state/schema.ts",
     "src/state/testData.ts",

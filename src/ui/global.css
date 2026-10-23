@@ -7020,3 +7020,91 @@ body::before {
   width: 28px;
   height: 28px;
 }
+
+/* The week chart: each bar stands in a track of the same height, so 10 is a third of 30. */
+.week__track {
+  flex: 1 1 0;
+  min-height: 0;
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+}
+
+.week__track > .week__bar {
+  flex: none;
+}
+
+/* A code's four places: empty rings that fill as the digits are typed. */
+.pin-dots {
+  display: inline-flex;
+  gap: 14px;
+  justify-content: center;
+}
+
+.pin-dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2.5px solid var(--color-border);
+}
+
+.pin-dot--on {
+  border-color: var(--color-accent-strong);
+  background: var(--color-accent-strong);
+}
+
+/* A code's four places: empty rings that fill as the digits are typed. */
+.pin-dots {
+  display: inline-flex;
+  gap: 14px;
+  justify-content: center;
+}
+
+.pin-dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2.5px solid var(--color-border);
+}
+
+.pin-dot--on {
+  border-color: var(--color-accent-strong);
+  background: var(--color-accent-strong);
+}
+
+/* The new-child form: the extra settings behind one clear row. */
+.form-more > summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: var(--tap-min);
+  padding: 6px var(--space-2);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-alt, #f5efe6);
+  font-weight: 800;
+  cursor: pointer;
+  list-style: none;
+}
+
+.form-more > summary::-webkit-details-marker {
+  display: none;
+}
+
+.form-more > summary::after {
+  content: '';
+  width: 10px;
+  height: 10px;
+  border-inline-end: 2.5px solid currentColor;
+  border-bottom: 2.5px solid currentColor;
+  transform: rotate(45deg);
+}
+
+.form-more[open] > summary::after {
+  transform: rotate(-135deg);
+}
+
+.form-more[open] {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}

@@ -188,63 +188,68 @@ export function ProfileForm({ profile, onSave, onDelete, onClose }: ProfileFormP
           </div>
         </fieldset>
 
-        <fieldset className="field">
-          <legend>{t('profile.roundLength')}</legend>
-          <div className="choices">
-            {ROUND_LENGTH_OPTIONS.map((o) => (
-              <label key={o} className="choice choice--stacked">
-                <input
-                  type="radio"
-                  name="roundLength"
-                  value={o}
-                  checked={roundLength === o}
-                  onChange={() => setRoundLength(o)}
-                />
-                {t(`profile.roundLength.${o}`)}
-                {/* The real count for the grade chosen above, so the choice means something. */}
-                <span className="muted choice__detail">
-                  {t('profile.roundLength.count', {
-                    params: { count: ROUND_LENGTHS[ageBandForGrade(grade)][o] },
-                  })}
-                </span>
-              </label>
-            ))}
-          </div>
-          <p className="muted field__hint">{t('profile.roundLength.hint')}</p>
-        </fieldset>
+        {/* The rest is fine as it is for a start: folded for a new child, open when editing. */}
+        <details className="form-more" open={profile !== undefined}>
+          <summary>{t('profile.more')}</summary>
+          <p className="muted field__hint">{t('profile.moreHint')}</p>
+          <fieldset className="field">
+            <legend>{t('profile.roundLength')}</legend>
+            <div className="choices">
+              {ROUND_LENGTH_OPTIONS.map((o) => (
+                <label key={o} className="choice choice--stacked">
+                  <input
+                    type="radio"
+                    name="roundLength"
+                    value={o}
+                    checked={roundLength === o}
+                    onChange={() => setRoundLength(o)}
+                  />
+                  {t(`profile.roundLength.${o}`)}
+                  {/* The real count for the grade chosen above, so the choice means something. */}
+                  <span className="muted choice__detail">
+                    {t('profile.roundLength.count', {
+                      params: { count: ROUND_LENGTHS[ageBandForGrade(grade)][o] },
+                    })}
+                  </span>
+                </label>
+              ))}
+            </div>
+            <p className="muted field__hint">{t('profile.roundLength.hint')}</p>
+          </fieldset>
 
-        <fieldset className="field">
-          <legend>{t('profile.dailyGoal')}</legend>
-          <div className="choices">
-            {([0, ...DAILY_GOAL_OPTIONS] as const).map((g) => (
-              <label key={g} className="choice">
-                <input
-                  type="radio"
-                  name="dailyGoal"
-                  value={g}
-                  checked={dailyGoal === g}
-                  onChange={() => setDailyGoal(g)}
-                />
-                {t(g === 0 ? 'profile.dailyGoal.off' : `profile.dailyGoal.${g}`)}
-              </label>
-            ))}
-          </div>
-          <p className="muted field__hint">{t('profile.dailyGoal.hint')}</p>
-        </fieldset>
+          <fieldset className="field">
+            <legend>{t('profile.dailyGoal')}</legend>
+            <div className="choices">
+              {([0, ...DAILY_GOAL_OPTIONS] as const).map((g) => (
+                <label key={g} className="choice">
+                  <input
+                    type="radio"
+                    name="dailyGoal"
+                    value={g}
+                    checked={dailyGoal === g}
+                    onChange={() => setDailyGoal(g)}
+                  />
+                  {t(g === 0 ? 'profile.dailyGoal.off' : `profile.dailyGoal.${g}`)}
+                </label>
+              ))}
+            </div>
+            <p className="muted field__hint">{t('profile.dailyGoal.hint')}</p>
+          </fieldset>
 
-        <label className="toggle">
-          <input
-            type="checkbox"
-            checked={allowLevelChange}
-            onChange={(e) => setAllowLevelChange(e.target.checked)}
-          />
-          {t('profile.allowLevelChange')}
-        </label>
+          <label className="toggle">
+            <input
+              type="checkbox"
+              checked={allowLevelChange}
+              onChange={(e) => setAllowLevelChange(e.target.checked)}
+            />
+            {t('profile.allowLevelChange')}
+          </label>
 
-        <label className="toggle">
-          <input type="checkbox" checked={sounds} onChange={(e) => setSounds(e.target.checked)} />
-          {t('profile.sounds')}
-        </label>
+          <label className="toggle">
+            <input type="checkbox" checked={sounds} onChange={(e) => setSounds(e.target.checked)} />
+            {t('profile.sounds')}
+          </label>
+        </details>
       </form>
     </Dialog>
   );

@@ -96,7 +96,7 @@ describe('<HomeScreen> welcome (no profiles yet)', () => {
     expect(takeParentTab()).toBeNull();
 
     window.history.replaceState(null, '', '/');
-    fireEvent.click(screen.getByRole('button', { name: /חיבור או שחזור/ }));
+    fireEvent.click(screen.getByRole('button', { name: /התחברות או שחזור/ }));
     expect(window.location.pathname).toBe('/parents');
     expect(takeParentTab()).toBe('settings');
   });

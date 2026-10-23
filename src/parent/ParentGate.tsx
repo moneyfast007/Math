@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { t } from '@/i18n';
 import { PIN_LENGTH } from '@/state/pin';
+import { PinDots } from './PinDots';
 import { Dialog } from '@/ui/Dialog';
 import { MathExpr } from '@/ui/MathExpr';
 import { NumberPad } from '@/ui/NumberPad';
@@ -57,7 +58,7 @@ export function ParentGate({
           </div>
         )}
         <output className="gate__value" dir="ltr" aria-live="polite">
-          {hasPin ? '•'.repeat(value.length) || ' ' : value || ' '}
+          {hasPin ? <PinDots count={value.length} /> : value || ' '}
         </output>
         <p className="gate__error" role="alert">
           {wrong ? t('gate.wrong') : ' '}

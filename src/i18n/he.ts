@@ -284,13 +284,13 @@ export const he = {
 
   // Mistake kinds, as parents read them
   'mistake.wrongOperation': 'פעולה לא נכונה (למשל חיבור במקום חיסור)',
-  'mistake.offByOne': 'טעות של אחד',
+  'mistake.offByOne': 'יצא אחד יותר או אחד פחות',
   'mistake.digitReversal': 'החלפת סדר הספרות',
   'mistake.placeValue': 'ערך המקום (אחדות ועשרות)',
   'mistake.remainder': 'שארית בחילוק',
-  'mistake.carry': 'שכחת המרה (העברה)',
-  'mistake.borrow': 'חיסור בלי פריטה',
-  'mistake.offByTen': 'טעות של עשר',
+  'mistake.carry': 'המרה שנשכחה בחיבור (להעביר עשרת)',
+  'mistake.borrow': 'פריטה שנשכחה בחיסור (לקחת עשרת)',
+  'mistake.offByTen': 'יצא עשר יותר או עשר פחות',
   'mistake.countedCoins': 'ספירת המטבעות במקום הערך שלהם',
   'mistake.clockHands': 'בלבול בין המחוג הקצר לארוך',
   'mistake.order': 'סדר פעולות (חישוב משמאל לימין)',

@@ -14,6 +14,7 @@ import {
   MAX_PROFILES,
   ROUND_LENGTH_OPTIONS,
   type Profile,
+  type ProfileProgress,
   type ProfileSettings,
 } from '@/state/schema';
 import { useApp } from '@/state/store';
@@ -428,15 +429,74 @@ function ProgressPanel() {
       {profiles.length === 0 ? (
         <p className="c-empty muted">{t('c.progress.empty')}</p>
       ) : (
-        <ul className="c-list" role="list">
-          {profiles.map((p, i) => (
-            <li key={p.id}>
-              <ProgressCardC profile={p} index={i} />
-            </li>
-          ))}
-        </ul>
+        <>
+          {/* The family at a glance: who practised, who has not for a while, who has not started. */}
+          <FamilyStrip profiles={profiles} />
+          <ul className="c-list" role="list">
+            {profiles.map((p, i) => (
+              <li key={p.id} id={`progress-${p.id}`}>
+                <ProgressCardC profile={p} index={i} />
+              </li>
+            ))}
+          </ul>
+        </>
       )}
     </>
+  );
+}
+
+/** Days since she last practised (0 = today), or null when she never has. */
+function daysSince(progress: ProfileProgress | undefined, now: number): number | null {
+  const last = summarizeProgress(progress).lastPracticedAt;
+  if (last === null) return null;
+  const day = (x: number) => {
+    const d = new Date(x);
+    return Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()) / 86_400_000;
+  };
+  return Math.max(0, Math.round(day(now) - day(last)));
+}
+
+/** One line per child: practised today, how long since, or not started; a tap goes to her card. */
+function FamilyStrip({ profiles }: { profiles: readonly Profile[] }) {
+  const progress = useApp((s) => s.data.progress);
+  const now = Date.now();
+  return (
+    <ul className="c-family" role="list" aria-label={t('c.family.title')}>
+      {profiles.map((p, i) => {
+        const tc = makeT(p.gender);
+        const since = daysSince(progress[p.id], now);
+        const state =
+          since === null ? 'new' : since === 0 ? 'today' : since <= 2 ? 'recent' : 'quiet';
+        const line =
+          since === null
+            ? tc('c.family.new')
+            : since === 0
+              ? tc('c.family.today')
+              : since === 1
+                ? tc('c.family.yesterday')
+                : tc('c.family.days', { n: since });
+        return (
+          <li key={p.id}>
+            <a
+              className={`c-family__row c-family__row--${state}`}
+              href={`#progress-${p.id}`}
+              onClick={(e) => {
+                e.preventDefault();
+                document
+                  .getElementById(`progress-${p.id}`)
+                  ?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              }}
+            >
+              <span className={`c-card__avatar profile-card--c${i % 6}`}>
+                <Avatar id={p.avatar} size="sm" decorative />
+              </span>
+              <span className="c-family__name">{p.name}</span>
+              <span className="c-family__state">{line}</span>
+            </a>
+          </li>
+        );
+      })}
+    </ul>
   );
 }
 
@@ -454,11 +514,17 @@ function WeekReportC({ profile }: { profile: Profile }) {
   const goal = profile.settings.dailyGoal;
   const most = Math.max(1, ...week.days.map((d) => d.exercises));
   const met = goal ? goalDays(week, goal) : 0;
+  const lastAt = summarizeProgress(progress).lastPracticedAt;
   return (
     <section className="c-week" aria-label={t('c.week.title')}>
       <h3 className="c-week__title">{t('c.week.title')}</h3>
       {week.exercises === 0 ? (
-        <p className="muted">{tc('parent.week.none')}</p>
+        <p className="muted">
+          {tc('parent.week.none')}
+          {lastAt !== null
+            ? ` ${t('c.today.lastOn', { params: { date: formatDate(lastAt) } })}`
+            : ''}
+        </p>
       ) : (
         <dl className="c-nums">
           <div className="c-num">
@@ -478,25 +544,30 @@ function WeekReportC({ profile }: { profile: Profile }) {
           </div>
         </dl>
       )}
-      <div className="week c-week__chart" role="img" aria-label={t('parent.week.chart')}>
-        {week.days.map((d) => (
-          <div key={d.key} className="week__day">
-            <span className="week__count">{d.exercises > 0 ? d.exercises : ''}</span>
-            <span
-              className={d.exercises > 0 ? 'week__bar week__bar--on' : 'week__bar'}
-              style={{ height: `${Math.round((d.exercises / most) * 100)}%` }}
-            />
-            <span className="week__label">{WEEKDAY_LETTERS[d.weekday]}</span>
-            {goal ? (
-              <span
-                className={d.rounds >= goal ? 'c-week__dot c-week__dot--on' : 'c-week__dot'}
-                aria-hidden="true"
-              />
-            ) : null}
-          </div>
-        ))}
-      </div>
-      {goal ? (
+      {week.exercises === 0 ? null : (
+        <div className="week c-week__chart" role="img" aria-label={t('parent.week.chart')}>
+          {week.days.map((d) => (
+            <div key={d.key} className="week__day">
+              <span className="week__count">{d.exercises > 0 ? d.exercises : ''}</span>
+              {/* The bars share one track, so their heights are true to the numbers. */}
+              <span className="week__track">
+                <span
+                  className={d.exercises > 0 ? 'week__bar week__bar--on' : 'week__bar'}
+                  style={{ height: `${Math.round((d.exercises / most) * 100)}%` }}
+                />
+              </span>
+              <span className="week__label">{WEEKDAY_LETTERS[d.weekday]}</span>
+              {goal ? (
+                <span
+                  className={d.rounds >= goal ? 'c-week__dot c-week__dot--on' : 'c-week__dot'}
+                  aria-hidden="true"
+                />
+              ) : null}
+            </div>
+          ))}
+        </div>
+      )}
+      {goal && week.exercises > 0 ? (
         <p className="c-week__goal">
           <span className="c-week__dot c-week__dot--on" aria-hidden="true" />
           {t(goal === 1 ? 'c.week.goalOne' : 'c.week.goal', { params: { goal, days: met } })}
@@ -519,6 +590,11 @@ function ProgressCardC({ profile, index }: { profile: Profile; index: number }) 
   const world = activeWorld(profile.grade, progress);
   const tc = makeT(profile.gender);
   const share = world ? Math.round((world.done / world.total) * 100) : 0;
+  const now = Date.now();
+  const since = daysSince(progress, now);
+  // What to do, in one sentence: back to the habit after a quiet spell, else the guidance.
+  const tip =
+    since !== null && since >= 3 ? tc('c.progress.comeBack') : guidance(profile, progress, now);
 
   return (
     <article className="c-card" aria-label={profile.name}>
@@ -545,9 +621,21 @@ function ProgressCardC({ profile, index }: { profile: Profile; index: number }) 
       ) : null}
 
       {summary.attempts === 0 ? (
-        <p className="muted">{tc('parent.noPracticeYet')}</p>
+        <>
+          <p className="muted">{tc('parent.noPracticeYet')}</p>
+          <p className="c-tip">
+            <span className="c-tip__label">{t('c.today.tipLabel')}</span>
+            {tc('c.progress.firstStep')}
+          </p>
+        </>
       ) : (
         <>
+          {tip ? (
+            <p className="c-tip">
+              <span className="c-tip__label">{t('c.today.tipLabel')}</span>
+              {tip}
+            </p>
+          ) : null}
           <WeekReportC profile={profile} />
           {summary.strong.length > 0 || summary.struggling.length > 0 ? (
             <ul className="c-facts" role="list">

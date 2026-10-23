@@ -48,6 +48,27 @@ export const heRound3 = {
   'plusiColor.red': 'אדום',
   'plusiColor.gold': 'זהב',
   'plusiColor.navy': 'כחול לילה',
+  // Parents (C), progress: the family at a glance and one step to take.
+  'c.family.title': 'מי איך',
+  'c.family.today': { f: 'תרגלה היום ✓', m: 'תרגל היום ✓' },
+  'c.family.yesterday': { f: 'תרגלה אתמול', m: 'תרגל אתמול' },
+  'c.family.days': { f: 'לא תרגלה {n} ימים', m: 'לא תרגל {n} ימים' },
+  'c.family.new': { f: 'עוד לא התחילה', m: 'עוד לא התחיל' },
+  'c.progress.comeBack': {
+    f: 'כמה ימים בלי תרגול. כדאי להציע לה היום סבב קצר אחד, כדי לחזור לשגרה.',
+    m: 'כמה ימים בלי תרגול. כדאי להציע לו היום סבב קצר אחד, כדי לחזור לשגרה.',
+  },
+  'c.progress.firstStep': {
+    f: 'כדאי לשבת איתה לסבב הראשון. זה לוקח כחמש דקות.',
+    m: 'כדאי לשבת איתו לסבב הראשון. זה לוקח כחמש דקות.',
+  },
+  'parent.journey.later': 'ועוד {n} עולמות שעוד לא התחילו, לפי הסדר.',
+  'parent.journey.laterOne': 'ועוד עולם אחד שעוד לא התחיל.',
+  'parent.security.savedHint':
+    'הקוד נשמר. שימו אותו במקום בטוח: בלעדיו אי אפשר להיכנס לאזור ההורים. אפשר לשנות אותו בהגדרות ← קוד הורים.',
+  // The new-child form: the extra settings folded.
+  'profile.more': 'הגדרות נוספות',
+  'profile.moreHint': 'אורך הסבב, יעד יומי ועוד. אפשר להשאיר כמו שזה ולשנות בכל זמן.',
   // Entry screen C.
   'c.home.start': 'מתחילים',
   // Back after two days or more without playing: Plusi says he missed her (once that day).
