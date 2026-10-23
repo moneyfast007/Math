@@ -483,7 +483,7 @@ function WorldMap({
         ? world.stations.findIndex((s) => s.level === picked)
         : -1;
   const target = pickedIndex >= 0 ? pickedIndex : currentIndex >= 0 ? currentIndex : all - 1;
-  const plusiIndex = useHops(target);
+  const { at: plusiIndex, legMs } = useDrive(target);
   const plusiAt = points[plusiIndex];
   const hopping = plusiIndex !== target;
   const reviewPoint = points[all - 1] as Point;
@@ -590,7 +590,8 @@ function WorldMap({
             x={plusiAt.x}
             y={(plusiAt.y / height) * 100}
             mood={world.completed ? 'cheering' : 'happy'}
-            hopping={hopping}
+            moving={hopping}
+            legMs={legMs}
           />
         ) : null}
       </section>
@@ -608,13 +609,19 @@ function WorldMap({
  * a child can play with him without leaving the map.
  */
 /**
- * Where Plusi stands, walking to a new station one station at a time along the
- * path (each hop quicker when the way is long; at once with reduced motion).
+ * Where Plusi stands, driving to a new station along the path, through every
+ * station on the way, at an even speed (quicker legs when the way is long; at
+ * once with reduced motion). Each leg's time is also the length of its glide.
  */
-function useHops(target: number): number {
+function useDrive(target: number): { at: number; legMs: number } {
   const [at, setAt] = useState(target);
+  const leg = useRef(300);
+  const from = useRef(target);
   useEffect(() => {
-    if (at === target) return;
+    if (at === target) {
+      from.current = target;
+      return;
+    }
     const reduced =
       typeof window.matchMedia === 'function' &&
       window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -622,24 +629,27 @@ function useHops(target: number): number {
       setAt(target);
       return;
     }
-    const step = Math.max(140, Math.min(320, 1300 / Math.abs(target - at)));
-    const id = window.setTimeout(() => setAt((x) => x + Math.sign(target - x)), step);
+    // The whole trip takes about a second and a half, whatever its length.
+    leg.current = Math.max(160, Math.min(420, 1500 / Math.abs(target - from.current)));
+    const id = window.setTimeout(() => setAt((x) => x + Math.sign(target - x)), leg.current);
     return () => window.clearTimeout(id);
   }, [at, target]);
-  return at;
+  return { at, legMs: leg.current };
 }
 
 function MapPlusi({
   x,
   y,
   mood,
-  hopping = false,
+  moving = false,
+  legMs = 300,
 }: {
   x: number;
   y: number;
   mood: 'happy' | 'cheering';
-  /** On the way to another station: a little hop with each step. */
-  hopping?: boolean;
+  /** On the way to another station: an even glide from station to station. */
+  moving?: boolean;
+  legMs?: number;
 }) {
   const [tickled, setTickled] = useState(false);
   const timer = useRef<number | null>(null);
@@ -657,10 +667,14 @@ function MapPlusi({
       type="button"
       // Beside the station on the left, unless the station is near the left edge: then on its right.
       className={x < 30 ? 'map__plusi map__plusi--right' : 'map__plusi'}
-      style={{ left: `${x}%`, top: `${y}%` }}
+      style={{
+        left: `${x}%`,
+        top: `${y}%`,
+        ...(moving ? { transitionDuration: `${legMs}ms`, transitionTimingFunction: 'linear' } : {}),
+      }}
       aria-label={t('journey.plusiTickle')}
       data-tickled={tickled ? '' : undefined}
-      data-hopping={hopping ? '' : undefined}
+      data-moving={moving ? '' : undefined}
       onClick={tickle}
     >
       <span className="map__plusi-body">

@@ -6803,27 +6803,12 @@ details.report .report__worlds {
   gap: var(--space-1);
 }
 
-/* Plusi walks to a chosen station, hopping from one station to the next. */
+/* Plusi drives to a chosen station along the path, gliding from one station to the next. */
 .map__plusi {
   transition:
-    left 0.24s var(--ease),
-    top 0.24s var(--ease);
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .map__plusi[data-hopping] .map__plusi-body {
-    animation: plusi-hop 0.26s ease-in-out infinite;
-  }
-}
-
-@keyframes plusi-hop {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-22%);
-  }
+    left 0.3s var(--ease),
+    top 0.3s var(--ease),
+    transform 0.3s var(--ease);
 }
 
 /* The station chosen for this visit: a ring around it, like the one Plusi stands by. */
