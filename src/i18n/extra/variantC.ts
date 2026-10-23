@@ -128,7 +128,7 @@ export const heVariantC = {
   'c.settings.sounds': 'צלילים',
   'c.settings.soundsOn': 'פועלים',
   'c.settings.soundsOff': 'כבויים',
-  'c.settings.level': 'שינוי רמה לבד',
+  'c.settings.level': 'מותר לדלג בין תחנות',
   'c.settings.levelYes': 'מותר',
   'c.settings.levelNo': 'לא',
   'c.settings.goalOff': 'בלי',

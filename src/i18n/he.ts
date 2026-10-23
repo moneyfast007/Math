@@ -227,7 +227,7 @@ export const he = {
   'profile.gender': 'פנייה',
   'profile.gender.f': 'בלשון נקבה',
   'profile.gender.m': 'בלשון זכר',
-  'profile.allowLevelChange': 'מותר לשנות רמת קושי לבד',
+  'profile.allowLevelChange': 'מותר לדלג בין תחנות',
   'profile.sounds': 'צלילים בתרגול (דינג לתשובה נכונה)',
   // Exercises per round (parents only; the counts follow the grade chosen above).
   'profile.roundLength': 'אורך סבב',
