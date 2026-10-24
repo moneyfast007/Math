@@ -5108,8 +5108,12 @@ details.report .report__worlds {
   --pic-h: 260px;
   flex: none;
   /* The visible screen (dvh: without the browser's bars), minus the notch and home bar. */
-  height: calc(100vh - env(safe-area-inset-top) - env(safe-area-inset-bottom));
-  height: calc(100dvh - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+  height: calc(
+    100vh - env(safe-area-inset-top) - var(--top-gap, 0px) - env(safe-area-inset-bottom)
+  );
+  height: calc(
+    100dvh - env(safe-area-inset-top) - var(--top-gap, 0px) - env(safe-area-inset-bottom)
+  );
   padding: var(--space-2) var(--space-4);
   gap: var(--space-2);
 }
@@ -5482,8 +5486,12 @@ details.report .report__worlds {
 
 .screen.journey {
   flex: none;
-  height: calc(100vh - env(safe-area-inset-top) - env(safe-area-inset-bottom));
-  height: calc(100dvh - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+  height: calc(
+    100vh - env(safe-area-inset-top) - var(--top-gap, 0px) - env(safe-area-inset-bottom)
+  );
+  height: calc(
+    100dvh - env(safe-area-inset-top) - var(--top-gap, 0px) - env(safe-area-inset-bottom)
+  );
   min-height: 0;
   padding: var(--space-3) var(--space-4);
   gap: var(--space-2);
@@ -6909,18 +6917,17 @@ details.report .report__worlds {
     0 0 0 8px var(--color-accent);
 }
 
-/* Installed to the home screen: the strip under the status bar is plain background, so
-   the system's soft blur at the top edge has nothing of the page to smear. */
-body::before {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: env(safe-area-inset-top);
-  background: var(--color-bg);
-  z-index: 1000;
-  pointer-events: none;
+/* Installed to the home screen (iOS 26 and later): the system softly blurs a band a little
+   deeper than the status bar, which no page style can switch off. The page starts below that
+   band, so nothing of it sits in the blur. */
+@media (display-mode: standalone) {
+  :root {
+    --top-gap: 18px;
+  }
+}
+
+body {
+  padding-top: calc(env(safe-area-inset-top) + var(--top-gap, 0px));
 }
 
 /* "הפלוסי שלי": the colours, a Plusi in each; closed ones show the medal that opens them. */
