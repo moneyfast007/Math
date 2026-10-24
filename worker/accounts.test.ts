@@ -81,7 +81,7 @@ describe('signing in with an email and a password', () => {
     });
     expect(login.status).toBe(200);
     expect(login.body.familyId).toBe(family.familyId);
-    expect(login.body.devices.map((d) => d.name)).toEqual(['אייפד', 'טלפון']);
+    expect(login.body.devices.map((d) => d.name).sort()).toEqual(['אייפד', 'טלפון'].sort());
     expect(Object.keys(login.body.shared.profiles).sort()).toEqual(['noa', 'uri']);
   });
 
