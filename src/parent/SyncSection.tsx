@@ -166,9 +166,9 @@ function NotLinked({ onJoined }: { onJoined: (result: JoinResult) => void }) {
       {email ? (
         <AccountDialog
           mode="signup"
-          onClose={() => setEmail(null)}
+          onClose={() => setEmail(false)}
           onJoined={(result) => {
-            setEmail(null);
+            setEmail(false);
             onJoined(result);
           }}
         />
