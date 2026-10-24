@@ -17,8 +17,13 @@
   "durable_objects": {
     "bindings": [
       { "name": "FAMILY", "class_name": "Family" },
-      { "name": "PAIRING", "class_name": "Pairing" }
+      { "name": "PAIRING", "class_name": "Pairing" },
+      { "name": "ACCOUNTS", "class_name": "Accounts" },
+      { "name": "STATS", "class_name": "Stats" }
     ]
   },
-  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["Family", "Pairing"] }]
+  "migrations": [
+    { "tag": "v1", "new_sqlite_classes": ["Family", "Pairing"] },
+    { "tag": "v2", "new_sqlite_classes": ["Accounts", "Stats"] }
+  ]
 }

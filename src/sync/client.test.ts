@@ -31,6 +31,7 @@ async function device(services: Services, name: string, clock: { now: number }):
     storage,
     now: () => clock.now,
     deviceName: () => name,
+    kdfIterations: 1000,
     fetch: async (input, init) => {
       if (!online.value) throw new TypeError('Failed to fetch');
       return handleApi(new Request(`https://app.test${input}`, init), services);
@@ -215,5 +216,57 @@ describe('sync between two devices', () => {
     await engine.sync();
     expect(engine.ui.getState().linked).toBe(true);
     expect(app.getState().data.progress[noa.id]?.topics['addSub20']?.attempts).toBe(3);
+  });
+});
+
+describe('signing in with an email and a password', () => {
+  it('sets one on a new device (starting the family), and opens it on another', async () => {
+    const clock = { now: new Date(2026, 9, 24, 9).getTime() };
+    const services = memoryServices(() => clock.now);
+    const a = await device(services, 'אייפד', clock);
+    const noa = a.app.getState().addProfile(NOA);
+    practice(a, noa.id, 2, clock.now);
+    expect(await a.engine.setAccount(' Dana@Example.com', 'secret1')).toEqual({ ok: true });
+    expect(a.engine.ui.getState()).toMatchObject({
+      linked: true,
+      hasAccount: true,
+      accountEmail: 'dana@example.com',
+    });
+
+    const b = await device(services, 'טלפון', clock);
+    expect(await b.engine.login('dana@example.com', 'wrong12')).toEqual({
+      ok: false,
+      error: 'badLogin',
+    });
+    const res = await b.engine.login('dana@example.com', 'secret1');
+    expect(res.ok).toBe(true);
+    expect(b.app.getState().data.profiles.map((p) => p.name)).toEqual(['נועה']);
+    expect(attempts(b, noa.id)).toBe(2);
+    expect(b.engine.ui.getState()).toMatchObject({ hasAccount: true });
+  });
+
+  it('checks the email and the password before asking the server', async () => {
+    const clock = { now: new Date(2026, 9, 24, 9).getTime() };
+    const a = await device(
+      memoryServices(() => clock.now),
+      'אייפד',
+      clock,
+    );
+    expect(await a.engine.setAccount('dana', 'secret1')).toEqual({ ok: false, error: 'badEmail' });
+    expect(await a.engine.setAccount('dana@example.com', '123')).toEqual({
+      ok: false,
+      error: 'shortPassword',
+    });
+    expect(a.engine.ui.getState().linked).toBe(false);
+  });
+
+  it('a second device learns that the family signs in with an email, and it can be removed', async () => {
+    const { a, b } = await linked();
+    expect(await a.engine.setAccount('dana@example.com', 'secret1')).toEqual({ ok: true });
+    await b.engine.refreshAccount();
+    expect(b.engine.ui.getState()).toMatchObject({ hasAccount: true, accountEmail: null });
+    expect(await b.engine.removeAccount()).toEqual({ ok: true });
+    await a.engine.refreshAccount();
+    expect(a.engine.ui.getState().hasAccount).toBe(false);
   });
 });

@@ -85,4 +85,45 @@ export const heRound3 = {
   // The map of all worlds: the review from every world lives here.
   'worlds.review.sub': 'תרגילים מכל התחנות שעברת, מעורבבים',
   'worlds.review.done': 'עשית היום',
+  // Signing in with an email and a password (no mail is ever sent).
+  'account.signup': 'הרשמה עם מייל וסיסמה',
+  'account.login': 'כבר נרשמתם? כניסה',
+  'account.orCode': 'או בלי מייל, עם קוד חיבור:',
+  'account.title': 'כניסה עם מייל וסיסמה',
+  'account.signup.title': 'הרשמה עם מייל וסיסמה',
+  'account.login.title': 'כניסה עם מייל וסיסמה',
+  'account.set.title': 'מייל וסיסמה למשפחה',
+  'account.email': 'מייל',
+  'account.password': 'סיסמה',
+  'account.password2': 'הסיסמה שוב',
+  'account.passwordHint': 'לפחות 6 תווים',
+  'account.noMail':
+    'אנחנו לא שולחים מיילים: המייל משמש רק כשם משתמש. אם תשכחו את הסיסמה לא נוכל לשחזר אותה, אז כדאי לשמור אותה במקום בטוח.',
+  'account.loginHow': 'המייל והסיסמה שבחרתם בהרשמה. הילדים וההתקדמות יופיעו כאן.',
+  'account.submit.signup': 'הרשמה',
+  'account.submit.login': 'כניסה',
+  'account.submit.set': 'שמירה',
+  'account.busy': 'רגע…',
+  'account.on': 'נכנסים עם {email}',
+  'account.onOther': 'למשפחה מוגדרים מייל וסיסמה (במכשיר אחר).',
+  'account.off': 'עם מייל וסיסמה אפשר להיכנס מכל מכשיר חדש, גם בלי קוד וגם אם הטלפון אבד.',
+  'account.set': 'הגדרת מייל וסיסמה',
+  'account.change': 'שינוי מייל או סיסמה',
+  'account.remove': 'הסרת הכניסה במייל',
+  'account.remove.title': 'להסיר את הכניסה במייל?',
+  'account.remove.body':
+    'המכשירים המחוברים ימשיכו להסתנכרן כרגיל. מכשיר חדש יוכל להתחבר רק עם קוד חיבור.',
+  'account.mismatch': 'הסיסמאות לא זהות.',
+  'sync.problem.emailTaken':
+    'המייל הזה כבר רשום. אם זו המשפחה שלכם, היכנסו איתו ("כבר נרשמתם? כניסה").',
+  'sync.problem.badLogin': 'המייל או הסיסמה לא נכונים.',
+  'sync.problem.badEmail': 'זו לא כתובת מייל תקינה.',
+  'sync.problem.shortPassword': 'הסיסמה צריכה להיות לפחות 6 תווים.',
+  // "Would you want an extended version?" (only counted, nothing is sold).
+  'more.title': 'גרסה מורחבת?',
+  'more.body':
+    'אנחנו שוקלים גרסה מורחבת של פלוסי, למשל דוחות מפורטים יותר להורים ועוד עולמות. אם זה מעניין אתכם, לחצו, וכך נדע אם לבנות אותה.',
+  'more.want': 'כן, זה מעניין אותי',
+  'more.thanks': 'תודה! נספר אתכם.',
+  'more.failed': 'לא הצלחנו לשלוח. נסו שוב כשיש אינטרנט.',
 } as const;

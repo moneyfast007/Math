@@ -8,6 +8,8 @@ import {
   type PairingApi,
 } from './core';
 import type { SyncRequest } from '../src/sync/protocol';
+import { AccountsCore, type AccountsApi } from './accounts';
+import { StatsCore, type FamilySummary, type StatsApi, type StatsEvent } from './stats';
 
 /**
  * The Cloudflare Worker in front of the app. Requests under /api/ (sync) come
@@ -22,6 +24,10 @@ interface Env {
   AUDIO?: R2Bucket;
   FAMILY: DurableObjectNamespace<Family>;
   PAIRING: DurableObjectNamespace<Pairing>;
+  ACCOUNTS: DurableObjectNamespace<Accounts>;
+  STATS: DurableObjectNamespace<Stats>;
+  /** Opens the usage page, /api/stats?key=… (a secret set in Cloudflare, never in the repo). */
+  STATS_KEY?: string;
 }
 
 export class Family extends DurableObject<Env> {
@@ -58,6 +64,46 @@ export class Pairing extends DurableObject<Env> {
   }
   allowFamily(address: string) {
     return this.core.allowFamily(address);
+  }
+}
+
+export class Accounts extends DurableObject<Env> {
+  private readonly core = new AccountsCore(this.ctx.storage);
+
+  set(familyId: string, email: string, key: string) {
+    return this.core.set(familyId, email, key);
+  }
+  login(email: string, key: string, address: string) {
+    return this.core.login(email, key, address);
+  }
+  has(familyId: string) {
+    return this.core.has(familyId);
+  }
+  remove(familyId: string) {
+    return this.core.remove(familyId);
+  }
+}
+
+export class Stats extends DurableObject<Env> {
+  private readonly core = new StatsCore(this.ctx.storage);
+
+  active(familyId: string, summary: FamilySummary, created: boolean) {
+    return this.core.active(familyId, summary, created);
+  }
+  event(kind: StatsEvent) {
+    return this.core.event(kind);
+  }
+  setAccount(familyId: string, on: boolean) {
+    return this.core.setAccount(familyId, on);
+  }
+  want(id: string, address: string) {
+    return this.core.want(id, address);
+  }
+  forget(familyId: string) {
+    return this.core.forget(familyId);
+  }
+  report() {
+    return this.core.report();
   }
 }
 
@@ -108,6 +154,10 @@ export default {
       return await handleApi(request, {
         family: (id) => env.FAMILY.get(env.FAMILY.idFromName(id)) as unknown as FamilyApi,
         pairing: () => env.PAIRING.get(env.PAIRING.idFromName('pairing')) as unknown as PairingApi,
+        accounts: () =>
+          env.ACCOUNTS.get(env.ACCOUNTS.idFromName('accounts')) as unknown as AccountsApi,
+        stats: () => env.STATS.get(env.STATS.idFromName('stats')) as unknown as StatsApi,
+        ...(env.STATS_KEY ? { statsKey: env.STATS_KEY } : {}),
       });
     } catch {
       return new Response(JSON.stringify({ error: 'unavailable' }), {

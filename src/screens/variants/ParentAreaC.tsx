@@ -6,6 +6,7 @@ import { makeT, t } from '@/i18n';
 import { formatDate, formatPercent, gradeLabel, mistakeLabel, topicLabel } from '@/i18n/labels';
 import { ProfileForm } from '@/parent/ProfileForm';
 import { SyncSection } from '@/parent/SyncSection';
+import { interestSent, sendInterest } from '@/sync/interest';
 import { takeParentTab } from '@/parent/tab';
 import { isStandalone } from '@/pwa/standalone';
 import { goalDays, summarizeProgress, weekSummary } from '@/state/progress';
@@ -174,6 +175,8 @@ export function ParentAreaC() {
             }}
           />
         </section>
+
+        <MoreCard />
       </CPanel>
 
       {editing === 'new' ? (
@@ -216,6 +219,45 @@ export function ParentAreaC() {
         />
       ) : null}
     </main>
+  );
+}
+
+/* ---------- "Would you want an extended version?" ---------- */
+
+/** One anonymous tap, counted on the server; nothing is sold or promised. */
+function MoreCard() {
+  const [state, setState] = useState<'idle' | 'busy' | 'sent' | 'failed'>(() =>
+    interestSent() ? 'sent' : 'idle',
+  );
+  return (
+    <section className="c-group c-more" aria-labelledby="c-more-title">
+      <h3 id="c-more-title" className="c-group__title">
+        {t('more.title')}
+      </h3>
+      <p className="muted c-group__hint">{t('more.body')}</p>
+      {state === 'sent' ? (
+        <p className="notice notice--ok" role="status">
+          {t('more.thanks')}
+        </p>
+      ) : (
+        <button
+          type="button"
+          className="btn btn--secondary"
+          disabled={state === 'busy'}
+          onClick={() => {
+            setState('busy');
+            void sendInterest().then((ok) => setState(ok ? 'sent' : 'failed'));
+          }}
+        >
+          {t('more.want')}
+        </button>
+      )}
+      {state === 'failed' ? (
+        <p className="notice" role="alert">
+          {t('more.failed')}
+        </p>
+      ) : null}
+    </section>
   );
 }
 

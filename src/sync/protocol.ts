@@ -80,7 +80,9 @@ export type SyncErrorCode =
   | 'invalidCode'
   | 'rateLimited'
   | 'tooManyDevices'
-  | 'notFound';
+  | 'notFound'
+  | 'emailTaken'
+  | 'badLogin';
 
 export const LIMITS = {
   /** Request body, bytes. */
@@ -94,6 +96,30 @@ export const LIMITS = {
 } as const;
 
 export const PAIR_CODE_LENGTH = 6;
+
+/* ---------- Signing in with an email and a password ---------- */
+
+/**
+ * The email is only a user name: no mail is ever sent to it, and the server
+ * keeps a keyed hash of it, not the address. The password never leaves the
+ * device either: the app stretches it (PBKDF2, salted with the email) into a
+ * 32-byte key and sends that, base64url (src/sync/account.ts).
+ */
+export const PASSWORD_MIN = 6;
+export const EMAIL_MAX = 254;
+export const ACCOUNT_KEY = /^[A-Za-z0-9_-]{43}$/;
+
+/** Lower case, no spaces around: the same address however it was typed. */
+export function normalizeEmail(email: string): string {
+  return email.trim().toLowerCase();
+}
+
+export function isEmail(email: string): boolean {
+  return email.length <= EMAIL_MAX && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+/** An id for the "I want the extended version" tap: one per device. */
+export const INTEREST_ID = /^[0-9a-f]{32}$/;
 export const PAIR_CODE_TTL_MS = 10 * 60 * 1000;
 
 export function emptyShared(): SharedDoc {

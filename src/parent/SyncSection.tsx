@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useId, useState, type FormEvent } from 'react';
 import { t } from '@/i18n';
 import { formatDate } from '@/i18n/labels';
-import { PAIR_CODE_LENGTH } from '@/sync/protocol';
+import { PAIR_CODE_LENGTH, PASSWORD_MIN } from '@/sync/protocol';
 import type { JoinResult, Snapshot, SyncProblem } from '@/sync/client';
 import { syncEngine, useSync } from '@/sync';
 import { ConfirmDialog, Dialog } from '@/ui/Dialog';
@@ -9,8 +9,10 @@ import { NumberPad } from '@/ui/NumberPad';
 import { More, SettingsCard } from './parts';
 
 /**
- * Sync between the family's devices, in the parent area: create the family on
- * the first device, show a code on a linked device, type it on the new one.
+ * Sync between the family's devices, in the parent area: sign up with an email
+ * and a password and sign in with them on the next device, or, without an
+ * email, create the family on the first device, show a code on a linked
+ * device and type it on the new one.
  */
 
 function problemText(problem: SyncProblem): string {
@@ -25,6 +27,14 @@ function problemText(problem: SyncProblem): string {
       return t('sync.problem.tooManyDevices');
     case 'tooManyChildren':
       return t('sync.problem.tooManyChildren');
+    case 'emailTaken':
+      return t('sync.problem.emailTaken');
+    case 'badLogin':
+      return t('sync.problem.badLogin');
+    case 'badEmail':
+      return t('sync.problem.badEmail');
+    case 'shortPassword':
+      return t('sync.problem.shortPassword');
     case 'badRequest':
     case 'tooLarge':
     case 'unauthorized':
@@ -94,6 +104,7 @@ function NotLinked({ onJoined }: { onJoined: (result: JoinResult) => void }) {
   const [busy, setBusy] = useState(false);
   const [problem, setProblem] = useState<SyncProblem | null>(null);
   const [joining, setJoining] = useState(false);
+  const [email, setEmail] = useState<'signup' | 'login' | null>(null);
 
   const create = async () => {
     setBusy(true);
@@ -110,7 +121,26 @@ function NotLinked({ onJoined }: { onJoined: (result: JoinResult) => void }) {
         <p>{t('sync.privacy')}</p>
       </More>
       <div className="row">
-        <button type="button" className="btn" disabled={busy} onClick={() => void create()}>
+        <button type="button" className="btn" disabled={busy} onClick={() => setEmail('signup')}>
+          {t('account.signup')}
+        </button>
+        <button
+          type="button"
+          className="btn btn--secondary"
+          disabled={busy}
+          onClick={() => setEmail('login')}
+        >
+          {t('account.login')}
+        </button>
+      </div>
+      <p className="muted sync-or">{t('account.orCode')}</p>
+      <div className="row">
+        <button
+          type="button"
+          className="btn btn--secondary"
+          disabled={busy}
+          onClick={() => void create()}
+        >
           {busy ? t('sync.creating') : t('sync.create')}
         </button>
         <button
@@ -139,7 +169,194 @@ function NotLinked({ onJoined }: { onJoined: (result: JoinResult) => void }) {
           }}
         />
       ) : null}
+      {email ? (
+        <AccountDialog
+          mode={email}
+          onClose={() => setEmail(null)}
+          onJoined={(result) => {
+            setEmail(null);
+            onJoined(result);
+          }}
+        />
+      ) : null}
     </>
+  );
+}
+
+/**
+ * Signing up (or setting the family's email on a linked device) and signing in.
+ * The password is checked here and stretched on the device; no mail is sent.
+ */
+function AccountDialog({
+  mode,
+  onClose,
+  onJoined,
+}: {
+  mode: 'signup' | 'login' | 'set';
+  onClose: () => void;
+  onJoined?: (result: JoinResult) => void;
+}) {
+  const id = useId();
+  const [email, setEmail] = useState(
+    mode === 'set' ? (syncEngine.ui.getState().accountEmail ?? '') : '',
+  );
+  const [password, setPassword] = useState('');
+  const [again, setAgain] = useState('');
+  const [busy, setBusy] = useState(false);
+  const [problem, setProblem] = useState<string | null>(null);
+  const creating = mode !== 'login';
+
+  const submit = async (e?: FormEvent) => {
+    e?.preventDefault();
+    if (busy) return;
+    setProblem(null);
+    if (creating && password.length >= PASSWORD_MIN && password !== again) {
+      setProblem(t('account.mismatch'));
+      return;
+    }
+    setBusy(true);
+    if (mode === 'login') {
+      const res = await syncEngine.login(email, password);
+      setBusy(false);
+      if (res.ok) onJoined?.({ matched: res.matched, added: res.added });
+      else setProblem(problemText(res.error));
+    } else {
+      const res = await syncEngine.setAccount(email, password);
+      setBusy(false);
+      if (res.ok) onClose();
+      else setProblem(problemText(res.error));
+    }
+  };
+
+  return (
+    <Dialog
+      title={t(`account.${mode}.title`)}
+      onClose={onClose}
+      actions={
+        <button
+          type="submit"
+          form={`${id}-form`}
+          className="btn"
+          disabled={busy || !email.trim() || !password}
+        >
+          {busy ? t('account.busy') : t(`account.submit.${mode}`)}
+        </button>
+      }
+    >
+      <form id={`${id}-form`} className="stack account-form" onSubmit={(e) => void submit(e)}>
+        {mode === 'login' ? <p>{t('account.loginHow')}</p> : null}
+        <div className="field">
+          <label htmlFor={`${id}-email`}>{t('account.email')}</label>
+          <input
+            id={`${id}-email`}
+            className="text-input"
+            type="email"
+            dir="ltr"
+            inputMode="email"
+            autoComplete="username"
+            autoCapitalize="off"
+            spellCheck={false}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </div>
+        <div className="field">
+          <label htmlFor={`${id}-password`}>{t('account.password')}</label>
+          <input
+            id={`${id}-password`}
+            className="text-input"
+            type="password"
+            dir="ltr"
+            autoComplete={creating ? 'new-password' : 'current-password'}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            aria-describedby={creating ? `${id}-hint` : undefined}
+          />
+          {creating ? (
+            <span id={`${id}-hint`} className="muted">
+              {t('account.passwordHint')}
+            </span>
+          ) : null}
+        </div>
+        {creating ? (
+          <div className="field">
+            <label htmlFor={`${id}-again`}>{t('account.password2')}</label>
+            <input
+              id={`${id}-again`}
+              className="text-input"
+              type="password"
+              dir="ltr"
+              autoComplete="new-password"
+              value={again}
+              onChange={(e) => setAgain(e.target.value)}
+            />
+          </div>
+        ) : null}
+        {creating ? <p className="notice">{t('account.noMail')}</p> : null}
+        <p className="gate__error" role="alert">
+          {problem ?? ' '}
+        </p>
+      </form>
+    </Dialog>
+  );
+}
+
+/** On a linked device: whether the family signs in with an email, and changing that. */
+function AccountBox() {
+  const hasAccount = useSync((s) => s.hasAccount);
+  const accountEmail = useSync((s) => s.accountEmail);
+  const [editing, setEditing] = useState(false);
+  const [removing, setRemoving] = useState(false);
+  const [problem, setProblem] = useState<SyncProblem | null>(null);
+  if (hasAccount === null) return null;
+  return (
+    <div className="sync-account">
+      <h3 className="sync-devices__title">{t('account.title')}</h3>
+      {hasAccount ? (
+        <p>
+          {accountEmail
+            ? t('account.on', { params: { email: accountEmail } })
+            : t('account.onOther')}
+        </p>
+      ) : (
+        <p className="muted">{t('account.off')}</p>
+      )}
+      <div className="row">
+        <button
+          type="button"
+          className={hasAccount ? 'btn btn--secondary' : 'btn'}
+          onClick={() => setEditing(true)}
+        >
+          {hasAccount ? t('account.change') : t('account.set')}
+        </button>
+        {hasAccount ? (
+          <button type="button" className="btn btn--ghost" onClick={() => setRemoving(true)}>
+            {t('account.remove')}
+          </button>
+        ) : null}
+      </div>
+      {problem ? (
+        <p className="notice" role="alert">
+          {problemText(problem)}
+        </p>
+      ) : null}
+      {editing ? <AccountDialog mode="set" onClose={() => setEditing(false)} /> : null}
+      {removing ? (
+        <ConfirmDialog
+          title={t('account.remove.title')}
+          body={t('account.remove.body')}
+          confirmLabel={t('account.remove')}
+          onConfirm={() => {
+            setRemoving(false);
+            setProblem(null);
+            void syncEngine.removeAccount().then((res) => {
+              if (!res.ok) setProblem(res.error);
+            });
+          }}
+          onCancel={() => setRemoving(false)}
+        />
+      ) : null}
+    </div>
   );
 }
 
@@ -282,6 +499,8 @@ function Linked() {
           {problemText(problem)}
         </p>
       ) : null}
+
+      <AccountBox />
 
       <h3 className="sync-devices__title">{t('sync.devices')}</h3>
       <ul className="sync-devices">

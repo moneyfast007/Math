@@ -1,12 +1,16 @@
 import {
+  ACCOUNT_KEY,
+  INTEREST_ID,
   LIMITS,
   PAIR_CODE_LENGTH,
   PAIR_CODE_TTL_MS,
   emptyShared,
   isSharedDoc,
   isSlice,
+  isEmail,
   isSyncRequest,
   mergeShared,
+  normalizeEmail,
   type DeviceInfo,
   type LinkResponse,
   type PairCodeResponse,
@@ -16,6 +20,11 @@ import {
   type SyncRequest,
   type SyncResponse,
 } from '../src/sync/protocol';
+import { AccountsCore, type AccountsApi } from './accounts';
+import { memoryKV, randomHex, sameText, sha256, type KV } from './kit';
+import { StatsCore, dayOf, renderStats, summarize, type StatsApi } from './stats';
+
+export { memoryKV, randomHex, type KV };
 
 /**
  * The sync server's logic, independent of Cloudflare so it can be tested (and
@@ -26,56 +35,16 @@ import {
  * - One `PairingCore` for everyone: the short-lived codes that link a new
  *   device to a family, and the limits that stop guessing them.
  *
+ * - One `AccountsCore` (accounts.ts): signing in with an email and a password,
+ *   kept as hashes only.
+ * - One `StatsCore` (stats.ts): anonymous counts of families, for the owner.
+ *
  * What is stored about a family is exactly what the app sends: the children's
  * profiles (name, avatar, grade), their progress, and the parents' PIN as a
- * salted hash. No email, no IP address (only a counter of failed code
- * attempts per address, for an hour), no analytics.
+ * salted hash. No email address (only a keyed hash of it, if the parents chose
+ * to sign in with one), no IP address (only counters of failed attempts per
+ * address, for an hour), no third-party analytics.
  */
-
-/** The subset of Durable Object storage used here (the KV interface). */
-export interface KV {
-  get<T = unknown>(key: string): Promise<T | undefined>;
-  put<T>(key: string, value: T): Promise<void>;
-  delete(key: string): Promise<boolean>;
-  list<T = unknown>(options: { prefix: string }): Promise<Map<string, T>>;
-  deleteAll(): Promise<void>;
-}
-
-export function memoryKV(): KV {
-  const map = new Map<string, unknown>();
-  const clone = <T>(v: T): T => structuredClone(v);
-  return {
-    get: <T>(key: string) => Promise.resolve(map.get(key) as T | undefined).then(clone),
-    put: (key, value) => {
-      map.set(key, clone(value));
-      return Promise.resolve();
-    },
-    delete: (key) => Promise.resolve(map.delete(key)),
-    list: <T>({ prefix }: { prefix: string }) =>
-      Promise.resolve(
-        new Map(
-          [...map.entries()]
-            .filter(([k]) => k.startsWith(prefix))
-            .sort(([a], [b]) => (a < b ? -1 : 1))
-            .map(([k, v]) => [k, clone(v) as T]),
-        ),
-      ),
-    deleteAll: () => {
-      map.clear();
-      return Promise.resolve();
-    },
-  };
-}
-
-/* ---------- Small crypto helpers ---------- */
-
-function hex(bytes: Uint8Array): string {
-  return Array.from(bytes, (b) => b.toString(16).padStart(2, '0')).join('');
-}
-
-export function randomHex(bytes: number): string {
-  return hex(crypto.getRandomValues(new Uint8Array(bytes)));
-}
 
 function randomSecret(): string {
   const bytes = crypto.getRandomValues(new Uint8Array(32));
@@ -83,18 +52,6 @@ function randomSecret(): string {
     .replace(/\+/g, '-')
     .replace(/\//g, '_')
     .replace(/=+$/, '');
-}
-
-async function sha256(text: string): Promise<string> {
-  const digest = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(text));
-  return hex(new Uint8Array(digest));
-}
-
-function sameText(a: string, b: string): boolean {
-  if (a.length !== b.length) return false;
-  let diff = 0;
-  for (let i = 0; i < a.length; i++) diff |= a.charCodeAt(i) ^ b.charCodeAt(i);
-  return diff === 0;
 }
 
 /** A uniformly random code of PAIR_CODE_LENGTH digits. */
@@ -135,10 +92,15 @@ export function isError<T>(value: Result<T>): value is { error: SyncErrorCode } 
 export interface FamilyApi {
   create(familyId: string, deviceName: string, req: SyncRequest): Promise<Result<LinkCore>>;
   join(deviceName: string): Promise<Result<LinkCore>>;
-  sync(auth: Credentials, req: SyncRequest): Promise<Result<SyncResponse>>;
+  sync(auth: Credentials, req: SyncRequest): Promise<Result<SyncResult>>;
   verify(auth: Credentials): Promise<boolean>;
   removeDevice(auth: Credentials, deviceId: string): Promise<Result<{ ok: true }>>;
   destroy(auth: Credentials): Promise<Result<{ ok: true }>>;
+}
+
+/** A sync's answer, and whether it is the family's first sync today (counted once a day). */
+export interface SyncResult extends SyncResponse {
+  firstToday?: true;
 }
 
 /** A new device's credentials and the family's data (the handler adds the token). */
@@ -208,6 +170,7 @@ export class FamilyCore implements FamilyApi {
     if (await this.kv.get('family')) return { error: 'badRequest' };
     if (!isSyncRequest(req)) return { error: 'badRequest' };
     await this.kv.put('family', { id: familyId, createdAt: this.now() });
+    await this.kv.put('activeDay', dayOf(this.now()));
     const device = await this.newDevice(deviceName);
     const problem = await this.store(device.id, req);
     if (problem) {
@@ -228,13 +191,17 @@ export class FamilyCore implements FamilyApi {
     return (await this.authed(auth)) !== null;
   }
 
-  async sync(auth: Credentials, req: SyncRequest): Promise<Result<SyncResponse>> {
+  async sync(auth: Credentials, req: SyncRequest): Promise<Result<SyncResult>> {
     const device = await this.authed(auth);
     if (!device) return { error: 'unauthorized' };
     const problem = await this.store(device.id, req);
     if (problem) return { error: problem };
     await this.kv.put(`device:${device.id}`, { ...device, lastSeenAt: this.now() });
-    return this.state(device.id);
+    const today = dayOf(this.now());
+    const firstToday = (await this.kv.get<string>('activeDay')) !== today;
+    if (firstToday) await this.kv.put('activeDay', today);
+    const state = await this.state(device.id);
+    return firstToday ? { ...state, firstToday: true } : state;
   }
 
   /** Unlinks a device (this one, or another of the family's). What it practiced stays counted. */
@@ -352,6 +319,10 @@ export class PairingCore implements PairingApi {
 export interface Services {
   family(familyId: string): FamilyApi;
   pairing(): PairingApi;
+  accounts(): AccountsApi;
+  stats(): StatsApi;
+  /** Opens the usage page (/api/stats?key=…); without it the page does not exist. */
+  statsKey?: string;
 }
 
 const STATUS: Record<SyncErrorCode, number> = {
@@ -362,6 +333,8 @@ const STATUS: Record<SyncErrorCode, number> = {
   invalidCode: 400,
   tooManyDevices: 409,
   rateLimited: 429,
+  emailTaken: 409,
+  badLogin: 401,
 };
 
 function json(body: unknown, status = 200): Response {
@@ -411,9 +384,42 @@ function link(familyId: string, result: LinkCore): LinkResponse {
   return { ...state, familyId, token: token(familyId, result.deviceId, secret) };
 }
 
-/** Handles a request under /api/. Same-origin only; everything is a JSON POST. */
+/** Counting never gets in the way: a failure there is ignored. */
+async function quietly(work: () => Promise<unknown>): Promise<void> {
+  try {
+    await work();
+  } catch {
+    // The counts miss one; the request goes on.
+  }
+}
+
+/** The email and the derived key of a sign-in request, checked. */
+function readAccount(body: Record<string, unknown>): { email: string; key: string } | null {
+  const email = typeof body['email'] === 'string' ? normalizeEmail(body['email']) : '';
+  const key = typeof body['key'] === 'string' ? body['key'] : '';
+  return isEmail(email) && ACCOUNT_KEY.test(key) ? { email, key } : null;
+}
+
+/** The usage page: GET /api/stats?key=…, only with the right key (otherwise as if it did not exist). */
+async function statsPage(url: URL, services: Services): Promise<Response> {
+  const given = url.searchParams.get('key') ?? '';
+  const key = services.statsKey ?? '';
+  if (key.length < 16 || !sameText(given, key)) return fail('notFound');
+  return new Response(renderStats(await services.stats().report()), {
+    headers: {
+      'content-type': 'text/html; charset=utf-8',
+      'cache-control': 'no-store',
+      'x-robots-tag': 'noindex',
+      'referrer-policy': 'no-referrer',
+      'content-security-policy': "default-src 'none'; style-src 'unsafe-inline'",
+    },
+  });
+}
+
+/** Handles a request under /api/. Same-origin only; everything is a JSON POST (but the usage page). */
 export async function handleApi(request: Request, services: Services): Promise<Response> {
   const url = new URL(request.url);
+  if (request.method === 'GET' && url.pathname === '/api/stats') return statsPage(url, services);
   const origin = request.headers.get('origin');
   if (origin && new URL(origin).host !== url.host) return fail('unauthorized');
   if (request.method !== 'POST') return fail('notFound');
@@ -430,14 +436,42 @@ export async function handleApi(request: Request, services: Services): Promise<R
       const result = await services
         .family(familyId)
         .create(familyId, cleanName(body['deviceName']), req);
-      return isError(result) ? fail(result.error) : json(link(familyId, result));
+      if (isError(result)) return fail(result.error);
+      await quietly(() =>
+        services.stats().active(familyId, summarize(result.shared.profiles), true),
+      );
+      return json(link(familyId, result));
     }
     case '/api/pair/join': {
       const code = typeof body['code'] === 'string' ? body['code'] : '';
       const redeemed = await services.pairing().redeem(code, address);
       if (isError(redeemed)) return fail(redeemed.error);
       const result = await services.family(redeemed.familyId).join(cleanName(body['deviceName']));
-      return isError(result) ? fail(result.error) : json(link(redeemed.familyId, result));
+      if (isError(result)) return fail(result.error);
+      await quietly(() => services.stats().event('join'));
+      return json(link(redeemed.familyId, result));
+    }
+    case '/api/account/login': {
+      const account = readAccount(body);
+      if (!account) return fail('badLogin');
+      const found = await services.accounts().login(account.email, account.key, address);
+      if (isError(found)) return fail(found.error);
+      const result = await services.family(found.familyId).join(cleanName(body['deviceName']));
+      if (isError(result)) {
+        // The family was deleted but its sign-in was left behind: it opens nothing any more.
+        if (result.error === 'notFound') {
+          await services.accounts().remove(found.familyId);
+          return fail('badLogin');
+        }
+        return fail(result.error);
+      }
+      await quietly(() => services.stats().event('login'));
+      return json(link(found.familyId, result));
+    }
+    case '/api/interest': {
+      const id = typeof body['id'] === 'string' ? body['id'] : '';
+      if (!INTEREST_ID.test(id)) return fail('badRequest');
+      return (await services.stats().want(id, address)) ? json({ ok: true }) : fail('rateLimited');
     }
   }
 
@@ -450,7 +484,36 @@ export async function handleApi(request: Request, services: Services): Promise<R
       const req = { shared: body['shared'], slice: body['slice'] };
       if (!isSyncRequest(req)) return fail('badRequest');
       const result = await family.sync(auth, req);
-      return isError(result) ? fail(result.error) : json(result);
+      if (isError(result)) return fail(result.error);
+      const { firstToday, ...answer } = result;
+      if (firstToday) {
+        await quietly(() =>
+          services.stats().active(auth.familyId, summarize(answer.shared.profiles), false),
+        );
+      }
+      return json(answer);
+    }
+    case '/api/account/set': {
+      if (!(await family.verify(auth))) return fail('unauthorized');
+      const account = readAccount(body);
+      if (!account) return fail('badRequest');
+      const result = await services.accounts().set(auth.familyId, account.email, account.key);
+      if (isError(result)) return fail(result.error);
+      await quietly(async () => {
+        await services.stats().event('account');
+        await services.stats().setAccount(auth.familyId, true);
+      });
+      return json(result);
+    }
+    case '/api/account/status': {
+      if (!(await family.verify(auth))) return fail('unauthorized');
+      return json({ account: await services.accounts().has(auth.familyId) });
+    }
+    case '/api/account/remove': {
+      if (!(await family.verify(auth))) return fail('unauthorized');
+      await services.accounts().remove(auth.familyId);
+      await quietly(() => services.stats().setAccount(auth.familyId, false));
+      return json({ ok: true });
     }
     case '/api/pair/start': {
       if (!(await family.verify(auth))) return fail('unauthorized');
@@ -463,7 +526,11 @@ export async function handleApi(request: Request, services: Services): Promise<R
     }
     case '/api/family/delete': {
       const result = await family.destroy(auth);
-      return isError(result) ? fail(result.error) : json(result);
+      if (isError(result)) return fail(result.error);
+      // Everything about the family goes: its sign-in and its line in the counts too.
+      await services.accounts().remove(auth.familyId);
+      await quietly(() => services.stats().forget(auth.familyId));
+      return json(result);
     }
     default:
       return fail('notFound');
@@ -471,10 +538,20 @@ export async function handleApi(request: Request, services: Services): Promise<R
 }
 
 /** An in-memory server (tests and the end-to-end stand-in). */
-export function memoryServices(now: () => number = Date.now): Services {
+export function memoryServices(
+  now: () => number = Date.now,
+  statsKey?: string,
+): Services & { accountsCore: AccountsCore; statsCore: StatsCore } {
   const families = new Map<string, FamilyCore>();
   const pairing = new PairingCore(memoryKV(), now);
+  const accountsCore = new AccountsCore(memoryKV(), now);
+  const statsCore = new StatsCore(memoryKV(), now);
   return {
+    accountsCore,
+    statsCore,
+    accounts: () => accountsCore,
+    stats: () => statsCore,
+    ...(statsKey ? { statsKey } : {}),
     family(familyId) {
       let f = families.get(familyId);
       if (!f) families.set(familyId, (f = new FamilyCore(memoryKV(), now)));

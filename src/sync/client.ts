@@ -4,9 +4,13 @@ import type { AppData, Profile, ProfileProgress } from '@/state/schema';
 import type { AppStore } from '@/state/store';
 import { dayKey } from '@/state/streak';
 import { parseAppData, safePin, safeProfile, safeProgress } from '@/state/validate';
+import { deriveAccountKey, KDF_ITERATIONS } from './account';
 import { applyDiff, buildView, planJoin, stampShared, startFamily } from './merge';
 import {
+  isEmail,
   mergeShared,
+  normalizeEmail,
+  PASSWORD_MIN,
   type DeviceInfo,
   type LinkResponse,
   type PairCodeResponse,
@@ -43,6 +47,8 @@ export interface SyncState {
   remote: Record<string, Slice>;
   devices: DeviceInfo[];
   lastSyncAt: number | null;
+  /** The email this device signed in with or set (shown to the parent; kept only here). */
+  accountEmail?: string;
 }
 
 export interface Snapshot {
@@ -217,6 +223,7 @@ export function readState(value: unknown): SyncState | null {
     remote: readSlices(value['remote']),
     devices: readDevices(value['devices']),
     lastSyncAt: finite(lastSyncAt) ? lastSyncAt : null,
+    ...(typeof value['accountEmail'] === 'string' ? { accountEmail: value['accountEmail'] } : {}),
   };
 }
 
@@ -246,12 +253,22 @@ export interface SyncUi {
   devices: DeviceInfo[];
   /** This device was unlinked elsewhere (or the family was deleted). */
   removed: boolean;
+  /** Whether the family signs in with an email (null: not known yet). */
+  hasAccount: boolean | null;
+  /** The email, when it was set or used on this device. */
+  accountEmail: string | null;
 }
 
 export type ActionResult<T = object> = ({ ok: true } & T) | { ok: false; error: SyncProblem };
 
 /** Why an action failed, for the parent: the server's reason, or no connection. */
-export type SyncProblem = SyncErrorCode | 'offline' | 'tooManyChildren' | 'unavailable';
+export type SyncProblem =
+  | SyncErrorCode
+  | 'offline'
+  | 'tooManyChildren'
+  | 'unavailable'
+  | 'badEmail'
+  | 'shortPassword';
 
 export interface JoinResult {
   matched: string[];
@@ -264,6 +281,8 @@ export interface SyncDeps {
   fetch: (input: string, init: RequestInit) => Promise<Response>;
   now?: () => number;
   deviceName?: () => string;
+  /** PBKDF2 rounds for the password (fewer in tests). */
+  kdfIterations?: number;
 }
 
 /** Sends after a change once things have been quiet this long, and at the latest after the max. */
@@ -294,6 +313,8 @@ export class SyncEngine {
       deviceId: null,
       devices: [],
       removed: false,
+      hasAccount: null,
+      accountEmail: null,
     }));
   }
 
@@ -318,6 +339,7 @@ export class SyncEngine {
       // What this device last received may be newer than what it shows (closed mid-way).
       await this.applyView();
       void this.sync();
+      void this.refreshAccount();
     }
   }
 
@@ -329,6 +351,8 @@ export class SyncEngine {
       lastSyncAt: s?.lastSyncAt ?? null,
       deviceId: s?.deviceId ?? null,
       devices: s?.devices ?? [],
+      accountEmail: s?.accountEmail ?? null,
+      ...(s ? {} : { hasAccount: null }),
       ...extra,
     });
   }
@@ -381,6 +405,8 @@ export class SyncEngine {
       'rateLimited',
       'tooManyDevices',
       'notFound',
+      'emailTaken',
+      'badLogin',
     ];
     return {
       ok: false,
@@ -502,7 +528,7 @@ export class SyncEngine {
       lastSyncAt: at,
     };
     await this.persist();
-    this.publish('idle', { removed: false });
+    this.publish('idle', { removed: false, hasAccount: false });
     return { ok: true };
   }
 
@@ -511,7 +537,12 @@ export class SyncEngine {
     if (this.state) return { ok: false, error: 'badRequest' };
     const res = await this.post('/api/pair/join', { code, deviceName: this.deviceName() });
     if (!res.ok) return res;
-    const link = readLink(res.body);
+    return this.adopt(res.body);
+  }
+
+  /** Becomes a device of the family a sign-in or a code opened, merging what this device has. */
+  private async adopt(body: unknown, accountEmail?: string): Promise<ActionResult<JoinResult>> {
+    const link = readLink(body);
     if (!link) return { ok: false, error: 'unavailable' };
     const data = this.deps.app.getState().data;
     const at = this.now();
@@ -530,12 +561,104 @@ export class SyncEngine {
       remote: link.slices,
       devices: link.devices,
       lastSyncAt: at,
+      ...(accountEmail ? { accountEmail } : {}),
     };
     await this.persist();
     await this.applyView();
-    this.publish('idle', { removed: false });
+    this.publish('idle', { removed: false, ...(accountEmail ? { hasAccount: true } : {}) });
     await this.sync();
+    if (!accountEmail) void this.refreshAccount();
     return { ok: true, matched: plan.matched, added: plan.added };
+  }
+
+  /* ---------- Email and password ---------- */
+
+  private async accountKey(
+    email: string,
+    password: string,
+  ): Promise<{ ok: true; email: string; key: string } | { ok: false; error: SyncProblem }> {
+    const clean = normalizeEmail(email);
+    if (!isEmail(clean)) return { ok: false, error: 'badEmail' };
+    if (password.length < PASSWORD_MIN) return { ok: false, error: 'shortPassword' };
+    try {
+      const key = await deriveAccountKey(
+        clean,
+        password,
+        this.deps.kdfIterations ?? KDF_ITERATIONS,
+      );
+      return { ok: true, email: clean, key };
+    } catch {
+      return { ok: false, error: 'unavailable' };
+    }
+  }
+
+  /** Opens the family on this device with its email and password. */
+  async login(email: string, password: string): Promise<ActionResult<JoinResult>> {
+    if (this.state) return { ok: false, error: 'badRequest' };
+    const k = await this.accountKey(email, password);
+    if (!k.ok) return k;
+    const res = await this.post('/api/account/login', {
+      email: k.email,
+      key: k.key,
+      deviceName: this.deviceName(),
+    });
+    if (!res.ok) return res;
+    return this.adopt(res.body, k.email);
+  }
+
+  /** Sets (or changes) the family's email and password; a device not linked yet starts a family first. */
+  async setAccount(email: string, password: string): Promise<ActionResult> {
+    const k = await this.accountKey(email, password);
+    if (!k.ok) return k;
+    const fresh = !this.state;
+    if (fresh) {
+      const created = await this.createFamily();
+      if (!created.ok) return created;
+    }
+    const s = this.state;
+    if (!s) return { ok: false, error: 'unavailable' };
+    const res = await this.post('/api/account/set', { email: k.email, key: k.key }, s.token);
+    if (!res.ok) {
+      // A family made just for this sign-up goes again, so the parent can sign in instead.
+      if (fresh) await this.deleteFamily();
+      else if (res.error === 'unauthorized') await this.unlinkHere(true);
+      return res;
+    }
+    this.state = { ...s, accountEmail: k.email };
+    await this.persist();
+    this.publish(this.ui.getState().status, { hasAccount: true });
+    return { ok: true };
+  }
+
+  /** Stops signing in with the email (the family and its devices stay as they are). */
+  async removeAccount(): Promise<ActionResult> {
+    const s = this.state;
+    if (!s) return { ok: false, error: 'unauthorized' };
+    const res = await this.post('/api/account/remove', {}, s.token);
+    if (!res.ok) return res;
+    const rest: SyncState = { ...s };
+    delete rest.accountEmail;
+    this.state = rest;
+    await this.persist();
+    this.publish(this.ui.getState().status, { hasAccount: false });
+    return { ok: true };
+  }
+
+  /** Asks the server whether the family signs in with an email (set on another device, maybe). */
+  async refreshAccount(): Promise<void> {
+    const s = this.state;
+    if (!s) return;
+    const res = await this.post('/api/account/status', {}, s.token);
+    if (!res.ok || !isRecord(res.body) || typeof res.body['account'] !== 'boolean') return;
+    if (!this.state || this.state.token !== s.token) return;
+    const has = res.body['account'];
+    if (!has && this.state.accountEmail) {
+      const rest: SyncState = { ...this.state };
+      delete rest.accountEmail;
+      this.state = rest;
+      await this.persist();
+    }
+    this.publish(this.ui.getState().status, { hasAccount: has });
   }
 
   /** A code another device can join with (ten minutes, once). */

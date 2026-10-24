@@ -2888,6 +2888,21 @@ ol.steps {
   text-align: center;
 }
 
+.sync-or {
+  margin: 0.25rem 0 0;
+  font-size: 0.95rem;
+}
+.sync-account {
+  margin-top: 0.75rem;
+  padding-top: 0.25rem;
+  border-top: 1px solid var(--color-border);
+}
+.account-form .field input[dir='ltr'] {
+  text-align: left;
+}
+.account-form .field .muted {
+  font-size: 0.85rem;
+}
 .sync-devices__title {
   margin: var(--space-2) 0 0;
   font-size: var(--text-md);
