@@ -20,6 +20,8 @@ export default defineConfig({
       workbox: {
         globPatterns: ['**/*.{js,css,html,svg,png,woff2,webmanifest}'],
         navigateFallback: '/index.html',
+        // The server's own pages (the usage page) are not the app.
+        navigateFallbackDenylist: [/^\/api\//],
         runtimeCaching: [
           {
             // The per-grade clip lists change with every new world: the network first.
