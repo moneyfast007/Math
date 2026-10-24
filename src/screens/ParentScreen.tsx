@@ -690,12 +690,14 @@ export function BackupSection({ onShow }: { onShow: () => void }) {
   const markBackedUp = useApp((s) => s.markBackedUp);
   const replaceData = useApp((s) => s.replaceData);
   const synced = useSync((s) => s.linked);
+  // Signed in with an email: the server already keeps everything; the file is an extra copy.
+  const account = useSync((s) => s.linked && s.hasAccount === true);
   const fileInput = useRef<HTMLInputElement>(null);
   const [message, setMessage] = useState<string | null>(null);
   const [pending, setPending] = useState<AppData | null>(null);
 
   const lastBackupAt = data.meta.lastBackupAt;
-  const stale = lastBackupAt !== null && Date.now() - lastBackupAt > BACKUP_STALE_MS;
+  const stale = !account && lastBackupAt !== null && Date.now() - lastBackupAt > BACKUP_STALE_MS;
 
   const exportBackup = async () => {
     const now = new Date();
@@ -721,7 +723,13 @@ export function BackupSection({ onShow }: { onShow: () => void }) {
 
   return (
     <SettingsCard id="backup" icon="backup" title={t('parent.backup.title')}>
-      <p>{synced ? t('parent.backup.bodySynced') : t('parent.backup.body')}</p>
+      <p>
+        {account
+          ? t('parent.backup.bodyAccount')
+          : synced
+            ? t('parent.backup.bodySynced')
+            : t('parent.backup.body')}
+      </p>
       <p className="muted">
         {lastBackupAt === null
           ? t('parent.backup.never')

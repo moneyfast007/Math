@@ -140,6 +140,7 @@ export const heVariantC = {
   'c.device.backupNever': 'עוד לא נשמר',
   'c.device.backupLast': 'אחרון: {date}',
   'c.device.backupStale': 'כדאי לגבות שוב',
+  'c.device.backupServer': 'שמור בשרת',
   'c.device.pin': 'קוד הורים',
   'c.device.pinOn': 'מוגדר',
   'c.device.pinOff': 'שאלת חשבון',

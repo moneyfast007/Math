@@ -913,7 +913,8 @@ function DeviceList({
   const lastBackupAt = useApp((s) => s.data.meta.lastBackupAt);
   const hasChildren = useApp((s) => s.data.profiles.length > 0);
   const storageIssue = useApp((s) => s.storageIssue);
-  const stale = lastBackupAt !== null && Date.now() - lastBackupAt > BACKUP_STALE_MS;
+  const account = useSync((s) => s.linked && s.hasAccount === true);
+  const stale = !account && lastBackupAt !== null && Date.now() - lastBackupAt > BACKUP_STALE_MS;
 
   const row = (
     item: DeviceItem,
@@ -958,11 +959,13 @@ function DeviceList({
         'backup',
         'backup',
         t('c.device.backup'),
-        stale
-          ? t('c.device.backupStale')
-          : lastBackupAt === null
-            ? t('c.device.backupNever')
-            : t('c.device.backupLast', { params: { date: formatDate(lastBackupAt) } }),
+        account
+          ? t('c.device.backupServer')
+          : stale
+            ? t('c.device.backupStale')
+            : lastBackupAt === null
+              ? t('c.device.backupNever')
+              : t('c.device.backupLast', { params: { date: formatDate(lastBackupAt) } }),
         <BackupSection onShow={onBackupFile} />,
         stale,
       )}
