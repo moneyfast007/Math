@@ -1,38 +1,6 @@
-[WebServer] 
-[WebServer] (!) Some chunks are larger than 500 kB after minification. Consider:
-[WebServer] - Using dynamic import() to code-split the application
-[WebServer] - Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
-[WebServer] - Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
 
-Running 62 tests using 2 workers
-°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°·············T
-::error file=tests/e2e/screenshots6.spec.ts,title=[ipad] › tests/e2e/screenshots6.spec.ts:177:1 › grade 1 clock and money screens::  1) [ipad] › tests/e2e/screenshots6.spec.ts:177:1 › grade 1 clock and money screens ───────────────%0A    Test timeout of 240000ms exceeded.
-::error file=tests/e2e/screenshots6.spec.ts,title=[ipad] › tests/e2e/screenshots6.spec.ts:177:1 › grade 1 clock and money screens,line=98,col=83::  1) [ipad] › tests/e2e/screenshots6.spec.ts:177:1 › grade 1 clock and money screens ───────────────%0A    Error: locator.click: Test timeout of 240000ms exceeded.%0A    Call log:%0A      - waiting for getByRole('dialog').getByRole('listitem').filter({ hasText: 'סופרים כסף עד 20' })%0A%0A%0A       96 | async function level(page: Page, label: string | RegExp, name: string, hints = 0) {%0A       97 |   await page.getByRole('button', { name: 'תחנה אחרת' }).click();%0A    >  98 |   await page.getByRole('dialog').getByRole('listitem').filter({ hasText: label }).click();%0A          |                                                                                   ^%0A       99 |   await page.getByRole('button', { name: 'יאללה, מתחילים!' }).click();%0A      100 |   await expect(page.locator('.exercise')).toBeVisible();%0A      101 |   for (let i = 0; i < hints; i++)%0A        at level (/home/runner/work/Math/Math/tests/e2e/screenshots6.spec.ts:98:83)%0A        at /home/runner/work/Math/Math/tests/e2e/screenshots6.spec.ts:181:3
+Error: Process from config.webServer was not able to start. Exit code: 1
+::error ::Error: Process from config.webServer was not able to start. Exit code: 1
 
 
-  1) [ipad] › tests/e2e/screenshots6.spec.ts:177:1 › grade 1 clock and money screens ───────────────
-
-    Test timeout of 240000ms exceeded.
-
-    Error: locator.click: Test timeout of 240000ms exceeded.
-    Call log:
-      - waiting for getByRole('dialog').getByRole('listitem').filter({ hasText: 'סופרים כסף עד 20' })
-
-
-       96 | async function level(page: Page, label: string | RegExp, name: string, hints = 0) {
-       97 |   await page.getByRole('button', { name: 'תחנה אחרת' }).click();
-    >  98 |   await page.getByRole('dialog').getByRole('listitem').filter({ hasText: label }).click();
-          |                                                                                   ^
-       99 |   await page.getByRole('button', { name: 'יאללה, מתחילים!' }).click();
-      100 |   await expect(page.locator('.exercise')).toBeVisible();
-      101 |   for (let i = 0; i < hints; i++)
-        at level (/home/runner/work/Math/Math/tests/e2e/screenshots6.spec.ts:98:83)
-        at /home/runner/work/Math/Math/tests/e2e/screenshots6.spec.ts:181:3
-
-    Error Context: test-results/screenshots6-grade-1-clock-and-money-screens-ipad/error-context.md
-
-  1 failed
-    [ipad] › tests/e2e/screenshots6.spec.ts:177:1 › grade 1 clock and money screens ────────────────
-  48 skipped
-  13 passed (5.5m)
-::notice title=🎭 Playwright Run Summary::  1 failed%0A    [ipad] › tests/e2e/screenshots6.spec.ts:177:1 › grade 1 clock and money screens ────────────────%0A  48 skipped%0A  13 passed (5.5m)
+::notice title=🎭 Playwright Run Summary::
