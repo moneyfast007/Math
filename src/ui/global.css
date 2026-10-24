@@ -6989,25 +6989,145 @@ body::before {
   font-size: 14px;
 }
 
-/* After a tickle: a small paint brush beside Plusi for a few seconds. */
-.map__paint {
-  position: absolute;
-  z-index: 4;
-  transform: translate(-50%, -50%) translate(-55%, -330%);
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  min-height: 40px;
-  padding: 4px 12px;
-  border-radius: var(--radius-pill);
+/* Plusi on the map: the box holds him, his tap area and the speech cloud over him. */
+.map__plusi-hit {
+  display: block;
+  width: 100%;
+  padding: 0;
   border: 0;
+  background: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* After a tickle: a speech cloud over Plusi. Three dots as he "thinks", then the question. */
+.map__say {
+  position: absolute;
+  bottom: calc(100% + 10px);
+  z-index: 4;
+  display: grid;
+  place-items: center;
+  min-width: 64px;
+  min-height: 44px;
+  padding: 8px 16px;
+  border: 0;
+  border-radius: 22px;
   background: var(--color-surface);
   box-shadow: var(--shadow-md);
   color: var(--color-text);
   font-weight: 800;
-  font-size: 15px;
+  font-size: 16px;
   white-space: nowrap;
   animation: plusi-in var(--dur-fast) var(--ease);
+}
+
+/* The cloud's tail, pointing down at Plusi. */
+.map__say::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  width: 16px;
+  height: 16px;
+  background: var(--color-surface);
+  border-radius: 0 0 50% 50%;
+  transform: translateY(-8px) rotate(45deg);
+  box-shadow: 4px 4px 6px rgb(58 47 42 / 8%);
+}
+
+.map__say--mid {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.map__say--mid::after {
+  left: calc(50% - 8px);
+}
+
+.map__say--left {
+  left: 0;
+}
+
+.map__say--left::after {
+  left: 24px;
+}
+
+.map__say--right {
+  right: 0;
+}
+
+.map__say--right::after {
+  right: 24px;
+}
+
+/* Dots first, words a moment later (all at once with reduced motion). */
+.map__say > * {
+  grid-area: 1 / 1;
+}
+
+.map__say-dots {
+  display: inline-flex;
+  gap: 5px;
+}
+
+.map__say-dots > span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-text-muted);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .map__say-dots {
+    animation: say-dots-out 0.2s ease 0.9s forwards;
+  }
+
+  .map__say-dots > span {
+    animation: say-dot 0.6s ease-in-out infinite;
+  }
+
+  .map__say-dots > span:nth-child(2) {
+    animation-delay: 0.15s;
+  }
+
+  .map__say-dots > span:nth-child(3) {
+    animation-delay: 0.3s;
+  }
+
+  .map__say-text {
+    opacity: 0;
+    animation: say-text-in 0.25s ease 1s forwards;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .map__say-dots {
+    display: none;
+  }
+}
+
+@keyframes say-dot {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translateY(-4px);
+    opacity: 1;
+  }
+}
+
+@keyframes say-dots-out {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes say-text-in {
+  to {
+    opacity: 1;
+  }
 }
 
 .album__plusi {

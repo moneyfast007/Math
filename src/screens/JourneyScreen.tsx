@@ -686,69 +686,56 @@ function MapPlusi({
     // A tickle still tickles; then a little brush offers to paint him, for a few seconds.
     setPaint(true);
     window.clearTimeout(paintTimer.current ?? undefined);
-    paintTimer.current = window.setTimeout(() => setPaint(false), 3500);
+    paintTimer.current = window.setTimeout(() => setPaint(false), 4500);
     // Restart the wiggle even mid-wiggle: off for a frame, then on.
     window.requestAnimationFrame(() => setTickled(true));
     window.clearTimeout(timer.current ?? undefined);
     timer.current = window.setTimeout(() => setTickled(false), 1100);
   };
   return (
-    <>
+    // Plusi and, for a few seconds after a tickle, a speech cloud over him: three dots
+    // as if he is about to speak, then "רוצה לצבוע אותי?" (a tap opens the colours).
+    <div
+      className={x < 30 ? 'map__plusi map__plusi--right' : 'map__plusi'}
+      style={{ left: `${x}%`, top: `${y}%` }}
+      data-tickled={tickled ? '' : undefined}
+      data-teleport={teleport === 'idle' ? undefined : teleport}
+    >
       <button
         type="button"
-        // Beside the station on the left, unless the station is near the left edge: then on its right.
-        className={x < 30 ? 'map__plusi map__plusi--right' : 'map__plusi'}
-        style={{ left: `${x}%`, top: `${y}%` }}
+        className="map__plusi-hit"
         aria-label={t('journey.plusiTickle')}
-        data-tickled={tickled ? '' : undefined}
-        data-teleport={teleport === 'idle' ? undefined : teleport}
         onClick={tickle}
       >
         <span className="map__plusi-body">
           <Plusi mood={tickled ? 'cheering' : mood} size="100%" decorative />
         </span>
-        {teleport !== 'idle' ? (
-          <span className="map__sparks" aria-hidden="true">
-            {[0, 1, 2, 3, 4, 5].map((i) => (
-              <span key={i} className={`map__spark map__spark--${i}`} />
-            ))}
-          </span>
-        ) : null}
       </button>
+      {teleport !== 'idle' ? (
+        <span className="map__sparks" aria-hidden="true">
+          {[0, 1, 2, 3, 4, 5].map((i) => (
+            <span key={i} className={`map__spark map__spark--${i}`} />
+          ))}
+        </span>
+      ) : null}
       {paint ? (
         <button
           type="button"
-          className="map__paint"
-          style={{ left: `${x}%`, top: `${y}%` }}
+          className={`map__say map__say--${x < 35 ? 'left' : x > 65 ? 'right' : 'mid'}`}
           onClick={() => {
             setPaint(false);
             onPaint();
           }}
         >
-          <BrushIcon />
-          {t('plusiColor.paint')}
+          <span className="map__say-dots" aria-hidden="true">
+            <span />
+            <span />
+            <span />
+          </span>
+          <span className="map__say-text">{t('plusiColor.paint')}</span>
         </button>
       ) : null}
-    </>
-  );
-}
-
-function BrushIcon() {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      width="18"
-      height="18"
-      aria-hidden="true"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M18.4 2.6a2 2 0 0 1 2.9 2.9L11 15.8 8.2 13z" />
-      <path d="M7.5 14.5c-2 0-3.5 1.6-3.5 3.5 0 1.1-.6 2-2 2.5 1 .9 2.5 1.5 4 1.5 2.5 0 4.5-2 4.5-4.5z" />
-    </svg>
+    </div>
   );
 }
 

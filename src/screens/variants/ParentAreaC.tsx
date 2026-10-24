@@ -430,8 +430,8 @@ function ProgressPanel() {
         <p className="c-empty muted">{t('c.progress.empty')}</p>
       ) : (
         <>
-          {/* The family at a glance: who practised, who has not for a while, who has not started. */}
-          <FamilyStrip profiles={profiles} />
+          {/* The family at a glance (with more than one child): who practised, who has not for a while, who has not started. */}
+          {profiles.length > 1 ? <FamilyStrip profiles={profiles} /> : null}
           <ul className="c-list" role="list">
             {profiles.map((p, i) => (
               <li key={p.id} id={`progress-${p.id}`}>

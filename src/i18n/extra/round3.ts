@@ -36,7 +36,7 @@ export const heRound3 = {
   'plusiColor.title': 'הפלוסי שלי',
   'plusiColor.intro': 'באיזה צבע פלוסי ילווה אותך?',
   'plusiColor.note': 'עוד צבעים נפתחים עם מדליות הכוכבים באלבום.',
-  'plusiColor.paint': 'לצבוע אותי?',
+  'plusiColor.paint': 'רוצה לצבוע אותי?',
   'plusiColor.open': 'הפלוסי שלי',
   'plusiColor.locked': 'נפתח במדליה {n}',
   'plusiColor.lockedOne': 'נפתח במדליה הראשונה',
