@@ -103,6 +103,7 @@ test.describe('accessibility (WCAG 2.0 AA)', () => {
     await check(page, 'new profile dialog');
     await page.keyboard.press('Escape');
     await page.getByRole('tab', { name: 'הגדרות' }).click();
+    await page.getByText('בלי מייל? חיבור עם קוד').click();
     await page.getByRole('button', { name: 'חיבור למשפחה קיימת' }).click();
     await check(page, 'join family dialog');
     await page.keyboard.press('Escape');

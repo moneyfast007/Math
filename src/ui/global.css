@@ -2888,9 +2888,14 @@ ol.steps {
   text-align: center;
 }
 
-.sync-or {
-  margin: 0.25rem 0 0;
-  font-size: 0.95rem;
+.sync-code-way {
+  margin-top: var(--space-2);
+}
+.account-kind {
+  display: flex;
+}
+.account-kind .segmented__item {
+  flex: 1;
 }
 .sync-account {
   margin-top: 0.75rem;

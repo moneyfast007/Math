@@ -86,12 +86,11 @@ export const heRound3 = {
   'worlds.review.sub': 'תרגילים מכל התחנות שעברת, מעורבבים',
   'worlds.review.done': 'עשית היום',
   // Signing in with an email and a password (no mail is ever sent).
-  'account.signup': 'הרשמה עם מייל וסיסמה',
-  'account.login': 'כבר נרשמתם? כניסה',
-  'account.orCode': 'או בלי מייל, עם קוד חיבור:',
+  'account.start': 'התחברות עם מייל וסיסמה',
+  'account.kind.signup': 'פעם ראשונה',
+  'account.kind.login': 'כבר נרשמתי',
+  'account.orCode': 'בלי מייל? חיבור עם קוד',
   'account.title': 'כניסה עם מייל וסיסמה',
-  'account.signup.title': 'הרשמה עם מייל וסיסמה',
-  'account.login.title': 'כניסה עם מייל וסיסמה',
   'account.set.title': 'מייל וסיסמה למשפחה',
   'account.email': 'מייל',
   'account.password': 'סיסמה',
@@ -114,8 +113,7 @@ export const heRound3 = {
   'account.remove.body':
     'המכשירים המחוברים ימשיכו להסתנכרן כרגיל. מכשיר חדש יוכל להתחבר רק עם קוד חיבור.',
   'account.mismatch': 'הסיסמאות לא זהות.',
-  'sync.problem.emailTaken':
-    'המייל הזה כבר רשום. אם זו המשפחה שלכם, היכנסו איתו ("כבר נרשמתם? כניסה").',
+  'sync.problem.emailTaken': 'המייל הזה כבר רשום. אם זו המשפחה שלכם, בחרו למעלה "כבר נרשמתי".',
   'sync.problem.badLogin': 'המייל או הסיסמה לא נכונים.',
   'sync.problem.badEmail': 'זו לא כתובת מייל תקינה.',
   'sync.problem.shortPassword': 'הסיסמה צריכה להיות לפחות 6 תווים.',

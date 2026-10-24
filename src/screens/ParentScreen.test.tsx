@@ -104,7 +104,7 @@ describe('<ParentScreen> sections', () => {
     expect(screen.getByRole('heading', { name: 'עוד אין כאן ילדים' })).toBeInTheDocument();
     fireEvent.click(screen.getByRole('button', { name: /לסנכרון ולשחזור/ }));
     expect(screen.getByRole('tab', { name: 'הגדרות' })).toHaveAttribute('aria-selected', 'true');
-    expect(screen.getByRole('button', { name: 'חיבור למשפחה קיימת' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'התחברות עם מייל וסיסמה' })).toBeInTheDocument();
   });
 
   it('opens on the section another screen asked for', () => {

@@ -104,7 +104,7 @@ function NotLinked({ onJoined }: { onJoined: (result: JoinResult) => void }) {
   const [busy, setBusy] = useState(false);
   const [problem, setProblem] = useState<SyncProblem | null>(null);
   const [joining, setJoining] = useState(false);
-  const [email, setEmail] = useState<'signup' | 'login' | null>(null);
+  const [email, setEmail] = useState(false);
 
   const create = async () => {
     setBusy(true);
@@ -121,40 +121,34 @@ function NotLinked({ onJoined }: { onJoined: (result: JoinResult) => void }) {
         <p>{t('sync.privacy')}</p>
       </More>
       <div className="row">
-        <button type="button" className="btn" disabled={busy} onClick={() => setEmail('signup')}>
-          {t('account.signup')}
-        </button>
-        <button
-          type="button"
-          className="btn btn--secondary"
-          disabled={busy}
-          onClick={() => setEmail('login')}
-        >
-          {t('account.login')}
+        <button type="button" className="btn" disabled={busy} onClick={() => setEmail(true)}>
+          {t('account.start')}
         </button>
       </div>
-      <p className="muted sync-or">{t('account.orCode')}</p>
-      <div className="row">
-        <button
-          type="button"
-          className="btn btn--secondary"
-          disabled={busy}
-          onClick={() => void create()}
-        >
-          {busy ? t('sync.creating') : t('sync.create')}
-        </button>
-        <button
-          type="button"
-          className="btn btn--secondary"
-          disabled={busy}
-          onClick={() => {
-            setProblem(null);
-            setJoining(true);
-          }}
-        >
-          {t('sync.join')}
-        </button>
-      </div>
+      <details className="more sync-code-way">
+        <summary>{t('account.orCode')}</summary>
+        <div className="more__body row">
+          <button
+            type="button"
+            className="btn btn--secondary"
+            disabled={busy}
+            onClick={() => void create()}
+          >
+            {busy ? t('sync.creating') : t('sync.create')}
+          </button>
+          <button
+            type="button"
+            className="btn btn--secondary"
+            disabled={busy}
+            onClick={() => {
+              setProblem(null);
+              setJoining(true);
+            }}
+          >
+            {t('sync.join')}
+          </button>
+        </div>
+      </details>
       {problem ? (
         <p className="notice" role="alert">
           {problemText(problem)}
@@ -171,7 +165,7 @@ function NotLinked({ onJoined }: { onJoined: (result: JoinResult) => void }) {
       ) : null}
       {email ? (
         <AccountDialog
-          mode={email}
+          mode="signup"
           onClose={() => setEmail(null)}
           onJoined={(result) => {
             setEmail(null);
@@ -188,7 +182,7 @@ function NotLinked({ onJoined }: { onJoined: (result: JoinResult) => void }) {
  * The password is checked here and stretched on the device; no mail is sent.
  */
 function AccountDialog({
-  mode,
+  mode: initial,
   onClose,
   onJoined,
 }: {
@@ -197,6 +191,8 @@ function AccountDialog({
   onJoined?: (result: JoinResult) => void;
 }) {
   const id = useId();
+  // Not linked yet: one dialog, and the parent says whether this is a new account or not.
+  const [mode, setMode] = useState(initial);
   const [email, setEmail] = useState(
     mode === 'set' ? (syncEngine.ui.getState().accountEmail ?? '') : '',
   );
@@ -230,7 +226,7 @@ function AccountDialog({
 
   return (
     <Dialog
-      title={t(`account.${mode}.title`)}
+      title={mode === 'set' ? t('account.set.title') : t('account.start')}
       onClose={onClose}
       actions={
         <button
@@ -244,6 +240,24 @@ function AccountDialog({
       }
     >
       <form id={`${id}-form`} className="stack account-form" onSubmit={(e) => void submit(e)}>
+        {mode !== 'set' ? (
+          <div className="segmented account-kind" role="group">
+            {(['signup', 'login'] as const).map((k) => (
+              <button
+                key={k}
+                type="button"
+                className="segmented__item"
+                aria-pressed={mode === k}
+                onClick={() => {
+                  setMode(k);
+                  setProblem(null);
+                }}
+              >
+                {t(`account.kind.${k}`)}
+              </button>
+            ))}
+          </div>
+        ) : null}
         {mode === 'login' ? <p>{t('account.loginHow')}</p> : null}
         <div className="field">
           <label htmlFor={`${id}-email`}>{t('account.email')}</label>

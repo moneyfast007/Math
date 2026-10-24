@@ -152,7 +152,7 @@ for (const c of CASES) {
     await expect(page.getByRole('heading', { level: 1 })).toHaveText(`שלום ${NAME}!`);
 
     // The tools keep their names; the streak shows only from the first day.
-    await expect(page.getByRole('button', { name: 'יציאה למסך הכניסה' })).toContainText('ילדים');
+    await expect(page.getByRole('button', { name: 'יציאה למסך הכניסה' })).toContainText('יציאה');
     await expect(page.getByRole('button', { name: 'האלבום' })).toContainText('מדבקות');
     await expect(page.getByRole('img', { name: /רצף/ })).toHaveCount(0);
 

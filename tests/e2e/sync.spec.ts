@@ -65,6 +65,7 @@ test('two devices: create a family, link with a code, see each other’s changes
   await a.getByRole('button', { name: 'יצירת פרופיל ראשון' }).click();
   await addChild(a, 'נועה', 'כיתה ב׳');
   await openTab(a, 'הגדרות');
+  await a.getByText('בלי מייל? חיבור עם קוד').click();
   await a.getByRole('button', { name: 'זה המכשיר הראשון: יצירת משפחה' }).click();
   await expect(a.getByText(/^מסונכרן · /)).toBeVisible();
   await expect(
@@ -95,6 +96,7 @@ test('two devices: create a family, link with a code, see each other’s changes
   await b.goto('/');
   await b.getByRole('button', { name: 'יצירת פרופיל ראשון' }).click();
   await openTab(b, 'הגדרות');
+  await b.getByText('בלי מייל? חיבור עם קוד').click();
   await b.getByRole('button', { name: 'חיבור למשפחה קיימת' }).click();
   const join = b.getByRole('dialog', { name: 'חיבור למשפחה קיימת' });
   for (const d of code) await join.getByRole('button', { name: d, exact: true }).click();
@@ -140,6 +142,7 @@ test('a wrong code is explained, and nothing changes', async ({ page, context })
   await page.goto('/');
   await page.getByRole('button', { name: 'יצירת פרופיל ראשון' }).click();
   await openTab(page, 'הגדרות');
+  await page.getByText('בלי מייל? חיבור עם קוד').click();
   await page.getByRole('button', { name: 'חיבור למשפחה קיימת' }).click();
   const join = page.getByRole('dialog', { name: 'חיבור למשפחה קיימת' });
   for (const d of '012345') await join.getByRole('button', { name: d, exact: true }).click();
