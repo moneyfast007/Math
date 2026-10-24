@@ -139,7 +139,7 @@ test.describe('profiles', () => {
       await expect(page.getByRole('heading', { name: `שלום ${name}!` })).toBeVisible();
       await expect(page.getByRole('button', { name: 'יאללה, מתחילים!' })).toBeVisible();
       await expect(page.locator('html')).toHaveAttribute('data-age', band);
-      await page.getByRole('button', { name: 'מי משחק?' }).click();
+      await page.getByRole('button', { name: 'יציאה למסך הכניסה' }).click();
       await expect(page).toHaveURL(/\/$/);
     }
   });

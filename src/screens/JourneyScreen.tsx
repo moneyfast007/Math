@@ -30,7 +30,7 @@ import { ageBandForGrade, applyAgeBand } from '@/ui/ageBand';
 import { Avatar } from '@/ui/Avatar';
 import { Dialog } from '@/ui/Dialog';
 import { Icon } from '@/ui/Icon';
-import { playGiggle } from '@/ui/fanfare';
+import { playGiggle, playTeleport } from '@/ui/fanfare';
 import { Plusi } from '@/ui/Plusi';
 import { PlusiPicker } from '@/ui/PlusiPicker';
 import { applyPlusiColor } from '@/ui/plusiColor';
@@ -206,15 +206,15 @@ function Journey({ profile }: { profile: Profile }) {
           <button
             type="button"
             className="journey__tool"
-            aria-label={tc('child.switch')}
-            title={tc('child.switch')}
+            aria-label={t('journey.exitLabel')}
+            title={t('journey.exitLabel')}
             onClick={() => navigate({ name: 'home' })}
           >
             <span className="journey__tool-icon">
-              <Icon name="children" />
+              <Icon name="exit" />
             </span>
             <span className="journey__tool-label" aria-hidden="true">
-              {t('journeyBar.children')}
+              {t('journeyBar.exit')}
             </span>
           </button>
         </div>
@@ -345,6 +345,7 @@ function Journey({ profile }: { profile: Profile }) {
                 className={l.level === level ? 'level-item level-item--current' : 'level-item'}
                 aria-current={l.level === level ? 'true' : undefined}
                 onClick={() => {
+                  if (l.level !== level) playTeleport();
                   setPicked(l.level);
                   setPicking(false);
                 }}
@@ -552,7 +553,12 @@ function WorldMap({
               className={cls}
               style={style}
               aria-label={label}
-              onClick={() => (open ? onPick(s) : onLocked(s))}
+              onClick={() => {
+                if (!open) return onLocked(s);
+                // A soft "whoosh and ding" as Plusi hops over (from the tap, so iOS plays it).
+                if (i !== target) playTeleport();
+                onPick(s);
+              }}
             >
               {content}
             </button>
@@ -568,7 +574,11 @@ function WorldMap({
           }
           style={{ left: `${reviewPoint.x}%`, top: `${(reviewPoint.y / height) * 100}%` }}
           aria-label={t(`journey.review.${world.review}`)}
-          onClick={() => (world.review === 'locked' ? onLocked('review') : onReview())}
+          onClick={() => {
+            if (world.review === 'locked') return onLocked('review');
+            if (all - 1 !== target) playTeleport();
+            onReview();
+          }}
         >
           {/* The cup in its own frame: the glint passes over it, and it wobbles once open. */}
           <span className="node__cup">
@@ -680,7 +690,26 @@ function MapPlusi({
     },
     [],
   );
+  // Six quick tickles (within two seconds): he falls over and rolls with laughter.
+  const taps = useRef<number[]>([]);
+  const [rolling, setRolling] = useState(false);
+  const rollTimer = useRef<number | null>(null);
+  useEffect(() => () => window.clearTimeout(rollTimer.current ?? undefined), []);
   const tickle = () => {
+    const now = Date.now();
+    taps.current = [...taps.current.filter((at) => now - at < 2000), now];
+    if (taps.current.length >= 6 && !rolling) {
+      taps.current = [];
+      setRolling(true);
+      setPaint(false);
+      playGiggle();
+      window.setTimeout(playGiggle, 450);
+      window.setTimeout(playGiggle, 900);
+      window.clearTimeout(rollTimer.current ?? undefined);
+      rollTimer.current = window.setTimeout(() => setRolling(false), 2600);
+      return;
+    }
+    if (rolling) return;
     playGiggle();
     setTickled(false);
     // A tickle still tickles; then a little brush offers to paint him, for a few seconds.
@@ -699,6 +728,7 @@ function MapPlusi({
       className={x < 30 ? 'map__plusi map__plusi--right' : 'map__plusi'}
       style={{ left: `${x}%`, top: `${y}%` }}
       data-tickled={tickled ? '' : undefined}
+      data-rolling={rolling ? '' : undefined}
       data-teleport={teleport === 'idle' ? undefined : teleport}
     >
       <button
@@ -708,9 +738,15 @@ function MapPlusi({
         onClick={tickle}
       >
         <span className="map__plusi-body">
-          <Plusi mood={tickled ? 'cheering' : mood} size="100%" decorative />
+          <Plusi mood={tickled || rolling ? 'cheering' : mood} size="100%" decorative />
         </span>
       </button>
+      {rolling ? (
+        <span className="map__haha" aria-hidden="true">
+          <span>חחח</span>
+          <span>חחח</span>
+        </span>
+      ) : null}
       {teleport !== 'idle' ? (
         <span className="map__sparks" aria-hidden="true">
           {[0, 1, 2, 3, 4, 5].map((i) => (

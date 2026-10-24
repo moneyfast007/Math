@@ -7253,3 +7253,89 @@ body {
   flex-direction: column;
   gap: var(--space-3);
 }
+
+/* Six quick tickles: Plusi falls over and rolls with laughter ("חחח" floating up). */
+@media (prefers-reduced-motion: no-preference) {
+  .map__plusi[data-rolling] .map__plusi-body {
+    animation: plusi-roll 2.6s ease-in-out both;
+  }
+}
+
+@keyframes plusi-roll {
+  0% {
+    transform: rotate(0) translateY(0);
+  }
+  12% {
+    transform: rotate(90deg) translateY(10%);
+  }
+  22% {
+    transform: rotate(70deg) translateY(10%) translateX(-6%);
+  }
+  32% {
+    transform: rotate(110deg) translateY(10%) translateX(6%);
+  }
+  42% {
+    transform: rotate(65deg) translateY(10%) translateX(-8%);
+  }
+  52% {
+    transform: rotate(115deg) translateY(10%) translateX(8%);
+  }
+  62% {
+    transform: rotate(70deg) translateY(10%) translateX(-6%);
+  }
+  72% {
+    transform: rotate(105deg) translateY(10%) translateX(4%);
+  }
+  85% {
+    transform: rotate(90deg) translateY(10%);
+  }
+  100% {
+    transform: rotate(0) translateY(0);
+  }
+}
+
+.map__haha {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.map__haha > span {
+  position: absolute;
+  top: 0;
+  font-weight: 900;
+  font-size: 15px;
+  color: var(--color-almost);
+  white-space: nowrap;
+  opacity: 0;
+  animation: haha-up 1.2s ease-out forwards;
+}
+
+.map__haha > span:nth-child(1) {
+  left: -20%;
+}
+
+.map__haha > span:nth-child(2) {
+  right: -20%;
+  animation-delay: 0.6s;
+}
+
+@keyframes haha-up {
+  0% {
+    opacity: 0;
+    transform: translateY(0) scale(0.7);
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-120%) scale(1.1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .map__haha {
+    display: none;
+  }
+}

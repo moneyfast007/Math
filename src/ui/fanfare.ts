@@ -75,6 +75,51 @@ export function playGiggle(): void {
   else void ctx.resume().then(go, () => void ctx.close());
 }
 
+/**
+ * Plusi hopping to another station: a soft rising "whoosh" while he vanishes,
+ * then a two-note sparkle as he pops up (timed with the teleport animation).
+ * From a tap, so it plays at once; quiet, under half a second.
+ */
+export function playTeleport(): void {
+  const ctx = context();
+  if (!ctx) return;
+  const go = () => {
+    const now = ctx.currentTime + 0.02;
+    const master = ctx.createGain();
+    master.gain.value = 0.12;
+    master.connect(ctx.destination);
+    // The whoosh: a sine gliding up an octave and fading.
+    const sweep = ctx.createOscillator();
+    const sweepGain = ctx.createGain();
+    sweep.type = 'sine';
+    sweep.frequency.setValueAtTime(440, now);
+    sweep.frequency.exponentialRampToValueAtTime(1320, now + 0.28);
+    sweepGain.gain.setValueAtTime(0, now);
+    sweepGain.gain.linearRampToValueAtTime(0.7, now + 0.05);
+    sweepGain.gain.exponentialRampToValueAtTime(0.001, now + 0.3);
+    sweep.connect(sweepGain).connect(master);
+    sweep.start(now);
+    sweep.stop(now + 0.32);
+    // The sparkle as he appears: E6 then B6.
+    [1319, 1976].forEach((freq, i) => {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = 'triangle';
+      osc.frequency.value = freq;
+      const at = now + 0.32 + i * 0.08;
+      gain.gain.setValueAtTime(0, at);
+      gain.gain.linearRampToValueAtTime(1, at + 0.01);
+      gain.gain.exponentialRampToValueAtTime(0.001, at + 0.22);
+      osc.connect(gain).connect(master);
+      osc.start(at);
+      osc.stop(at + 0.25);
+    });
+    window.setTimeout(() => void ctx.close(), 1200);
+  };
+  if (ctx.state === 'running') go();
+  else void ctx.resume().then(go, () => void ctx.close());
+}
+
 /** Plays the tune now, or at the next touch if the browser holds audio back. */
 export function playFanfare(): () => void {
   const ctx = context();

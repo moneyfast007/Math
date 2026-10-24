@@ -131,7 +131,7 @@ export const heVariantC = {
   'c.settings.level': 'מותר לדלג בין תחנות',
   'c.settings.levelYes': 'מותר',
   'c.settings.levelNo': 'לא',
-  'c.settings.goalOff': 'בלי',
+  'c.settings.goalOff': 'בלי יעד',
   'c.settings.goalUnit': 'סבבים ביום',
   'c.device.sync': 'סנכרון ומשפחה',
   'c.device.syncOn': 'מחובר',

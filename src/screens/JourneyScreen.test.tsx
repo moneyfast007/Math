@@ -224,9 +224,9 @@ describe('<JourneyScreen> header and world row', () => {
     playAs(makeProfile({ journeyIntroSeenAt: 1 }));
     render(<JourneyScreen />);
     const album = screen.getByRole('button', { name: 'האלבום' });
-    const who = screen.getByRole('button', { name: 'מי משחק?' });
+    const who = screen.getByRole('button', { name: 'יציאה למסך הכניסה' });
     expect(album).toHaveTextContent('מדבקות');
-    expect(who).toHaveTextContent('ילדים');
+    expect(who).toHaveTextContent('יציאה');
     fireEvent.click(album);
     expect(window.location.pathname).toBe('/album');
   });
@@ -298,19 +298,24 @@ describe('<JourneyScreen> Plusi on the map', () => {
     vi.useFakeTimers();
     playAs(makeProfile({ journeyIntroSeenAt: 1 }));
     render(<JourneyScreen />);
-    const plusi = screen.getByRole('button', { name: /פלוסי/ });
-    expect(plusi.querySelector('.plusi--happy')).not.toBeNull();
-    fireEvent.click(plusi);
-    act(() => {
-      vi.advanceTimersToNextFrame();
-    });
-    expect(plusi).toHaveAttribute('data-tickled');
-    expect(plusi.querySelector('.plusi--cheering')).not.toBeNull();
-    act(() => {
-      vi.advanceTimersByTime(1200);
-    });
-    expect(plusi).not.toHaveAttribute('data-tickled');
-    expect(window.location.pathname).toBe('/play');
-    vi.useRealTimers();
+    try {
+      const hit = screen.getByRole('button', { name: /פלוסי/ });
+      // The tap target sits inside the figure that carries the state and the drawing.
+      const plusi = hit.closest('.map__plusi') as HTMLElement;
+      expect(plusi.querySelector('.plusi--happy')).not.toBeNull();
+      fireEvent.click(hit);
+      act(() => {
+        vi.advanceTimersToNextFrame();
+      });
+      expect(plusi).toHaveAttribute('data-tickled');
+      expect(plusi.querySelector('.plusi--cheering')).not.toBeNull();
+      act(() => {
+        vi.advanceTimersByTime(1200);
+      });
+      expect(plusi).not.toHaveAttribute('data-tickled');
+      expect(window.location.pathname).toBe('/play');
+    } finally {
+      vi.useRealTimers();
+    }
   });
 });

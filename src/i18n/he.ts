@@ -237,7 +237,7 @@ export const he = {
   'profile.roundLength.count': '{count} תרגילים',
   'profile.roundLength.hint': 'כמה תרגילים יש בכל תחנה, באתגר הסיום ובחזרות.',
   'profile.dailyGoal': 'יעד יומי',
-  'profile.dailyGoal.off': 'בלי',
+  'profile.dailyGoal.off': 'בלי יעד',
   'profile.dailyGoal.1': 'סבב אחד',
   'profile.dailyGoal.2': '2 סבבים',
   'profile.dailyGoal.3': '3 סבבים',

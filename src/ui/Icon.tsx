@@ -14,7 +14,8 @@ export type IconName =
   | 'device'
   | 'plus'
   | 'home'
-  | 'info';
+  | 'info'
+  | 'exit';
 
 export function Icon({ name, className }: { name: IconName; className?: string }) {
   return (
@@ -44,6 +45,15 @@ function Paths({ name }: { name: IconName }) {
           <rect x="5" y="11" width="14" height="10" rx="2.5" />
           <path d="M8 11V8a4 4 0 0 1 8 0v3" />
           <path d="M12 15v2" />
+        </>
+      );
+    case 'exit':
+      // A door with an arrow going out (out toward the start side, in RTL).
+      return (
+        <>
+          <path d="M13 4h5a1.5 1.5 0 0 1 1.5 1.5v13A1.5 1.5 0 0 1 18 20h-5" />
+          <path d="M10 8l-4 4 4 4" />
+          <path d="M6 12h9" />
         </>
       );
     case 'children':

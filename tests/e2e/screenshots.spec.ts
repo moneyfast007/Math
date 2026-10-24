@@ -74,7 +74,7 @@ for (const orientation of ['landscape', 'portrait'] as const) {
     await page.getByRole('button', { name: 'רמז', exact: true }).click();
     await shot(page, `${o}-06-practice-gan-hints`);
     await page.getByRole('button', { name: 'סיום' }).click();
-    await page.getByRole('button', { name: 'מי משחק?' }).click();
+    await page.getByRole('button', { name: 'יציאה למסך הכניסה' }).click();
 
     // Grade 2
     await page.getByRole('button', { name: 'נועה' }).click();
@@ -94,7 +94,7 @@ for (const orientation of ['landscape', 'portrait'] as const) {
     await page.getByRole('button', { name: 'האלבום' }).click();
     await shot(page, `${o}-10-album`);
     await page.getByRole('button', { name: 'חזרה למסע' }).click();
-    await page.getByRole('button', { name: 'מי משחק?' }).click();
+    await page.getByRole('button', { name: 'יציאה למסך הכניסה' }).click();
 
     // Grade 4
     await page.getByRole('button', { name: 'מאיה' }).click();

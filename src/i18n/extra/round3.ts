@@ -69,6 +69,9 @@ export const heRound3 = {
   // The new-child form: the extra settings folded.
   'profile.more': 'הגדרות נוספות',
   'profile.moreHint': 'אורך הסבב, יעד יומי ועוד. אפשר להשאיר כמו שזה ולשנות בכל זמן.',
+  // The journey's way out: back to the entry screen.
+  'journeyBar.exit': 'יציאה',
+  'journey.exitLabel': 'יציאה למסך הכניסה',
   // Entry screen C.
   'c.home.start': 'מתחילים',
   // Back after two days or more without playing: Plusi says he missed her (once that day).

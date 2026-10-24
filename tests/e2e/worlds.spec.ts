@@ -106,7 +106,7 @@ test('the first visit explains how the worlds open, once, without blocking anyth
   await expect(intro).toHaveCount(0);
 
   // The next time she opens the journey, it is not there.
-  await page.getByRole('button', { name: 'מי משחק?' }).click();
+  await page.getByRole('button', { name: 'יציאה למסך הכניסה' }).click();
   await page.getByRole('button', { name: 'מאיה' }).click();
   await expect(page).toHaveURL(/\/play$/);
   await expect(page.getByRole('button', { name: 'יאללה, מתחילים!' })).toBeVisible();

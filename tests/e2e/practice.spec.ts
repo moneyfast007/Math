@@ -146,7 +146,7 @@ test.describe('practice', () => {
     await expect(page.getByRole('button', { name: 'תחנה 2, התחנה הבאה' })).toBeVisible();
 
     // The parent sees it.
-    await page.getByRole('button', { name: 'מי משחק?' }).click();
+    await page.getByRole('button', { name: 'יציאה למסך הכניסה' }).click();
     await page.goto('/parents');
     const gate = page.getByRole('dialog', { name: 'כניסת הורים' });
     const q = ((await gate.locator('[data-math]').textContent()) ?? '').match(/(\d+)\s*×\s*(\d+)/);
