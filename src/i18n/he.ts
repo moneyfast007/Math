@@ -1855,9 +1855,9 @@ export const he = {
   'parent.journey.worldDone': '{name}: הושלם',
 
   // Phase 6: recordings for use without internet (parents)
-  'parent.offline.title': 'שימוש בלי אינטרנט',
+  'parent.offline.title': 'הקראה בלי אינטרנט',
   'parent.offline.intro':
-    'אפשר לשמור במכשיר את כל ההקלטות של כיתה, כדי שההקראה תעבוד גם בלי אינטרנט (ברכב, בחופשה). מומלץ להוריד ב־Wi-Fi.',
+    'כדאי במיוחד לילדים שעוד לא קוראים לבד, לפני נסיעה או חופשה. בלי ההורדה, הקלטה שלא נשמרה תוקרא בקול של המכשיר, אם יש לו קול בעברית. מומלץ להוריד ב־Wi-Fi.',
   'parent.offline.grade': '{grade}: בערך {mb} מגה־בייט',
   'parent.offline.status': '{have} מתוך {total} הקלטות שמורות במכשיר',
   'parent.offline.progress': 'מוריד… {done} מתוך {total}',

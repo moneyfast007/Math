@@ -143,7 +143,7 @@ export const heVariantC = {
   'c.device.pin': 'קוד הורים',
   'c.device.pinOn': 'מוגדר',
   'c.device.pinOff': 'שאלת חשבון',
-  'c.device.offline': 'בלי אינטרנט',
+  'c.device.offline': 'הקראה בלי אינטרנט',
   'c.device.offlineHint': 'הקלטות במכשיר',
   'c.device.install': 'התקנה ושמירה',
   'c.device.installOn': 'מותקן',

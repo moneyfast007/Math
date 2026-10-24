@@ -30,7 +30,8 @@ export const heScreens = {
   'parentArea.progress.title': 'ההתקדמות של הילדים',
   'parentArea.progress.empty': 'כשיהיו ילדים, ההתקדמות שלהם תופיע כאן.',
   'parentArea.settings.title': 'הגדרות',
-  'parentArea.offline.short': 'שומרים את ההקלטות במכשיר, וההקראה עובדת גם בלי אינטרנט.',
+  'parentArea.offline.short':
+    'האפליקציה עובדת גם בלי אינטרנט. ההורדה צריכה רק בשביל ההקראה: שומרים את ההקלטות במכשיר, והן יתנגנו גם בלי חיבור.',
 
   // Album: the next sticker to earn (shown, not spoken: outside the recorded 'album.' keys)
   'stickerSlot.next': 'המדבקה הבאה',
