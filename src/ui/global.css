@@ -7000,38 +7000,26 @@ body::before {
   -webkit-tap-highlight-color: transparent;
 }
 
-/* After a tickle: a speech cloud over Plusi. Three dots as he "thinks", then the question. */
+/* After a tickle: a thought cloud over Plusi, three bubbles rising to it from his head. */
 .map__say {
   position: absolute;
-  bottom: calc(100% + 10px);
+  bottom: calc(100% + 34px);
   z-index: 4;
   display: grid;
   place-items: center;
-  min-width: 64px;
-  min-height: 44px;
-  padding: 8px 16px;
+  min-height: 46px;
+  padding: 10px 18px;
   border: 0;
-  border-radius: 22px;
+  border-radius: 999px;
   background: var(--color-surface);
-  box-shadow: var(--shadow-md);
+  box-shadow:
+    0 4px 14px rgb(58 47 42 / 14%),
+    /* Two soft bumps, so it reads as a cloud. */ -18px -6px 0 -6px var(--color-surface),
+    20px -8px 0 -8px var(--color-surface);
   color: var(--color-text);
   font-weight: 800;
   font-size: 16px;
   white-space: nowrap;
-  animation: plusi-in var(--dur-fast) var(--ease);
-}
-
-/* The cloud's tail, pointing down at Plusi. */
-.map__say::after {
-  content: '';
-  position: absolute;
-  top: 100%;
-  width: 16px;
-  height: 16px;
-  background: var(--color-surface);
-  border-radius: 0 0 50% 50%;
-  transform: translateY(-8px) rotate(45deg);
-  box-shadow: 4px 4px 6px rgb(58 47 42 / 8%);
 }
 
 .map__say--mid {
@@ -7039,94 +7027,124 @@ body::before {
   transform: translateX(-50%);
 }
 
-.map__say--mid::after {
-  left: calc(50% - 8px);
-}
-
 .map__say--left {
   left: 0;
-}
-
-.map__say--left::after {
-  left: 24px;
 }
 
 .map__say--right {
   right: 0;
 }
 
-.map__say--right::after {
-  right: 24px;
+/* The bubbles: small near Plusi's head, bigger toward the cloud. */
+.map__say-trail {
+  position: absolute;
+  top: 100%;
+  width: 40px;
+  height: 34px;
+  pointer-events: none;
 }
 
-/* Dots first, words a moment later (all at once with reduced motion). */
-.map__say > * {
-  grid-area: 1 / 1;
+.map__say--mid .map__say-trail {
+  left: calc(50% - 20px);
 }
 
-.map__say-dots {
-  display: inline-flex;
-  gap: 5px;
+.map__say--left .map__say-trail {
+  left: 18px;
 }
 
-.map__say-dots > span {
-  width: 8px;
-  height: 8px;
+.map__say--right .map__say-trail {
+  right: 18px;
+}
+
+.map__say-trail > span {
+  position: absolute;
   border-radius: 50%;
-  background: var(--color-text-muted);
+  background: var(--color-surface);
+  box-shadow: 0 2px 6px rgb(58 47 42 / 14%);
+}
+
+.map__say-trail > span:nth-child(1) {
+  width: 14px;
+  height: 14px;
+  top: 2px;
+  left: 14px;
+}
+
+.map__say-trail > span:nth-child(2) {
+  width: 10px;
+  height: 10px;
+  top: 16px;
+  left: 8px;
+}
+
+.map__say-trail > span:nth-child(3) {
+  width: 6px;
+  height: 6px;
+  top: 27px;
+  left: 4px;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .map__say-dots {
-    animation: say-dots-out 0.2s ease 0.9s forwards;
+  /* The bubbles rise one after another, then the cloud pops. */
+  .map__say-trail > span {
+    opacity: 0;
+    animation: say-bubble 0.2s ease forwards;
   }
 
-  .map__say-dots > span {
-    animation: say-dot 0.6s ease-in-out infinite;
+  .map__say-trail > span:nth-child(3) {
+    animation-delay: 0s;
   }
 
-  .map__say-dots > span:nth-child(2) {
+  .map__say-trail > span:nth-child(2) {
     animation-delay: 0.15s;
   }
 
-  .map__say-dots > span:nth-child(3) {
+  .map__say-trail > span:nth-child(1) {
     animation-delay: 0.3s;
   }
 
   .map__say-text {
     opacity: 0;
-    animation: say-text-in 0.25s ease 1s forwards;
+    animation: say-text-in 0.25s ease 0.45s forwards;
+  }
+
+  .map__say {
+    animation: say-cloud 0.3s cubic-bezier(0.3, 1.5, 0.5, 1) 0.35s both;
+  }
+
+  .map__say--mid {
+    animation-name: say-cloud-mid;
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .map__say-dots {
-    display: none;
-  }
-}
-
-@keyframes say-dot {
-  0%,
-  100% {
-    transform: translateY(0);
-    opacity: 0.5;
-  }
-  50% {
-    transform: translateY(-4px);
-    opacity: 1;
-  }
-}
-
-@keyframes say-dots-out {
-  to {
+@keyframes say-bubble {
+  from {
     opacity: 0;
-    visibility: hidden;
+    transform: scale(0.3);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
   }
 }
 
 @keyframes say-text-in {
   to {
     opacity: 1;
+  }
+}
+
+@keyframes say-cloud {
+  from {
+    background: transparent;
+    box-shadow: none;
+  }
+}
+
+@keyframes say-cloud-mid {
+  from {
+    background: transparent;
+    box-shadow: none;
   }
 }
 

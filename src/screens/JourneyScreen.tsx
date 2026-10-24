@@ -693,8 +693,8 @@ function MapPlusi({
     timer.current = window.setTimeout(() => setTickled(false), 1100);
   };
   return (
-    // Plusi and, for a few seconds after a tickle, a speech cloud over him: three dots
-    // as if he is about to speak, then "רוצה לצבוע אותי?" (a tap opens the colours).
+    // Plusi and, for a few seconds after a tickle, a thought cloud over him with
+    // "רוצה לצבוע אותי?", three little bubbles rising to it (a tap opens the colours).
     <div
       className={x < 30 ? 'map__plusi map__plusi--right' : 'map__plusi'}
       style={{ left: `${x}%`, top: `${y}%` }}
@@ -727,12 +727,13 @@ function MapPlusi({
             onPaint();
           }}
         >
-          <span className="map__say-dots" aria-hidden="true">
+          <span className="map__say-text">{t('plusiColor.paint')}</span>
+          {/* A thought cloud, as in cartoons: three bubbles rising from his head. */}
+          <span className="map__say-trail" aria-hidden="true">
             <span />
             <span />
             <span />
           </span>
-          <span className="map__say-text">{t('plusiColor.paint')}</span>
         </button>
       ) : null}
     </div>
