@@ -147,7 +147,10 @@ function Journey({ profile }: { profile: Profile }) {
   const left = world.stations.filter((st) => !st.warmup && st.state !== 'done').length;
 
   return (
-    <main className="screen journey" data-screen="play">
+    <main
+      className={`screen journey journey--village journey--${villageTheme(world.index)}`}
+      data-screen="play"
+    >
       <header className="journey__header">
         <div className="journey__who">
           <Avatar id={profile.avatar} size="lg" decorative />

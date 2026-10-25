@@ -241,3 +241,78 @@
     opacity: 0.55;
   }
 }
+
+/* ---------- The whole screen is the village ---------- */
+
+/* The ground fills the screen, edge to edge (and under the status bar). */
+html:has(.journey--green),
+html:has(.journey--green) body {
+  --village-ground: #8fcf6a;
+  --village-dots: #77b955;
+}
+
+html:has(.journey--autumn),
+html:has(.journey--autumn) body {
+  --village-ground: #c9d46a;
+  --village-dots: #b3bd55;
+}
+
+html:has(.journey--snow),
+html:has(.journey--snow) body {
+  --village-ground: #f2f6fb;
+  --village-dots: #dbe5ef;
+}
+
+html:has(.journey--sand),
+html:has(.journey--sand) body {
+  --village-ground: #f1d99b;
+  --village-dots: #e3c47b;
+}
+
+html:has(.journey--village),
+html:has(.journey--village) body {
+  background:
+    radial-gradient(circle at 20% 30%, var(--village-dots) 0 1.5px, transparent 2px) 0 0 / 46px
+      38px,
+    radial-gradient(circle at 70% 60%, var(--village-dots) 0 1.5px, transparent 2px) 0 0 / 58px
+      44px,
+    var(--village-ground);
+}
+
+.journey--village .map--village {
+  background: none;
+  box-shadow: none;
+  border-radius: 0;
+}
+
+/* What is over the village floats on it: white panels. */
+.journey--village .journey__header,
+.journey--village .journey__world {
+  padding: 6px 10px;
+  border-radius: 18px;
+  background: rgb(255 255 255 / 90%);
+  box-shadow: 0 4px 12px rgb(30 40 20 / 12%);
+}
+
+.journey--village .journey__world-name {
+  font-size: clamp(14px, 3.8vw, var(--text-md));
+}
+
+.journey--village .journey__world {
+  flex-wrap: nowrap;
+  gap: var(--space-1);
+}
+
+.journey--village .journey__all {
+  flex: none;
+  padding-inline: 10px;
+}
+
+.journey--village .journey__world-text {
+  min-width: 0;
+  flex: 1 1 0;
+}
+
+.journey--village .journey__next {
+  box-shadow: 0 10px 30px rgb(30 40 20 / 28%);
+}
