@@ -5479,7 +5479,7 @@ details.report .report__worlds {
   }
 
   .practice__bar {
-    --bar-side: 104px;
+    --bar-side: 80px;
     gap: 4px;
   }
 

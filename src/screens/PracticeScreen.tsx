@@ -591,6 +591,20 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
             params: { n: Math.min(s.done + 1, s.length), total: s.length },
           })}
         />
+        {/* A station round names its station at the top, so it is never mistaken for the final challenge. */}
+        {mode === 'level' ? (
+          <p className="station-line">
+            {t('practice.station', {
+              params: {
+                n: s.startLevel,
+                name: (() => {
+                  const key = gradeLevels.find((l) => l.level === s.startLevel)?.labelKey;
+                  return key ? t(key as TranslationKey) : '';
+                })(),
+              },
+            })}
+          </p>
+        ) : null}
         <div className="practice__side practice__side--end">
           {/* Plusi, small, reacts to every answer from the corner of the bar. */}
           <span className="practice__mascot">
@@ -610,20 +624,6 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
       {notice ? (
         <p className="notice notice--ok" role="status">
           {notice}
-        </p>
-      ) : null}
-      {/* A station round names its station, so it is never mistaken for the final challenge. */}
-      {mode === 'level' ? (
-        <p className="station-line">
-          {t('practice.station', {
-            params: {
-              n: s.startLevel,
-              name: (() => {
-                const key = gradeLevels.find((l) => l.level === s.startLevel)?.labelKey;
-                return key ? t(key as TranslationKey) : '';
-              })(),
-            },
-          })}
         </p>
       ) : null}
       {/* The final challenge looks like one: a gold banner with what it takes, all round. */}

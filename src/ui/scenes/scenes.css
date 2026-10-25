@@ -26,6 +26,24 @@
   grid-row: 2;
 }
 
+/* The station's name at the top, in the bar's middle... */
+.practice__bar > .station-line {
+  grid-column: 2;
+  grid-row: 1;
+  margin: 0;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.25;
+  text-align: center;
+  text-wrap: balance;
+}
+
+/* ...or, where the scene takes the middle, right under the bar. */
+.practice--hints .practice__bar > .station-line {
+  grid-column: 1 / -1;
+  grid-row: 2;
+}
+
 /* ...but in the bar's empty middle while hints are open, and always on short phones
    (iPhone SE), so the exercise keeps its room. */
 .practice--hints .practice__bar > .scene-strip {
@@ -41,6 +59,11 @@
     grid-row: 1;
     height: 44px;
     border-radius: var(--radius-sm);
+  }
+
+  .practice__bar > .station-line {
+    grid-column: 1 / -1;
+    grid-row: 2;
   }
 }
 
