@@ -716323,6 +716323,18 @@
       "voice": "gemini-3.1-flash/Leda/quick",
       "bytes": 29229,
       "trimmed": true
+    },
+    "6377f37ddf63f01f": {
+      "text": "יציאה למסך הכניסה",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 8397,
+      "trimmed": true
+    },
+    "31839c37f9d9fdc1": {
+      "text": "בסוף השביל מחכה הגביע: אתגר הסיום, עם תרגילים מכל התחנות.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 26061,
+      "trimmed": true
     }
   }
 }
