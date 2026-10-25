@@ -358,3 +358,44 @@ html:has(.journey--village) body {
   align-items: center;
   padding-inline-end: 150px;
 }
+
+/* The world's friend peeks over the castle's wall, waiting to join her at the end. */
+.map--village .node__peek {
+  position: absolute;
+  left: 50%;
+  top: 2%;
+  width: 44%;
+  height: 32%;
+  overflow: hidden;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.map--village .node__peek-art {
+  display: block;
+  width: 100%;
+  transform: translateY(42%);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .map--village .node__peek-art {
+    animation: castle-peek 4.5s ease-in-out infinite;
+  }
+}
+
+@keyframes castle-peek {
+  0%,
+  55%,
+  100% {
+    transform: translateY(70%);
+  }
+  65%,
+  90% {
+    transform: translateY(18%);
+  }
+}
+
+/* Over the castle's flag, not across it. */
+.map--village .node--review .node__caption {
+  bottom: 117%;
+}

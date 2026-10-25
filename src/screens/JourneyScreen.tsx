@@ -38,6 +38,12 @@ import { Stars } from '@/ui/Stars';
 import { JourneyIntroCard, WorldsIcon } from './JourneyIntro';
 import { fitStations, layoutStations, pathThrough, type Point } from './journeyLayout';
 import { Castle, House, Tree, treeSpots, villageTheme } from './village';
+import {
+  CompanionArt,
+  companionFor,
+  sceneStyleForGrade,
+  type Companion,
+} from '@/ui/scenes/companions';
 import './village.css';
 
 /**
@@ -253,6 +259,7 @@ function Journey({ profile }: { profile: Profile }) {
           <WorldMap
             world={world}
             young={young}
+            friend={companionFor(sceneStyleForGrade(profile.grade), world.index - 1)}
             overlay={
               // Over the map, not above it: the world's row and the next station's card stay put.
               intro ? (
@@ -460,6 +467,7 @@ function AlbumIcon() {
 function WorldMap({
   world,
   young,
+  friend,
   onPaint,
   overlay,
   canPick,
@@ -471,6 +479,8 @@ function WorldMap({
 }: {
   world: World;
   young: boolean;
+  /** This world's friend: peeks out of the castle, waiting to join her at the end. */
+  friend: Companion | null;
   /** Opens "הפלוסי שלי". */
   onPaint: () => void;
   /** Shown over the map (the first-time explainer). */
@@ -608,6 +618,13 @@ function WorldMap({
         >
           {/* The castle, with the cup's flag on it. */}
           <Castle open={world.review !== 'locked'} />
+          {friend ? (
+            <span className="node__peek" aria-hidden="true">
+              <span className="node__peek-art">
+                <CompanionArt id={friend.id} size="100%" />
+              </span>
+            </span>
+          ) : null}
           {/* Closed: a small lock in its corner says so (and why, when tapped). */}
           {world.review === 'locked' ? (
             <span className="node__lock" aria-hidden="true">

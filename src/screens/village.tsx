@@ -27,7 +27,7 @@ const LOCKED = ['#e9e3db', '#d9d2c8', '#b9b1a7'] as const;
 /**
  * One station's house. Done: built, its window lit and smoke from the chimney.
  * The one she is at: lit too. Open but not finished (skipped on the way, or a
- * warm-up): only sketched, in dashed lines, still to be built. Closed: grey,
+ * warm-up): still being built, faded behind scaffolding. Closed: grey,
  * with a "?" on its wall. The sign in
  * front carries the station's number (not for the youngest, who go by the
  * pictures); where Plusi stands, it grows and glows.
@@ -50,21 +50,25 @@ export function House({
   const [wl, wr, roof] = locked ? LOCKED : colors;
   const lit = state === 'done' || state === 'current';
   if (sketch) {
-    const line = {
-      fill: 'rgb(255 255 255 / 55%)',
-      stroke: colors[2],
-      strokeWidth: 2.2,
-      strokeDasharray: '5 4',
-      strokeLinejoin: 'round' as const,
-    };
+    // Still being built: the house faded, scaffolding in front of it, planks on the ground.
     return (
-      <svg className="house house--sketch" viewBox="0 0 100 100" aria-hidden="true">
+      <svg className="house house--building" viewBox="0 0 100 100" aria-hidden="true">
         <ellipse cx="54" cy="86" rx="34" ry="11" className="house__shadow" />
-        <polygon points="26,70 54,84 54,54 26,40" {...line} />
-        <polygon points="54,84 82,70 82,40 54,54" {...line} />
-        <polygon points="21,42 54,58 54,8" {...line} />
-        <polygon points="54,58 87,42 54,8" {...line} />
-        <polygon points="63,79.5 72,75 72,57 63,61.5" {...line} fill="none" />
+        <g opacity="0.42">
+          <polygon points="26,70 54,84 54,54 26,40" fill={colors[0]} />
+          <polygon points="54,84 82,70 82,40 54,54" fill={colors[1]} />
+          <polygon points="21,42 54,58 54,8" fill={colors[2]} />
+          <polygon points="54,58 87,42 54,8" fill={colors[2]} opacity="0.82" />
+        </g>
+        <g stroke="#a8743f" strokeWidth="2.4" strokeLinecap="round">
+          <line x1="58" y1="88" x2="58" y2="44" />
+          <line x1="78" y1="78" x2="78" y2="34" />
+          <line x1="58" y1="72" x2="78" y2="62" />
+          <line x1="58" y1="56" x2="78" y2="46" />
+          <line x1="58" y1="72" x2="78" y2="46" strokeWidth="1.6" />
+        </g>
+        <polygon points="30,88 46,95 50,93 34,86" fill="#c99a5e" />
+        <polygon points="32,84 48,91 52,89 36,82" fill="#dbb07a" />
         <rect x="15" y="82" width="3" height="14" fill="#7a5534" />
         <g className={here ? 'house__sign house__sign--here' : 'house__sign'}>
           <rect
@@ -156,30 +160,80 @@ export function House({
   );
 }
 
-/** The final challenge: a castle with two towers and the cup's gold flag. */
+/** A point a share of the way from a to b. */
+function along(a: readonly [number, number], b: readonly [number, number], t: number) {
+  return [a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t] as const;
+}
+
+/** Battlements along a wall's top edge, from a to b: small blocks standing on it. */
+function merlons(a: readonly [number, number], b: readonly [number, number], fill: string) {
+  return Array.from({ length: 5 }, (_, k) => {
+    const p = along(a, b, 0.04 + k * 0.2);
+    const q = along(a, b, 0.14 + k * 0.2);
+    return (
+      <polygon
+        key={k}
+        points={`${p[0]},${p[1]} ${q[0]},${q[1]} ${q[0]},${q[1] - 7} ${p[0]},${p[1] - 7}`}
+        fill={fill}
+      />
+    );
+  });
+}
+
+/**
+ * The final challenge: a castle. A keep with battlements, a gate, a round tower
+ * at each side and a taller one behind with the cup's gold flag. Greyer while
+ * closed.
+ */
 export function Castle({ open }: { open: boolean }) {
-  const wall = open ? '#e3dcf2' : '#e2dde8';
-  const wallR = open ? '#cbc1e3' : '#cdc6d6';
-  const roof = open ? '#5b62d6' : '#9a97bf';
+  const wall = open ? '#e6dff5' : '#e3dfe9';
+  const wallR = open ? '#cbc1e3' : '#cfc9d8';
+  const top = open ? '#f3effb' : '#efedf2';
+  const roof = open ? '#5b62d6' : '#9d9ac2';
+  const roofR = open ? '#4a50b8' : '#8784ad';
+  const L = [22, 46] as const;
+  const F = [60, 64] as const;
+  const R = [98, 46] as const;
   return (
     <svg className="castle" viewBox="0 0 120 120" aria-hidden="true">
-      <ellipse cx="60" cy="104" rx="50" ry="14" className="house__shadow" />
-      <polygon points="18,84 60,102 60,62 18,44" fill={wall} />
-      <polygon points="60,102 102,84 102,44 60,62" fill={wallR} />
-      <polygon points="66,98 78,93 78,74 72,70 66,76" fill="#6a4a8a" />
-      <rect x="10" y="38" width="20" height="50" fill={wall} />
-      <rect x="90" y="38" width="20" height="50" fill={wallR} />
-      <polygon points="7,40 20,14 33,40" fill={roof} />
-      <polygon points="87,40 100,14 113,40" fill={roof} />
-      <polygon points="15,24 20,14 25,24 20,22" className="house__snow" />
-      <polygon points="95,24 100,14 105,24 100,22" className="house__snow" />
-      <rect x="58.5" y="6" width="3" height="58" fill="#8a6a52" />
-      <path className="castle__flag" d="M61.5 6h30l-7 9 7 9h-30z" fill="#e8a33d" />
+      <ellipse cx="60" cy="106" rx="54" ry="14" className="house__shadow" />
+      {/* The tower behind, with the flag. */}
+      <rect x="51" y="14" width="18" height="22" fill={wallR} />
+      <polygon points="48,16 60,0 72,16" fill={roofR} />
+      <rect x="59" y="-16" width="2.4" height="18" fill="#8a6a52" />
+      <path className="castle__flag" d="M61.4 -16h20l-4.5 6 4.5 6h-20z" fill="#e8a33d" />
       <path
-        d="M71 10h10v3a5 5 0 0 1-10 0zM74 18h4v2h2v1.5h-8V20h2z"
+        d="M67.6 -13.4h7v2.2a3.5 3.5 0 0 1-7 0zM69.8 -7.6h2.6v1.4h1.4v1.1h-5.4v-1.1h1.4z"
         fill="#fff6d8"
-        opacity="0.95"
       />
+      {/* The keep: two walls, its flat top, battlements on the front edges. */}
+      <polygon points="22,86 60,104 60,64 22,46" fill={wall} />
+      <polygon points="60,104 98,86 98,46 60,64" fill={wallR} />
+      <polygon points="22,46 60,64 98,46 60,28" fill={top} />
+      {merlons(L, F, wall)}
+      {merlons(F, R, wallR)}
+      {/* The gate, arched, with its bars; two arrow slits on the other wall. */}
+      <path d="M72 98.4 L86 91.8 V77 Q79 70 72 78.6 Z" fill="#5a3f78" />
+      <path
+        d="M75.5 96.7 V75.4 M79 95.1 V73.6 M82.5 93.4 V73.8"
+        stroke="#8d74ad"
+        strokeWidth="1.2"
+      />
+      <rect x="34" y="62" width="3" height="9" rx="1.5" fill="#8f86a8" />
+      <rect x="46" y="68" width="3" height="9" rx="1.5" fill="#8f86a8" />
+      {/* Round towers at both sides. */}
+      <rect x="11" y="40" width="22" height="50" fill={wall} />
+      <ellipse cx="22" cy="90" rx="11" ry="4" fill={wall} />
+      <polygon points="8,41 22,10 36,41" fill={roof} />
+      <ellipse cx="22" cy="41" rx="14" ry="4.5" fill={roofR} />
+      <rect x="87" y="40" width="22" height="50" fill={wallR} />
+      <ellipse cx="98" cy="90" rx="11" ry="4" fill={wallR} />
+      <polygon points="84,41 98,10 112,41" fill={roof} />
+      <ellipse cx="98" cy="41" rx="14" ry="4.5" fill={roofR} />
+      <polygon points="16,22 22,10 28,22 22,20" className="house__snow" />
+      <polygon points="92,22 98,10 104,22 98,20" className="house__snow" />
+      <rect x="20.5" y="56" width="3" height="9" rx="1.5" fill="#8f86a8" />
+      <rect x="96.5" y="56" width="3" height="9" rx="1.5" fill="#8f86a8" />
     </svg>
   );
 }
