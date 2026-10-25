@@ -127,6 +127,10 @@ export const heRound3 = {
   'account.passwordHint': 'לפחות 6 תווים',
   'account.noMail':
     'אנחנו לא שולחים מיילים: המייל משמש רק כשם משתמש. אם תשכחו את הסיסמה לא נוכל לשחזר אותה, אז כדאי לשמור אותה במקום בטוח.',
+  'account.agree.pre': 'בהרשמה אתם מסכימים ל',
+  'account.agree.terms': 'תנאי השימוש',
+  'account.agree.and': 'ול',
+  'account.agree.privacy': 'מדיניות הפרטיות',
   'account.loginHow': 'המייל והסיסמה שבחרתם בהרשמה. הילדים וההתקדמות יופיעו כאן.',
   'account.submit.signup': 'הרשמה',
   'account.submit.login': 'כניסה',

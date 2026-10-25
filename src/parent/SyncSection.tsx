@@ -307,6 +307,19 @@ function AccountDialog({
           </div>
         ) : null}
         {creating ? <p className="notice">{t('account.noMail')}</p> : null}
+        {creating ? (
+          <p className="muted account-agree">
+            {t('account.agree.pre')}
+            <a href="/info#terms" target="_blank" rel="noopener">
+              {t('account.agree.terms')}
+            </a>{' '}
+            {t('account.agree.and')}
+            <a href="/info#privacy" target="_blank" rel="noopener">
+              {t('account.agree.privacy')}
+            </a>
+            .
+          </p>
+        ) : null}
         <p className="gate__error" role="alert">
           {problem ?? ' '}
         </p>

@@ -2991,7 +2991,8 @@ ol.steps {
 }
 
 .info__nav a,
-.info__doc a {
+.info__doc a,
+.account-agree a {
   color: var(--color-accent-strong);
   text-decoration: underline;
   text-underline-offset: 3px;
