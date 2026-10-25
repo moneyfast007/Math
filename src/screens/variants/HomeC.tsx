@@ -286,7 +286,9 @@ function HeroCard({
         <div className="c-stage__hud">
           {stars > 0 ? <StarCount stars={stars} /> : null}
           {todayLine ? (
-            <span className={today.practised ? 'c-stage__today c-stage__today--on' : 'c-stage__today'}>
+            <span
+              className={today.practised ? 'c-stage__today c-stage__today--on' : 'c-stage__today'}
+            >
               {today.practised ? <Check /> : null}
               {todayLine}
             </span>
@@ -411,7 +413,9 @@ function KidRow({
         ) : null}
         {world ? (
           <span className="c-kidrow__where">
-            {world.completed ? tc('parentArea.allWorldsDone') : t('c.home.worldN', { params: { n: world.index } })}
+            {world.completed
+              ? tc('parentArea.allWorldsDone')
+              : t('c.home.worldN', { params: { n: world.index } })}
           </span>
         ) : null}
         <span className="c-kidrow__go">

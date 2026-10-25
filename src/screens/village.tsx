@@ -79,29 +79,29 @@ export function House({
       {/* The sign on its post, in front of the house. */}
       <rect x="15" y="82" width="3" height="14" fill="#7a5534" />
       <g className={here ? 'house__sign house__sign--here' : 'house__sign'}>
-      <rect
-        x="4"
-        y="70"
-        width="25"
-        height="16"
-        rx="4"
-        fill={locked ? '#ddd4c8' : '#f6dfb3'}
-        stroke={locked ? '#c2b7a9' : '#c9a46a'}
-        strokeWidth="2"
-      />
-      {number !== null ? (
-        <text
-          x="16.5"
-          y="82.5"
-          textAnchor="middle"
-          fontSize="12"
-          fontWeight="800"
-          fill={locked ? '#9a8f84' : '#5b4330'}
-          fontFamily="ui-rounded, system-ui, sans-serif"
-        >
-          {number}
-        </text>
-      ) : null}
+        <rect
+          x="4"
+          y="70"
+          width="25"
+          height="16"
+          rx="4"
+          fill={locked ? '#ddd4c8' : '#f6dfb3'}
+          stroke={locked ? '#c2b7a9' : '#c9a46a'}
+          strokeWidth="2"
+        />
+        {number !== null ? (
+          <text
+            x="16.5"
+            y="82.5"
+            textAnchor="middle"
+            fontSize="12"
+            fontWeight="800"
+            fill={locked ? '#9a8f84' : '#5b4330'}
+            fontFamily="ui-rounded, system-ui, sans-serif"
+          >
+            {number}
+          </text>
+        ) : null}
       </g>
     </svg>
   );

@@ -551,7 +551,12 @@ function WorldMap({
           const style = { left: `${p.x}%`, top: `${(p.y / height) * 100}%` };
           const content = (
             <>
-              <House state={s.state} index={i} number={young ? null : s.level} here={i === target} />
+              <House
+                state={s.state}
+                index={i}
+                number={young ? null : s.level}
+                here={i === target}
+              />
               {/* The best stars of this station, under it. */}
               {s.stars > 0 ? (
                 <span className="node__stars">
@@ -607,9 +612,7 @@ function WorldMap({
           ) : null}
           {!young ? (
             <span
-              className={
-                target === all - 1 ? 'node__caption node__caption--here' : 'node__caption'
-              }
+              className={target === all - 1 ? 'node__caption node__caption--here' : 'node__caption'}
             >
               {t('journey.review')}
             </span>

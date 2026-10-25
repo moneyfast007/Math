@@ -21,7 +21,9 @@
     radial-gradient(circle at 20% 30%, var(--grass-dark) 0 1.5px, transparent 2px) 0 0 / 46px 38px,
     radial-gradient(circle at 70% 60%, var(--grass-dark) 0 1.5px, transparent 2px) 0 0 / 58px 44px,
     var(--grass);
-  box-shadow: 0 12px 0 var(--edge), 0 20px 24px rgb(60 40 20 / 18%);
+  box-shadow:
+    0 12px 0 var(--edge),
+    0 20px 24px rgb(60 40 20 / 18%);
 }
 
 .map--autumn {
@@ -272,10 +274,8 @@ html:has(.journey--sand) body {
 html:has(.journey--village),
 html:has(.journey--village) body {
   background:
-    radial-gradient(circle at 20% 30%, var(--village-dots) 0 1.5px, transparent 2px) 0 0 / 46px
-      38px,
-    radial-gradient(circle at 70% 60%, var(--village-dots) 0 1.5px, transparent 2px) 0 0 / 58px
-      44px,
+    radial-gradient(circle at 20% 30%, var(--village-dots) 0 1.5px, transparent 2px) 0 0 / 46px 38px,
+    radial-gradient(circle at 70% 60%, var(--village-dots) 0 1.5px, transparent 2px) 0 0 / 58px 44px,
     var(--village-ground);
 }
 

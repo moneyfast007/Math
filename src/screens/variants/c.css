@@ -173,7 +173,6 @@
     width: 60px;
     height: 60px;
   }
-
 }
 
 /* ---------- One child: her stage ---------- */
@@ -260,7 +259,9 @@
   border-radius: 50%;
   overflow: hidden;
   font-size: clamp(104px, 30vw, 132px);
-  box-shadow: 0 0 0 6px var(--color-surface), 0 10px 24px rgb(40 30 20 / 22%);
+  box-shadow:
+    0 0 0 6px var(--color-surface),
+    0 10px 24px rgb(40 30 20 / 22%);
 }
 
 .c-stage__floor {
@@ -386,7 +387,9 @@
   color: #fff;
   font-size: clamp(24px, 7vw, 30px);
   font-weight: 800;
-  box-shadow: 0 6px 0 var(--color-accent-strong), 0 12px 20px rgb(30 80 70 / 25%);
+  box-shadow:
+    0 6px 0 var(--color-accent-strong),
+    0 12px 20px rgb(30 80 70 / 25%);
   transition: transform var(--dur-fast) var(--ease);
 }
 
@@ -492,7 +495,9 @@
   border-radius: 50%;
   overflow: hidden;
   font-size: 88px;
-  box-shadow: 0 0 0 4px var(--color-surface), 0 8px 16px rgb(40 30 20 / 18%);
+  box-shadow:
+    0 0 0 4px var(--color-surface),
+    0 8px 16px rgb(40 30 20 / 18%);
 }
 
 .c-kidrow__pedestal {
