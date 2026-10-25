@@ -12,7 +12,7 @@ export const heJourney = {
   // The first-time explainer, on the journey (and again from "איך זה עובד?")
   'journey.intro.title': { f: 'ברוכה הבאה למסע!', m: 'ברוך הבא למסע!' },
   'journey.intro.step1': 'בכל עולם יש שביל של תחנות. בכל תחנה מתרגלים קצת, ואז ממשיכים לתחנה הבאה.',
-  'journey.intro.step2': 'בסוף השביל מחכה הכוכב: אתגר הסיום, עם תרגילים מכל התחנות.',
+  'journey.intro.step2': 'בסוף השביל מחכה הגביע: אתגר הסיום, עם תרגילים מכל התחנות.',
   'journey.intro.step3':
     'מצליחים באתגר הסיום, והעולם הבא נפתח. בכפתור "כל העולמות" רואים את כל העולמות לפי הסדר.',
   'journey.intro.ok': 'הבנתי!',

@@ -35,7 +35,7 @@ export function JourneySteps() {
       </li>
       <li className="intro__step">
         <span className="intro__icon intro__icon--star" aria-hidden="true">
-          <StarIcon />
+          <TrophyIcon />
         </span>
         <p>{t('journey.intro.step2')}</p>
       </li>
@@ -109,10 +109,20 @@ export function LockIcon() {
   );
 }
 
-function StarIcon() {
+/** The final challenge: a gold cup, not a star (stars are each round's score). */
+export function TrophyIcon() {
+  const id = useId();
   return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor">
-      <path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z" />
+    <svg viewBox="0 0 24 24" aria-hidden="true" fill={`url(#${id})`}>
+      <defs>
+        <linearGradient id={id} x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stopColor="#ffd96a" />
+          <stop offset="0.55" stopColor="#f0b42c" />
+          <stop offset="1" stopColor="#c98a12" />
+        </linearGradient>
+      </defs>
+      <path d="M7 3h10v2h3.2v2.2a4.6 4.6 0 0 1-4 4.56A5.5 5.5 0 0 1 13 14.7V17h3v2.5H8V17h3v-2.3a5.5 5.5 0 0 1-3.2-2.94 4.6 4.6 0 0 1-4-4.56V5H7V3zm0 4H5.9v.2c0 1.1.6 2.06 1.5 2.5A5.6 5.6 0 0 1 7 8V7zm10 0v1c0 .6-.1 1.2-.3 1.7a2.8 2.8 0 0 0 1.4-2.5V7H17z" />
+      <rect x="6.5" y="20" width="11" height="1.8" rx="0.9" />
     </svg>
   );
 }
