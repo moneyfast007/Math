@@ -237,8 +237,9 @@ function Journey({ profile }: { profile: Profile }) {
 
       <div className="journey__body">
         <div className="journey__mapcol">
-          {!young ? (
-            <div className="journey__world">
+          {/* The world's name; "כל העולמות" stands at its other end, under the tools. */}
+          <div className="journey__world">
+            {!young ? (
               <div className="journey__world-text">
                 <h2 className="journey__world-name">
                   {t('journey.world', {
@@ -246,8 +247,8 @@ function Journey({ profile }: { profile: Profile }) {
                   })}
                 </h2>
               </div>
-            </div>
-          ) : null}
+            ) : null}
+          </div>
 
           <WorldMap
             world={world}

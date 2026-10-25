@@ -338,3 +338,23 @@ html:has(.journey--village) body {
   backdrop-filter: none;
   box-shadow: none;
 }
+
+/* "כל העולמות" belongs to the tools (it is in their column) but stands under the panel, on the
+   ground beside the world's name, centred under the tools. */
+.journey--village .journey__side {
+  position: relative;
+}
+
+.journey--village .journey__all {
+  position: absolute;
+  top: calc(100% + 6px + var(--space-2));
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+
+.journey--village .journey__world {
+  min-height: 44px;
+  align-items: center;
+  padding-inline-end: 150px;
+}
