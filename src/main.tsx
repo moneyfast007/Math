@@ -1,12 +1,16 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { App } from './app/App';
+import { startCrashReports } from './app/crashReport';
 import { startUpdates } from './app/updates';
 import { speaker } from './audio/speaker';
 import { appStore } from './state/store';
 import { startSync } from './sync';
 import { applyAgeBand } from './ui/ageBand';
 import './ui/global.css';
+
+// The app's own errors, counted on the server without anything else (crashReport.ts).
+if (import.meta.env.PROD) startCrashReports();
 
 // Until a profile is chosen, the middle band is the default density.
 applyAgeBand('middle');
