@@ -37,7 +37,8 @@ import { SpeakerButton } from '@/ui/SpeakerButton';
 import { Stars } from '@/ui/Stars';
 import { JourneyIntroCard, WorldsIcon } from './JourneyIntro';
 import { fitStations, layoutStations, pathThrough, type Point } from './journeyLayout';
-import { Castle, House, Tree, treeSpots, villageTheme } from './village';
+import { BuildCrew, Castle, House, Tree, treeSpots, villageTheme } from './village';
+import { useJustBuilt } from './useJustBuilt';
 import {
   CompanionArt,
   companionFor,
@@ -257,6 +258,7 @@ function Journey({ profile }: { profile: Profile }) {
           </div>
 
           <WorldMap
+            profileId={profile.id}
             world={world}
             young={young}
             friend={companionFor(sceneStyleForGrade(profile.grade), world.index - 1)}
@@ -465,6 +467,7 @@ function AlbumIcon() {
 }
 
 function WorldMap({
+  profileId,
   world,
   young,
   friend,
@@ -477,6 +480,7 @@ function WorldMap({
   onLocked,
   onReview,
 }: {
+  profileId: string;
   world: World;
   young: boolean;
   /** This world's friend: peeks out of the castle, waiting to join her at the end. */
@@ -514,6 +518,12 @@ function WorldMap({
         : -1;
   const target = pickedIndex >= 0 ? pickedIndex : currentIndex >= 0 ? currentIndex : all - 1;
   const { at: plusiIndex, phase: teleport } = useTeleport(target);
+  // Stations finished since the map was last seen: their houses are built now, in front of her.
+  const building = useJustBuilt(
+    profileId,
+    world.topic.id,
+    world.stations.filter((st) => st.state === 'done').map((st) => st.level),
+  );
   const plusiAt = points[plusiIndex];
   const reviewPoint = points[all - 1] as Point;
   const mapStyle: CSSProperties & { '--cell'?: string } = fitted
@@ -558,10 +568,14 @@ function WorldMap({
         {world.stations.map((s, i) => {
           const p = points[i] as Point;
           const label = t(`journey.station.${s.state}`, { params: { n: s.level } });
-          const cls =
-            i === pickedIndex && s.state !== 'current'
-              ? `node node--${s.state} node--picked`
-              : `node node--${s.state}`;
+          const cls = [
+            'node',
+            `node--${s.state}`,
+            i === pickedIndex && s.state !== 'current' ? 'node--picked' : '',
+            building.has(s.level) ? 'node--building' : '',
+          ]
+            .filter(Boolean)
+            .join(' ');
           const style = { left: `${p.x}%`, top: `${(p.y / height) * 100}%` };
           const content = (
             <>
@@ -571,6 +585,7 @@ function WorldMap({
                 number={young ? null : s.level}
                 here={i === target}
               />
+              {building.has(s.level) ? <BuildCrew /> : null}
               {/* The best stars of this station, under it. */}
               {s.stars > 0 ? (
                 <span className="node__stars">

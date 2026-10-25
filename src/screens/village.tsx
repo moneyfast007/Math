@@ -320,3 +320,102 @@ export function treeSpots(points: readonly Point[], height: number, max = 9): Po
   }
   return out;
 }
+
+/** One builder: a yellow hard hat, an orange vest, a hammer in hand. */
+function Builder({
+  x,
+  y,
+  flip = false,
+  delay,
+}: {
+  x: number;
+  y: number;
+  flip?: boolean;
+  delay: number;
+}) {
+  return (
+    <g transform={`translate(${x} ${y}) scale(${flip ? -1 : 1} 1)`}>
+      <g className="crew__builder" style={{ animationDelay: `${delay}s` }}>
+        <line
+          x1="-2"
+          y1="0"
+          x2="-3"
+          y2="-7"
+          stroke="#3a4a6a"
+          strokeWidth="2.2"
+          strokeLinecap="round"
+        />
+        <line
+          x1="2"
+          y1="0"
+          x2="3"
+          y2="-7"
+          stroke="#3a4a6a"
+          strokeWidth="2.2"
+          strokeLinecap="round"
+        />
+        <rect x="-4.5" y="-16" width="9" height="10" rx="2.5" fill="#ff8a2a" />
+        <circle cx="0" cy="-20" r="4" fill="#f0c9a0" />
+        <path d="M-5 -21a5 5 0 0 1 10 0z" fill="#ffd23f" />
+        <rect x="-5.8" y="-21.6" width="11.6" height="1.6" rx="0.8" fill="#e6b400" />
+        <g className="crew__hammer" style={{ animationDelay: `${delay}s` }}>
+          <line
+            x1="4"
+            y1="-13"
+            x2="10"
+            y2="-17"
+            stroke="#8a5a2e"
+            strokeWidth="1.6"
+            strokeLinecap="round"
+          />
+          <rect x="8.5" y="-20" width="4" height="3" rx="0.6" fill="#7a7a7a" />
+        </g>
+      </g>
+    </g>
+  );
+}
+
+/**
+ * The crew that builds a house the moment its station is finished: builders
+ * run in and hammer, dust flies, the scaffolding comes down and the house
+ * stands, in two seconds (village.css times it). Drawn over the house.
+ */
+export function BuildCrew() {
+  return (
+    <svg className="crew" viewBox="0 0 100 100" aria-hidden="true">
+      <g className="crew__scaffold" stroke="#8a5a2e" strokeWidth="2" strokeLinecap="round">
+        <line x1="22" y1="80" x2="22" y2="34" />
+        <line x1="54" y1="94" x2="54" y2="44" />
+        <line x1="86" y1="80" x2="86" y2="34" />
+        <line x1="22" y1="62" x2="54" y2="77" />
+        <line x1="54" y1="77" x2="86" y2="62" />
+        <line x1="22" y1="46" x2="54" y2="61" />
+        <line x1="54" y1="61" x2="86" y2="46" />
+      </g>
+      {[
+        [18, 70],
+        [50, 40],
+        [84, 66],
+        [36, 92],
+        [74, 90],
+      ].map(([cx, cy], i) => (
+        <circle
+          key={i}
+          className="crew__dust"
+          cx={cx}
+          cy={cy}
+          r="7"
+          style={{ animationDelay: `${0.25 + i * 0.22}s` }}
+        />
+      ))}
+      <g className="crew__team crew__team--a">
+        <Builder x={14} y={94} delay={0} />
+        <Builder x={34} y={100} delay={0.15} />
+      </g>
+      <g className="crew__team crew__team--b">
+        <Builder x={92} y={88} flip delay={0.1} />
+        <Builder x={74} y={98} flip delay={0.25} />
+      </g>
+    </svg>
+  );
+}

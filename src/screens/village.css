@@ -387,3 +387,160 @@ html:has(.journey--village) body {
     transform: translateY(-4px);
   }
 }
+
+/* A house built in front of her (a station just finished): builders run in, hammer, dust flies;
+   the scaffolding comes down and the house rises, in about two seconds. */
+.map--village .node .crew {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.crew__dust {
+  fill: #fff;
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .node--building .house {
+    animation: house-rise 2.2s ease-out both;
+  }
+
+  .crew {
+    animation: crew-leave 2.4s ease-in both;
+  }
+
+  .crew__scaffold {
+    animation: scaffold-down 2.2s ease-in both;
+  }
+
+  .crew__team--a {
+    animation: crew-run-a 2.4s ease-in-out both;
+  }
+
+  .crew__team--b {
+    animation: crew-run-b 2.4s ease-in-out both;
+  }
+
+  .crew__builder {
+    animation: builder-hop 0.32s ease-in-out infinite alternate;
+  }
+
+  .crew__hammer {
+    transform-box: fill-box;
+    transform-origin: left bottom;
+    animation: hammer-hit 0.24s ease-in-out infinite alternate;
+  }
+
+  .crew__dust {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: dust-puff 0.7s ease-out both;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .map--village .node .crew {
+    display: none;
+  }
+}
+
+@keyframes house-rise {
+  0%,
+  20% {
+    opacity: 0.25;
+    transform: scale(0.82) translateY(8%);
+    filter: grayscale(1);
+  }
+  70% {
+    opacity: 0.7;
+    transform: scale(0.94) translateY(3%);
+    filter: grayscale(0.6);
+  }
+  85% {
+    opacity: 1;
+    transform: scale(1.08);
+    filter: none;
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+
+@keyframes scaffold-down {
+  0%,
+  70% {
+    opacity: 1;
+    transform: none;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+
+@keyframes crew-run-a {
+  0% {
+    transform: translateX(-40px);
+  }
+  15%,
+  80% {
+    transform: none;
+  }
+  100% {
+    transform: translateX(-50px);
+    opacity: 0;
+  }
+}
+
+@keyframes crew-run-b {
+  0% {
+    transform: translateX(40px);
+  }
+  15%,
+  80% {
+    transform: none;
+  }
+  100% {
+    transform: translateX(50px);
+    opacity: 0;
+  }
+}
+
+@keyframes crew-leave {
+  0%,
+  85% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes builder-hop {
+  to {
+    transform: translateY(-3px);
+  }
+}
+
+@keyframes hammer-hit {
+  to {
+    transform: rotate(-35deg);
+  }
+}
+
+@keyframes dust-puff {
+  0% {
+    opacity: 0.85;
+    transform: scale(0.3);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.6);
+  }
+}
