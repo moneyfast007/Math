@@ -910,3 +910,506 @@
     animation: none;
   }
 }
+
+/* The train */
+.scene-strip--train {
+  background: linear-gradient(#ffe7b8, #fff6e0);
+}
+
+.train__hill {
+  fill: #a8d98b;
+}
+
+.train__track,
+.train__tie {
+  stroke: #8a5a32;
+  stroke-width: 2.5;
+}
+
+.train__car {
+  fill: #5b63d6;
+  stroke: #2b2f8a;
+  stroke-width: 1.5;
+}
+
+.train__wagon {
+  opacity: 0;
+  transition:
+    transform 0.5s cubic-bezier(0.3, 0, 0.3, 1),
+    opacity 0.2s;
+}
+
+.train__wagon--in {
+  opacity: 1;
+}
+
+.train__all {
+  transition: transform 1.6s cubic-bezier(0.55, 0, 0.8, 0.2);
+}
+
+.scene-strip--train.scene-strip--done:not(.scene-strip--quiet) .train__all {
+  transform: translateX(calc(var(--scene-w, 400px) * -1.2));
+}
+
+.train__engine--sad {
+  animation: buddy-tilt 0.7s ease-in-out;
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+}
+
+.train__puff {
+  fill: #fff;
+  opacity: 0;
+}
+
+.scene-strip--done .train__puff {
+  animation: train-puff 1.2s ease-out infinite;
+}
+
+@keyframes train-puff {
+  from {
+    opacity: 0.9;
+    transform: translate(0, 0) scale(0.6);
+  }
+
+  to {
+    opacity: 0;
+    transform: translate(10px, -24px) scale(1.6);
+  }
+}
+
+/* The mountain */
+.scene-strip--mountain {
+  background: linear-gradient(#2b2f5c, #6b5a8e 60%, #e79a7a 100%);
+}
+
+.mountain__rock {
+  fill: #3b3f6b;
+}
+
+.mountain__snow {
+  fill: #eef1fb;
+}
+
+.mountain__trail {
+  fill: none;
+  stroke: #9aa6d4;
+  stroke-width: 1.5;
+  stroke-dasharray: 3 3;
+  opacity: 0.7;
+}
+
+.mountain__stop {
+  fill: #6b70a0;
+  transition: fill 0.3s;
+}
+
+.mountain__stop--on {
+  fill: #34e0d0;
+}
+
+.mountain__climber {
+  transition: transform 0.5s cubic-bezier(0.3, 0, 0.3, 1);
+}
+
+.mountain__flag {
+  opacity: 0;
+  transform: scaleY(0);
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  transition:
+    transform 0.5s cubic-bezier(0.3, 1.6, 0.5, 1),
+    opacity 0.2s;
+}
+
+.scene-strip--done .mountain__flag {
+  opacity: 1;
+  transform: none;
+}
+
+.mountain__alt {
+  position: absolute;
+  top: 6px;
+  right: 10px;
+  font: 700 12px/1 var(--font-math);
+  color: #eef1fb;
+}
+
+.mountain__alt--warn {
+  animation: robot-warn 0.6s ease-in-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .train__engine--sad,
+  .scene-strip--done .train__puff,
+  .mountain__alt--warn {
+    animation: none;
+  }
+}
+
+/* The snowman */
+.scene-strip--snowman {
+  background: linear-gradient(#a9cdef, #e6f2fd);
+}
+
+.snow__ground {
+  fill: #ffffff;
+}
+
+.snow__flake {
+  fill: #ffffff;
+  opacity: 0.6;
+}
+
+.scene-strip--done .snow__flake {
+  animation: snow-fall 2.4s linear infinite;
+}
+
+@keyframes snow-fall {
+  from {
+    transform: translateY(-20px);
+  }
+
+  to {
+    transform: translateY(40px);
+  }
+}
+
+.snow__part {
+  opacity: 0;
+  transform: scale(0.4);
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  transition:
+    opacity 0.3s,
+    transform 0.45s cubic-bezier(0.3, 1.6, 0.5, 1);
+}
+
+.snow__ball {
+  fill: #ffffff;
+  stroke: #9fb6d6;
+  stroke-width: 2;
+  stroke-dasharray: 4 3;
+  opacity: 0.35;
+  transform: none;
+}
+
+.snow__part--on {
+  opacity: 1;
+  transform: none;
+}
+
+.snow__ball.snow__part--on {
+  stroke-dasharray: none;
+}
+
+.snow__arm--wave {
+  transform-origin: 0% 100%;
+}
+
+.scene-strip--done .snow__arm--wave.snow__part--on {
+  animation: robot-wave 0.5s ease-in-out 4 alternate;
+}
+
+.snow__man--sad {
+  animation: buddy-tilt 0.7s ease-in-out;
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+}
+
+/* The rainbow */
+.scene-strip--rainbow {
+  background: linear-gradient(#bfe6ff, #eef9ff);
+}
+
+.rainbow__ghost {
+  fill: none;
+  stroke: #ffffff;
+  opacity: 0.45;
+}
+
+.rainbow__band {
+  fill: none;
+  stroke-dasharray: 1;
+  transition: stroke-dashoffset 0.6s ease-out;
+}
+
+.rainbow__grass {
+  fill: #7cc47f;
+}
+
+.rainbow__sun {
+  opacity: 0.2;
+  transition: opacity 0.8s;
+}
+
+.scene-strip--done .rainbow__sun {
+  opacity: 1;
+}
+
+.rainbow__cloud {
+  position: absolute;
+  right: 6px;
+  top: 6px;
+}
+
+/* The cake */
+.scene-strip--cake {
+  background: linear-gradient(#ffe0ec, #fff4f8);
+}
+
+.cake__garland {
+  fill: none;
+  stroke-width: 2;
+}
+
+.scene-strip--done .cake__garland {
+  animation: flower-sway 0.9s ease-in-out infinite alternate;
+  transform-box: fill-box;
+  transform-origin: 50% 0;
+}
+
+.cake__plate {
+  fill: #d9c2a8;
+}
+
+.cake__body {
+  fill: #c98a5a;
+}
+
+.cake__icing {
+  fill: #fff3e0;
+}
+
+.cake__flame {
+  fill: #ffb547;
+  opacity: 0;
+  transform: scale(0.3);
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  transition:
+    opacity 0.2s,
+    transform 0.35s cubic-bezier(0.3, 1.6, 0.5, 1);
+}
+
+.cake__flame--on {
+  opacity: 1;
+  transform: none;
+  filter: drop-shadow(0 0 3px rgb(255 200 80 / 90%));
+  animation: rocket-flicker 0.3s ease-in-out infinite alternate;
+}
+
+/* The tower */
+.scene-strip--tower {
+  background: linear-gradient(#0f1736, #2a2f5c);
+}
+
+.tower__city {
+  fill: #1a2350;
+}
+
+.tower__wall {
+  fill: #3b4378;
+  stroke: #232a55;
+  stroke-width: 0.8;
+}
+
+.tower__window {
+  fill: #232a55;
+}
+
+.tower__window--on {
+  fill: #ffd45c;
+}
+
+.tower__spire {
+  fill: #9aa6d4;
+}
+
+.tower__beacon {
+  fill: #5a2a2a;
+}
+
+.scene-strip--done .tower__beacon {
+  fill: #ff4d4d;
+  animation: robot-pulse 0.6s ease-in-out infinite alternate;
+}
+
+.tower__light {
+  fill: #fff6c9;
+  opacity: 0;
+  transform-box: view-box;
+}
+
+.scene-strip--done .tower__light {
+  opacity: 0.12;
+}
+
+.tower__crane rect {
+  fill: #ffb547;
+}
+
+.tower__cable {
+  stroke: #9aa6d4;
+  stroke-width: 1;
+}
+
+.tower__ground {
+  fill: #0b1130;
+}
+
+.tower__count,
+.stars__count,
+.egg__count {
+  position: absolute;
+  top: 6px;
+  right: 10px;
+  font: 700 12px/1 var(--font-math);
+  color: #c9d3f2;
+}
+
+.tower__count--warn,
+.stars__count--warn {
+  animation: robot-warn 0.6s ease-in-out;
+}
+
+/* The stars */
+.scene-strip--stars {
+  background: radial-gradient(circle at 40% 40%, #1d2a5c, #070b1f);
+}
+
+.stars__line {
+  stroke: #34e0d0;
+  stroke-width: 1.5;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  opacity: 0.9;
+  transition: stroke-dashoffset 0.5s ease-out;
+}
+
+.stars__line--on {
+  stroke-dashoffset: 0;
+}
+
+.stars__star {
+  fill: #8a93c4;
+  transition:
+    fill 0.3s,
+    r 0.3s;
+}
+
+.stars__star--on {
+  fill: #fff6c9;
+  filter: drop-shadow(0 0 3px #fff6c9);
+}
+
+.scene-strip--done .stars__star--on {
+  animation: sky-twinkle 0.8s ease-in-out infinite alternate;
+}
+
+.scene-strip--done .stars__line--on {
+  stroke: #ffd45c;
+}
+
+/* The dragon egg */
+.scene-strip--egg {
+  background: linear-gradient(#1b1430, #3a2350);
+}
+
+.egg__ground {
+  fill: #120d22;
+}
+
+.egg__crystal {
+  fill: #3d2f66;
+  transition: fill 0.4s;
+}
+
+.egg__crystal--on {
+  fill: #9b7bea;
+  filter: drop-shadow(0 0 4px #9b7bea);
+}
+
+.egg__aura {
+  fill: #9b7bea;
+  opacity: 0.08;
+}
+
+.egg__body {
+  fill: #7cc47f;
+  stroke: #2f6b3a;
+  stroke-width: 2;
+}
+
+.egg__spot {
+  fill: #5aa35e;
+  opacity: 0.6;
+}
+
+.egg__crack {
+  fill: none;
+  stroke: #ffd45c;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.egg__crack--on {
+  opacity: 1;
+  filter: drop-shadow(0 0 3px #ffd45c);
+}
+
+.egg__shell--sad {
+  animation: buddy-tilt 0.7s ease-in-out;
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+}
+
+.egg__half {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  transition:
+    transform 0.8s cubic-bezier(0.3, 1.4, 0.5, 1),
+    opacity 0.8s;
+}
+
+.scene-strip--done:not(.scene-strip--quiet) .egg__half--left {
+  transform: translate(-14px, 4px) rotate(-18deg);
+  opacity: 0.7;
+}
+
+.scene-strip--done:not(.scene-strip--quiet) .egg__half--right {
+  transform: translate(14px, 4px) rotate(18deg);
+  opacity: 0.7;
+}
+
+.scene-strip--done .egg__spot,
+.scene-strip--done .egg__crack {
+  opacity: 0;
+}
+
+.egg__baby {
+  opacity: 0;
+  transition: opacity 0.5s 0.3s;
+}
+
+.scene-strip--done .egg__baby {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scene-strip--done .snow__flake,
+  .scene-strip--done .snow__arm--wave.snow__part--on,
+  .snow__man--sad,
+  .scene-strip--done .cake__garland,
+  .cake__flame--on,
+  .scene-strip--done .tower__beacon,
+  .tower__count--warn,
+  .stars__count--warn,
+  .scene-strip--done .stars__star--on,
+  .egg__shell--sad {
+    animation: none;
+  }
+}

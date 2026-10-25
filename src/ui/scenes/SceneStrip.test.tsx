@@ -39,7 +39,9 @@ describe('the friends', () => {
     expect(companionFor('older', 1)?.id).toBe('turbo');
     expect(companionFor('young', 2)?.id).toBe('bubi');
     expect(companionFor('older', 2)?.id).toBe('bolt');
-    expect(companionFor('young', 5)).toBeNull();
+    expect(companionFor('young', 7)?.id).toBe('shoki');
+    expect(companionFor('older', 7)?.id).toBe('draki');
+    expect(companionFor('young', 8)).toBeNull();
   });
 
   it('each drawn world has its scene; the others use the first', () => {
@@ -50,7 +52,11 @@ describe('the friends', () => {
     expect(sceneForWorld('older', 2)).toBe('robot');
     expect(sceneForWorld('young', 3)).toBe('balloons');
     expect(sceneForWorld('older', 3)).toBe('sub');
-    expect(sceneForWorld('older', 6)).toBe('rocket');
+    expect(sceneForWorld('young', 4)).toBe('train');
+    expect(sceneForWorld('older', 4)).toBe('mountain');
+    expect(sceneForWorld('older', 6)).toBe('stars');
+    expect(sceneForWorld('young', 5)).toBe('snowman');
+    expect(sceneForWorld('older', 9)).toBe('rocket');
   });
 });
 

@@ -2,6 +2,8 @@ import type { Grade } from '@/ui/ageBand';
 import { TipiArt, TurboArt } from './moreScenes';
 import { BoltArt, BubiArt } from './world3Scenes';
 import { DubiArt, EchoArt } from './world4Scenes';
+import { TotoArt, TzukiArt } from './world5Scenes';
+import { AnaniArt, DrakiArt, KaftoriArt, MenofiArt, NovaArt, ShokiArt } from './laterScenes';
 import type { SceneKind } from './SceneStrip';
 import './scenes.css';
 
@@ -11,11 +13,26 @@ import './scenes.css';
  * and the older ones (grades 3 to 6) have friends of their own, matching the
  * scene they practise in (src/ui/scenes/SceneStrip.tsx).
  *
- * Only some places have a friend drawn so far; the rest show "soon" in the
- * album, and finishing such a world gives the sticker as before.
+ * Every place has its friend and its scene (eight worlds at most in a grade).
  */
 
-export type CompanionId = 'spark' | 'cosmo' | 'tipi' | 'turbo' | 'bubi' | 'bolt' | 'dubi' | 'echo';
+export type CompanionId =
+  | 'spark'
+  | 'cosmo'
+  | 'tipi'
+  | 'turbo'
+  | 'bubi'
+  | 'bolt'
+  | 'dubi'
+  | 'echo'
+  | 'toto'
+  | 'tzuki'
+  | 'kaftori'
+  | 'anani'
+  | 'shoki'
+  | 'menofi'
+  | 'nova'
+  | 'draki';
 
 export interface Companion {
   id: CompanionId;
@@ -36,19 +53,27 @@ const SLOTS: Record<SceneStyle, readonly (Companion | null)[]> = {
     { id: 'tipi', gender: 'f' },
     { id: 'bubi', gender: 'm' },
     { id: 'dubi', gender: 'm' },
+    { id: 'toto', gender: 'm' },
+    { id: 'kaftori', gender: 'm' },
+    { id: 'anani', gender: 'm' },
+    { id: 'shoki', gender: 'm' },
   ],
   older: [
     { id: 'cosmo', gender: 'm' },
     { id: 'turbo', gender: 'm' },
     { id: 'bolt', gender: 'm' },
     { id: 'echo', gender: 'm' },
+    { id: 'tzuki', gender: 'm' },
+    { id: 'menofi', gender: 'm' },
+    { id: 'nova', gender: 'f' },
+    { id: 'draki', gender: 'm' },
   ],
 };
 
 /** The practice scene of a world, by its place: each drawn place has its own, the rest the first. */
 const SCENES: Record<SceneStyle, readonly SceneKind[]> = {
-  young: ['village', 'garden', 'pond', 'balloons'],
-  older: ['rocket', 'race', 'robot', 'sub'],
+  young: ['village', 'garden', 'pond', 'balloons', 'train', 'snowman', 'rainbow', 'cake'],
+  older: ['rocket', 'race', 'robot', 'sub', 'mountain', 'tower', 'stars', 'egg'],
 };
 
 export function sceneForWorld(style: SceneStyle, slot: number): SceneKind {
@@ -131,5 +156,21 @@ export function CompanionArt({ id, size }: { id: CompanionId; size: number | str
       return <DubiArt size={size} />;
     case 'echo':
       return <EchoArt size={size} />;
+    case 'toto':
+      return <TotoArt size={size} />;
+    case 'tzuki':
+      return <TzukiArt size={size} />;
+    case 'kaftori':
+      return <KaftoriArt size={size} />;
+    case 'anani':
+      return <AnaniArt size={size} />;
+    case 'shoki':
+      return <ShokiArt size={size} />;
+    case 'menofi':
+      return <MenofiArt size={size} />;
+    case 'nova':
+      return <NovaArt size={size} />;
+    case 'draki':
+      return <DrakiArt size={size} />;
   }
 }

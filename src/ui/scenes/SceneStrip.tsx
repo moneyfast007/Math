@@ -28,6 +28,27 @@ import {
   type BalloonsLayout,
   type SubLayout,
 } from './world4Scenes';
+import {
+  Mountain,
+  mountainLayout,
+  Train,
+  trainLayout,
+  type MountainLayout,
+  type TrainLayout,
+} from './world5Scenes';
+import {
+  built,
+  Cake,
+  cakeLayout,
+  Egg,
+  Rainbow,
+  Snowman,
+  Stars,
+  Tower,
+  towerLayout,
+  type CakeLayout,
+  type TowerLayout,
+} from './laterScenes';
 import './scenes.css';
 
 /**
@@ -49,7 +70,22 @@ import './scenes.css';
  */
 
 export type SceneKind =
-  'village' | 'rocket' | 'garden' | 'race' | 'pond' | 'robot' | 'balloons' | 'sub';
+  | 'village'
+  | 'rocket'
+  | 'garden'
+  | 'race'
+  | 'pond'
+  | 'robot'
+  | 'balloons'
+  | 'sub'
+  | 'train'
+  | 'mountain'
+  | 'snowman'
+  | 'tower'
+  | 'rainbow'
+  | 'stars'
+  | 'cake'
+  | 'egg';
 
 type Scene =
   | { kind: 'village'; l: VillageLayout }
@@ -59,7 +95,12 @@ type Scene =
   | { kind: 'pond'; l: PondLayout }
   | { kind: 'robot'; l: RobotLayout }
   | { kind: 'balloons'; l: BalloonsLayout }
-  | { kind: 'sub'; l: SubLayout };
+  | { kind: 'sub'; l: SubLayout }
+  | { kind: 'train'; l: TrainLayout }
+  | { kind: 'mountain'; l: MountainLayout }
+  | { kind: 'snowman' | 'rainbow' | 'stars' | 'egg'; l: null }
+  | { kind: 'tower'; l: TowerLayout }
+  | { kind: 'cake'; l: CakeLayout };
 
 function makeScene(kind: SceneKind, size: Size, total: number): Scene {
   switch (kind) {
@@ -79,6 +120,19 @@ function makeScene(kind: SceneKind, size: Size, total: number): Scene {
       return { kind, l: balloonsLayout(size, total) };
     case 'sub':
       return { kind, l: subLayout(size, total) };
+    case 'train':
+      return { kind, l: trainLayout(size, total) };
+    case 'mountain':
+      return { kind, l: mountainLayout(size, total) };
+    case 'tower':
+      return { kind, l: towerLayout(size, total) };
+    case 'cake':
+      return { kind, l: cakeLayout(size, total) };
+    case 'snowman':
+    case 'rainbow':
+    case 'stars':
+    case 'egg':
+      return { kind, l: null };
   }
 }
 
@@ -254,6 +308,47 @@ export function SceneStrip({
           await animate(ctx, 520, (t) => drawSonar(ctx, to.x, to.y, t));
           return;
         }
+        case 'train':
+        case 'mountain':
+          // The wagon rolls in, or the climber steps up (both by CSS).
+          show();
+          return;
+        case 'snowman':
+        case 'stars':
+        case 'egg': {
+          // A part, a line or a crack: the new one flashes.
+          const after = built(litBefore(marks, i) + 1, total);
+          setShown(marks.length);
+          setPopping(after - 1);
+          if (scene.kind === 'snowman' && size) {
+            await animate(ctx, 450, (t) => drawFlakes(ctx, size.w * 0.5, size.h * 0.55, t));
+          }
+          return;
+        }
+        case 'rainbow':
+          show();
+          if (size) {
+            const from = { x: size.w - 30, y: size.h * 0.4 };
+            await animate(ctx, 380, (t) =>
+              drawDrops(ctx, from.x, from.y, size.w * 0.45, size.h * 0.3, t),
+            );
+          }
+          return;
+        case 'cake': {
+          show();
+          const c = scene.l.candles[i];
+          if (c)
+            await animate(ctx, 380, (t) => drawBurst(ctx, c.x, c.y - c.s * 4.5, t, i, '#ffd45c'));
+          return;
+        }
+        case 'tower': {
+          show();
+          const y = scene.l.base - (i + 1) * scene.l.floorH;
+          await animate(ctx, 380, (t) =>
+            drawPuff(ctx, scene.l.tx + scene.l.tw / 2, y, t, scene.l.tw, 6, i),
+          );
+          return;
+        }
       }
     };
     void run();
@@ -275,7 +370,25 @@ export function SceneStrip({
     if (!finale) return;
     if (quiet || !RIDES.includes(kind)) {
       setPhase('done');
-      return;
+      if (quiet || !scene || (scene.kind !== 'mountain' && scene.kind !== 'cake') || !size) return;
+      // Fireworks over the summit, or confetti over the cake.
+      const ctx = canvas.current?.getContext('2d') ?? null;
+      const spots =
+        scene.kind === 'mountain'
+          ? [0, 1, 2].map((k) => ({ x: scene.l.top.x + 40 + k * 55, y: 22 + (k % 2) * 12 }))
+          : [0.2, 0.5, 0.8].map((f, k) => ({ x: size.w * f, y: 20 + (k % 2) * 14 }));
+      let stop = false;
+      void (async () => {
+        await sleep(400);
+        for (let k = 0; k < spots.length && !stop && ctx; k++) {
+          const { x: cx, y: cy } = spots[k] ?? { x: 0, y: 0 };
+          playSceneStep('mountain', 99);
+          await animate(ctx, 700, (t) => drawFirework(ctx, cx, cy, t));
+        }
+      })();
+      return () => {
+        stop = true;
+      };
     }
     let cancelled = false;
     const ctx = canvas.current?.getContext('2d') ?? null;
@@ -402,6 +515,55 @@ export function SceneStrip({
           />
         ) : scene.kind === 'sub' ? (
           <Sub size={size} layout={scene.l} marks={marks} shown={shown} reacting={reacting} />
+        ) : scene.kind === 'train' ? (
+          <Train
+            size={size}
+            layout={scene.l}
+            total={total}
+            marks={marks}
+            shown={shown}
+            reacting={reacting}
+          />
+        ) : scene.kind === 'mountain' ? (
+          <Mountain size={size} layout={scene.l} marks={marks} shown={shown} reacting={reacting} />
+        ) : scene.kind === 'snowman' ? (
+          <Snowman
+            size={size}
+            parts={built(litBefore(marks, shown), total)}
+            flashing={popping}
+            reacting={reacting}
+          />
+        ) : scene.kind === 'stars' ? (
+          <Stars
+            size={size}
+            parts={built(litBefore(marks, shown), total)}
+            flashing={popping}
+            reacting={reacting}
+          />
+        ) : scene.kind === 'egg' ? (
+          <Egg
+            size={size}
+            parts={built(litBefore(marks, shown), total)}
+            flashing={popping}
+            reacting={reacting}
+          />
+        ) : scene.kind === 'rainbow' ? (
+          <Rainbow
+            size={size}
+            fraction={litBefore(marks, shown) / Math.max(total, 1)}
+            reacting={reacting}
+          />
+        ) : scene.kind === 'cake' ? (
+          <Cake
+            size={size}
+            layout={scene.l}
+            marks={marks}
+            shown={shown}
+            popping={popping}
+            reacting={reacting}
+          />
+        ) : scene.kind === 'tower' ? (
+          <Tower size={size} layout={scene.l} marks={marks} shown={shown} reacting={reacting} />
         ) : (
           <div key={`r${reacting}`} className={reacting > 0 ? 'robot robot--warn' : 'robot'}>
             <Robot
@@ -957,5 +1119,37 @@ function drawSonar(ctx: CanvasRenderingContext2D, x: number, y: number, t: numbe
   ctx.beginPath();
   ctx.arc(x, y, 6 + t * 28, 0, Math.PI * 2);
   ctx.stroke();
+  ctx.restore();
+}
+
+/** A firework over the summit: three rings of sparks. */
+function drawFirework(ctx: CanvasRenderingContext2D, x: number, y: number, t: number) {
+  ctx.save();
+  ctx.globalAlpha = 1 - t;
+  ['#ffd45c', '#f2789f', '#34e0d0'].forEach((color, ring) => {
+    ctx.fillStyle = color;
+    for (let a = 0; a < 10; a++) {
+      const ang = (a / 10) * Math.PI * 2 + ring;
+      const d = t * (14 + ring * 6);
+      ctx.beginPath();
+      ctx.arc(x + Math.cos(ang) * d, y + Math.sin(ang) * d, 1.8, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  });
+  ctx.restore();
+}
+
+/** Snowflakes drifting down onto the snowman. */
+function drawFlakes(ctx: CanvasRenderingContext2D, x: number, y: number, t: number) {
+  ctx.save();
+  ctx.fillStyle = '#ffffff';
+  for (let k = 0; k < 9; k++) {
+    const sx = x + wobble(k * 7) * 70;
+    const sy = y - 50 + t * 50 + wobble(k * 3) * 10;
+    ctx.globalAlpha = 1 - t * 0.6;
+    ctx.beginPath();
+    ctx.arc(sx + Math.sin(t * 6 + k) * 4, sy, 1.8, 0, Math.PI * 2);
+    ctx.fill();
+  }
   ctx.restore();
 }

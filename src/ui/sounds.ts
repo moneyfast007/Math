@@ -82,9 +82,30 @@ export function playAlmost(): void {
 
 /** The practice scene moving one step: ניצוצית's spark (a quick rising zap), or a fuel cell filling. */
 export function playSceneStep(
-  kind: 'village' | 'rocket' | 'garden' | 'race' | 'pond' | 'robot' | 'balloons' | 'sub',
+  kind:
+    | 'village'
+    | 'rocket'
+    | 'garden'
+    | 'race'
+    | 'pond'
+    | 'robot'
+    | 'balloons'
+    | 'sub'
+    | 'train'
+    | 'mountain'
+    | 'snowman'
+    | 'tower'
+    | 'rainbow'
+    | 'stars'
+    | 'cake'
+    | 'egg',
   step: number,
 ): void {
+  // The later scenes borrow the sound of one like them.
+  if (kind === 'snowman' || kind === 'rainbow') return playSceneStep('garden', step);
+  if (kind === 'cake') return playSceneStep('balloons', step);
+  if (kind === 'tower' || kind === 'egg') return playSceneStep('robot', step);
+  if (kind === 'stars') return playSceneStep('sub', step);
   if (kind === 'garden') {
     // A drop of water: two soft falling bloops.
     play(
@@ -93,6 +114,34 @@ export function playSceneStep(
         { freq: 620, at: 0.07, length: 0.12, type: 'sine', gain: 0.6 },
       ],
       0.1,
+    );
+    return;
+  }
+  if (kind === 'train') {
+    // Choo-choo: two short hoots, then the wagon clicks on.
+    play(
+      [
+        { freq: 523, at: 0, length: 0.1, type: 'square', gain: 0.4 },
+        { freq: 392, at: 0.12, length: 0.12, type: 'square', gain: 0.4 },
+        { freq: 1046, at: 0.5, length: 0.1, type: 'triangle', gain: 0.6 },
+      ],
+      0.07,
+    );
+    return;
+  }
+  if (kind === 'mountain') {
+    // A step up (or, at the summit, a firework's pop).
+    play(
+      step >= 99
+        ? [
+            { freq: 200, at: 0, length: 0.1, type: 'sawtooth', gain: 0.4 },
+            { freq: 1568, at: 0.08, length: 0.25, type: 'triangle', gain: 0.5 },
+          ]
+        : [
+            { freq: 392, at: 0, length: 0.1, type: 'triangle', gain: 0.6 },
+            { freq: 523, at: 0.12, length: 0.12, type: 'triangle', gain: 0.6 },
+          ],
+      0.08,
     );
     return;
   }
