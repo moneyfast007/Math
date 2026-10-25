@@ -195,6 +195,10 @@
     animation: castle-flag 1.6s ease-in-out infinite;
   }
 
+  .house__alert {
+    animation: house-alert 1.6s ease-in-out infinite;
+  }
+
   .house__sign--here {
     animation: sign-glow 1.4s ease-in-out infinite;
   }
@@ -375,5 +379,11 @@ html:has(.journey--village) body {
   65%,
   90% {
     transform: translateY(18%);
+  }
+}
+
+@keyframes house-alert {
+  50% {
+    transform: translateY(-4px);
   }
 }

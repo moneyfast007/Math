@@ -67,6 +67,12 @@ export function House({
         <polygon points="21,42 54,58 54,8" fill={colors[2]} />
         <polygon points="54,58 87,42 54,8" fill={colors[2]} opacity="0.82" />
         <polygon points="40,22 54,8 68,22 54,28" className="house__snow" />
+        {/* "!" over the roof: something waits here, come back to it. */}
+        <g className="house__alert">
+          <circle cx="54" cy="-8" r="10" fill="#ffd23f" stroke="#d9a400" strokeWidth="2" />
+          <rect x="52.2" y="-14.5" width="3.6" height="8.5" rx="1.8" fill="#3a2f2a" />
+          <circle cx="54" cy="-2.6" r="2" fill="#3a2f2a" />
+        </g>
         {/* Scaffolding: poles, and planks across them at two heights. */}
         <g stroke="#8a5a2e" strokeWidth="2" strokeLinecap="round">
           <line x1="57" y1="90" x2="57" y2="46" />
