@@ -16,7 +16,8 @@ export const heScreens = {
   'home.pickHint': 'נוגעים בכרטיס ויוצאים למסע',
   'home.parentsHold': 'לחיצה ארוכה לכניסה',
   'home.parentsTip.title': 'טיפ להורים:',
-  'home.parentsTip.body': 'לחיצה ארוכה על "אזור הורים" שלמטה פותחת את ההתקדמות של כל ילד ואת ההגדרות.',
+  'home.parentsTip.body':
+    'לחיצה ארוכה על "אזור הורים" שלמטה פותחת את ההתקדמות של כל ילד ואת ההגדרות.',
   'home.parentsTip.close': 'סגירת הטיפ',
 
   // Parent area: sections

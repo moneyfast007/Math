@@ -824,4 +824,3 @@ function Spark({ className }: { className: string }) {
     </svg>
   );
 }
-

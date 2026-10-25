@@ -82,7 +82,9 @@ export function endOffer(): void {
 }
 
 /** Distinct days on which any child practised. */
-export function countPracticeDays(progress: Record<string, { days?: Record<string, unknown> }>): number {
+export function countPracticeDays(
+  progress: Record<string, { days?: Record<string, unknown> }>,
+): number {
   const days = new Set<string>();
   for (const p of Object.values(progress)) for (const d of Object.keys(p.days ?? {})) days.add(d);
   return days.size;
