@@ -19,6 +19,7 @@ import { Plusi } from '@/ui/Plusi';
 import { SpeakerButton } from '@/ui/SpeakerButton';
 import { InfoLink } from '../HomeScreen';
 import { whoIsPlayingTitle } from '../homeTitle';
+import { dayKey } from '@/state/streak';
 import {
   markWelcomed,
   nowAt,
@@ -136,6 +137,7 @@ export function HomeC() {
       </div>
 
       <footer className="home__footer c-home__footer">
+        <ParentsTip />
         <LongPressButton
           className="parent-entry"
           onLongPress={() => setGateOpen(true)}
@@ -161,6 +163,7 @@ export function HomeC() {
           verifyPin={verifyPin}
           onUnlock={() => {
             setGateOpen(false);
+            endParentsTip();
             openParents();
           }}
           onCancel={() => setGateOpen(false)}
@@ -413,5 +416,91 @@ function WelcomeC({ onStart, onConnect }: { onStart: () => void; onConnect: () =
         <InfoLink />
       </footer>
     </main>
+  );
+}
+
+/* ---------- A tip for the parents: where their area is ---------- */
+
+const TIP_KEY = 'parents-tip';
+const TIP_DAYS = 7;
+const DAY_MS = 24 * 60 * 60 * 1000;
+
+interface TipState {
+  /** When it was first shown (ms). */
+  first: number;
+  /** Closed with × on this day ("YYYY-MM-DD"): back tomorrow. */
+  hidden: string | null;
+  /** The parent went in through the gate. */
+  done: boolean;
+}
+
+function readTip(): TipState | null {
+  try {
+    const raw = localStorage.getItem(TIP_KEY);
+    if (raw === 'done') return { first: 0, hidden: null, done: true };
+    return raw ? (JSON.parse(raw) as TipState) : null;
+  } catch {
+    return { first: 0, hidden: null, done: true };
+  }
+}
+
+function writeTip(state: TipState): void {
+  try {
+    localStorage.setItem(TIP_KEY, JSON.stringify(state));
+  } catch {
+    // Without storage the tip may come back; nothing depends on it.
+  }
+}
+
+/** Shown every day until the parent goes in, for a week at most; × hides it until tomorrow. */
+function showParentsTip(state: TipState | null, now: number): boolean {
+  if (!state) return true;
+  if (state.done || now - state.first >= TIP_DAYS * DAY_MS) return false;
+  return state.hidden !== dayKey(now);
+}
+
+/** The parent found the way in: the tip is not shown again. */
+function endParentsTip(): void {
+  writeTip({ first: 0, hidden: null, done: true });
+}
+
+/**
+ * Above the parents' button: what is behind it and how to get in. Every day
+ * until the parent goes in once, for a week at most (showParentsTip). The first profile is made without the gate, so a
+ * parent may not know the long press yet.
+ */
+function ParentsTip() {
+  const [shown, setShown] = useState(() => {
+    const now = Date.now();
+    const state = readTip();
+    const show = showParentsTip(state, now);
+    if (show && !state) writeTip({ first: now, hidden: null, done: false });
+    return show;
+  });
+  if (!shown) return null;
+  return (
+    <aside className="parents-tip" aria-label={t('home.parentsTip.title')}>
+      <span className="parents-tip__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M9 18h6M10 21h4" />
+          <path d="M12 3a6 6 0 0 0-3.6 10.8c.6.5 1 1.2 1.1 2V16h5v-.2c.1-.8.5-1.5 1.1-2A6 6 0 0 0 12 3z" />
+        </svg>
+      </span>
+      <p className="parents-tip__text">
+        <b>{t('home.parentsTip.title')}</b> {t('home.parentsTip.body')}
+      </p>
+      <button
+        type="button"
+        className="btn btn--ghost parents-tip__close"
+        aria-label={t('home.parentsTip.close')}
+        onClick={() => {
+          const state = readTip() ?? { first: Date.now(), hidden: null, done: false };
+          writeTip({ ...state, hidden: dayKey(Date.now()) });
+          setShown(false);
+        }}
+      >
+        ×
+      </button>
+    </aside>
   );
 }
