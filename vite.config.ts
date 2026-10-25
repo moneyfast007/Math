@@ -19,6 +19,8 @@ export default defineConfig({
       // not precached in bulk (see src/audio/ in a later phase).
       workbox: {
         globPatterns: ['**/*.{js,css,html,svg,png,woff2,webmanifest}'],
+        // The link-preview image is for WhatsApp and the like, not for the app offline.
+        globIgnores: ['og.png'],
         navigateFallback: '/index.html',
         // The server's own pages (the usage page) are not the app.
         navigateFallbackDenylist: [/^\/api\//],
