@@ -1,4 +1,6 @@
 import type { Grade } from '@/ui/ageBand';
+import { TipiArt, TurboArt } from './moreScenes';
+import type { SceneKind } from './SceneStrip';
 import './scenes.css';
 
 /**
@@ -11,7 +13,7 @@ import './scenes.css';
  * album, and finishing such a world gives the sticker as before.
  */
 
-export type CompanionId = 'spark' | 'cosmo';
+export type CompanionId = 'spark' | 'cosmo' | 'tipi' | 'turbo';
 
 export interface Companion {
   id: CompanionId;
@@ -27,17 +29,28 @@ export function sceneStyleForGrade(grade: Grade): SceneStyle {
 
 /** By world place (0-based), for each style. */
 const SLOTS: Record<SceneStyle, readonly (Companion | null)[]> = {
-  young: [{ id: 'spark', gender: 'f' }],
-  older: [{ id: 'cosmo', gender: 'm' }],
+  young: [
+    { id: 'spark', gender: 'f' },
+    { id: 'tipi', gender: 'f' },
+  ],
+  older: [
+    { id: 'cosmo', gender: 'm' },
+    { id: 'turbo', gender: 'm' },
+  ],
 };
+
+/** The practice scene of a world, by its place: each drawn place has its own, the rest the first. */
+const SCENES: Record<SceneStyle, readonly SceneKind[]> = {
+  young: ['village', 'garden'],
+  older: ['rocket', 'race'],
+};
+
+export function sceneForWorld(style: SceneStyle, slot: number): SceneKind {
+  return SCENES[style][slot] ?? SCENES[style][0] ?? 'village';
+}
 
 export function companionFor(style: SceneStyle, slot: number): Companion | null {
   return SLOTS[style][slot] ?? null;
-}
-
-/** The friend who lives in the practice scene of this style (the one drawn in it). */
-export function sceneCompanion(style: SceneStyle): Companion {
-  return style === 'young' ? { id: 'spark', gender: 'f' } : { id: 'cosmo', gender: 'm' };
 }
 
 /** ניצוצית: a little spark with a lightning tuft. */
@@ -95,5 +108,14 @@ export function CosmoArt({ size }: { size: number | string }) {
 }
 
 export function CompanionArt({ id, size }: { id: CompanionId; size: number | string }) {
-  return id === 'spark' ? <SparkArt size={size} /> : <CosmoArt size={size} />;
+  switch (id) {
+    case 'spark':
+      return <SparkArt size={size} />;
+    case 'cosmo':
+      return <CosmoArt size={size} />;
+    case 'tipi':
+      return <TipiArt size={size} />;
+    case 'turbo':
+      return <TurboArt size={size} />;
+  }
 }

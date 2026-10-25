@@ -28,8 +28,13 @@ describe('<WorldComplete>', () => {
     expect(screen.getByText('ניצוצית מצטרפת לחברים שלך!')).toBeInTheDocument();
   });
 
-  it('a world whose friend is not drawn yet has no joining line', () => {
+  it("the second world's friend: טיפי", () => {
     render(<WorldComplete profile={profile} world={at(1)} next={at(2)} spoken="יש!" />);
+    expect(screen.getByText('טיפי מצטרפת לחברים שלך!')).toBeInTheDocument();
+  });
+
+  it('a world whose friend is not drawn yet has no joining line', () => {
+    render(<WorldComplete profile={profile} world={at(2)} next={at(3)} spoken="יש!" />);
     expect(screen.queryByText(/לחברים שלך/)).toBeNull();
   });
 

@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
-import { companionFor, sceneStyleForGrade } from './companions';
+import { companionFor, sceneForWorld, sceneStyleForGrade } from './companions';
 import { SceneStrip } from './SceneStrip';
 
 describe('<SceneStrip>', () => {
@@ -35,6 +35,15 @@ describe('the friends', () => {
     expect(sceneStyleForGrade(3)).toBe('older');
     expect(companionFor('young', 0)?.id).toBe('spark');
     expect(companionFor('older', 0)?.id).toBe('cosmo');
+    expect(companionFor('young', 1)?.id).toBe('tipi');
+    expect(companionFor('older', 1)?.id).toBe('turbo');
     expect(companionFor('young', 5)).toBeNull();
+  });
+
+  it('each drawn world has its scene; the others use the first', () => {
+    expect(sceneForWorld('young', 0)).toBe('village');
+    expect(sceneForWorld('young', 1)).toBe('garden');
+    expect(sceneForWorld('older', 1)).toBe('race');
+    expect(sceneForWorld('older', 6)).toBe('rocket');
   });
 });

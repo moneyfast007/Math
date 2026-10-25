@@ -81,7 +81,32 @@ export function playAlmost(): void {
 }
 
 /** The practice scene moving one step: ניצוצית's spark (a quick rising zap), or a fuel cell filling. */
-export function playSceneStep(kind: 'village' | 'rocket', step: number): void {
+export function playSceneStep(kind: 'village' | 'rocket' | 'garden' | 'race', step: number): void {
+  if (kind === 'garden') {
+    // A drop of water: two soft falling bloops.
+    play(
+      [
+        { freq: 880, at: 0, length: 0.09, type: 'sine', gain: 0.8 },
+        { freq: 620, at: 0.07, length: 0.12, type: 'sine', gain: 0.6 },
+      ],
+      0.1,
+    );
+    return;
+  }
+  if (kind === 'race') {
+    // The engine revving up.
+    play(
+      [110, 140, 180, 230].map((freq, i) => ({
+        freq,
+        at: i * 0.05,
+        length: 0.09,
+        type: 'sawtooth' as const,
+        gain: 0.35,
+      })),
+      0.08,
+    );
+    return;
+  }
   if (kind === 'village') {
     play(
       [300, 450, 680, 1020, 1530].map((freq, i) => ({

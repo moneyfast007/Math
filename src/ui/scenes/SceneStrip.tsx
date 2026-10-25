@@ -1,6 +1,15 @@
 import { useEffect, useLayoutEffect, useRef, useState, type RefObject } from 'react';
 import { playCountdown, playLaunch, playSceneStep } from '@/ui/sounds';
 import { SparkArt } from './companions';
+import {
+  Garden,
+  gardenLayout,
+  Race,
+  raceLayout,
+  TipiArt,
+  type GardenLayout,
+  type RaceLayout,
+} from './moreScenes';
 import './scenes.css';
 
 /**
@@ -12,6 +21,8 @@ import './scenes.css';
  * - The rocket (grades 3 to 6): a fuel cell fills and the rocket shakes; the
  *   end: a countdown and a launch.
  *
+ * - The garden and the race (the second world of each): moreScenes.tsx.
+ *
  * A wrong answer never takes anything back: ניצוצית tilts her head, or the
  * gauge blinks. An exercise whose answer was shown leaves its step dark.
  * Quiet (the parent's choice, or "reduce motion"): the steps just light.
@@ -19,7 +30,29 @@ import './scenes.css';
  * It is also the round's progress bar for assistive technology.
  */
 
-export type SceneKind = 'village' | 'rocket';
+export type SceneKind = 'village' | 'rocket' | 'garden' | 'race';
+
+type Scene =
+  | { kind: 'village'; l: VillageLayout }
+  | { kind: 'rocket'; l: RocketLayout }
+  | { kind: 'garden'; l: GardenLayout }
+  | { kind: 'race'; l: RaceLayout };
+
+function makeScene(kind: SceneKind, size: Size, total: number): Scene {
+  switch (kind) {
+    case 'village':
+      return { kind, l: villageLayout(size, total) };
+    case 'rocket':
+      return { kind, l: rocketLayout(size) };
+    case 'garden':
+      return { kind, l: gardenLayout(size, total) };
+    case 'race':
+      return { kind, l: raceLayout(size, total) };
+  }
+}
+
+/** The scenes whose end is a ride (a countdown, or just the drive off). */
+const RIDES: readonly SceneKind[] = ['rocket', 'race'];
 
 interface Props {
   kind: SceneKind;
@@ -92,11 +125,7 @@ export function SceneStrip({
     c.getContext('2d')?.setTransform(dpr, 0, 0, dpr, 0, 0);
   }, [size]);
 
-  const layout = size
-    ? kind === 'village'
-      ? villageLayout(size, total)
-      : rocketLayout(size)
-    : null;
+  const scene = size ? makeScene(kind, size, total) : null;
 
   // A new mark: animate it in, then show it lit.
   useEffect(() => {
@@ -106,7 +135,7 @@ export function SceneStrip({
     }
     const i = marks.length - 1;
     const lit = marks[i] === true;
-    if (!lit || quiet || !layout) {
+    if (!lit || quiet || !scene) {
       setShown(marks.length);
       if (lit && !quiet) playSceneStep(kind, i);
       return;
@@ -114,25 +143,45 @@ export function SceneStrip({
     playSceneStep(kind, i);
     let cancelled = false;
     const ctx = canvas.current?.getContext('2d') ?? null;
+    const show = () => {
+      setShown(marks.length);
+      setPopping(i);
+    };
     const run = async () => {
-      if (kind === 'village' && ctx && 'lamps' in layout) {
-        const lamp = layout.lamps[i];
-        if (lamp) {
-          const from = layout.spark;
-          await animate(ctx, 260, (t) =>
-            drawBolt(ctx, from.x, from.y, lamp.x, lamp.y + lamp.s * 0.6, 1 - t * 0.4),
-          );
+      if (!ctx) return show();
+      switch (scene.kind) {
+        case 'village': {
+          const lamp = scene.l.lamps[i];
+          if (!lamp) return show();
+          const from = scene.l.spark;
+          const y = lamp.y + lamp.s * 0.6;
+          await animate(ctx, 260, (t) => drawBolt(ctx, from.x, from.y, lamp.x, y, 1 - t * 0.4));
           if (cancelled || !live.current) return;
-          setShown(marks.length);
-          setPopping(i);
-          await animate(ctx, 420, (t) => drawBurst(ctx, lamp.x, lamp.y + lamp.s * 0.6, t, i));
+          show();
+          await animate(ctx, 420, (t) => drawBurst(ctx, lamp.x, y, t, i, '#ffe27a'));
+          return;
         }
-      } else if (kind === 'rocket' && ctx && 'base' in layout) {
-        setShown(marks.length);
-        setPopping(i);
-        await animate(ctx, 420, (t) => drawPuff(ctx, layout.rx, layout.base, t, 50, 8, i));
-      } else {
-        setShown(marks.length);
+        case 'garden': {
+          const spot = scene.l.spots[i];
+          if (!spot) return show();
+          const from = scene.l.spout;
+          await animate(ctx, 380, (t) => drawDrops(ctx, from.x, from.y, spot.x, spot.y - 4, t));
+          if (cancelled || !live.current) return;
+          show();
+          await animate(ctx, 360, (t) => drawBurst(ctx, spot.x, spot.y - 4, t, i, '#7cc9f5'));
+          return;
+        }
+        case 'rocket':
+          show();
+          await animate(ctx, 420, (t) => drawPuff(ctx, scene.l.rx, scene.l.base, t, 50, 8, i));
+          return;
+        case 'race': {
+          show();
+          const x = scene.l.markers[i] ?? scene.l.finish;
+          const y = scene.l.road + scene.l.laneH * 0.5;
+          await animate(ctx, 450, (t) => drawSpeedLines(ctx, x + scene.l.car * 0.6, y, t, i));
+          return;
+        }
       }
     };
     void run();
@@ -152,7 +201,7 @@ export function SceneStrip({
   // The end of the round.
   useEffect(() => {
     if (!finale) return;
-    if (quiet || kind === 'village') {
+    if (quiet || !RIDES.includes(kind)) {
       setPhase('done');
       return;
     }
@@ -160,6 +209,14 @@ export function SceneStrip({
     const ctx = canvas.current?.getContext('2d') ?? null;
     const run = async () => {
       await sleep(350);
+      if (kind === 'race') {
+        // The car crosses the line and drives off.
+        setPhase('launch');
+        playSceneStep('race', 17);
+        await sleep(1200);
+        if (!cancelled) setPhase('done');
+        return;
+      }
       for (const p of ['count3', 'count2', 'count1'] as const) {
         if (cancelled) return;
         setPhase(p);
@@ -169,8 +226,9 @@ export function SceneStrip({
       if (cancelled) return;
       setPhase('launch');
       playLaunch();
-      if (ctx && layout && 'base' in layout) {
-        void animate(ctx, 1500, (t) => drawPuff(ctx, layout.rx, layout.base, t, 170, 26, 99));
+      if (ctx && scene?.kind === 'rocket') {
+        const { rx, base } = scene.l;
+        void animate(ctx, 1500, (t) => drawPuff(ctx, rx, base, t, 170, 26, 99));
       }
       await sleep(1500);
       if (!cancelled) setPhase('done');
@@ -204,28 +262,42 @@ export function SceneStrip({
       aria-label={label}
       data-lit={marks.filter(Boolean).length}
     >
-      {layout && size ? (
-        kind === 'village' && 'lamps' in layout ? (
+      {scene && size ? (
+        scene.kind === 'village' ? (
           <Village
             size={size}
-            layout={layout}
+            layout={scene.l}
             marks={marks}
             shown={shown}
             popping={popping}
             reacting={reacting}
             buddyRef={buddy}
           />
-        ) : 'base' in layout ? (
+        ) : scene.kind === 'rocket' ? (
           <Rocket
             size={size}
-            layout={layout}
+            layout={scene.l}
             total={total}
             marks={marks}
             shown={shown}
             popping={popping}
             reacting={reacting}
           />
-        ) : null
+        ) : scene.kind === 'garden' ? (
+          <>
+            <Garden size={size} layout={scene.l} marks={marks} shown={shown} popping={popping} />
+            <div
+              key={reacting}
+              className={reacting > 0 ? 'village__buddy village__buddy--tilt' : 'village__buddy'}
+              style={{ width: scene.l.buddy, height: scene.l.buddy }}
+              aria-hidden="true"
+            >
+              <TipiArt size="100%" />
+            </div>
+          </>
+        ) : (
+          <Race size={size} layout={scene.l} marks={marks} shown={shown} />
+        )
       ) : null}
       <canvas ref={canvas} className="scene-strip__fx" aria-hidden="true" />
       {counting ? (
@@ -318,7 +390,7 @@ function Village({
         {layout.houses.map((hs, i) => (
           <path key={i} d={hs.d} className="village__house" />
         ))}
-        {layout.lamps.map((l, i) => {
+        {layout.lamps.map((_lamp, i) => {
           const win = layout.houses[i]?.win;
           return win ? (
             <rect
@@ -594,10 +666,17 @@ function drawBolt(
   ctx.restore();
 }
 
-function drawBurst(ctx: CanvasRenderingContext2D, x: number, y: number, t: number, seed: number) {
+function drawBurst(
+  ctx: CanvasRenderingContext2D,
+  x: number,
+  y: number,
+  t: number,
+  seed: number,
+  color: string,
+) {
   ctx.save();
   ctx.globalAlpha = 1 - t;
-  ctx.fillStyle = '#ffe27a';
+  ctx.fillStyle = color;
   for (let i = 0; i < 12; i++) {
     const a = (i / 12) * Math.PI * 2 + wobble(seed * 31 + i);
     const v = 1.6 + (wobble(seed * 17 + i) + 0.5) * 2.2;
@@ -627,6 +706,53 @@ function drawPuff(
     ctx.beginPath();
     ctx.arc(x + dx * t, y - dy * t, r * (1 + t), 0, Math.PI * 2);
     ctx.fill();
+  }
+  ctx.restore();
+}
+
+/** טיפי's water: a few drops flying in an arc to the seed. */
+function drawDrops(
+  ctx: CanvasRenderingContext2D,
+  x0: number,
+  y0: number,
+  x1: number,
+  y1: number,
+  t: number,
+) {
+  ctx.save();
+  ctx.fillStyle = '#7cc9f5';
+  for (let k = 0; k < 5; k++) {
+    const p = Math.max(0, Math.min(1, t * 1.25 - k * 0.06));
+    if (p <= 0 || p >= 1) continue;
+    const x = x0 + (x1 - x0) * p;
+    const y = y0 + (y1 - y0) * p - Math.sin(p * Math.PI) * 26;
+    ctx.beginPath();
+    ctx.ellipse(x, y, 2.2, 3, 0, 0, Math.PI * 2);
+    ctx.fill();
+  }
+  ctx.restore();
+}
+
+/** Speed lines behind the car as it moves on. */
+function drawSpeedLines(
+  ctx: CanvasRenderingContext2D,
+  x: number,
+  y: number,
+  t: number,
+  seed: number,
+) {
+  ctx.save();
+  ctx.globalAlpha = 0.8 * (1 - t);
+  ctx.strokeStyle = '#ffffff';
+  ctx.lineWidth = 2;
+  ctx.lineCap = 'round';
+  for (let k = 0; k < 4; k++) {
+    const dy = (k - 1.5) * 6 + wobble(seed * 5 + k) * 3;
+    const len = 14 + (wobble(seed * 9 + k) + 0.5) * 14;
+    ctx.beginPath();
+    ctx.moveTo(x + 4 + t * 10, y + dy);
+    ctx.lineTo(x + 4 + t * 10 + len, y + dy);
+    ctx.stroke();
   }
   ctx.restore();
 }

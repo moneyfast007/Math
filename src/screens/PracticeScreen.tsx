@@ -44,6 +44,7 @@ import { Plusi, type PlusiMood } from '@/ui/Plusi';
 import { applyPlusiColor } from '@/ui/plusiColor';
 import { SpeakerButton } from '@/ui/SpeakerButton';
 import { ColumnWork } from '@/ui/Vertical';
+import { sceneForWorld, sceneStyleForGrade } from '@/ui/scenes/companions';
 import { SceneStrip } from '@/ui/scenes/SceneStrip';
 import { playAlmost, playCorrect, setSoundsEnabled } from '@/ui/sounds';
 import { prefersReducedMotion } from '@/ui/useTypewriter';
@@ -205,7 +206,14 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
   // and a count of wrong tries for its small reaction.
   const [marks, setMarks] = useState<boolean[]>([]);
   const [nudge, setNudge] = useState(0);
-  const sceneKind = profile.grade <= 2 ? 'village' : 'rocket';
+  // Each world has its scene, by its place in her grade (the first world's when not drawn yet).
+  const sceneKind = useMemo(() => {
+    const index =
+      worldsFor(profile.grade, appProgress(profile.id)).find((w) => w.topic.id === topic.id)
+        ?.index ?? 1;
+    return sceneForWorld(sceneStyleForGrade(profile.grade), index - 1);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   const quietScene = useMemo(
     () => profile.settings.effects === 'quiet' || prefersReducedMotion(),
     [profile.settings.effects],

@@ -96,6 +96,8 @@ export const heRound3 = {
   'pals.intro': 'בסוף כל עולם מצטרף חבר חדש.',
   'pals.spark': 'ניצוצית',
   'pals.cosmo': 'קוסמו',
+  'pals.tipi': 'טיפי',
+  'pals.turbo': 'טורבו',
   'pals.lockedAt': 'בסוף עולם {n}',
   'pals.soon': 'בקרוב',
   'pals.joinedF': '{name} מצטרפת לחברים שלך!',
