@@ -444,6 +444,11 @@ ol.steps {
   gap: var(--space-2);
 }
 
+/* "Ready!" after adding a child: its content is centred, so are its buttons. */
+.dialog:has(.child-added) .dialog__actions {
+  justify-content: center;
+}
+
 /* Parent gate */
 .gate__question {
   display: flex;
