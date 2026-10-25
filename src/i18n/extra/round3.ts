@@ -67,7 +67,7 @@ export const heRound3 = {
   'parent.security.savedHint':
     'הקוד נשמר. שימו אותו במקום בטוח: בלעדיו אי אפשר להיכנס לאזור ההורים. אפשר לשנות אותו בהגדרות ← קוד הורים.',
   // The new-child form: the extra settings folded.
-  'profile.more': 'הגדרות נוספות',
+  'profile.more': 'אורך סבב, יעד יומי וצלילים',
   'profile.moreHint': 'אורך הסבב, יעד יומי ועוד. אפשר להשאיר כמו שזה ולשנות בכל זמן.',
   // The journey's way out: back to the entry screen.
   'journeyBar.exit': 'יציאה',
