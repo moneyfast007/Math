@@ -285,13 +285,29 @@ html:has(.journey--village) body {
   border-radius: 0;
 }
 
-/* What is over the village floats on it: white panels. */
+/* What is over the village floats on it: panels of frosted glass, the ground showing through. */
+.journey--village .journey__header,
+.journey--village .journey__world,
+.journey--village .journey__next {
+  border: 1px solid rgb(255 255 255 / 65%);
+  background: rgb(255 255 255 / 50%);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 6px 18px rgb(30 40 20 / 12%);
+}
+
 .journey--village .journey__header,
 .journey--village .journey__world {
   padding: 6px 10px;
   border-radius: 18px;
-  background: rgb(255 255 255 / 90%);
-  box-shadow: 0 4px 12px rgb(30 40 20 / 12%);
+}
+
+/* Grey text gets darker on the glass, so it reads as well as on white. */
+.journey--village .journey__header .muted,
+.journey--village .journey__next .muted,
+.journey--village .journey__tool-label:not(.journey__goal-label--done),
+.journey--village .journey__other {
+  color: #4f433c;
 }
 
 .journey--village .journey__world-name {
@@ -311,8 +327,4 @@ html:has(.journey--village) body {
 .journey--village .journey__world-text {
   min-width: 0;
   flex: 1 1 0;
-}
-
-.journey--village .journey__next {
-  box-shadow: 0 10px 30px rgb(30 40 20 / 28%);
 }
