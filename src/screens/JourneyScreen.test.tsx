@@ -141,7 +141,7 @@ describe('<JourneyScreen> first-time explainer and the way to all worlds', () =>
     const { unmount } = render(<JourneyScreen />);
     const card = screen.getByRole('region', { name: 'ברוכה הבאה למסע!' });
     expect(within(card).getAllByRole('listitem')).toHaveLength(3);
-    expect(within(card).getByText(/הכוכב: אתגר הסיום/)).toBeInTheDocument();
+    expect(within(card).getByText(/הגביע: אתגר הסיום/)).toBeInTheDocument();
     expect(within(card).getByText(/"כל העולמות"/)).toBeInTheDocument();
     // Not a dialog: the big button is right there.
     expect(screen.queryByRole('dialog')).toBeNull();
