@@ -289,6 +289,12 @@ html:has(.journey--village) body {
   border-radius: 18px;
 }
 
+/* The panel carries "כל העולמות" down over the row under it: it stays on top of what follows. */
+.journey--village .journey__header {
+  position: relative;
+  z-index: 3;
+}
+
 /* Grey text gets darker on the glass, so it reads as well as on white. */
 .journey--village .journey__header .muted,
 .journey--village .journey__next .muted,
@@ -334,6 +340,8 @@ html:has(.journey--village) body {
 
 .journey--village .journey__all {
   position: absolute;
+  /* Over the row beside it (the map's column comes later and would cover it). */
+  z-index: 2;
   top: calc(100% + 6px + var(--space-2));
   left: 50%;
   transform: translateX(-50%);
