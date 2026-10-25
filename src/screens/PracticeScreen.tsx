@@ -223,6 +223,12 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
   stateRef.current = s;
   const cardRef = useRef<HTMLElement>(null);
   const answersRef = useRef<HTMLElement>(null);
+  // How tall the keys are, so what comes in their place after an answer takes the same room.
+  const answerHeight = useRef<number | null>(null);
+  useLayoutEffect(() => {
+    const open = s.phase === 'answering' || s.phase === 'wrong';
+    if (open && answersRef.current) answerHeight.current = answersRef.current.offsetHeight;
+  });
   const hintsRef = useRef<HTMLElement>(null);
   const playing = s.phase !== 'finished';
   useFitToScreen(cardRef, answersRef, {
@@ -680,20 +686,22 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
           </div>
         ) : null}
         <ReportMistake exercise={e} given={s.lastValue} />
-        {/* The hint, right under the answer line: where the child is looking when stuck. */}
-        {!finished ? (
-          <button
-            type="button"
-            className="btn btn--secondary btn--small practice__hint"
-            disabled={s.hintsShown >= 3 && !hintsHidden}
-            onClick={() => {
-              if (hintsHidden) setHintsHidden(false);
-              else apply({ type: 'hint' });
-            }}
-          >
-            {t('action.hint')}
-          </button>
-        ) : null}
+        {/* The hint, right under the answer line: where the child is looking when stuck.
+            After the answer its place stays (unseen), so the exercise does not move. */}
+        <button
+          type="button"
+          className="btn btn--secondary btn--small practice__hint"
+          style={finished ? { visibility: 'hidden' } : undefined}
+          aria-hidden={finished || undefined}
+          tabIndex={finished ? -1 : undefined}
+          disabled={finished || (s.hintsShown >= 3 && !hintsHidden)}
+          onClick={() => {
+            if (hintsHidden) setHintsHidden(false);
+            else apply({ type: 'hint' });
+          }}
+        >
+          {t('action.hint')}
+        </button>
       </section>
 
       {s.hintsShown > 0 && !hintsHidden ? (
@@ -741,14 +749,20 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
         </section>
       ) : null}
 
-      <Feedback state={s} tc={tc} />
+      {finished ? null : <Feedback state={s} tc={tc} />}
 
       {finished ? (
-        <div className="row practice__next" style={{ justifyContent: 'center' }}>
-          <button type="button" className="btn" onClick={advance}>
+        // Where the keys were, and as tall: what happened and the way on. The exercise stays put.
+        <section
+          ref={answersRef}
+          className="answer answer--done"
+          style={answerHeight.current ? { minHeight: answerHeight.current } : undefined}
+        >
+          <Feedback state={s} tc={tc} />
+          <button type="button" className="btn btn--hero practice__next" onClick={advance}>
             {t('practice.next')}
           </button>
-        </div>
+        </section>
       ) : e.input.type === 'vertical' ? null : (
         <section ref={answersRef} className="answer">
           {e.input.type === 'choices' ? (

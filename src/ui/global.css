@@ -7499,3 +7499,20 @@ body {
   border-color: var(--color-accent);
   background: var(--color-accent-soft);
 }
+
+/* After an answer: where the keys were, as tall as they were, what happened and the way on. */
+.answer.answer--done {
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.answer--done .feedback {
+  width: 100%;
+  justify-content: center;
+  font-size: var(--text-lg);
+}
+
+.answer--done .practice__next {
+  width: min(100%, 22rem);
+}

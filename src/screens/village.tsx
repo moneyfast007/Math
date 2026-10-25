@@ -25,8 +25,10 @@ const COLORS: readonly (readonly [string, string, string])[] = [
 const LOCKED = ['#e9e3db', '#d9d2c8', '#b9b1a7'] as const;
 
 /**
- * One station's house. Done: its window lit and smoke from the chimney. The
- * one she is at: lit too. Closed: grey, with a "?" on its wall. The sign in
+ * One station's house. Done: built, its window lit and smoke from the chimney.
+ * The one she is at: lit too. Open but not finished (skipped on the way, or a
+ * warm-up): only sketched, in dashed lines, still to be built. Closed: grey,
+ * with a "?" on its wall. The sign in
  * front carries the station's number (not for the youngest, who go by the
  * pictures); where Plusi stands, it grows and glows.
  */
@@ -43,8 +45,55 @@ export function House({
   here?: boolean;
 }) {
   const locked = state === 'locked';
-  const [wl, wr, roof] = locked ? LOCKED : (COLORS[index % COLORS.length] ?? COLORS[0]!);
+  const sketch = state === 'skipped' || state === 'warmup';
+  const colors = COLORS[index % COLORS.length] ?? COLORS[0]!;
+  const [wl, wr, roof] = locked ? LOCKED : colors;
   const lit = state === 'done' || state === 'current';
+  if (sketch) {
+    const line = {
+      fill: 'rgb(255 255 255 / 55%)',
+      stroke: colors[2],
+      strokeWidth: 2.2,
+      strokeDasharray: '5 4',
+      strokeLinejoin: 'round' as const,
+    };
+    return (
+      <svg className="house house--sketch" viewBox="0 0 100 100" aria-hidden="true">
+        <ellipse cx="54" cy="86" rx="34" ry="11" className="house__shadow" />
+        <polygon points="26,70 54,84 54,54 26,40" {...line} />
+        <polygon points="54,84 82,70 82,40 54,54" {...line} />
+        <polygon points="21,42 54,58 54,8" {...line} />
+        <polygon points="54,58 87,42 54,8" {...line} />
+        <polygon points="63,79.5 72,75 72,57 63,61.5" {...line} fill="none" />
+        <rect x="15" y="82" width="3" height="14" fill="#7a5534" />
+        <g className={here ? 'house__sign house__sign--here' : 'house__sign'}>
+          <rect
+            x="4"
+            y="70"
+            width="25"
+            height="16"
+            rx="4"
+            fill="#f6dfb3"
+            stroke="#c9a46a"
+            strokeWidth="2"
+          />
+          {number !== null ? (
+            <text
+              x="16.5"
+              y="82.5"
+              textAnchor="middle"
+              fontSize="12"
+              fontWeight="800"
+              fill="#5b4330"
+              fontFamily="ui-rounded, system-ui, sans-serif"
+            >
+              {number}
+            </text>
+          ) : null}
+        </g>
+      </svg>
+    );
+  }
   return (
     <svg className="house" viewBox="0 0 100 100" aria-hidden="true">
       <ellipse cx="54" cy="86" rx="34" ry="11" className="house__shadow" />
