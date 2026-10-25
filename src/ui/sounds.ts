@@ -20,7 +20,7 @@ export function soundsEnabled(): boolean {
 
 type Note = { freq: number; at: number; length: number; type?: OscillatorType; gain?: number };
 
-function play(notes: Note[], volume: number): void {
+function playNotes(notes: Note[], volume: number): void {
   if (!enabled) return;
   const w = window as unknown as {
     AudioContext?: typeof AudioContext;
@@ -60,7 +60,7 @@ function play(notes: Note[], volume: number): void {
 
 /** A right answer: two bright notes going up. */
 export function playCorrect(): void {
-  play(
+  playNotes(
     [
       { freq: 1046.5, at: 0, length: 0.14, type: 'sine' },
       { freq: 1568, at: 0.11, length: 0.32, type: 'sine' },
@@ -71,7 +71,7 @@ export function playCorrect(): void {
 
 /** A wrong answer: a soft, low double boop, friendly and short. */
 export function playAlmost(): void {
-  play(
+  playNotes(
     [
       { freq: 330, at: 0, length: 0.1, type: 'sine', gain: 0.8 },
       { freq: 294, at: 0.14, length: 0.16, type: 'sine', gain: 0.8 },
@@ -80,7 +80,10 @@ export function playAlmost(): void {
   );
 }
 
-/** The practice scene moving one step: ניצוצית's spark (a quick rising zap), or a fuel cell filling. */
+/**
+ * A right answer, in the voice of the world's scene: ניצוצית's spark, a fuel cell
+ * filling, a drop of water, a train's hoot... each of the 16 scenes has its own.
+ */
 export function playSceneStep(
   kind:
     | 'village'
@@ -101,11 +104,84 @@ export function playSceneStep(
     | 'egg',
   step: number,
 ): void {
-  // The later scenes borrow the sound of one like them.
-  if (kind === 'snowman' || kind === 'rainbow') return playSceneStep('garden', step);
-  if (kind === 'cake') return playSceneStep('balloons', step);
-  if (kind === 'tower' || kind === 'egg') return playSceneStep('robot', step);
-  if (kind === 'stars') return playSceneStep('sub', step);
+  // It is the sound of a right answer now (no ding besides it), so a little louder.
+  const play = (notes: Note[], volume: number) => playNotes(notes, volume * 1.5);
+  if (kind === 'snowman') {
+    // Patting the snow, then a sparkle.
+    play(
+      [
+        { freq: 210, at: 0, length: 0.06, type: 'triangle', gain: 0.7 },
+        { freq: 180, at: 0.09, length: 0.06, type: 'triangle', gain: 0.7 },
+        { freq: 1568, at: 0.2, length: 0.14, type: 'sine', gain: 0.6 },
+        { freq: 2093, at: 0.28, length: 0.22, type: 'sine', gain: 0.5 },
+      ],
+      0.1,
+    );
+    return;
+  }
+  if (kind === 'rainbow') {
+    // A colour sweeping in: a quick run up the scale.
+    play(
+      [523, 659, 784, 988, 1175, 1568].map((freq, i) => ({
+        freq,
+        at: i * 0.045,
+        length: i === 5 ? 0.25 : 0.08,
+        type: 'sine' as const,
+        gain: 0.6,
+      })),
+      0.1,
+    );
+    return;
+  }
+  if (kind === 'cake') {
+    // A candle lit: a soft strike, then a twinkle.
+    play(
+      [
+        { freq: 160, at: 0, length: 0.05, type: 'sawtooth', gain: 0.3 },
+        { freq: 1319, at: 0.1, length: 0.12, type: 'triangle', gain: 0.6 },
+        { freq: 1760, at: 0.2, length: 0.25, type: 'triangle', gain: 0.6 },
+      ],
+      0.1,
+    );
+    return;
+  }
+  if (kind === 'tower') {
+    // A block set down, clicked in, and the crane's bell.
+    play(
+      [
+        { freq: 196, at: 0, length: 0.08, type: 'square', gain: 0.35 },
+        { freq: 880, at: 0.1, length: 0.05, type: 'square', gain: 0.3 },
+        { freq: 1319, at: 0.22, length: 0.3, type: 'sine', gain: 0.6 },
+      ],
+      0.09,
+    );
+    return;
+  }
+  if (kind === 'egg') {
+    // A crack in the shell, and a little peep-peep.
+    play(
+      [
+        { freq: 1200, at: 0, length: 0.03, type: 'square', gain: 0.4 },
+        { freq: 900, at: 0.05, length: 0.03, type: 'square', gain: 0.4 },
+        { freq: 1976, at: 0.2, length: 0.07, type: 'sine', gain: 0.7 },
+        { freq: 2349, at: 0.32, length: 0.1, type: 'sine', gain: 0.7 },
+      ],
+      0.1,
+    );
+    return;
+  }
+  if (kind === 'stars') {
+    // A star lit: three twinkles, high and ringing.
+    play(
+      [
+        { freq: 1760, at: 0, length: 0.25, type: 'sine', gain: 0.6 },
+        { freq: 2349, at: 0.08, length: 0.25, type: 'sine', gain: 0.5 },
+        { freq: 2637, at: 0.16, length: 0.35, type: 'sine', gain: 0.5 },
+      ],
+      0.09,
+    );
+    return;
+  }
   if (kind === 'garden') {
     // A drop of water: two soft falling bloops.
     play(
@@ -232,11 +308,11 @@ export function playSceneStep(
 
 /** The rocket's countdown beep, and its low rumble on lift-off. */
 export function playCountdown(): void {
-  play([{ freq: 660, at: 0, length: 0.12, type: 'square', gain: 0.4 }], 0.08);
+  playNotes([{ freq: 660, at: 0, length: 0.12, type: 'square', gain: 0.4 }], 0.08);
 }
 
 export function playLaunch(): void {
-  play(
+  playNotes(
     [
       { freq: 90, at: 0, length: 1.4, type: 'sawtooth', gain: 0.6 },
       { freq: 60, at: 0.1, length: 1.5, type: 'sawtooth', gain: 0.5 },

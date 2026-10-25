@@ -201,7 +201,6 @@ export function Robot({
   layout,
   built,
   flashing,
-  counter,
 }: {
   size: Size;
   layout: RobotLayout;
@@ -209,7 +208,6 @@ export function Robot({
   built: number;
   /** The part just built (it flashes). */
   flashing: number | null;
-  counter: string;
 }) {
   const { cx, base, u, parts } = layout;
   const body = parts[2];
@@ -267,7 +265,6 @@ export function Robot({
       <span className="robot__say" style={{ right: `calc(50% + ${34 * u}px)` }}>
         היי!
       </span>
-      <span className="robot__counter">{counter}</span>
     </>
   );
 }

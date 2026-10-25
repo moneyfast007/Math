@@ -252,8 +252,11 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
     const before = stateRef.current;
     const after = reduce(before, action);
     // The sounds of an answer: on the way in (before the state settles, so they feel instant).
-    if (after.phase === 'correct' && before.phase !== 'correct') playCorrect();
-    else if (after.phase === 'wrong' && after.tries > before.tries) {
+    // A right answer sounds in the scene's voice (SceneStrip); the plain ding only
+    // when the scene is quiet.
+    if (after.phase === 'correct' && before.phase !== 'correct') {
+      if (quietScene) playCorrect();
+    } else if (after.phase === 'wrong' && after.tries > before.tries) {
       playAlmost();
       setNudge((n) => n + 1);
     }

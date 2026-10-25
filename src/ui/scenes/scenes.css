@@ -82,6 +82,21 @@
   }
 }
 
+/* How many exercises are done out of the round, in a corner of every scene. */
+.scene-strip__done {
+  position: absolute;
+  bottom: 4px;
+  left: 6px;
+  z-index: 2;
+  padding: 2px 7px;
+  border-radius: 999px;
+  background: rgb(20 24 48 / 55%);
+  color: #fff;
+  font: 700 12px/1.2 var(--font-math);
+  direction: ltr;
+  pointer-events: none;
+}
+
 .scene-strip__count {
   position: absolute;
   inset: 0;
@@ -718,20 +733,6 @@
   opacity: 1;
 }
 
-.robot__counter {
-  position: absolute;
-  bottom: 6px;
-  right: 10px;
-  font: 700 12px/1 var(--font-math);
-  color: #8ea3d8;
-  letter-spacing: 0.04em;
-  direction: ltr;
-}
-
-.robot--warn .robot__counter {
-  animation: robot-warn 0.6s ease-in-out;
-}
-
 @keyframes robot-warn {
   30%,
   80% {
@@ -744,8 +745,7 @@
   .robot__part--flash,
   .scene-strip--done .robot__chest,
   .scene-strip--done .robot__arm,
-  .scene-strip--done .robot__jet,
-  .robot--warn .robot__counter {
+  .scene-strip--done .robot__jet {
     animation: none;
   }
 }

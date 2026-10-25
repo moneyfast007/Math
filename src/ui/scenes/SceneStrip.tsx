@@ -571,12 +571,16 @@ export function SceneStrip({
               layout={scene.l}
               built={partsBuilt(litBefore(marks, shown), total)}
               flashing={popping}
-              counter={`${litBefore(marks, shown)}/${total}`}
             />
           </div>
         ) : null
       ) : null}
       <canvas ref={canvas} className="scene-strip__fx" aria-hidden="true" />
+      {finale ? null : (
+        <span className="scene-strip__done" aria-hidden="true">
+          {`${done}/${total}`}
+        </span>
+      )}
       {counting ? (
         <span className="scene-strip__count" aria-hidden="true">
           {counting}
