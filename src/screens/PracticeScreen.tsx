@@ -10,6 +10,7 @@ import {
 import { replayTopic } from '@/app/replay';
 import { navigate } from '@/app/router';
 import { chosenStation } from '@/app/station';
+import { clearRound, savedRound, saveRound } from '@/app/roundSave';
 import { dailyPool, pickDaily, worldPool, type DailyItem } from '@/engine/daily';
 import { activeWorld, nextStop, worldsFor } from '@/engine/journey';
 import { pick } from '@/engine/rng';
@@ -198,14 +199,39 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
     });
   };
 
-  const [s, setS] = useState<SessionState>(() => newRound(station.level));
+  // A round of this station left in the middle goes on from where it stood (roundSave.ts).
+  const saveMode = mode === 'level' ? 'level' : mode === 'review' ? 'review' : null;
+  const [resumed] = useState(() =>
+    saveMode
+      ? savedRound(profile.id, { mode: saveMode, topicId: topic.id, startLevel: station.level })
+      : null,
+  );
+  const [s, setS] = useState<SessionState>(() => {
+    if (resumed) {
+      seen.current = resumed.seen;
+      return resumed.state;
+    }
+    return newRound(station.level);
+  });
   const [outcome, setOutcome] = useState<RoundOutcome | null>(null);
   const [value, setValue] = useState('');
   const [tried, setTried] = useState<number[]>([]);
-  const [notice, setNotice] = useState<string | null>(null);
+  const [notice, setNotice] = useState<string | null>(() =>
+    resumed
+      ? t('round.resumed', { params: { n: resumed.state.done + 1, total: resumed.state.length } })
+      : null,
+  );
   // The round's scene: one mark per finished exercise (lit unless its answer was shown),
   // and a count of wrong tries for its small reaction.
-  const [marks, setMarks] = useState<boolean[]>([]);
+  const [marks, setMarks] = useState<boolean[]>(() => resumed?.marks ?? []);
+  // Where the round stands, kept as it goes (from its first finished exercise); a finished
+  // round leaves nothing behind.
+  useEffect(() => {
+    if (!saveMode) return;
+    if (s.phase === 'finished') clearRound(profile.id);
+    else if (s.done > 0)
+      saveRound(profile.id, { mode: saveMode, state: s, marks, seen: seen.current });
+  }, [s, marks, saveMode, profile.id]);
   const [nudge, setNudge] = useState(0);
   // Each world has its scene, by its place in her grade (the first world's when not drawn yet).
   const sceneKind = useMemo(() => {
