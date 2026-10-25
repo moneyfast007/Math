@@ -100,6 +100,8 @@ export const heRound3 = {
   'pals.turbo': 'טורבו',
   'pals.bubi': 'בועי',
   'pals.bolt': 'בולט',
+  'pals.dubi': 'דובי',
+  'pals.echo': 'אקו',
   'pals.lockedAt': 'בסוף עולם {n}',
   'pals.soon': 'בקרוב',
   'pals.joinedF': '{name} מצטרפת לחברים שלך!',

@@ -82,7 +82,7 @@ export function playAlmost(): void {
 
 /** The practice scene moving one step: ניצוצית's spark (a quick rising zap), or a fuel cell filling. */
 export function playSceneStep(
-  kind: 'village' | 'rocket' | 'garden' | 'race' | 'pond' | 'robot',
+  kind: 'village' | 'rocket' | 'garden' | 'race' | 'pond' | 'robot' | 'balloons' | 'sub',
   step: number,
 ): void {
   if (kind === 'garden') {
@@ -93,6 +93,30 @@ export function playSceneStep(
         { freq: 620, at: 0.07, length: 0.12, type: 'sine', gain: 0.6 },
       ],
       0.1,
+    );
+    return;
+  }
+  if (kind === 'balloons') {
+    // Blowing up a balloon, then a little squeak as it ties.
+    play(
+      [
+        { freq: 300, at: 0, length: 0.12, type: 'sine', gain: 0.5 },
+        { freq: 450, at: 0.1, length: 0.12, type: 'sine', gain: 0.5 },
+        { freq: 680, at: 0.2, length: 0.12, type: 'sine', gain: 0.5 },
+        { freq: 1175, at: 0.36, length: 0.12, type: 'triangle', gain: 0.6 },
+      ],
+      0.09,
+    );
+    return;
+  }
+  if (kind === 'sub') {
+    // The sonar: one clear ping and its echo.
+    play(
+      [
+        { freq: 880, at: 0, length: 0.25, type: 'sine', gain: 0.8 },
+        { freq: 880, at: 0.3, length: 0.2, type: 'sine', gain: 0.3 },
+      ],
+      0.08,
     );
     return;
   }

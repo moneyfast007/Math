@@ -48,6 +48,8 @@ describe('the friends', () => {
     expect(sceneForWorld('older', 1)).toBe('race');
     expect(sceneForWorld('young', 2)).toBe('pond');
     expect(sceneForWorld('older', 2)).toBe('robot');
+    expect(sceneForWorld('young', 3)).toBe('balloons');
+    expect(sceneForWorld('older', 3)).toBe('sub');
     expect(sceneForWorld('older', 6)).toBe('rocket');
   });
 });

@@ -20,6 +20,14 @@ import {
   type PondLayout,
   type RobotLayout,
 } from './world3Scenes';
+import {
+  Balloons,
+  balloonsLayout,
+  Sub,
+  subLayout,
+  type BalloonsLayout,
+  type SubLayout,
+} from './world4Scenes';
 import './scenes.css';
 
 /**
@@ -40,7 +48,15 @@ import './scenes.css';
  * It is also the round's progress bar for assistive technology.
  */
 
-export type SceneKind = 'village' | 'rocket' | 'garden' | 'race' | 'pond' | 'robot';
+export type SceneKind =
+  | 'village'
+  | 'rocket'
+  | 'garden'
+  | 'race'
+  | 'pond'
+  | 'robot'
+  | 'balloons'
+  | 'sub';
 
 type Scene =
   | { kind: 'village'; l: VillageLayout }
@@ -48,7 +64,9 @@ type Scene =
   | { kind: 'garden'; l: GardenLayout }
   | { kind: 'race'; l: RaceLayout }
   | { kind: 'pond'; l: PondLayout }
-  | { kind: 'robot'; l: RobotLayout };
+  | { kind: 'robot'; l: RobotLayout }
+  | { kind: 'balloons'; l: BalloonsLayout }
+  | { kind: 'sub'; l: SubLayout };
 
 function makeScene(kind: SceneKind, size: Size, total: number): Scene {
   switch (kind) {
@@ -64,6 +82,10 @@ function makeScene(kind: SceneKind, size: Size, total: number): Scene {
       return { kind, l: pondLayout(size, total) };
     case 'robot':
       return { kind, l: robotLayout(size) };
+    case 'balloons':
+      return { kind, l: balloonsLayout(size, total) };
+    case 'sub':
+      return { kind, l: subLayout(size, total) };
   }
 }
 
@@ -224,6 +246,21 @@ export function SceneStrip({
           setPopping(after - 1);
           return;
         }
+        case 'balloons': {
+          const spot = scene.l.spots[i];
+          if (!spot) return show();
+          await animate(ctx, 360, (t) => drawGather(ctx, spot.x, spot.y, spot.r, t));
+          if (cancelled || !live.current) return;
+          show();
+          return;
+        }
+        case 'sub': {
+          show();
+          const to = scene.l.path[i + 1];
+          if (!to) return;
+          await animate(ctx, 520, (t) => drawSonar(ctx, to.x, to.y, t));
+          return;
+        }
       }
     };
     void run();
@@ -361,6 +398,17 @@ export function SceneStrip({
               <BubiArt size="100%" />
             </div>
           </>
+        ) : scene.kind === 'balloons' ? (
+          <Balloons
+            size={size}
+            layout={scene.l}
+            marks={marks}
+            shown={shown}
+            popping={popping}
+            reacting={reacting}
+          />
+        ) : scene.kind === 'sub' ? (
+          <Sub size={size} layout={scene.l} marks={marks} shown={shown} reacting={reacting} />
         ) : (
           <div key={`r${reacting}`} className={reacting > 0 ? 'robot robot--warn' : 'robot'}>
             <Robot
@@ -889,6 +937,32 @@ function drawScan(ctx: CanvasRenderingContext2D, x: number, y: number, w: number
   ctx.beginPath();
   ctx.moveTo(x - 4, y);
   ctx.lineTo(x + w + 4, y);
+  ctx.stroke();
+  ctx.restore();
+}
+
+/** Little puffs of air gathering into a new balloon. */
+function drawGather(ctx: CanvasRenderingContext2D, x: number, y: number, r: number, t: number) {
+  ctx.save();
+  ctx.fillStyle = 'rgb(255 255 255 / 85%)';
+  for (let k = 0; k < 6; k++) {
+    const a = k * 1.05 + t * 2;
+    const d = (r + 9) * (1 - t);
+    ctx.beginPath();
+    ctx.arc(x + Math.cos(a) * d, y + Math.sin(a) * d, 1.6, 0, Math.PI * 2);
+    ctx.fill();
+  }
+  ctx.restore();
+}
+
+/** The sonar ping: a ring spreading from the submarine. */
+function drawSonar(ctx: CanvasRenderingContext2D, x: number, y: number, t: number) {
+  ctx.save();
+  ctx.globalAlpha = 1 - t;
+  ctx.strokeStyle = '#bfe9ff';
+  ctx.lineWidth = 1.5;
+  ctx.beginPath();
+  ctx.arc(x, y, 6 + t * 28, 0, Math.PI * 2);
   ctx.stroke();
   ctx.restore();
 }
