@@ -1,8 +1,9 @@
-import { useEffect, useMemo } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { navigate } from '@/app/router';
 import type { World } from '@/engine/journey';
 import { t, type TranslationKey } from '@/i18n';
-import { gradeLabel } from '@/i18n/labels';
+import { formatDate, gradeLabel } from '@/i18n/labels';
+import { certificatePng, certificateSvg, shareOrSave } from '@/ui/certificate';
 import type { Profile } from '@/state/schema';
 import { playFanfare } from '@/ui/fanfare';
 import { Plusi } from '@/ui/Plusi';
@@ -37,6 +38,34 @@ export function WorldComplete({
   // The friend of this world's place, when one is drawn: joins her collection now.
   const friend = companionFor(sceneStyleForGrade(profile.grade), world.index - 1);
   useEffect(() => playFanfare(), []);
+  const body = useRef<HTMLElement>(null);
+  const [making, setMaking] = useState(false);
+  const certificate = async () => {
+    const root = body.current;
+    if (!root || making) return;
+    setMaking(true);
+    const worldName = t(world.topic.labelKey as TranslationKey);
+    const svg = certificateSvg(
+      {
+        title: t('certificate.title'),
+        name: profile.name,
+        line: t(profile.gender === 'f' ? 'certificate.lineF' : 'certificate.lineM', {
+          params: { n: world.index },
+        }),
+        world: worldName,
+        date: formatDate(Date.now()),
+        site: 'plusi.app',
+      },
+      {
+        plusi: root.querySelector<SVGSVGElement>('.celebrate__plusi > svg'),
+        friend: root.querySelector<SVGSVGElement>('.celebrate__friend svg'),
+        sticker: root.querySelector<SVGSVGElement>('.celebrate__sticker svg'),
+      },
+    );
+    const png = await certificatePng(svg);
+    if (png) await shareOrSave(png, `plusi-world-${world.index}.png`, t('certificate.title'));
+    setMaking(false);
+  };
   const pieces = useMemo(
     () =>
       still
@@ -70,7 +99,7 @@ export function WorldComplete({
         </div>
       ) : null}
 
-      <section className="celebrate__body">
+      <section ref={body} className="celebrate__body">
         <div className="celebrate__plusi">
           <Plusi mood="cheering" size={96} decorative />
           {friend ? (
@@ -126,6 +155,14 @@ export function WorldComplete({
             onClick={() => navigate({ name: 'album' })}
           >
             {t('celebrate.toAlbum')}
+          </button>
+          <button
+            type="button"
+            className="btn btn--ghost btn--small celebrate__certificate"
+            disabled={making}
+            onClick={() => void certificate()}
+          >
+            {t('certificate.button')}
           </button>
         </div>
       </section>
