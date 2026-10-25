@@ -226,6 +226,47 @@ export function ParentAreaC() {
 /* ---------- "Would you want an extended version?" ---------- */
 
 /** One anonymous tap, counted on the server; nothing is sold or promised. */
+/**
+ * Passing the app on to other parents: the phone's share sheet (WhatsApp and the
+ * rest), or the link copied where there is none. Nothing is tracked.
+ */
+function ShareCard() {
+  const [copied, setCopied] = useState(false);
+  const share = async () => {
+    const data = { title: t('share.title'), text: t('share.text'), url: 'https://plusi.app/' };
+    if (typeof navigator.share === 'function') {
+      try {
+        await navigator.share(data);
+      } catch {
+        // Closed without sharing: nothing to do.
+      }
+      return;
+    }
+    try {
+      await navigator.clipboard.writeText(`${data.text} ${data.url}`);
+      setCopied(true);
+    } catch {
+      setCopied(false);
+    }
+  };
+  return (
+    <section className="c-group c-share" aria-labelledby="c-share-title">
+      <h3 id="c-share-title" className="c-group__title">
+        {t('share.heading')}
+      </h3>
+      <p className="muted c-group__hint">{t('share.body')}</p>
+      <button type="button" className="btn btn--secondary" onClick={() => void share()}>
+        {t('share.button')}
+      </button>
+      {copied ? (
+        <p className="notice notice--ok" role="status">
+          {t('share.copied')}
+        </p>
+      ) : null}
+    </section>
+  );
+}
+
 function MoreCard() {
   const [state, setState] = useState<'idle' | 'busy' | 'sent' | 'failed'>(() =>
     interestSent() ? 'sent' : 'idle',
@@ -374,6 +415,7 @@ function TodayPanel({ onAdd, onRestore }: { onAdd: () => void; onRestore: () => 
               {t('parent.addChild')}
             </button>
           ) : null}
+          <ShareCard />
         </>
       )}
     </>
