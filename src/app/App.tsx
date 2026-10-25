@@ -1,18 +1,36 @@
 import { uiVariant } from './uiVariant';
-import { HomeB } from '@/screens/variants/HomeB';
 import { HomeC } from '@/screens/variants/HomeC';
-import { ParentAreaB } from '@/screens/variants/ParentAreaB';
-import { ParentAreaC } from '@/screens/variants/ParentAreaC';
 import { AlbumScreen } from '@/screens/AlbumScreen';
 import { HomeScreen } from '@/screens/HomeScreen';
-import { InfoScreen } from '@/screens/InfoScreen';
-import { InstallGuideScreen } from '@/screens/InstallGuideScreen';
 import { JourneyScreen } from '@/screens/JourneyScreen';
-import { ParentScreen } from '@/screens/ParentScreen';
-import { PlaygroundScreen } from '@/screens/PlaygroundScreen';
 import { PracticeScreen } from '@/screens/PracticeScreen';
 import { WorldsScreen } from '@/screens/WorldsScreen';
-import { useEffect } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
+
+/*
+ * What a child needs is in the first file; the rest comes in its own file when
+ * it is opened (the service worker keeps them all for offline use): the parents'
+ * area, the legal pages, the install guide, the playground and the older designs.
+ */
+const ParentScreen = lazy(() =>
+  import('@/screens/ParentScreen').then((m) => ({ default: m.ParentScreen })),
+);
+const ParentAreaB = lazy(() =>
+  import('@/screens/variants/ParentAreaB').then((m) => ({ default: m.ParentAreaB })),
+);
+const ParentAreaC = lazy(() =>
+  import('@/screens/variants/ParentAreaC').then((m) => ({ default: m.ParentAreaC })),
+);
+const HomeB = lazy(() => import('@/screens/variants/HomeB').then((m) => ({ default: m.HomeB })));
+const InfoScreen = lazy(() =>
+  import('@/screens/InfoScreen').then((m) => ({ default: m.InfoScreen })),
+);
+const InstallGuideScreen = lazy(() =>
+  import('@/screens/InstallGuideScreen').then((m) => ({ default: m.InstallGuideScreen })),
+);
+const PlaygroundScreen = lazy(() =>
+  import('@/screens/PlaygroundScreen').then((m) => ({ default: m.PlaygroundScreen })),
+);
 import { t } from '@/i18n';
 import { useApp } from '@/state/store';
 import { useRoute, type RouteName } from './router';
@@ -43,9 +61,16 @@ export function App() {
 
   // Stored data loads in a few milliseconds; render nothing rather than flash an empty home.
   if (!ready) return <main className="screen" aria-busy="true" />;
-  const variant = uiVariant();
+  return (
+    <Suspense fallback={<main className="screen" aria-busy="true" />}>
+      <Screen name={route.name} />
+    </Suspense>
+  );
+}
 
-  switch (route.name) {
+function Screen({ name }: { name: RouteName }) {
+  const variant = uiVariant();
+  switch (name) {
     case 'home':
       // The entry screen's design: the current one, or B or C to compare (?ui=b).
       return variant === 'b' ? <HomeB /> : variant === 'c' ? <HomeC /> : <HomeScreen />;
