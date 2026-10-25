@@ -584,6 +584,7 @@ function WorldMap({
                 index={i}
                 number={young ? null : s.level}
                 here={i === target}
+                tried={s.stars > 0}
               />
               {building.has(s.level) ? <BuildCrew /> : null}
               {/* The best stars of this station, under it. */}

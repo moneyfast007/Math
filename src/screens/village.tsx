@@ -37,16 +37,82 @@ export function House({
   index,
   number,
   here = false,
+  tried = false,
 }: {
   state: StationState;
   index: number;
   number: number | null;
   /** Plusi stands here: the sign grows and glows. */
   here?: boolean;
+  /** Played but not passed (it has stars): half built. */
+  tried?: boolean;
 }) {
   const locked = state === 'locked';
   const sketch = state === 'skipped' || state === 'warmup';
   const colors = COLORS[index % COLORS.length] ?? COLORS[0]!;
+  const sign = (
+    <>
+      <rect x="15" y="82" width="3" height="14" fill="#7a5534" />
+      <g className={here ? 'house__sign house__sign--here' : 'house__sign'}>
+        <rect
+          x="4"
+          y="70"
+          width="25"
+          height="16"
+          rx="4"
+          fill="#f6dfb3"
+          stroke="#c9a46a"
+          strokeWidth="2"
+        />
+        {number !== null ? (
+          <text
+            x="16.5"
+            y="82.5"
+            textAnchor="middle"
+            fontSize="12"
+            fontWeight="800"
+            fill="#5b4330"
+            fontFamily="ui-rounded, system-ui, sans-serif"
+          >
+            {number}
+          </text>
+        ) : null}
+      </g>
+    </>
+  );
+  if (tried && state !== 'done' && state !== 'current') {
+    // Started, not finished: walls up to half their height, no roof yet, bricks waiting.
+    return (
+      <svg className="house house--half" viewBox="0 0 100 100" aria-hidden="true">
+        <ellipse cx="54" cy="86" rx="34" ry="11" className="house__shadow" />
+        <polygon points="26,70 54,84 54,82 30,70" fill="#c9b9a4" />
+        <polygon points="26,70 54,84 54,68 26,54" fill={colors[0]} />
+        <polygon points="54,84 82,70 82,54 54,68" fill={colors[1]} />
+        <polygon
+          points="26,54 54,68 82,54 54,40 50,42 76,54 54,65 32,54 54,43 50,42"
+          fill="#f3e6d2"
+        />
+        <g stroke="rgb(0 0 0 / 14%)" strokeWidth="1">
+          <line x1="26" y1="62" x2="54" y2="76" />
+          <line x1="54" y1="76" x2="82" y2="62" />
+          <line x1="40" y1="61" x2="40" y2="69" />
+          <line x1="68" y1="61" x2="68" y2="69" />
+          <line x1="33" y1="65.5" x2="33" y2="73.5" />
+          <line x1="47" y1="72.5" x2="47" y2="80.5" />
+          <line x1="61" y1="72.5" x2="61" y2="80.5" />
+          <line x1="75" y1="65.5" x2="75" y2="73.5" />
+        </g>
+        <polygon points="63,79.5 72,75 72,66 63,70.5" fill="#7a4a2a" />
+        {/* The bricks still to lay, in a little pile. */}
+        <g>
+          <rect x="70" y="86" width="9" height="4.5" rx="1" fill="#c4553f" />
+          <rect x="80" y="86" width="9" height="4.5" rx="1" fill="#b84a36" />
+          <rect x="75" y="81.5" width="9" height="4.5" rx="1" fill="#d0634c" />
+        </g>
+        {sign}
+      </svg>
+    );
+  }
   const [wl, wr, roof] = locked ? LOCKED : colors;
   const lit = state === 'done' || state === 'current';
   if (sketch) {
