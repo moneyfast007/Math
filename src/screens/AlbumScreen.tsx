@@ -6,10 +6,11 @@ import { t, type TranslationKey } from '@/i18n';
 import { compose } from '@/lang/compose';
 import { medalsFor, STARS_PER_MEDAL, totalStars } from '@/state/progress';
 import { useActiveProfile, useApp } from '@/state/store';
-import { ageBandForGrade, applyAgeBand } from '@/ui/ageBand';
+import { ageBandForGrade, applyAgeBand, type Grade } from '@/ui/ageBand';
 import { BrandMark } from '@/ui/BrandMark';
 import { Plusi } from '@/ui/Plusi';
 import { PlusiPicker } from '@/ui/PlusiPicker';
+import { CompanionArt, companionFor, sceneStyleForGrade } from '@/ui/scenes/companions';
 import { applyPlusiColor } from '@/ui/plusiColor';
 import { SpeakerButton } from '@/ui/SpeakerButton';
 import { Sticker } from '@/ui/Sticker';
@@ -89,6 +90,8 @@ export function AlbumScreen() {
 
       <StarMedals stars={totalStars(progress)} />
 
+      <Friends worlds={worlds} grade={profile.grade} />
+
       <ul className="album__grid" aria-label={t('journey.album')}>
         {worlds.map((w) => {
           const id = stickerForWorld(w.index);
@@ -141,6 +144,52 @@ export function AlbumScreen() {
         })}
       </ul>
     </main>
+  );
+}
+
+/**
+ * "החברים שלי": a friend for every world of her grade, joining when the world is
+ * finished. Friends not drawn yet say "soon"; ones still to earn show as shadows.
+ */
+function Friends({ worlds, grade }: { worlds: ReturnType<typeof worldsFor>; grade: Grade }) {
+  const style = sceneStyleForGrade(grade);
+  return (
+    <section className="card friends" aria-labelledby="friends-title">
+      <h2 id="friends-title" className="friends__title">
+        {t('pals.title')}
+      </h2>
+      <p className="muted friends__intro">{t('pals.intro')}</p>
+      <ul className="friends__row" role="list">
+        {worlds.map((w) => {
+          const friend = companionFor(style, w.index - 1);
+          const name = friend ? t(`pals.${friend.id}`) : null;
+          return (
+            <li
+              key={w.topic.id}
+              className={
+                friend && w.completed
+                  ? 'friend friend--joined'
+                  : friend
+                    ? 'friend friend--locked'
+                    : 'friend friend--soon'
+              }
+            >
+              <span className="friend__art">
+                {friend ? (
+                  <CompanionArt id={friend.id} size="100%" />
+                ) : (
+                  <span aria-hidden="true">?</span>
+                )}
+              </span>
+              <span className="friend__name">
+                {friend && w.completed ? name : friend ? '?' : t('pals.soon')}
+              </span>
+              <span className="friend__when">{t('pals.lockedAt', { params: { n: w.index } })}</span>
+            </li>
+          );
+        })}
+      </ul>
+    </section>
   );
 }
 

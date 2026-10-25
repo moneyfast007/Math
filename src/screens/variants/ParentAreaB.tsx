@@ -567,6 +567,8 @@ function ChildSettings({
       ...(snd ? {} : { sounds: false }),
       ...(len === 'normal' ? {} : { roundLength: len }),
       ...(g === 0 ? {} : { dailyGoal: g }),
+      // Kept as it is (design B has no control for it).
+      ...(s.effects ? { effects: s.effects } : {}),
     });
     setSaved((n) => n + 1);
   };

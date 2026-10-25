@@ -79,3 +79,45 @@ export function playAlmost(): void {
     0.1,
   );
 }
+
+/** The practice scene moving one step: ניצוצית's spark (a quick rising zap), or a fuel cell filling. */
+export function playSceneStep(kind: 'village' | 'rocket', step: number): void {
+  if (kind === 'village') {
+    play(
+      [300, 450, 680, 1020, 1530].map((freq, i) => ({
+        freq,
+        at: i * 0.035,
+        length: 0.06,
+        type: 'triangle' as const,
+        gain: 0.7,
+      })),
+      0.08,
+    );
+    return;
+  }
+  const base = 220 + Math.min(step, 17) * 30;
+  play(
+    [
+      { freq: base, at: 0, length: 0.08, type: 'sawtooth', gain: 0.35 },
+      { freq: base * 1.5, at: 0.06, length: 0.1, type: 'sawtooth', gain: 0.35 },
+    ],
+    0.08,
+  );
+}
+
+/** The rocket's countdown beep, and its low rumble on lift-off. */
+export function playCountdown(): void {
+  play([{ freq: 660, at: 0, length: 0.12, type: 'square', gain: 0.4 }], 0.08);
+}
+
+export function playLaunch(): void {
+  play(
+    [
+      { freq: 90, at: 0, length: 1.4, type: 'sawtooth', gain: 0.6 },
+      { freq: 60, at: 0.1, length: 1.5, type: 'sawtooth', gain: 0.5 },
+      { freq: 523, at: 1.2, length: 0.3, type: 'triangle', gain: 0.5 },
+      { freq: 784, at: 1.32, length: 0.5, type: 'triangle', gain: 0.5 },
+    ],
+    0.09,
+  );
+}

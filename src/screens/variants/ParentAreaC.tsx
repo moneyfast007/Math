@@ -797,17 +797,23 @@ function ChildSettings({
   const roundLength = s.roundLength ?? 'normal';
   const goal = s.dailyGoal ?? 0;
   const sounds = s.sounds ?? true;
+  const quietEffects = s.effects === 'quiet';
 
-  const change = (field: string, next: Partial<ProfileSettings> & { goal?: number }) => {
+  const change = (
+    field: string,
+    next: Partial<ProfileSettings> & { goal?: number; quiet?: boolean },
+  ) => {
     const merged = {
       allowLevelChange: next.allowLevelChange ?? s.allowLevelChange,
       sounds: next.sounds ?? sounds,
+      quiet: next.quiet ?? quietEffects,
       roundLength: next.roundLength ?? roundLength,
       goal: next.goal ?? goal,
     };
     const settings: ProfileSettings = {
       allowLevelChange: merged.allowLevelChange,
       ...(merged.sounds ? {} : { sounds: false }),
+      ...(merged.quiet ? { effects: 'quiet' as const } : {}),
       ...(merged.roundLength === 'normal' ? {} : { roundLength: merged.roundLength }),
       ...(merged.goal === 1 || merged.goal === 2 || merged.goal === 3
         ? { dailyGoal: merged.goal }
@@ -877,6 +883,17 @@ function ChildSettings({
           ]}
           onChange={(v) => change('sounds', { sounds: v === 'on' })}
           saved={saved === 'sounds'}
+        />
+        <Segmented
+          label={t('c.settings.effects')}
+          value={quietEffects ? 'quiet' : 'full'}
+          options={[
+            { value: 'full', label: t('c.settings.effectsFull') },
+            { value: 'quiet', label: t('c.settings.effectsQuiet') },
+          ]}
+          onChange={(v) => change('effects', { quiet: v === 'quiet' })}
+          saved={saved === 'effects'}
+          hint={t('c.settings.effectsHint')}
         />
         <Segmented
           label={t('c.settings.level')}

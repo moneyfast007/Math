@@ -6,6 +6,7 @@ import { gradeLabel } from '@/i18n/labels';
 import type { Profile } from '@/state/schema';
 import { playFanfare } from '@/ui/fanfare';
 import { Plusi } from '@/ui/Plusi';
+import { CompanionArt, companionFor, sceneStyleForGrade } from '@/ui/scenes/companions';
 import { SpeakerButton } from '@/ui/SpeakerButton';
 import { Sticker } from '@/ui/Sticker';
 import { stickerForWorld } from '@/ui/stickers';
@@ -33,6 +34,8 @@ export function WorldComplete({
   spoken: string;
 }) {
   const still = useMemo(prefersReducedMotion, []);
+  // The friend of this world's place, when one is drawn: joins her collection now.
+  const friend = companionFor(sceneStyleForGrade(profile.grade), world.index - 1);
   useEffect(() => playFanfare(), []);
   const pieces = useMemo(
     () =>
@@ -70,6 +73,11 @@ export function WorldComplete({
       <section className="celebrate__body">
         <div className="celebrate__plusi">
           <Plusi mood="cheering" size={96} decorative />
+          {friend ? (
+            <span className="celebrate__friend">
+              <CompanionArt id={friend.id} size={64} />
+            </span>
+          ) : null}
         </div>
         <button
           type="button"
@@ -88,6 +96,13 @@ export function WorldComplete({
           <p className="celebrate__next">
             {t('celebrate.next', {
               params: { n: next.index, name: t(next.topic.labelKey as TranslationKey) },
+            })}
+          </p>
+        ) : null}
+        {friend ? (
+          <p className="celebrate__joined">
+            {t(friend.gender === 'f' ? 'pals.joinedF' : 'pals.joinedM', {
+              params: { name: t(`pals.${friend.id}`) },
             })}
           </p>
         ) : null}

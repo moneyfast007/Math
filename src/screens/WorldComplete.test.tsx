@@ -23,6 +23,16 @@ describe('<WorldComplete>', () => {
   };
   const profile = makeProfile({ grade: 2 });
 
+  it("the first world's friend joins: ניצוצית for the young ones, קוסמו from grade 3", () => {
+    render(<WorldComplete profile={profile} world={at(0)} next={at(1)} spoken="יש!" />);
+    expect(screen.getByText('ניצוצית מצטרפת לחברים שלך!')).toBeInTheDocument();
+  });
+
+  it('a world whose friend is not drawn yet has no joining line', () => {
+    render(<WorldComplete profile={profile} world={at(1)} next={at(2)} spoken="יש!" />);
+    expect(screen.queryByText(/לחברים שלך/)).toBeNull();
+  });
+
   it('celebrates the world, names the one it opens, and leads on to it', () => {
     window.history.replaceState(null, '', '/practice');
     const { container } = render(

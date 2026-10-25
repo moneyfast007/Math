@@ -84,6 +84,8 @@ function parseProfile(value: unknown, index: number): Profile {
   if (roundLength !== undefined && !isRoundLength(roundLength)) fail(`${where}: הגדרה לא חוקית`);
   const dailyGoal = settings['dailyGoal'];
   if (dailyGoal !== undefined && !isDailyGoal(dailyGoal)) fail(`${where}: הגדרה לא חוקית`);
+  // Added later: anything but 'quiet' (from a newer version, say) means the full effects.
+  const effects = settings['effects'] === 'quiet' ? ('quiet' as const) : undefined;
   // Added later and optional: absent in older data.
   const introSeen = p['journeyIntroSeenAt'];
   // A colour this version does not know is simply left out (the usual one).
@@ -101,6 +103,7 @@ function parseProfile(value: unknown, index: number): Profile {
       // 'normal' is the absent value; a backup that spells it out comes back without it.
       ...(roundLength === undefined || roundLength === 'normal' ? {} : { roundLength }),
       ...(dailyGoal === undefined ? {} : { dailyGoal }),
+      ...(effects ? { effects } : {}),
     },
     ...(introSeen === undefined
       ? {}

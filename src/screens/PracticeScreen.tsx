@@ -44,7 +44,9 @@ import { Plusi, type PlusiMood } from '@/ui/Plusi';
 import { applyPlusiColor } from '@/ui/plusiColor';
 import { SpeakerButton } from '@/ui/SpeakerButton';
 import { ColumnWork } from '@/ui/Vertical';
+import { SceneStrip } from '@/ui/scenes/SceneStrip';
 import { playAlmost, playCorrect, setSoundsEnabled } from '@/ui/sounds';
+import { prefersReducedMotion } from '@/ui/useTypewriter';
 import { VisualView } from '@/ui/Visuals';
 import { WorldComplete } from './WorldComplete';
 
@@ -199,6 +201,15 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
   const [value, setValue] = useState('');
   const [tried, setTried] = useState<number[]>([]);
   const [notice, setNotice] = useState<string | null>(null);
+  // The round's scene: one mark per finished exercise (lit unless its answer was shown),
+  // and a count of wrong tries for its small reaction.
+  const [marks, setMarks] = useState<boolean[]>([]);
+  const [nudge, setNudge] = useState(0);
+  const sceneKind = profile.grade <= 2 ? 'village' : 'rocket';
+  const quietScene = useMemo(
+    () => profile.settings.effects === 'quiet' || prefersReducedMotion(),
+    [profile.settings.effects],
+  );
   const stateRef = useRef(s);
   stateRef.current = s;
   const cardRef = useRef<HTMLElement>(null);
@@ -234,9 +245,13 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
     const after = reduce(before, action);
     // The sounds of an answer: on the way in (before the state settles, so they feel instant).
     if (after.phase === 'correct' && before.phase !== 'correct') playCorrect();
-    else if (after.phase === 'wrong' && after.tries > before.tries) playAlmost();
+    else if (after.phase === 'wrong' && after.tries > before.tries) {
+      playAlmost();
+      setNudge((n) => n + 1);
+    }
     if (completedExercise(before, after)) {
       const outcome = after.history.at(-1);
+      setMarks((m) => [...m, outcome !== 'revealed']);
       const exTopic = mixed ? (topicById(before.exercise.topicId) ?? topic) : topic;
       recordAttempt(profile.id, {
         topicId: exTopic.id,
@@ -362,6 +377,7 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
       setValue('');
       setTried([]);
       setOutcome(null);
+      setMarks([]);
       const fresh = newRound(level);
       stateRef.current = fresh;
       setS(fresh);
@@ -396,9 +412,18 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
           className={passed ? 'stack done done--passed' : 'stack done done--again'}
           style={{ alignItems: 'center', textAlign: 'center' }}
         >
+          <SceneStrip
+            kind={sceneKind}
+            total={s.length}
+            marks={marks}
+            quiet={quietScene}
+            finale
+            done={s.length}
+            label={t('practice.progress', { params: { n: s.length, total: s.length } })}
+          />
           <Plusi
             mood={passed ? 'cheering' : 'happy'}
-            size={band === 'young' ? 140 : 112}
+            size={band === 'young' ? 88 : 72}
             decorative
           />
           <h1>
@@ -502,7 +527,19 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
             {t('practice.exit')}
           </button>
         </div>
-        <Progress done={s.done} total={s.length} />
+        {/* The round's picture: every right answer moves it on (and it is the progress bar).
+            Under the bar on most screens; in its middle on short ones (scenes.css). */}
+        <SceneStrip
+          kind={sceneKind}
+          total={s.length}
+          marks={marks}
+          nudge={nudge}
+          quiet={quietScene}
+          done={s.done}
+          label={t('practice.progress', {
+            params: { n: Math.min(s.done + 1, s.length), total: s.length },
+          })}
+        />
         <div className="practice__side practice__side--end">
           {/* Plusi, small, reacts to every answer from the corner of the bar. */}
           <span className="practice__mascot">
@@ -926,26 +963,6 @@ function answerLabel(e: Exercise): string {
 function splitAtSlot(display: string): [string, string] {
   const i = display.indexOf('?');
   return i < 0 ? [display, ''] : [display.slice(0, i), display.slice(i + 1)];
-}
-
-function Progress({ done, total }: { done: number; total: number }) {
-  return (
-    <div
-      className="progress-dots"
-      role="progressbar"
-      aria-valuemin={0}
-      aria-valuemax={total}
-      aria-valuenow={done}
-      aria-label={t('practice.progress', { params: { n: Math.min(done + 1, total), total } })}
-    >
-      {Array.from({ length: total }, (_, i) => (
-        <span
-          key={i}
-          className={i < done ? 'dot dot--done' : i === done ? 'dot dot--current' : 'dot'}
-        />
-      ))}
-    </div>
-  );
 }
 
 type TC = ReturnType<typeof makeT>;

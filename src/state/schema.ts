@@ -47,6 +47,8 @@ export interface ProfileSettings {
   roundLength?: RoundLength;
   /** Rounds a day the parent asks for, shown to the child on the journey. Absent: no goal. */
   dailyGoal?: DailyGoal;
+  /** The round's scene without its animations (sparks, launch). Absent: the full effects. */
+  effects?: 'quiet';
 }
 
 export interface Profile {

@@ -6109,6 +6109,23 @@ details.report .report__worlds {
   position: relative;
   z-index: 2;
   margin-block-end: calc(-1 * var(--space-4));
+  display: flex;
+  align-items: flex-end;
+  gap: var(--space-1);
+}
+
+/* The world's friend, joining beside Plusi. */
+.celebrate__friend {
+  display: inline-flex;
+}
+
+.celebrate__joined {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  font-weight: 800;
+  color: var(--color-accent-strong);
+  text-align: center;
 }
 
 .celebrate__title,

@@ -38,6 +38,7 @@ export function ProfileForm({ profile, onSave, onDelete, onClose }: ProfileFormP
     profile?.settings.allowLevelChange ?? true,
   );
   const [sounds, setSounds] = useState(profile?.settings.sounds ?? true);
+  const [quietEffects, setQuietEffects] = useState(profile?.settings.effects === 'quiet');
   const [roundLength, setRoundLength] = useState<RoundLength>(
     profile?.settings.roundLength ?? 'normal',
   );
@@ -59,6 +60,7 @@ export function ProfileForm({ profile, onSave, onDelete, onClose }: ProfileFormP
       settings: {
         allowLevelChange,
         ...(sounds ? {} : { sounds: false }),
+        ...(quietEffects ? { effects: 'quiet' as const } : {}),
         ...(roundLength === 'normal' ? {} : { roundLength }),
         ...(dailyGoal === 0 ? {} : { dailyGoal }),
       },
@@ -248,6 +250,15 @@ export function ProfileForm({ profile, onSave, onDelete, onClose }: ProfileFormP
           <label className="toggle">
             <input type="checkbox" checked={sounds} onChange={(e) => setSounds(e.target.checked)} />
             {t('profile.sounds')}
+          </label>
+
+          <label className="toggle">
+            <input
+              type="checkbox"
+              checked={quietEffects}
+              onChange={(e) => setQuietEffects(e.target.checked)}
+            />
+            {t('profile.effectsQuiet')}
           </label>
         </details>
       </form>
