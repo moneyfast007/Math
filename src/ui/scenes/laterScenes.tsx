@@ -1,4 +1,3 @@
-
 /**
  * The scenes of the sixth to eighth worlds (SceneStrip.tsx has the engine).
  *
