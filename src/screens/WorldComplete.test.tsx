@@ -34,7 +34,7 @@ describe('<WorldComplete>', () => {
   });
 
   it('a world whose friend is not drawn yet has no joining line', () => {
-    render(<WorldComplete profile={profile} world={at(2)} next={at(3)} spoken="יש!" />);
+    render(<WorldComplete profile={profile} world={at(3)} next={at(4)} spoken="יש!" />);
     expect(screen.queryByText(/לחברים שלך/)).toBeNull();
   });
 

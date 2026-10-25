@@ -81,7 +81,10 @@ export function playAlmost(): void {
 }
 
 /** The practice scene moving one step: ניצוצית's spark (a quick rising zap), or a fuel cell filling. */
-export function playSceneStep(kind: 'village' | 'rocket' | 'garden' | 'race', step: number): void {
+export function playSceneStep(
+  kind: 'village' | 'rocket' | 'garden' | 'race' | 'pond' | 'robot',
+  step: number,
+): void {
   if (kind === 'garden') {
     // A drop of water: two soft falling bloops.
     play(
@@ -90,6 +93,30 @@ export function playSceneStep(kind: 'village' | 'rocket' | 'garden' | 'race', st
         { freq: 620, at: 0.07, length: 0.12, type: 'sine', gain: 0.6 },
       ],
       0.1,
+    );
+    return;
+  }
+  if (kind === 'pond') {
+    // A splash: up and down.
+    play(
+      [
+        { freq: 420, at: 0, length: 0.1, type: 'sine', gain: 0.7 },
+        { freq: 840, at: 0.08, length: 0.12, type: 'sine', gain: 0.6 },
+        { freq: 1046, at: 0.5, length: 0.2, type: 'sine', gain: 0.5 },
+      ],
+      0.1,
+    );
+    return;
+  }
+  if (kind === 'robot') {
+    // The scanner, then a click as the part locks in.
+    play(
+      [
+        { freq: 600, at: 0, length: 0.08, type: 'square', gain: 0.3 },
+        { freq: 900, at: 0.08, length: 0.08, type: 'square', gain: 0.3 },
+        { freq: 1500, at: 0.3, length: 0.08, type: 'sine', gain: 0.6 },
+      ],
+      0.07,
     );
     return;
   }

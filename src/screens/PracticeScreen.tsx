@@ -521,7 +521,14 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
 
   return (
     <main
-      className={mode === 'review' ? 'screen practice practice--challenge' : 'screen practice'}
+      className={[
+        'screen practice',
+        mode === 'review' ? 'practice--challenge' : '',
+        // Hints open: the scene folds into the bar, so the exercise and the hint both fit.
+        s.hintsShown > 0 && !hintsHidden && !finished ? 'practice--hints' : '',
+      ]
+        .filter(Boolean)
+        .join(' ')}
       data-screen="practice"
       data-station={review ? undefined : s.startLevel}
     >

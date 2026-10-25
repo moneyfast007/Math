@@ -1,5 +1,6 @@
 import type { Grade } from '@/ui/ageBand';
 import { TipiArt, TurboArt } from './moreScenes';
+import { BoltArt, BubiArt } from './world3Scenes';
 import type { SceneKind } from './SceneStrip';
 import './scenes.css';
 
@@ -13,7 +14,7 @@ import './scenes.css';
  * album, and finishing such a world gives the sticker as before.
  */
 
-export type CompanionId = 'spark' | 'cosmo' | 'tipi' | 'turbo';
+export type CompanionId = 'spark' | 'cosmo' | 'tipi' | 'turbo' | 'bubi' | 'bolt';
 
 export interface Companion {
   id: CompanionId;
@@ -32,17 +33,19 @@ const SLOTS: Record<SceneStyle, readonly (Companion | null)[]> = {
   young: [
     { id: 'spark', gender: 'f' },
     { id: 'tipi', gender: 'f' },
+    { id: 'bubi', gender: 'm' },
   ],
   older: [
     { id: 'cosmo', gender: 'm' },
     { id: 'turbo', gender: 'm' },
+    { id: 'bolt', gender: 'm' },
   ],
 };
 
 /** The practice scene of a world, by its place: each drawn place has its own, the rest the first. */
 const SCENES: Record<SceneStyle, readonly SceneKind[]> = {
-  young: ['village', 'garden'],
-  older: ['rocket', 'race'],
+  young: ['village', 'garden', 'pond'],
+  older: ['rocket', 'race', 'robot'],
 };
 
 export function sceneForWorld(style: SceneStyle, slot: number): SceneKind {
@@ -117,5 +120,9 @@ export function CompanionArt({ id, size }: { id: CompanionId; size: number | str
       return <TipiArt size={size} />;
     case 'turbo':
       return <TurboArt size={size} />;
+    case 'bubi':
+      return <BubiArt size={size} />;
+    case 'bolt':
+      return <BoltArt size={size} />;
   }
 }

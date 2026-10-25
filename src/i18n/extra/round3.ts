@@ -98,6 +98,8 @@ export const heRound3 = {
   'pals.cosmo': 'קוסמו',
   'pals.tipi': 'טיפי',
   'pals.turbo': 'טורבו',
+  'pals.bubi': 'בועי',
+  'pals.bolt': 'בולט',
   'pals.lockedAt': 'בסוף עולם {n}',
   'pals.soon': 'בקרוב',
   'pals.joinedF': '{name} מצטרפת לחברים שלך!',

@@ -37,6 +37,8 @@ describe('the friends', () => {
     expect(companionFor('older', 0)?.id).toBe('cosmo');
     expect(companionFor('young', 1)?.id).toBe('tipi');
     expect(companionFor('older', 1)?.id).toBe('turbo');
+    expect(companionFor('young', 2)?.id).toBe('bubi');
+    expect(companionFor('older', 2)?.id).toBe('bolt');
     expect(companionFor('young', 5)).toBeNull();
   });
 
@@ -44,6 +46,18 @@ describe('the friends', () => {
     expect(sceneForWorld('young', 0)).toBe('village');
     expect(sceneForWorld('young', 1)).toBe('garden');
     expect(sceneForWorld('older', 1)).toBe('race');
+    expect(sceneForWorld('young', 2)).toBe('pond');
+    expect(sceneForWorld('older', 2)).toBe('robot');
     expect(sceneForWorld('older', 6)).toBe('rocket');
+  });
+});
+
+describe('the robot', () => {
+  it('builds all ten parts when every answer of the round was right, whatever its length', async () => {
+    const { partsBuilt } = await import('./world3Scenes');
+    expect(partsBuilt(0, 7)).toBe(0);
+    expect(partsBuilt(7, 7)).toBe(10);
+    expect(partsBuilt(18, 18)).toBe(10);
+    expect(partsBuilt(9, 18)).toBe(5);
   });
 });

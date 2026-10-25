@@ -10,6 +10,16 @@ import {
   type GardenLayout,
   type RaceLayout,
 } from './moreScenes';
+import {
+  BubiArt,
+  partsBuilt,
+  Pond,
+  pondLayout,
+  Robot,
+  robotLayout,
+  type PondLayout,
+  type RobotLayout,
+} from './world3Scenes';
 import './scenes.css';
 
 /**
@@ -30,13 +40,15 @@ import './scenes.css';
  * It is also the round's progress bar for assistive technology.
  */
 
-export type SceneKind = 'village' | 'rocket' | 'garden' | 'race';
+export type SceneKind = 'village' | 'rocket' | 'garden' | 'race' | 'pond' | 'robot';
 
 type Scene =
   | { kind: 'village'; l: VillageLayout }
   | { kind: 'rocket'; l: RocketLayout }
   | { kind: 'garden'; l: GardenLayout }
-  | { kind: 'race'; l: RaceLayout };
+  | { kind: 'race'; l: RaceLayout }
+  | { kind: 'pond'; l: PondLayout }
+  | { kind: 'robot'; l: RobotLayout };
 
 function makeScene(kind: SceneKind, size: Size, total: number): Scene {
   switch (kind) {
@@ -48,6 +60,10 @@ function makeScene(kind: SceneKind, size: Size, total: number): Scene {
       return { kind, l: gardenLayout(size, total) };
     case 'race':
       return { kind, l: raceLayout(size, total) };
+    case 'pond':
+      return { kind, l: pondLayout(size, total) };
+    case 'robot':
+      return { kind, l: robotLayout(size) };
   }
 }
 
@@ -92,6 +108,8 @@ export function SceneStrip({
   const [shown, setShown] = useState(marks.length);
   const [popping, setPopping] = useState<number | null>(null);
   const [reacting, setReacting] = useState(0);
+  // The fish is in the air (drawn on the canvas), not in its place.
+  const [away, setAway] = useState(false);
   const [phase, setPhase] = useState<'still' | 'count3' | 'count2' | 'count1' | 'launch' | 'done'>(
     'still',
   );
@@ -180,6 +198,30 @@ export function SceneStrip({
           const x = scene.l.markers[i] ?? scene.l.finish;
           const y = scene.l.road + scene.l.laneH * 0.5;
           await animate(ctx, 450, (t) => drawSpeedLines(ctx, x + scene.l.car * 0.6, y, t, i));
+          return;
+        }
+        case 'pond': {
+          const pad = scene.l.pads[i];
+          if (!pad) return show();
+          const from = scene.l.from;
+          setAway(true);
+          await animate(ctx, 520, (t) => drawJump(ctx, from.x, from.y, pad.x, pad.y - 6, t));
+          if (cancelled || !live.current) return;
+          setAway(false);
+          show();
+          await animate(ctx, 420, (t) => drawRipple(ctx, pad.x, pad.y + 2, t));
+          return;
+        }
+        case 'robot': {
+          const before = partsBuilt(litBefore(marks, i), total);
+          const after = partsBuilt(litBefore(marks, i) + 1, total);
+          const part = scene.l.parts[after - 1];
+          if (after > before && part) {
+            await animate(ctx, 300, (t) => drawScan(ctx, part.x, part.y + part.h * t, part.w));
+            if (cancelled || !live.current) return;
+          }
+          setShown(marks.length);
+          setPopping(after - 1);
           return;
         }
       }
@@ -295,8 +337,40 @@ export function SceneStrip({
               <TipiArt size="100%" />
             </div>
           </>
-        ) : (
+        ) : scene.kind === 'race' ? (
           <Race size={size} layout={scene.l} marks={marks} shown={shown} />
+        ) : scene.kind === 'pond' ? (
+          <>
+            <Pond size={size} layout={scene.l} marks={marks} shown={shown} popping={popping} />
+            <div
+              key={reacting}
+              className={[
+                'pond__fish',
+                reacting > 0 ? 'village__buddy--tilt' : '',
+                away ? 'pond__fish--away' : '',
+              ]
+                .filter(Boolean)
+                .join(' ')}
+              style={{
+                width: scene.l.fish,
+                height: scene.l.fish,
+                top: scene.l.from.y - scene.l.fish / 2,
+              }}
+              aria-hidden="true"
+            >
+              <BubiArt size="100%" />
+            </div>
+          </>
+        ) : (
+          <div key={`r${reacting}`} className={reacting > 0 ? 'robot robot--warn' : 'robot'}>
+            <Robot
+              size={size}
+              layout={scene.l}
+              built={partsBuilt(litBefore(marks, shown), total)}
+              flashing={popping}
+              counter={`${litBefore(marks, shown)}/${total}`}
+            />
+          </div>
         )
       ) : null}
       <canvas ref={canvas} className="scene-strip__fx" aria-hidden="true" />
@@ -754,5 +828,67 @@ function drawSpeedLines(
     ctx.lineTo(x + 4 + t * 10 + len, y + dy);
     ctx.stroke();
   }
+  ctx.restore();
+}
+
+/** Right answers among the first `n` finished exercises. */
+function litBefore(marks: readonly boolean[], n: number): number {
+  let lit = 0;
+  for (let i = 0; i < Math.min(n, marks.length); i++) if (marks[i] === true) lit++;
+  return lit;
+}
+
+/** בועי in mid-air: a small fish flying in an arc to the pad. */
+function drawJump(
+  ctx: CanvasRenderingContext2D,
+  x0: number,
+  y0: number,
+  x1: number,
+  y1: number,
+  t: number,
+) {
+  const x = x0 + (x1 - x0) * t;
+  const y = y0 + (y1 - y0) * t - Math.sin(t * Math.PI) * 40;
+  ctx.save();
+  ctx.translate(x, y);
+  ctx.rotate((t - 0.5) * 1.4);
+  ctx.fillStyle = '#ffb547';
+  ctx.strokeStyle = '#d96b1a';
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.ellipse(0, 0, 10, 7, 0, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.stroke();
+  ctx.beginPath();
+  ctx.moveTo(8, 0);
+  ctx.lineTo(15, -5);
+  ctx.lineTo(15, 5);
+  ctx.closePath();
+  ctx.fill();
+  ctx.restore();
+}
+
+function drawRipple(ctx: CanvasRenderingContext2D, x: number, y: number, t: number) {
+  ctx.save();
+  ctx.globalAlpha = 1 - t;
+  ctx.strokeStyle = '#e8fbff';
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.ellipse(x, y, 6 + t * 16, 2 + t * 4, 0, 0, Math.PI * 2);
+  ctx.stroke();
+  ctx.restore();
+}
+
+/** The workbench scanner building a part of בולט. */
+function drawScan(ctx: CanvasRenderingContext2D, x: number, y: number, w: number) {
+  ctx.save();
+  ctx.strokeStyle = '#34e0d0';
+  ctx.lineWidth = 2;
+  ctx.shadowColor = '#34e0d0';
+  ctx.shadowBlur = 8;
+  ctx.beginPath();
+  ctx.moveTo(x - 4, y);
+  ctx.lineTo(x + w + 4, y);
+  ctx.stroke();
   ctx.restore();
 }
