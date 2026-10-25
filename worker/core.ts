@@ -1,6 +1,8 @@
 import {
   ACCOUNT_KEY,
   INTEREST_ID,
+  isCrashReport,
+  isMistakeReport,
   LIMITS,
   PAIR_CODE_LENGTH,
   PAIR_CODE_TTL_MS,
@@ -467,6 +469,20 @@ export async function handleApi(request: Request, services: Services): Promise<R
       }
       await quietly(() => services.stats().event('login'));
       return json(link(found.familyId, result));
+    }
+    case '/api/mistake': {
+      const report = body['report'];
+      if (!isMistakeReport(report)) return fail('badRequest');
+      return (await services.stats().mistake(report, address))
+        ? json({ ok: true })
+        : fail('rateLimited');
+    }
+    case '/api/crash': {
+      const report = body['report'];
+      if (!isCrashReport(report)) return fail('badRequest');
+      return (await services.stats().crash(report, address))
+        ? json({ ok: true })
+        : fail('rateLimited');
     }
     case '/api/interest': {
       const id = typeof body['id'] === 'string' ? body['id'] : '';

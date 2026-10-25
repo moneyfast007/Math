@@ -286,4 +286,63 @@ describe('the usage counts', () => {
     ).statsCore.report();
     expect(report.families).toBe(0);
   });
+
+  it('keeps exercises reported as wrong, and the app\'s errors, without anything about the child', async () => {
+    const { services } = server();
+    const report = {
+      topic: 'fractionMul',
+      level: 1,
+      fact: 'fmul:8x1/4',
+      display: '8 × 1/4 = ?',
+      spoken: 'כמה זה שמונה כפול רבע?',
+      answer: 2,
+      given: 3,
+      reason: 'answer',
+    };
+    expect((await call(services, '/api/mistake', { report })).status).toBe(200);
+    expect((await call(services, '/api/mistake', { report: { ...report, reason: 'x' } })).status).toBe(
+      400,
+    );
+    const crash = { message: "Cannot read properties of undefined (reading 'x')", where: 'assets/index.js:1:2' };
+    await call(services, '/api/crash', { report: crash });
+    await call(services, '/api/crash', { report: crash });
+    expect((await call(services, '/api/crash', { report: { message: '', where: '' } })).status).toBe(400);
+
+    const stats = await (
+      services as unknown as {
+        statsCore: {
+          report: () => Promise<{ mistakeCount: number; mistakes: unknown[]; crashes: Array<{ count: number }> }>;
+        };
+      }
+    ).statsCore.report();
+    expect(stats.mistakeCount).toBe(1);
+    expect(stats.mistakes[0]).toMatchObject({ display: '8 × 1/4 = ?', reason: 'answer' });
+    expect(stats.crashes).toHaveLength(1);
+    expect(stats.crashes[0]?.count).toBe(2);
+    const shown = await page(services, STATS_KEY);
+    expect(shown.text).toContain('8 × 1/4 = ?');
+    expect(shown.text).toContain('התשובה הנכונה שגויה');
+  });
+
+  it('limits reports from one address to 20 a day', async () => {
+    const { services } = server();
+    const report = { message: 'boom', where: '' };
+    let last = 0;
+    for (let i = 0; i < 21; i++) last = (await call(services, '/api/crash', { report }, { ip: '1.2.3.4' })).status;
+    expect(last).toBe(429);
+  });
+
+  it('tells how many families came back after a week', async () => {
+    const { services, clock } = server();
+    const family = await newFamily(services);
+    await newFamily(services);
+    clock.now += 8 * 24 * 60 * 60 * 1000;
+    await call(services, '/api/sync', { shared: shared(), slice: emptySlice() }, { token: family.token });
+    const stats = await (
+      services as unknown as {
+        statsCore: { report: () => Promise<{ retention: { week: { back: number; of: number } } }> };
+      }
+    ).statsCore.report();
+    expect(stats.retention.week).toEqual({ back: 1, of: 2 });
+  });
 });

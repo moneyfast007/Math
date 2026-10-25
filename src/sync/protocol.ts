@@ -177,3 +177,52 @@ export function isSlice(value: unknown): value is Slice {
 export function isSyncRequest(value: unknown): value is SyncRequest {
   return isRecord(value) && isSharedDoc(value['shared']) && isSlice(value['slice']);
 }
+
+/* ---------- Anonymous reports: "found a mistake" and the app's own errors ---------- */
+
+/** Why a parent reported an exercise. */
+export const MISTAKE_REASONS = ['answer', 'unclear', 'visual', 'other'] as const;
+export type MistakeReason = (typeof MISTAKE_REASONS)[number];
+
+/** An exercise reported as wrong. Nothing about the child: the exercise itself only. */
+export interface MistakeReport {
+  topic: string;
+  level: number;
+  fact: string;
+  display: string;
+  spoken: string;
+  answer: number;
+  /** The child's last wrong answer, when there was one. */
+  given: number | null;
+  reason: MistakeReason;
+}
+
+/** An error in the app: its message and where in the code (no data, no device). */
+export interface CrashReport {
+  message: string;
+  where: string;
+}
+
+const text = (v: unknown, max: number): v is string => typeof v === 'string' && v.length <= max;
+const num = (v: unknown): v is number => typeof v === 'number' && Number.isFinite(v);
+
+export function isMistakeReport(v: unknown): v is MistakeReport {
+  if (typeof v !== 'object' || v === null) return false;
+  const r = v as Record<string, unknown>;
+  return (
+    text(r['topic'], 60) &&
+    num(r['level']) &&
+    text(r['fact'], 120) &&
+    text(r['display'], 200) &&
+    text(r['spoken'], 400) &&
+    num(r['answer']) &&
+    (r['given'] === null || num(r['given'])) &&
+    MISTAKE_REASONS.includes(r['reason'] as MistakeReason)
+  );
+}
+
+export function isCrashReport(v: unknown): v is CrashReport {
+  if (typeof v !== 'object' || v === null) return false;
+  const r = v as Record<string, unknown>;
+  return text(r['message'], 300) && r['message'] !== '' && text(r['where'], 300);
+}

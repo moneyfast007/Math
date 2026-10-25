@@ -47,6 +47,7 @@ import { ColumnWork } from '@/ui/Vertical';
 import { sceneForWorld, sceneStyleForGrade } from '@/ui/scenes/companions';
 import { SceneStrip } from '@/ui/scenes/SceneStrip';
 import { playAlmost, playCorrect, setSoundsEnabled } from '@/ui/sounds';
+import { ReportMistake } from '@/ui/ReportMistake';
 import { prefersReducedMotion } from '@/ui/useTypewriter';
 import { VisualView } from '@/ui/Visuals';
 import { WorldComplete } from './WorldComplete';
@@ -678,6 +679,7 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
             {finished ? answerLabel(e) : groupDigits(value) || '?'}
           </div>
         ) : null}
+        <ReportMistake exercise={e} given={s.lastValue} />
         {/* The hint, right under the answer line: where the child is looking when stuck. */}
         {!finished ? (
           <button
