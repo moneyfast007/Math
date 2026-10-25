@@ -135,7 +135,12 @@ export function createAppStore(storage: StorageAdapter, clock: () => number = Da
         } else {
           const parsed = parseAppData(raw);
           if (parsed.ok) {
-            set({ status: 'ready', data: parsed.data });
+            // Reloaded inside the app (a new version applied between screens): the child
+            // who was playing stays chosen, so the journey does not fall back to "who plays?".
+            const kept = keptActiveProfile();
+            const active =
+              kept !== null && parsed.data.profiles.some((p) => p.id === kept) ? kept : null;
+            set({ status: 'ready', data: parsed.data, activeProfileId: active });
           } else {
             // Never overwrite data we could not read: keep it aside first.
             await storage.quarantine(raw, clock()).catch(() => undefined);
@@ -186,6 +191,7 @@ export function createAppStore(storage: StorageAdapter, clock: () => number = Da
       selectProfile: (id) => {
         if (id !== null && !get().data.profiles.some((p) => p.id === id)) return;
         set({ activeProfileId: id });
+        keepActiveProfile(id);
       },
 
       unlockParent: () => set({ parentUnlockedAt: clock() }),
@@ -307,4 +313,26 @@ export function useApp<T>(selector: (state: AppState) => T): T {
 
 export function useActiveProfile(): Profile | undefined {
   return useApp((s) => s.data.profiles.find((p) => p.id === s.activeProfileId));
+}
+
+/* The chosen child, kept for this tab only (sessionStorage): survives a reload, not a new visit. */
+const ACTIVE_KEY = 'plusi:active-profile';
+
+function keepActiveProfile(id: string | null): void {
+  try {
+    if (id === null) sessionStorage.removeItem(ACTIVE_KEY);
+    else sessionStorage.setItem(ACTIVE_KEY, id);
+  } catch {
+    // Without storage a reload goes back to "who plays?", as before.
+  }
+}
+
+/** The child chosen before a reload, when the app opens past its entry screen. */
+function keptActiveProfile(): string | null {
+  try {
+    if (typeof window === 'undefined' || window.location.pathname === '/') return null;
+    return sessionStorage.getItem(ACTIVE_KEY);
+  } catch {
+    return null;
+  }
 }
