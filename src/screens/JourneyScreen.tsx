@@ -631,13 +631,6 @@ function WorldMap({
               <Icon name="lock" />
             </span>
           ) : null}
-          {!young ? (
-            <span
-              className={target === all - 1 ? 'node__caption node__caption--here' : 'node__caption'}
-            >
-              {t('journey.review')}
-            </span>
-          ) : null}
           {world.reviewStars > 0 ? (
             <span className="node__stars node__stars--review">
               <Stars n={world.reviewStars} label={false} />

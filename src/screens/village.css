@@ -152,12 +152,6 @@
   filter: drop-shadow(0 0 3px #ffd45c) drop-shadow(0 2px 2px rgb(0 0 0 / 25%));
 }
 
-.map--village .node__caption--here {
-  background: #ffd45c;
-  color: #3a2f2a;
-  transform: scale(1.12);
-}
-
 /* The castle's name sits over it, so its stars go under it. */
 .map--village .node__stars--review {
   top: 96%;
@@ -186,16 +180,6 @@
   inset-inline-start: 0;
 }
 
-.map--village .node__caption {
-  top: auto;
-  bottom: 96%;
-  margin-top: 0;
-  padding: 1px 8px;
-  border-radius: var(--radius-pill);
-  background: rgb(255 255 255 / 85%);
-  color: #5b4a8a;
-}
-
 @media (prefers-reduced-motion: no-preference) {
   .house__smoke {
     animation: house-smoke 3s ease-out infinite;
@@ -211,8 +195,7 @@
     animation: castle-flag 1.6s ease-in-out infinite;
   }
 
-  .house__sign--here,
-  .map--village .node__caption--here {
+  .house__sign--here {
     animation: sign-glow 1.4s ease-in-out infinite;
   }
 }
@@ -393,9 +376,4 @@ html:has(.journey--village) body {
   90% {
     transform: translateY(18%);
   }
-}
-
-/* Over the castle's flag, not across it. */
-.map--village .node--review .node__caption {
-  bottom: 117%;
 }

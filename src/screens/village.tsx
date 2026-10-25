@@ -27,7 +27,7 @@ const LOCKED = ['#e9e3db', '#d9d2c8', '#b9b1a7'] as const;
 /**
  * One station's house. Done: built, its window lit and smoke from the chimney.
  * The one she is at: lit too. Open but not finished (skipped on the way, or a
- * warm-up): still being built, faded behind scaffolding. Closed: grey,
+ * warm-up): under renovation, with scaffolding, a barrier and a cone. Closed: grey,
  * with a "?" on its wall. The sign in
  * front carries the station's number (not for the youngest, who go by the
  * pictures); where Plusi stands, it grows and glows.
@@ -50,25 +50,63 @@ export function House({
   const [wl, wr, roof] = locked ? LOCKED : colors;
   const lit = state === 'done' || state === 'current';
   if (sketch) {
-    // Still being built: the house faded, scaffolding in front of it, planks on the ground.
+    // Under renovation: the house itself, its window dark, scaffolding with planks on
+    // its front, a striped barrier at the door and a traffic cone.
     return (
-      <svg className="house house--building" viewBox="0 0 100 100" aria-hidden="true">
+      <svg className="house house--works" viewBox="0 0 100 100" aria-hidden="true">
         <ellipse cx="54" cy="86" rx="34" ry="11" className="house__shadow" />
-        <g opacity="0.42">
-          <polygon points="26,70 54,84 54,54 26,40" fill={colors[0]} />
-          <polygon points="54,84 82,70 82,40 54,54" fill={colors[1]} />
-          <polygon points="21,42 54,58 54,8" fill={colors[2]} />
-          <polygon points="54,58 87,42 54,8" fill={colors[2]} opacity="0.82" />
+        <polygon points="26,70 54,84 54,54 26,40" fill={colors[0]} />
+        <polygon points="54,84 82,70 82,40 54,54" fill={colors[1]} />
+        <polygon points="63,79.5 72,75 72,57 63,61.5" fill="#7a4a2a" />
+        <polygon
+          points="34,62 45,67.5 45,56.5 34,51"
+          fill="#9fb3c4"
+          stroke="rgb(0 0 0 / 15%)"
+          strokeWidth="1"
+        />
+        <polygon points="21,42 54,58 54,8" fill={colors[2]} />
+        <polygon points="54,58 87,42 54,8" fill={colors[2]} opacity="0.82" />
+        <polygon points="40,22 54,8 68,22 54,28" className="house__snow" />
+        {/* Scaffolding: poles, and planks across them at two heights. */}
+        <g stroke="#8a5a2e" strokeWidth="2" strokeLinecap="round">
+          <line x1="57" y1="90" x2="57" y2="46" />
+          <line x1="70" y1="84" x2="70" y2="40" />
+          <line x1="83" y1="77" x2="83" y2="34" />
         </g>
-        <g stroke="#a8743f" strokeWidth="2.4" strokeLinecap="round">
-          <line x1="58" y1="88" x2="58" y2="44" />
-          <line x1="78" y1="78" x2="78" y2="34" />
-          <line x1="58" y1="72" x2="78" y2="62" />
-          <line x1="58" y1="56" x2="78" y2="46" />
-          <line x1="58" y1="72" x2="78" y2="46" strokeWidth="1.6" />
+        <polygon
+          points="55,70 85,55 85,58.5 55,73.5"
+          fill="#d9a35f"
+          stroke="#a8743f"
+          strokeWidth="1"
+        />
+        <polygon
+          points="55,53 85,38 85,41.5 55,56.5"
+          fill="#d9a35f"
+          stroke="#a8743f"
+          strokeWidth="1"
+        />
+        <line x1="57" y1="73" x2="70" y2="49.5" stroke="#8a5a2e" strokeWidth="1.4" />
+        <line x1="70" y1="67" x2="83" y2="43" stroke="#8a5a2e" strokeWidth="1.4" />
+        {/* The barrier, striped, on two little feet. */}
+        <g>
+          <line x1="40" y1="96" x2="40" y2="88" stroke="#6b6b6b" strokeWidth="1.6" />
+          <line x1="58" y1="99" x2="58" y2="91" stroke="#6b6b6b" strokeWidth="1.6" />
+          <polygon
+            points="37,86 61,94 61,99 37,91"
+            fill="#ffd23f"
+            stroke="#7a6a20"
+            strokeWidth="0.8"
+          />
+          <polygon points="41,87.3 45,88.7 45,93.7 41,92.3" fill="#2b2320" />
+          <polygon points="49,90 53,91.3 53,96.3 49,95" fill="#2b2320" />
+          <polygon points="57,92.7 61,94 61,99 57,97.7" fill="#2b2320" />
         </g>
-        <polygon points="30,88 46,95 50,93 34,86" fill="#c99a5e" />
-        <polygon points="32,84 48,91 52,89 36,82" fill="#dbb07a" />
+        {/* A traffic cone by the sign. */}
+        <g>
+          <polygon points="31,99 39,99 35,84" fill="#ff7a2f" />
+          <polygon points="32.6,93 37.4,93 36.6,90 33.4,90" fill="#fff" />
+          <rect x="29.5" y="98.5" width="11" height="2.5" rx="1" fill="#e2601a" />
+        </g>
         <rect x="15" y="82" width="3" height="14" fill="#7a5534" />
         <g className={here ? 'house__sign house__sign--here' : 'house__sign'}>
           <rect
