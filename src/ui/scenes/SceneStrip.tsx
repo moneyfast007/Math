@@ -49,14 +49,7 @@ import './scenes.css';
  */
 
 export type SceneKind =
-  | 'village'
-  | 'rocket'
-  | 'garden'
-  | 'race'
-  | 'pond'
-  | 'robot'
-  | 'balloons'
-  | 'sub';
+  'village' | 'rocket' | 'garden' | 'race' | 'pond' | 'robot' | 'balloons' | 'sub';
 
 type Scene =
   | { kind: 'village'; l: VillageLayout }
