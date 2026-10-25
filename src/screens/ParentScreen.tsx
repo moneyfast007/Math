@@ -11,10 +11,17 @@ import { makeT, t, type TranslationKey } from '@/i18n';
 import { formatDate, formatPercent, gradeLabel, mistakeLabel, topicLabel } from '@/i18n/labels';
 import { ParentGate } from '@/parent/ParentGate';
 import { ProfileForm } from '@/parent/ProfileForm';
-import { SyncSection } from '@/parent/SyncSection';
+import { AccountDialog, SyncSection } from '@/parent/SyncSection';
+import {
+  countPracticeDays,
+  endOffer,
+  putOffOffer,
+  readOffer,
+  shouldOffer,
+} from '@/parent/accountOffer';
 import { More, SettingsCard } from '@/parent/parts';
 import { PARENT_TABS, takeParentTab, type ParentTab } from '@/parent/tab';
-import { useSync } from '@/sync';
+import { syncEngine, useSync } from '@/sync';
 import { isStandalone } from '@/pwa/standalone';
 import { backupFileName, deliverFile, readBackupFile, serializeBackup } from '@/state/backup';
 import { PIN_LENGTH } from '@/state/pin';
@@ -441,6 +448,76 @@ export function PinBanner() {
             void setPin(pin).then(() => setShown(false));
           }}
           onCancel={() => setChoosing(false)}
+        />
+      ) : null}
+    </div>
+  );
+}
+
+/**
+ * At the top of "מה היה היום?", after a few days of practice on a device that
+ * does not sync: sign in with an email so the progress is kept on the server.
+ * Never together with the code offer (accountOffer.ts has the rules).
+ */
+export function AccountBanner() {
+  const hasPin = useApp((s) => s.data.parent.pin !== null);
+  const progress = useApp((s) => s.data.progress);
+  const linked = useSync((s) => s.linked);
+  const [shown, setShown] = useState(false);
+  const [open, setOpen] = useState(false);
+  useEffect(() => {
+    const id = window.setTimeout(() => {
+      const kept = pinOffer();
+      setShown(
+        shouldOffer({
+          linked: syncEngine.ui.getState().linked,
+          practiceDays: countPracticeDays(progress),
+          otherOfferToday: showPinBanner(hasPin) || kept === dayKey(Date.now()),
+          state: readOffer(),
+          now: Date.now(),
+        }),
+      );
+    }, 0);
+    return () => window.clearTimeout(id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  if (!shown || (linked && !open)) return null;
+  return (
+    <div className="pin-banner" role="note">
+      <span className="pin-banner__icon" aria-hidden="true">
+        <Icon name="sync" />
+      </span>
+      <p className="pin-banner__text">{t('accountOffer.banner')}</p>
+      <div className="pin-banner__actions">
+        <button type="button" className="btn btn--small" onClick={() => setOpen(true)}>
+          {t('accountOffer.go')}
+        </button>
+        <button
+          type="button"
+          className="btn btn--ghost btn--small"
+          onClick={() => {
+            putOffOffer(Date.now());
+            setShown(false);
+          }}
+        >
+          {t('accountOffer.later')}
+        </button>
+      </div>
+      {open ? (
+        <AccountDialog
+          mode="signup"
+          onClose={() => {
+            setOpen(false);
+            if (syncEngine.ui.getState().linked) {
+              endOffer();
+              setShown(false);
+            }
+          }}
+          onJoined={() => {
+            setOpen(false);
+            endOffer();
+            setShown(false);
+          }}
         />
       ) : null}
     </div>

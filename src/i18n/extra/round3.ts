@@ -27,6 +27,9 @@ export const heRound3 = {
   'pinOffer.banner': 'רוצים קוד בן 4 ספרות במקום תרגיל הכפל בכניסה?',
   'pinOffer.choose': 'בחירת קוד',
   'pinOffer.later': 'לא עכשיו',
+  'accountOffer.banner': 'רוצים לשמור את ההתקדמות גם אם המכשיר יאבד או יתחלף? אפשר להתחבר עם מייל וסיסמה.',
+  'accountOffer.go': 'התחברות',
+  'accountOffer.later': 'לא עכשיו',
   // Parents (C): the week at a glance.
   'c.week.title': 'השבוע',
   'c.week.days': 'ימי תרגול',

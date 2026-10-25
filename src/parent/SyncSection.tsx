@@ -181,7 +181,7 @@ function NotLinked({ onJoined }: { onJoined: (result: JoinResult) => void }) {
  * Signing up (or setting the family's email on a linked device) and signing in.
  * The password is checked here and stretched on the device; no mail is sent.
  */
-function AccountDialog({
+export function AccountDialog({
   mode: initial,
   onClose,
   onJoined,

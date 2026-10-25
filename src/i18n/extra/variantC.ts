@@ -26,7 +26,7 @@ export const heVariantC = {
   // Parents' area: the three questions
   'c.tabs': 'אזור ההורים',
   'c.tab.today': 'מה היה היום?',
-  'c.tab.progress': 'איך מתקדמים?',
+  'c.tab.progress': 'התקדמות',
   'c.tab.settings': 'הגדרות',
 
   // Today

@@ -33,6 +33,7 @@ import {
   JourneyReport,
   OfflineSection,
   PinBanner,
+  AccountBanner,
   SecuritySection,
 } from '../ParentScreen';
 import { guidance, isYesterday, nowAt, takeNewChild, todayOf, worldName } from './cShared';
@@ -358,6 +359,7 @@ function TodayPanel({ onAdd, onRestore }: { onAdd: () => void; onRestore: () => 
       ) : (
         <>
           <PinBanner />
+          <AccountBanner />
           <ul className="c-list" role="list">
             {profiles.map((p, i) => (
               <li key={p.id}>
