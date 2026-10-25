@@ -168,66 +168,77 @@ function Journey({ profile }: { profile: Profile }) {
             {!young ? <p className="muted journey__grade">{gradeLabel(profile.grade)}</p> : null}
           </div>
         </div>
-        {/* Small tools with a word under each, so the child's name keeps the room. */}
-        <div className="journey__tools">
-          {goal ? (
-            // With a daily goal: the streak, and today's rounds toward the goal under it.
-            <div
-              className="journey__tool journey__goal"
-              role="img"
-              aria-label={`${streakLabel(streak)}. ${t('goal.label', { params: { done: Math.min(today, goal), goal } })}`}
-            >
-              <StreakChip count={streak} decorative />
-              <span
-                className={
-                  today >= goal
-                    ? 'journey__tool-label journey__goal-label journey__goal-label--done'
-                    : 'journey__tool-label journey__goal-label'
-                }
+        {/* Small tools with a word under each, so the child's name keeps the room;
+            the way to all the worlds under them. */}
+        <div className="journey__side">
+          <div className="journey__tools">
+            {goal ? (
+              // With a daily goal: the streak, and today's rounds toward the goal under it.
+              <div
+                className="journey__tool journey__goal"
+                role="img"
+                aria-label={`${streakLabel(streak)}. ${t('goal.label', { params: { done: Math.min(today, goal), goal } })}`}
               >
-                {today >= goal
-                  ? t('goal.reachedChild')
-                  : t('goal.progress', { params: { done: today, goal } })}
+                <StreakChip count={streak} decorative />
+                <span
+                  className={
+                    today >= goal
+                      ? 'journey__tool-label journey__goal-label journey__goal-label--done'
+                      : 'journey__tool-label journey__goal-label'
+                  }
+                >
+                  {today >= goal
+                    ? t('goal.reachedChild')
+                    : t('goal.progress', { params: { done: today, goal } })}
+                </span>
+              </div>
+            ) : streak > 0 ? (
+              <StreakChip count={streak} />
+            ) : null}
+            <button
+              type="button"
+              className="journey__tool"
+              aria-label={t('journey.album')}
+              onClick={() => navigate({ name: 'album' })}
+            >
+              <span className="journey__tool-icon">
+                <AlbumIcon />
               </span>
-            </div>
-          ) : streak > 0 ? (
-            <StreakChip count={streak} />
-          ) : null}
+              <span className="journey__tool-label" aria-hidden="true">
+                {t('journeyBar.album')}
+              </span>
+            </button>
+            {/* Back to "who is playing?". */}
+            <button
+              type="button"
+              className="journey__tool"
+              aria-label={t('journey.exitLabel')}
+              title={t('journey.exitLabel')}
+              onClick={() => navigate({ name: 'home' })}
+            >
+              <span className="journey__tool-icon">
+                <Icon name="exit" />
+              </span>
+              <span className="journey__tool-label" aria-hidden="true">
+                {t('journeyBar.exit')}
+              </span>
+            </button>
+          </div>
           <button
             type="button"
-            className="journey__tool"
-            aria-label={t('journey.album')}
-            onClick={() => navigate({ name: 'album' })}
+            className="btn btn--secondary btn--small journey__all"
+            onClick={() => navigate({ name: 'worlds' })}
           >
-            <span className="journey__tool-icon">
-              <AlbumIcon />
-            </span>
-            <span className="journey__tool-label" aria-hidden="true">
-              {t('journeyBar.album')}
-            </span>
-          </button>
-          {/* Back to "who is playing?". */}
-          <button
-            type="button"
-            className="journey__tool"
-            aria-label={t('journey.exitLabel')}
-            title={t('journey.exitLabel')}
-            onClick={() => navigate({ name: 'home' })}
-          >
-            <span className="journey__tool-icon">
-              <Icon name="exit" />
-            </span>
-            <span className="journey__tool-label" aria-hidden="true">
-              {t('journeyBar.exit')}
-            </span>
+            <WorldsIcon />
+            <span>{t('worlds.open')}</span>
           </button>
         </div>
       </header>
 
       <div className="journey__body">
         <div className="journey__mapcol">
-          <div className="journey__world">
-            {!young ? (
+          {!young ? (
+            <div className="journey__world">
               <div className="journey__world-text">
                 <h2 className="journey__world-name">
                   {t('journey.world', {
@@ -235,16 +246,8 @@ function Journey({ profile }: { profile: Profile }) {
                   })}
                 </h2>
               </div>
-            ) : null}
-            <button
-              type="button"
-              className="btn btn--secondary btn--small journey__all"
-              onClick={() => navigate({ name: 'worlds' })}
-            >
-              <WorldsIcon />
-              <span>{t('worlds.open')}</span>
-            </button>
-          </div>
+            </div>
+          ) : null}
 
           <WorldMap
             world={world}

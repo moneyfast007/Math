@@ -185,12 +185,10 @@ describe('<JourneyScreen> header and world row', () => {
     const stations = activeWorld(2, emptyProgress())?.stations.length ?? 0;
     expect(stations).toBeGreaterThan(0);
     expect(screen.getByText(`תחנה 1 מתוך ${stations}`)).toBeInTheDocument();
-    // The world's name and "כל העולמות" share one row.
-    const row = screen
-      .getByRole('heading', { level: 2, name: /^עולם 1 · / })
-      .closest<HTMLElement>('.journey__world');
-    if (!row) throw new Error('the world row is missing');
-    expect(within(row).getByRole('button', { name: 'כל העולמות' })).toBeInTheDocument();
+    // The world's name has a row of its own; "כל העולמות" is up with the tools.
+    expect(screen.getByRole('heading', { level: 2, name: /^עולם 1 · / })).toBeInTheDocument();
+    const header = screen.getByRole('banner');
+    expect(within(header).getByRole('button', { name: 'כל העולמות' })).toBeInTheDocument();
   });
 
   it('once every station is done, names the final challenge and what it opens', () => {

@@ -328,3 +328,13 @@ html:has(.journey--village) body {
   min-width: 0;
   flex: 1 1 0;
 }
+
+/* The world's name stands on the ground itself, with no panel. */
+.journey--village .journey__world {
+  padding: 0 4px;
+  border: 0;
+  background: none;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  box-shadow: none;
+}

@@ -1373,6 +1373,14 @@ ol.steps {
   gap: var(--space-2);
 }
 
+/* The tools, and under them, centred, the way to all the worlds. */
+.journey__side {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
 .journey__world {
   display: flex;
   align-items: baseline;
