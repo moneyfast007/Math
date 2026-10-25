@@ -287,7 +287,7 @@ describe('the usage counts', () => {
     expect(report.families).toBe(0);
   });
 
-  it('keeps exercises reported as wrong, and the app\'s errors, without anything about the child', async () => {
+  it("keeps exercises reported as wrong, and the app's errors, without anything about the child", async () => {
     const { services } = server();
     const report = {
       topic: 'fractionMul',
@@ -300,18 +300,27 @@ describe('the usage counts', () => {
       reason: 'answer',
     };
     expect((await call(services, '/api/mistake', { report })).status).toBe(200);
-    expect((await call(services, '/api/mistake', { report: { ...report, reason: 'x' } })).status).toBe(
-      400,
-    );
-    const crash = { message: "Cannot read properties of undefined (reading 'x')", where: 'assets/index.js:1:2' };
+    expect(
+      (await call(services, '/api/mistake', { report: { ...report, reason: 'x' } })).status,
+    ).toBe(400);
+    const crash = {
+      message: "Cannot read properties of undefined (reading 'x')",
+      where: 'assets/index.js:1:2',
+    };
     await call(services, '/api/crash', { report: crash });
     await call(services, '/api/crash', { report: crash });
-    expect((await call(services, '/api/crash', { report: { message: '', where: '' } })).status).toBe(400);
+    expect(
+      (await call(services, '/api/crash', { report: { message: '', where: '' } })).status,
+    ).toBe(400);
 
     const stats = await (
       services as unknown as {
         statsCore: {
-          report: () => Promise<{ mistakeCount: number; mistakes: unknown[]; crashes: Array<{ count: number }> }>;
+          report: () => Promise<{
+            mistakeCount: number;
+            mistakes: unknown[];
+            crashes: Array<{ count: number }>;
+          }>;
         };
       }
     ).statsCore.report();
@@ -328,7 +337,8 @@ describe('the usage counts', () => {
     const { services } = server();
     const report = { message: 'boom', where: '' };
     let last = 0;
-    for (let i = 0; i < 21; i++) last = (await call(services, '/api/crash', { report }, { ip: '1.2.3.4' })).status;
+    for (let i = 0; i < 21; i++)
+      last = (await call(services, '/api/crash', { report }, { ip: '1.2.3.4' })).status;
     expect(last).toBe(429);
   });
 
@@ -337,7 +347,12 @@ describe('the usage counts', () => {
     const family = await newFamily(services);
     await newFamily(services);
     clock.now += 8 * 24 * 60 * 60 * 1000;
-    await call(services, '/api/sync', { shared: shared(), slice: emptySlice() }, { token: family.token });
+    await call(
+      services,
+      '/api/sync',
+      { shared: shared(), slice: emptySlice() },
+      { token: family.token },
+    );
     const stats = await (
       services as unknown as {
         statsCore: { report: () => Promise<{ retention: { week: { back: number; of: number } } }> };

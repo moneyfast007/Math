@@ -12,7 +12,11 @@ import { Dialog } from './Dialog';
 
 const cut = (text: string, max: number) => (text.length > max ? text.slice(0, max) : text);
 
-export function mistakeReport(e: Exercise, given: number | null, reason: MistakeReason): MistakeReport {
+export function mistakeReport(
+  e: Exercise,
+  given: number | null,
+  reason: MistakeReason,
+): MistakeReport {
   return {
     topic: cut(e.topicId, 60),
     level: e.level,

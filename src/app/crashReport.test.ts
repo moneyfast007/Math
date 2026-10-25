@@ -3,7 +3,7 @@ import { crashReport, ownPlace, reportCrash } from './crashReport';
 
 const ORIGIN = 'https://plusi.app';
 
-describe('reporting the app\'s errors', () => {
+describe("reporting the app's errors", () => {
   it('keeps the place in our own code only', () => {
     const stack = [
       "TypeError: Cannot read properties of undefined (reading 'x')",
@@ -18,7 +18,10 @@ describe('reporting the app\'s errors', () => {
   it('sends only errors from our files: the message and the place', () => {
     const e = new TypeError('boom');
     e.stack = `TypeError: boom\n    at g (${ORIGIN}/assets/x.js:1:2)`;
-    expect(crashReport(e, ORIGIN)).toEqual({ message: 'TypeError: boom', where: 'assets/x.js:1:2' });
+    expect(crashReport(e, ORIGIN)).toEqual({
+      message: 'TypeError: boom',
+      where: 'assets/x.js:1:2',
+    });
     const foreign = new Error('other');
     foreign.stack = 'Error: other\n    at chrome-extension://abc/a.js:1:1';
     expect(crashReport(foreign, ORIGIN)).toBeNull();

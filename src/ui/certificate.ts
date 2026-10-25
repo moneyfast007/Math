@@ -45,7 +45,8 @@ export function certificateSvg(
   text: CertificateText,
   art: { plusi: SVGSVGElement | null; friend: SVGSVGElement | null; sticker: SVGSVGElement | null },
 ): string {
-  const font = "system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans Hebrew', Arial, sans-serif";
+  const font =
+    "system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans Hebrew', Arial, sans-serif";
   const t = (y: number, size: number, weight: number, fill: string, value: string) =>
     `<text x="${W / 2}" y="${y}" text-anchor="middle" direction="rtl" font-family="${font}" font-size="${size}" font-weight="${weight}" fill="${fill}">${esc(value)}</text>`;
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">
