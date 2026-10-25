@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { speaker } from '@/audio/speaker';
 import { navigate } from '@/app/router';
-import { activeWorld } from '@/engine/journey';
+import { activeWorld, worldsFor, type World } from '@/engine/journey';
 import { makeT, t } from '@/i18n';
 import { ParentGate } from '@/parent/ParentGate';
 import { requestParentTab } from '@/parent/tab';
@@ -16,6 +16,13 @@ import { BrandMark } from '@/ui/BrandMark';
 import { Icon } from '@/ui/Icon';
 import { LongPressButton } from '@/ui/LongPressButton';
 import { Plusi } from '@/ui/Plusi';
+import { SceneStrip } from '@/ui/scenes/SceneStrip';
+import {
+  CompanionArt,
+  companionFor,
+  sceneForWorld,
+  sceneStyleForGrade,
+} from '@/ui/scenes/companions';
 import { SpeakerButton } from '@/ui/SpeakerButton';
 import { InfoLink } from '../HomeScreen';
 import { whoIsPlayingTitle } from '../homeTitle';
@@ -32,10 +39,12 @@ import {
 import './c.css';
 
 /**
- * Design C of the entry screen: calm and minimal. One child gets one big
- * "continue" card (where she is in her journey, how today is going, her stars);
- * several children get one card each, all the same size and in the family's
- * order, so no one is put first. On a first visit, a short welcome with what a
+ * Design C of the entry screen, set like a game. One child stands on a stage:
+ * her world's scene behind her (lit as far as she got), her name on a ribbon,
+ * the friends she collected beside her, her world and station on a sign, and a
+ * big button to go on. Several children stand side by side, each on a pedestal,
+ * all the same size and in the family's order (no one put first): a tap on one
+ * starts her journey. On a first visit, a short welcome with what a
  * parent wants to know, and one button straight into creating the first child.
  */
 export function HomeC() {
@@ -120,7 +129,7 @@ export function HomeC() {
         {only ? (
           <HeroCard profile={only} index={0} now={now} onPlay={() => play(only)} />
         ) : (
-          <ul className="c-home__list c-home__list--rows" role="list">
+          <ul className="c-home__list c-pick" role="list">
             {profiles.map((p, i) => (
               <li key={p.id}>
                 <KidRow
@@ -205,10 +214,53 @@ function SayOnce({ text }: { text: string }) {
   return null;
 }
 
-/** The big "continue" card: one tap anywhere on it starts where she stopped. */
+/** The friends she collected: those of the worlds she finished, the latest two. */
+function friendsOf(profile: Profile, progress: ProfileProgress | undefined) {
+  const style = sceneStyleForGrade(profile.grade);
+  return worldsFor(profile.grade, progress)
+    .filter((w) => w.completed)
+    .map((w) => companionFor(style, w.index - 1))
+    .filter((c) => c !== null)
+    .slice(-2);
+}
+
+/** Her world's stations as dots: done, the one she is at, still to come. */
+function Trail({ world }: { world: World }) {
+  const stations = world.stations.filter((s) => !s.warmup);
+  return (
+    <span className="c-trail" aria-hidden="true">
+      {stations.map((s) => (
+        <span
+          key={s.level}
+          className={
+            s.state === 'done' || s.state === 'skipped'
+              ? 'c-trail__dot c-trail__dot--done'
+              : s.state === 'current'
+                ? 'c-trail__dot c-trail__dot--here'
+                : 'c-trail__dot'
+          }
+        />
+      ))}
+      <span
+        className={
+          world.review === 'done'
+            ? 'c-trail__cup c-trail__cup--done'
+            : world.review === 'current'
+              ? 'c-trail__cup c-trail__cup--here'
+              : 'c-trail__cup'
+        }
+      />
+    </span>
+  );
+}
+
+/**
+ * One child: her stage. The scene of her world (as far as she got), her face big
+ * with her name on a ribbon and her friends beside her, where she is, and one big
+ * button to go on (her face starts too, for a small hand).
+ */
 function HeroCard({
   profile,
-  index,
   now,
   onPlay,
 }: {
@@ -222,45 +274,74 @@ function HeroCard({
   const today = todayOf(progress, now);
   const goal = profile.settings.dailyGoal;
   const tc = makeT(profile.gender);
-  const share = world ? Math.round((world.done / world.total) * 100) : 0;
-
   const todayLine = todayLineOf(goal, today);
   const stars = totalStars(progress);
   const never = summarizeProgress(progress).lastPracticedAt === null;
+  const friends = friendsOf(profile, progress);
+  const scene = world ? sceneForWorld(sceneStyleForGrade(profile.grade), world.index - 1) : null;
 
   return (
-    <button type="button" className={`c-hero profile-card--c${index % 6}`} onClick={onPlay}>
-      <span className="c-hero__avatar">
-        <Avatar id={profile.avatar} size="lg" decorative />
-      </span>
-      <span className="c-hero__body">
-        <span className="c-hero__name">{profile.name}</span>
-        {world ? (
-          <span className="c-hero__where">
-            <span className="c-hero__world">{worldName(world)}</span>
-            <span className="c-hero__station">
-              {world.completed ? tc('parentArea.allWorldsDone') : nowAt(world)}
+    <section className="c-stage" aria-label={profile.name}>
+      {stars > 0 || todayLine ? (
+        <div className="c-stage__hud">
+          {stars > 0 ? <StarCount stars={stars} /> : null}
+          {todayLine ? (
+            <span className={today.practised ? 'c-stage__today c-stage__today--on' : 'c-stage__today'}>
+              {today.practised ? <Check /> : null}
+              {todayLine}
             </span>
-            <span className="meter c-hero__meter" aria-hidden="true">
-              <span style={{ width: `${share}%` }} />
+          ) : null}
+        </div>
+      ) : null}
+      <div className="c-stage__scene">
+        {world && scene ? (
+          <SceneStrip
+            kind={scene}
+            total={world.total}
+            marks={Array.from({ length: world.done }, () => true)}
+            done={world.done}
+            quiet
+            label={world.completed ? tc('parentArea.allWorldsDone') : nowAt(world)}
+          />
+        ) : (
+          <div className="c-stage__sky" />
+        )}
+        <div className="c-stage__cast">
+          {friends[0] ? (
+            <span className="c-stage__friend c-stage__friend--a" aria-hidden="true">
+              <CompanionArt id={friends[0].id} size="80%" />
             </span>
+          ) : null}
+          <span className="c-stage__me" aria-hidden="true" onClick={onPlay}>
+            <span className="c-ribbon">{profile.name}</span>
+            <span className="c-stage__avatar">
+              <Avatar id={profile.avatar} size="lg" decorative />
+            </span>
+            <span className="c-stage__floor" />
           </span>
-        ) : null}
-        {todayLine ? (
-          <span className={today.practised ? 'c-hero__today c-hero__today--on' : 'c-hero__today'}>
-            {today.practised ? <Check /> : null}
-            {todayLine}
+          {friends[1] ? (
+            <span className="c-stage__friend c-stage__friend--b" aria-hidden="true">
+              <CompanionArt id={friends[1].id} size="80%" />
+            </span>
+          ) : null}
+        </div>
+      </div>
+      {world ? (
+        <div className="c-sign">
+          <span className="c-sign__world">{worldName(world)}</span>
+          {world.completed ? null : <Trail world={world} />}
+          <span className="c-sign__station">
+            {world.completed ? tc('parentArea.allWorldsDone') : nowAt(world)}
           </span>
-        ) : null}
-      </span>
-      {stars > 0 ? <StarCount stars={stars} /> : null}
-      <span className="c-hero__go">
+        </div>
+      ) : null}
+      <button type="button" className="c-hero" onClick={onPlay}>
         {never ? t('c.home.start') : t('c.home.continue')}
         <span className="c-hero__arrow" aria-hidden="true">
           ←
         </span>
-      </span>
-    </button>
+      </button>
+    </section>
   );
 }
 
@@ -314,12 +395,11 @@ function KidRow({
   const tc = makeT(profile.gender);
   const stars = totalStars(progress);
   const never = summarizeProgress(progress).lastPracticedAt === null;
-  const share = world ? Math.round((world.done / world.total) * 100) : 0;
-  const todayLine = todayLineOf(profile.settings.dailyGoal, today);
   return (
-    <button type="button" className={`c-kidrow profile-card--c${index % 6}`} onClick={onPlay}>
+    <button type="button" className="c-kidrow" data-index={index} onClick={onPlay}>
+      <span className="c-ribbon c-ribbon--small">{profile.name}</span>
       <span className="c-kidrow__avatar">
-        <Avatar id={profile.avatar} size="md" decorative />
+        <Avatar id={profile.avatar} size="lg" decorative />
         {today.practised ? (
           <span className="c-kid__done">
             <Check />
@@ -327,32 +407,19 @@ function KidRow({
           </span>
         ) : null}
       </span>
-      <span className="c-kidrow__body">
-        <span className="c-kidrow__top">
-          <span className="c-kidrow__name">{profile.name}</span>
-          {stars > 0 ? <StarCount stars={stars} /> : null}
-        </span>
+      <span className="c-kidrow__pedestal">
+        {stars > 0 ? <StarCount stars={stars} /> : null}
         {world ? (
           <span className="c-kidrow__where">
-            {world.completed ? tc('parentArea.allWorldsDone') : worldName(world)}
+            {world.completed ? tc('parentArea.allWorldsDone') : t('c.home.worldN', { params: { n: world.index } })}
           </span>
         ) : null}
-        {world && !world.completed ? (
-          <span className="meter c-kidrow__meter" aria-hidden="true">
-            <span style={{ width: `${share}%` }} />
+        <span className="c-kidrow__go">
+          {never ? t('c.home.start') : t('c.home.continue')}
+          <span className="c-hero__arrow" aria-hidden="true">
+            ←
           </span>
-        ) : null}
-        {todayLine ? (
-          <span
-            className={today.practised ? 'c-kidrow__today c-kidrow__today--on' : 'c-kidrow__today'}
-          >
-            {todayLine}
-          </span>
-        ) : null}
-      </span>
-      <span className="c-kidrow__go" aria-hidden="true">
-        {never ? t('c.home.start') : t('c.home.continue')}
-        <span className="c-hero__arrow">←</span>
+        </span>
       </span>
     </button>
   );

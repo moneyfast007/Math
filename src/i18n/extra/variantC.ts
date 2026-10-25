@@ -27,6 +27,7 @@ export const heVariantC = {
   'c.tabs': 'אזור ההורים',
   'c.tab.today': 'מה היה היום?',
   'c.tab.progress': 'התקדמות',
+  'c.home.worldN': 'עולם {n}',
   'c.tab.settings': 'הגדרות',
 
   // Today
