@@ -4,7 +4,7 @@
  */
 export const heVariantC = {
   // Entry screen: first visit
-  'c.welcome.hello': 'היי, אני פלוסי! איתי מתרגלים חשבון כמו הרפתקה.',
+  'c.welcome.hello': 'היי, אני פלוסי! בואו נצא למסע בעולמות של מספרים.',
   'c.welcome.promise.ads': 'בלי פרסומות',
   'c.welcome.promise.signup': 'בלי הרשמה ובלי סיסמה',
   'c.welcome.promise.device': 'המידע נשמר אצלכם במכשיר',
