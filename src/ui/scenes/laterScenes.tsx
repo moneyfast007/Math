@@ -1,4 +1,3 @@
-import type { CSSProperties } from 'react';
 
 /**
  * The scenes of the sixth to eighth worlds (SceneStrip.tsx has the engine).
@@ -188,7 +187,7 @@ export function Rainbow({
                 className="rainbow__band"
                 stroke={color}
                 strokeWidth={band}
-                style={{ strokeDashoffset: 1 - fraction } as CSSProperties}
+                style={{ strokeDashoffset: 1 - fraction }}
               />
             </g>
           );
@@ -301,7 +300,7 @@ export function Cake({
         <rect x={cake.x} y={cake.y} width={cake.w} height={cake.h} rx="6" className="cake__body" />
         <path
           className="cake__icing"
-          d={`M${cake.x} ${cake.y + 6}${Array.from({ length: 8 }, (_, k) => `q${cake.w / 16} 10 ${cake.w / 8} 0`).join('')}V${cake.y}H${cake.x}z`}
+          d={`M${cake.x} ${cake.y + 6}${`q${cake.w / 16} 10 ${cake.w / 8} 0`.repeat(8)}V${cake.y}H${cake.x}z`}
         />
         {candles.map((c, i) => {
           const on = i < shown && marks[i] === true;

@@ -564,7 +564,7 @@ export function SceneStrip({
           />
         ) : scene.kind === 'tower' ? (
           <Tower size={size} layout={scene.l} marks={marks} shown={shown} reacting={reacting} />
-        ) : (
+        ) : scene.kind === 'robot' ? (
           <div key={`r${reacting}`} className={reacting > 0 ? 'robot robot--warn' : 'robot'}>
             <Robot
               size={size}
@@ -574,7 +574,7 @@ export function SceneStrip({
               counter={`${litBefore(marks, shown)}/${total}`}
             />
           </div>
-        )
+        ) : null
       ) : null}
       <canvas ref={canvas} className="scene-strip__fx" aria-hidden="true" />
       {counting ? (
