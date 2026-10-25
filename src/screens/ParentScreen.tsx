@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type KeyboardEvent, type ReactNode } from 'react';
+import { useEffect, useRef, useState, type ComponentType, type KeyboardEvent, type ReactNode } from 'react';
 import { navigate } from '@/app/router';
 import {
   countCached,
@@ -50,7 +50,7 @@ const BACKUP_STALE_MS = 14 * 24 * 60 * 60 * 1000;
 /** The parents' area behind the gate: the current design, or another one to compare (see app/uiVariant). */
 export function ParentScreen({
   area: Area = ParentArea,
-}: { area?: (() => ReactNode) | undefined } = {}) {
+}: { area?: ComponentType | undefined } = {}) {
   const unlocked = useApp((s) => s.isParentUnlocked());
   const noProfiles = useApp((s) => s.data.profiles.length === 0);
   const hasPin = useApp((s) => s.data.parent.pin !== null);
