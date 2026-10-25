@@ -216,6 +216,9 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
   const [hintView, setHintView] = useState<number | null>(null);
   const [countToken, setCountToken] = useState(0);
   useEffect(() => setHintView(null), [s.hintsShown, s.done, s.exercise.factId]);
+  // The child can put the hints away; "רמז" brings them back (and a new one only when they are shown).
+  const [hintsHidden, setHintsHidden] = useState(false);
+  useEffect(() => setHintsHidden(false), [s.done, s.exercise.factId]);
   const shownHint = Math.min(hintView ?? s.hintsShown - 1, Math.max(0, s.hintsShown - 1));
   // A hint opens at its top in its panel (which scrolls by itself, never the page).
   useLayoutEffect(() => {
@@ -625,15 +628,18 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
           <button
             type="button"
             className="btn btn--secondary btn--small practice__hint"
-            disabled={s.hintsShown >= 3}
-            onClick={() => apply({ type: 'hint' })}
+            disabled={s.hintsShown >= 3 && !hintsHidden}
+            onClick={() => {
+              if (hintsHidden) setHintsHidden(false);
+              else apply({ type: 'hint' });
+            }}
           >
             {t('action.hint')}
           </button>
         ) : null}
       </section>
 
-      {s.hintsShown > 0 ? (
+      {s.hintsShown > 0 && !hintsHidden ? (
         <section ref={hintsRef} className="hints stack" aria-label={t('action.hint')}>
           {/* One hint at a time, the newest; the earlier ones a tap away, never half hidden. */}
           {s.hintsShown > 1 ? (
@@ -660,6 +666,14 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
                 <div className="hint__head">
                   <SpeakerButton text={h.spoken} parts={h.spokenParts} />
                   <strong>{t('practice.hintTitle', { params: { n: shownHint + 1 } })}</strong>
+                  <button
+                    type="button"
+                    className="btn btn--ghost hint__close"
+                    aria-label={t('hints.close')}
+                    onClick={() => setHintsHidden(true)}
+                  >
+                    ✕
+                  </button>
                 </div>
                 <p>{h.text}</p>
                 {h.visual ? <VisualView visual={h.visual} /> : null}

@@ -85,6 +85,7 @@ export const heRound3 = {
   // The map of all worlds: the review from every world lives here.
   'worlds.review.sub': 'תרגילים מכל התחנות שעברת, מעורבבים',
   'worlds.review.done': 'עשית היום',
+  'hints.close': 'סגירת הרמזים',
   // Signing in with an email and a password (no mail is ever sent).
   'account.start': 'התחברות עם מייל וסיסמה',
   'account.kind.signup': 'פעם ראשונה',

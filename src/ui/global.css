@@ -1167,6 +1167,14 @@ ol.steps {
   gap: var(--space-2);
 }
 
+/* Puts the hints away (at the far end of the head). */
+.hint__close {
+  margin-inline-start: auto;
+  padding: 0;
+  min-width: var(--tap-min);
+  font-size: var(--text-md);
+}
+
 .done {
   margin-top: var(--space-5);
 }
@@ -1769,6 +1777,8 @@ ol.steps {
 .fraction--bar {
   display: flex;
   gap: 4px;
+  /* The full width up to the cap: inside a centred column it would shrink to its borders. */
+  width: 100%;
   max-width: 420px;
   margin: 0 auto;
   height: calc(var(--tap-min) - 8px);
@@ -3428,6 +3438,7 @@ ol.steps {
   display: flex;
   flex-direction: column;
   gap: var(--space-1);
+  width: 100%;
   max-width: 420px;
   margin: 0 auto;
 }
