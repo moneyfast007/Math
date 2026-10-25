@@ -400,15 +400,15 @@ function KidRow({
       <span className="c-ribbon c-ribbon--small">{profile.name}</span>
       <span className="c-kidrow__avatar">
         <Avatar id={profile.avatar} size="lg" decorative />
-        {today.practised ? (
-          <span className="c-kid__done">
-            <Check />
-            <span className="visually-hidden">{tc('c.home.playedToday')}</span>
-          </span>
-        ) : null}
       </span>
       <span className="c-kidrow__pedestal">
         {stars > 0 ? <StarCount stars={stars} /> : null}
+        {today.practised ? (
+          <span className="c-kidrow__today">
+            <Check />
+            {tc('c.home.playedToday')}
+          </span>
+        ) : null}
         {world ? (
           <span className="c-kidrow__where">
             {world.completed ? tc('parentArea.allWorldsDone') : t('c.home.worldN', { params: { n: world.index } })}

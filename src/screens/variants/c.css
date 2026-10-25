@@ -495,12 +495,6 @@
   box-shadow: 0 0 0 4px var(--color-surface), 0 8px 16px rgb(40 30 20 / 18%);
 }
 
-.c-kidrow__avatar .c-kid__done {
-  top: auto;
-  bottom: 0;
-  inset-inline-end: -4px;
-}
-
 .c-kidrow__pedestal {
   flex: 1;
   display: flex;
@@ -518,6 +512,20 @@
 .c-kidrow__pedestal .c-stars {
   background: transparent;
   padding: 0;
+}
+
+.c-kidrow__today {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  color: #2f6b3a;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.c-kidrow__today .c-check {
+  width: 15px;
+  height: 15px;
 }
 
 .c-kidrow__where {
