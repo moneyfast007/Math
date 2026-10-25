@@ -134,21 +134,32 @@
   height: var(--house-current);
 }
 
-/* A ring on the ground: where she is (gold), the one chosen for this visit (blue). */
-.map--village .node::before {
-  content: '';
-  position: absolute;
-  inset: 70% 4% -4% 18%;
-  border-radius: 50%;
-  pointer-events: none;
+/* No rings on the ground: where Plusi stands, the house's sign grows and glows instead. */
+.map--village .node--picked {
+  box-shadow: none;
 }
 
-.map--village .node--current::before {
-  box-shadow: 0 0 0 4px #ffd45c;
+.house__sign {
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: transform var(--dur-med, 260ms) var(--ease, ease);
 }
 
-.map--village .node--picked::before {
-  box-shadow: 0 0 0 4px var(--color-accent);
+.house__sign--here {
+  transform: scale(1.7);
+  filter: drop-shadow(0 0 3px #ffd45c) drop-shadow(0 2px 2px rgb(0 0 0 / 25%));
+}
+
+.map--village .node__caption--here {
+  background: #ffd45c;
+  color: #3a2f2a;
+  transform: scale(1.12);
+}
+
+/* The castle's name sits over it, so its stars go under it. */
+.map--village .node__stars--review {
+  top: 96%;
+  transform: translate(-50%, -45%);
 }
 
 .map--village .node:focus-visible {
@@ -174,7 +185,9 @@
 }
 
 .map--village .node__caption {
-  margin-top: 2px;
+  top: auto;
+  bottom: 96%;
+  margin-top: 0;
   padding: 1px 8px;
   border-radius: var(--radius-pill);
   background: rgb(255 255 255 / 85%);
@@ -196,8 +209,9 @@
     animation: castle-flag 1.6s ease-in-out infinite;
   }
 
-  .map--village .node--current::before {
-    animation: house-ring 2.4s ease-in-out infinite;
+  .house__sign--here,
+  .map--village .node__caption--here {
+    animation: sign-glow 1.4s ease-in-out infinite;
   }
 }
 
@@ -218,8 +232,12 @@
   }
 }
 
-@keyframes house-ring {
+@keyframes sign-glow {
+  0%,
+  100% {
+    opacity: 1;
+  }
   50% {
-    box-shadow: 0 0 0 9px rgb(255 212 92 / 55%);
+    opacity: 0.55;
   }
 }

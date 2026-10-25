@@ -28,16 +28,19 @@ const LOCKED = ['#e9e3db', '#d9d2c8', '#b9b1a7'] as const;
  * One station's house. Done: its window lit and smoke from the chimney. The
  * one she is at: lit too. Closed: grey, with a "?" on its wall. The sign in
  * front carries the station's number (not for the youngest, who go by the
- * pictures).
+ * pictures); where Plusi stands, it grows and glows.
  */
 export function House({
   state,
   index,
   number,
+  here = false,
 }: {
   state: StationState;
   index: number;
   number: number | null;
+  /** Plusi stands here: the sign grows and glows. */
+  here?: boolean;
 }) {
   const locked = state === 'locked';
   const [wl, wr, roof] = locked ? LOCKED : (COLORS[index % COLORS.length] ?? COLORS[0]!);
@@ -75,6 +78,7 @@ export function House({
       ) : null}
       {/* The sign on its post, in front of the house. */}
       <rect x="15" y="82" width="3" height="14" fill="#7a5534" />
+      <g className={here ? 'house__sign house__sign--here' : 'house__sign'}>
       <rect
         x="4"
         y="70"
@@ -98,6 +102,7 @@ export function House({
           {number}
         </text>
       ) : null}
+      </g>
     </svg>
   );
 }
