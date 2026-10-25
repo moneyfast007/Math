@@ -1,0 +1,225 @@
+/*
+ * The journey map as a village (village.tsx): grass with an edge of earth under it,
+ * a dirt road, houses for the stations and a castle for the final challenge. Each
+ * world has its own village colours.
+ */
+
+.map--village {
+  --grass: #8fcf6a;
+  --grass-dark: #77b955;
+  --edge: #7a5a3a;
+  --road: #ead3a3;
+  --road-edge: #d1b47c;
+  --leaf: #3f9a4a;
+  --leaf-dark: #2f7a39;
+  --trunk: #8a5a32;
+  --snow: transparent;
+  --house: clamp(40px, calc(var(--cell, 100px) * 0.78), 92px);
+  --house-current: clamp(var(--tap-min), calc(var(--cell, 100px) * 0.98), 104px);
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at 20% 30%, var(--grass-dark) 0 1.5px, transparent 2px) 0 0 / 46px 38px,
+    radial-gradient(circle at 70% 60%, var(--grass-dark) 0 1.5px, transparent 2px) 0 0 / 58px 44px,
+    var(--grass);
+  box-shadow: 0 12px 0 var(--edge), 0 20px 24px rgb(60 40 20 / 18%);
+}
+
+.map--autumn {
+  --grass: #c9d46a;
+  --grass-dark: #b3bd55;
+  --leaf: #e08a3a;
+  --leaf-dark: #c4652a;
+}
+
+.map--snow {
+  --grass: #f2f6fb;
+  --grass-dark: #dbe5ef;
+  --edge: #8f9fb3;
+  --road: #ddd1bd;
+  --road-edge: #c1b196;
+  --leaf: #3f7a5a;
+  --leaf-dark: #2f5f46;
+  --snow: #ffffff;
+}
+
+.map--sand {
+  --grass: #f1d99b;
+  --grass-dark: #e3c47b;
+  --edge: #b08550;
+  --road: #fbeed0;
+  --road-edge: #dcc08a;
+  --leaf: #5aa36a;
+  --leaf-dark: #3f8550;
+}
+
+/* The road under everything; the walked stretch keeps its marks on top of it. */
+.map--village .map__road-edge {
+  stroke: var(--road-edge);
+  stroke-width: calc(var(--house) * 0.42);
+}
+
+.map--village .map__road {
+  stroke: var(--road);
+  stroke-width: calc(var(--house) * 0.3);
+}
+
+.map--village .map__path-done {
+  stroke: #fff;
+  stroke-width: 3px;
+  stroke-dasharray: 2 9;
+  opacity: 0.95;
+}
+
+.map--village .map__path-rest {
+  stroke: transparent;
+}
+
+.map__tree {
+  position: absolute;
+  width: calc(var(--house) * 0.5);
+  transform: translate(-50%, -85%);
+  pointer-events: none;
+}
+
+.map__tree svg,
+.map--village .node .house,
+.map--village .node .castle {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.house__shadow {
+  fill: rgb(0 0 0 / 13%);
+}
+
+.house__snow {
+  fill: var(--snow);
+}
+
+.tree__trunk {
+  fill: var(--trunk);
+}
+
+.tree__leaf {
+  fill: var(--leaf);
+}
+
+.tree__leaf--dark {
+  fill: var(--leaf-dark);
+}
+
+.house__smoke {
+  fill: #fff;
+  opacity: 0.45;
+}
+
+/* A station: its house, standing where the dot used to be. */
+.map--village .node {
+  width: var(--house);
+  height: var(--house);
+  border: 0;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+  color: inherit;
+  overflow: visible;
+  animation: none;
+  transform: translate(-50%, -62%);
+}
+
+.map--village .node--current {
+  width: var(--house-current);
+  height: var(--house-current);
+}
+
+/* A ring on the ground: where she is (gold), the one chosen for this visit (blue). */
+.map--village .node::before {
+  content: '';
+  position: absolute;
+  inset: 70% 4% -4% 18%;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.map--village .node--current::before {
+  box-shadow: 0 0 0 4px #ffd45c;
+}
+
+.map--village .node--picked::before {
+  box-shadow: 0 0 0 4px var(--color-accent);
+}
+
+.map--village .node:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 4px;
+  border-radius: 12px;
+}
+
+.map--village .node__stars {
+  top: 96%;
+}
+
+/* The final challenge: a castle, a little bigger than a house. */
+.map--village .node--review {
+  width: calc(var(--house) * 1.35);
+  height: calc(var(--house) * 1.35);
+  transform: translate(-50%, -66%);
+}
+
+.map--village .node--review .node__lock {
+  top: 22%;
+  inset-inline-start: 0;
+}
+
+.map--village .node__caption {
+  margin-top: 2px;
+  padding: 1px 8px;
+  border-radius: var(--radius-pill);
+  background: rgb(255 255 255 / 85%);
+  color: #5b4a8a;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .house__smoke {
+    animation: house-smoke 3s ease-out infinite;
+  }
+
+  .house__smoke--2 {
+    animation-delay: 1.5s;
+  }
+
+  .castle__flag {
+    transform-box: fill-box;
+    transform-origin: left center;
+    animation: castle-flag 1.6s ease-in-out infinite;
+  }
+
+  .map--village .node--current::before {
+    animation: house-ring 2.4s ease-in-out infinite;
+  }
+}
+
+@keyframes house-smoke {
+  0% {
+    opacity: 0.7;
+    transform: translate(0, 0) scale(0.6);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(5px, -20px) scale(1.4);
+  }
+}
+
+@keyframes castle-flag {
+  50% {
+    transform: skewY(-8deg) scaleX(0.92);
+  }
+}
+
+@keyframes house-ring {
+  50% {
+    box-shadow: 0 0 0 9px rgb(255 212 92 / 55%);
+  }
+}

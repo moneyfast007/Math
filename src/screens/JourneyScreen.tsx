@@ -35,8 +35,10 @@ import { PlusiPicker } from '@/ui/PlusiPicker';
 import { applyPlusiColor } from '@/ui/plusiColor';
 import { SpeakerButton } from '@/ui/SpeakerButton';
 import { Stars } from '@/ui/Stars';
-import { JourneyIntroCard, TrophyIcon, WorldsIcon } from './JourneyIntro';
+import { JourneyIntroCard, WorldsIcon } from './JourneyIntro';
 import { fitStations, layoutStations, pathThrough, type Point } from './journeyLayout';
+import { Castle, House, Tree, treeSpots, villageTheme } from './village';
+import './village.css';
 
 /**
  * The child's home: her journey through the current world. A winding path of
@@ -508,16 +510,33 @@ function WorldMap({
   return (
     <div className="journey__mapbox" ref={boxRef}>
       {overlay}
-      <section className="map" aria-label={t('journey.map')} style={mapStyle}>
+      <section
+        className={`map map--village map--${villageTheme(world.index)}`}
+        aria-label={t('journey.map')}
+        style={mapStyle}
+      >
         <svg
           className="map__path"
           viewBox={`0 0 100 ${height}`}
           preserveAspectRatio="none"
           aria-hidden="true"
         >
+          {/* A dirt road through the village; the stretch walked so far is marked. */}
+          <path d={pathThrough(points)} className="map__road-edge" />
+          <path d={pathThrough(points)} className="map__road" />
           <path d={donePath} className="map__path-done" />
           <path d={restPath} className="map__path-rest" />
         </svg>
+        {treeSpots(points, height).map((p, i) => (
+          <span
+            key={i}
+            className="map__tree"
+            style={{ left: `${p.x}%`, top: `${(p.y / height) * 100}%` }}
+            aria-hidden="true"
+          >
+            <Tree />
+          </span>
+        ))}
 
         {world.stations.map((s, i) => {
           const p = points[i] as Point;
@@ -529,11 +548,7 @@ function WorldMap({
           const style = { left: `${p.x}%`, top: `${(p.y / height) * 100}%` };
           const content = (
             <>
-              {s.state === 'done' ? (
-                <CheckIcon />
-              ) : (
-                <span className="node__num">{young ? '' : s.level}</span>
-              )}
+              <House state={s.state} index={i} number={young ? null : s.level} />
               {/* The best stars of this station, under it. */}
               {s.stars > 0 ? (
                 <span className="node__stars">
@@ -579,17 +594,8 @@ function WorldMap({
             onReview();
           }}
         >
-          {/* The cup in its own frame: the glint passes over it, and it wobbles once open. */}
-          <span className="node__cup">
-            <TrophyIcon />
-          </span>
-          {world.review !== 'done' ? (
-            <span className="node__sparks" aria-hidden="true">
-              <Spark className="node__spark node__spark--1" />
-              <Spark className="node__spark node__spark--2" />
-              <Spark className="node__spark node__spark--3" />
-            </span>
-          ) : null}
+          {/* The castle, with the cup's flag on it. */}
+          <Castle open={world.review !== 'locked'} />
           {/* Closed: a small lock in its corner says so (and why, when tapped). */}
           {world.review === 'locked' ? (
             <span className="node__lock" aria-hidden="true">
@@ -798,29 +804,4 @@ function useBoxSize(ref: RefObject<HTMLElement | null>) {
     return () => observer.disconnect();
   }, [ref]);
   return size;
-}
-
-function CheckIcon() {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      aria-hidden="true"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="3"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M5 12l5 5 9-10" />
-    </svg>
-  );
-}
-
-/** A four-pointed sparkle beside the final challenge: a prize waiting at the end. */
-function Spark({ className }: { className: string }) {
-  return (
-    <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
-      <path d="M12 2l2.2 7.8L22 12l-7.8 2.2L12 22l-2.2-7.8L2 12l7.8-2.2z" fill="currentColor" />
-    </svg>
-  );
 }
