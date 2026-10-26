@@ -185,12 +185,13 @@ export function SceneStrip({
   const canvas = useRef<HTMLCanvasElement>(null);
   const buddy = useRef<HTMLDivElement>(null);
   const live = useRef(true);
-  useEffect(
-    () => () => {
+  // Set on every mount (React may mount an effect twice), cleared when it goes.
+  useEffect(() => {
+    live.current = true;
+    return () => {
       live.current = false;
-    },
-    [],
-  );
+    };
+  }, []);
 
   useLayoutEffect(() => {
     const el = box.current;

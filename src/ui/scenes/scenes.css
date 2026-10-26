@@ -53,7 +53,7 @@
   border-radius: var(--radius-sm);
 }
 
-@media (max-height: 760px) {
+@media (max-height: 760px) and (max-width: 640px) {
   .practice__bar > .scene-strip {
     grid-column: 2;
     grid-row: 1;
