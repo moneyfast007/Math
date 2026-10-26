@@ -2,13 +2,13 @@ import { useEffect, useState } from 'react';
 
 /**
  * The stations finished since the map was last seen: their houses are built in
- * front of her (workers, two seconds) the first time the map shows them done.
+ * front of her (builders, about four seconds) the first time the map shows them done.
  * Remembered on this device, per child and world; the very first look records
  * what is there without building anything.
  */
 
 const PREFIX = 'plusi:built:';
-const BUILD_MS = 2400;
+const BUILD_MS = 4700;
 
 function read(key: string): number[] | null {
   try {

@@ -81,13 +81,13 @@ export function House({
     </>
   );
   if (tried && state !== 'done' && state !== 'current') {
-    // Started, not finished: walls up to half their height, no roof yet, bricks waiting.
+    // Started, not finished: grey walls up to half their height, no roof yet, bricks waiting.
     return (
       <svg className="house house--half" viewBox="0 0 100 100" aria-hidden="true">
         <ellipse cx="54" cy="86" rx="34" ry="11" className="house__shadow" />
         <polygon points="26,70 54,84 54,82 30,70" fill="#c9b9a4" />
-        <polygon points="26,70 54,84 54,68 26,54" fill={colors[0]} />
-        <polygon points="54,84 82,70 82,54 54,68" fill={colors[1]} />
+        <polygon points="26,70 54,84 54,68 26,54" fill={LOCKED[0]} />
+        <polygon points="54,84 82,70 82,54 54,68" fill={LOCKED[1]} />
         <polygon
           points="26,54 54,68 82,54 54,40 50,42 76,54 54,65 32,54 54,43 50,42"
           fill="#f3e6d2"
@@ -102,7 +102,7 @@ export function House({
           <line x1="61" y1="72.5" x2="61" y2="80.5" />
           <line x1="75" y1="65.5" x2="75" y2="73.5" />
         </g>
-        <polygon points="63,79.5 72,75 72,66 63,70.5" fill="#7a4a2a" />
+        <polygon points="63,79.5 72,75 72,66 63,70.5" fill="#bfb6ab" />
         {/* The bricks still to lay, in a little pile. */}
         <g>
           <rect x="70" y="86" width="9" height="4.5" rx="1" fill="#c4553f" />
@@ -116,22 +116,22 @@ export function House({
   const [wl, wr, roof] = locked ? LOCKED : colors;
   const lit = state === 'done' || state === 'current';
   if (sketch) {
-    // Under renovation: the house itself, its window dark, scaffolding with planks on
-    // its front, a striped barrier at the door and a traffic cone.
+    // Under renovation: grey like a station not reached yet, but with scaffolding and planks
+    // on its front, a striped barrier at the door, a traffic cone and a "!" over it.
     return (
       <svg className="house house--works" viewBox="0 0 100 100" aria-hidden="true">
         <ellipse cx="54" cy="86" rx="34" ry="11" className="house__shadow" />
-        <polygon points="26,70 54,84 54,54 26,40" fill={colors[0]} />
-        <polygon points="54,84 82,70 82,40 54,54" fill={colors[1]} />
-        <polygon points="63,79.5 72,75 72,57 63,61.5" fill="#7a4a2a" />
+        <polygon points="26,70 54,84 54,54 26,40" fill={LOCKED[0]} />
+        <polygon points="54,84 82,70 82,40 54,54" fill={LOCKED[1]} />
+        <polygon points="63,79.5 72,75 72,57 63,61.5" fill="#bfb6ab" />
         <polygon
           points="34,62 45,67.5 45,56.5 34,51"
-          fill="#9fb3c4"
+          fill="#d6cfc5"
           stroke="rgb(0 0 0 / 15%)"
           strokeWidth="1"
         />
-        <polygon points="21,42 54,58 54,8" fill={colors[2]} />
-        <polygon points="54,58 87,42 54,8" fill={colors[2]} opacity="0.82" />
+        <polygon points="21,42 54,58 54,8" fill={LOCKED[2]} />
+        <polygon points="54,58 87,42 54,8" fill={LOCKED[2]} opacity="0.82" />
         <polygon points="40,22 54,8 68,22 54,28" className="house__snow" />
         {/* "!" over the roof: something waits here, come back to it. */}
         <g className="house__alert">
@@ -443,8 +443,8 @@ function Builder({
 
 /**
  * The crew that builds a house the moment its station is finished: builders
- * run in and hammer, dust flies, the scaffolding comes down and the house
- * stands, in two seconds (village.css times it). Drawn over the house.
+ * run in and bustle round it, hammering, dust flies, the house rises; then the
+ * scaffolding comes down, about four seconds (village.css times it). Drawn over the house.
  */
 export function BuildCrew() {
   return (
@@ -471,7 +471,7 @@ export function BuildCrew() {
           cx={cx}
           cy={cy}
           r="7"
-          style={{ animationDelay: `${0.25 + i * 0.22}s` }}
+          style={{ animationDelay: `${0.5 + i * 0.18}s` }}
         />
       ))}
       <g className="crew__team crew__team--a">
