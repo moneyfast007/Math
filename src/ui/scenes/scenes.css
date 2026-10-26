@@ -1436,3 +1436,34 @@
     animation: none;
   }
 }
+
+/* A computer: the keys and, at their left, the scene as a square. */
+.practice__deck {
+  display: grid;
+  /* The keys in the middle of the screen; the scene in the column at their left. */
+  --deck-scene: clamp(200px, 22vw, 300px);
+  /* Side columns never under 200px, so wide answers (big choices) leave the scene a real square. */
+  grid-template-columns: minmax(200px, 1fr) auto minmax(200px, 1fr);
+  align-items: center;
+  column-gap: clamp(20px, 4vw, 56px);
+}
+
+.practice__deck > .answer {
+  grid-column: 2;
+}
+
+.practice__deck-scene {
+  grid-column: 3;
+  /* Against the keys (its column's inner edge). */
+  justify-self: end;
+  width: var(--deck-scene);
+  max-width: 100%;
+}
+
+.practice__deck-scene .scene-strip {
+  width: 100%;
+  max-width: none;
+  height: auto;
+  aspect-ratio: 1;
+  border-radius: 24px;
+}

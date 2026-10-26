@@ -249,6 +249,8 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
   stateRef.current = s;
   const cardRef = useRef<HTMLElement>(null);
   const answersRef = useRef<HTMLElement>(null);
+  // A computer screen, wide and tall enough: the scene goes beside the keys.
+  const deck = useMedia('(min-width: 900px) and (min-height: 600px)');
   // How tall the keys are, so what comes in their place after an answer takes the same room.
   const answerHeight = useRef<number | null>(null);
   useLayoutEffect(() => {
@@ -555,6 +557,89 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
   const hasSlot = e.display.includes('?');
   const [before, after] = e.display ? splitAtSlot(e.display) : ['', ''];
 
+  const scene = (
+    <SceneStrip
+      kind={sceneKind}
+      total={s.length}
+      marks={marks}
+      nudge={nudge}
+      quiet={quietScene}
+      done={s.done}
+      label={t('practice.progress', {
+        params: { n: Math.min(s.done + 1, s.length), total: s.length },
+      })}
+    />
+  );
+  const answers = finished ? (
+    // Where the keys were, and as tall: what happened and the way on. The exercise stays put.
+    <section
+      ref={answersRef}
+      className="answer answer--done"
+      style={answerHeight.current ? { minHeight: answerHeight.current } : undefined}
+    >
+      <Feedback state={s} tc={tc} />
+      <button type="button" className="btn btn--hero practice__next" onClick={advance}>
+        {t('practice.next')}
+      </button>
+    </section>
+  ) : e.input.type === 'vertical' ? null : (
+    <section ref={answersRef} className="answer">
+      {e.input.type === 'choices' ? (
+        <div
+          className="choices-big"
+          role="group"
+          aria-label={t('practice.choicesLabel')}
+          dir={e.input.rtl ? 'rtl' : 'ltr'}
+        >
+          {e.input.choices.map((c, i) => {
+            const label = e.input.type === 'choices' ? e.input.labels?.[i] : undefined;
+            const picture = e.input.type === 'choices' ? e.input.visuals?.[i] : undefined;
+            if (picture) {
+              return (
+                <button
+                  key={c}
+                  type="button"
+                  className="choice-big choice-big--picture"
+                  aria-label={label}
+                  disabled={tried.includes(c)}
+                  onClick={() => answer(c)}
+                >
+                  <VisualView visual={picture} />
+                </button>
+              );
+            }
+            const text = groupDigits(label ?? String(c));
+            return (
+              <button
+                key={c}
+                type="button"
+                className={label ? 'choice-big choice-big--label' : 'choice-big'}
+                // The longest word sets the label's size, so a long number never overflows.
+                style={label ? ({ '--chars': longestWord(text) } as CSSProperties) : undefined}
+                disabled={tried.includes(c)}
+                onClick={() => answer(c)}
+              >
+                {label ? <span className="choice-big__text">{text}</span> : text}
+              </button>
+            );
+          })}
+        </div>
+      ) : (
+        <NumberPad
+          label={t('practice.answerLabel')}
+          value={value}
+          onChange={setValue}
+          maxLength={e.input.maxDigits}
+          decimal={e.input.decimal ?? false}
+          onSubmit={() => answer(Number(value))}
+        />
+      )}
+      {e.input.type !== 'choices' ? (
+        <p className="answer__keyboard-hint">{t('desktop.keyboardHint')}</p>
+      ) : null}
+    </section>
+  );
+
   return (
     <main
       className={[
@@ -579,18 +664,9 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
           </button>
         </div>
         {/* The round's picture: every right answer moves it on (and it is the progress bar).
-            Under the bar on most screens; in its middle on short ones (scenes.css). */}
-        <SceneStrip
-          kind={sceneKind}
-          total={s.length}
-          marks={marks}
-          nudge={nudge}
-          quiet={quietScene}
-          done={s.done}
-          label={t('practice.progress', {
-            params: { n: Math.min(s.done + 1, s.length), total: s.length },
-          })}
-        />
+            Under the bar on most screens; in its middle on short phones (scenes.css); beside
+            the keys on a computer. */}
+        {deck ? null : scene}
         {/* A station round names its station at the top, so it is never mistaken for the final challenge. */}
         {mode === 'level' ? (
           <p className="station-line">
@@ -777,74 +853,14 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
 
       {finished ? null : <Feedback state={s} tc={tc} />}
 
-      {finished ? (
-        // Where the keys were, and as tall: what happened and the way on. The exercise stays put.
-        <section
-          ref={answersRef}
-          className="answer answer--done"
-          style={answerHeight.current ? { minHeight: answerHeight.current } : undefined}
-        >
-          <Feedback state={s} tc={tc} />
-          <button type="button" className="btn btn--hero practice__next" onClick={advance}>
-            {t('practice.next')}
-          </button>
-        </section>
-      ) : e.input.type === 'vertical' ? null : (
-        <section ref={answersRef} className="answer">
-          {e.input.type === 'choices' ? (
-            <div
-              className="choices-big"
-              role="group"
-              aria-label={t('practice.choicesLabel')}
-              dir={e.input.rtl ? 'rtl' : 'ltr'}
-            >
-              {e.input.choices.map((c, i) => {
-                const label = e.input.type === 'choices' ? e.input.labels?.[i] : undefined;
-                const picture = e.input.type === 'choices' ? e.input.visuals?.[i] : undefined;
-                if (picture) {
-                  return (
-                    <button
-                      key={c}
-                      type="button"
-                      className="choice-big choice-big--picture"
-                      aria-label={label}
-                      disabled={tried.includes(c)}
-                      onClick={() => answer(c)}
-                    >
-                      <VisualView visual={picture} />
-                    </button>
-                  );
-                }
-                const text = groupDigits(label ?? String(c));
-                return (
-                  <button
-                    key={c}
-                    type="button"
-                    className={label ? 'choice-big choice-big--label' : 'choice-big'}
-                    // The longest word sets the label's size, so a long number never overflows.
-                    style={label ? ({ '--chars': longestWord(text) } as CSSProperties) : undefined}
-                    disabled={tried.includes(c)}
-                    onClick={() => answer(c)}
-                  >
-                    {label ? <span className="choice-big__text">{text}</span> : text}
-                  </button>
-                );
-              })}
-            </div>
-          ) : (
-            <NumberPad
-              label={t('practice.answerLabel')}
-              value={value}
-              onChange={setValue}
-              maxLength={e.input.maxDigits}
-              decimal={e.input.decimal ?? false}
-              onSubmit={() => answer(Number(value))}
-            />
-          )}
-          {e.input.type !== 'choices' ? (
-            <p className="answer__keyboard-hint">{t('desktop.keyboardHint')}</p>
-          ) : null}
-        </section>
+      {deck ? (
+        // A computer: the scene stands square beside the keys (at their left), not as a band.
+        <div className="practice__deck">
+          {answers}
+          <div className="practice__deck-scene">{scene}</div>
+        </div>
+      ) : (
+        answers
       )}
     </main>
   );
@@ -1139,4 +1155,20 @@ function nudge(s: SessionState, tc: TC): string {
   const close =
     numeric && v !== null && Math.abs(v - e.answer) <= Math.max(1, Math.abs(e.answer) * 0.1);
   return tc(close ? 'feedback.almost' : 'feedback.notQuite');
+}
+
+/** Whether a media query matches, kept up to date. */
+function useMedia(query: string): boolean {
+  const [matches, setMatches] = useState(
+    () => typeof window.matchMedia === 'function' && window.matchMedia(query).matches,
+  );
+  useEffect(() => {
+    if (typeof window.matchMedia !== 'function') return;
+    const mq = window.matchMedia(query);
+    const on = () => setMatches(mq.matches);
+    on();
+    mq.addEventListener('change', on);
+    return () => mq.removeEventListener('change', on);
+  }, [query]);
+  return matches;
 }
