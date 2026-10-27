@@ -306,11 +306,12 @@ test.describe('journey', () => {
     await expect(page).toHaveURL(/\/play$/);
   });
 
-  test('gan: a bigger map with no numbers on the stations', async ({ page }) => {
+  test('gan: a bigger map, the stations numbered as for everyone', async ({ page }) => {
     await setupChild(page, 'מאיה', 'גן חובה');
     await page.getByRole('button', { name: 'סיום' }).click();
     const map = page.getByRole('region', { name: 'מפת המסע' });
-    await expect(map.locator('.node--current')).toHaveText('');
+    // Kindergarten learns exactly these numbers (1-10): the sign shows the station's.
+    await expect(map.locator('.node--current')).toHaveText('1');
     await expect(page.getByText('עולם 1', { exact: false })).toHaveCount(0);
     const box = await map.locator('.node--current').boundingBox();
     expect(box?.width ?? 0).toBeGreaterThanOrEqual(72);
