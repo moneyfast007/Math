@@ -89,6 +89,9 @@ export function ParentAreaC() {
   );
   const [editing, setEditing] = useState<Profile | 'new' | null>(asked.newChild ? 'new' : null);
   const [added, setAdded] = useState<Profile | null>(null);
+  // The child whose settings are open in the children tab (none: all the children).
+  const [kid, setKid] = useState<string | null>(null);
+  const kidProfile = profiles.find((p) => p.id === kid) ?? null;
   const full = profiles.length >= MAX_PROFILES;
 
   // The area locks itself after a while, but not under a parent who is using it (WCAG 2.2.1).
@@ -116,6 +119,11 @@ export function ParentAreaC() {
   const show = (next: CTab) => {
     if (next === tab) return;
     setTab(next);
+    window.scrollTo(0, 0);
+  };
+
+  const openKid = (id: string | null) => {
+    setKid(id);
     window.scrollTo(0, 0);
   };
 
@@ -147,21 +155,57 @@ export function ParentAreaC() {
         <ProgressPanel />
       </CPanel>
       <CPanel tab="kids" current={tab}>
-        <section className="c-group" aria-labelledby="c-kids-title">
-          <h2 id="c-kids-title" className="c-group__title">
-            {t('c.settings.children')}
-          </h2>
-          {profiles.map((p, i) => (
-            <ChildSettings key={p.id} profile={p} index={i} onEdit={() => setEditing(p)} />
-          ))}
-          <button type="button" className="c-add" disabled={full} onClick={() => setEditing('new')}>
-            <Icon name="plus" />
-            {t('parent.addChild')}
-          </button>
-          {full ? (
-            <p className="muted">{t('parent.limitReached', { params: { max: MAX_PROFILES } })}</p>
-          ) : null}
-        </section>
+        {kidProfile ? (
+          // One child's settings, as its own page (like choosing a profile on a TV app).
+          <>
+            <button type="button" className="c-back" onClick={() => openKid(null)}>
+              <span className="c-back__chev" aria-hidden="true" />
+              {t('c.kids.back')}
+            </button>
+            <ChildSettings
+              profile={kidProfile}
+              index={profiles.indexOf(kidProfile)}
+              onEdit={() => setEditing(kidProfile)}
+            />
+          </>
+        ) : (
+          <section className="c-group" aria-labelledby="c-kids-title">
+            <h2 id="c-kids-title" className="c-group__title">
+              {t('c.settings.children')}
+            </h2>
+            <p className="muted c-group__hint">{t('c.kids.hint')}</p>
+            <ul className="c-kidgrid">
+              {profiles.map((p, i) => (
+                <li key={p.id}>
+                  <button type="button" className="c-kidtile" onClick={() => openKid(p.id)}>
+                    <span className={`c-kidtile__avatar profile-card--c${i % 6}`}>
+                      <Avatar id={p.avatar} size="lg" decorative />
+                    </span>
+                    <span className="c-kidtile__name">{p.name}</span>
+                    <span className="muted c-kidtile__grade">{gradeLabel(p.grade)}</span>
+                    <span className="c-kidtile__sum">{kidSummary(p)}</span>
+                  </button>
+                </li>
+              ))}
+              <li>
+                <button
+                  type="button"
+                  className="c-kidtile c-kidtile--add"
+                  disabled={full}
+                  onClick={() => setEditing('new')}
+                >
+                  <span className="c-kidtile__plus" aria-hidden="true">
+                    <Icon name="plus" />
+                  </span>
+                  <span className="c-kidtile__name">{t('parent.addChild')}</span>
+                </button>
+              </li>
+            </ul>
+            {full ? (
+              <p className="muted">{t('parent.limitReached', { params: { max: MAX_PROFILES } })}</p>
+            ) : null}
+          </section>
+        )}
       </CPanel>
       <CPanel tab="settings" current={tab}>
         <h2 className="visually-hidden">{t('parentArea.settings.title')}</h2>
@@ -959,6 +1003,16 @@ function ChildSettings({
       </p>
     </article>
   );
+}
+
+/** A child's settings in a few words, on her card: the round's length and the day's goal. */
+function kidSummary(p: Profile): string {
+  const length = t(`profile.roundLength.${p.settings.roundLength ?? 'normal'}`);
+  const goal = p.settings.dailyGoal;
+  return [
+    t('c.kids.round', { params: { length } }),
+    goal ? t('c.kids.goal', { params: { n: goal } }) : t('c.settings.goalOff'),
+  ].join(' · ');
 }
 
 /* ---------- Settings: the device ---------- */

@@ -29,6 +29,10 @@ export const heVariantC = {
   'c.tab.progress': 'התקדמות',
   'c.home.worldN': 'עולם {n}',
   'c.tab.kids': 'ילדים',
+  'c.kids.hint': 'לחצו על ילד כדי לשנות את ההגדרות שלו.',
+  'c.kids.back': 'כל הילדים',
+  'c.kids.round': 'סבב {length}',
+  'c.kids.goal': 'יעד {n} ביום',
   'c.tab.settings': 'הגדרות',
 
   // Today
