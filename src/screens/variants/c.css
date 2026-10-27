@@ -1401,3 +1401,34 @@ details[open] > summary .c-row__chev {
   border: 1px solid var(--color-border);
   align-items: flex-start;
 }
+
+/* Phones: the tab bar at the bottom stands out from the page: a raised white
+   sheet, dark words, and the open section filled with the accent. */
+@media (max-width: 760px) {
+  .c-tabs.parent-tabs {
+    gap: 6px;
+    padding: 8px 10px max(10px, env(safe-area-inset-bottom));
+    border-top: 0;
+    border-radius: 22px 22px 0 0;
+    background: var(--color-surface);
+    box-shadow: 0 -8px 26px rgb(58 47 42 / 16%);
+  }
+
+  .c-tabs .parent-tabs__tab {
+    min-height: 60px;
+    color: var(--color-text);
+    font-size: 13px;
+    transition: background var(--dur-fast) var(--ease);
+  }
+
+  .c-tabs .parent-tabs__icon {
+    width: 26px;
+    height: 26px;
+  }
+
+  .c-tabs .parent-tabs__tab[aria-selected='true'] {
+    background: var(--color-accent-strong);
+    color: #fff;
+    box-shadow: 0 4px 12px rgb(30 90 80 / 25%);
+  }
+}

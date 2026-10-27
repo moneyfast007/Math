@@ -14,6 +14,7 @@ export type IconName =
   | 'device'
   | 'plus'
   | 'home'
+  | 'today'
   | 'info'
   | 'exit';
 
@@ -113,6 +114,14 @@ function Paths({ name }: { name: IconName }) {
       );
     case 'plus':
       return <path d="M12 5v14M5 12h14" />;
+    case 'today':
+      return (
+        <>
+          <rect x="4" y="5" width="16" height="15" rx="2.5" />
+          <path d="M4 10h16M9 3v4M15 3v4" />
+          <path d="M9.5 15l1.8 1.8 3.5-3.6" />
+        </>
+      );
     case 'home':
       return <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5" />;
     case 'info':

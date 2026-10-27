@@ -40,7 +40,7 @@ test('several children: the same card for each, in the family order, none put fi
   await page.goto('/?ui=c');
   await page.getByRole('button', { name: 'יוצרים פרופיל ראשון' }).click();
   await createChild(page, 'נועה', 'כיתה ב׳');
-  await page.getByRole('tab', { name: 'הגדרות' }).click();
+  await page.getByRole('tab', { name: 'ילדים' }).click();
   await page.getByRole('button', { name: 'הוספת ילד או ילדה' }).click();
   await createChild(page, 'אורי', 'גן חובה');
   await page.getByRole('button', { name: 'סיימתי, למסך הבית' }).first().click();

@@ -28,6 +28,7 @@ export const heVariantC = {
   'c.tab.today': 'מה היה היום?',
   'c.tab.progress': 'התקדמות',
   'c.home.worldN': 'עולם {n}',
+  'c.tab.kids': 'ילדים',
   'c.tab.settings': 'הגדרות',
 
   // Today
@@ -120,7 +121,7 @@ export const heVariantC = {
   'c.progress.mistakeCount': '{count} פעמים',
 
   // Settings
-  'c.settings.children': 'לכל ילד',
+  'c.settings.children': 'הילדים',
   'c.settings.device': 'המכשיר',
   'c.settings.deviceHint': 'סנכרון, גיבוי, קוד והתקנה. נפתח בלחיצה.',
   'c.settings.delete': 'מחיקה',

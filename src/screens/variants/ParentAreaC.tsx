@@ -39,16 +39,18 @@ import {
 import { guidance, isYesterday, nowAt, takeNewChild, todayOf, worldName } from './cShared';
 import './c.css';
 
-type CTab = 'today' | 'progress' | 'settings';
-const TABS: readonly CTab[] = ['today', 'progress', 'settings'];
+type CTab = 'today' | 'progress' | 'kids' | 'settings';
+const TABS: readonly CTab[] = ['today', 'progress', 'kids', 'settings'];
 const TAB_ICON: Record<CTab, IconName> = {
-  today: 'children',
+  today: 'today',
   progress: 'progress',
+  kids: 'children',
   settings: 'settings',
 };
 const TAB_LABEL = {
   today: 'c.tab.today',
   progress: 'c.tab.progress',
+  kids: 'c.tab.kids',
   settings: 'c.tab.settings',
 } as const satisfies Record<CTab, string>;
 
@@ -144,12 +146,11 @@ export function ParentAreaC() {
       <CPanel tab="progress" current={tab}>
         <ProgressPanel />
       </CPanel>
-      <CPanel tab="settings" current={tab}>
-        <h2 className="visually-hidden">{t('parentArea.settings.title')}</h2>
+      <CPanel tab="kids" current={tab}>
         <section className="c-group" aria-labelledby="c-kids-title">
-          <h3 id="c-kids-title" className="c-group__title">
+          <h2 id="c-kids-title" className="c-group__title">
             {t('c.settings.children')}
-          </h3>
+          </h2>
           {profiles.map((p, i) => (
             <ChildSettings key={p.id} profile={p} index={i} onEdit={() => setEditing(p)} />
           ))}
@@ -161,7 +162,9 @@ export function ParentAreaC() {
             <p className="muted">{t('parent.limitReached', { params: { max: MAX_PROFILES } })}</p>
           ) : null}
         </section>
-
+      </CPanel>
+      <CPanel tab="settings" current={tab}>
+        <h2 className="visually-hidden">{t('parentArea.settings.title')}</h2>
         <section className="c-group" aria-labelledby="c-device-title">
           <h3 id="c-device-title" className="c-group__title">
             {t('c.settings.device')}
@@ -1046,18 +1049,21 @@ function DeviceList({
             <OfflineSection />,
           )
         : null}
-      {row(
-        'install',
-        'device',
-        t('c.device.install'),
-        storageIssue !== null
-          ? t('c.device.storageIssue')
-          : isStandalone()
-            ? t('c.device.installOn')
-            : t('c.device.installOff'),
-        <DeviceSection />,
-        storageIssue !== null,
-      )}
+      {/* Installed, with its storage kept: nothing to do here, so no row. */}
+      {isStandalone() && storageIssue === null
+        ? null
+        : row(
+            'install',
+            'device',
+            t('c.device.install'),
+            storageIssue !== null
+              ? t('c.device.storageIssue')
+              : isStandalone()
+                ? t('c.device.installOn')
+                : t('c.device.installOff'),
+            <DeviceSection />,
+            storageIssue !== null,
+          )}
       <a
         className="c-row c-row__summary c-row--link"
         href="/info"
