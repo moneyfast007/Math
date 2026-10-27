@@ -1,6 +1,6 @@
 import { useEffect, useId, useRef, useState, type KeyboardEvent, type ReactNode } from 'react';
 import { navigate } from '@/app/router';
-import { activeWorld } from '@/engine/journey';
+import { activeWorld, worldsFor } from '@/engine/journey';
 import { ROUND_LENGTHS } from '@/engine/session';
 import { makeT, t } from '@/i18n';
 import { formatDate, formatPercent, gradeLabel, mistakeLabel, topicLabel } from '@/i18n/labels';
@@ -30,13 +30,12 @@ import {
   BackupSection,
   ChildAdded,
   DeviceSection,
-  JourneyReport,
   OfflineSection,
   PinBanner,
   AccountBanner,
   SecuritySection,
 } from '../ParentScreen';
-import { guidance, isYesterday, nowAt, takeNewChild, todayOf, worldName } from './cShared';
+import { guidance, isYesterday, takeNewChild, todayOf } from './cShared';
 import './c.css';
 
 type CTab = 'today' | 'progress' | 'kids' | 'settings';
@@ -556,6 +555,9 @@ function TodayCard({ profile, index, now }: { profile: Profile; index: number; n
 
 function ProgressPanel() {
   const profiles = useApp((s) => s.data.profiles);
+  // One child's report at a time; the row of children above chooses whose.
+  const [picked, setPicked] = useState<string | null>(null);
+  const shown = profiles.find((p) => p.id === picked) ?? profiles[0];
   return (
     <>
       <h2 className="c-heading">{t('c.tab.progress')}</h2>
@@ -563,15 +565,14 @@ function ProgressPanel() {
         <p className="c-empty muted">{t('c.progress.empty')}</p>
       ) : (
         <>
-          {/* The family at a glance (with more than one child): who practised, who has not for a while, who has not started. */}
-          {profiles.length > 1 ? <FamilyStrip profiles={profiles} /> : null}
-          <ul className="c-list" role="list">
-            {profiles.map((p, i) => (
-              <li key={p.id} id={`progress-${p.id}`}>
-                <ProgressCardC profile={p} index={i} />
-              </li>
-            ))}
-          </ul>
+          {/* With more than one child: the family at a glance (who practised, who has not
+              for a while, who has not started), and the way to choose whose report shows. */}
+          {profiles.length > 1 && shown ? (
+            <FamilyStrip profiles={profiles} picked={shown.id} onPick={setPicked} />
+          ) : null}
+          {shown ? (
+            <ProgressCardC key={shown.id} profile={shown} index={profiles.indexOf(shown)} />
+          ) : null}
         </>
       )}
     </>
@@ -589,8 +590,16 @@ function daysSince(progress: ProfileProgress | undefined, now: number): number |
   return Math.max(0, Math.round(day(now) - day(last)));
 }
 
-/** One line per child: practised today, how long since, or not started; a tap goes to her card. */
-function FamilyStrip({ profiles }: { profiles: readonly Profile[] }) {
+/** A chip per child (practised today, how long since, or not started); a tap shows her report. */
+function FamilyStrip({
+  profiles,
+  picked,
+  onPick,
+}: {
+  profiles: readonly Profile[];
+  picked: string;
+  onPick: (id: string) => void;
+}) {
   const progress = useApp((s) => s.data.progress);
   const now = Date.now();
   return (
@@ -610,22 +619,18 @@ function FamilyStrip({ profiles }: { profiles: readonly Profile[] }) {
                 : tc('c.family.days', { n: since });
         return (
           <li key={p.id}>
-            <a
+            <button
+              type="button"
               className={`c-family__row c-family__row--${state}`}
-              href={`#progress-${p.id}`}
-              onClick={(e) => {
-                e.preventDefault();
-                document
-                  .getElementById(`progress-${p.id}`)
-                  ?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-              }}
+              aria-pressed={p.id === picked}
+              onClick={() => onPick(p.id)}
             >
               <span className={`c-card__avatar profile-card--c${i % 6}`}>
                 <Avatar id={p.avatar} size="sm" decorative />
               </span>
               <span className="c-family__name">{p.name}</span>
               <span className="c-family__state">{line}</span>
-            </a>
+            </button>
           </li>
         );
       })}
@@ -717,12 +722,70 @@ function WeekReportC({ profile }: { profile: Profile }) {
   );
 }
 
+/**
+ * Her school year at a glance, in a parent's words: which world of her grade she
+ * is in, and every world in order (done, how far, not started). One count for the
+ * words and the bars: the stations of the world, the final challenge said apart.
+ */
+function YearReport({ profile }: { profile: Profile }) {
+  const progress = useApp((s) => s.data.progress[profile.id]);
+  const worlds = worldsFor(profile.grade, progress);
+  const active = activeWorld(profile.grade, progress);
+  if (worlds.length === 0) return null;
+  const grade = gradeLabel(profile.grade);
+  const allDone = worlds.every((w) => w.completed);
+  return (
+    <section className="c-year" aria-labelledby={`c-year-${profile.id}`}>
+      <h3 id={`c-year-${profile.id}`} className="c-year__title">
+        {t('c.year.title', { params: { name: profile.name } })}
+      </h3>
+      <p className="c-year__at">
+        {allDone
+          ? t('c.year.allDone', { params: { grade } })
+          : t('c.year.at', {
+              params: { n: active?.index ?? 1, total: worlds.length, grade },
+            })}
+      </p>
+      <ol className="c-year__worlds">
+        {worlds.map((w) => {
+          const total = w.stations.length;
+          const done = w.stations.filter((st) => st.state === 'done').length;
+          const now = w.topic.id === active?.topic.id && !w.completed;
+          const state = w.completed ? 'done' : done > 0 || now ? 'now' : 'later';
+          const line = w.completed
+            ? t('c.year.done')
+            : done === 0 && !now
+              ? t('c.year.notYet')
+              : done >= total
+                ? t('c.year.challengeLeft', { params: { done, total } })
+                : t('c.year.progress', { params: { done, total } });
+          return (
+            <li
+              key={w.topic.id}
+              className={`c-year__world c-year__world--${state}`}
+              aria-current={now ? 'step' : undefined}
+            >
+              <span className="c-year__name">{topicLabel(w.topic.id)}</span>
+              <span className="c-year__state">{line}</span>
+              <span className="meter c-year__bar" aria-hidden="true">
+                <span
+                  style={{
+                    width: `${w.completed ? 100 : Math.round((done / Math.max(1, total)) * 100)}%`,
+                  }}
+                />
+              </span>
+            </li>
+          );
+        })}
+      </ol>
+    </section>
+  );
+}
+
 function ProgressCardC({ profile, index }: { profile: Profile; index: number }) {
   const progress = useApp((s) => s.data.progress[profile.id]);
   const summary = summarizeProgress(progress);
-  const world = activeWorld(profile.grade, progress);
   const tc = makeT(profile.gender);
-  const share = world ? Math.round((world.done / world.total) * 100) : 0;
   const now = Date.now();
   const since = daysSince(progress, now);
   // What to do, in one sentence: back to the habit after a quiet spell, else the guidance.
@@ -741,17 +804,7 @@ function ProgressCardC({ profile, index }: { profile: Profile; index: number }) 
         </span>
       </header>
 
-      {world ? (
-        <div className="c-where">
-          <span className="c-where__world">{worldName(world)}</span>
-          <span className="muted">
-            {world.completed ? tc('parentArea.allWorldsDone') : nowAt(world)}
-          </span>
-          <span className="meter" aria-hidden="true">
-            <span style={{ width: `${share}%` }} />
-          </span>
-        </div>
-      ) : null}
+      <YearReport profile={profile} />
 
       {summary.attempts === 0 ? (
         <>
@@ -787,7 +840,6 @@ function ProgressCardC({ profile, index }: { profile: Profile; index: number }) 
             </ul>
           ) : null}
           <div className="c-folds">
-            <JourneyReport profile={profile} />
             {summary.topMistakes.length > 0 ? (
               <details className="report more">
                 <summary>{t('c.progress.mistakes')}</summary>
