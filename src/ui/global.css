@@ -5847,6 +5847,27 @@ details.report .report__worlds {
   }
 }
 
+/* A tablet on its side, a laptop: wide with height to spare, but stacked the map
+   would get only a short strip. The map and the card side by side, the map taller. */
+@media (orientation: landscape) and (min-width: 900px) and (min-height: 701px) {
+  .screen.journey {
+    max-width: 1240px;
+  }
+
+  .journey__body {
+    display: grid;
+    grid-template-columns: minmax(0, 1.3fr) minmax(360px, 1fr);
+    grid-template-rows: minmax(0, 1fr);
+    column-gap: var(--space-5);
+    align-items: stretch;
+  }
+
+  .journey__body > .journey__next {
+    align-self: center;
+    max-width: 460px;
+  }
+}
+
 /* A short, wide screen (a phone on its side, a small laptop): the map and the
    card side by side, since there is no height to stack them. */
 @media (orientation: landscape) and (max-height: 700px) and (min-width: 600px) {
