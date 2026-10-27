@@ -88,6 +88,8 @@ export function ParentAreaC() {
   );
   const [editing, setEditing] = useState<Profile | 'new' | null>(asked.newChild ? 'new' : null);
   const [added, setAdded] = useState<Profile | null>(null);
+  // The child whose day and progress show (the same in both tabs); none: the first.
+  const [picked, setPicked] = useState<string | null>(null);
   // The child whose settings are open in the children tab (none: all the children).
   const [kid, setKid] = useState<string | null>(null);
   const kidProfile = profiles.find((p) => p.id === kid) ?? null;
@@ -148,10 +150,15 @@ export function ParentAreaC() {
       </header>
 
       <CPanel tab="today" current={tab}>
-        <TodayPanel onAdd={() => setEditing('new')} onRestore={() => toDevice('sync')} />
+        <TodayPanel
+          onAdd={() => setEditing('new')}
+          onRestore={() => toDevice('sync')}
+          picked={picked}
+          onPick={setPicked}
+        />
       </CPanel>
       <CPanel tab="progress" current={tab}>
-        <ProgressPanel />
+        <ProgressPanel picked={picked} onPick={setPicked} />
       </CPanel>
       <CPanel tab="kids" current={tab}>
         {kidProfile ? (
@@ -417,9 +424,20 @@ function CPanel({ tab, current, children }: { tab: CTab; current: CTab; children
 
 /* ---------- What happened today? ---------- */
 
-function TodayPanel({ onAdd, onRestore }: { onAdd: () => void; onRestore: () => void }) {
+function TodayPanel({
+  onAdd,
+  onRestore,
+  picked,
+  onPick,
+}: {
+  onAdd: () => void;
+  onRestore: () => void;
+  picked: string | null;
+  onPick: (id: string) => void;
+}) {
   const profiles = useApp((s) => s.data.profiles);
   const now = Date.now();
+  const shown = profiles.find((p) => p.id === picked) ?? profiles[0];
   return (
     <>
       <h2 className="c-heading">
@@ -447,13 +465,13 @@ function TodayPanel({ onAdd, onRestore }: { onAdd: () => void; onRestore: () => 
         <>
           <PinBanner />
           <AccountBanner />
-          <ul className="c-list" role="list">
-            {profiles.map((p, i) => (
-              <li key={p.id}>
-                <TodayCard profile={p} index={i} now={now} />
-              </li>
-            ))}
-          </ul>
+          {/* One child's day at a time; the row of children above chooses whose. */}
+          {profiles.length > 1 && shown ? (
+            <FamilyStrip profiles={profiles} picked={shown.id} onPick={onPick} />
+          ) : null}
+          {shown ? (
+            <TodayCard key={shown.id} profile={shown} index={profiles.indexOf(shown)} now={now} />
+          ) : null}
           {/* Another child, right here too (also under "הגדרות"). */}
           {profiles.length < MAX_PROFILES ? (
             <button type="button" className="c-add" onClick={onAdd}>
@@ -553,10 +571,15 @@ function TodayCard({ profile, index, now }: { profile: Profile; index: number; n
 
 /* ---------- How are they doing? ---------- */
 
-function ProgressPanel() {
+function ProgressPanel({
+  picked,
+  onPick,
+}: {
+  picked: string | null;
+  onPick: (id: string) => void;
+}) {
   const profiles = useApp((s) => s.data.profiles);
   // One child's report at a time; the row of children above chooses whose.
-  const [picked, setPicked] = useState<string | null>(null);
   const shown = profiles.find((p) => p.id === picked) ?? profiles[0];
   return (
     <>
@@ -568,7 +591,7 @@ function ProgressPanel() {
           {/* With more than one child: the family at a glance (who practised, who has not
               for a while, who has not started), and the way to choose whose report shows. */}
           {profiles.length > 1 && shown ? (
-            <FamilyStrip profiles={profiles} picked={shown.id} onPick={setPicked} />
+            <FamilyStrip profiles={profiles} picked={shown.id} onPick={onPick} />
           ) : null}
           {shown ? (
             <ProgressCardC key={shown.id} profile={shown} index={profiles.indexOf(shown)} />
