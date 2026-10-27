@@ -582,7 +582,7 @@ function WorldMap({
               <House
                 state={s.state}
                 index={i}
-                number={young ? null : s.level}
+                number={s.level}
                 here={i === target}
                 tried={s.stars > 0}
               />
