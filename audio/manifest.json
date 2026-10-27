@@ -716335,6 +716335,96 @@
       "voice": "gemini-3.1-flash/Leda/quick",
       "bytes": 26061,
       "trimmed": true
+    },
+    "18c2cfe71d4b4bf6": {
+      "text": "אלופה!",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 3405,
+      "trimmed": true
+    },
+    "e0905c5828970687": {
+      "text": "אין עליך!",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 4845,
+      "trimmed": true
+    },
+    "1468fe05680f1a77": {
+      "text": "צדקת!",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 3789,
+      "trimmed": true
+    },
+    "4c9af63c0b53cc83": {
+      "text": "נהדר!",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 4365,
+      "trimmed": true
+    },
+    "ca6bd98dbe03e406": {
+      "text": "בדיוק!",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 4845,
+      "trimmed": true
+    },
+    "32f3bd1413305dce": {
+      "text": "מצוין!",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 5613,
+      "trimmed": true
+    },
+    "673c79c20ea94115": {
+      "text": "איזה יופי!",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 5805,
+      "trimmed": true
+    },
+    "bc12937079446ce9": {
+      "text": "אלוף!",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 4557,
+      "trimmed": true
+    },
+    "c2e1cb65c1ad3f8a": {
+      "text": "אין עלייך!",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 4173,
+      "trimmed": true
+    },
+    "35e1f6a4e0bf0d1b": {
+      "text": "ידעת את זה!",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 5325,
+      "trimmed": true
+    },
+    "9708bfa4002a6e62": {
+      "text": "יופי של תשובה!",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 5613,
+      "trimmed": true
+    },
+    "4b749829a64183c4": {
+      "text": "יפה שניסית שוב!",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 6669,
+      "trimmed": true
+    },
+    "3a6715936cee002a": {
+      "text": "ככה עושים את זה!",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 4941,
+      "trimmed": true
+    },
+    "fdbc3c9768f90f94": {
+      "text": "נכון! לא ויתרת",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 9837,
+      "trimmed": true
+    },
+    "7d16074cd1428dad": {
+      "text": "שלוש ברצף! וואו!",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 11373,
+      "trimmed": true
     }
   }
 }
