@@ -640,6 +640,55 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
     </section>
   );
 
+  // The hints the child opened: under the answer line; beside the keys (at their right) on a computer.
+  // Beside the keys only: next to the short row of big choices there is no room to read one.
+  const hintsBeside = deck && e.input.type !== 'choices';
+  const hints =
+    s.hintsShown > 0 && !hintsHidden ? (
+      <section ref={hintsRef} className="hints stack" aria-label={t('action.hint')}>
+        {/* One hint at a time, the newest; the earlier ones a tap away, never half hidden. */}
+        {s.hintsShown > 1 ? (
+          <div className="hints__tabs" role="tablist" aria-label={t('action.hint')}>
+            {e.hints.slice(0, s.hintsShown).map((_, i) => (
+              <button
+                key={i}
+                type="button"
+                role="tab"
+                aria-selected={i === shownHint}
+                className={i === shownHint ? 'hints__tab hints__tab--on' : 'hints__tab'}
+                onClick={() => setHintView(i)}
+              >
+                {t('practice.hintTitle', { params: { n: i + 1 } })}
+              </button>
+            ))}
+          </div>
+        ) : null}
+        {(() => {
+          const h = e.hints[shownHint];
+          if (!h) return null;
+          return (
+            <article key={shownHint} className="hint card">
+              <div className="hint__head">
+                <SpeakerButton text={h.spoken} parts={h.spokenParts} />
+                <strong>{t('practice.hintTitle', { params: { n: shownHint + 1 } })}</strong>
+                <button
+                  type="button"
+                  className="btn btn--ghost hint__close"
+                  aria-label={t('hints.close')}
+                  onClick={() => setHintsHidden(true)}
+                >
+                  ✕
+                </button>
+              </div>
+              <p>{h.text}</p>
+              {h.visual ? <VisualView visual={h.visual} /> : null}
+              {h.example ? <MathExpr block>{h.example.display}</MathExpr> : null}
+            </article>
+          );
+        })()}
+      </section>
+    ) : null;
+
   return (
     <main
       className={[
@@ -806,56 +855,14 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
         </button>
       </section>
 
-      {s.hintsShown > 0 && !hintsHidden ? (
-        <section ref={hintsRef} className="hints stack" aria-label={t('action.hint')}>
-          {/* One hint at a time, the newest; the earlier ones a tap away, never half hidden. */}
-          {s.hintsShown > 1 ? (
-            <div className="hints__tabs" role="tablist" aria-label={t('action.hint')}>
-              {e.hints.slice(0, s.hintsShown).map((_, i) => (
-                <button
-                  key={i}
-                  type="button"
-                  role="tab"
-                  aria-selected={i === shownHint}
-                  className={i === shownHint ? 'hints__tab hints__tab--on' : 'hints__tab'}
-                  onClick={() => setHintView(i)}
-                >
-                  {t('practice.hintTitle', { params: { n: i + 1 } })}
-                </button>
-              ))}
-            </div>
-          ) : null}
-          {(() => {
-            const h = e.hints[shownHint];
-            if (!h) return null;
-            return (
-              <article key={shownHint} className="hint card">
-                <div className="hint__head">
-                  <SpeakerButton text={h.spoken} parts={h.spokenParts} />
-                  <strong>{t('practice.hintTitle', { params: { n: shownHint + 1 } })}</strong>
-                  <button
-                    type="button"
-                    className="btn btn--ghost hint__close"
-                    aria-label={t('hints.close')}
-                    onClick={() => setHintsHidden(true)}
-                  >
-                    ✕
-                  </button>
-                </div>
-                <p>{h.text}</p>
-                {h.visual ? <VisualView visual={h.visual} /> : null}
-                {h.example ? <MathExpr block>{h.example.display}</MathExpr> : null}
-              </article>
-            );
-          })()}
-        </section>
-      ) : null}
+      {hintsBeside ? null : hints}
 
       {finished ? null : <Feedback state={s} tc={tc} />}
 
       {deck ? (
-        // A computer: the scene stands square beside the keys (at their left), not as a band.
+        // A computer: the hints at the keys' right, the scene square at their left (not a band).
         <div className="practice__deck">
+          {hintsBeside && hints ? <div className="practice__deck-hints">{hints}</div> : null}
           {answers}
           <div className="practice__deck-scene">{scene}</div>
         </div>

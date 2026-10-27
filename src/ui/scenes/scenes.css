@@ -1450,10 +1450,37 @@
 
 .practice__deck > .answer {
   grid-column: 2;
+  grid-row: 1;
+}
+
+/* The hints in the column at the keys' right: as tall as the row (never making it taller),
+   scrolling inside when long. */
+.practice__deck-hints {
+  grid-column: 1;
+  grid-row: 1;
+  align-self: stretch;
+  height: 0;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.practice__deck-hints > .hints {
+  min-height: 0;
+  max-height: 100%;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  gap: var(--space-2);
+}
+
+.practice__deck-hints > .hints > * {
+  flex: none;
 }
 
 .practice__deck-scene {
   grid-column: 3;
+  grid-row: 1;
   /* Against the keys (its column's inner edge). */
   justify-self: end;
   width: var(--deck-scene);
