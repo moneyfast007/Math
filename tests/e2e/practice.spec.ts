@@ -114,7 +114,8 @@ test.describe('practice', () => {
 
     for (let i = 0; i < 10; i++) {
       await submit(page, await currentAnswer(page));
-      await expect(page.locator('.feedback--correct')).toContainText('נכון! כל הכבוד');
+      // Praised in many words (a different line each time), never a dialog.
+      await expect(page.locator('.feedback--correct')).toBeVisible();
       // Nothing interrupts a child who is doing well: no dialog, ever.
       await expect(page.getByRole('dialog')).toHaveCount(0);
       if (i < 9) await expect(progress).toHaveAttribute('aria-valuenow', String(i + 1));

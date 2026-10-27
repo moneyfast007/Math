@@ -20,11 +20,14 @@ import {
   reduce,
   droppedLevel,
   startSession,
+  type Outcome,
   type SessionAction,
   type SessionState,
 } from '@/engine/session';
 import type { Exercise, Topic } from '@/engine/types';
+import { speaker } from '@/audio/speaker';
 import { makeT, t, type TranslationKey } from '@/i18n';
+import { LATER_COUNT, PRAISE_COUNT, STREAK_COUNT } from '@/i18n/extra/praise';
 import {
   REVIEW_PASS_RATE,
   roundsToday,
@@ -245,6 +248,8 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
     () => profile.settings.effects === 'quiet' || prefersReducedMotion(),
     [profile.settings.effects],
   );
+  // The words of praise for the answer just right (a different line each time).
+  const [praise, setPraise] = useState<TranslationKey>('feedback.praise.1');
   const stateRef = useRef(s);
   stateRef.current = s;
   const cardRef = useRef<HTMLElement>(null);
@@ -290,7 +295,11 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
     // A right answer sounds in the scene's voice (SceneStrip); the plain ding only
     // when the scene is quiet.
     if (after.phase === 'correct' && before.phase !== 'correct') {
-      if (quietScene) playCorrect();
+      const key = pickPraise(after.history);
+      setPraise(key);
+      // A young child does not read it yet: she hears it (unless her sounds are off).
+      if (band === 'young' && profile.settings.sounds !== false) void speaker.speak(tc(key));
+      else if (quietScene) playCorrect();
     } else if (after.phase === 'wrong' && after.tries > before.tries) {
       playAlmost();
       setNudge((n) => n + 1);
@@ -577,7 +586,7 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
       className="answer answer--done"
       style={answerHeight.current ? { minHeight: answerHeight.current } : undefined}
     >
-      <Feedback state={s} tc={tc} />
+      <Feedback state={s} tc={tc} praise={praise} sparkle={!quietScene} />
       <button type="button" className="btn btn--hero practice__next" onClick={advance}>
         {t('practice.next')}
       </button>
@@ -857,7 +866,7 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
 
       {hintsBeside ? null : hints}
 
-      {finished ? null : <Feedback state={s} tc={tc} />}
+      {finished ? null : <Feedback state={s} tc={tc} praise={praise} sparkle={!quietScene} />}
 
       {deck ? (
         // A computer: the hints at the keys' right, the scene square at their left (not a band).
@@ -1050,11 +1059,57 @@ function splitAtSlot(display: string): [string, string] {
 
 type TC = ReturnType<typeof makeT>;
 
-function Feedback({ state: s, tc }: { state: SessionState; tc: TC }) {
+/** The last line of praise said, so the next is another. */
+let lastPraise: TranslationKey | null = null;
+
+/**
+ * A line of praise for an answer just right: for not giving up after a wrong
+ * try; for every third right answer in a row; otherwise one of the many.
+ */
+function pickPraise(history: readonly Outcome[]): TranslationKey {
+  let run = 0;
+  for (let i = history.length - 1; i >= 0 && history[i] === 'first'; i--) run++;
+  const keys = (prefix: string, n: number) =>
+    Array.from({ length: n }, (_, i) => `${prefix}.${i + 1}` as TranslationKey);
+  const pool =
+    history.at(-1) === 'later'
+      ? keys('feedback.later', LATER_COUNT)
+      : run >= 3 && run % 3 === 0
+        ? keys('feedback.streak', STREAK_COUNT)
+        : keys('feedback.praise', PRAISE_COUNT);
+  const options = pool.filter((k) => k !== lastPraise);
+  const key = options[Math.floor(Math.random() * options.length)] ?? pool[0] ?? 'feedback.correct';
+  lastPraise = key;
+  return key;
+}
+
+/** Small stars bursting from the praise, then gone (none with less motion: CSS). */
+function Sparkles() {
+  return (
+    <span className="sparkles" aria-hidden="true">
+      {Array.from({ length: 14 }, (_, i) => (
+        <span key={i} className="sparkles__star" style={{ '--i': i } as CSSProperties} />
+      ))}
+    </span>
+  );
+}
+
+function Feedback({
+  state: s,
+  tc,
+  praise,
+  sparkle,
+}: {
+  state: SessionState;
+  tc: TC;
+  praise: TranslationKey;
+  /** Off when the parent chose quiet effects (or the device asks for less motion). */
+  sparkle: boolean;
+}) {
   const e = s.exercise;
   if (s.phase === 'correct') {
     const first = s.history.at(-1) === 'first';
-    const text = tc(first ? 'feedback.correct' : 'feedback.correctLater');
+    const text = tc(praise);
     return (
       <div
         className={
@@ -1062,6 +1117,7 @@ function Feedback({ state: s, tc }: { state: SessionState; tc: TC }) {
         }
         role="status"
       >
+        {sparkle && first ? <Sparkles /> : null}
         <SpeakerButton text={text} />
         <span>{text}</span>
       </div>
