@@ -808,7 +808,19 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
         {e.visual ? (
           <VisualView
             key={`${s.done}:${e.factId}`}
-            visual={e.visual}
+            visual={
+              // A sequence's asked card holds the typed answer itself (no box under it).
+              e.visual.type === 'sequence' && e.input.type === 'numpad'
+                ? {
+                    ...e.visual,
+                    ...(finished
+                      ? { filled: answerLabel(e) }
+                      : value
+                        ? { filled: groupDigits(value) }
+                        : {}),
+                  }
+                : e.visual
+            }
             interactive={countable}
             countToken={countToken}
           />
@@ -850,7 +862,7 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
             {inFraction ? inFraction.after : after}
           </MathExpr>
         ) : null}
-        {e.input.type === 'numpad' && !hasSlot ? (
+        {e.input.type === 'numpad' && !hasSlot && e.visual?.type !== 'sequence' ? (
           // No equation to hold the slot (stories, dictation): the typed answer shows here.
           <div
             className={finished ? 'answer-box answer-box--done' : 'answer-box'}

@@ -7715,3 +7715,28 @@ body {
 .frac .slot {
   border-bottom: 0;
 }
+
+/* A phone: the sequence top to bottom (the first card on top), an arrow down to the next.
+   On one row it would wrap, and the arrow at a row's end would point at nothing. */
+@media (max-width: 600px) {
+  .sequence {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 18px;
+  }
+
+  .sequence__item {
+    min-width: 7.5em;
+    padding: 4px 14px;
+    font-size: clamp(20px, 6vw, 26px);
+  }
+
+  .sequence__item:not(:last-child)::after {
+    content: '↓';
+    top: auto;
+    bottom: -19px;
+    left: 50%;
+    transform: translateX(-50%);
+    line-height: 1;
+  }
+}

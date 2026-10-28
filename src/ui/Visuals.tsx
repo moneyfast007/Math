@@ -318,7 +318,7 @@ function SequenceView({ v }: { v: Extract<Visual, { type: 'sequence' }> }) {
           key={i}
           className={n === null ? 'sequence__item sequence__item--ask' : 'sequence__item'}
         >
-          <span dir="ltr">{n === null ? '?' : n.toLocaleString('en-US')}</span>
+          <span dir="ltr">{n === null ? (v.filled ?? '?') : n.toLocaleString('en-US')}</span>
         </li>
       ))}
     </ol>

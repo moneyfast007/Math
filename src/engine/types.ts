@@ -122,7 +122,12 @@ export type Visual =
    * A sequence of numbers as cards, read from the right (the first card rightmost);
    * `null` is the one asked ("?"). Wraps onto a second line on a narrow screen.
    */
-  | { type: 'sequence'; items: (number | null)[] }
+  | {
+      type: 'sequence';
+      items: (number | null)[];
+      /** What the asked card shows instead of "?": the typed answer, or the answer once shown. */
+      filled?: string;
+    }
   /** Pencils standing on one line, `lengths` in units of 1–5: which is longest? */
   | { type: 'pencils'; lengths: number[] }
   /**
