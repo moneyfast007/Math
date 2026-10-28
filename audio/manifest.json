@@ -716425,6 +716425,72 @@
       "voice": "gemini-3.1-flash/Leda/quick",
       "bytes": 11373,
       "trimmed": true
+    },
+    "52f5ad8b77e00397": {
+      "text": "איזה שבר בציור?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 7149,
+      "trimmed": true
+    },
+    "1a80642ccb6cb086": {
+      "text": "המונה והמכנה",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 9453,
+      "trimmed": true
+    },
+    "e9d08a3b8134c4ea": {
+      "text": "סדרות: מה החוק?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 10221,
+      "trimmed": true
+    },
+    "72f6ce1e0f42097f": {
+      "text": "מספר מעורב בציור",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 9357,
+      "trimmed": true
+    },
+    "c25d1e892c218291": {
+      "text": "שברים ומספרים: חזרה",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 10221,
+      "trimmed": true
+    },
+    "d22746019bf9b87c": {
+      "text": "סדרות: המספר החסר",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 10893,
+      "trimmed": true
+    },
+    "d4d045af0e7a21b4": {
+      "text": "שבר: מספרות למילים",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 13005,
+      "trimmed": true
+    },
+    "07b944be7dd913e3": {
+      "text": "שבר: ממילים לספרות",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 15405,
+      "trimmed": true
+    },
+    "d072b7c28c40c3d2": {
+      "text": "בעיות מילוליות בשברים",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 9933,
+      "trimmed": true
+    },
+    "d0fefbd3b1f585bb": {
+      "text": "מספר: מספרות למילים",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 11373,
+      "trimmed": true
+    },
+    "baf550bea6e9ddaa": {
+      "text": "קטן מאחד, שווה לאחד או גדול?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 15405,
+      "trimmed": true
     }
   }
 }
