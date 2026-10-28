@@ -340,8 +340,14 @@ test("grade 4's test practice: on the worlds screen, opened and left, read witho
   // On the worlds screen, its own section above the year's worlds.
   await page.getByRole('button', { name: 'כל העולמות' }).click();
   await expect(page).toHaveURL(/\/worlds$/);
-  await expect(page.getByRole('heading', { name: 'תרגול למיפוי במתמטיקה' })).toBeVisible();
-  await page.getByRole('button', { name: /מספרים טבעיים/ }).click();
+  await expect(
+    page.getByRole('heading', { name: 'עולם בונוס: תרגול מיפוי מתמטיקה' }),
+  ).toBeVisible();
+  // Folded: one card, opened to its two parts.
+  const card = page.getByRole('button', { name: /תרגול למיפוי במתמטיקה/ });
+  await expect(card).toHaveAttribute('aria-expanded', 'false');
+  await card.click();
+  await page.getByRole('button', { name: /^מספרים טבעיים/ }).click();
 
   await expect(page).toHaveURL(/\/play$/);
   await expect(page.getByRole('heading', { name: 'תרגול למיפוי · מספרים טבעיים' })).toBeVisible();

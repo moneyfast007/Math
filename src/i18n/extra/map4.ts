@@ -30,7 +30,9 @@ export const heMap4 = {
   'level.map4n.10': 'בעיות מילוליות בחיסור',
 
   // Where it opens: its section on the worlds screen; the parent's switch.
+  'map4.bonus': 'עולם בונוס: תרגול מיפוי מתמטיקה',
   'map4.title': 'תרגול למיפוי במתמטיקה',
+  'map4.parts': 'שני שלבים: שברים ומספרים מעורבים · מספרים טבעיים',
   'map4.grade': 'כיתה ד׳',
   'map4.intro':
     'שני עולמות עם כל הנושאים של המיפוי. אפשר לתרגל אותם בכל זמן, והמסע הרגיל מחכה במקומו.',
