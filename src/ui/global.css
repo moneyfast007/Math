@@ -7709,3 +7709,8 @@ body {
 .math:has(.math__word) .frac {
   min-width: 1.75em;
 }
+
+/* A slot that is a numerator: the fraction's own line is under it, no second one. */
+.frac__num .slot {
+  border-bottom: 0;
+}
