@@ -7710,7 +7710,8 @@ body {
   min-width: 1.75em;
 }
 
-/* A slot that is a numerator: the fraction's own line is under it, no second one. */
-.frac__num .slot {
+/* A slot inside a fraction (its numerator or its denominator): the fraction's own line
+   marks it, no second one. */
+.frac .slot {
   border-bottom: 0;
 }
