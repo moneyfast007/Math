@@ -324,25 +324,27 @@ interface Seq {
 }
 
 /** Five terms adding or taking away the same step, all between 0 and a million. */
-function sequence(rng: Rng): Seq {
+function sequence(rng: Rng, top = 900_000): Seq {
   const step = pick(rng, STEPS);
   const up = rng() < 0.5;
   const scale = step >= 1000 ? 1000 : step >= 100 ? 100 : 25;
   const low = step * 5;
-  const start =
-    randInt(rng, Math.ceil(low / scale), Math.floor(Math.min(900_000, step * 400) / scale)) * scale;
+  const from = Math.ceil(low / scale);
+  const to = Math.floor(Math.min(top - low, step * 400) / scale);
+  const start = randInt(rng, from, to) * scale;
   const terms = range(0, 4).map((i) => (up ? start + i * step : start + low - i * step));
   return { terms, step, up };
 }
 
 /** Between the numbers of a sequence (spaces alone collapse, a comma reads as thousands). */
-const SEP = '  ·  ';
+const SEP = ' · ';
 
 const rule = (step: number, up: boolean) =>
   tx(up ? 'r4.seq.up' : 'r4.seq.down', { step: grouped(step) });
 
 function seqMissing(rng: Rng): Exercise {
-  const { terms: all, step, up } = sequence(rng);
+  // Up to five digits here, so four numbers stay big enough on a phone.
+  const { terms: all, step, up } = sequence(rng, 90_000);
   // Four numbers on the screen (five would be too small on a phone): the next one hidden,
   // or one in the middle.
   const terms = all.slice(0, 4);
