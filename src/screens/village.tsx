@@ -38,6 +38,7 @@ export function House({
   number,
   here = false,
   tried = false,
+  progress,
 }: {
   state: StationState;
   index: number;
@@ -46,6 +47,12 @@ export function House({
   here?: boolean;
   /** Played but not passed (it has stars): half built. */
   tried?: boolean;
+  /**
+   * The station she is at: how far its round got (0–1). Its walls rise in colour as
+   * far as that, on a grey outline, with scaffolding and builders at work; the roof
+   * comes when the station is passed (the build crew finishes the house).
+   */
+  progress?: number;
 }) {
   const locked = state === 'locked';
   const sketch = state === 'skipped' || state === 'warmup';
@@ -80,6 +87,63 @@ export function House({
       </g>
     </>
   );
+  if (state === 'current' && progress !== undefined) {
+    const built = Math.max(0, Math.min(1, progress));
+    const [wl0, wr0] = colors;
+    // The walls run from y 40 (top) to 84 (ground); the colour rises from the ground.
+    const top = 84 - built * 44;
+    return (
+      <svg className="house house--site" viewBox="0 0 100 100" aria-hidden="true">
+        <ellipse cx="54" cy="86" rx="34" ry="11" className="house__shadow" />
+        {/* The house to be: a pale outline of its walls. */}
+        <polygon points="26,70 54,84 54,54 26,40" fill="#efe8dd" />
+        <polygon points="54,84 82,70 82,40 54,54" fill="#e2d8ca" />
+        <polygon
+          points="26,70 54,84 82,70 82,40 54,54 26,40"
+          fill="none"
+          stroke="#b9ab98"
+          strokeWidth="1.2"
+          strokeDasharray="3 2.5"
+        />
+        {/* What is built so far, in colour, from the ground up. */}
+        {built > 0 ? (
+          <g className="house__built" style={{ clipPath: `inset(${(1 - built) * 100}% 0 0 0)` }}>
+            <polygon points="26,70 54,84 54,54 26,40" fill={wl0} />
+            <polygon points="54,84 82,70 82,40 54,54" fill={wr0} />
+            <polygon points="63,79.5 72,75 72,57 63,61.5" fill="#7a4a2a" />
+            <polygon
+              points="34,62 45,67.5 45,56.5 34,51"
+              fill="#cfe7ff"
+              stroke="rgb(0 0 0 / 15%)"
+              strokeWidth="1"
+            />
+          </g>
+        ) : (
+          // Not started: the foundation only.
+          <polygon points="26,70 54,84 82,70 54,56" fill="#c9b9a4" />
+        )}
+        {/* Scaffolding, a plank at the height reached. */}
+        <g stroke="#8a5a2e" strokeWidth="2" strokeLinecap="round">
+          <line x1="22" y1="74" x2="22" y2="34" />
+          <line x1="86" y1="74" x2="86" y2="34" />
+        </g>
+        <polygon
+          points={`20,${top - 4} 54,${top + 13} 88,${top - 4} 88,${top - 1} 54,${top + 16} 20,${top - 1}`}
+          fill="#d9a35f"
+          stroke="#a8743f"
+          strokeWidth="0.8"
+        />
+        {/* While it is being built, the builders stay at work. */}
+        {built > 0 ? (
+          <g className="site">
+            <Builder x={88} y={96} flip delay={0} />
+            <Builder x={66} y={100} flip delay={0.2} />
+          </g>
+        ) : null}
+        {sign}
+      </svg>
+    );
+  }
   if (tried && state !== 'done' && state !== 'current') {
     // Started, not finished: grey walls up to half their height, no roof yet, bricks waiting.
     return (

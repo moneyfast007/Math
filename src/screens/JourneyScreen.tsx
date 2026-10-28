@@ -8,6 +8,7 @@ import {
   type RefObject,
 } from 'react';
 import { navigate } from '@/app/router';
+import { savedRound } from '@/app/roundSave';
 import { chooseStation, clearChosenStation } from '@/app/station';
 import { currentWorld, leaveTrack } from '@/app/track';
 import { worldPool } from '@/engine/daily';
@@ -452,6 +453,12 @@ function StreakChip({ count, decorative = false }: { count: number; decorative?:
   );
 }
 
+/** How far the round of this station got (0 when none was left half done). */
+function roundProgress(profileId: string, topicId: string, level: number): number {
+  const round = savedRound(profileId, { mode: 'level', topicId, startLevel: level });
+  return round ? round.state.done / Math.max(1, round.state.length) : 0;
+}
+
 /** Two crossing arrows: a mix of this world's stations. */
 function ShuffleIcon() {
   return (
@@ -610,6 +617,9 @@ function WorldMap({
                 number={s.level}
                 here={i === target}
                 tried={s.stars > 0}
+                {...(s.state === 'current'
+                  ? { progress: roundProgress(profileId, world.topic.id, s.level) }
+                  : {})}
               />
               {building.has(s.level) ? <BuildCrew /> : null}
               {/* The best stars of this station, under it. */}
