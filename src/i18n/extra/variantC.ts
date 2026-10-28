@@ -9,8 +9,14 @@ export const heVariantC = {
   'c.welcome.promise.signup': 'בלי הרשמה ובלי סיסמה',
   'c.welcome.promise.device': 'המידע נשמר אצלכם במכשיר',
   'c.welcome.promises': 'מה חשוב לדעת',
-  'c.welcome.cta': 'יוצרים פרופיל ראשון',
-  'c.welcome.ctaNote': 'שם, דמות וכיתה. לוקח דקה.',
+  'c.welcome.cta': 'בואו נתחיל',
+  'c.welcome.ctaNote': 'פרופיל לילד או לילדה, בדקה',
+  'c.welcome.hi': 'היי!',
+  'c.welcome.chip.ads': 'בלי פרסומות',
+  'c.welcome.chip.signup': 'בלי הרשמה',
+  'c.welcome.chip.device': 'נשמר אצלכם',
+  'c.welcome.have': 'כבר יש לכם פלוסי?',
+  'c.welcome.connect': 'התחברות או שחזור',
 
   // Entry screen: children
   'c.home.continue': 'ממשיכים',
