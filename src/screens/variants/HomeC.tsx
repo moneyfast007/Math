@@ -437,24 +437,55 @@ function Check() {
   );
 }
 
-/** First visit: a short hello, the three things a parent wants to know, and one way in. */
+/** Symbols floating around Plusi on the first visit (decorative). */
+const WELCOME_TILES = ['1', '+', '½', '3', '×', '7'] as const;
+
+/** The promise chips' little pictures: no ads, no sign-up, kept on the device. */
+function ChipIcon({ kind }: { kind: 'ads' | 'signup' | 'device' }) {
+  return (
+    <svg className="c-chip__icon" viewBox="0 0 24 24" aria-hidden="true">
+      {kind === 'ads' ? (
+        <>
+          <circle cx="12" cy="12" r="8.5" />
+          <path d="M6 6l12 12" />
+        </>
+      ) : kind === 'signup' ? (
+        <path d="M5 12.5l4.2 4.2L19 7" />
+      ) : (
+        <>
+          <rect x="7" y="3.5" width="10" height="17" rx="2.5" />
+          <path d="M11 17.5h2" />
+        </>
+      )}
+    </svg>
+  );
+}
+
+/** First visit: Plusi says hi, three short promises, one big way in; the rest is small. */
 function WelcomeC({ onStart, onConnect }: { onStart: () => void; onConnect: () => void }) {
   return (
     <main className="screen c-welcome" data-screen="home">
       <section className="c-welcome__hero" aria-labelledby="c-welcome-title">
-        <Plusi size={112} mood="happy" decorative className="c-welcome__plusi" />
+        <div className="c-welcome__stage" aria-hidden="true">
+          {WELCOME_TILES.map((s, i) => (
+            <span key={s} className={`c-welcome__tile c-welcome__tile--${i + 1}`}>
+              {s}
+            </span>
+          ))}
+          <Plusi size={128} mood="happy" decorative className="c-welcome__plusi" />
+          <span className="c-welcome__hi">{t('c.welcome.hi')}</span>
+        </div>
         <h1 id="c-welcome-title" className="c-welcome__name">
           {t('app.name')}
         </h1>
         <p className="c-welcome__tagline">{t('app.tagline')}</p>
-        <p className="bubble bubble--up c-welcome__bubble">{t('c.welcome.hello')}</p>
       </section>
 
-      <ul className="c-promises" aria-label={t('c.welcome.promises')}>
+      <ul className="c-chips" aria-label={t('c.welcome.promises')}>
         {(['ads', 'signup', 'device'] as const).map((k) => (
-          <li key={k} className="c-promises__item">
-            <Check />
-            {t(`c.welcome.promise.${k}`)}
+          <li key={k} className={`c-chip c-chip--${k}`}>
+            <ChipIcon kind={k} />
+            {t(`c.welcome.chip.${k}`)}
           </li>
         ))}
       </ul>
@@ -463,28 +494,29 @@ function WelcomeC({ onStart, onConnect }: { onStart: () => void; onConnect: () =
         <button type="button" className="btn btn--hero c-welcome__cta" onClick={onStart}>
           {t('c.welcome.cta')}
         </button>
-        <p className="muted c-welcome__note">{t('c.welcome.ctaNote')}</p>
+        <p className="c-welcome__note">{t('c.welcome.ctaNote')}</p>
       </div>
 
       <footer className="c-welcome__footer">
         <p className="c-welcome__restore">
-          <span className="muted">{t('welcome.haveData')}</span>
-          <button type="button" className="btn btn--ghost btn--small" onClick={onConnect}>
-            <Icon name="sync" />
-            {t('welcome.connect')}
+          {t('c.welcome.have')}{' '}
+          <button type="button" className="c-welcome__link" onClick={onConnect}>
+            {t('c.welcome.connect')}
           </button>
         </p>
-        {isStandalone() ? null : (
-          <button
-            type="button"
-            className="btn btn--ghost btn--small"
-            onClick={() => navigate({ name: 'install' })}
-          >
-            <Icon name="home" />
-            {t('install.title')}
-          </button>
-        )}
-        <InfoLink />
+        <p className="c-welcome__small">
+          {isStandalone() ? null : (
+            <button
+              type="button"
+              className="c-welcome__link c-welcome__link--quiet"
+              onClick={() => navigate({ name: 'install' })}
+            >
+              <Icon name="home" />
+              {t('install.title')}
+            </button>
+          )}
+          <InfoLink />
+        </p>
       </footer>
     </main>
   );

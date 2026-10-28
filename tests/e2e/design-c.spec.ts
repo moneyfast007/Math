@@ -21,7 +21,7 @@ test('first visit: the welcome opens the new-child form, and the child gets one 
   page,
 }) => {
   await page.goto('/?ui=c');
-  await page.getByRole('button', { name: 'יוצרים פרופיל ראשון' }).click();
+  await page.getByRole('button', { name: 'בואו נתחיל' }).click();
   await expect(page).toHaveURL(/\/parents/);
   await createChild(page, 'דניאל', 'כיתה ג׳');
   await page.getByRole('button', { name: 'סיימתי, למסך הבית' }).first().click();
@@ -38,7 +38,7 @@ test('several children: the same card for each, in the family order, none put fi
   page,
 }) => {
   await page.goto('/?ui=c');
-  await page.getByRole('button', { name: 'יוצרים פרופיל ראשון' }).click();
+  await page.getByRole('button', { name: 'בואו נתחיל' }).click();
   await createChild(page, 'נועה', 'כיתה ב׳');
   await page.getByRole('tab', { name: 'ילדים' }).click();
   await page.getByRole('button', { name: 'הוספת ילד או ילדה' }).click();
