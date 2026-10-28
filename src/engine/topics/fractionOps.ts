@@ -219,7 +219,8 @@ function compare(a: Frac, b: Frac): Exercise {
     topicId: ID,
     level: 3,
     prompt: t('ex.frac.bigger.prompt'),
-    display: `${f(a.n, a.d)}   ${f(b.n, b.d)}`,
+    // The two to choose between, "or" between them.
+    display: `${f(a.n, a.d)} ${t('math.or')} ${f(b.n, b.d)}`,
     spoken: say('ex.frac.bigger.spoken', { a: w(a.n, a.d), b: w(b.n, b.d) }),
     visual: bar(a.n, a.d),
     answer,

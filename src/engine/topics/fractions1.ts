@@ -259,7 +259,8 @@ function compare(
     topicId: ID,
     level,
     prompt: t('ex.frac.bigger.prompt'),
-    display: `${f(a.n, a.d)}   ${f(b.n, b.d)}`,
+    // The two to choose between, "or" between them.
+    display: `${f(a.n, a.d)} ${t('math.or')} ${f(b.n, b.d)}`,
     spoken: say('ex.frac.bigger.spoken', { a: w(a.n, a.d), b: w(b.n, b.d) }),
     // Both fractions as bars of the same length, one under the other, in the main
     // picture: a circle beside a bar is no comparison.

@@ -36,21 +36,46 @@ function Written({ whole, num, den }: { whole: string | undefined; num: string; 
   );
 }
 
-/** The text with every fraction and mixed number in it written stacked. */
-export function withFractions(text: string): ReactNode {
-  if (!text.includes('/')) return text;
+/** "או" between two numbers to choose from: smaller and lighter than the numbers (units stay as they are). */
+const WORD = /(?<![\u05d0-\u05ea])או(?![\u05d0-\u05ea])/g;
+
+function withWords(text: string): ReactNode {
+  if (!text.includes('או')) return text;
+  const out: ReactNode[] = [];
+  let last = 0;
+  for (const m of text.matchAll(WORD)) {
+    const at = m.index ?? 0;
+    if (at > last) out.push(text.slice(last, at));
+    out.push(
+      <span key={`w${at}`} className="math__word">
+        {m[0]}
+      </span>,
+    );
+    last = at + m[0].length;
+  }
+  if (last < text.length) out.push(text.slice(last));
+  return <>{out}</>;
+}
+
+/**
+ * The text with every fraction and mixed number in it written stacked; `words`
+ * (inside an expression): its Hebrew words set apart as words.
+ */
+export function withFractions(text: string, words = false): ReactNode {
+  const plain = (part: string): ReactNode => (words ? withWords(part) : part);
+  if (!text.includes('/')) return plain(text);
   const out: ReactNode[] = [];
   let last = 0;
   for (const m of text.matchAll(FRACTION)) {
     const at = m.index ?? 0;
     // Not part of a longer number before it ("12/3" is read whole; "a1 2/3" is not a mixed number).
     if (at > 0 && /[\d/]/.test(text[at - 1] ?? '')) continue;
-    if (at > last) out.push(text.slice(last, at));
+    if (at > last) out.push(plain(text.slice(last, at)));
     out.push(<Written key={at} whole={m[1]} num={m[2] ?? ''} den={m[3] ?? ''} />);
     last = at + m[0].length;
   }
-  if (out.length === 0) return text;
-  if (last < text.length) out.push(text.slice(last));
+  if (out.length === 0) return plain(text);
+  if (last < text.length) out.push(plain(text.slice(last)));
   return <>{out}</>;
 }
 

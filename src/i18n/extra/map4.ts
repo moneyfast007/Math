@@ -5,6 +5,8 @@
  * prefixes (they also show on the map and the worlds screen).
  */
 export const heMap4 = {
+  // Between two numbers to choose from ("which is bigger?"), shown in the exercise.
+  'math.or': 'או',
   // The two worlds and their stations (spoken prefixes: shown on the map, recorded later).
   'topic.map4.fractions': 'שברים ומספרים מעורבים',
   'topic.map4.numbers': 'מספרים טבעיים',

@@ -27,12 +27,12 @@ function written(text: string): string {
 
 function withBreak(text: string): ReactNode {
   const at = text.indexOf(' = ');
-  if (at < 0) return withFractions(text);
+  if (at < 0) return withFractions(text, true);
   return (
     <>
-      {withFractions(text.slice(0, at + 1))}
+      {withFractions(text.slice(0, at + 1), true)}
       <span className="math__break" aria-hidden="true" />
-      {withFractions(text.slice(at + 1))}
+      {withFractions(text.slice(at + 1), true)}
     </>
   );
 }
@@ -103,7 +103,7 @@ export function MathExpr({ children, block = false, label, className }: MathExpr
   const cls = ['math', block ? 'math--block' : '', className ?? ''].filter(Boolean).join(' ');
   const { outer, line } = useFit(block);
   const content = Children.map(children, (c) =>
-    typeof c === 'string' ? (block ? withBreak(written(c)) : withFractions(written(c))) : c,
+    typeof c === 'string' ? (block ? withBreak(written(c)) : withFractions(written(c), true)) : c,
   );
   return (
     <span ref={outer} className={cls} dir="ltr" lang="und" aria-label={label} data-math="">
