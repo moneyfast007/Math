@@ -49,7 +49,7 @@ export function House({
   tried?: boolean;
   /**
    * The station she is at: how far its round got (0–1). Its walls rise in colour as
-   * far as that, on a grey outline, with scaffolding and builders at work; the roof
+   * far as that, on a pale outline, with scaffolding; the roof
    * comes when the station is passed (the build crew finishes the house).
    */
   progress?: number;
@@ -133,13 +133,6 @@ export function House({
           stroke="#a8743f"
           strokeWidth="0.8"
         />
-        {/* While it is being built, the builders stay at work. */}
-        {built > 0 ? (
-          <g className="site">
-            <Builder x={88} y={96} flip delay={0} />
-            <Builder x={66} y={100} flip delay={0.2} />
-          </g>
-        ) : null}
         {sign}
       </svg>
     );
