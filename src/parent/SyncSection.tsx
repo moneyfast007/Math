@@ -15,7 +15,7 @@ import { More, SettingsCard } from './parts';
  * device and type it on the new one.
  */
 
-function problemText(problem: SyncProblem): string {
+export function problemText(problem: SyncProblem): string {
   switch (problem) {
     case 'offline':
       return t('sync.problem.offline');

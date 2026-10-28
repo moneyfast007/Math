@@ -521,6 +521,17 @@ export async function handleApi(request: Request, services: Services): Promise<R
       });
       return json(result);
     }
+    case '/api/account/check': {
+      // The family's password, asked on this device (a parent who forgot the parents' code):
+      // right only for this device's own family. Counted like a sign-in, so it cannot be guessed.
+      if (!(await family.verify(auth))) return fail('unauthorized');
+      const account = readAccount(body);
+      if (!account) return fail('badLogin');
+      const found = await services.accounts().login(account.email, account.key, address);
+      if (isError(found)) return fail(found.error);
+      if (found.familyId !== auth.familyId) return fail('badLogin');
+      return json({ ok: true });
+    }
     case '/api/account/status': {
       if (!(await family.verify(auth))) return fail('unauthorized');
       return json({ account: await services.accounts().has(auth.familyId) });

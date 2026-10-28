@@ -13,6 +13,8 @@ interface ParentGateProps {
   verifyPin: (pin: string) => Promise<boolean>;
   onUnlock: () => void;
   onCancel: () => void;
+  /** "שכחתי את הקוד" (shown under a PIN): proves the parent with the family's email and password. */
+  onForgot?: (() => void) | undefined;
   rng?: () => number;
 }
 
@@ -21,6 +23,7 @@ export function ParentGate({
   verifyPin,
   onUnlock,
   onCancel,
+  onForgot,
   rng = Math.random,
 }: ParentGateProps) {
   const [question, setQuestion] = useState(() => makeGateQuestion(rng));
@@ -72,6 +75,15 @@ export function ParentGate({
           code={hasPin}
           {...(hasPin ? {} : { onSubmit: () => void check(value) })}
         />
+        {hasPin && onForgot ? (
+          <button
+            type="button"
+            className="btn btn--ghost btn--small gate__forgot"
+            onClick={onForgot}
+          >
+            {t('gate.forgot')}
+          </button>
+        ) : null}
       </div>
     </Dialog>
   );

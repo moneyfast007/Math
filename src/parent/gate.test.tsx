@@ -101,4 +101,30 @@ describe('<ParentGate> with a PIN', () => {
     expect(verifyPin).toHaveBeenCalledWith('2580');
     expect(onUnlock).toHaveBeenCalledOnce();
   });
+
+  it('offers "שכחתי את הקוד" under a PIN only', () => {
+    const onForgot = vi.fn();
+    const { unmount } = render(
+      <ParentGate
+        hasPin
+        verifyPin={vi.fn()}
+        onUnlock={vi.fn()}
+        onCancel={vi.fn()}
+        onForgot={onForgot}
+      />,
+    );
+    fireEvent.click(screen.getByRole('button', { name: 'שכחתי את הקוד' }));
+    expect(onForgot).toHaveBeenCalledOnce();
+    unmount();
+    render(
+      <ParentGate
+        hasPin={false}
+        verifyPin={vi.fn()}
+        onUnlock={vi.fn()}
+        onCancel={vi.fn()}
+        onForgot={onForgot}
+      />,
+    );
+    expect(screen.queryByRole('button', { name: 'שכחתי את הקוד' })).toBeNull();
+  });
 });

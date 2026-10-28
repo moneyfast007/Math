@@ -66,6 +66,15 @@ export const he = {
   'gate.question': 'כמה זה?',
   'gate.pinPrompt': 'הקלידו את קוד ההורים',
   'gate.wrong': 'לא נכון. נסו שוב.',
+  'gate.forgot': 'שכחתי את הקוד',
+  'gate.forgot.title': 'שכחתם את הקוד?',
+  'gate.forgot.how':
+    'הקלידו את המייל והסיסמה של המשפחה, ואז תבחרו קוד חדש. הקוד החדש יחול בכל המכשירים של המשפחה.',
+  'gate.forgot.noAccount':
+    'אפשר לבחור קוד חדש רק אחרי אימות עם המייל והסיסמה של המשפחה, ובמכשיר הזה לא הוגדרו מייל וסיסמה.',
+  'gate.forgot.checking': 'בודקים…',
+  'gate.forgot.submit': 'אישור',
+  'gate.forgot.back': 'חזרה',
 
   // Parent area
   'parent.title': 'אזור הורים',

@@ -474,6 +474,14 @@ ol.steps {
   font-weight: 600;
 }
 
+/* "שכחתי את הקוד": quiet, under the keys. */
+.gate__forgot {
+  align-self: center;
+  color: var(--color-text-muted);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 /* Avatars (system emoji) */
 .avatar {
   display: inline-flex;

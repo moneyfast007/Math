@@ -17,6 +17,7 @@ import {
 import { makeT, t, type TranslationKey } from '@/i18n';
 import { formatDate, formatPercent, gradeLabel, mistakeLabel, topicLabel } from '@/i18n/labels';
 import { ParentGate } from '@/parent/ParentGate';
+import { ForgotPin } from '@/parent/ForgotPin';
 import { ProfileForm } from '@/parent/ProfileForm';
 import { AccountDialog, SyncSection } from '@/parent/SyncSection';
 import {
@@ -63,6 +64,9 @@ export function ParentScreen({
   const hasPin = useApp((s) => s.data.parent.pin !== null);
   const verifyPin = useApp((s) => s.verifyPin);
   const unlockParent = useApp((s) => s.unlockParent);
+  const setPin = useApp((s) => s.setPin);
+  // A forgotten code: the family's email and password, then a new code (see ForgotPin).
+  const [forgot, setForgot] = useState<'gate' | 'check' | 'choose'>('gate');
 
   useEffect(() => {
     applyAgeBand('older');
@@ -76,12 +80,27 @@ export function ParentScreen({
         <div className="parent-locked__art" aria-hidden="true">
           <Icon name="lock" />
         </div>
-        <ParentGate
-          hasPin={hasPin}
-          verifyPin={verifyPin}
-          onUnlock={unlockParent}
-          onCancel={() => navigate({ name: 'home' })}
-        />
+        {forgot === 'check' ? (
+          <ForgotPin onVerified={() => setForgot('choose')} onBack={() => setForgot('gate')} />
+        ) : forgot === 'choose' ? (
+          <PinChooser
+            onDone={(pin) => {
+              void setPin(pin).then(() => {
+                setForgot('gate');
+                unlockParent();
+              });
+            }}
+            onCancel={() => setForgot('gate')}
+          />
+        ) : (
+          <ParentGate
+            hasPin={hasPin}
+            verifyPin={verifyPin}
+            onUnlock={unlockParent}
+            onCancel={() => navigate({ name: 'home' })}
+            onForgot={() => setForgot('check')}
+          />
+        )}
       </main>
     );
   }

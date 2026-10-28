@@ -245,6 +245,27 @@ describe('signing in with an email and a password', () => {
     expect(b.engine.ui.getState()).toMatchObject({ hasAccount: true });
   });
 
+  it("checks the family's password for a forgotten parents' code, changing nothing", async () => {
+    const clock = { now: new Date(2026, 9, 24, 9).getTime() };
+    const services = memoryServices(() => clock.now);
+    const a = await device(services, 'אייפד', clock);
+    expect(await a.engine.checkAccount('dana@example.com', 'secret1')).toEqual({
+      ok: false,
+      error: 'unauthorized',
+    });
+    expect(await a.engine.setAccount('dana@example.com', 'secret1')).toEqual({ ok: true });
+    expect(await a.engine.checkAccount('dana@example.com', 'wrong12')).toEqual({
+      ok: false,
+      error: 'badLogin',
+    });
+    expect(await a.engine.checkAccount('dana@example.com', '123')).toEqual({
+      ok: false,
+      error: 'badLogin',
+    });
+    expect(await a.engine.checkAccount(' Dana@Example.com', 'secret1')).toEqual({ ok: true });
+    expect(a.engine.ui.getState()).toMatchObject({ linked: true, hasAccount: true });
+  });
+
   it('checks the email and the password before asking the server', async () => {
     const clock = { now: new Date(2026, 9, 24, 9).getTime() };
     const a = await device(

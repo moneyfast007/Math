@@ -184,6 +184,34 @@ describe('signing in with an email and a password', () => {
     ).toBe(401);
   });
 
+  it("checks the family's password on one of its devices (a forgotten parents' code), and only its own", async () => {
+    const { services } = server();
+    const family = await newFamily(services);
+    const other = await newFamily(services);
+    await call(
+      services,
+      '/api/account/set',
+      { email: 'dana@example.com', key: KEY_A },
+      { token: family.token },
+    );
+    await call(
+      services,
+      '/api/account/set',
+      { email: 'noa@example.com', key: KEY_B },
+      { token: other.token },
+    );
+    const check = (token: string, email: string, key: string) =>
+      call(services, '/api/account/check', { email, key }, { token });
+    expect((await check(family.token, 'dana@example.com', KEY_A)).status).toBe(200);
+    expect((await check(family.token, 'dana@example.com', KEY_B)).status).toBe(401);
+    // Another family's right password opens nothing here.
+    expect((await check(family.token, 'noa@example.com', KEY_B)).status).toBe(401);
+    expect(
+      (await call(services, '/api/account/check', { email: 'dana@example.com', key: KEY_A }))
+        .status,
+    ).toBe(401);
+  });
+
   it('stops guessing: ten wrong passwords from one address in an hour', async () => {
     const { services, clock } = server();
     const family = await newFamily(services);

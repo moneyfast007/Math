@@ -263,7 +263,12 @@ export type ActionResult<T = object> = ({ ok: true } & T) | { ok: false; error: 
 
 /** Why an action failed, for the parent: the server's reason, or no connection. */
 export type SyncProblem =
-  SyncErrorCode | 'offline' | 'tooManyChildren' | 'unavailable' | 'badEmail' | 'shortPassword';
+  | SyncErrorCode
+  | 'offline'
+  | 'tooManyChildren'
+  | 'unavailable'
+  | 'badEmail'
+  | 'shortPassword';
 
 export interface JoinResult {
   matched: string[];
@@ -622,6 +627,20 @@ export class SyncEngine {
     this.state = { ...s, accountEmail: k.email };
     await this.persist();
     this.publish(this.ui.getState().status, { hasAccount: true });
+    return { ok: true };
+  }
+
+  /**
+   * Whether this email and password are this family's (a parent who forgot the
+   * parents' code proves who they are with them). Changes nothing; counted like a sign-in.
+   */
+  async checkAccount(email: string, password: string): Promise<ActionResult> {
+    const s = this.state;
+    if (!s) return { ok: false, error: 'unauthorized' };
+    const k = await this.accountKey(email, password);
+    if (!k.ok) return k.error === 'shortPassword' ? { ok: false, error: 'badLogin' } : k;
+    const res = await this.post('/api/account/check', { email: k.email, key: k.key }, s.token);
+    if (!res.ok) return res;
     return { ok: true };
   }
 
