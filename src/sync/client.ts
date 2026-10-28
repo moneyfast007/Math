@@ -263,12 +263,7 @@ export type ActionResult<T = object> = ({ ok: true } & T) | { ok: false; error: 
 
 /** Why an action failed, for the parent: the server's reason, or no connection. */
 export type SyncProblem =
-  | SyncErrorCode
-  | 'offline'
-  | 'tooManyChildren'
-  | 'unavailable'
-  | 'badEmail'
-  | 'shortPassword';
+  SyncErrorCode | 'offline' | 'tooManyChildren' | 'unavailable' | 'badEmail' | 'shortPassword';
 
 export interface JoinResult {
   matched: string[];
