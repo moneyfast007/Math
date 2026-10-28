@@ -336,40 +336,43 @@ function sequence(rng: Rng, top = 900_000): Seq {
   return { terms, step, up };
 }
 
-/** Between the numbers of a sequence (spaces alone collapse, a comma reads as thousands). */
-const SEP = ' · ';
+/** Hint 3 for a sequence: a solved one, drawn as cards (and its rule, when that is the question). */
+const solvedSequence = (items: number[], ruleText?: string): Hint => {
+  const text = tx('r4.example');
+  return {
+    text,
+    spoken: `${text} ${items.map(grouped).join(', ')}${ruleText ? `: ${ruleText}` : ''}`,
+    visual: { type: 'sequence', items },
+    ...(ruleText ? { example: { display: ruleText, spoken: ruleText } } : {}),
+  };
+};
 
 const rule = (step: number, up: boolean) =>
   tx(up ? 'r4.seq.up' : 'r4.seq.down', { step: grouped(step) });
 
 function seqMissing(rng: Rng): Exercise {
-  // Up to five digits here, so four numbers stay big enough on a phone.
-  const { terms: all, step, up } = sequence(rng, 90_000);
-  // Four numbers on the screen (five would be too small on a phone): the next one hidden,
-  // or one in the middle.
+  const { terms: all, step, up } = sequence(rng);
+  // Four numbers, as cards (they wrap on a narrow phone): the next one hidden, or one in the middle.
   const terms = all.slice(0, 4);
   const gap = rng() < 0.5 ? 3 : randInt(rng, 1, 2);
   const answer = terms[gap] as number;
-  // Read from the right, as in a Hebrew book: the first number rightmost, the next at the left.
-  const display = terms
-    .map((x, i) => (i === gap ? '?' : grouped(x)))
-    .reverse()
-    .join(SEP);
+  const shownText = terms.map((x, i) => (i === gap ? '?' : grouped(x))).join(', ');
   const prompt = tx(gap === 3 ? 'r4.seq.next.prompt' : 'r4.seq.gap.prompt');
-  const ex = step === 100 && up ? `150  ←  250${SEP}350${SEP}450` : `600  ←  500${SEP}400${SEP}300`;
+  const ex = step === 100 && up ? [450, 350, 250, 150] : [300, 400, 500, 600];
   return exercise({
     factId: `r4seq:${terms.join(',')}:${gap}`,
     topicId: ID,
     level: 8,
     prompt,
-    display,
-    spoken: said(`${prompt} ${display}`),
+    display: '',
+    spoken: said(`${prompt} ${shownText}`),
+    visual: { type: 'sequence', items: terms.map((x, i) => (i === gap ? null : x)) },
     answer,
     input: numpad(6),
     hints: [
       note('r4.seq.hint1'),
       note(up ? 'r4.seq.hint2Up' : 'r4.seq.hint2Down', { step: grouped(step) }),
-      solved(ex),
+      solvedSequence(ex),
     ],
     solution: said(`${rule(step, up)}: ${grouped(answer)}`),
   });
@@ -384,14 +387,15 @@ function seqRule(rng: Rng): Exercise {
   );
   const wrong = [rule(step, !up), rule(step * 2, up), rule(other, up), rule(other, !up)];
   const { labels, answer } = choicesOf(rng, right, wrong);
-  const display = terms.slice(0, 4).map(grouped).reverse().join(SEP);
+  const four = terms.slice(0, 4);
   return exercise({
     factId: `r4rule:${terms.join(',')}`,
     topicId: ID,
     level: 9,
     prompt: tx('r4.seq.rule.prompt'),
-    display,
-    spoken: said(`${tx('r4.seq.rule.prompt')} ${display}`),
+    display: '',
+    spoken: said(`${tx('r4.seq.rule.prompt')} ${four.map(grouped).join(', ')}`),
+    visual: { type: 'sequence', items: four },
     answer,
     input: labelledChoices(labels, true),
     hints: [
@@ -399,8 +403,8 @@ function seqRule(rng: Rng): Exercise {
       note('r4.seq.ruleHint2'),
       // A solved one whose rule is not this one's.
       step === 200 && !up
-        ? solved(`${rule(100, true)}  ←  500${SEP}400${SEP}300`)
-        : solved(`${rule(200, false)}  ←  800${SEP}1,000${SEP}1,200`),
+        ? solvedSequence([300, 400, 500], rule(100, true))
+        : solvedSequence([1200, 1000, 800], rule(200, false)),
     ],
     solution: said(right),
   });

@@ -7609,3 +7609,47 @@ body {
     display: none;
   }
 }
+
+/* A sequence: number cards read from the right, an arrow between them; wraps when narrow. */
+.sequence {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px 22px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sequence__item {
+  position: relative;
+  min-width: 3.2em;
+  padding: 8px 12px;
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  font-family: var(--font-math);
+  font-size: clamp(22px, 6vw, 30px);
+  font-weight: 800;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+/* The arrow toward the next card (at its left, the way the sequence goes). */
+.sequence__item:not(:last-child)::after {
+  content: '←';
+  position: absolute;
+  top: 50%;
+  left: -19px;
+  transform: translateY(-50%);
+  color: var(--color-text-muted);
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.sequence__item--ask {
+  border-color: var(--color-accent);
+  border-style: dashed;
+  color: var(--color-accent-strong);
+}

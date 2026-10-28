@@ -61,6 +61,8 @@ export function VisualView({
       return <CubeStackView v={visual} />;
     case 'thing':
       return <ThingView v={visual} />;
+    case 'sequence':
+      return <SequenceView v={visual} />;
     case 'angle':
       return <AngleView v={visual} />;
     case 'angleSplit':
@@ -304,6 +306,22 @@ function NumberLine({ v }: { v: Extract<Visual, { type: 'numberLine' }> }) {
         ) : null}
       </svg>
     </div>
+  );
+}
+
+/** Number cards from the right, a small arrow between them; the asked one is "?". */
+function SequenceView({ v }: { v: Extract<Visual, { type: 'sequence' }> }) {
+  return (
+    <ol className="sequence" dir="rtl" data-visual="sequence" aria-hidden="true">
+      {v.items.map((n, i) => (
+        <li
+          key={i}
+          className={n === null ? 'sequence__item sequence__item--ask' : 'sequence__item'}
+        >
+          <span dir="ltr">{n === null ? '?' : n.toLocaleString('en-US')}</span>
+        </li>
+      ))}
+    </ol>
   );
 }
 

@@ -118,6 +118,11 @@ export type Visual =
   | { type: 'cubeStack'; columns: number[] }
   /** One everyday thing, drawn big (an emoji): which solid does it look like? */
   | { type: 'thing'; emoji: string }
+  /**
+   * A sequence of numbers as cards, read from the right (the first card rightmost);
+   * `null` is the one asked ("?"). Wraps onto a second line on a narrow screen.
+   */
+  | { type: 'sequence'; items: (number | null)[] }
   /** Pencils standing on one line, `lengths` in units of 1–5: which is longest? */
   | { type: 'pencils'; lengths: number[] }
   /**
