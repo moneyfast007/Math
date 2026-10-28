@@ -547,7 +547,8 @@ function borrowed(
 ) {
   return (rng: Rng, gender: Gender): Exercise => {
     let e = source.generate(sourceLevel, rng, gender);
-    for (let i = 0; i < 60 && !keep(e); i++) e = source.generate(sourceLevel, rng, gender);
+    // Some kinds are rare in a station (an addition among its word problems): look long enough.
+    for (let i = 0; i < 600 && !keep(e); i++) e = source.generate(sourceLevel, rng, gender);
     return at(topicId, level, e);
   };
 }
