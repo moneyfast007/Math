@@ -42,6 +42,9 @@ export function TestPrepSection({
           aria-controls="prep-parts"
           onClick={() => setOpen((o) => !o)}
         >
+          <span className="prep__star" aria-hidden="true">
+            ★
+          </span>
           <span className="prep__head">
             <span className="prep__grade">{t('map4.grade')}</span>
             <span className="prep__title">{t('map4.title')}</span>

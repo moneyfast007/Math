@@ -168,3 +168,71 @@
   font-size: 15px;
   font-weight: 700;
 }
+
+/* A bonus, not one of the year's worlds: rounder, in its own colours, with a star. */
+.prep {
+  position: relative;
+  overflow: hidden;
+  border: 0;
+  border-radius: 36px;
+  background:
+    radial-gradient(circle at 12% 18%, rgb(255 255 255 / 22%) 0 2px, transparent 3px) 0 0 / 38px
+      34px,
+    linear-gradient(135deg, #6b4fe0 0%, #a64fd1 55%, #e0609a 100%);
+  box-shadow: 0 10px 24px rgb(107 79 224 / 30%);
+  color: #fff;
+}
+
+.prep__label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #7a3fc4;
+}
+
+.prep__label::before {
+  content: '★';
+  color: #f0b42c;
+}
+
+.prep__toggle {
+  color: #fff;
+}
+
+.prep__star {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #ffd23f;
+  color: #8a4b00;
+  font-size: 28px;
+  box-shadow: 0 0 0 4px rgb(255 255 255 / 35%);
+}
+
+.prep .prep__grade {
+  background: rgb(255 255 255 / 25%);
+  color: #fff;
+}
+
+.prep .muted {
+  color: rgb(255 255 255 / 88%);
+}
+
+.prep__chev {
+  border-color: #fff;
+}
+
+/* The two parts inside stay white cards, on the bonus colours. */
+.prep .prep__world {
+  border: 0;
+  box-shadow: 0 6px 16px rgb(40 20 90 / 25%);
+}
+
+.prep .prep__world--current {
+  box-shadow:
+    0 0 0 3px #ffd23f,
+    0 6px 16px rgb(40 20 90 / 25%);
+}
