@@ -1,5 +1,6 @@
 import { Children, useLayoutEffect, useRef, type ReactNode } from 'react';
 import { groupDigits } from '@/lang/groupDigits';
+import { withFractions } from './Fraction';
 
 interface MathExprProps {
   /** The expression, already formatted for display (e.g. "3 + 5 = ?"). */
@@ -26,12 +27,12 @@ function written(text: string): string {
 
 function withBreak(text: string): ReactNode {
   const at = text.indexOf(' = ');
-  if (at < 0) return text;
+  if (at < 0) return withFractions(text);
   return (
     <>
-      {text.slice(0, at + 1)}
+      {withFractions(text.slice(0, at + 1))}
       <span className="math__break" aria-hidden="true" />
-      {text.slice(at + 1)}
+      {withFractions(text.slice(at + 1))}
     </>
   );
 }
@@ -102,7 +103,7 @@ export function MathExpr({ children, block = false, label, className }: MathExpr
   const cls = ['math', block ? 'math--block' : '', className ?? ''].filter(Boolean).join(' ');
   const { outer, line } = useFit(block);
   const content = Children.map(children, (c) =>
-    typeof c === 'string' ? (block ? withBreak(written(c)) : written(c)) : c,
+    typeof c === 'string' ? (block ? withBreak(written(c)) : withFractions(written(c))) : c,
   );
   return (
     <span ref={outer} className={cls} dir="ltr" lang="und" aria-label={label} data-math="">

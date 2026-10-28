@@ -42,6 +42,7 @@ import { Stars } from '@/ui/Stars';
 import type { Profile } from '@/state/schema';
 import { appStore, useActiveProfile, useApp } from '@/state/store';
 import { ageBandForGrade, applyAgeBand } from '@/ui/ageBand';
+import { Frac, slotFraction, withFractions } from '@/ui/Fraction';
 import { MathExpr } from '@/ui/MathExpr';
 import { groupDigits } from '@/lang/groupDigits';
 import { NumberPad } from '@/ui/NumberPad';
@@ -566,6 +567,18 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
       : '?';
   const hasSlot = e.display.includes('?');
   const [before, after] = e.display ? splitAtSlot(e.display) : ['', ''];
+  // A slot that is a fraction's numerator or denominator ("?/8") sits inside it, stacked.
+  const inFraction = hasSlot ? slotFraction(before, after) : null;
+  const slot = (
+    <span
+      className={
+        // Shown after the tries: the answer, in the colour of "here it is", not of "right!".
+        s.phase === 'correct' ? 'slot slot--done' : finished ? 'slot slot--shown' : 'slot'
+      }
+    >
+      {withFractions(slotValue)}
+    </span>
+  );
 
   const scene = (
     <SceneStrip
@@ -629,7 +642,7 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
                 disabled={tried.includes(c)}
                 onClick={() => answer(c)}
               >
-                {label ? <span className="choice-big__text">{text}</span> : text}
+                {label ? <span className="choice-big__text">{withFractions(text)}</span> : text}
               </button>
             );
           })}
@@ -690,7 +703,7 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
                   ✕
                 </button>
               </div>
-              <p>{h.text}</p>
+              <p>{withFractions(h.text)}</p>
               {h.visual ? <VisualView visual={h.visual} /> : null}
               {h.example ? <MathExpr block>{h.example.display}</MathExpr> : null}
             </article>
@@ -790,7 +803,7 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
           }
         >
           {silent ? null : <SpeakerButton text={e.spokenText} parts={e.spokenParts} size="lg" />}
-          <h1 className="exercise__title">{groupDigits(e.prompt)}</h1>
+          <h1 className="exercise__title">{withFractions(groupDigits(e.prompt))}</h1>
         </div>
         {e.visual ? (
           <VisualView
@@ -822,18 +835,19 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
           />
         ) : e.display ? (
           <MathExpr block label={e.spokenText}>
-            {before}
+            {inFraction ? inFraction.before : before}
             {hasSlot ? (
-              <span
-                className={
-                  // Shown after the tries: the answer, in the colour of "here it is", not of "right!".
-                  s.phase === 'correct' ? 'slot slot--done' : finished ? 'slot slot--shown' : 'slot'
-                }
-              >
-                {slotValue}
-              </span>
+              inFraction ? (
+                'den' in inFraction ? (
+                  <Frac num={slot} den={inFraction.den} />
+                ) : (
+                  <Frac num={inFraction.num} den={slot} />
+                )
+              ) : (
+                slot
+              )
             ) : null}
-            {after}
+            {inFraction ? inFraction.after : after}
           </MathExpr>
         ) : null}
         {e.input.type === 'numpad' && !hasSlot ? (
@@ -843,7 +857,7 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
             dir="ltr"
             aria-live="polite"
           >
-            {finished ? answerLabel(e) : groupDigits(value) || '?'}
+            {finished ? withFractions(answerLabel(e)) : groupDigits(value) || '?'}
           </div>
         ) : null}
         <ReportMistake exercise={e} given={s.lastValue} />
@@ -1123,7 +1137,7 @@ function Feedback({
     return (
       <div className="feedback feedback--reveal" role="status">
         {silent ? null : <SpeakerButton text={e.solutionSpoken} parts={e.solutionParts} />}
-        <span>{t('explain.reveal', { params: { answer: answerLabel(e) } })}</span>
+        <span>{withFractions(t('explain.reveal', { params: { answer: answerLabel(e) } }))}</span>
       </div>
     );
   }
@@ -1135,7 +1149,7 @@ function Feedback({
       return (
         <div className="feedback feedback--almost" role="status">
           {silent ? null : <SpeakerButton text={advice.spoken} parts={advice.parts} />}
-          <span>{advice.text}</span>
+          <span>{withFractions(advice.text)}</span>
         </div>
       );
     }
