@@ -330,15 +330,16 @@ test('an exercise without an equation shows the typed answer (grade 4 dictation)
   await expect(box).toHaveText('42');
 });
 
-test("grade 4's test practice: beside the journey, opened and left, read without a speaker", async ({
+test("grade 4's test practice: on the worlds screen, opened and left, read without a speaker", async ({
   page,
 }) => {
   await setupChild(page, 'מאיה', 'כיתה ד׳');
   await page.getByRole('button', { name: 'סיום' }).click();
   await expect(page.getByRole('heading', { name: /עולם 1 · מספרים גדולים/ })).toBeVisible();
 
-  await page.getByRole('button', { name: 'תרגול למיפוי' }).click();
-  await expect(page).toHaveURL(/\/mapping$/);
+  // On the worlds screen, its own section above the year's worlds.
+  await page.getByRole('button', { name: 'כל העולמות' }).click();
+  await expect(page).toHaveURL(/\/worlds$/);
   await expect(page.getByRole('heading', { name: 'תרגול למיפוי במתמטיקה' })).toBeVisible();
   await page.getByRole('button', { name: /מספרים טבעיים/ }).click();
 

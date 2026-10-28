@@ -4,7 +4,6 @@ import { AlbumScreen } from '@/screens/AlbumScreen';
 import { HomeScreen } from '@/screens/HomeScreen';
 import { JourneyScreen } from '@/screens/JourneyScreen';
 import { PracticeScreen } from '@/screens/PracticeScreen';
-import { TestPrepScreen } from '@/screens/TestPrepScreen';
 import { WorldsScreen } from '@/screens/WorldsScreen';
 import { lazy, Suspense, useEffect } from 'react';
 
@@ -47,7 +46,6 @@ const TITLES = {
   worldMix: 'pageTitle.practice',
   album: 'pageTitle.album',
   worlds: 'pageTitle.worlds',
-  mapping: 'pageTitle.mapping',
   parents: 'pageTitle.parents',
   install: 'pageTitle.install',
   info: 'pageTitle.info',
@@ -92,8 +90,6 @@ function Screen({ name }: { name: RouteName }) {
       return <AlbumScreen />;
     case 'worlds':
       return <WorldsScreen />;
-    case 'mapping':
-      return <TestPrepScreen />;
     case 'parents':
       return (
         <ParentScreen

@@ -9,7 +9,7 @@ import {
 } from 'react';
 import { navigate } from '@/app/router';
 import { chooseStation, clearChosenStation } from '@/app/station';
-import { currentWorld, leaveTrack, showsTestPrep } from '@/app/track';
+import { currentWorld, leaveTrack } from '@/app/track';
 import { worldPool } from '@/engine/daily';
 import {
   nextStop,
@@ -138,7 +138,6 @@ function Journey({ profile }: { profile: Profile }) {
   const inTrack = world.topic.track !== undefined;
   const nextWorld =
     !inTrack && worldsFor(profile.grade, progress).length > world.index ? world.index + 1 : null;
-  const prep = showsTestPrep(profile);
   const longName = profile.name.length > 10;
   const goal = profile.settings.dailyGoal;
   const today = roundsToday(progress, Date.now());
@@ -264,7 +263,7 @@ function Journey({ profile }: { profile: Profile }) {
                         },
                       })}
                 </h2>
-                {/* Grade 4's test practice: its worlds' screen; from one of them, back to the journey. */}
+                {/* In grade 4's test practice (chosen on the worlds screen): the way back. */}
                 {inTrack ? (
                   <button
                     type="button"
@@ -277,14 +276,6 @@ function Journey({ profile }: { profile: Profile }) {
                     }}
                   >
                     {t('map4.back')}
-                  </button>
-                ) : prep ? (
-                  <button
-                    type="button"
-                    className="journey__prep"
-                    onClick={() => navigate({ name: 'mapping' })}
-                  >
-                    {t('map4.open')}
                   </button>
                 ) : null}
               </div>

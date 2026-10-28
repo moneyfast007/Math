@@ -29,9 +29,7 @@ export const heMap4 = {
   'level.map4n.9': 'בעיות מילוליות בחיבור',
   'level.map4n.10': 'בעיות מילוליות בחיסור',
 
-  // Where it opens: the journey's button, its own screen, the parent's switch.
-  'pageTitle.mapping': 'תרגול למיפוי · פלוסי',
-  'map4.open': 'תרגול למיפוי',
+  // Where it opens: its section on the worlds screen; the parent's switch.
   'map4.title': 'תרגול למיפוי במתמטיקה',
   'map4.grade': 'כיתה ד׳',
   'map4.intro':
@@ -44,7 +42,7 @@ export const heMap4 = {
   'c.settings.testPrep': 'תרגול למיפוי (כיתה ד׳)',
   'c.settings.testPrepOn': 'מוצג',
   'c.settings.testPrepOff': 'מוסתר',
-  'c.settings.testPrepHint': 'כפתור במסע שפותח את שני עולמות התרגול למיפוי.',
+  'c.settings.testPrepHint': 'שני עולמות תרגול לקראת המיפוי, בעמוד "כל העולמות".',
 
   // 1. The numerator and the denominator.
   'r4.num.prompt': 'מה המונה? (כמה חלקים צבועים)',

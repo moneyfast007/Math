@@ -3,6 +3,7 @@ import { speaker } from '@/audio/speaker';
 import { useSpeaking } from '@/audio/useSpeaker';
 import { setReplayTopic } from '@/app/replay';
 import { navigate } from '@/app/router';
+import { leaveTrack, showsTestPrep } from '@/app/track';
 import { dailyPool } from '@/engine/daily';
 import { worldsMap, type WorldMapEntry } from '@/engine/journey';
 import { t, type TranslationKey } from '@/i18n';
@@ -18,6 +19,7 @@ import { applyPlusiColor } from '@/ui/plusiColor';
 import { Sticker } from '@/ui/Sticker';
 import { stickerForWorld } from '@/ui/stickers';
 import { IntroSpeaker, JourneySteps, LockIcon } from './JourneyIntro';
+import { TestPrepSection } from './TestPrep';
 
 /**
  * The map of all worlds: every world of the child's grade in order, with where
@@ -83,12 +85,18 @@ export function WorldsScreen() {
           <button
             type="button"
             className="btn btn--secondary"
-            onClick={() => navigate({ name: 'play' })}
+            onClick={() => {
+              leaveTrack(profile.id);
+              navigate({ name: 'play' });
+            }}
           >
             {t('album.back')}
           </button>
         )}
       </header>
+
+      {/* Grade 4's practice for the school's test, open at any time (the parent can hide it). */}
+      {showsTestPrep(profile) ? <TestPrepSection profile={profile} progress={progress} /> : null}
 
       {/* Review from every world she has passed stations in: the place for it is here. */}
       {dailyPool(profile.grade, progress).length > 0 ? (
@@ -97,7 +105,16 @@ export function WorldsScreen() {
 
       <ol className="worlds__list" aria-label={t('worlds.list')}>
         {entries.map((entry) => (
-          <WorldRow key={entry.world.topic.id} entry={entry} young={young} />
+          <WorldRow
+            key={entry.world.topic.id}
+            entry={entry}
+            young={young}
+            // The journey's world: back to the journey (out of the test practice, if in it).
+            onJourney={() => {
+              leaveTrack(profile.id);
+              navigate({ name: 'play' });
+            }}
+          />
         ))}
       </ol>
 
@@ -167,7 +184,15 @@ function AllWorldsIcon() {
   );
 }
 
-function WorldRow({ entry, young }: { entry: WorldMapEntry; young: boolean }) {
+function WorldRow({
+  entry,
+  young,
+  onJourney,
+}: {
+  entry: WorldMapEntry;
+  young: boolean;
+  onJourney: () => void;
+}) {
   const { world, state, after } = entry;
   const name = t(world.topic.labelKey as TranslationKey);
   // The level stations only; the final challenge is named on its own once they are done.
@@ -231,11 +256,7 @@ function WorldRow({ entry, young }: { entry: WorldMapEntry; young: boolean }) {
           {t('album.replay')}
         </button>
       ) : state === 'current' ? (
-        <button
-          type="button"
-          className="btn btn--small world-row__action"
-          onClick={() => navigate({ name: 'play' })}
-        >
+        <button type="button" className="btn btn--small world-row__action" onClick={onJourney}>
           {t('worlds.continue')}
         </button>
       ) : null}
