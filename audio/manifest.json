@@ -60118,8 +60118,8 @@
     },
     "de9747265623c137": {
       "text": "חיבור במאונך",
-      "voice": "chirp3-hd/Leda",
-      "bytes": 5709,
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 6957,
       "trimmed": true
     },
     "fe66cd631c7115a8": {
@@ -60130,8 +60130,8 @@
     },
     "c8ab56cf9310d767": {
       "text": "חיסור במאונך",
-      "voice": "chirp3-hd/Leda",
-      "bytes": 6573,
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 6765,
       "trimmed": true
     },
     "ddd0f034bc9a237c": {
@@ -716490,6 +716490,66 @@
       "text": "קטן מאחד, שווה לאחד או גדול?",
       "voice": "gemini-3.1-flash/Leda/quick",
       "bytes": 15405,
+      "trimmed": true
+    },
+    "429b244821b2050c": {
+      "text": "השוואת שברים",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 6285,
+      "trimmed": true
+    },
+    "ba33533ebef61785": {
+      "text": "שברים ומספרים מעורבים",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 10797,
+      "trimmed": true
+    },
+    "c3d68e9212a91c50": {
+      "text": "צמצום והרחבה",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 7917,
+      "trimmed": true
+    },
+    "969e84a471a5a704": {
+      "text": "מספרים טבעיים",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 6573,
+      "trimmed": true
+    },
+    "24e50654871e6b76": {
+      "text": "שברים במילים ובספרות",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 12045,
+      "trimmed": true
+    },
+    "1ebae81b5d50d794": {
+      "text": "סדר פעולות עם סוגריים",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 9165,
+      "trimmed": true
+    },
+    "9324f5d0ad53aa68": {
+      "text": "בעיות מילוליות בחיבור",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 9357,
+      "trimmed": true
+    },
+    "b62c2ccd6351927c": {
+      "text": "בעיות מילוליות בחיסור",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 8781,
+      "trimmed": true
+    },
+    "3576df45e187cf1d": {
+      "text": "שם המספר: מספרות למילים",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 13581,
+      "trimmed": true
+    },
+    "004d8d4e81cb1f6a": {
+      "text": "שם המספר: ממילים לספרות",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 15117,
       "trimmed": true
     }
   }
