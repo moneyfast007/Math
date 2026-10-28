@@ -67,6 +67,33 @@
   }
 }
 
+/* A tablet on its side, written in columns: the grid, the pad and the help need the
+   height, so the scene is the small one in the bar. */
+@media (orientation: landscape) and (max-height: 900px) {
+  .practice:has(.exercise--column) .practice__bar > .scene-strip {
+    grid-column: 2;
+    grid-row: 1;
+    height: 44px;
+    border-radius: var(--radius-sm);
+  }
+
+  .practice:has(.exercise--column) .practice__bar > .station-line {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+
+  /* Going over it together, the line in the grid says what to do: the "almost" under the
+     card would only take the grid's room. */
+  .practice[data-screen='practice']:has(.column-work__say) > .feedback--almost {
+    display: none;
+  }
+
+  /* Lower keys (still big to tap), so the grid keeps its size. */
+  .practice[data-screen='practice'] .column-work .numpad {
+    --key-h: clamp(44px, 7vh, 56px);
+  }
+}
+
 .scene-strip--village {
   background: linear-gradient(#1d2347, #353d72);
 }

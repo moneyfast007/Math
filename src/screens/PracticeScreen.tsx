@@ -258,7 +258,7 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
   const cardRef = useRef<HTMLElement>(null);
   const answersRef = useRef<HTMLElement>(null);
   // A computer screen, wide and tall enough: the scene goes beside the keys.
-  const deck = useMedia('(min-width: 900px) and (min-height: 600px)');
+  const wide = useMedia('(min-width: 900px) and (min-height: 600px)');
   // How tall the keys are, so what comes in their place after an answer takes the same room.
   const answerHeight = useRef<number | null>(null);
   useLayoutEffect(() => {
@@ -665,6 +665,8 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
 
   // The hints the child opened: under the answer line; beside the keys (at their right) on a computer.
   // Beside the keys only: next to the short row of big choices there is no room to read one.
+  // Written in columns, the card holds the keys itself and needs all the height: no deck.
+  const deck = wide && s.exercise.input.type !== 'vertical';
   const hintsBeside = deck && e.input.type !== 'choices';
   const hints =
     s.hintsShown > 0 && !hintsHidden ? (
