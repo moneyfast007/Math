@@ -7704,3 +7704,8 @@ body {
   color: var(--color-text-muted);
   vertical-align: middle;
 }
+
+/* Two fractions to choose between: as wide as each other, so "או" stands in the middle. */
+.math:has(.math__word) .frac {
+  min-width: 1.75em;
+}
