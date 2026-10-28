@@ -342,16 +342,18 @@ const rule = (step: number, up: boolean) =>
   tx(up ? 'r4.seq.up' : 'r4.seq.down', { step: grouped(step) });
 
 function seqMissing(rng: Rng): Exercise {
-  const { terms, step, up } = sequence(rng);
-  // The next one (the fifth hidden), or one in the middle.
-  const gap = rng() < 0.5 ? 4 : randInt(rng, 1, 3);
+  const { terms: all, step, up } = sequence(rng);
+  // Four numbers on the screen (five would be too small on a phone): the next one hidden,
+  // or one in the middle.
+  const terms = all.slice(0, 4);
+  const gap = rng() < 0.5 ? 3 : randInt(rng, 1, 2);
   const answer = terms[gap] as number;
   // Read from the right, as in a Hebrew book: the first number rightmost, the next at the left.
   const display = terms
     .map((x, i) => (i === gap ? '?' : grouped(x)))
     .reverse()
     .join(SEP);
-  const prompt = tx(gap === 4 ? 'r4.seq.next.prompt' : 'r4.seq.gap.prompt');
+  const prompt = tx(gap === 3 ? 'r4.seq.next.prompt' : 'r4.seq.gap.prompt');
   const ex = step === 100 && up ? `150  ←  250${SEP}350${SEP}450` : `600  ←  500${SEP}400${SEP}300`;
   return exercise({
     factId: `r4seq:${terms.join(',')}:${gap}`,

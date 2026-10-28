@@ -20,6 +20,22 @@ async function setupChild(page: Page, name: string, grade: string) {
 
 /** A child of `grade` whose progress in `world` is at `level` (restored from a backup), on the round. */
 async function setupAtLevel(page: Page, grade: number, world: string, level: number) {
+  // Grade 4 opens on its autumn review: done, so the journey opens on `world`.
+  const before =
+    grade === 4 && world !== 'review4'
+      ? {
+          review4: {
+            level: 10,
+            attempts: 100,
+            correct: 90,
+            lastPracticedAt: 0,
+            recent: [true],
+            mistakes: {},
+            completedLevels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+            reviewPassed: true,
+          },
+        }
+      : {};
   const stats = {
     level,
     attempts: 0,
@@ -49,7 +65,11 @@ async function setupAtLevel(page: Page, grade: number, world: string, level: num
         },
       ],
       progress: {
-        k: { topics: { [world]: stats }, streak: { count: 0, lastDay: null }, days: {} },
+        k: {
+          topics: { ...before, [world]: stats },
+          streak: { count: 0, lastDay: null },
+          days: {},
+        },
       },
       parent: { pin: null },
       meta: { createdAt: 1, lastBackupAt: null },
@@ -321,7 +341,7 @@ test.describe('journey', () => {
 test('an exercise without an equation shows the typed answer (grade 4 dictation)', async ({
   page,
 }) => {
-  await setupChild(page, 'מאיה', 'כיתה ד׳');
+  await setupAtLevel(page, 4, 'big-numbers', 1);
   const box = page.locator('.exercise .answer-box');
   await expect(box).toHaveText('?');
   const pad = page.getByRole('group', { name: 'התשובה' });
