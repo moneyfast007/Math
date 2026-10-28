@@ -3,7 +3,7 @@ import { speaker } from '@/audio/speaker';
 import { navigate } from '@/app/router';
 import { activeWorld, worldsFor, type World } from '@/engine/journey';
 import { makeT, t } from '@/i18n';
-import { ParentGate } from '@/parent/ParentGate';
+import { ParentEntry } from '@/parent/ParentEntry';
 import { requestParentTab } from '@/parent/tab';
 import { isStandalone } from '@/pwa/standalone';
 import { summarizeProgress, totalStars } from '@/state/progress';
@@ -167,7 +167,7 @@ export function HomeC() {
       </footer>
 
       {gateOpen ? (
-        <ParentGate
+        <ParentEntry
           hasPin={hasPin}
           verifyPin={verifyPin}
           onUnlock={() => {

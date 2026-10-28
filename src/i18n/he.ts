@@ -75,6 +75,11 @@ export const he = {
   'gate.forgot.checking': 'בודקים…',
   'gate.forgot.submit': 'אישור',
   'gate.forgot.back': 'חזרה',
+  'pinAccount.title': 'ואם תשכחו את הקוד?',
+  'pinAccount.body':
+    'אפשר יהיה לבחור קוד חדש רק עם מייל וסיסמה של המשפחה. הם גם שומרים את ההתקדמות של הילדים ומאפשרים להיכנס מכל מכשיר.',
+  'pinAccount.go': 'הגדרת מייל וסיסמה',
+  'pinAccount.later': 'לא עכשיו',
 
   // Parent area
   'parent.title': 'אזור הורים',

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { navigate } from '@/app/router';
 import { speaker } from '@/audio/speaker';
 import { t } from '@/i18n';
-import { ParentGate } from '@/parent/ParentGate';
+import { ParentEntry } from '@/parent/ParentEntry';
 import { requestParentTab } from '@/parent/tab';
 import { isStandalone } from '@/pwa/standalone';
 import { useApp } from '@/state/store';
@@ -113,7 +113,7 @@ export function HomeScreen() {
       </footer>
 
       {gateOpen ? (
-        <ParentGate
+        <ParentEntry
           hasPin={hasPin}
           verifyPin={verifyPin}
           onUnlock={() => {

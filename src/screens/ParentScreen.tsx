@@ -16,8 +16,8 @@ import {
 } from '@/audio/offline';
 import { makeT, t, type TranslationKey } from '@/i18n';
 import { formatDate, formatPercent, gradeLabel, mistakeLabel, topicLabel } from '@/i18n/labels';
-import { ParentGate } from '@/parent/ParentGate';
-import { ForgotPin } from '@/parent/ForgotPin';
+import { ParentEntry } from '@/parent/ParentEntry';
+import { PinChooser } from '@/parent/PinChooser';
 import { ProfileForm } from '@/parent/ProfileForm';
 import { AccountDialog, SyncSection } from '@/parent/SyncSection';
 import {
@@ -32,7 +32,6 @@ import { PARENT_TABS, takeParentTab, type ParentTab } from '@/parent/tab';
 import { syncEngine, useSync } from '@/sync';
 import { isStandalone } from '@/pwa/standalone';
 import { backupFileName, deliverFile, readBackupFile, serializeBackup } from '@/state/backup';
-import { PIN_LENGTH } from '@/state/pin';
 import { goalDays, summarizeProgress, weekSummary } from '@/state/progress';
 import { activeWorld, nextStop, worldsFor, type World } from '@/engine/journey';
 import { MAX_PROFILES, type AppData, type Profile } from '@/state/schema';
@@ -43,10 +42,8 @@ import { applyAgeBand } from '@/ui/ageBand';
 import { Avatar } from '@/ui/Avatar';
 import { ConfirmDialog, Dialog } from '@/ui/Dialog';
 import { Icon, type IconName } from '@/ui/Icon';
-import { PinDots } from '@/parent/PinDots';
 import { applyPlusiColor } from '@/ui/plusiColor';
 import { dayKey } from '@/state/streak';
-import { NumberPad } from '@/ui/NumberPad';
 import { Plusi } from '@/ui/Plusi';
 
 const BACKUP_STALE_MS = 14 * 24 * 60 * 60 * 1000;
@@ -64,9 +61,6 @@ export function ParentScreen({
   const hasPin = useApp((s) => s.data.parent.pin !== null);
   const verifyPin = useApp((s) => s.verifyPin);
   const unlockParent = useApp((s) => s.unlockParent);
-  const setPin = useApp((s) => s.setPin);
-  // A forgotten code: the family's email and password, then a new code (see ForgotPin).
-  const [forgot, setForgot] = useState<'gate' | 'check' | 'choose'>('gate');
 
   useEffect(() => {
     applyAgeBand('older');
@@ -80,27 +74,12 @@ export function ParentScreen({
         <div className="parent-locked__art" aria-hidden="true">
           <Icon name="lock" />
         </div>
-        {forgot === 'check' ? (
-          <ForgotPin onVerified={() => setForgot('choose')} onBack={() => setForgot('gate')} />
-        ) : forgot === 'choose' ? (
-          <PinChooser
-            onDone={(pin) => {
-              void setPin(pin).then(() => {
-                setForgot('gate');
-                unlockParent();
-              });
-            }}
-            onCancel={() => setForgot('gate')}
-          />
-        ) : (
-          <ParentGate
-            hasPin={hasPin}
-            verifyPin={verifyPin}
-            onUnlock={unlockParent}
-            onCancel={() => navigate({ name: 'home' })}
-            onForgot={() => setForgot('check')}
-          />
-        )}
+        <ParentEntry
+          hasPin={hasPin}
+          verifyPin={verifyPin}
+          onUnlock={unlockParent}
+          onCancel={() => navigate({ name: 'home' })}
+        />
       </main>
     );
   }
@@ -888,6 +867,8 @@ export function BackupSection({ onShow }: { onShow: () => void }) {
 
 /* ---------- PIN ---------- */
 
+export { PinChooser };
+
 export function SecuritySection() {
   const hasPin = useApp((s) => s.data.parent.pin !== null);
   const setPin = useApp((s) => s.setPin);
@@ -929,51 +910,6 @@ export function SecuritySection() {
         />
       ) : null}
     </SettingsCard>
-  );
-}
-
-export function PinChooser({
-  onDone,
-  onCancel,
-}: {
-  onDone: (pin: string) => void;
-  onCancel: () => void;
-}) {
-  const [first, setFirst] = useState<string | null>(null);
-  const [value, setValue] = useState('');
-  const [mismatch, setMismatch] = useState(false);
-
-  const onChange = (next: string) => {
-    setMismatch(false);
-    setValue(next);
-    if (next.length < PIN_LENGTH) return;
-    if (first === null) {
-      setFirst(next);
-      setValue('');
-    } else if (next === first) {
-      onDone(next);
-    } else {
-      setFirst(null);
-      setValue('');
-      setMismatch(true);
-    }
-  };
-
-  const prompt = first === null ? t('parent.security.newPin') : t('parent.security.repeatPin');
-  return (
-    <Dialog title={t('parent.security.title')} onClose={onCancel}>
-      <div className="gate stack">
-        <p>{prompt}</p>
-        <output className="gate__value" dir="ltr">
-          <PinDots count={value.length} />
-        </output>
-        <p className="gate__error" role="alert">
-          {mismatch ? t('parent.security.mismatch') : ' '}
-        </p>
-        {/* A code, not a number: a leading 0 counts. */}
-        <NumberPad label={prompt} value={value} onChange={onChange} maxLength={PIN_LENGTH} code />
-      </div>
-    </Dialog>
   );
 }
 

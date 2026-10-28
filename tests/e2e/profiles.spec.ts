@@ -195,6 +195,10 @@ test.describe('parent gate', () => {
     await page.getByRole('button', { name: 'הגדרת קוד' }).click();
     const chooser = page.getByRole('dialog', { name: 'נעילת אזור ההורים' });
     for (const d of '25802580') await chooser.getByRole('button', { name: d, exact: true }).click();
+    // No email and password yet: offered, so a forgotten code could be reset.
+    const offer = page.getByRole('dialog', { name: 'ואם תשכחו את הקוד?' });
+    await expect(offer).toBeVisible();
+    await offer.getByRole('button', { name: 'לא עכשיו' }).click();
     await expect(page.getByText('מוגדר קוד הורים.')).toBeVisible();
     await exitParents(page);
 
@@ -202,6 +206,11 @@ test.describe('parent gate', () => {
     const gate = page.getByRole('dialog', { name: 'כניסת הורים' });
     await expect(gate.getByText('הקלידו את קוד ההורים')).toBeVisible();
     await expect(gate.locator('[data-math]')).toHaveCount(0);
+    // Forgotten, without an email and password: no way around the code here.
+    await gate.getByRole('button', { name: 'שכחתי את הקוד' }).click();
+    const forgot = page.getByRole('dialog', { name: 'שכחתם את הקוד?' });
+    await expect(forgot.locator('[data-forgot="none"]')).toBeVisible();
+    await forgot.getByRole('button', { name: 'חזרה' }).last().click();
     for (const d of '2580') await gate.getByRole('button', { name: d, exact: true }).click();
     await expect(page).toHaveURL(/\/parents$/);
   });

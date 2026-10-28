@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { navigate } from '@/app/router';
 import { makeT, t } from '@/i18n';
-import { ParentGate } from '@/parent/ParentGate';
+import { ParentEntry } from '@/parent/ParentEntry';
 import { ProfileForm } from '@/parent/ProfileForm';
 import { requestParentTab } from '@/parent/tab';
 import { MAX_PROFILES, type Profile, type ProfileProgress } from '@/state/schema';
@@ -173,7 +173,7 @@ export function HomeB() {
       </footer>
 
       {gateOpen ? (
-        <ParentGate
+        <ParentEntry
           hasPin={hasPin}
           verifyPin={verifyPin}
           onUnlock={() => {
