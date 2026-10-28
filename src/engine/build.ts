@@ -442,6 +442,8 @@ export interface TopicDef {
   levels: readonly LevelDef[];
   /** Extra phrases for the audio bank (story pieces the sampling may not reach). */
   extraBank?: () => string[];
+  /** Not read aloud (see Topic.silent): nothing goes to the audio bank. */
+  silent?: boolean;
 }
 
 /** How many exercises per level the bank samples from open levels to collect their pieces. */
@@ -604,6 +606,7 @@ export function defineTopic(def: TopicDef): Topic & { enumerate: (level: number)
   const spokenBank = (): string[] => {
     // Computed once: every sentence of every exercise a child can get, recorded whole.
     if (bankCache) return bankCache;
+    if (def.silent) return (bankCache = []);
     const out = new Set<string>();
     for (const { level } of levels) {
       const closedLevel = !('gen' in levelDef(level));
@@ -626,6 +629,7 @@ export function defineTopic(def: TopicDef): Topic & { enumerate: (level: number)
     levels,
     startLevel: def.startLevel,
     ...(def.lastLevel ? { lastLevel: def.lastLevel } : {}),
+    ...(def.silent ? { silent: true } : {}),
     generate,
     spokenBank,
     enumerate,

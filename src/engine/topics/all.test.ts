@@ -31,20 +31,21 @@ describe.each(TOPICS.map((t) => [t.id, t] as const))('topic %s', (_id, topic) =>
       expect(e.answer, e.factId).toBeGreaterThanOrEqual(0);
       // One slot at most; a purely visual exercise has none.
       expect((e.display.match(/\?/g) ?? []).length, e.factId).toBeLessThanOrEqual(1);
-      // Spoken text never carries digits.
-      expect(e.spokenText, e.factId).not.toMatch(/\d/);
-      expect(e.solutionSpoken, e.factId).not.toMatch(/\d/);
+      // Spoken text never carries digits (a silent world is never read aloud).
+      const spoken = topic.silent ? /(?!)/ : /\d/;
+      expect(e.spokenText, e.factId).not.toMatch(spoken);
+      expect(e.solutionSpoken, e.factId).not.toMatch(spoken);
       expect(e.hints).toHaveLength(3);
       for (const h of e.hints) {
-        expect(h.spoken, `${e.factId} hint`).not.toMatch(/\d/);
+        expect(h.spoken, `${e.factId} hint`).not.toMatch(spoken);
         expect(h.text.length, `${e.factId} hint`).toBeGreaterThan(0);
-        for (const p of h.spokenParts ?? []) expect(p, e.factId).not.toMatch(/\d/);
+        for (const p of h.spokenParts ?? []) expect(p, e.factId).not.toMatch(spoken);
       }
-      for (const p of e.spokenParts ?? []) expect(p, e.factId).not.toMatch(/\d/);
+      for (const p of e.spokenParts ?? []) expect(p, e.factId).not.toMatch(spoken);
       // Advice is for wrong answers only, said in words, and counted as a mistake.
       for (const a of e.advice ?? []) {
         expect(Math.abs(a.value - e.answer), `${e.factId} advice`).toBeGreaterThan(1e-9);
-        expect(a.spoken, `${e.factId} advice`).not.toMatch(/\d/);
+        expect(a.spoken, `${e.factId} advice`).not.toMatch(spoken);
         expect(a.text.length, `${e.factId} advice`).toBeGreaterThan(0);
         expect(e.diagnose(a.value), `${e.factId} advice`).not.toBeNull();
       }
@@ -159,6 +160,7 @@ describe.each(TOPICS.map((t) => [t.id, t] as const))('topic %s', (_id, topic) =>
   });
 
   it('has a finite spoken bank without digits', () => {
+    if (topic.silent) return; // Never read aloud: no bank.
     const bank = topic.spokenBank();
     expect(bank.length).toBeGreaterThan(10);
     for (const s of bank) expect(s).not.toMatch(/\d/);

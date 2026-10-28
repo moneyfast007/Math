@@ -519,6 +519,12 @@ export interface Topic {
     avoid?: string | readonly string[],
   ) => Exercise;
   /**
+   * Not read aloud (no recordings): no speaker buttons in its exercises, nothing
+   * in the audio bank, and its words may carry digits. A review world made in a
+   * hurry before a school test is the case.
+   */
+  silent?: boolean;
+  /**
    * Everything this topic can ever say, for pre-generating audio: whole
    * sentences when the topic is finite, otherwise the literal pieces of its
    * templates (numbers are recorded separately).

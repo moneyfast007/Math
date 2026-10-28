@@ -8,7 +8,8 @@ import { seededRng } from '../rng';
 
 /** Whatever a child can hear, sampled in every level of every world, is in the audio bank. */
 
-describe.each(TOPICS.map((t) => [t.id, t] as const))(
+// A silent world (no recordings, no speaker) has nothing to cover.
+describe.each(TOPICS.filter((t) => !t.silent).map((t) => [t.id, t] as const))(
   'the audio bank covers what a child can hear: %s',
   (_id, topic) => {
     // One test per level, so no single test keeps the worker busy for long.

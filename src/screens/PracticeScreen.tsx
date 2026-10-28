@@ -554,6 +554,8 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
   }
 
   const e = s.exercise;
+  // A world with no recordings shows no speaker at all.
+  const silent = topicById(e.topicId)?.silent === true;
   const finished = s.phase === 'correct' || s.phase === 'revealed';
   // Things to count (not a frame): each can be tapped, and counted together after a miss.
   const countable = e.visual?.type === 'objects' && !e.visual.frame;
@@ -678,7 +680,7 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
           return (
             <article key={shownHint} className="hint card">
               <div className="hint__head">
-                <SpeakerButton text={h.spoken} parts={h.spokenParts} />
+                {silent ? null : <SpeakerButton text={h.spoken} parts={h.spokenParts} />}
                 <strong>{t('practice.hintTitle', { params: { n: shownHint + 1 } })}</strong>
                 <button
                   type="button"
@@ -788,7 +790,7 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
               : 'exercise__prompt'
           }
         >
-          <SpeakerButton text={e.spokenText} parts={e.spokenParts} size="lg" />
+          {silent ? null : <SpeakerButton text={e.spokenText} parts={e.spokenParts} size="lg" />}
           <h1 className="exercise__title">{groupDigits(e.prompt)}</h1>
         </div>
         {e.visual ? (
@@ -1107,6 +1109,7 @@ function Feedback({
   sparkle: boolean;
 }) {
   const e = s.exercise;
+  const silent = topicById(e.topicId)?.silent === true;
   if (s.phase === 'correct') {
     const first = s.history.at(-1) === 'first';
     const text = tc(praise);
@@ -1118,7 +1121,7 @@ function Feedback({
         role="status"
       >
         {sparkle && first ? <Sparkles /> : null}
-        <SpeakerButton text={text} />
+        {silent ? null : <SpeakerButton text={text} />}
         <span>{text}</span>
       </div>
     );
@@ -1126,7 +1129,7 @@ function Feedback({
   if (s.phase === 'revealed') {
     return (
       <div className="feedback feedback--reveal" role="status">
-        <SpeakerButton text={e.solutionSpoken} parts={e.solutionParts} />
+        {silent ? null : <SpeakerButton text={e.solutionSpoken} parts={e.solutionParts} />}
         <span>{t('explain.reveal', { params: { answer: answerLabel(e) } })}</span>
       </div>
     );
@@ -1138,7 +1141,7 @@ function Feedback({
     if (advice) {
       return (
         <div className="feedback feedback--almost" role="status">
-          <SpeakerButton text={advice.spoken} parts={advice.parts} />
+          {silent ? null : <SpeakerButton text={advice.spoken} parts={advice.parts} />}
           <span>{advice.text}</span>
         </div>
       );
@@ -1146,7 +1149,7 @@ function Feedback({
     const text = explanation(s, tc);
     return (
       <div className="feedback feedback--almost" role="status">
-        <SpeakerButton text={text} />
+        {silent ? null : <SpeakerButton text={text} />}
         <span>{text}</span>
       </div>
     );

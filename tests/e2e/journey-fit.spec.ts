@@ -47,7 +47,7 @@ const CASES: Case[] = [
     // Every station of the first world done: the final challenge is next, and opens world 2.
     label: 'grade 4, every station done',
     grade: 4,
-    topics: { 'big-numbers': done },
+    topics: { review4: done },
     progress: /^נשאר אתגר אחד ועולם 2 נפתח$/,
   },
 ];

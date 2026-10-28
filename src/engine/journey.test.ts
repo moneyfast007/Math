@@ -161,8 +161,8 @@ describe('worldsFor', () => {
     }
   });
 
-  it('a grade-4 child starts in big numbers, not in counting', () => {
-    expect(activeWorld(4, undefined)?.topic.id).toBe('big-numbers');
+  it('a grade-4 child starts in her grade, the autumn review first, not in counting', () => {
+    expect(activeWorld(4, undefined)?.topic.id).toBe('review4');
   });
 });
 

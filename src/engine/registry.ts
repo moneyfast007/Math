@@ -35,6 +35,7 @@ import { polygons2 } from './topics/polygons2';
 import { percent } from './topics/percent';
 import { percentIntro } from './topics/percentIntro';
 import { ratio } from './topics/ratio';
+import { review4 } from './topics/review4';
 import { shapesTopic } from './topics/shapes';
 import { solids1 } from './topics/solids1';
 import { sort0 } from './topics/sort0';
@@ -77,6 +78,7 @@ export const TOPICS: readonly Topic[] = [
   longMulDiv,
   divisibility,
   fractionOps, // grades 4–5
+  review4, // grade 4: the autumn test's review, silent
   perimeterArea,
   angles4,
   vertical4,
@@ -110,7 +112,10 @@ const ORDER: Partial<Record<Grade, readonly Topic[]>> = {
   // Patterns after the numbers to 100 they count in; solids beside the flat shapes.
   1: [addSub20, numbers100, patterns1, polygons, solids1, measure1, clockMoney1, data],
   2: [addSub100, numbers1000, moneyTopic, multIntro, clockTopic, polygons2, vertical2, data],
+  // The autumn test's review first, so every grade-4 child can reach it before the test
+  // (worlds open in order); after it, the year's worlds as before.
   4: [
+    review4,
     bigNumbers,
     longMulDiv,
     divisibility,
