@@ -20,22 +20,6 @@ async function setupChild(page: Page, name: string, grade: string) {
 
 /** A child of `grade` whose progress in `world` is at `level` (restored from a backup), on the round. */
 async function setupAtLevel(page: Page, grade: number, world: string, level: number) {
-  // Grade 4 opens on its autumn review: done, so the journey opens on `world`.
-  const before =
-    grade === 4 && world !== 'review4'
-      ? {
-          review4: {
-            level: 10,
-            attempts: 100,
-            correct: 90,
-            lastPracticedAt: 0,
-            recent: [true],
-            mistakes: {},
-            completedLevels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-            reviewPassed: true,
-          },
-        }
-      : {};
   const stats = {
     level,
     attempts: 0,
@@ -65,11 +49,7 @@ async function setupAtLevel(page: Page, grade: number, world: string, level: num
         },
       ],
       progress: {
-        k: {
-          topics: { ...before, [world]: stats },
-          streak: { count: 0, lastDay: null },
-          days: {},
-        },
+        k: { topics: { [world]: stats }, streak: { count: 0, lastDay: null }, days: {} },
       },
       parent: { pin: null },
       meta: { createdAt: 1, lastBackupAt: null },
@@ -341,11 +321,35 @@ test.describe('journey', () => {
 test('an exercise without an equation shows the typed answer (grade 4 dictation)', async ({
   page,
 }) => {
-  await setupAtLevel(page, 4, 'big-numbers', 1);
+  await setupChild(page, 'מאיה', 'כיתה ד׳');
   const box = page.locator('.exercise .answer-box');
   await expect(box).toHaveText('?');
   const pad = page.getByRole('group', { name: 'התשובה' });
   await pad.getByRole('button', { name: '4', exact: true }).click();
   await pad.getByRole('button', { name: '2', exact: true }).click();
   await expect(box).toHaveText('42');
+});
+
+test("grade 4's test practice: beside the journey, opened and left, read without a speaker", async ({
+  page,
+}) => {
+  await setupChild(page, 'מאיה', 'כיתה ד׳');
+  await page.getByRole('button', { name: 'סיום' }).click();
+  await expect(page.getByRole('heading', { name: /עולם 1 · מספרים גדולים/ })).toBeVisible();
+
+  await page.getByRole('button', { name: 'תרגול למיפוי' }).click();
+  await expect(page).toHaveURL(/\/mapping$/);
+  await expect(page.getByRole('heading', { name: 'תרגול למיפוי במתמטיקה' })).toBeVisible();
+  await page.getByRole('button', { name: /מספרים טבעיים/ }).click();
+
+  await expect(page).toHaveURL(/\/play$/);
+  await expect(page.getByRole('heading', { name: 'תרגול למיפוי · מספרים טבעיים' })).toBeVisible();
+  await page.getByRole('button', { name: 'יאללה, מתחילים!' }).click();
+  await expect(page).toHaveURL(/\/practice$/);
+  await expect(page.locator('.station-line')).toContainText('שם המספר');
+  await expect(page.locator('.exercise [data-speaker]')).toHaveCount(0);
+
+  await page.getByRole('button', { name: 'סיום' }).click();
+  await page.getByRole('button', { name: 'חזרה למסע' }).click();
+  await expect(page.getByRole('heading', { name: /עולם 1 · מספרים גדולים/ })).toBeVisible();
 });

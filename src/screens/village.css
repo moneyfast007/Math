@@ -609,3 +609,21 @@ html:has(.journey--village) body {
     transform: scale(1.6);
   }
 }
+
+/* Grade 4's test practice, under the world's name: a pill to its screen (or back to the journey). */
+.journey__prep {
+  align-self: flex-start;
+  margin-top: 4px;
+  padding: 4px 12px;
+  border: 1.5px solid #e0b66c;
+  border-radius: var(--radius-pill);
+  background: #fff4dc;
+  color: #8a5a10;
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1.3;
+}
+
+.journey__prep:active {
+  transform: scale(0.96);
+}

@@ -86,6 +86,8 @@ function parseProfile(value: unknown, index: number): Profile {
   if (dailyGoal !== undefined && !isDailyGoal(dailyGoal)) fail(`${where}: הגדרה לא חוקית`);
   // Added later: anything but 'quiet' (from a newer version, say) means the full effects.
   const effects = settings['effects'] === 'quiet' ? ('quiet' as const) : undefined;
+  // Added later: only "hidden" is kept; anything else means shown.
+  const testPrep = settings['testPrep'] === false ? (false as const) : undefined;
   // Added later and optional: absent in older data.
   const introSeen = p['journeyIntroSeenAt'];
   // A colour this version does not know is simply left out (the usual one).
@@ -104,6 +106,7 @@ function parseProfile(value: unknown, index: number): Profile {
       ...(roundLength === undefined || roundLength === 'normal' ? {} : { roundLength }),
       ...(dailyGoal === undefined ? {} : { dailyGoal }),
       ...(effects ? { effects } : {}),
+      ...(testPrep === false ? { testPrep } : {}),
     },
     ...(introSeen === undefined
       ? {}

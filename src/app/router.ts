@@ -15,6 +15,7 @@ export type RouteName =
   | 'worldMix'
   | 'album'
   | 'worlds'
+  | 'mapping'
   | 'parents'
   | 'install'
   | 'info'
@@ -31,6 +32,7 @@ const PATHS: Record<RouteName, string> = {
   worldMix: '/practice/world',
   album: '/album',
   worlds: '/worlds',
+  mapping: '/mapping',
   parents: '/parents',
   install: '/install',
   info: '/info',

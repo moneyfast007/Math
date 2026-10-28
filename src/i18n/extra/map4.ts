@@ -4,18 +4,47 @@
  * carry digits. Only the world's and the stations' names are under spoken
  * prefixes (they also show on the map and the worlds screen).
  */
-export const heReview4 = {
-  'topic.review4': 'שברים ומספרים: חזרה',
-  'level.review4.1': 'המונה והמכנה',
-  'level.review4.2': 'איזה שבר בציור?',
-  'level.review4.3': 'מספר מעורב בציור',
-  'level.review4.4': 'קטן מאחד, שווה לאחד או גדול?',
-  'level.review4.5': 'שבר: ממילים לספרות',
-  'level.review4.6': 'שבר: מספרות למילים',
-  'level.review4.7': 'מספר: מספרות למילים',
-  'level.review4.8': 'סדרות: המספר החסר',
-  'level.review4.9': 'סדרות: מה החוק?',
-  'level.review4.10': 'בעיות מילוליות בשברים',
+export const heMap4 = {
+  // The two worlds and their stations (spoken prefixes: shown on the map, recorded later).
+  'topic.map4.fractions': 'שברים ומספרים מעורבים',
+  'topic.map4.numbers': 'מספרים טבעיים',
+  'level.map4f.1': 'המונה והמכנה',
+  'level.map4f.2': 'איזה שבר בציור?',
+  'level.map4f.3': 'מספר מעורב בציור',
+  'level.map4f.4': 'קטן מאחד, שווה לאחד או גדול?',
+  'level.map4f.5': 'שברים במילים ובספרות',
+  'level.map4f.6': 'צמצום והרחבה',
+  'level.map4f.7': 'השוואת שברים',
+  'level.map4f.8': 'משבר למספר מעורב',
+  'level.map4f.9': 'ממספר מעורב לשבר',
+  'level.map4f.10': 'בעיות מילוליות בשברים',
+  'level.map4n.1': 'שם המספר: מספרות למילים',
+  'level.map4n.2': 'שם המספר: ממילים לספרות',
+  'level.map4n.3': 'סדרות: המספר החסר',
+  'level.map4n.4': 'סדרות: מה החוק?',
+  'level.map4n.5': 'חיבור במאונך',
+  'level.map4n.6': 'חיסור במאונך',
+  'level.map4n.7': 'סדר פעולות',
+  'level.map4n.8': 'סדר פעולות עם סוגריים',
+  'level.map4n.9': 'בעיות מילוליות בחיבור',
+  'level.map4n.10': 'בעיות מילוליות בחיסור',
+
+  // Where it opens: the journey's button, its own screen, the parent's switch.
+  'pageTitle.mapping': 'תרגול למיפוי · פלוסי',
+  'map4.open': 'תרגול למיפוי',
+  'map4.title': 'תרגול למיפוי במתמטיקה',
+  'map4.grade': 'כיתה ד׳',
+  'map4.intro':
+    'שני עולמות עם כל הנושאים של המיפוי. אפשר לתרגל אותם בכל זמן, והמסע הרגיל מחכה במקומו.',
+  'map4.stations': '{done} מתוך {total} תחנות',
+  'map4.done': 'כל התחנות הושלמו ✓',
+  'map4.notYet': 'עוד לא התחלת',
+  'map4.back': 'חזרה למסע',
+  'map4.here': 'תרגול למיפוי · {name}',
+  'c.settings.testPrep': 'תרגול למיפוי (כיתה ד׳)',
+  'c.settings.testPrepOn': 'מוצג',
+  'c.settings.testPrepOff': 'מוסתר',
+  'c.settings.testPrepHint': 'כפתור במסע שפותח את שני עולמות התרגול למיפוי.',
 
   // 1. The numerator and the denominator.
   'r4.num.prompt': 'מה המונה? (כמה חלקים צבועים)',

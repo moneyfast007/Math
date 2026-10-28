@@ -56,7 +56,6 @@ const backup = {
       },
       f: {
         topics: {
-          review4: done(),
           'big-numbers': done(),
           'long-mul-div': done(),
           divisibility: done(),

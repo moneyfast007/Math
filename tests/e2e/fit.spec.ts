@@ -35,7 +35,6 @@ const WORLDS: Record<number, string[]> = {
   ],
   3: ['mult-table', 'numbers-10000', 'fractions-1', 'measure', 'angles', 'vertical-3', 'data'],
   4: [
-    'review4',
     'big-numbers',
     'long-mul-div',
     'divisibility',

@@ -11,8 +11,9 @@ import { replayTopic } from '@/app/replay';
 import { navigate } from '@/app/router';
 import { chosenStation } from '@/app/station';
 import { clearRound, savedRound, saveRound } from '@/app/roundSave';
+import { currentWorld } from '@/app/track';
 import { dailyPool, pickDaily, worldPool, type DailyItem } from '@/engine/daily';
-import { activeWorld, nextStop, worldsFor } from '@/engine/journey';
+import { nextStop, worldsFor } from '@/engine/journey';
 import { pick } from '@/engine/rng';
 import { currentLevel, levelsFor, topicById } from '@/engine/registry';
 import {
@@ -87,7 +88,7 @@ function mixedPool(profile: Profile, mode: PracticeMode): DailyItem[] {
   const progress = appProgress(profile.id);
   if (mode === 'daily') return dailyPool(profile.grade, progress);
   if (mode === 'worldMix') {
-    const world = activeWorld(profile.grade, progress);
+    const world = currentWorld(profile, progress);
     return world ? worldPool(world, progress) : [];
   }
   return [];
@@ -140,7 +141,8 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
         const last = levelsFor(replay, profile.grade).at(-1)?.level ?? 1;
         return { topic: replay, level: last, stored: last };
       }
-      const world = activeWorld(profile.grade, progress);
+      // The journey's world, or one beside it she chose (grade 4's test practice).
+      const world = currentWorld(profile, progress);
       const topic = world?.topic;
       if (!topic) throw new Error('No topic for this grade');
       const stop = nextStop(world);
@@ -385,9 +387,7 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
         : replaying
           ? t('practice.done.replay')
           : null;
-    const result =
-      praise ??
-      (outcome ? resultLine(outcome, tc, profile.id, profile.grade, droppedLevel(s)) : null);
+    const result = praise ?? (outcome ? resultLine(outcome, tc, profile, droppedLevel(s)) : null);
     const passed = praise !== null || outcome?.passed === true;
     const spoken =
       praise ?? (passed ? tc('practice.done.passedSpoken') : t('practice.done.notPassed'));
@@ -441,8 +441,7 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
     const playAgain = () => startAt(stateRef.current.startLevel);
     // Where the journey goes on from here: the first station of this world still to pass
     // (never one already passed), or its final challenge once they all are.
-    const after =
-      !mixed && !replaying ? activeWorld(profile.grade, appProgress(profile.id)) : undefined;
+    const after = !mixed && !replaying ? currentWorld(profile, appProgress(profile.id)) : undefined;
     const ahead =
       after && after.topic.id === topic.id
         ? after.stations.some((st) => st.state === 'current')
@@ -986,18 +985,12 @@ function appProgress(profileId: string) {
 }
 
 /** What the round meant for the journey, in one sentence. */
-function resultLine(
-  o: RoundOutcome,
-  tc: TC,
-  profileId: string,
-  grade: Profile['grade'],
-  eased: boolean,
-): string {
+function resultLine(o: RoundOutcome, tc: TC, profile: Profile, eased: boolean): string {
   if (o.worldCompleted) return t('practice.done.worldDone');
   // The round went easier for a while: practice, not a pass; the station comes again.
   if (!o.passed && eased) return t('practice.done.eased');
   if (!o.passed) return t('practice.done.notPassed');
-  const world = activeWorld(grade, appProgress(profileId));
+  const world = currentWorld(profile, appProgress(profile.id));
   // A station opened only if it is now the one to play (not one passed before).
   const opened =
     o.advancedTo !== null &&

@@ -967,9 +967,10 @@ function ChildSettings({
 
   const change = (
     field: string,
-    next: Partial<ProfileSettings> & { goal?: number; quiet?: boolean },
+    next: Partial<ProfileSettings> & { goal?: number; quiet?: boolean; prep?: boolean },
   ) => {
     const merged = {
+      prep: next.prep ?? s.testPrep !== false,
       allowLevelChange: next.allowLevelChange ?? s.allowLevelChange,
       sounds: next.sounds ?? sounds,
       quiet: next.quiet ?? quietEffects,
@@ -984,6 +985,7 @@ function ChildSettings({
       ...(merged.goal === 1 || merged.goal === 2 || merged.goal === 3
         ? { dailyGoal: merged.goal }
         : {}),
+      ...(merged.prep ? {} : { testPrep: false as const }),
     };
     updateProfile(profile.id, {
       name: profile.name,
@@ -1061,6 +1063,19 @@ function ChildSettings({
           saved={saved === 'effects'}
           hint={t('c.settings.effectsHint')}
         />
+        {profile.grade === 4 ? (
+          <Segmented
+            label={t('c.settings.testPrep')}
+            value={s.testPrep === false ? 'off' : 'on'}
+            options={[
+              { value: 'on', label: t('c.settings.testPrepOn') },
+              { value: 'off', label: t('c.settings.testPrepOff') },
+            ]}
+            onChange={(v) => change('testPrep', { prep: v === 'on' })}
+            saved={saved === 'testPrep'}
+            hint={t('c.settings.testPrepHint')}
+          />
+        ) : null}
         <Segmented
           label={t('c.settings.level')}
           value={s.allowLevelChange ? 'yes' : 'no'}

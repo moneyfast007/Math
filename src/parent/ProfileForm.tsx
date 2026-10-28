@@ -63,6 +63,8 @@ export function ProfileForm({ profile, onSave, onDelete, onClose }: ProfileFormP
         ...(quietEffects ? { effects: 'quiet' as const } : {}),
         ...(roundLength === 'normal' ? {} : { roundLength }),
         ...(dailyGoal === 0 ? {} : { dailyGoal }),
+        // Not on this form: kept as the parent set it elsewhere.
+        ...(profile?.settings.testPrep === false ? { testPrep: false as const } : {}),
       },
     });
   };

@@ -1,6 +1,6 @@
 import type { ProfileProgress } from '@/state/schema';
 import type { Grade } from '@/ui/ageBand';
-import { currentLevel, levelsFor, topicsForGrade } from './registry';
+import { currentLevel, levelsFor, topicsForGrade, trackTopics } from './registry';
 import type { Topic } from './types';
 
 /**
@@ -104,6 +104,11 @@ export function worldFor(
 /** The child's worlds, in curriculum order. */
 export function worldsFor(grade: Grade, progress: ProfileProgress | undefined): World[] {
   return topicsForGrade(grade).map((topic, i) => worldFor(topic, i + 1, grade, progress));
+}
+
+/** The worlds beside the journey (grade 4's test practice), each numbered in its own list. */
+export function trackWorlds(grade: Grade, progress: ProfileProgress | undefined): World[] {
+  return trackTopics(grade).map((topic, i) => worldFor(topic, i + 1, grade, progress));
 }
 
 /** The world she is in: the first one not completed, else the last. */

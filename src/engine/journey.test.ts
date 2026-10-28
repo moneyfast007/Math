@@ -1,7 +1,15 @@
 // @vitest-environment node
 import { describe, expect, it } from 'vitest';
 import { emptyProgress, emptyTopicStats, type ProfileProgress } from '@/state/schema';
-import { activeWorld, nextStop, stickersEarned, worldFor, worldsFor, worldsMap } from './journey';
+import {
+  activeWorld,
+  nextStop,
+  stickersEarned,
+  trackWorlds,
+  worldFor,
+  worldsFor,
+  worldsMap,
+} from './journey';
 import { addSub20 } from './topics/addSub20';
 
 function progressAt(
@@ -161,8 +169,19 @@ describe('worldsFor', () => {
     }
   });
 
-  it('a grade-4 child starts in her grade, the autumn review first, not in counting', () => {
-    expect(activeWorld(4, undefined)?.topic.id).toBe('review4');
+  it('a grade-4 child starts in big numbers, not in counting', () => {
+    expect(activeWorld(4, undefined)?.topic.id).toBe('big-numbers');
+  });
+
+  it("keeps grade 4's test practice beside the journey: not among its worlds, two of its own", () => {
+    const journey = worldsFor(4, undefined).map((w) => w.topic.id);
+    expect(journey).not.toContain('map4-fractions');
+    expect(journey).not.toContain('map4-numbers');
+    expect(trackWorlds(4, undefined).map((w) => [w.topic.id, w.index])).toEqual([
+      ['map4-fractions', 1],
+      ['map4-numbers', 2],
+    ]);
+    expect(trackWorlds(3, undefined)).toEqual([]);
   });
 });
 

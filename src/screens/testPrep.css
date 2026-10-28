@@ -1,0 +1,114 @@
+/* Grade 4's test practice: its two worlds as big cards. */
+.prep {
+  gap: var(--space-4);
+}
+
+.prep__header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.prep__header h1 {
+  margin: 0;
+  line-height: 1.2;
+}
+
+.prep__header .muted {
+  margin: 6px 0 0;
+  max-width: 34em;
+}
+
+.prep__grade {
+  display: inline-block;
+  margin: 0 0 6px;
+  padding: 2px 12px;
+  border-radius: var(--radius-pill);
+  background: var(--color-accent-soft);
+  color: var(--color-accent-strong);
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.prep__list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.prep__list > li {
+  display: flex;
+}
+
+.prep__world {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-height: 120px;
+  padding: var(--space-3);
+  border: 1.5px solid var(--color-border);
+  border-radius: 24px;
+  background: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+  color: var(--color-text);
+  text-align: start;
+  transition: transform var(--dur-fast) var(--ease);
+}
+
+.prep__world:active {
+  transform: scale(0.98);
+}
+
+.prep__world--current {
+  border-color: var(--color-accent-strong);
+  box-shadow: 0 0 0 2px var(--color-accent-strong);
+}
+
+.prep__badge {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 72px;
+  height: 72px;
+  border-radius: 20px;
+  font-family: var(--font-math);
+  font-size: 30px;
+  font-weight: 800;
+}
+
+.prep__badge--1 {
+  background: #e3e6ff;
+  color: #4b52c9;
+}
+
+.prep__badge--2 {
+  background: #ffe9d6;
+  color: #b4581a;
+  font-size: 24px;
+}
+
+.prep__text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.prep__name {
+  font-size: var(--text-md);
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.prep__state {
+  color: var(--color-text-muted);
+  font-size: 15px;
+  font-weight: 700;
+}

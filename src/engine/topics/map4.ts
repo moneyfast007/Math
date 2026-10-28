@@ -18,12 +18,19 @@ import {
   type Character,
   type Said,
 } from '../build';
+import type { Gender } from '@/lang/gender';
 import { pick, randInt, shuffle } from '../rng';
-import type { Exercise, Hint, Rng, Visual } from '../types';
+import type { Exercise, Hint, Rng, Topic, Visual } from '../types';
+import { bigNumbers } from './bigNumbers';
+import { fractionOps } from './fractionOps';
+import { longMulDiv } from './longMulDiv';
+import { vertical4 } from './vertical';
 
 /**
- * Grade 4, "שברים ומספרים: חזרה": what the school's autumn test asks and the
- * other worlds leave out. The numerator and the denominator, fractions and
+ * Grade 4's practice for the school's autumn test ("מיפוי"), two worlds beside
+ * the journey (Topic.track): never in the way of the year's worlds, opened by
+ * the child or the parent when the test comes. What the year worlds leave out
+ * is built here. The numerator and the denominator, fractions and
  * mixed numbers on a picture, less than, equal to or more than one, fractions
  * and big numbers in words, sequences, word problems adding and taking away
  * fractions with the same parts.
@@ -32,8 +39,8 @@ import type { Exercise, Hint, Rng, Visual } from '../types';
  * carry digits; what a screen reader reads is the shown text.
  */
 
-const ID = 'review4';
-const L = (n: number) => `level.review4.${n}`;
+/** The builders' own tag; every station retags its exercises with its world and level. */
+const ID = 'map4';
 const DENS = [2, 3, 4, 5, 6, 8, 10];
 
 /** Shown text as the "spoken" one: a screen reader's label, never played. */
@@ -516,38 +523,80 @@ const STORY_FACTS: StoryFact[] = [
 
 const FRACTIONS = DENS.flatMap((d) => range(1, d - 1).map((n) => ({ n, d })));
 
-export const review4 = defineTopic({
-  id: ID,
-  labelKey: 'topic.review4',
+/* ---------- The two worlds ---------- */
+
+const FRACTIONS_ID = 'map4-fractions';
+const NUMBERS_ID = 'map4-numbers';
+const LF = (n: number) => `level.map4f.${n}`;
+const LN = (n: number) => `level.map4n.${n}`;
+
+/** An exercise as a station of this world (built here, or borrowed from a year world). */
+const at = (topicId: string, level: number, e: Exercise): Exercise => ({ ...e, topicId, level });
+
+/**
+ * A station of a year world, played here: its exercises as they are (a hint, a
+ * picture, a column to write in), counted in this world. `keep` takes only some
+ * of them (the ones with brackets, say).
+ */
+function borrowed(
+  source: Topic,
+  sourceLevel: number,
+  topicId: string,
+  level: number,
+  keep: (e: Exercise) => boolean = () => true,
+) {
+  return (rng: Rng, gender: Gender): Exercise => {
+    let e = source.generate(sourceLevel, rng, gender);
+    for (let i = 0; i < 60 && !keep(e); i++) e = source.generate(sourceLevel, rng, gender);
+    return at(topicId, level, e);
+  };
+}
+
+/** One of several stations of year worlds, at random. */
+function either(...gens: ((rng: Rng, gender: Gender) => Exercise)[]) {
+  return (rng: Rng, gender: Gender): Exercise => pick(rng, gens)(rng, gender);
+}
+
+/**
+ * Grade 4's test practice, part 1: "שברים ומספרים מעורבים". Ten stations, as the
+ * school's list has them: what the numerator and the denominator say, a fraction
+ * and a mixed number drawn, less than, equal to or more than one, fractions in
+ * words and in digits, expanding and simplifying, comparing, improper fractions to
+ * mixed numbers and back, word problems adding and taking away fractions.
+ */
+export const map4Fractions = defineTopic({
+  id: FRACTIONS_ID,
+  labelKey: 'topic.map4.fractions',
   grades: [4],
   startLevel: () => 1,
   silent: true,
+  track: 'map4',
   levels: [
     closed(
-      L(1),
+      LF(1),
       () =>
         FRACTIONS.flatMap((x) => [
           { ...x, ask: 'num' as const },
           { ...x, ask: 'den' as const },
         ]),
-      (x) => numDen(x.n, x.d, x.ask),
+      (x) => at(FRACTIONS_ID, 1, numDen(x.n, x.d, x.ask)),
     ),
     closed(
-      L(2),
+      LF(2),
       () => FRACTIONS,
-      (x, rng) => drawn(x.n, x.d, rng),
+      (x, rng) => at(FRACTIONS_ID, 2, drawn(x.n, x.d, rng)),
     ),
     closed(
-      L(3),
+      LF(3),
       () =>
         [1, 2, 3].flatMap((whole) =>
           [2, 3, 4, 5, 6, 8].flatMap((d) => range(1, d - 1).map((rest) => ({ whole, rest, d }))),
         ),
-      (x, rng) => mixedDrawn(x.whole, x.rest, x.d, rng),
+      (x, rng) => at(FRACTIONS_ID, 3, mixedDrawn(x.whole, x.rest, x.d, rng)),
     ),
     // As many of each answer: below one, exactly one, above one.
     closed(
-      L(4),
+      LF(4),
       () =>
         [3, 4, 5, 6, 8, 10].flatMap((d) => [
           { n: d - 1, d },
@@ -557,21 +606,77 @@ export const review4 = defineTopic({
           { n: d + 1, d },
           { n: d + Math.ceil(d / 2), d },
         ]),
-      (x) => toOne(x.n, x.d),
+      (x) => at(FRACTIONS_ID, 4, toOne(x.n, x.d)),
     ),
+    // Both ways: words to digits, and digits to words.
     closed(
-      L(5),
-      () => FRACTIONS,
-      (x, rng) => toDigits(x.n, x.d, rng),
+      LF(5),
+      () => [
+        ...FRACTIONS.map((x) => ({ ...x, way: 'digits' as const })),
+        ...FRACTIONS.filter((x) => x.d > 2).map((x) => ({ ...x, way: 'words' as const })),
+      ],
+      (x, rng) =>
+        at(FRACTIONS_ID, 5, x.way === 'digits' ? toDigits(x.n, x.d, rng) : toWords(x.n, x.d, rng)),
     ),
+    // Expanding and simplifying: the same fraction, smaller parts or bigger ones.
+    open(
+      LF(6),
+      either(borrowed(fractionOps, 1, FRACTIONS_ID, 6), borrowed(fractionOps, 2, FRACTIONS_ID, 6)),
+    ),
+    open(LF(7), borrowed(fractionOps, 3, FRACTIONS_ID, 7)),
+    open(LF(8), borrowed(fractionOps, 7, FRACTIONS_ID, 8)),
+    open(LF(9), borrowed(fractionOps, 8, FRACTIONS_ID, 9)),
     closed(
-      L(6),
-      () => FRACTIONS.filter((x) => x.d > 2),
-      (x, rng) => toWords(x.n, x.d, rng),
+      LF(10),
+      () => STORY_FACTS,
+      (x, rng) => at(FRACTIONS_ID, 10, storyOf(x, rng)),
     ),
-    open(L(7), numberName),
-    open(L(8), seqMissing),
-    open(L(9), seqRule),
-    closed(L(10), () => STORY_FACTS, storyOf),
+  ],
+});
+
+const added = (e: Exercise) => e.operation === 'add';
+const takenAway = (e: Exercise) => e.operation !== 'add' && e.operation !== 'mul';
+
+/**
+ * Grade 4's test practice, part 2: "מספרים טבעיים". Ten stations: a number's name
+ * both ways, sequences (the missing number, the rule), adding and taking away in
+ * columns, the order of operations without and with brackets, word problems.
+ */
+export const map4Numbers = defineTopic({
+  id: NUMBERS_ID,
+  labelKey: 'topic.map4.numbers',
+  grades: [4],
+  startLevel: () => 1,
+  silent: true,
+  track: 'map4',
+  levels: [
+    open(LN(1), (rng) => at(NUMBERS_ID, 1, numberName(rng))),
+    open(LN(2), borrowed(bigNumbers, 1, NUMBERS_ID, 2)),
+    open(LN(3), (rng) => at(NUMBERS_ID, 3, seqMissing(rng))),
+    open(LN(4), (rng) => at(NUMBERS_ID, 4, seqRule(rng))),
+    open(LN(5), borrowed(vertical4, 1, NUMBERS_ID, 5)),
+    open(LN(6), borrowed(vertical4, 2, NUMBERS_ID, 6)),
+    open(
+      LN(7),
+      borrowed(longMulDiv, 9, NUMBERS_ID, 7, (e) => !e.display.includes('(')),
+    ),
+    open(
+      LN(8),
+      borrowed(longMulDiv, 9, NUMBERS_ID, 8, (e) => e.display.includes('(')),
+    ),
+    open(
+      LN(9),
+      either(
+        borrowed(bigNumbers, 10, NUMBERS_ID, 9, added),
+        borrowed(vertical4, 10, NUMBERS_ID, 9, added),
+      ),
+    ),
+    open(
+      LN(10),
+      either(
+        borrowed(bigNumbers, 10, NUMBERS_ID, 10, takenAway),
+        borrowed(vertical4, 10, NUMBERS_ID, 10, (e) => e.operation === 'sub'),
+      ),
+    ),
   ],
 });

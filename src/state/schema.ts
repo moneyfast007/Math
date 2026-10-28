@@ -49,6 +49,8 @@ export interface ProfileSettings {
   dailyGoal?: DailyGoal;
   /** The round's scene without its animations (sparks, launch). Absent: the full effects. */
   effects?: 'quiet';
+  /** Grade 4's test practice hidden by the parent. Absent: shown (to a grade-4 child). */
+  testPrep?: false;
 }
 
 export interface Profile {

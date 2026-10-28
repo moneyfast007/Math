@@ -35,7 +35,7 @@ import { polygons2 } from './topics/polygons2';
 import { percent } from './topics/percent';
 import { percentIntro } from './topics/percentIntro';
 import { ratio } from './topics/ratio';
-import { review4 } from './topics/review4';
+import { map4Fractions, map4Numbers } from './topics/map4';
 import { shapesTopic } from './topics/shapes';
 import { solids1 } from './topics/solids1';
 import { sort0 } from './topics/sort0';
@@ -78,10 +78,12 @@ export const TOPICS: readonly Topic[] = [
   longMulDiv,
   divisibility,
   fractionOps, // grades 4–5
-  review4, // grade 4: the autumn test's review, silent
   perimeterArea,
   angles4,
   vertical4,
+  // Grade 4, beside the journey: practice for the school's autumn test.
+  map4Fractions,
+  map4Numbers,
   // Grade 5
   decimals,
   percentIntro, // grades 5–6
@@ -112,10 +114,7 @@ const ORDER: Partial<Record<Grade, readonly Topic[]>> = {
   // Patterns after the numbers to 100 they count in; solids beside the flat shapes.
   1: [addSub20, numbers100, patterns1, polygons, solids1, measure1, clockMoney1, data],
   2: [addSub100, numbers1000, moneyTopic, multIntro, clockTopic, polygons2, vertical2, data],
-  // The autumn test's review first, so every grade-4 child can reach it before the test
-  // (worlds open in order); after it, the year's worlds as before.
   4: [
-    review4,
     bigNumbers,
     longMulDiv,
     divisibility,
@@ -131,11 +130,17 @@ const ORDER: Partial<Record<Grade, readonly Topic[]>> = {
 
 /** The worlds of the child's grade, in curriculum order (every grade has some). */
 export function topicsForGrade(grade: Grade): Topic[] {
-  const all = TOPICS.filter((t) => t.grades.includes(grade));
+  // The journey's worlds only: a world beside it (Topic.track) is opened on its own.
+  const all = TOPICS.filter((t) => t.grades.includes(grade) && !t.track);
   const order = ORDER[grade];
   if (!order) return all;
   // Every world of the grade appears once: the listed order first, any other after.
   return [...order.filter((t) => all.includes(t)), ...all.filter((t) => !order.includes(t))];
+}
+
+/** The worlds beside the journey for this grade (grade 4's test practice), in order. */
+export function trackTopics(grade: Grade, track: NonNullable<Topic['track']> = 'map4'): Topic[] {
+  return TOPICS.filter((t) => t.track === track && t.grades.includes(grade));
 }
 
 /** The levels of a world for a child of this grade (a younger grade may end earlier). */

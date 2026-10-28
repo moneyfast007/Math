@@ -530,6 +530,12 @@ export interface Topic {
    */
   silent?: boolean;
   /**
+   * A world beside the journey, not on it: it never appears among the grade's
+   * worlds in order, and is opened on its own ('map4': grade 4's practice for
+   * the school's autumn test).
+   */
+  track?: 'map4';
+  /**
    * Everything this topic can ever say, for pre-generating audio: whole
    * sentences when the topic is finite, otherwise the literal pieces of its
    * templates (numbers are recorded separately).
