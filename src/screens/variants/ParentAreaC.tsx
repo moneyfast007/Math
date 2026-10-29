@@ -19,7 +19,7 @@ import {
   type ProfileSettings,
 } from '@/state/schema';
 import { useApp } from '@/state/store';
-import { currentStreak } from '@/state/streak';
+import { currentStreak, dayKey } from '@/state/streak';
 import { useSync } from '@/sync';
 import { ageBandForGrade } from '@/ui/ageBand';
 import { Avatar } from '@/ui/Avatar';
@@ -35,7 +35,7 @@ import {
   AccountBanner,
   SecuritySection,
 } from '../ParentScreen';
-import { guidance, isYesterday, takeNewChild, todayOf } from './cShared';
+import { guidance, isolate, isYesterday, takeNewChild, todayOf } from './cShared';
 import './c.css';
 
 type CTab = 'today' | 'progress' | 'kids' | 'settings';
@@ -424,6 +424,113 @@ function CPanel({ tab, current, children }: { tab: CTab; current: CTab; children
 
 /* ---------- What happened today? ---------- */
 
+/* ---------- The family's day and week, at the top of "מה היה היום?" ---------- */
+
+const weekdayLetter = new Intl.DateTimeFormat('he-IL', { weekday: 'narrow' });
+
+/** One child's day in a few words: "נועה שיחקה 2 סבבים" or "אסף עוד לא". */
+function childDay(profile: Profile, progress: ProfileProgress | undefined, now: number): string {
+  const tc = makeT(profile.gender);
+  const today = todayOf(progress, now);
+  const name = isolate(profile.name);
+  if (!today.practised) return t('c.day.notYet', { params: { name } });
+  if (today.rounds === 0) return tc('c.day.played', { name });
+  if (today.rounds === 1) return tc('c.day.playedOne', { name });
+  return tc('c.day.playedRounds', { name, rounds: today.rounds });
+}
+
+/** The sentence: who played today; on a day nobody has yet, who did yesterday. */
+function familyDayLine(
+  profiles: Profile[],
+  progress: Record<string, ProfileProgress | undefined>,
+  now: number,
+): string {
+  const played = profiles.filter((p) => todayOf(progress[p.id], now).practised);
+  const only = profiles.length === 1 ? profiles[0] : undefined;
+  if (played.length > 0 || !only) {
+    if (played.length === 0) {
+      const y = new Date(now);
+      y.setDate(y.getDate() - 1);
+      const yesterday = profiles.filter((p) => todayOf(progress[p.id], y.getTime()).practised);
+      return yesterday.length === 0
+        ? t('c.day.nobody')
+        : t('c.day.nobodyYesterday', {
+            params: { names: joinNames(yesterday.map((p) => isolate(p.name))) },
+          });
+    }
+    return t('c.day.line', {
+      params: { list: profiles.map((p) => childDay(p, progress[p.id], now)).join(', ') },
+    });
+  }
+  return t('c.day.line', { params: { list: childDay(only, progress[only.id], now) } });
+}
+
+/** "נועה", "נועה ואסף", "נועה, אסף ומיה". */
+function joinNames(names: string[]): string {
+  if (names.length <= 1) return names[0] ?? '';
+  return `${names.slice(0, -1).join(', ')} ו${names[names.length - 1] ?? ''}`;
+}
+
+/** The last seven days, today last: whether any child played on each. */
+function familyWeek(
+  profiles: Profile[],
+  progress: Record<string, ProfileProgress | undefined>,
+  now: number,
+): { key: string; letter: string; played: boolean; today: boolean }[] {
+  return Array.from({ length: 7 }, (_, i) => {
+    const d = new Date(now);
+    d.setDate(d.getDate() - (6 - i));
+    const at = d.getTime();
+    return {
+      key: dayKey(at),
+      letter: weekdayLetter.format(d),
+      played: profiles.some((p) => todayOf(progress[p.id], at).practised),
+      today: i === 6,
+    };
+  });
+}
+
+function FamilyDay({ now }: { now: number }) {
+  const profiles = useApp((s) => s.data.profiles);
+  const progress = useApp((s) => s.data.progress);
+  const week = familyWeek(profiles, progress, now);
+  const days = week.filter((d) => d.played).length;
+  return (
+    <section className="c-day" aria-labelledby="c-day-line">
+      <p className="c-day__date">{todayFormat.format(now)}</p>
+      <h2 id="c-day-line" className="c-day__line">
+        {familyDayLine(profiles, progress, now)}
+      </h2>
+      <div className="c-fweek">
+        <div
+          className="c-fweek__days"
+          role="img"
+          aria-label={t('c.week.label', { params: { days } })}
+        >
+          {week.map((d) => (
+            <span
+              key={d.key}
+              className={`c-fweek__day${d.played ? ' c-fweek__day--on' : ''}${d.today ? ' c-fweek__day--today' : ''}`}
+            >
+              <span className="c-fweek__dot">
+                {d.played ? (
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M6 12.5l4 4L18 8" />
+                  </svg>
+                ) : null}
+              </span>
+              <span className="c-fweek__letter">{d.letter}</span>
+            </span>
+          ))}
+        </div>
+        <p className="c-fweek__sum" aria-hidden="true">
+          {t('c.week.label', { params: { days } })}
+        </p>
+      </div>
+    </section>
+  );
+}
+
 function TodayPanel({
   onAdd,
   onRestore,
@@ -440,10 +547,14 @@ function TodayPanel({
   const shown = profiles.find((p) => p.id === picked) ?? profiles[0];
   return (
     <>
-      <h2 className="c-heading">
-        {t('c.tab.today')}
-        <span className="c-heading__date">{todayFormat.format(now)}</span>
-      </h2>
+      {profiles.length === 0 ? (
+        <h2 className="c-heading">
+          {t('c.tab.today')}
+          <span className="c-heading__date">{todayFormat.format(now)}</span>
+        </h2>
+      ) : (
+        <FamilyDay now={now} />
+      )}
       {profiles.length === 0 ? (
         <div className="c-empty">
           <Plusi size={80} mood="happy" decorative />
