@@ -59,7 +59,10 @@ export const heVariantC = {
   'c.day.notYet': '{name} עוד לא',
   'c.day.nobody': 'היום עוד לא שיחקו',
   'c.day.nobodyYesterday': 'היום עוד לא שיחקו. אתמול: {names}',
-  'c.week.label': 'שיחקו ב־{days} מתוך 7 הימים האחרונים',
+  'c.week.child': {
+    f: 'שיחקה ב־{days} מתוך 7 הימים האחרונים',
+    m: 'שיחק ב־{days} מתוך 7 הימים האחרונים',
+  },
   'c.today.never': { f: 'עוד לא תרגלה בכלל', m: 'עוד לא תרגל בכלל' },
   'c.today.rounds': '{done} מתוך {goal}',
   'c.today.goalMet': 'היעד הושג',
