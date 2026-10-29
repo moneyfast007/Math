@@ -471,10 +471,9 @@ function joinNames(names: string[]): string {
   return `${names.slice(0, -1).join(', ')} ו${names[names.length - 1] ?? ''}`;
 }
 
-/** The last seven days, today last: whether any child played on each. */
-function familyWeek(
-  profiles: Profile[],
-  progress: Record<string, ProfileProgress | undefined>,
+/** The last seven days, today last: whether she played on each. */
+function playedWeek(
+  progress: ProfileProgress | undefined,
   now: number,
 ): { key: string; letter: string; played: boolean; today: boolean }[] {
   return Array.from({ length: 7 }, (_, i) => {
@@ -484,49 +483,53 @@ function familyWeek(
     return {
       key: dayKey(at),
       letter: weekdayLetter.format(d),
-      played: profiles.some((p) => todayOf(progress[p.id], at).practised),
+      played: todayOf(progress, at).practised,
       today: i === 6,
     };
   });
 }
 
+/** One child's last seven days as dots, checked where she played, and how many. */
+function PlayedWeek({ profile, now }: { profile: Profile; now: number }) {
+  const progress = useApp((s) => s.data.progress[profile.id]);
+  const week = playedWeek(progress, now);
+  const days = week.filter((d) => d.played).length;
+  const label = makeT(profile.gender)('c.week.child', { days });
+  return (
+    <div className="c-fweek">
+      <div className="c-fweek__days" role="img" aria-label={label}>
+        {week.map((d) => (
+          <span
+            key={d.key}
+            className={`c-fweek__day${d.played ? ' c-fweek__day--on' : ''}${d.today ? ' c-fweek__day--today' : ''}`}
+          >
+            <span className="c-fweek__dot">
+              {d.played ? (
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M6 12.5l4 4L18 8" />
+                </svg>
+              ) : null}
+            </span>
+            <span className="c-fweek__letter">{d.letter}</span>
+          </span>
+        ))}
+      </div>
+      <p className="c-fweek__sum" aria-hidden="true">
+        {label}
+      </p>
+    </div>
+  );
+}
+
 function FamilyDay({ now }: { now: number }) {
   const profiles = useApp((s) => s.data.profiles);
   const progress = useApp((s) => s.data.progress);
-  const week = familyWeek(profiles, progress, now);
-  const days = week.filter((d) => d.played).length;
   return (
     <section className="c-day" aria-labelledby="c-day-line">
       <p className="c-day__date">{todayFormat.format(now)}</p>
       <h2 id="c-day-line" className="c-day__line">
         {familyDayLine(profiles, progress, now)}
       </h2>
-      <div className="c-fweek">
-        <div
-          className="c-fweek__days"
-          role="img"
-          aria-label={t('c.week.label', { params: { days } })}
-        >
-          {week.map((d) => (
-            <span
-              key={d.key}
-              className={`c-fweek__day${d.played ? ' c-fweek__day--on' : ''}${d.today ? ' c-fweek__day--today' : ''}`}
-            >
-              <span className="c-fweek__dot">
-                {d.played ? (
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M6 12.5l4 4L18 8" />
-                  </svg>
-                ) : null}
-              </span>
-              <span className="c-fweek__letter">{d.letter}</span>
-            </span>
-          ))}
-        </div>
-        <p className="c-fweek__sum" aria-hidden="true">
-          {t('c.week.label', { params: { days } })}
-        </p>
-      </div>
     </section>
   );
 }
@@ -639,6 +642,8 @@ function TodayCard({ profile, index, now }: { profile: Profile; index: number; n
           <span className="c-status c-status--on">{tc('c.today.practised')}</span>
         ) : null}
       </header>
+
+      {summary.attempts === 0 ? null : <PlayedWeek profile={profile} now={now} />}
 
       {today.practised ? (
         <dl className="c-nums">
