@@ -523,9 +523,10 @@ function TodayCard({ profile, index, now }: { profile: Profile; index: number; n
                     : gradeLabel(profile.grade)}
           </span>
         </span>
-        <span className={today.practised ? 'c-status c-status--on' : 'c-status'}>
-          {today.practised ? tc('c.today.practised') : t('c.today.notYet')}
-        </span>
+        {/* Nothing today: no badge (the line under her name already says when she last played). */}
+        {today.practised ? (
+          <span className="c-status c-status--on">{tc('c.today.practised')}</span>
+        ) : null}
       </header>
 
       {today.practised ? (
