@@ -20,6 +20,7 @@ export const heVariantC = {
 
   // Entry screen: children
   'c.home.continue': 'ממשיכים',
+  'c.home.worldDone': '{done} מתוך {total} תחנות',
   'c.home.stations': '{done} מתוך {total} תחנות',
   'c.home.todayRounds': 'היום: {done} מתוך {goal} סבבים',
   'c.home.todayRoundsOne': 'היום: {done} מתוך סבב אחד',

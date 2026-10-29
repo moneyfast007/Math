@@ -1,8 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, type CSSProperties } from 'react';
 import { speaker } from '@/audio/speaker';
 import { navigate } from '@/app/router';
 import { activeWorld, worldsFor, type World } from '@/engine/journey';
 import { makeT, t } from '@/i18n';
+import { topicLabel } from '@/i18n/labels';
 import { ParentEntry } from '@/parent/ParentEntry';
 import { requestParentTab } from '@/parent/tab';
 import { isStandalone } from '@/pwa/standalone';
@@ -56,6 +57,8 @@ export function HomeC() {
   const unlockParent = useApp((s) => s.unlockParent);
   const lockParent = useApp((s) => s.lockParent);
   const [gateOpen, setGateOpen] = useState(false);
+  // The app was just opened (this browser session), not a return from a round.
+  const [freshVisit] = useState(() => firstHomeThisVisit());
 
   useEffect(() => {
     lockParent();
@@ -92,17 +95,24 @@ export function HomeC() {
   };
   const only = profiles.length === 1 ? profiles[0] : undefined;
   const now = Date.now();
-  // Back after two days or more: Plusi says he missed her (once that day).
+  // Back after two days or more: a party, Plusi says he missed her (once that day).
   const back = only
     ? welcomeBack(only, progress[only.id], now)
     : profiles.some((p) => welcomeBack(p, progress[p.id], now));
-  const title = back
-    ? only
+  // Any other time the app is opened (not on coming back from a round): a quiet "welcome back".
+  const hello = !back && freshVisit && profiles.some((p) => playedBefore(progress[p.id]));
+  const greeted = back || hello;
+  const title = only
+    ? greeted && playedBefore(progress[only.id])
       ? makeT(only.gender)('c.welcomeBack.title', { name: only.name })
-      : t('c.welcomeBack.titleMany')
-    : only
-      ? t('child.hello', { params: { name: only.name } })
-      : whoIsPlayingTitle(profiles.map((p) => p.gender));
+      : t('child.hello', { params: { name: only.name } })
+    : whoIsPlayingTitle(profiles.map((p) => p.gender));
+  // Above the title: "התגעגעתי!" after a break; "ברוכים השבים!" over the question for several.
+  const line = back
+    ? t('c.welcomeBack.missed')
+    : hello && !only
+      ? t('c.welcomeBack.titleMany')
+      : null;
   const spokenBack = only
     ? makeT(only.gender)('journey.welcomeBack.spoken')
     : t('journey.welcomeBack.many');
@@ -111,15 +121,32 @@ export function HomeC() {
     <main className="screen c-home" data-screen="home">
       <BrandMark />
       <div className="c-home__center">
-        <header className={back ? 'c-home__ask c-home__ask--back' : 'c-home__ask'}>
-          <Plusi
-            size={72}
-            mood={back ? 'cheering' : 'happy'}
-            decorative
-            className={back ? 'c-home__plusi c-home__plusi--back' : 'c-home__plusi'}
-          />
+        <header
+          className={
+            back
+              ? 'c-home__ask c-home__ask--back'
+              : line
+                ? 'c-home__ask c-home__ask--hello'
+                : 'c-home__ask'
+          }
+        >
+          <span className="c-home__plusi-wrap">
+            <Plusi
+              size={72}
+              mood={back ? 'cheering' : 'happy'}
+              decorative
+              className={
+                back
+                  ? 'c-home__plusi c-home__plusi--back'
+                  : hello
+                    ? 'c-home__plusi c-home__plusi--hello'
+                    : 'c-home__plusi'
+              }
+            />
+            {back ? <Sparkles /> : null}
+          </span>
           <div className="bubble c-home__bubble">
-            {back ? <p className="c-home__missed">{t('c.welcomeBack.missed')}</p> : null}
+            {line ? <p className="c-home__missed">{line}</p> : null}
             <h1 className="c-home__title">{title}</h1>
             {back ? <SpeakerButton text={spokenBack} /> : null}
           </div>
@@ -179,6 +206,38 @@ export function HomeC() {
         />
       ) : null}
     </main>
+  );
+}
+
+const VISIT_KEY = 'plusi:home-seen';
+let seenInMemory = false;
+
+/** True the first time the entry screen shows since the app was opened (then false). */
+function firstHomeThisVisit(): boolean {
+  let seen = seenInMemory;
+  try {
+    seen = seen || sessionStorage.getItem(VISIT_KEY) === '1';
+    sessionStorage.setItem(VISIT_KEY, '1');
+  } catch {
+    // Storage blocked: memory only.
+  }
+  seenInMemory = true;
+  return !seen;
+}
+
+/** She has played at least once (a child who never has gets a plain hello). */
+function playedBefore(progress: ProfileProgress | undefined): boolean {
+  return summarizeProgress(progress).lastPracticedAt !== null;
+}
+
+/** Small stars bursting around Plusi when she is back after a break (none with less motion). */
+function Sparkles() {
+  return (
+    <span className="sparkles" aria-hidden="true">
+      {Array.from({ length: 14 }, (_, i) => (
+        <span key={i} className="sparkles__star" style={{ '--i': i } as CSSProperties} />
+      ))}
+    </span>
   );
 }
 
@@ -412,11 +471,29 @@ function KidRow({
           </span>
         ) : null}
         {world ? (
-          <span className="c-kidrow__where">
-            {world.completed
-              ? tc('parentArea.allWorldsDone')
-              : t('c.home.worldN', { params: { n: world.index } })}
-          </span>
+          world.completed ? (
+            <span className="c-kidrow__where">{tc('parentArea.allWorldsDone')}</span>
+          ) : (
+            <span className="c-kidrow__world">
+              <span className="c-kidrow__where">
+                <span className="c-kidrow__n">
+                  {t('c.home.worldN', { params: { n: world.index } })}
+                </span>
+                {topicLabel(world.topic.id)}
+              </span>
+              {world.done === 0 ? null : (
+                <span
+                  className="c-kidrow__bar"
+                  role="img"
+                  aria-label={t('c.home.worldDone', {
+                    params: { done: world.done, total: world.total },
+                  })}
+                >
+                  <span style={{ width: `${Math.round((world.done / world.total) * 100)}%` }} />
+                </span>
+              )}
+            </span>
+          )
         ) : null}
         <span className="c-kidrow__go">
           {never ? t('c.home.start') : t('c.home.continue')}

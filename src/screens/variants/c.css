@@ -31,6 +31,8 @@
   width: 100%;
   max-width: 520px;
   margin-block: auto;
+  /* A little above the middle: the eye starts higher, and the parents' button sits below. */
+  padding-bottom: 6vh;
 }
 
 .c-home__ask {
@@ -158,6 +160,14 @@
 
 .c-home__footer.c-home__footer {
   width: 100%;
+}
+
+/* Small and quiet: it is for the parents, once. */
+.c-home__footer .info-link {
+  min-height: 36px;
+  color: var(--color-text-muted);
+  font-size: 14px;
+  text-decoration: none;
 }
 
 @media (max-width: 560px) {
@@ -533,10 +543,49 @@
   height: 15px;
 }
 
+/* Where she is: the world's name, and how far into it. */
+.c-kidrow__world {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  width: 100%;
+  padding-inline: var(--space-1);
+}
+
 .c-kidrow__where {
   color: #5b4330;
   font-size: 14px;
   font-weight: 700;
+  line-height: 1.25;
+  text-align: center;
+  text-wrap: balance;
+}
+
+/* "עולם 2" small above the world's name. */
+.c-kidrow__n {
+  display: block;
+  color: #6b4f33;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+
+.c-kidrow__bar {
+  display: block;
+  width: min(100%, 120px);
+  height: 7px;
+  border-radius: var(--radius-pill);
+  background: rgb(120 80 30 / 18%);
+  overflow: hidden;
+}
+
+.c-kidrow__bar > span {
+  display: block;
+  height: 100%;
+  min-width: 7px;
+  border-radius: inherit;
+  background: #e0a21a;
 }
 
 .c-kidrow__go {
@@ -1379,12 +1428,54 @@ details[open] > summary .c-row__chev {
   column-gap: var(--space-2);
 }
 
+/* Beside the speaker there is less room: the title a little smaller, so it stays on one line. */
+.c-home__ask--back .c-home__title {
+  font-size: clamp(20px, 5.4vw, 32px);
+}
+
+/* On a phone the speaker goes up beside "התגעגעתי!", and the title gets the bubble's width. */
+@media (max-width: 560px) {
+  .c-home__ask--back .c-home__bubble.c-home__bubble {
+    position: relative;
+    display: block;
+    padding-top: 8px;
+  }
+
+  .c-home__ask--back .c-home__missed {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+  }
+
+  .c-home__ask--back .c-home__bubble > .speaker {
+    position: absolute;
+    top: 8px;
+    inset-inline-end: 10px;
+  }
+
+  .c-home__ask--back .speaker__btn {
+    width: 44px;
+    height: 44px;
+  }
+}
+
 .c-home__ask--back .c-home__bubble > .speaker {
   grid-column: 2;
   grid-row: 1 / span 2;
 }
 
+/* Plusi and, after a break, the stars bursting around him. */
+.c-home__plusi-wrap {
+  position: relative;
+  display: inline-grid;
+  flex: none;
+}
+
 @media (prefers-reduced-motion: no-preference) {
+  .c-home__plusi.c-home__plusi--hello {
+    animation: welcome-pop 600ms var(--ease) both;
+  }
+
   .c-home__plusi.c-home__plusi--back {
     transform-origin: 50% 85%;
     animation:
