@@ -3,6 +3,7 @@ import { speaker } from '@/audio/speaker';
 import { navigate } from '@/app/router';
 import { activeWorld, worldsFor, type World } from '@/engine/journey';
 import { makeT, t } from '@/i18n';
+import { topicLabel } from '@/i18n/labels';
 import { ParentEntry } from '@/parent/ParentEntry';
 import { requestParentTab } from '@/parent/tab';
 import { isStandalone } from '@/pwa/standalone';
@@ -412,11 +413,24 @@ function KidRow({
           </span>
         ) : null}
         {world ? (
-          <span className="c-kidrow__where">
-            {world.completed
-              ? tc('parentArea.allWorldsDone')
-              : t('c.home.worldN', { params: { n: world.index } })}
-          </span>
+          world.completed ? (
+            <span className="c-kidrow__where">{tc('parentArea.allWorldsDone')}</span>
+          ) : (
+            <span className="c-kidrow__world">
+              <span className="c-kidrow__where">{topicLabel(world.topic.id)}</span>
+              {world.done === 0 ? null : (
+                <span
+                  className="c-kidrow__bar"
+                  role="img"
+                  aria-label={t('c.home.worldDone', {
+                    params: { done: world.done, total: world.total },
+                  })}
+                >
+                  <span style={{ width: `${Math.round((world.done / world.total) * 100)}%` }} />
+                </span>
+              )}
+            </span>
+          )
         ) : null}
         <span className="c-kidrow__go">
           {never ? t('c.home.start') : t('c.home.continue')}
