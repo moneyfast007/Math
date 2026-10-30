@@ -280,7 +280,7 @@ const standIcon = (x: Standing): Visual => ({
 });
 
 function tall(level: number, f: TallFact, rng: Rng): Exercise {
-  const three = STANDING.filter((_, i) => i !== f.leave) as Standing[];
+  const three: Standing[] = STANDING.filter((_, i) => i !== f.leave);
   const hs = HEIGHTS[(f.leave + f.h) % HEIGHTS.length] as [number, number, number];
   const items = three.map((x, i) => ({ thing: x, len: hs[i] as number }));
   const sorted = [...items].sort((p, q) => p.len - q.len);

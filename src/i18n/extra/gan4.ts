@@ -84,8 +84,8 @@ export const heGan4 = {
   'ex.m0.tall.hint1': 'נסתכל עד לאן מגיע כל אחד מהם.',
   'ex.m0.tall.most.hint2': 'מה שמגיע מעל הקו הוא הכי גבוה.',
   'ex.m0.tall.least.hint2': 'מה שלא מגיע עד הקו הוא הכי נמוך.',
-  'ex.m0.tall.most.solution': 'ה{w} הכי גבוה.',
-  'ex.m0.tall.least.solution': 'ה{w} הכי נמוך.',
+  'ex.m0.tall.most.solution': 'ה{w} הוא הכי גבוה.',
+  'ex.m0.tall.least.solution': 'ה{w} הוא הכי נמוך.',
 
   // Steps from one place to another.
   'ex.m0.steps.prompt': 'כמה צעדים יש מה{a} עד ה{b}?',
