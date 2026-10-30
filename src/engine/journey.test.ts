@@ -154,6 +154,8 @@ describe('worlds', () => {
       'count-20',
       'measure-0',
       'time-0',
+      'solids-0',
+      'data-0',
     ]);
   });
 

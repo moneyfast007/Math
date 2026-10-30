@@ -17,6 +17,8 @@ import { heGan2 } from './extra/gan2';
 import { heGan3 } from './extra/gan3';
 import { heGan4 } from './extra/gan4';
 import { heGan5 } from './extra/gan5';
+import { heGan6 } from './extra/gan6';
+import { heGan7 } from './extra/gan7';
 import { heGrade4 } from './extra/grade4';
 import { heGrades23 } from './extra/grades23';
 import { heGrades56 } from './extra/grades56';
@@ -2165,6 +2167,8 @@ export const he = {
   ...heGan3,
   ...heGan4,
   ...heGan5,
+  ...heGan6,
+  ...heGan7,
   ...heVariantB,
   ...heVariantC,
   ...heRound3,
