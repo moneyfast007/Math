@@ -289,7 +289,8 @@ function diff(level: number, f: DiffFact, rng: Rng): Exercise {
     spoken: say(K('diff.prompt'), { a: label(s, f.big), b: label(s, f.small) }),
     visual: graph(s),
     answer: d,
-    input: numbers(rng, d, 1, 6),
+    // From zero: "not more at all" is a fair wrong answer, and a small answer is not always first.
+    input: numbers(rng, d, 0, 6),
     hints: [
       hint(say(K('diff.hint1'))),
       hint(say(K('diff.hint2'))),
