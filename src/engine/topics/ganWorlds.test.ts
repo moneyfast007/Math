@@ -3,6 +3,7 @@ import { describe, expect, it } from 'vitest';
 import { topicsForGrade } from '../registry';
 import { seededRng } from '../rng';
 import type { Exercise, SceneItem, Visual } from '../types';
+import { count20 } from './count20';
 import { THINGS, type ThingId } from './ganKit';
 import { sort0 } from './sort0';
 import { space0 } from './space0';
@@ -196,14 +197,72 @@ describe('sort-0', () => {
   });
 });
 
+describe('count-20', () => {
+  it('dice: the answer is the pips shown, one die or two', () => {
+    for (const level of [1, 2])
+      for (const e of all(count20, level)) {
+        if (e.visual?.type !== 'dice') throw new Error(`${e.factId}: no dice`);
+        expect(
+          e.visual.dice.reduce((a, b) => a + b, 0),
+          e.factId,
+        ).toBe(e.answer);
+        for (const d of e.visual.dice) expect(d >= 1 && d <= 6, e.factId).toBe(true);
+      }
+  });
+
+  it('ten and more: a group of ten and the rest, adding up to the answer', () => {
+    for (const level of [3, 4])
+      for (const e of all(count20, level)) {
+        if (e.visual?.type !== 'objects') throw new Error(`${e.factId}: no objects`);
+        expect(e.visual.groups[0], e.factId).toBe(10);
+        expect(
+          e.visual.groups.reduce((a, b) => a + b, 0),
+          e.factId,
+        ).toBe(e.answer);
+      }
+  });
+
+  it('the missing number fits the gap in a row that counts up by one', () => {
+    for (const e of all(count20, 6)) {
+      if (e.visual?.type !== 'sequence') throw new Error(`${e.factId}: no row`);
+      const items = e.visual.items;
+      const gap = items.indexOf(null);
+      expect(gap === 1 || gap === 2, e.factId).toBe(true);
+      const filled = items.map((x) => x ?? e.answer);
+      filled.forEach((x, i) => i > 0 && expect(x - (filled[i - 1] as number), e.factId).toBe(1));
+    }
+  });
+
+  it('hops stay on the line from 0 to 20, one to three at a time', () => {
+    for (const level of [9, 10])
+      for (const e of all(count20, level)) {
+        expect(e.answer >= 0 && e.answer <= 20, e.factId).toBe(true);
+        const [s, k] = (e.factId.split(':')[1] ?? '').split(',').map(Number);
+        expect(k !== undefined && k >= 1 && k <= 3, e.factId).toBe(true);
+        expect(e.answer, e.factId).toBe(level === 9 ? (s ?? 0) + (k ?? 0) : (s ?? 0) - (k ?? 0));
+      }
+  });
+
+  it('every number is up to twenty, and every level has enough facts for a round', () => {
+    for (let level = 1; level <= 10; level++) {
+      const facts = all(count20, level);
+      expect(facts.length, `level ${level}`).toBeGreaterThanOrEqual(10);
+      for (const e of facts)
+        if (e.input.type === 'choices' && !e.input.labels)
+          for (const c of e.input.choices) expect(c >= 0 && c <= 20, e.factId).toBe(true);
+    }
+  });
+});
+
 describe('the gan journey', () => {
-  it('counting and shapes first, then sorting and space, adding and taking away last', () => {
+  it('counting and shapes first, then sorting and space, adding and taking away; then to twenty', () => {
     expect(topicsForGrade(0).map((t) => t.id)).toEqual([
       'count-10',
       'shapes',
       'sort-0',
       'space-0',
       'add-sub-20',
+      'count-20',
     ]);
   });
 });

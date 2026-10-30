@@ -7618,6 +7618,32 @@ body {
   }
 }
 
+/* Dice: big white faces with round pips, side by side. */
+.dice {
+  display: flex;
+  justify-content: center;
+  gap: clamp(14px, 4vw, 28px);
+}
+
+.die {
+  width: clamp(112px, 31vw, 170px);
+  height: auto;
+}
+
+.die__face {
+  fill: #fff;
+  stroke: #d8c6aa;
+  stroke-width: 4;
+}
+
+.die--tone0 .die__pip {
+  fill: #d8483c;
+}
+
+.die--tone1 .die__pip {
+  fill: #3b5bd9;
+}
+
 /* A sequence: number cards read from the right, an arrow between them; wraps when narrow. */
 .sequence {
   display: flex;
@@ -7642,6 +7668,17 @@ body {
   font-weight: 800;
   text-align: center;
   font-variant-numeric: tabular-nums;
+}
+
+/* A short row (gan): four small cards that stay on one line, even on a phone. */
+.sequence--short {
+  flex-wrap: nowrap;
+  gap: 8px 18px;
+}
+
+.sequence--short .sequence__item {
+  min-width: 2.3em;
+  padding: 6px 8px;
 }
 
 /* The arrow toward the next card (at its left, the way the sequence goes). */
@@ -7727,19 +7764,19 @@ body {
 /* A phone: the sequence top to bottom (the first card on top), an arrow down to the next.
    On one row it would wrap, and the arrow at a row's end would point at nothing. */
 @media (max-width: 600px) {
-  .sequence {
+  .sequence:not(.sequence--short) {
     flex-direction: column;
     flex-wrap: nowrap;
     gap: 18px;
   }
 
-  .sequence__item {
+  .sequence:not(.sequence--short) .sequence__item {
     min-width: 7.5em;
     padding: 4px 14px;
     font-size: clamp(20px, 6vw, 26px);
   }
 
-  .sequence__item:not(:last-child)::after {
+  .sequence:not(.sequence--short) .sequence__item:not(:last-child)::after {
     content: '↓';
     top: auto;
     bottom: -19px;

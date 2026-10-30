@@ -116,6 +116,8 @@ export type Visual =
   | { type: 'solids'; items: SolidItem[]; stacked?: boolean }
   /** Unit cubes in columns standing side by side, one deep, so every cube shows. */
   | { type: 'cubeStack'; columns: number[] }
+  /** Dice side by side, each showing 1–6 pips in the usual pattern (`tone`: the pips' colour). */
+  | { type: 'dice'; dice: number[]; tone?: 0 | 1 }
   /** One everyday thing, drawn big (an emoji): which solid does it look like? */
   | { type: 'thing'; emoji: string }
   /**

@@ -59,6 +59,8 @@ export function VisualView({
       return <SolidsView v={visual} />;
     case 'cubeStack':
       return <CubeStackView v={visual} />;
+    case 'dice':
+      return <DiceView v={visual} />;
     case 'thing':
       return <ThingView v={visual} />;
     case 'sequence':
@@ -310,9 +312,47 @@ function NumberLine({ v }: { v: Extract<Visual, { type: 'numberLine' }> }) {
 }
 
 /** Number cards from the right, a small arrow between them; the asked one is "?". */
+/** Where the pips of each face sit, on a 3 × 3 grid (0 top-left … 8 bottom-right). */
+const PIPS: Record<number, number[]> = {
+  1: [4],
+  2: [2, 6],
+  3: [2, 4, 6],
+  4: [0, 2, 6, 8],
+  5: [0, 2, 4, 6, 8],
+  6: [0, 2, 3, 5, 6, 8],
+};
+
+function DiceView({ v }: { v: Extract<Visual, { type: 'dice' }> }) {
+  return (
+    <div className="dice" dir="ltr" data-visual="dice" aria-hidden="true">
+      {v.dice.map((n, i) => (
+        <svg key={i} className={`die die--tone${v.tone ?? 0}`} viewBox="0 0 100 100">
+          <rect x="4" y="4" width="92" height="92" rx="20" className="die__face" />
+          {(PIPS[n] ?? []).map((p) => (
+            <circle
+              key={p}
+              cx={26 + (p % 3) * 24}
+              cy={26 + Math.floor(p / 3) * 24}
+              r="9.5"
+              className="die__pip"
+            />
+          ))}
+        </svg>
+      ))}
+    </div>
+  );
+}
+
 function SequenceView({ v }: { v: Extract<Visual, { type: 'sequence' }> }) {
   return (
-    <ol className="sequence" dir="rtl" data-visual="sequence" aria-hidden="true">
+    <ol
+      className={
+        v.items.every((n) => n === null || n < 100) ? 'sequence sequence--short' : 'sequence'
+      }
+      dir="rtl"
+      data-visual="sequence"
+      aria-hidden="true"
+    >
       {v.items.map((n, i) => (
         <li
           key={i}
