@@ -186,7 +186,7 @@ function more(level: number, f: PairFact, rng: Rng): Exercise {
   const aWins = (s.vals[f.a] as number) > (s.vals[f.b] as number);
   const [w, l] = aWins ? [f.a, f.b] : [f.b, f.a];
   const ex = SURVEYS[(f.s + 5) % SURVEYS.length] as Survey;
-  const [ew, el] = (ex.vals[0] as number) > (ex.vals[1] as number) ? [0, 1] : [1, 0];
+  const [ew, el] = ex.vals[0] > ex.vals[1] ? [0, 1] : [1, 0];
   return pictureQuestion(
     {
       topicId: ID,
@@ -279,7 +279,7 @@ function diff(level: number, f: DiffFact, rng: Rng): Exercise {
     return (sv.vals[e.big] as number) - (sv.vals[e.small] as number);
   };
   const facts = diffFacts();
-  const ex = facts.find((e) => e.s !== f.s && gap(e) !== d) ?? (facts[0] as DiffFact);
+  const ex = facts.find((e) => e.s !== f.s && gap(e) !== d) ?? f;
   return exercise({
     factId: `diff:${f.s}:${f.big}${f.small}`,
     topicId: ID,
