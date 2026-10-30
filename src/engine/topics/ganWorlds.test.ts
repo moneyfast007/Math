@@ -5,8 +5,6 @@ import { seededRng } from '../rng';
 import type { Exercise, SceneItem, Visual } from '../types';
 import { count20 } from './count20';
 import { measure0 } from './measure0';
-import { time0 } from './time0';
-import { data0 } from './data0';
 import { THINGS, type ThingId } from './ganKit';
 import { sort0 } from './sort0';
 import { space0 } from './space0';
@@ -301,61 +299,6 @@ describe('measure-0', () => {
   });
 });
 
-describe('time-0', () => {
-  it('a story of three: one place is empty, and the answer is none of the pictures shown', () => {
-    for (const level of [3, 4, 5])
-      for (const e of played(time0, level)) {
-        const items = scene(e.visual).items;
-        expect(items.filter((it) => it.blank).length, e.factId).toBe(1);
-        const gap = items.findIndex((it) => it.blank);
-        expect(gap, e.factId).toBe(level - 3);
-        const shown = items.map((it) => it.emoji);
-        expect(shown, e.factId).not.toContain(emojiOn(e, e.answer));
-      }
-  });
-
-  it('every question has its own answer: no button repeats another', () => {
-    for (let level = 1; level <= 10; level++)
-      for (const e of all(time0, level)) {
-        const emojis = labels(e).map((_, i) => emojiOn(e, i));
-        expect(new Set(emojis).size, e.factId).toBe(emojis.length);
-      }
-  });
-});
-
-describe('data-0', () => {
-  it('reading the picture graph: the answer is the column asked about', () => {
-    for (const e of all(data0, 1)) {
-      if (e.visual?.type !== 'bars') throw new Error(`${e.factId}: no graph`);
-      const bar = e.visual.bars.find((b) => e.spokenText.includes(b.label));
-      expect(bar?.value, e.factId).toBe(e.answer);
-    }
-  });
-
-  it('all together, and how many more, follow the columns', () => {
-    for (const e of all(data0, 5)) {
-      if (e.visual?.type !== 'bars') throw new Error(`${e.factId}: no graph`);
-      expect(
-        e.visual.bars.reduce((s, b) => s + b.value, 0),
-        e.factId,
-      ).toBe(e.answer);
-    }
-    for (const e of all(data0, 6)) {
-      if (e.visual?.type !== 'bars') throw new Error(`${e.factId}: no graph`);
-      const said = e.visual.bars.filter((b) => e.spokenText.includes(b.label));
-      expect(said, e.factId).toHaveLength(2);
-      expect(Math.abs((said[0]?.value ?? 0) - (said[1]?.value ?? 0)), e.factId).toBe(e.answer);
-    }
-  });
-
-  it('tally marks: the answer is the marks drawn', () => {
-    for (const e of all(data0, 7)) {
-      if (e.visual?.type !== 'tally') throw new Error(`${e.factId}: no tally`);
-      expect(e.visual.rows[0]?.count, e.factId).toBe(e.answer);
-    }
-  });
-});
-
 describe('the gan journey', () => {
   it('counting and shapes first, then sorting and space, adding and taking away; then to twenty', () => {
     expect(topicsForGrade(0).map((t) => t.id)).toEqual([
@@ -366,9 +309,6 @@ describe('the gan journey', () => {
       'add-sub-20',
       'count-20',
       'measure-0',
-      'time-0',
-      'solids-0',
-      'data-0',
     ]);
   });
 });

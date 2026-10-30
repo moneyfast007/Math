@@ -12,18 +12,7 @@ import { expect, test, type Page } from '@playwright/test';
  */
 
 const WORLDS: Record<number, string[]> = {
-  0: [
-    'count-10',
-    'shapes',
-    'sort-0',
-    'space-0',
-    'add-sub-20',
-    'count-20',
-    'measure-0',
-    'time-0',
-    'solids-0',
-    'data-0',
-  ],
+  0: ['count-10', 'shapes', 'sort-0', 'space-0', 'add-sub-20', 'count-20', 'measure-0'],
   1: [
     'add-sub-20',
     'numbers-100',
