@@ -720791,6 +720791,102 @@
       "voice": "gemini-3.1-flash/Leda/quick",
       "bytes": 11661,
       "trimmed": true
+    },
+    "a80f6c7a0184620f": {
+      "text": "הבקבוק מגיע הכי למעלה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 8397,
+      "trimmed": true
+    },
+    "b0c5617d41695367": {
+      "text": "הפרח מגיע הכי למעלה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 9357,
+      "trimmed": true
+    },
+    "d22de3b53f664860": {
+      "text": "העץ מגיע הכי למעלה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 8685,
+      "trimmed": true
+    },
+    "28b98a87276d75e9": {
+      "text": "הפרח נשאר הכי למטה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 10221,
+      "trimmed": true
+    },
+    "2ae4e2dad85c0639": {
+      "text": "הבקבוק נשאר הכי למטה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 8301,
+      "trimmed": true
+    },
+    "7add4a7b582b4ca4": {
+      "text": "העץ נשאר הכי למטה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 8877,
+      "trimmed": true
+    },
+    "a06a338b5661dc90": {
+      "text": "המגדל נשאר הכי למטה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 11181,
+      "trimmed": true
+    },
+    "5334303c4a45d7ed": {
+      "text": "המגדל מגיע הכי למעלה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 10893,
+      "trimmed": true
+    },
+    "17e0be0ffae5f059": {
+      "text": "למשל, העץ נשאר הכי למטה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 12717,
+      "trimmed": true
+    },
+    "ad7247a6ebcecf88": {
+      "text": "למשל, הפרח נשאר הכי למטה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 12333,
+      "trimmed": true
+    },
+    "e269595de606b965": {
+      "text": "למשל, המגדל נשאר הכי למטה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 14925,
+      "trimmed": true
+    },
+    "a1fe0a2a917659c4": {
+      "text": "למשל, המגדל מגיע הכי למעלה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 13965,
+      "trimmed": true
+    },
+    "049618d8a96de8f6": {
+      "text": "למשל, העץ מגיע הכי למעלה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 14925,
+      "trimmed": true
+    },
+    "417446cf211bb6e1": {
+      "text": "למשל, הבקבוק מגיע הכי למעלה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 12909,
+      "trimmed": true
+    },
+    "3efa3d3b89374b3c": {
+      "text": "למשל, הפרח מגיע הכי למעלה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 13773,
+      "trimmed": true
+    },
+    "b0ddc89f3eba9ff8": {
+      "text": "למשל, הבקבוק נשאר הכי למטה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 14349,
+      "trimmed": true
     }
   }
 }
