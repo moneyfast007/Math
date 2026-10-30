@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, type CSSProperties } from 'react';
 import { speaker } from '@/audio/speaker';
 import { useSpeaking } from '@/audio/useSpeaker';
 import { setReplayTopic } from '@/app/replay';
@@ -20,6 +20,7 @@ import { Sticker } from '@/ui/Sticker';
 import { stickerForWorld } from '@/ui/stickers';
 import { IntroSpeaker, JourneySteps, LockIcon } from './JourneyIntro';
 import { TestPrepSection } from './TestPrep';
+import './worldsPath.css';
 
 /**
  * The map of all worlds: every world of the child's grade in order, with where
@@ -103,12 +104,14 @@ export function WorldsScreen() {
         <ReviewCard done={progress?.days[dayKey(Date.now())]?.daily === true} />
       ) : null}
 
-      <ol className="worlds__list" aria-label={t('worlds.list')}>
-        {entries.map((entry) => (
+      <ol className="worlds__list wpath" aria-label={t('worlds.list')}>
+        {entries.map((entry, i) => (
           <WorldRow
             key={entry.world.topic.id}
             entry={entry}
             young={young}
+            place={i}
+            next={entries[i + 1]}
             // The journey's world: back to the journey (out of the test practice, if in it).
             onJourney={() => {
               leaveTrack(profile.id);
@@ -117,6 +120,13 @@ export function WorldsScreen() {
           />
         ))}
       </ol>
+      {/* The end of the road: a trophy for when every world is done. */}
+      <div
+        className={done === total ? 'wpath__end wpath__end--won' : 'wpath__end'}
+        aria-hidden="true"
+      >
+        <span className="wpath__trophy">🏆</span>
+      </div>
 
       {how ? (
         <Dialog
@@ -184,13 +194,25 @@ function AllWorldsIcon() {
   );
 }
 
+/** The world's colour on the road, by its place (eight that cycle). */
+const HUES = [172, 24, 252, 330, 205, 120, 45, 0];
+
+/** Where on the road a world stands, by its place: right, then left, and so on. */
+const sideOf = (place: number) => (place % 2 === 0 ? 'a' : 'b');
+/** The x (in % of the width, left to right) of a side's stop. */
+const X = { a: 80, b: 20 } as const;
+
 function WorldRow({
   entry,
   young,
+  place,
+  next,
   onJourney,
 }: {
   entry: WorldMapEntry;
   young: boolean;
+  place: number;
+  next: WorldMapEntry | undefined;
   onJourney: () => void;
 }) {
   const { world, state, after } = entry;
@@ -198,68 +220,104 @@ function WorldRow({
   // The level stations only; the final challenge is named on its own once they are done.
   const levels = Math.max(1, world.stations.length);
   const levelsDone = world.stations.filter((s) => s.state === 'done').length;
+  const side = sideOf(place);
+  // The road down to the next world (or to the trophy): walked once that world is open.
+  const x1 = X[side];
+  const x2 = next ? X[sideOf(place + 1)] : 50;
+  const walked = next ? next.state !== 'locked' : state === 'done';
+  const ring = state === 'current' ? levelsDone / levels : state === 'done' ? 1 : 0;
   return (
     <li
-      className={`world-row world-row--${state}`}
+      className={`wstop wstop--${state} wstop--${side}`}
       aria-current={state === 'current' ? 'step' : undefined}
+      style={{ '--hue': HUES[place % HUES.length] } as CSSProperties}
     >
-      <span className="world-row__badge" aria-hidden="true">
+      <svg
+        className={walked ? 'wstop__road wstop__road--walked' : 'wstop__road'}
+        viewBox="0 0 100 100"
+        preserveAspectRatio="none"
+        aria-hidden="true"
+      >
+        <path d={`M${x1} 0 C${x1} 75 ${x2} 25 ${x2} 100`} vectorEffect="non-scaling-stroke" />
+      </svg>
+
+      <span className="wstop__disc" aria-hidden="true">
+        {state !== 'locked' ? (
+          <svg className="wstop__ring" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="46" className="wstop__ring-track" />
+            <circle
+              cx="50"
+              cy="50"
+              r="46"
+              className="wstop__ring-fill"
+              pathLength={100}
+              strokeDasharray={`${Math.round(ring * 100)} 100`}
+            />
+          </svg>
+        ) : null}
+        <span className="wstop__face">
+          {state === 'done' ? (
+            <Sticker id={stickerForWorld(world.index)} size="100%" />
+          ) : state === 'current' ? (
+            <Plusi size="100%" decorative />
+          ) : (
+            <LockIcon />
+          )}
+        </span>
+        <span className="wstop__num">{world.index}</span>
         {state === 'done' ? (
-          <Sticker id={stickerForWorld(world.index)} size="100%" />
-        ) : state === 'current' ? (
-          <Plusi size="100%" decorative />
-        ) : (
-          <LockIcon />
-        )}
+          <span className="wstop__done">
+            <CheckMark />
+          </span>
+        ) : null}
       </span>
 
-      <div className="world-row__text">
-        <h2 className="world-row__name">
-          {t('journey.world', { params: { index: world.index, name } })}
+      <div className="wstop__text">
+        {/* Read as one heading ("עולם 3 · מיון והשוואה"); shown as a small line and the name. */}
+        <h2 className="wstop__name">
+          <span className="wstop__kicker">
+            {t('journey.worldN', { params: { index: world.index } })}
+            <span className="visually-hidden"> · </span>
+          </span>
+          {name}
         </h2>
-        <p className="world-row__state">
+        <p className="wstop__state">
           <span className={`world-row__chip world-row__chip--${state}`}>
             {state === 'done' ? <CheckMark /> : null}
             {t(`worlds.state.${state}`)}
           </span>
           {state === 'current' ? (
-            <span className={young ? 'visually-hidden' : 'world-row__count'}>
+            <span className={young ? 'visually-hidden' : 'wstop__count'}>
               {levelsDone === levels
                 ? t('worlds.stationsChallenge', { params: { total: levels } })
                 : t('worlds.stations', { params: { done: levelsDone, total: levels } })}
             </span>
           ) : null}
         </p>
-        {state === 'current' ? (
-          <span className="world-row__bar" aria-hidden="true">
-            <span style={{ width: `${Math.round((levelsDone / levels) * 100)}%` }} />
-          </span>
-        ) : null}
         {after ? (
-          <p className="world-row__why">
+          <p className="wstop__why">
             {t('worlds.locked', { params: { name: t(after.topic.labelKey as TranslationKey) } })}
           </p>
         ) : null}
+        {state === 'done' ? (
+          <button
+            type="button"
+            className="btn btn--secondary btn--small wstop__action"
+            aria-label={t('album.replay.label', { params: { name } })}
+            onClick={() => {
+              setReplayTopic(world.topic.id);
+              navigate({ name: 'replay' });
+            }}
+          >
+            <ReplayMark />
+            {t('album.replay')}
+          </button>
+        ) : state === 'current' ? (
+          <button type="button" className="btn wstop__action wstop__go" onClick={onJourney}>
+            {t('worlds.continue')}
+          </button>
+        ) : null}
       </div>
-
-      {state === 'done' ? (
-        <button
-          type="button"
-          className="btn btn--secondary btn--small world-row__action"
-          aria-label={t('album.replay.label', { params: { name } })}
-          onClick={() => {
-            setReplayTopic(world.topic.id);
-            navigate({ name: 'replay' });
-          }}
-        >
-          <ReplayMark />
-          {t('album.replay')}
-        </button>
-      ) : state === 'current' ? (
-        <button type="button" className="btn btn--small world-row__action" onClick={onJourney}>
-          {t('worlds.continue')}
-        </button>
-      ) : null}
     </li>
   );
 }

@@ -1593,6 +1593,7 @@ export const he = {
   'plusi.calm': 'פלוסי רגוע',
 
   'journey.world': 'עולם {index} · {name}',
+  'journey.worldN': 'עולם {index}',
   'journey.stationOf': 'תחנה {n} מתוך {total}',
   'journey.worldDone': 'סיימת את העולם הזה!',
   'journey.station.done': 'תחנה {n}, הושלמה',

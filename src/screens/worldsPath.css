@@ -1,0 +1,296 @@
+/*
+ * The map of worlds as a road: each world a round stop, right then left, a
+ * winding road between them (walked in colour, ahead dashed), and a trophy at
+ * the end. Each stop's colour comes from --hue (WorldsScreen).
+ */
+
+.worlds__list.wpath {
+  gap: 0;
+  padding-block: var(--space-2) 0;
+}
+
+.wstop {
+  --disc: clamp(88px, 24vw, 112px);
+  --top: 10px;
+  position: relative;
+  min-height: calc(var(--disc) + 124px);
+  padding-top: var(--top);
+}
+
+/* The road down to the next stop: from this disc's centre to the next one's. */
+.wstop__road {
+  position: absolute;
+  z-index: 0;
+  left: 0;
+  width: 100%;
+  top: calc(var(--top) + var(--disc) / 2);
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.wstop__road path {
+  fill: none;
+  stroke: #e6d6bd;
+  stroke-width: 12;
+  stroke-linecap: round;
+  stroke-dasharray: 2 22;
+}
+
+.wstop__road--walked path {
+  stroke: hsl(var(--hue) 55% 62%);
+  stroke-dasharray: none;
+}
+
+/* The stop: a round disc, its number, a ring that fills with the stations done. */
+.wstop__disc {
+  position: absolute;
+  z-index: 1;
+  top: var(--top);
+  width: var(--disc);
+  height: var(--disc);
+  border-radius: 50%;
+  background: hsl(var(--hue) 75% 90%);
+  box-shadow:
+    0 0 0 5px var(--color-bg),
+    0 10px 18px rgb(70 50 30 / 16%);
+}
+
+.wstop--a .wstop__disc {
+  left: calc(80% - var(--disc) / 2);
+}
+
+.wstop--b .wstop__disc {
+  left: calc(20% - var(--disc) / 2);
+}
+
+.wstop__face {
+  position: absolute;
+  inset: 16%;
+  display: grid;
+  place-items: center;
+}
+
+.wstop__ring {
+  position: absolute;
+  inset: -4px;
+  width: calc(100% + 8px);
+  height: calc(100% + 8px);
+  transform: rotate(-90deg);
+}
+
+.wstop__ring-track {
+  fill: none;
+  stroke: hsl(var(--hue) 40% 82%);
+  stroke-width: 6;
+}
+
+.wstop__ring-fill {
+  fill: none;
+  stroke: hsl(var(--hue) 60% 48%);
+  stroke-width: 6;
+  stroke-linecap: round;
+}
+
+.wstop__num {
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  translate: -50% 0;
+  min-width: 30px;
+  padding: 1px 8px;
+  border-radius: var(--radius-pill);
+  background: hsl(var(--hue) 55% 45%);
+  color: #fff;
+  font-family: var(--font-math);
+  font-size: 15px;
+  font-weight: 800;
+  text-align: center;
+  box-shadow: 0 0 0 3px var(--color-bg);
+}
+
+.wstop__done {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--color-success);
+  color: #fff;
+  box-shadow: 0 0 0 3px var(--color-bg);
+}
+
+.wstop__done .world-row__check {
+  width: 18px;
+  height: 18px;
+  stroke: #fff;
+}
+
+/* The world she is in: bigger, glowing, Plusi on it. */
+.wstop--current {
+  --disc: clamp(104px, 29vw, 132px);
+}
+
+.wstop--current .wstop__disc {
+  background: radial-gradient(circle at 50% 40%, #fff 0 30%, hsl(var(--hue) 80% 86%) 75%);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .wstop--current .wstop__disc::after {
+    content: '';
+    position: absolute;
+    inset: -10px;
+    border-radius: 50%;
+    border: 3px solid hsl(var(--hue) 70% 60% / 60%);
+    animation: wstop-glow 2.2s ease-out infinite;
+  }
+}
+
+@keyframes wstop-glow {
+  from {
+    opacity: 1;
+    scale: 0.95;
+  }
+
+  to {
+    opacity: 0;
+    scale: 1.25;
+  }
+}
+
+/* A world ahead: quiet, with a lock. */
+.wstop--locked .wstop__disc {
+  background: var(--color-surface-alt);
+  box-shadow:
+    0 0 0 5px var(--color-bg),
+    inset 0 0 0 2px var(--color-border);
+}
+
+.wstop--locked .wstop__face {
+  inset: 30%;
+  color: var(--color-text-muted);
+}
+
+.wstop--locked .wstop__num {
+  background: var(--color-border);
+  color: var(--color-text-muted);
+}
+
+/* The words beside the disc, on the other side of the road. */
+.wstop__text {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  width: 60%;
+  padding: 4px 6px;
+}
+
+/* RTL: side a's disc is on the right, so its words go on the left, and the other way. */
+.wstop--a .wstop__text {
+  margin-inline-start: auto;
+  margin-inline-end: 0;
+  margin-left: 0;
+  margin-right: auto;
+}
+
+.wstop--b .wstop__text {
+  margin-left: auto;
+  margin-right: 0;
+}
+
+.wstop__name {
+  margin: 0;
+  font-size: clamp(18px, 5vw, 22px);
+  line-height: 1.2;
+}
+
+.wstop__kicker {
+  display: block;
+  color: hsl(var(--hue) 50% 38%);
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.wstop--locked .wstop__kicker {
+  color: var(--color-text-muted);
+}
+
+.wstop--locked .wstop__name {
+  color: var(--color-text-muted);
+}
+
+.wstop__state {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 8px;
+  margin: 0;
+}
+
+.wstop__count {
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+}
+
+.wstop__why {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+.wstop__action {
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.wstop__text .btn.wstop__go {
+  max-width: 100%;
+  min-height: 48px;
+  padding-inline: 16px;
+  font-size: 18px;
+  background: hsl(var(--hue) 60% 45%);
+  border-color: hsl(var(--hue) 60% 45%);
+}
+
+/* The end of the road. */
+.wpath__end {
+  display: grid;
+  place-items: center;
+  margin-top: -8px;
+  padding-bottom: var(--space-4);
+}
+
+.wpath__trophy {
+  display: grid;
+  place-items: center;
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  background: var(--color-surface-alt);
+  font-size: 40px;
+  filter: grayscale(0.85);
+  opacity: 0.7;
+  box-shadow: 0 0 0 5px var(--color-bg);
+}
+
+.wpath__end--won .wpath__trophy {
+  background: #fff3c4;
+  filter: none;
+  opacity: 1;
+}
+
+/* A wide screen: the road a little narrower than the page, so it still winds. */
+@media (min-width: 700px) {
+  .worlds__list.wpath {
+    max-width: 640px;
+    margin-inline: auto;
+    width: 100%;
+  }
+}
