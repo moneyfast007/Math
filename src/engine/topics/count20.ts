@@ -46,8 +46,8 @@ const offByOne = (answer: number) => (v: number) =>
 
 /** The same for dots on dice. */
 const dotAdvice = (n: number): AdviceSpec[] => [
-  { value: n + 1, say: say('adv.die.twice') },
-  ...(n > 1 ? [{ value: n - 1, say: say('adv.die.skipped') }] : []),
+  { value: n + 1, say: say('adv.c20.die.twice') },
+  ...(n > 1 ? [{ value: n - 1, say: say('adv.c20.die.skipped') }] : []),
 ];
 
 const countAdvice = (n: number): AdviceSpec[] => [
@@ -65,9 +65,9 @@ function other<T>(candidates: readonly T[], avoid: (c: T) => boolean): T {
 type Die = { n: number; tone: 0 | 1 };
 
 function die(level: number, { n, tone }: Die, rng: Rng): Exercise {
-  const prompt = t('ex.die.prompt');
+  const prompt = t('ex.c20.die.prompt');
   const exN = other([5, 3, 4, 2, 6], (x) => x === n);
-  const exSolved = say('ex.die.solution', { a: { n: exN, noun: DOT } });
+  const exSolved = say('ex.c20.die.solution', { a: { n: exN, noun: DOT } });
   return exercise({
     factId: `die:${n}${tone ? ':b' : ''}`,
     topicId: ID,
@@ -79,11 +79,11 @@ function die(level: number, { n, tone }: Die, rng: Rng): Exercise {
     answer: n,
     input: { type: 'choices', choices: near(rng, n, 1, 6) },
     hints: [
-      hint(say('ex.die.hint1')),
-      hint(say('ex.die.hint2')),
+      hint(say('ex.c20.die.hint1')),
+      hint(say('ex.c20.die.hint2')),
       pictureExample(exSolved, { type: 'dice', dice: [exN], tone: tone === 0 ? 1 : 0 }),
     ],
-    solution: say('ex.die.solution', { a: { n, noun: DOT } }),
+    solution: say('ex.c20.die.solution', { a: { n, noun: DOT } }),
     diagnose: offByOne(n),
     advice: dotAdvice(n),
   });
@@ -95,7 +95,7 @@ type Pair = { a: number; b: number };
 
 function dice2(level: number, { a, b }: Pair, rng: Rng): Exercise {
   const c = a + b;
-  const prompt = t('ex.dice2.prompt');
+  const prompt = t('ex.c20.dice2.prompt');
   const big = Math.max(a, b);
   const small = Math.min(a, b);
   const ex = other(
@@ -107,7 +107,7 @@ function dice2(level: number, { a, b }: Pair, rng: Rng): Exercise {
     ],
     (x) => x.a + x.b === c || x.a === a || x.b === b,
   );
-  const exSolved = say('ex.dice2.solution', { a: ex.a, b: ex.b, c: ex.a + ex.b });
+  const exSolved = say('ex.c20.dice2.solution', { a: ex.a, b: ex.b, c: ex.a + ex.b });
   return exercise({
     factId: `dice2:${a},${b}`,
     topicId: ID,
@@ -120,17 +120,17 @@ function dice2(level: number, { a, b }: Pair, rng: Rng): Exercise {
     operation: 'add',
     input: { type: 'choices', choices: near(rng, c, 2, 12) },
     hints: [
-      hint(say('ex.dice2.hint1')),
-      hint(say('ex.dice2.hint2'), {
+      hint(say('ex.c20.dice2.hint1')),
+      hint(say('ex.c20.dice2.hint2'), {
         visual: { type: 'numberLine', from: 0, to: 12, start: big, hops: small, hide: c },
       }),
       pictureExample(exSolved, { type: 'dice', dice: [ex.a, ex.b], tone: 1 }),
     ],
-    solution: say('ex.dice2.solution', { a, b, c }),
+    solution: say('ex.c20.dice2.solution', { a, b, c }),
     diagnose: offByOne(c),
     advice: [
-      { value: a, say: say('adv.dice2.one') },
-      { value: b, say: say('adv.dice2.one') },
+      { value: a, say: say('adv.c20.dice2.one') },
+      { value: b, say: say('adv.c20.dice2.one') },
       ...dotAdvice(c),
     ],
   });
@@ -149,7 +149,7 @@ function tenMore(level: number, { n, v }: Variant, rng: Rng): Exercise {
   const prompt = t('ex.count.prompt', { params: { plural: noun.plural } });
   const exK = other([3, 6, 2, 7, 4], (x) => x === k);
   const exNoun = nounFor(n + v * 3 + 1);
-  const exSolved = say('ex.tenMore.solution', {
+  const exSolved = say('ex.c20.tenMore.solution', {
     all: { n: 10 + exK, noun: exNoun },
     ten: { n: 10, gender: exNoun.gender },
     k: { n: exK, gender: exNoun.gender },
@@ -166,8 +166,8 @@ function tenMore(level: number, { n, v }: Variant, rng: Rng): Exercise {
     answer: n,
     input: { type: 'choices', choices: near(rng, n, 10, 20) },
     hints: [
-      hint(say('ex.tenMore.hint1', { ten: { n: 10, noun } })),
-      hint(say('ex.tenMore.hint2'), {
+      hint(say('ex.c20.tenMore.hint1', { ten: { n: 10, noun } })),
+      hint(say('ex.c20.tenMore.hint2'), {
         visual: { type: 'numberLine', from: 10, to: 20, start: 10, hops: k, hide: n },
       }),
       pictureExample(
@@ -176,7 +176,7 @@ function tenMore(level: number, { n, v }: Variant, rng: Rng): Exercise {
         `10 + ${exK} = ${10 + exK}`,
       ),
     ],
-    solution: say('ex.tenMore.solution', {
+    solution: say('ex.c20.tenMore.solution', {
       all: { n, noun },
       ten: { n: 10, gender: g },
       k: { n: k, gender: g },
@@ -256,7 +256,7 @@ type Row = { s: number; gap: 1 | 2 };
 function missing(level: number, { s, gap }: Row, rng: Rng): Exercise {
   const row = [s, s + 1, s + 2, s + 3];
   const answer = row[gap] as number;
-  const prompt = t('ex.missing.prompt');
+  const prompt = t('ex.c20.missing.prompt');
   const items = row.map((x, i) => (i === gap ? null : x));
   const ex = other(
     [
@@ -269,7 +269,7 @@ function missing(level: number, { s, gap }: Row, rng: Rng): Exercise {
   );
   const exRow = [ex.s, ex.s + 1, ex.s + 2, ex.s + 3];
   const sayRow = (r: number[]) =>
-    say('ex.missing.solution', { a: r[0] ?? 0, b: r[1] ?? 0, c: r[2] ?? 0, d: r[3] ?? 0 });
+    say('ex.c20.missing.solution', { a: r[0] ?? 0, b: r[1] ?? 0, c: r[2] ?? 0, d: r[3] ?? 0 });
   const shownNext = row.filter((x, i) => i !== gap && Math.abs(x - answer) === 1);
   return exercise({
     factId: `missing:${s},${gap}`,
@@ -282,8 +282,8 @@ function missing(level: number, { s, gap }: Row, rng: Rng): Exercise {
     answer,
     input: { type: 'choices', choices: near(rng, answer, 1, 20) },
     hints: [
-      hint(say('ex.missing.hint1')),
-      hint(say('ex.missing.hint2'), {
+      hint(say('ex.c20.missing.hint1')),
+      hint(say('ex.c20.missing.hint2'), {
         visual: {
           type: 'numberLine',
           from: Math.max(0, s - 2),
@@ -298,9 +298,9 @@ function missing(level: number, { s, gap }: Row, rng: Rng): Exercise {
     solution: sayRow(row),
     diagnose: offByOne(answer),
     advice: [
-      ...shownNext.map((v) => ({ value: v, say: say('adv.missing.shown', { v }) })),
-      { value: answer - 2, say: say('adv.missing.near') },
-      { value: answer + 2, say: say('adv.missing.near') },
+      ...shownNext.map((v) => ({ value: v, say: say('adv.c20.missing.shown', { v }) })),
+      { value: answer - 2, say: say('adv.c20.missing.near') },
+      { value: answer + 2, say: say('adv.c20.missing.near') },
     ].filter((a) => a.value >= 1 && a.value <= 20),
   });
 }
@@ -351,7 +351,7 @@ function bigger(level: number, p: Pair): Exercise {
 function double(level: number, { n, v }: Variant, rng: Rng): Exercise {
   const noun = nounFor(n * 2 + v * 3);
   const c = 2 * n;
-  const spoken = say('ex.double.prompt', { a: { n, noun }, plural: noun.plural });
+  const spoken = say('ex.c20.double.prompt', { a: { n, noun }, plural: noun.plural });
   const exN = other([3, 4, 2, 5], (x) => x === n || 2 * x === c || x === c);
   const both: Visual = { type: 'objects', kind: noun, kinds: [noun, noun], groups: [n, n] };
   return exercise({
@@ -367,18 +367,18 @@ function double(level: number, { n, v }: Variant, rng: Rng): Exercise {
     operation: 'add',
     input: { type: 'choices', choices: near(rng, c, 1, 12) },
     hints: [
-      hint(say('ex.double.hint1')),
-      hint(say('ex.double.hint2', { n, k: { n, noun: HOP } }), {
+      hint(say('ex.c20.double.hint1')),
+      hint(say('ex.c20.double.hint2', { n, k: { n, noun: HOP } }), {
         visual: { type: 'numberLine', from: 0, to: 10, start: n, hops: n, hide: c },
       }),
       exampleHint(
         `${exN} + ${exN} = ${2 * exN}`,
-        say('ex.double.solution', { n: exN, c: 2 * exN }),
+        say('ex.c20.double.solution', { n: exN, c: 2 * exN }),
       ),
     ],
-    solution: say('ex.double.solution', { n, c }),
+    solution: say('ex.c20.double.solution', { n, c }),
     diagnose: offByOne(c),
-    advice: [{ value: n, say: say('adv.double.one') }, ...countAdvice(c)],
+    advice: [{ value: n, say: say('adv.c20.double.one') }, ...countAdvice(c)],
   });
 }
 
@@ -388,7 +388,7 @@ type Hop = { s: number; k: number };
 
 function hop(level: number, { s, k }: Hop, rng: Rng, fwd: boolean): Exercise {
   const c = fwd ? s + k : s - k;
-  const spoken = say(fwd ? 'ex.hopFwd.prompt' : 'ex.hopBack.prompt', {
+  const spoken = say(fwd ? 'ex.c20.hopFwd.prompt' : 'ex.c20.hopBack.prompt', {
     s,
     k: { n: k, noun: HOP },
   });
@@ -408,7 +408,7 @@ function hop(level: number, { s, k }: Hop, rng: Rng, fwd: boolean): Exercise {
   );
   const exC = fwd ? ex.s + ex.k : ex.s - ex.k;
   const solution = (a: number, b: number, r: number) =>
-    say(fwd ? 'ex.hopFwd.solution' : 'ex.hopBack.solution', { s: a, k: b, c: r });
+    say(fwd ? 'ex.c20.hopFwd.solution' : 'ex.c20.hopBack.solution', { s: a, k: b, c: r });
   return exercise({
     factId: `${fwd ? 'fwd' : 'back'}:${s},${k}`,
     topicId: ID,
@@ -421,7 +421,7 @@ function hop(level: number, { s, k }: Hop, rng: Rng, fwd: boolean): Exercise {
     operation: fwd ? 'add' : 'sub',
     input: { type: 'choices', choices: near(rng, c, 0, 20) },
     hints: [
-      hint(say('ex.hop.hint1')),
+      hint(say('ex.c20.hop.hint1')),
       hint(say('hint.numberLine'), {
         visual: { type: 'numberLine', ...window10(s, c), start: s, hops: fwd ? k : -k, hide: c },
       }),
@@ -430,10 +430,10 @@ function hop(level: number, { s, k }: Hop, rng: Rng, fwd: boolean): Exercise {
     solution: solution(s, k, c),
     diagnose: offByOne(c),
     advice: [
-      { value: s, say: say('adv.hop.stay') },
-      { value: fwd ? s - k : s + k, say: say(fwd ? 'adv.hopFwd.back' : 'adv.hopBack.fwd') },
-      { value: c - 1, say: say('adv.hop.count'), kind: 'offByOne' as const },
-      { value: c + 1, say: say('adv.hop.count'), kind: 'offByOne' as const },
+      { value: s, say: say('adv.c20.hop.stay') },
+      { value: fwd ? s - k : s + k, say: say(fwd ? 'adv.c20.hopFwd.back' : 'adv.c20.hopBack.fwd') },
+      { value: c - 1, say: say('adv.c20.hop.count'), kind: 'offByOne' as const },
+      { value: c + 1, say: say('adv.c20.hop.count'), kind: 'offByOne' as const },
     ].filter((a) => a.value >= 0 && a.value <= 20),
   });
 }
