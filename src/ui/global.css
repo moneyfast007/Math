@@ -3411,11 +3411,6 @@ ol.steps {
   justify-content: center;
 }
 
-/* Marks to count on their own (the question, not a button): big enough to count with a finger. */
-.tally--bare .tally__marks {
-  height: 72px;
-}
-
 .choice-big--picture .tally__marks {
   height: 40px;
 }
