@@ -12,6 +12,7 @@ import { clockMoney1 } from './topics/clockMoney1';
 import { count10 } from './topics/count10';
 import { count20 } from './topics/count20';
 import { measure0 } from './topics/measure0';
+import { time0 } from './topics/time0';
 import { data } from './topics/data';
 import { dataStats } from './topics/dataStats';
 import { decimalOps } from './topics/decimalOps';
@@ -52,6 +53,7 @@ export const TOPICS: readonly Topic[] = [
   addSub20, // gan and grade 1
   count20,
   measure0,
+  time0,
   shapesTopic,
   sort0,
   space0,
@@ -114,7 +116,7 @@ export function topicById(id: string): Topic | undefined {
  */
 const ORDER: Partial<Record<Grade, readonly Topic[]>> = {
   // Counting and the shapes first (sorting by shape names them); adding and taking away last.
-  0: [count10, shapesTopic, sort0, space0, addSub20, count20, measure0],
+  0: [count10, shapesTopic, sort0, space0, addSub20, count20, measure0, time0],
   // Patterns after the numbers to 100 they count in; solids beside the flat shapes.
   1: [addSub20, numbers100, patterns1, polygons, solids1, measure1, clockMoney1, data],
   2: [addSub100, numbers1000, moneyTopic, multIntro, clockTopic, polygons2, vertical2, data],

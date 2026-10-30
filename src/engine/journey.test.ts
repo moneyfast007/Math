@@ -153,6 +153,7 @@ describe('worlds', () => {
       'add-sub-20',
       'count-20',
       'measure-0',
+      'time-0',
     ]);
   });
 

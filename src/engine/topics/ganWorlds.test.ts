@@ -5,6 +5,7 @@ import { seededRng } from '../rng';
 import type { Exercise, SceneItem, Visual } from '../types';
 import { count20 } from './count20';
 import { measure0 } from './measure0';
+import { time0 } from './time0';
 import { THINGS, type ThingId } from './ganKit';
 import { sort0 } from './sort0';
 import { space0 } from './space0';
@@ -299,6 +300,28 @@ describe('measure-0', () => {
   });
 });
 
+describe('time-0', () => {
+  it('a story of three: one place is empty, and the answer is none of the pictures shown', () => {
+    for (const level of [3, 4, 5])
+      for (const e of played(time0, level)) {
+        const items = scene(e.visual).items;
+        expect(items.filter((it) => it.blank).length, e.factId).toBe(1);
+        const gap = items.findIndex((it) => it.blank);
+        expect(gap, e.factId).toBe(level - 3);
+        const shown = items.map((it) => it.emoji);
+        expect(shown, e.factId).not.toContain(emojiOn(e, e.answer));
+      }
+  });
+
+  it('every question has its own answer: no button repeats another', () => {
+    for (let level = 1; level <= 10; level++)
+      for (const e of all(time0, level)) {
+        const emojis = labels(e).map((_, i) => emojiOn(e, i));
+        expect(new Set(emojis).size, e.factId).toBe(emojis.length);
+      }
+  });
+});
+
 describe('the gan journey', () => {
   it('counting and shapes first, then sorting and space, adding and taking away; then to twenty', () => {
     expect(topicsForGrade(0).map((t) => t.id)).toEqual([
@@ -309,6 +332,7 @@ describe('the gan journey', () => {
       'add-sub-20',
       'count-20',
       'measure-0',
+      'time-0',
     ]);
   });
 });
