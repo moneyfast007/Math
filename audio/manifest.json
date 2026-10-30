@@ -719135,6 +719135,1572 @@
       "voice": "gemini-3.1-flash/Leda/quick",
       "bytes": 53517,
       "trimmed": true
+    },
+    "0565d593596cbf14": {
+      "text": "מה כבד יותר?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 5805,
+      "trimmed": true
+    },
+    "286588008b134443": {
+      "text": "איפה יש יותר מים?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 6477,
+      "trimmed": true
+    },
+    "626232943ac1433b": {
+      "text": "כמה צעדים?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 4269,
+      "trimmed": true
+    },
+    "a0a0dfd6a030a913": {
+      "text": "מה קל יותר?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 5709,
+      "trimmed": true
+    },
+    "0c456793bc69f564": {
+      "text": "מודדים ומשווים",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 8301,
+      "trimmed": true
+    },
+    "92d69185f8de7f1b": {
+      "text": "מאזניים: מי כבד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 10605,
+      "trimmed": true
+    },
+    "6255e102fb7a38d3": {
+      "text": "מאזניים: מי קל?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 9357,
+      "trimmed": true
+    },
+    "82fdd1b34c2dfc4b": {
+      "text": "איפה יש פחות מים?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 9261,
+      "trimmed": true
+    },
+    "5e3d2a6103d87a41": {
+      "text": "כמה קוביות במגדל?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 6477,
+      "trimmed": true
+    },
+    "e70f13dca8745225": {
+      "text": "צעדים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 3693,
+      "trimmed": true
+    },
+    "5fffe3346df63d4b": {
+      "text": "מה הכי גבוה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 4845,
+      "trimmed": true
+    },
+    "a5b45a51507c12f2": {
+      "text": "במגדל יש",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 5325,
+      "trimmed": true
+    },
+    "34973075b70bb8b9": {
+      "text": "מלאה, ריקה או חצי",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 14637,
+      "trimmed": true
+    },
+    "84ae0941b395ec04": {
+      "text": "העץ הכי גבוה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 9165,
+      "trimmed": true
+    },
+    "1b664d2ce414d4d6": {
+      "text": "הכי גבוה, הכי נמוך",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 13389,
+      "trimmed": true
+    },
+    "f73de2cd259e6121": {
+      "text": "מה הכי נמוך?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 8877,
+      "trimmed": true
+    },
+    "764e841f1ece24dd": {
+      "text": "העץ הכי נמוך.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 7053,
+      "trimmed": true
+    },
+    "129b54c48c8fec54": {
+      "text": "איזו כוס מלאה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 6093,
+      "trimmed": true
+    },
+    "e29ecbea52153870": {
+      "text": "איזו כוס ריקה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 5613,
+      "trimmed": true
+    },
+    "80819d89cc24e64b": {
+      "text": "הפרח הכי נמוך.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 9069,
+      "trimmed": true
+    },
+    "2d39d152996b05c3": {
+      "text": "המגדל הכי נמוך.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 7533,
+      "trimmed": true
+    },
+    "ef9798e6c0d4c357": {
+      "text": "המגדל הכי גבוה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 8493,
+      "trimmed": true
+    },
+    "ffcd5fcce53eefc1": {
+      "text": "מהבית עד העץ יש",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 10989,
+      "trimmed": true
+    },
+    "c4e7a93e691a576b": {
+      "text": "הבקבוק הכי גבוה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 7437,
+      "trimmed": true
+    },
+    "f637a999474cea88": {
+      "text": "הבקבוק הכי נמוך.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 7149,
+      "trimmed": true
+    },
+    "af8b5df65ba781af": {
+      "text": "עץ כבד יותר מעלה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 8109,
+      "trimmed": true
+    },
+    "a670937b9b14f8c2": {
+      "text": "עלה קל יותר מעץ.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 9261,
+      "trimmed": true
+    },
+    "83754cbef438f88c": {
+      "text": "פיל כבד יותר מעכבר.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 9261,
+      "trimmed": true
+    },
+    "040d92c908397461": {
+      "text": "עכבר קל יותר מפיל.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 9453,
+      "trimmed": true
+    },
+    "56b129ca88bef8e0": {
+      "text": "מהאוהל עד הפרח יש",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 12621,
+      "trimmed": true
+    },
+    "263ce4c76ce631ef": {
+      "text": "בית כבד יותר מנוצה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 7629,
+      "trimmed": true
+    },
+    "5ac2553d3f8b5a12": {
+      "text": "אפרוח קל יותר מסוס.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 9741,
+      "trimmed": true
+    },
+    "59f6ee28c2b9dfca": {
+      "text": "תות קל יותר מאבטיח.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 10989,
+      "trimmed": true
+    },
+    "493d6ff8df04d42f": {
+      "text": "נוצה קלה יותר מבית.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 10125,
+      "trimmed": true
+    },
+    "6609b54a309eef92": {
+      "text": "למשל, העץ הכי גבוה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 11565,
+      "trimmed": true
+    },
+    "542f8892c25c590e": {
+      "text": "במגדל יש שש קוביות.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 10605,
+      "trimmed": true
+    },
+    "8dbda341f460b860": {
+      "text": "למשל, העץ הכי נמוך.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 11565,
+      "trimmed": true
+    },
+    "b19a1033b2eff4f4": {
+      "text": "סוס כבד יותר מאפרוח.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 11469,
+      "trimmed": true
+    },
+    "2e0e3d8e8bcd1711": {
+      "text": "דוב כבד יותר מדבורה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 7725,
+      "trimmed": true
+    },
+    "01f13f217f62a65c": {
+      "text": "דבורה קלה יותר מדוב.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 7917,
+      "trimmed": true
+    },
+    "2168d2e73129c6e3": {
+      "text": "אבטיח כבד יותר מתות.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 10221,
+      "trimmed": true
+    },
+    "9add81bdd8d5459a": {
+      "text": "בלון קל יותר ממשאית.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 10605,
+      "trimmed": true
+    },
+    "e0480896fd37d595": {
+      "text": "למשל, הפרח הכי גבוה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 11853,
+      "trimmed": true
+    },
+    "9aac08f3a5241748": {
+      "text": "כמה קוביות יש במגדל?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 7341,
+      "trimmed": true
+    },
+    "ff0eab9b24972a1e": {
+      "text": "למשל, הפרח הכי נמוך.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 12045,
+      "trimmed": true
+    },
+    "5bf761a116c103b1": {
+      "text": "במגדל יש חמש קוביות.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 10029,
+      "trimmed": true
+    },
+    "4d720f16cb01fa1d": {
+      "text": "כדור קל יותר ממכונית.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 9549,
+      "trimmed": true
+    },
+    "d887415ebb0576a2": {
+      "text": "במגדל יש שבע קוביות.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 10509,
+      "trimmed": true
+    },
+    "1bf94850e4152aa2": {
+      "text": "איזו כוס מלאה עד חצי?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 8973,
+      "trimmed": true
+    },
+    "31e573493359e6af": {
+      "text": "במגדל יש שתי קוביות.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 10605,
+      "trimmed": true
+    },
+    "f84d049b42d46c56": {
+      "text": "למשל, המגדל הכי גבוה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 11277,
+      "trimmed": true
+    },
+    "55c808fa7f1e45cb": {
+      "text": "למשל, המגדל הכי נמוך.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 11373,
+      "trimmed": true
+    },
+    "fa119545203ecdd3": {
+      "text": "במגדל יש שלוש קוביות.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 11085,
+      "trimmed": true
+    },
+    "ae307fbfc142da58": {
+      "text": "מהארמון עד הקרוסלה יש",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 14541,
+      "trimmed": true
+    },
+    "68ea8d8c5b17461d": {
+      "text": "במגדל יש ארבע קוביות.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 10605,
+      "trimmed": true
+    },
+    "cca8e31e89ab0293": {
+      "text": "משאית כבדה יותר מבלון.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 10989,
+      "trimmed": true
+    },
+    "2b327509436c65e8": {
+      "text": "למשל, עלה קל יותר מעץ.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 12525,
+      "trimmed": true
+    },
+    "deed348a8f925b4e": {
+      "text": "באיזו כוס יש יותר מים?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 8781,
+      "trimmed": true
+    },
+    "c8e8a977985f3a70": {
+      "text": "כובע קל יותר מאוטובוס.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 9837,
+      "trimmed": true
+    },
+    "3888e7d18153bc4e": {
+      "text": "באיזו כוס יש פחות מים?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 8973,
+      "trimmed": true
+    },
+    "a4702bd93a0e28a4": {
+      "text": "למשל, הבקבוק הכי גבוה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 10989,
+      "trimmed": true
+    },
+    "911dbf8936127ac0": {
+      "text": "למשל, הבקבוק הכי נמוך.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 11469,
+      "trimmed": true
+    },
+    "dfbe72f4d237c0e6": {
+      "text": "מכונית כבדה יותר מכדור.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 10317,
+      "trimmed": true
+    },
+    "43a7e3dd80b9c773": {
+      "text": "במגדל יש שמונה קוביות.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 10509,
+      "trimmed": true
+    },
+    "cc749a505f00e4b2": {
+      "text": "למשל, עץ כבד יותר מעלה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 12237,
+      "trimmed": true
+    },
+    "84342d9fbbb6a2ab": {
+      "text": "יותר מים יש בכוס המלאה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 9837,
+      "trimmed": true
+    },
+    "75548c9c39c49cc1": {
+      "text": "אוטובוס כבד יותר מכובע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 11853,
+      "trimmed": true
+    },
+    "18f4ca6e6ca46ace": {
+      "text": "ברווז קל יותר מלווייתן.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 11181,
+      "trimmed": true
+    },
+    "309f90609f0521db": {
+      "text": "פחות מים יש בכוס הריקה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 8781,
+      "trimmed": true
+    },
+    "b8cb541682067264": {
+      "text": "בכוס ריקה אין בכלל מים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 11565,
+      "trimmed": true
+    },
+    "162b9e600eaabf1b": {
+      "text": "לווייתן כבד יותר מברווז.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 13389,
+      "trimmed": true
+    },
+    "b5584a412fcb1dfe": {
+      "text": "למשל, עכבר קל יותר מפיל.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 14157,
+      "trimmed": true
+    },
+    "0e3160e085a36117": {
+      "text": "בכוס הריקה אין מים בכלל.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 11565,
+      "trimmed": true
+    },
+    "b8906aa4bc5a3a09": {
+      "text": "למשל, בית כבד יותר מנוצה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 13197,
+      "trimmed": true
+    },
+    "068b549cafc06d30": {
+      "text": "למשל, פיל כבד יותר מעכבר.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 12717,
+      "trimmed": true
+    },
+    "32b5c5db67264e0f": {
+      "text": "למשל, נוצה קלה יותר מבית.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 13773,
+      "trimmed": true
+    },
+    "86819ab6b499dbaa": {
+      "text": "למשל, אפרוח קל יותר מסוס.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 14445,
+      "trimmed": true
+    },
+    "5b0cc2e997d25b29": {
+      "text": "למשל, תות קל יותר מאבטיח.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 13581,
+      "trimmed": true
+    },
+    "1d57fa4b9efdd033": {
+      "text": "למשל, סוס כבד יותר מאפרוח.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 13389,
+      "trimmed": true
+    },
+    "4ae2a95ddb446b0e": {
+      "text": "למשל, במגדל יש שש קוביות.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 13773,
+      "trimmed": true
+    },
+    "fd9c632065518cf8": {
+      "text": "למשל, דוב כבד יותר מדבורה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 14253,
+      "trimmed": true
+    },
+    "619f9122a9272065": {
+      "text": "למשל, אבטיח כבד יותר מתות.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 15021,
+      "trimmed": true
+    },
+    "17c48f6115b4c14c": {
+      "text": "למשל, דבורה קלה יותר מדוב.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 13773,
+      "trimmed": true
+    },
+    "84b8305b783cb128": {
+      "text": "למשל, בלון קל יותר ממשאית.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 12909,
+      "trimmed": true
+    },
+    "9ca77c4d673329cd": {
+      "text": "כמה צעדים יש מהבית עד העץ?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 11277,
+      "trimmed": true
+    },
+    "9b47ffab4122f816": {
+      "text": "מהבית עד העץ יש שני צעדים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 14253,
+      "trimmed": true
+    },
+    "b7f9e83b59017888": {
+      "text": "למשל, כדור קל יותר ממכונית.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 12333,
+      "trimmed": true
+    },
+    "60a00c769f0481a6": {
+      "text": "מהבית עד העץ יש שישה צעדים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 13005,
+      "trimmed": true
+    },
+    "59c3604c5bb99fb2": {
+      "text": "למשל, במגדל יש ארבע קוביות.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 14157,
+      "trimmed": true
+    },
+    "45fbc17b97b91793": {
+      "text": "למשל, משאית כבדה יותר מבלון.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 16941,
+      "trimmed": true
+    },
+    "2fc80ec9c21c1d3c": {
+      "text": "יותר מים יש בכוס שכמעט מלאה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 11757,
+      "trimmed": true
+    },
+    "55c19d86009c7089": {
+      "text": "למשל, כובע קל יותר מאוטובוס.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 14637,
+      "trimmed": true
+    },
+    "e36471ad3c429ec3": {
+      "text": "מהבית עד העץ יש שלושה צעדים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 12717,
+      "trimmed": true
+    },
+    "1ca2322b3f281d19": {
+      "text": "מהבית עד העץ יש שבעה צעדים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 14157,
+      "trimmed": true
+    },
+    "37d3ca807a5d791c": {
+      "text": "מהבית עד העץ יש ארבעה צעדים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 13197,
+      "trimmed": true
+    },
+    "152c4bff84c8845a": {
+      "text": "נגע בכל צעד פעם אחת, ונספור.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 14157,
+      "trimmed": true
+    },
+    "7c07be844ee144a9": {
+      "text": "מהבית עד העץ יש חמישה צעדים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 14637,
+      "trimmed": true
+    },
+    "a3ba7a73a40e852e": {
+      "text": "פחות מים יש בכוס שכמעט מלאה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 13197,
+      "trimmed": true
+    },
+    "3dfa37327176565e": {
+      "text": "כמה צעדים יש מהאוהל עד הפרח?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 11181,
+      "trimmed": true
+    },
+    "385bb1d328d76380": {
+      "text": "מהבית עד העץ יש שמונה צעדים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 15309,
+      "trimmed": true
+    },
+    "b5b969899bcb02e4": {
+      "text": "מהאוהל עד הפרח יש שני צעדים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 13869,
+      "trimmed": true
+    },
+    "4dbd2f5b6559abbc": {
+      "text": "למשל, אוטובוס כבד יותר מכובע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 13677,
+      "trimmed": true
+    },
+    "3b3a72491bdb7042": {
+      "text": "למשל, ברווז קל יותר מלווייתן.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 15213,
+      "trimmed": true
+    },
+    "11020f142cda30b7": {
+      "text": "למשל, מכונית כבדה יותר מכדור.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 15885,
+      "trimmed": true
+    },
+    "a9d92170ac8ae42d": {
+      "text": "למשל, יותר מים יש בכוס המלאה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 12813,
+      "trimmed": true
+    },
+    "5a2a4ce179b56944": {
+      "text": "נסתכל עד לאן מגיע כל אחד מהם.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 12429,
+      "trimmed": true
+    },
+    "49a1420e17cf2e43": {
+      "text": "מהאוהל עד הפרח יש שישה צעדים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 14733,
+      "trimmed": true
+    },
+    "a6f2499572b31d10": {
+      "text": "מהאוהל עד הפרח יש שבעה צעדים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 14157,
+      "trimmed": true
+    },
+    "c92ba3234d005948": {
+      "text": "יותר מים יש בכוס שמלאה עד חצי.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 13485,
+      "trimmed": true
+    },
+    "eb822f76bb950978": {
+      "text": "למשל, לווייתן כבד יותר מברווז.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 16653,
+      "trimmed": true
+    },
+    "c0e5b8bb85331b73": {
+      "text": "מה שמגיע מעל הקו הוא הכי גבוה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 11373,
+      "trimmed": true
+    },
+    "f0d8031b853a86dd": {
+      "text": "פחות מים יש בכוס שמלאה עד חצי.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 13581,
+      "trimmed": true
+    },
+    "bdd17996f72553d9": {
+      "text": "מהאוהל עד הפרח יש שלושה צעדים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 14061,
+      "trimmed": true
+    },
+    "87e956afd8c76c14": {
+      "text": "מהאוהל עד הפרח יש ארבעה צעדים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 17805,
+      "trimmed": true
+    },
+    "390560f39eee22b0": {
+      "text": "מהאוהל עד הפרח יש חמישה צעדים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 15213,
+      "trimmed": true
+    },
+    "66cfde9d0814672e": {
+      "text": "מהאוהל עד הפרח יש שמונה צעדים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 16365,
+      "trimmed": true
+    },
+    "233f2e2c9081a7b0": {
+      "text": "מה בדרך כלל קל יותר: עץ או עלה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 17421,
+      "trimmed": true
+    },
+    "e3cc29401f1aa9a4": {
+      "text": "מה בדרך כלל קל יותר: עלה או עץ?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 16173,
+      "trimmed": true
+    },
+    "5d2b695fd16b2163": {
+      "text": "מה בדרך כלל כבד יותר: עץ או עלה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 16077,
+      "trimmed": true
+    },
+    "30ea48484485b81a": {
+      "text": "מה בדרך כלל כבד יותר: עלה או עץ?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 16461,
+      "trimmed": true
+    },
+    "7dde428e6c6626b8": {
+      "text": "פחות מים יש בכוס שיש בה מעט מים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 13677,
+      "trimmed": true
+    },
+    "9afd229e59038606": {
+      "text": "בכוס מלאה, המים מגיעים עד למעלה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 15021,
+      "trimmed": true
+    },
+    "a6cf201ae323ec68": {
+      "text": "מה שלא מגיע עד הקו הוא הכי נמוך.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 10797,
+      "trimmed": true
+    },
+    "7bdd377c125c195c": {
+      "text": "כמה צעדים יש מהארמון עד הקרוסלה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 13485,
+      "trimmed": true
+    },
+    "23f3565b9b6644e6": {
+      "text": "מה בדרך כלל קל יותר: פיל או עכבר?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 16461,
+      "trimmed": true
+    },
+    "5b69dcdfc2af554d": {
+      "text": "מה בדרך כלל קל יותר: נוצה או בית?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 17421,
+      "trimmed": true
+    },
+    "54df30a5c447b8dd": {
+      "text": "מה בדרך כלל קל יותר: בית או נוצה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 14733,
+      "trimmed": true
+    },
+    "417189711d43b1b6": {
+      "text": "מה בדרך כלל קל יותר: עכבר או פיל?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 19437,
+      "trimmed": true
+    },
+    "bdbd439cd93451dc": {
+      "text": "במאזניים: מי קל יותר, נעל או ספר?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 18189,
+      "trimmed": true
+    },
+    "70530dad86c7aa65": {
+      "text": "נסתכל עד לאן מגיעים המים בכל כוס.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 14829,
+      "trimmed": true
+    },
+    "1ef39b59db3efe4f": {
+      "text": "בכוס המלאה, המים מגיעים עד למעלה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 15885,
+      "trimmed": true
+    },
+    "74b0a4d28f24dcdb": {
+      "text": "מהארמון עד הקרוסלה יש שני צעדים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 16749,
+      "trimmed": true
+    },
+    "fc796ecd3863ee81": {
+      "text": "מהארמון עד הקרוסלה יש שישה צעדים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 16269,
+      "trimmed": true
+    },
+    "9e8a7a5ac0c6b97e": {
+      "text": "מהארמון עד הקרוסלה יש שבעה צעדים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 16557,
+      "trimmed": true
+    },
+    "87d3a716f56dfc62": {
+      "text": "מה בדרך כלל כבד יותר: פיל או עכבר?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 15885,
+      "trimmed": true
+    },
+    "ca12c73bc41cde05": {
+      "text": "מה בדרך כלל כבד יותר: עכבר או פיל?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 15501,
+      "trimmed": true
+    },
+    "ce43bd8d69b4d32d": {
+      "text": "מה בדרך כלל קל יותר: אבטיח או תות?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 16173,
+      "trimmed": true
+    },
+    "205a2bbbbfd83d25": {
+      "text": "מה בדרך כלל כבד יותר: בית או נוצה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 17037,
+      "trimmed": true
+    },
+    "02af714aa0bdccf1": {
+      "text": "מה בדרך כלל קל יותר: תות או אבטיח?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 18093,
+      "trimmed": true
+    },
+    "ab3eb91fb2fa319b": {
+      "text": "מה בדרך כלל כבד יותר: נוצה או בית?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 17997,
+      "trimmed": true
+    },
+    "cf74ad8f16c95bd4": {
+      "text": "מה בדרך כלל קל יותר: סוס או אפרוח?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 17997,
+      "trimmed": true
+    },
+    "57e93ac028b8b86c": {
+      "text": "מה בדרך כלל קל יותר: אפרוח או סוס?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 16173,
+      "trimmed": true
+    },
+    "2da37803e7126b53": {
+      "text": "מה בדרך כלל קל יותר: דוב או דבורה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 15789,
+      "trimmed": true
+    },
+    "95d3cf75e0ef2fb1": {
+      "text": "מה בדרך כלל קל יותר: דבורה או דוב?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 17901,
+      "trimmed": true
+    },
+    "5b47bf9180b61b83": {
+      "text": "במאזניים: מי כבד יותר, נעל או ספר?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 18381,
+      "trimmed": true
+    },
+    "324bd2b62596cf22": {
+      "text": "במאזניים: מי קל יותר, תפוח או אגס?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 17037,
+      "trimmed": true
+    },
+    "8fafb9254d478505": {
+      "text": "במאזניים: מי קל יותר, כדור או נעל?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 18381,
+      "trimmed": true
+    },
+    "20acd003a18607ff": {
+      "text": "במאזניים: מי קל יותר, אגס או תפוז?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 19053,
+      "trimmed": true
+    },
+    "2d10ad757f6f054d": {
+      "text": "למשל, מהבית עד העץ יש שלושה צעדים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 15885,
+      "trimmed": true
+    },
+    "466711f20f87b4fa": {
+      "text": "מהארמון עד הקרוסלה יש שלושה צעדים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 14541,
+      "trimmed": true
+    },
+    "44f4d52e0e767055": {
+      "text": "במאזניים: מי קל יותר, ספר או דובי?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 18669,
+      "trimmed": true
+    },
+    "d6d07fc8d45af18b": {
+      "text": "למשל, יותר מים יש בכוס שכמעט מלאה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 17517,
+      "trimmed": true
+    },
+    "ca69f0bbc55e4b57": {
+      "text": "למשל, מהבית עד העץ יש חמישה צעדים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 17709,
+      "trimmed": true
+    },
+    "247d7a50a04ff159": {
+      "text": "מהארמון עד הקרוסלה יש ארבעה צעדים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 17805,
+      "trimmed": true
+    },
+    "af2bf243672c9a5f": {
+      "text": "מהארמון עד הקרוסלה יש חמישה צעדים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 17517,
+      "trimmed": true
+    },
+    "cea4254275320126": {
+      "text": "מהארמון עד הקרוסלה יש שמונה צעדים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 17133,
+      "trimmed": true
+    },
+    "d18961c99749c4ae": {
+      "text": "מה בדרך כלל כבד יותר: אבטיח או תות?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 17901,
+      "trimmed": true
+    },
+    "d32c9a26aa2bdb2e": {
+      "text": "מה בדרך כלל כבד יותר: תות או אבטיח?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 17517,
+      "trimmed": true
+    },
+    "358d50dabb96348d": {
+      "text": "מה בדרך כלל כבד יותר: סוס או אפרוח?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 15981,
+      "trimmed": true
+    },
+    "4ae86c19e8622cf8": {
+      "text": "מה בדרך כלל כבד יותר: אפרוח או סוס?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 17613,
+      "trimmed": true
+    },
+    "5fdb25c19510ebdd": {
+      "text": "מה בדרך כלל כבד יותר: דבורה או דוב?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 15021,
+      "trimmed": true
+    },
+    "d18a1a7a3bdb5d6e": {
+      "text": "מה בדרך כלל כבד יותר: דוב או דבורה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 15885,
+      "trimmed": true
+    },
+    "e981d3c6a88a4f08": {
+      "text": "מה בדרך כלל קל יותר: בלון או משאית?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 17421,
+      "trimmed": true
+    },
+    "e0d0115a738d752b": {
+      "text": "במאזניים: מי כבד יותר, כדור או נעל?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 16653,
+      "trimmed": true
+    },
+    "3de71ceff57161cf": {
+      "text": "מה בדרך כלל קל יותר: משאית או בלון?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 18861,
+      "trimmed": true
+    },
+    "e6287e29ce78722e": {
+      "text": "במאזניים: מי כבד יותר, תפוח או אגס?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 18573,
+      "trimmed": true
+    },
+    "cdc920fcd2f2f220": {
+      "text": "במאזניים: מי קל יותר, דובי או כדור?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 18957,
+      "trimmed": true
+    },
+    "4f5aff69dc740e5d": {
+      "text": "במאזניים: מי קל יותר, תפוח או בננה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 15501,
+      "trimmed": true
+    },
+    "64a4f7f45e420e91": {
+      "text": "במאזניים: מי קל יותר, בננה או תפוז?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 19725,
+      "trimmed": true
+    },
+    "80a6573965dbe2e0": {
+      "text": "מה בדרך כלל כבד יותר: משאית או בלון?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 15117,
+      "trimmed": true
+    },
+    "a8627f5fd76e611f": {
+      "text": "נדמיין שוב: את מה היה קל יותר להרים?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 13101,
+      "trimmed": true
+    },
+    "08c05d120dbaa1d3": {
+      "text": "במאזניים: מי כבד יותר, אגס או תפוז?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 19053,
+      "trimmed": true
+    },
+    "0a9b437fd6954e2e": {
+      "text": "מה בדרך כלל כבד יותר: בלון או משאית?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 18093,
+      "trimmed": true
+    },
+    "d916d0eaf5026ce2": {
+      "text": "במאזניים: מי כבד יותר, ספר או דובי?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 19149,
+      "trimmed": true
+    },
+    "f1b9501c314f0714": {
+      "text": "מה בדרך כלל קל יותר: מכונית או כדור?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 15981,
+      "trimmed": true
+    },
+    "9f86736e8b6c8174": {
+      "text": "מה בדרך כלל קל יותר: כדור או מכונית?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 17709,
+      "trimmed": true
+    },
+    "33d5a70e6a41bd52": {
+      "text": "במאזניים: מי כבד יותר, דובי או כדור?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 17901,
+      "trimmed": true
+    },
+    "e5b2cc40e9b3325f": {
+      "text": "ספר קל יותר מנעל: הצד שלו עלה למעלה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 18189,
+      "trimmed": true
+    },
+    "8e05f7397a92bda4": {
+      "text": "ספר כבד יותר מנעל: הצד שלו ירד למטה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 18477,
+      "trimmed": true
+    },
+    "becc5db22586ea72": {
+      "text": "למשל, פחות מים יש בכוס שמלאה עד חצי.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 17421,
+      "trimmed": true
+    },
+    "cb59dec695ae040c": {
+      "text": "במאזניים: מי כבד יותר, תפוח או בננה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 18957,
+      "trimmed": true
+    },
+    "d951f099660656ce": {
+      "text": "במאזניים: מי כבד יותר, בננה או תפוז?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 19533,
+      "trimmed": true
+    },
+    "c21b1c25513efb68": {
+      "text": "למשל, מהאוהל עד הפרח יש חמישה צעדים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 18669,
+      "trimmed": true
+    },
+    "d007744de1bb9b13": {
+      "text": "נדמיין שוב: את מה היה קשה יותר להרים?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 14829,
+      "trimmed": true
+    },
+    "d32a1b11cabf46f9": {
+      "text": "למשל, מהאוהל עד הפרח יש שלושה צעדים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 19437,
+      "trimmed": true
+    },
+    "8351e1c2d89cb070": {
+      "text": "מה בדרך כלל קל יותר: כובע או אוטובוס?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 16461,
+      "trimmed": true
+    },
+    "726c66333df48c25": {
+      "text": "מה בדרך כלל כבד יותר: מכונית או כדור?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 18381,
+      "trimmed": true
+    },
+    "9a8843253ff503d6": {
+      "text": "תפוח כבד יותר מאגס: הצד שלו ירד למטה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 17229,
+      "trimmed": true
+    },
+    "d6aaf914d4c98667": {
+      "text": "מה בדרך כלל כבד יותר: כדור או מכונית?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 16941,
+      "trimmed": true
+    },
+    "129596ac60f685b3": {
+      "text": "מה בדרך כלל קל יותר: אוטובוס או כובע?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 17037,
+      "trimmed": true
+    },
+    "af1acd533240bc71": {
+      "text": "אגס כבד יותר מתפוח: הצד שלו ירד למטה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 15789,
+      "trimmed": true
+    },
+    "e10e8eb178e38fa7": {
+      "text": "אגס כבד יותר מתפוז: הצד שלו ירד למטה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 15597,
+      "trimmed": true
+    },
+    "b967b3129170f2c3": {
+      "text": "דובי כבד יותר מספר: הצד שלו ירד למטה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 16557,
+      "trimmed": true
+    },
+    "ca3b2c7af0885fff": {
+      "text": "ספר כבד יותר מדובי: הצד שלו ירד למטה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 16653,
+      "trimmed": true
+    },
+    "5c1118bcd40268b7": {
+      "text": "נעל כבדה יותר מספר: הצד שלה ירד למטה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 17997,
+      "trimmed": true
+    },
+    "b950db28a6e25d58": {
+      "text": "תפוז כבד יותר מאגס: הצד שלו ירד למטה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 18861,
+      "trimmed": true
+    },
+    "f06a96633b3e095e": {
+      "text": "אגס קל יותר מתפוח: הצד שלו עלה למעלה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 17037,
+      "trimmed": true
+    },
+    "59f7f5f698afe443": {
+      "text": "כדור כבד יותר מנעל: הצד שלו ירד למטה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 18285,
+      "trimmed": true
+    },
+    "06ddbc00444a07a2": {
+      "text": "תפוח קל יותר מאגס: הצד שלו עלה למעלה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 15981,
+      "trimmed": true
+    },
+    "8733b3d235fb5532": {
+      "text": "נעל קלה יותר מספר: הצד שלה עלה למעלה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 16845,
+      "trimmed": true
+    },
+    "533fe8740f3cd7a3": {
+      "text": "אגס קל יותר מתפוז: הצד שלו עלה למעלה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 17133,
+      "trimmed": true
+    },
+    "0a007ec9b10940e0": {
+      "text": "דובי קל יותר מספר: הצד שלו עלה למעלה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 15501,
+      "trimmed": true
+    },
+    "ab6fc5e5564e2a94": {
+      "text": "כדור קל יותר מנעל: הצד שלו עלה למעלה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 16845,
+      "trimmed": true
+    },
+    "09041f17cb062c58": {
+      "text": "בכוס שמלאה עד חצי, המים מגיעים לאמצע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 16173,
+      "trimmed": true
+    },
+    "f60c75e5aa234322": {
+      "text": "ספר קל יותר מדובי: הצד שלו עלה למעלה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 15693,
+      "trimmed": true
+    },
+    "f09a7db30540d1fe": {
+      "text": "תפוז קל יותר מאגס: הצד שלו עלה למעלה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 18861,
+      "trimmed": true
+    },
+    "494598c9ce9c2c0f": {
+      "text": "מה בדרך כלל כבד יותר: אוטובוס או כובע?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 17325,
+      "trimmed": true
+    },
+    "1d8e98fdca6b0004": {
+      "text": "מה בדרך כלל קל יותר: לווייתן או ברווז?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 18285,
+      "trimmed": true
+    },
+    "1400c16c0b40a56b": {
+      "text": "מה בדרך כלל קל יותר: ברווז או לווייתן?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 17133,
+      "trimmed": true
+    },
+    "3335718635b6ae15": {
+      "text": "דובי כבד יותר מכדור: הצד שלו ירד למטה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 15309,
+      "trimmed": true
+    },
+    "18281141f9669fd8": {
+      "text": "מה בדרך כלל כבד יותר: כובע או אוטובוס?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 20589,
+      "trimmed": true
+    },
+    "69547798fbdb78e1": {
+      "text": "כדור כבד יותר מדובי: הצד שלו ירד למטה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 18573,
+      "trimmed": true
+    },
+    "91ecaf1716dbaaab": {
+      "text": "תפוז כבד יותר מבננה: הצד שלו ירד למטה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 19821,
+      "trimmed": true
+    },
+    "6dc6db1f0572137d": {
+      "text": "נעל כבדה יותר מכדור: הצד שלה ירד למטה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 16941,
+      "trimmed": true
+    },
+    "036a73e9694255ac": {
+      "text": "תפוח כבד יותר מבננה: הצד שלו ירד למטה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 20205,
+      "trimmed": true
+    },
+    "49096641622826a2": {
+      "text": "הצד הזה ירד למטה. הצד הקל הוא זה שעלה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 16269,
+      "trimmed": true
+    },
+    "fd6d2d866ab89a22": {
+      "text": "תפוז קל יותר מבננה: הצד שלו עלה למעלה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 17229,
+      "trimmed": true
+    },
+    "f1834f517bb1c931": {
+      "text": "כדור קל יותר מדובי: הצד שלו עלה למעלה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 15309,
+      "trimmed": true
+    },
+    "dc4f28682cdac308": {
+      "text": "דובי קל יותר מכדור: הצד שלו עלה למעלה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 15981,
+      "trimmed": true
+    },
+    "6b16719e0776cac7": {
+      "text": "נסתכל שוב: באיזו כוס המים נמוכים יותר?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 16557,
+      "trimmed": true
+    },
+    "dd12cb42cca85296": {
+      "text": "נעל קלה יותר מכדור: הצד שלה עלה למעלה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 17997,
+      "trimmed": true
+    },
+    "8c00648da31a6179": {
+      "text": "תפוח קל יותר מבננה: הצד שלו עלה למעלה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 21741,
+      "trimmed": true
+    },
+    "5e93338e09030ff9": {
+      "text": "מה בדרך כלל כבד יותר: לווייתן או ברווז?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 17997,
+      "trimmed": true
+    },
+    "76d7b4657bda2ac6": {
+      "text": "נספור את הקוביות מלמטה למעלה, אחת אחת.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 18573,
+      "trimmed": true
+    },
+    "face21ee84d40fc8": {
+      "text": "בננה כבדה יותר מתפוז: הצד שלה ירד למטה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 15693,
+      "trimmed": true
+    },
+    "0ee0e467e971e449": {
+      "text": "מה בדרך כלל כבד יותר: ברווז או לווייתן?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 19053,
+      "trimmed": true
+    },
+    "5a2bc60d84a0559f": {
+      "text": "בננה כבדה יותר מתפוח: הצד שלה ירד למטה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 16749,
+      "trimmed": true
+    },
+    "89c76603546c5e28": {
+      "text": "בכוס שהמים בה נמוכים יותר, יש פחות מים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 15405,
+      "trimmed": true
+    },
+    "b63ad1d13c6685f0": {
+      "text": "למשל, פחות מים יש בכוס שיש בה מעט מים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 20013,
+      "trimmed": true
+    },
+    "2ef3740606aa9209": {
+      "text": "בננה קלה יותר מתפוז: הצד שלה עלה למעלה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 20781,
+      "trimmed": true
+    },
+    "05a078dfaf7da537": {
+      "text": "נסתכל שוב עד לאן מגיעים המים בכוס הזאת.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 16365,
+      "trimmed": true
+    },
+    "1b0b19b92a7046e4": {
+      "text": "בננה קלה יותר מתפוח: הצד שלה עלה למעלה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 19341,
+      "trimmed": true
+    },
+    "d66b1933764a639e": {
+      "text": "למשל, בכוס המלאה, המים מגיעים עד למעלה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 19341,
+      "trimmed": true
+    },
+    "fef3c0ee98efa95e": {
+      "text": "הצד הזה עלה למעלה. הצד הכבד הוא זה שירד.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 19053,
+      "trimmed": true
+    },
+    "5f3a7cdbcc5f576d": {
+      "text": "החצים מראים איזה צד ירד. מה יש בצד שירד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 21549,
+      "trimmed": true
+    },
+    "5c2ed07fe5fe3750": {
+      "text": "החצים מראים איזה צד עלה. מה יש בצד שעלה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 17901,
+      "trimmed": true
+    },
+    "a337f5d5037c7071": {
+      "text": "אולי ספרנו צעד אחד פעמיים. נספור שוב לאט.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 15885,
+      "trimmed": true
+    },
+    "96cf9332f96d5e9d": {
+      "text": "למשל, מהארמון עד הקרוסלה יש שלושה צעדים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 21165,
+      "trimmed": true
+    },
+    "ef2aab064dcda1cd": {
+      "text": "למשל, מהארמון עד הקרוסלה יש חמישה צעדים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 21261,
+      "trimmed": true
+    },
+    "86d0d5817b9b95f6": {
+      "text": "בכוס שמלאה עד חצי, המים מגיעים לאמצע הכוס.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 19341,
+      "trimmed": true
+    },
+    "e7bad636f80b2ba7": {
+      "text": "נסתכל שוב: באיזו כוס המים מגיעים גבוה יותר?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 18381,
+      "trimmed": true
+    },
+    "fa9c8f0ee523bb1d": {
+      "text": "למשל, תפוח כבד יותר מאגס: הצד שלו ירד למטה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 21453,
+      "trimmed": true
+    },
+    "ca92797e8f08a46d": {
+      "text": "למשל, אגס קל יותר מתפוח: הצד שלו עלה למעלה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 20685,
+      "trimmed": true
+    },
+    "2d2f56939155ac00": {
+      "text": "למשל, בכוס שמלאה עד חצי, המים מגיעים לאמצע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 20301,
+      "trimmed": true
+    },
+    "5dc5a108b6351542": {
+      "text": "בכוס שהמים בה מגיעים גבוה יותר, יש יותר מים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 17229,
+      "trimmed": true
+    },
+    "f0ce611a1d5c0089": {
+      "text": "למשל, דובי כבד יותר מכדור: הצד שלו ירד למטה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 21357,
+      "trimmed": true
+    },
+    "8fb6651b7763eb18": {
+      "text": "למשל, תפוז קל יותר מבננה: הצד שלו עלה למעלה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22797,
+      "trimmed": true
+    },
+    "835a333734b5e686": {
+      "text": "כל קובייה היא קומה אחת במגדל. כמה קומות יש בו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 17805,
+      "trimmed": true
+    },
+    "9f47873ec94556af": {
+      "text": "למשל, כדור קל יותר מדובי: הצד שלו עלה למעלה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 20301,
+      "trimmed": true
+    },
+    "6de25ac5ffae8cc0": {
+      "text": "נתחיל לספור ליד הבית, ונמשיך עד שנגיע אל העץ.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 17709,
+      "trimmed": true
+    },
+    "ece1e962a9928f0e": {
+      "text": "למשל, בננה כבדה יותר מתפוז: הצד שלה ירד למטה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 24333,
+      "trimmed": true
+    },
+    "e2f0ab38ba1a256b": {
+      "text": "אולי ספרנו קובייה אחת פעמיים. נספור שוב מלמטה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 19053,
+      "trimmed": true
+    },
+    "9f8250a328fde932": {
+      "text": "נתחיל לספור ליד האוהל, ונמשיך עד שנגיע אל הפרח.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 19341,
+      "trimmed": true
+    },
+    "e68229df2c3fbeef": {
+      "text": "אולי דילגנו על צעד. נספור שוב לאט, ונגע בכל צעד.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 26349,
+      "trimmed": true
+    },
+    "262fce90717175b6": {
+      "text": "אולי דילגנו על קובייה. נספור שוב מלמטה, אחת אחת.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 20109,
+      "trimmed": true
+    },
+    "3c337094fe3f36c3": {
+      "text": "נסתכל על כל כוס בתורה, ונראה עד לאן מגיעים בה המים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22701,
+      "trimmed": true
+    },
+    "eee684615940e4db": {
+      "text": "נתחיל לספור ליד הארמון, ונמשיך עד שנגיע אל הקרוסלה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 20589,
+      "trimmed": true
+    },
+    "54216a35880798cd": {
+      "text": "נדמיין שאנחנו מנסים להרים כל אחד מהם. את מה קל יותר להרים?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 21357,
+      "trimmed": true
+    },
+    "498e26c945b64413": {
+      "text": "במאזניים, הצד הכבד יותר יורד למטה, והצד הקל יותר עולה למעלה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 26637,
+      "trimmed": true
+    },
+    "911bbc855eb08de8": {
+      "text": "נדמיין שאנחנו מנסים להרים כל אחד מהם. את מה קשה יותר להרים?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22989,
+      "trimmed": true
+    },
+    "898241a3c30de5b8": {
+      "text": "דברים גדולים הם בדרך כלל כבדים יותר, ודברים קטנים הם בדרך כלל קלים יותר.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 27885,
+      "trimmed": true
     }
   }
 }
