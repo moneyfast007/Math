@@ -37749,14 +37749,15 @@
     },
     "48baf27d235a442f": {
       "text": "אחרי עשר בא אחת עשרה.",
-      "voice": "wavenet/he-IL-Wavenet-A",
-      "bytes": 13677,
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "אחרי עשר בא אַחַת עֶשְׂרֵה.",
+      "bytes": 9357,
       "trimmed": true
     },
     "aa95b016cc2a12d3": {
       "text": "איזה מספר בא אחרי עשר?",
-      "voice": "wavenet/he-IL-Wavenet-A",
-      "bytes": 15213,
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 8589,
       "trimmed": true
     },
     "1528aab3aa94ae7c": {
@@ -37779,14 +37780,16 @@
     },
     "85ab6c6541e33eef": {
       "text": "אחרי אחת עשרה בא שתים עשרה.",
-      "voice": "wavenet/he-IL-Wavenet-A",
-      "bytes": 16365,
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "אחרי אַחַת עֶשְׂרֵה בא שְׁתֵּים עֶשְׂרֵה.",
+      "bytes": 12237,
       "trimmed": true
     },
     "c6063541280eeecf": {
       "text": "איזה מספר בא אחרי אחת עשרה?",
-      "voice": "wavenet/he-IL-Wavenet-A",
-      "bytes": 17133,
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "איזה מספר בא אחרי אַחַת עֶשְׂרֵה?",
+      "bytes": 9357,
       "trimmed": true
     },
     "2fef2b6da1400cd1": {
@@ -37797,20 +37800,23 @@
     },
     "fa597256f89b5e49": {
       "text": "איזה מספר בא לפני אחת עשרה?",
-      "voice": "wavenet/he-IL-Wavenet-A",
-      "bytes": 17133,
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "איזה מספר בא לפני אַחַת עֶשְׂרֵה?",
+      "bytes": 10221,
       "trimmed": true
     },
     "870f8d11dcd06e10": {
       "text": "לפני אחת עשרה בא עשר.",
-      "voice": "wavenet/he-IL-Wavenet-A",
-      "bytes": 15981,
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "לפני אַחַת עֶשְׂרֵה בא עשר.",
+      "bytes": 10893,
       "trimmed": true
     },
     "e588e00735b28b95": {
       "text": "אחרי שתים עשרה בא שלוש עשרה.",
-      "voice": "wavenet/he-IL-Wavenet-A",
-      "bytes": 17517,
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "אחרי שְׁתֵּים עֶשְׂרֵה בא שְׁלוֹשׁ עֶשְׂרֵה.",
+      "bytes": 11373,
       "trimmed": true
     },
     "28265b4299ef273b": {
@@ -37827,8 +37833,9 @@
     },
     "8e5a74466abe89ff": {
       "text": "איזה מספר בא אחרי שתים עשרה?",
-      "voice": "wavenet/he-IL-Wavenet-A",
-      "bytes": 17325,
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "איזה מספר בא אחרי שְׁתֵּים עֶשְׂרֵה?",
+      "bytes": 9837,
       "trimmed": true
     },
     "54bc4f579261d273": {
@@ -37839,14 +37846,16 @@
     },
     "687277b3ce69fdca": {
       "text": "איזה מספר בא לפני שתים עשרה?",
-      "voice": "wavenet/he-IL-Wavenet-A",
-      "bytes": 17133,
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "איזה מספר בא לפני שְׁתֵּים עֶשְׂרֵה?",
+      "bytes": 9933,
       "trimmed": true
     },
     "fffa10a244b2c72e": {
       "text": "לפני שתים עשרה בא אחת עשרה.",
-      "voice": "wavenet/he-IL-Wavenet-A",
-      "bytes": 17709,
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "לפני שְׁתֵּים עֶשְׂרֵה בא אַחַת עֶשְׂרֵה.",
+      "bytes": 12333,
       "trimmed": true
     },
     "0f6c206ce0c451f2": {
@@ -37897,8 +37906,9 @@
     },
     "87832f81edc9b1ef": {
       "text": "אחרי ארבע עשרה בא חמש עשרה.",
-      "voice": "wavenet/he-IL-Wavenet-A",
-      "bytes": 18093,
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "אחרי אַרְבַּע עֶשְׂרֵה בא חֲמֵשׁ עֶשְׂרֵה.",
+      "bytes": 11757,
       "trimmed": true
     },
     "7089c63914c86e88": {
@@ -37909,8 +37919,9 @@
     },
     "bea3d63bd490f318": {
       "text": "איזה מספר בא אחרי ארבע עשרה?",
-      "voice": "wavenet/he-IL-Wavenet-A",
-      "bytes": 17901,
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "איזה מספר בא אחרי אַרְבַּע עֶשְׂרֵה?",
+      "bytes": 10797,
       "trimmed": true
     },
     "87e9c746c9d8e4fa": {
@@ -37921,14 +37932,16 @@
     },
     "28e6ab117afb737d": {
       "text": "איזה מספר בא לפני ארבע עשרה?",
-      "voice": "wavenet/he-IL-Wavenet-A",
-      "bytes": 17901,
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "איזה מספר בא לפני אַרְבַּע עֶשְׂרֵה?",
+      "bytes": 12141,
       "trimmed": true
     },
     "be77f77f463c7865": {
       "text": "לפני ארבע עשרה בא שלוש עשרה.",
-      "voice": "wavenet/he-IL-Wavenet-A",
-      "bytes": 17901,
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "לפני אַרְבַּע עֶשְׂרֵה בא שְׁלוֹשׁ עֶשְׂרֵה.",
+      "bytes": 11661,
       "trimmed": true
     },
     "741611eda11e0d45": {
@@ -37945,14 +37958,16 @@
     },
     "6412f8251d78a2b6": {
       "text": "איזה מספר בא אחרי חמש עשרה?",
-      "voice": "wavenet/he-IL-Wavenet-A",
-      "bytes": 17133,
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "איזה מספר בא אחרי חֲמֵשׁ עֶשְׂרֵה?",
+      "bytes": 9069,
       "trimmed": true
     },
     "6115fa26b3512982": {
       "text": "אחרי חמש עשרה בא שש עשרה.",
-      "voice": "wavenet/he-IL-Wavenet-A",
-      "bytes": 16557,
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "אחרי חֲמֵשׁ עֶשְׂרֵה בא שֵׁשׁ עֶשְׂרֵה.",
+      "bytes": 10701,
       "trimmed": true
     },
     "ce43f8fd83814005": {
@@ -37963,8 +37978,9 @@
     },
     "dc6de595097cbdef": {
       "text": "איזה מספר בא לפני חמש עשרה?",
-      "voice": "wavenet/he-IL-Wavenet-A",
-      "bytes": 17517,
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "איזה מספר בא לפני חֲמֵשׁ עֶשְׂרֵה?",
+      "bytes": 8877,
       "trimmed": true
     },
     "c604f1ddaf2090de": {
@@ -37981,26 +37997,30 @@
     },
     "1965774d643dfd43": {
       "text": "לפני חמש עשרה בא ארבע עשרה.",
-      "voice": "wavenet/he-IL-Wavenet-A",
-      "bytes": 17901,
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "לפני חֲמֵשׁ עֶשְׂרֵה בא אַרְבַּע עֶשְׂרֵה.",
+      "bytes": 13965,
       "trimmed": true
     },
     "562ffa29e1da11b0": {
       "text": "איזה מספר בא אחרי שש עשרה?",
-      "voice": "wavenet/he-IL-Wavenet-A",
-      "bytes": 16557,
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "איזה מספר בא אחרי שֵׁשׁ עֶשְׂרֵה?",
+      "bytes": 9453,
       "trimmed": true
     },
     "35f6deab583cdc15": {
       "text": "אחרי שש עשרה בא שבע עשרה.",
-      "voice": "wavenet/he-IL-Wavenet-A",
-      "bytes": 15981,
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "אחרי שֵׁשׁ עֶשְׂרֵה בא שְׁבַע עֶשְׂרֵה.",
+      "bytes": 10989,
       "trimmed": true
     },
     "c66e7666efb8ad81": {
       "text": "איזה מספר בא לפני שש עשרה?",
-      "voice": "wavenet/he-IL-Wavenet-A",
-      "bytes": 16557,
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "איזה מספר בא לפני שֵׁשׁ עֶשְׂרֵה?",
+      "bytes": 9645,
       "trimmed": true
     },
     "140cdafe86045e26": {
@@ -38011,8 +38031,9 @@
     },
     "4692811c3d8dbbde": {
       "text": "לפני שש עשרה בא חמש עשרה.",
-      "voice": "wavenet/he-IL-Wavenet-A",
-      "bytes": 17325,
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "לפני שֵׁשׁ עֶשְׂרֵה בא חֲמֵשׁ עֶשְׂרֵה.",
+      "bytes": 12813,
       "trimmed": true
     },
     "20ad2f859f41de39": {
@@ -38069,8 +38090,9 @@
     },
     "52e83b6f404cb38b": {
       "text": "איזה מספר בא אחרי שמונה עשרה?",
-      "voice": "wavenet/he-IL-Wavenet-A",
-      "bytes": 18285,
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "איזה מספר בא אחרי שְׁמוֹנֶה עֶשְׂרֵה?",
+      "bytes": 10221,
       "trimmed": true
     },
     "e1749973317b1073": {
@@ -38081,8 +38103,9 @@
     },
     "061e72014b4ab40a": {
       "text": "אחרי שמונה עשרה בא תשע עשרה.",
-      "voice": "wavenet/he-IL-Wavenet-A",
-      "bytes": 16749,
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "אחרי שְׁמוֹנֶה עֶשְׂרֵה בא תְּשַׁע עֶשְׂרֵה.",
+      "bytes": 13581,
       "trimmed": true
     },
     "1dee4acc13cf79b1": {
@@ -38093,14 +38116,16 @@
     },
     "04c5e8ccd04d2a1c": {
       "text": "איזה מספר בא לפני שמונה עשרה?",
-      "voice": "wavenet/he-IL-Wavenet-A",
-      "bytes": 18093,
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "איזה מספר בא לפני שְׁמוֹנֶה עֶשְׂרֵה?",
+      "bytes": 9837,
       "trimmed": true
     },
     "4996b41baffa9d3f": {
       "text": "לפני שמונה עשרה בא שבע עשרה.",
-      "voice": "wavenet/he-IL-Wavenet-A",
-      "bytes": 17709,
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "לפני שְׁמוֹנֶה עֶשְׂרֵה בא שְׁבַע עֶשְׂרֵה.",
+      "bytes": 14445,
       "trimmed": true
     },
     "3c536be96c066aeb": {
@@ -38137,14 +38162,16 @@
     },
     "eefa2dd7080633b7": {
       "text": "איזה מספר בא לפני תשע עשרה?",
-      "voice": "wavenet/he-IL-Wavenet-A",
-      "bytes": 17325,
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "איזה מספר בא לפני תְּשַׁע עֶשְׂרֵה?",
+      "bytes": 9645,
       "trimmed": true
     },
     "6d25781483255a11": {
       "text": "לפני תשע עשרה בא שמונה עשרה.",
-      "voice": "wavenet/he-IL-Wavenet-A",
-      "bytes": 17517,
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "לפני תְּשַׁע עֶשְׂרֵה בא שְׁמוֹנֶה עֶשְׂרֵה.",
+      "bytes": 11757,
       "trimmed": true
     },
     "6cdd59cec587de22": {
@@ -716550,6 +716577,2377 @@
       "text": "שם המספר: ממילים לספרות",
       "voice": "gemini-3.1-flash/Leda/quick",
       "bytes": 15117,
+      "trimmed": true
+    },
+    "45752b8b2560173d": {
+      "text": "קפיצות קדימה",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 5229,
+      "trimmed": true
+    },
+    "86cf98fd0250d429": {
+      "text": "סופרים עד עשרים",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 7821,
+      "trimmed": true
+    },
+    "7d40447e38318454": {
+      "text": "נקודות של קובייה",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 6477,
+      "trimmed": true
+    },
+    "1b1efb25b7d917a8": {
+      "text": "שתי קוביות",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 5709,
+      "trimmed": true
+    },
+    "4046bb781fc38069": {
+      "text": "אותו מספר פעמיים",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 8781,
+      "trimmed": true
+    },
+    "b86a899ba8c0fccf": {
+      "text": "קפיצות אחורה",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 5997,
+      "trimmed": true
+    },
+    "80866e5b8d2e577a": {
+      "text": "מספרים עד עשרים",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 8973,
+      "trimmed": true
+    },
+    "ed62b0214a0c5318": {
+      "text": "דגים:",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 3405,
+      "trimmed": true
+    },
+    "81cb8b451ce900fd": {
+      "text": "פרפרים:",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 3693,
+      "trimmed": true
+    },
+    "65615704d8b93acc": {
+      "text": "ונקפוץ",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 4557,
+      "trimmed": true
+    },
+    "19506e6caa97c2b6": {
+      "text": "בשורה:",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 3309,
+      "trimmed": true
+    },
+    "e7b937e5577076c2": {
+      "text": "נקודות.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 4173,
+      "trimmed": true
+    },
+    "3bdf35e856ab2b3c": {
+      "text": "איזה מספר חסר?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 5709,
+      "trimmed": true
+    },
+    "4af945ab5ca10aeb": {
+      "text": "עוגיות:",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 3405,
+      "trimmed": true
+    },
+    "e7274363b346de72": {
+      "text": "תפוחים:",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 3885,
+      "trimmed": true
+    },
+    "fdd022a1c5a56a9a": {
+      "text": "דבורים:",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 3693,
+      "trimmed": true
+    },
+    "c12f172ead580c7d": {
+      "text": "בלונים:",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 3693,
+      "trimmed": true
+    },
+    "84af8bc9b1c33fbf": {
+      "text": "קפיצות.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 3789,
+      "trimmed": true
+    },
+    "50b33e9daf073076": {
+      "text": "כוכבים:",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 4173,
+      "trimmed": true
+    },
+    "2e8d4c2cbda14f53": {
+      "text": "סוכריות:",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 4653,
+      "trimmed": true
+    },
+    "275d2f153c5b178a": {
+      "text": "נעמוד על",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 4941,
+      "trimmed": true
+    },
+    "41b8fecc6e1c2379": {
+      "text": ", ובשנייה",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 4749,
+      "trimmed": true
+    },
+    "ebe8ff09034c9210": {
+      "text": "בכל קבוצה יש",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 7437,
+      "trimmed": true
+    },
+    "f22f70fb88bd26da": {
+      "text": ", ונקפוץ עוד",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 6093,
+      "trimmed": true
+    },
+    "8d3d335aca5fbb99": {
+      "text": "בקובייה הראשונה",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 5805,
+      "trimmed": true
+    },
+    "ba33312722260cc3": {
+      "text": "על הקובייה יש",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 9261,
+      "trimmed": true
+    },
+    "6ad1b67c54efd6dc": {
+      "text": "איזה מספר חסר בשורה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 7629,
+      "trimmed": true
+    },
+    "b51c4ea91b4bb6fc": {
+      "text": "בקבוצה הגדולה יש",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 9069,
+      "trimmed": true
+    },
+    "19e4113d082818aa": {
+      "text": ". ביחד שתי נקודות.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 8397,
+      "trimmed": true
+    },
+    "15252008e91635f5": {
+      "text": "אחת עשרה גדול יותר משש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "אַחַת עֶשְׂרֵה גדול יותר משש.",
+      "bytes": 10317,
+      "trimmed": true
+    },
+    "bca42635af590d10": {
+      "text": ", ונקפוץ עוד קפיצה אחת.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 9741,
+      "trimmed": true
+    },
+    "dde700a25abea72a": {
+      "text": "דגים. כמה דגים יש ביחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 12717,
+      "trimmed": true
+    },
+    "5b5a9937c91186f0": {
+      "text": "קפיצות קדימה. לאן נגיע?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 11757,
+      "trimmed": true
+    },
+    "60bd8127e00e1fc9": {
+      "text": "קפיצות אחורה. לאן נגיע?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 10797,
+      "trimmed": true
+    },
+    "42f308fd6f495441": {
+      "text": "על הקובייה יש נקודה אחת.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 11853,
+      "trimmed": true
+    },
+    "cbd61378912fff9b": {
+      "text": "על הקובייה יש שש נקודות.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 9549,
+      "trimmed": true
+    },
+    "fda341ebf15debb5": {
+      "text": "חמש עשרה גדול יותר מעשר.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "חֲמֵשׁ עֶשְׂרֵה גדול יותר מעשר.",
+      "bytes": 11661,
+      "trimmed": true
+    },
+    "6cc12587ea3a0a2a": {
+      "text": "כמה נקודות יש על הקובייה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 8205,
+      "trimmed": true
+    },
+    "bfb75d4687a26c8f": {
+      "text": ", ונקפוץ עוד שתי קפיצות.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 9837,
+      "trimmed": true
+    },
+    "0c588618e01837e5": {
+      "text": "על הקובייה יש שתי נקודות.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 10605,
+      "trimmed": true
+    },
+    "0ada3224aa53302f": {
+      "text": "על הקובייה יש חמש נקודות.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 13005,
+      "trimmed": true
+    },
+    "db57e83e62fe2274": {
+      "text": "שתים עשרה גדול יותר מתשע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "שְׁתֵּים עֶשְׂרֵה גדול יותר מתשע.",
+      "bytes": 10701,
+      "trimmed": true
+    },
+    "4456f82c7f1c9a28": {
+      "text": "שתים עשרה גדול יותר משבע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "שְׁתֵּים עֶשְׂרֵה גדול יותר משבע.",
+      "bytes": 10509,
+      "trimmed": true
+    },
+    "b7f27da1fd6aebc1": {
+      "text": "שלוש עשרה גדול יותר מעשר.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "שְׁלוֹשׁ עֶשְׂרֵה גדול יותר מעשר.",
+      "bytes": 9645,
+      "trimmed": true
+    },
+    "591ede7f0fdc0b50": {
+      "text": "ארבע עשרה גדול יותר מתשע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "אַרְבַּע עֶשְׂרֵה גדול יותר מתשע.",
+      "bytes": 11949,
+      "trimmed": true
+    },
+    "34c76acae1b05ef3": {
+      "text": "על הקובייה יש שלוש נקודות.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 11085,
+      "trimmed": true
+    },
+    "9250dee636b2f236": {
+      "text": "על הקובייה יש ארבע נקודות.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 12141,
+      "trimmed": true
+    },
+    "ac46712534544e24": {
+      "text": "אחת עשרה גדול יותר משמונה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "אַחַת עֶשְׂרֵה גדול יותר משמונה.",
+      "bytes": 11181,
+      "trimmed": true
+    },
+    "49cf9cb8a054c763": {
+      "text": "עשרים גדול יותר משבע עשרה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 11757,
+      "trimmed": true
+    },
+    "5b35777c2c43a4cf": {
+      "text": "עשרים גדול יותר מחמש עשרה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 10893,
+      "trimmed": true
+    },
+    "6f73f320178120e6": {
+      "text": "בשורה: ארבע, חמש, שש, שבע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 20877,
+      "trimmed": true
+    },
+    "0c5cde8d69cf9241": {
+      "text": "שלוש עשרה גדול יותר משמונה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "שְׁלוֹשׁ עֶשְׂרֵה גדול יותר משמונה.",
+      "bytes": 9837,
+      "trimmed": true
+    },
+    "2f40f8c2aa9f4760": {
+      "text": "פרפרים. כמה פרפרים יש ביחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 14541,
+      "trimmed": true
+    },
+    "520eaefcb7bc19bb": {
+      "text": "בלונים. כמה בלונים יש ביחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 13005,
+      "trimmed": true
+    },
+    "a05145927df908c8": {
+      "text": "תפוחים. כמה תפוחים יש ביחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 13677,
+      "trimmed": true
+    },
+    "856d876320b99402": {
+      "text": "כוכבים. כמה כוכבים יש ביחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 14157,
+      "trimmed": true
+    },
+    "0dd7d09f74c65e48": {
+      "text": "בשורה: שלוש, ארבע, חמש, שש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22797,
+      "trimmed": true
+    },
+    "332867a66dde462d": {
+      "text": "בשורה: שש, שבע, שמונה, תשע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 23853,
+      "trimmed": true
+    },
+    "f2aae4f16e9e028d": {
+      "text": "בשורה: חמש, שש, שבע, שמונה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 26061,
+      "trimmed": true
+    },
+    "fdd4332cba1c9c12": {
+      "text": "עוגיות. כמה עוגיות יש ביחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 12237,
+      "trimmed": true
+    },
+    "724d2fcab391fb9a": {
+      "text": "שש עשרה גדול יותר מאחת עשרה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "שֵׁשׁ עֶשְׂרֵה גדול יותר מאחת עשרה.",
+      "bytes": 10605,
+      "trimmed": true
+    },
+    "98ccca8deed5734f": {
+      "text": "שבע עשרה ועוד שלוש זה עשרים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "שְׁבַע עֶשְׂרֵה ועוד שלוש זה עשרים.",
+      "bytes": 13389,
+      "trimmed": true
+    },
+    "7cc940e49e9a91a7": {
+      "text": "תשע עשרה גדול יותר משש עשרה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "תְּשַׁע עֶשְׂרֵה גדול יותר משש עשרה.",
+      "bytes": 12429,
+      "trimmed": true
+    },
+    "d6cf18490afd5c62": {
+      "text": "בשורה: שבע, שמונה, תשע, עשר.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22605,
+      "trimmed": true
+    },
+    "fb0ddd6702c8db44": {
+      "text": "שש עשרה גדול יותר משלוש עשרה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "שֵׁשׁ עֶשְׂרֵה גדול יותר משלוש עשרה.",
+      "bytes": 13485,
+      "trimmed": true
+    },
+    "9c9724396fe2d960": {
+      "text": "סוכריות. כמה סוכריות יש ביחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 13773,
+      "trimmed": true
+    },
+    "0ee95dbdf0ddcf22": {
+      "text": "יש כאן {all}: {ten} ועוד {k}.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 15789,
+      "trimmed": true
+    },
+    "0a4445074ed428bf": {
+      "text": "נגע בכל נקודה פעם אחת, ונספור.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 13485,
+      "trimmed": true
+    },
+    "88e2319bea7b6a4f": {
+      "text": "ארבע עשרה גדול יותר מאחת עשרה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "אַרְבַּע עֶשְׂרֵה גדול יותר מאחת עשרה.",
+      "bytes": 12525,
+      "trimmed": true
+    },
+    "c2cbd506ae84fb6f": {
+      "text": "בשורה: אחת, שתיים, שלוש, ארבע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 18381,
+      "trimmed": true
+    },
+    "41b5de0ce75e4877": {
+      "text": "חמש עשרה גדול יותר משתים עשרה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "חֲמֵשׁ עֶשְׂרֵה גדול יותר משתים עשרה.",
+      "bytes": 12717,
+      "trimmed": true
+    },
+    "1cd7d99cb68707ce": {
+      "text": "שבע עשרה גדול יותר מארבע עשרה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "שְׁבַע עֶשְׂרֵה גדול יותר מארבע עשרה.",
+      "bytes": 13005,
+      "trimmed": true
+    },
+    "3c5e69969e7509af": {
+      "text": "בשורה: שתיים, שלוש, ארבע, חמש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 23757,
+      "trimmed": true
+    },
+    "3ba8d5c4ce4a2803": {
+      "text": "שבע עשרה גדול יותר משתים עשרה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "שְׁבַע עֶשְׂרֵה גדול יותר משתים עשרה.",
+      "bytes": 11661,
+      "trimmed": true
+    },
+    "e5cb991ce9b588d6": {
+      "text": "תשע עשרה גדול יותר מארבע עשרה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "תְּשַׁע עֶשְׂרֵה גדול יותר מארבע עשרה.",
+      "bytes": 12525,
+      "trimmed": true
+    },
+    "3f87df0ae0205c3c": {
+      "text": "נספור שוב את הקפיצות, אחת אחת.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 14253,
+      "trimmed": true
+    },
+    "e127caf0c30864c8": {
+      "text": "למשל, על הקובייה יש חמש נקודות.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 14637,
+      "trimmed": true
+    },
+    "1a1539409e2d9537": {
+      "text": "למשל, אחרי חמש עשרה בא שש עשרה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "למשל, אחרי חֲמֵשׁ עֶשְׂרֵה בא שֵׁשׁ עֶשְׂרֵה.",
+      "bytes": 15405,
+      "trimmed": true
+    },
+    "f2641c1ee0fda865": {
+      "text": "דגים. נתחיל מעשר, ונמשיך לספור.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 15789,
+      "trimmed": true
+    },
+    "6b7b3ca53fd7d005": {
+      "text": "למשל, לפני שבע עשרה בא שש עשרה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "למשל, לפני שְׁבַע עֶשְׂרֵה בא שֵׁשׁ עֶשְׂרֵה.",
+      "bytes": 14541,
+      "trimmed": true
+    },
+    "85c09f75c1f7ee53": {
+      "text": "שמונה עשרה גדול יותר מחמש עשרה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "שְׁמוֹנֶה עֶשְׂרֵה גדול יותר מחמש עשרה.",
+      "bytes": 11949,
+      "trimmed": true
+    },
+    "7df7993e97b61708": {
+      "text": "למשל, על הקובייה יש שלוש נקודות.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 15597,
+      "trimmed": true
+    },
+    "344fc2a9287649b5": {
+      "text": "שמונה עשרה גדול יותר משלוש עשרה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "שְׁמוֹנֶה עֶשְׂרֵה גדול יותר משלוש עשרה.",
+      "bytes": 13005,
+      "trimmed": true
+    },
+    "1269d541419584f6": {
+      "text": "כמה נקודות יש בשתי הקוביות ביחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 13869,
+      "trimmed": true
+    },
+    "4c9444a63ee8a39a": {
+      "text": "עוגיות. נתחיל מעשר, ונמשיך לספור.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 16845,
+      "trimmed": true
+    },
+    "707a42754f78be1e": {
+      "text": "דבורים. נתחיל מעשר, ונמשיך לספור.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 16749,
+      "trimmed": true
+    },
+    "5ea40c355ff24570": {
+      "text": "פרפרים. נתחיל מעשר, ונמשיך לספור.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 18477,
+      "trimmed": true
+    },
+    "4f232f57ae886d42": {
+      "text": "תפוחים. נתחיל מעשר, ונמשיך לספור.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 15117,
+      "trimmed": true
+    },
+    "93dc5e074258404f": {
+      "text": "בלונים. נתחיל מעשר, ונמשיך לספור.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 15789,
+      "trimmed": true
+    },
+    "a621cea2efeac50f": {
+      "text": "כוכבים. נתחיל מעשר, ונמשיך לספור.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 14733,
+      "trimmed": true
+    },
+    "72b0ad1507b4768f": {
+      "text": "למשל, לפני שתים עשרה בא אחת עשרה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "למשל, לפני שְׁתֵּים עֶשְׂרֵה בא אַחַת עֶשְׂרֵה.",
+      "bytes": 13581,
+      "trimmed": true
+    },
+    "20a25a615b4da74a": {
+      "text": "למשל, לפני חמש עשרה בא ארבע עשרה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "למשל, לפני חֲמֵשׁ עֶשְׂרֵה בא אַרְבַּע עֶשְׂרֵה.",
+      "bytes": 17325,
+      "trimmed": true
+    },
+    "a6f020672f3cdc0e": {
+      "text": "ונקפוץ קפיצה אחת אחורה. לאן נגיע?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 13101,
+      "trimmed": true
+    },
+    "7f43c3b016001a99": {
+      "text": "סוכריות. נתחיל מעשר, ונמשיך לספור.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 16653,
+      "trimmed": true
+    },
+    "3b6084293f61cb7c": {
+      "text": "ונקפוץ קפיצה אחת קדימה. לאן נגיע?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 15981,
+      "trimmed": true
+    },
+    "1c361afb0ed693fa": {
+      "text": "יש כאן עשרים דבורים: עשר ועוד עשר.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 16845,
+      "trimmed": true
+    },
+    "4d62f08da6d8d021": {
+      "text": "למשל, אחרי שבע עשרה בא שמונה עשרה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "למשל, אחרי שְׁבַע עֶשְׂרֵה בא שְׁמוֹנֶה עֶשְׂרֵה.",
+      "bytes": 17037,
+      "trimmed": true
+    },
+    "f0c6e0ee98a380a9": {
+      "text": "למשל, אחרי שתים עשרה בא שלוש עשרה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "למשל, אחרי שְׁתֵּים עֶשְׂרֵה בא שְׁלוֹשׁ עֶשְׂרֵה.",
+      "bytes": 15885,
+      "trimmed": true
+    },
+    "263b9f63204af2af": {
+      "text": "למשל, בשורה: שש, שבע, שמונה, תשע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 24813,
+      "trimmed": true
+    },
+    "9e049e4371aaaa1a": {
+      "text": "בשורה: שמונה, תשע, עשר, אחת עשרה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "בשורה: שמונה, תשע, עשר, אַחַת עֶשְׂרֵה.",
+      "bytes": 26733,
+      "trimmed": true
+    },
+    "0773fa8c2a1f26d1": {
+      "text": "ונקפוץ שתי קפיצות קדימה. לאן נגיע?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 13677,
+      "trimmed": true
+    },
+    "0fc1508ad4898607": {
+      "text": "זה המספר שעמדנו עליו. עכשיו נקפוץ.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 15597,
+      "trimmed": true
+    },
+    "cdd7df8ffcaef590": {
+      "text": "ונקפוץ שתי קפיצות אחורה. לאן נגיע?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 14925,
+      "trimmed": true
+    },
+    "f6de89984d62b127": {
+      "text": "יש כאן אחד עשר דגים: עשרה ועוד אחד.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 17037,
+      "trimmed": true
+    },
+    "c6e5c8a3eb6f4f07": {
+      "text": "למשל, יש כאן {all}: {ten} ועוד {k}.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 16653,
+      "trimmed": true
+    },
+    "d00a045b373f8647": {
+      "text": "נעמוד על אחת, ונקפוץ עוד קפיצה אחת.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 17037,
+      "trimmed": true
+    },
+    "4a5f8b82d9643328": {
+      "text": "יש כאן עשרים פרפרים: עשרה ועוד עשרה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 18669,
+      "trimmed": true
+    },
+    "6a4f31d789eeebc4": {
+      "text": "נעמוד על חמש, ונקפוץ עוד חמש קפיצות.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 15021,
+      "trimmed": true
+    },
+    "fb52446511c0f797": {
+      "text": "יש כאן חמש עשרה דבורים: עשר ועוד חמש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "יש כאן חֲמֵשׁ עֶשְׂרֵה דבורים: עשר ועוד חמש.",
+      "bytes": 16461,
+      "trimmed": true
+    },
+    "f8d494b309f27e27": {
+      "text": "איזה מספר גדול יותר: שש או אחת עשרה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "איזה מספר גדול יותר: שש או אַחַת עֶשְׂרֵה?",
+      "bytes": 18765,
+      "trimmed": true
+    },
+    "57c946c7216a154c": {
+      "text": "יש כאן שישה עשר דגים: עשרה ועוד שישה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 17325,
+      "trimmed": true
+    },
+    "e9c85641c546bdf8": {
+      "text": "יש כאן תשעה עשר דגים: עשרה ועוד תשעה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 18765,
+      "trimmed": true
+    },
+    "b41179484ecaece6": {
+      "text": "יש כאן אחת עשרה סוכריות: עשר ועוד אחת.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "יש כאן אַחַת עֶשְׂרֵה סוכריות: עשר ועוד אחת.",
+      "bytes": 17901,
+      "trimmed": true
+    },
+    "085d22f2072648a3": {
+      "text": "איזה מספר גדול יותר: עשר או חמש עשרה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "איזה מספר גדול יותר: עשר או חֲמֵשׁ עֶשְׂרֵה?",
+      "bytes": 17805,
+      "trimmed": true
+    },
+    "84efd130e40a93fd": {
+      "text": "איזה מספר גדול יותר: שתים עשרה או תשע?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "איזה מספר גדול יותר: שְׁתֵּים עֶשְׂרֵה או תשע?",
+      "bytes": 16269,
+      "trimmed": true
+    },
+    "1323f15120d8ed9a": {
+      "text": "איזה מספר גדול יותר: שתים עשרה או שבע?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "איזה מספר גדול יותר: שְׁתֵּים עֶשְׂרֵה או שבע?",
+      "bytes": 16461,
+      "trimmed": true
+    },
+    "6a67e41167ef9aec": {
+      "text": "בשורה: תשע, עשר, אחת עשרה, שתים עשרה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "בשורה: תשע, עשר, אַחַת עֶשְׂרֵה, שְׁתֵּים עֶשְׂרֵה.",
+      "bytes": 25389,
+      "trimmed": true
+    },
+    "4d25619118960e13": {
+      "text": "איזה מספר גדול יותר: עשר או שלוש עשרה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "איזה מספר גדול יותר: עשר או שְׁלוֹשׁ עֶשְׂרֵה?",
+      "bytes": 15117,
+      "trimmed": true
+    },
+    "55ae6219404ddc3b": {
+      "text": "יש כאן תשע עשרה סוכריות: עשר ועוד תשע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "יש כאן תְּשַׁע עֶשְׂרֵה סוכריות: עשר ועוד תשע.",
+      "bytes": 21357,
+      "trimmed": true
+    },
+    "f9cf7dfa5de93919": {
+      "text": "נעמוד על שלוש, ונקפוץ עוד שלוש קפיצות.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 15693,
+      "trimmed": true
+    },
+    "69b7882e1c91d832": {
+      "text": "נעמוד על שתיים, ונקפוץ עוד שתי קפיצות.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 14541,
+      "trimmed": true
+    },
+    "d2e693f3fee2ac94": {
+      "text": "איזה מספר גדול יותר: ארבע עשרה או תשע?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "איזה מספר גדול יותר: אַרְבַּע עֶשְׂרֵה או תשע?",
+      "bytes": 15021,
+      "trimmed": true
+    },
+    "e57ea289a4b8c0bd": {
+      "text": "נעמוד על ארבע, ונקפוץ עוד ארבע קפיצות.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 14157,
+      "trimmed": true
+    },
+    "8eae7668d5459dbd": {
+      "text": "יש כאן שלוש עשרה עוגיות: עשר ועוד שלוש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "יש כאן שְׁלוֹשׁ עֶשְׂרֵה עוגיות: עשר ועוד שלוש.",
+      "bytes": 16173,
+      "trimmed": true
+    },
+    "dbe79e539f3c62bb": {
+      "text": "איזה מספר גדול יותר: עשרים או שבע עשרה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "איזה מספר גדול יותר: עשרים או שְׁבַע עֶשְׂרֵה?",
+      "bytes": 16077,
+      "trimmed": true
+    },
+    "718b4b4a75e630e9": {
+      "text": "יש כאן שבעה עשר בלונים: עשרה ועוד שבעה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 18861,
+      "trimmed": true
+    },
+    "c89161b7679fa7cb": {
+      "text": "איזה מספר גדול יותר: שמונה או אחת עשרה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "איזה מספר גדול יותר: שמונה או אַחַת עֶשְׂרֵה?",
+      "bytes": 17805,
+      "trimmed": true
+    },
+    "1b08964be91d0e4b": {
+      "text": "יש כאן שישה עשר תפוחים: עשרה ועוד שישה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 19533,
+      "trimmed": true
+    },
+    "d73c6ca9b36d1833": {
+      "text": "יש כאן שבעה עשר פרפרים: עשרה ועוד שבעה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 19821,
+      "trimmed": true
+    },
+    "dc158436e43ec19e": {
+      "text": "איזה מספר גדול יותר: עשרים או חמש עשרה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "איזה מספר גדול יותר: עשרים או חֲמֵשׁ עֶשְׂרֵה?",
+      "bytes": 16173,
+      "trimmed": true
+    },
+    "94e03a3700f76ae1": {
+      "text": "יש כאן שתים עשרה דבורים: עשר ועוד שתיים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "יש כאן שְׁתֵּים עֶשְׂרֵה דבורים: עשר ועוד שתיים.",
+      "bytes": 17901,
+      "trimmed": true
+    },
+    "87d29aa797e93ac0": {
+      "text": "יש כאן שנים עשר פרפרים: עשרה ועוד שניים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 19245,
+      "trimmed": true
+    },
+    "4a674ec05ab7e946": {
+      "text": "איזה מספר גדול יותר: שמונה או שלוש עשרה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "איזה מספר גדול יותר: שמונה או שְׁלוֹשׁ עֶשְׂרֵה?",
+      "bytes": 16269,
+      "trimmed": true
+    },
+    "21c463114af45671": {
+      "text": "כבר נמצא בשורה. איזה מספר בא במקום הריק?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 15117,
+      "trimmed": true
+    },
+    "4c7ac8fdeea5d67c": {
+      "text": "קפצנו קדימה. אחורה זה אל המספרים הקטנים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 15981,
+      "trimmed": true
+    },
+    "11c9367d82fbdca2": {
+      "text": "יש כאן ארבע עשרה סוכריות: עשר ועוד ארבע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "יש כאן אַרְבַּע עֶשְׂרֵה סוכריות: עשר ועוד ארבע.",
+      "bytes": 18285,
+      "trimmed": true
+    },
+    "477d44974f6cfe69": {
+      "text": "יש כאן שלושה עשר תפוחים: עשרה ועוד שלושה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 18381,
+      "trimmed": true
+    },
+    "eebae8a4d7cc6feb": {
+      "text": "יש כאן חמישה עשר כוכבים: עשרה ועוד חמישה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 18669,
+      "trimmed": true
+    },
+    "63031159b7ad6324": {
+      "text": "יש כאן שמונה עשר כוכבים: עשרה ועוד שמונה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 16749,
+      "trimmed": true
+    },
+    "d2f23a0a2d22a097": {
+      "text": "יש כאן ארבעה עשר בלונים: עשרה ועוד ארבעה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 20493,
+      "trimmed": true
+    },
+    "3ea24cc7083d29a0": {
+      "text": "דילגנו על מספר. נספור מעשר צעד אחד קדימה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 18669,
+      "trimmed": true
+    },
+    "7bf24df7300fac17": {
+      "text": "איזה מספר גדול יותר: שש עשרה או תשע עשרה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "איזה מספר גדול יותר: שֵׁשׁ עֶשְׂרֵה או תְּשַׁע עֶשְׂרֵה?",
+      "bytes": 16461,
+      "trimmed": true
+    },
+    "1ae23ff0477bb17d": {
+      "text": "איזה מספר גדול יותר: שש עשרה או אחת עשרה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "איזה מספר גדול יותר: שֵׁשׁ עֶשְׂרֵה או אַחַת עֶשְׂרֵה?",
+      "bytes": 19341,
+      "trimmed": true
+    },
+    "6e48546e3220cb77": {
+      "text": "יש כאן שמונה עשרה עוגיות: עשר ועוד שמונה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "יש כאן שְׁמוֹנֶה עֶשְׂרֵה עוגיות: עשר ועוד שמונה.",
+      "bytes": 20109,
+      "trimmed": true
+    },
+    "dedb90b2d03dea37": {
+      "text": "קפצנו אחורה. קדימה זה אל המספרים הגדולים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 17805,
+      "trimmed": true
+    },
+    "4fb57ce43be33e1b": {
+      "text": "למשל, יש כאן שש עשרה סוכריות: עשר ועוד שש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "למשל, יש כאן שֵׁשׁ עֶשְׂרֵה סוכריות: עשר ועוד שש.",
+      "bytes": 20973,
+      "trimmed": true
+    },
+    "5e2b79fa26d8950c": {
+      "text": "איזה מספר גדול יותר: שש עשרה או שלוש עשרה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "איזה מספר גדול יותר: שֵׁשׁ עֶשְׂרֵה או שְׁלוֹשׁ עֶשְׂרֵה?",
+      "bytes": 18861,
+      "trimmed": true
+    },
+    "45a27441d59f7d33": {
+      "text": "בכל קבוצה יש כוכב אחד. כמה כוכבים יש ביחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 19917,
+      "trimmed": true
+    },
+    "1b18008ec962f680": {
+      "text": "דילגנו על מספר. נספור מעשרים צעד אחד אחורה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 17805,
+      "trimmed": true
+    },
+    "879e054537d7b202": {
+      "text": "בכל קבוצה יש תפוח אחד. כמה תפוחים יש ביחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 19437,
+      "trimmed": true
+    },
+    "8d8832a052a0bc33": {
+      "text": "בכל קבוצה יש ארבעה דגים. כמה דגים יש ביחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 21069,
+      "trimmed": true
+    },
+    "883bbacc0f7fc337": {
+      "text": "איזה מספר גדול יותר: ארבע עשרה או אחת עשרה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "איזה מספר גדול יותר: אַרְבַּע עֶשְׂרֵה או אַחַת עֶשְׂרֵה?",
+      "bytes": 16941,
+      "trimmed": true
+    },
+    "fe8e0b8eaa8474b3": {
+      "text": "איזה מספר גדול יותר: שתים עשרה או חמש עשרה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "איזה מספר גדול יותר: שְׁתֵּים עֶשְׂרֵה או חֲמֵשׁ עֶשְׂרֵה?",
+      "bytes": 16941,
+      "trimmed": true
+    },
+    "6e89d00f327da9bf": {
+      "text": "איזה מספר גדול יותר: ארבע עשרה או שבע עשרה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "איזה מספר גדול יותר: אַרְבַּע עֶשְׂרֵה או שְׁבַע עֶשְׂרֵה?",
+      "bytes": 15885,
+      "trimmed": true
+    },
+    "aa4ccbeb20063414": {
+      "text": "בשורה: עשר, אחת עשרה, שתים עשרה, שלוש עשרה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "בשורה: עשר, אַחַת עֶשְׂרֵה, שְׁתֵּים עֶשְׂרֵה, שְׁלוֹשׁ עֶשְׂרֵה.",
+      "bytes": 27597,
+      "trimmed": true
+    },
+    "03ec0bbf11600078": {
+      "text": "איזה מספר גדול יותר: שתים עשרה או שבע עשרה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "איזה מספר גדול יותר: שְׁתֵּים עֶשְׂרֵה או שְׁבַע עֶשְׂרֵה?",
+      "bytes": 17037,
+      "trimmed": true
+    },
+    "71988275056c4f9f": {
+      "text": "איזה מספר גדול יותר: שמונה עשרה או חמש עשרה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "איזה מספר גדול יותר: שְׁמוֹנֶה עֶשְׂרֵה או חֲמֵשׁ עֶשְׂרֵה?",
+      "bytes": 16941,
+      "trimmed": true
+    },
+    "1a570bb8c5857278": {
+      "text": "איזה מספר גדול יותר: ארבע עשרה או תשע עשרה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "איזה מספר גדול יותר: אַרְבַּע עֶשְׂרֵה או תְּשַׁע עֶשְׂרֵה?",
+      "bytes": 18573,
+      "trimmed": true
+    },
+    "9b15cff7bcd36cac": {
+      "text": "בכל קבוצה יש עוגייה אחת. כמה עוגיות יש ביחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 19149,
+      "trimmed": true
+    },
+    "3ef68b55618fd8d7": {
+      "text": "בכל קבוצה יש שתי דבורים. כמה דבורים יש ביחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 19437,
+      "trimmed": true
+    },
+    "06c459878dd91b6b": {
+      "text": "בכל קבוצה יש שני כוכבים. כמה כוכבים יש ביחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 20589,
+      "trimmed": true
+    },
+    "a142fee2d685af58": {
+      "text": "כל קפיצה היא צעד אחד. נספור את הקפיצות בקול.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 17997,
+      "trimmed": true
+    },
+    "4ea82fcfb9cac3d7": {
+      "text": "בכל קבוצה יש שני פרפרים. כמה פרפרים יש ביחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 21165,
+      "trimmed": true
+    },
+    "591b4ee26617fa8d": {
+      "text": "בכל קבוצה יש חמש עוגיות. כמה עוגיות יש ביחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 20877,
+      "trimmed": true
+    },
+    "1575a8e1f3eca1c3": {
+      "text": "למשל, יש כאן שלוש עשרה דבורים: עשר ועוד שלוש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "למשל, יש כאן שְׁלוֹשׁ עֶשְׂרֵה דבורים: עשר ועוד שלוש.",
+      "bytes": 21357,
+      "trimmed": true
+    },
+    "4823e7bb298fb2a6": {
+      "text": "למשל, יש כאן שלוש עשרה עוגיות: עשר ועוד שלוש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "למשל, יש כאן שְׁלוֹשׁ עֶשְׂרֵה עוגיות: עשר ועוד שלוש.",
+      "bytes": 22797,
+      "trimmed": true
+    },
+    "06fc3efba277c4aa": {
+      "text": "למשל, יש כאן שישה עשר בלונים: עשרה ועוד שישה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22029,
+      "trimmed": true
+    },
+    "2c3f95ecada26b8c": {
+      "text": "איזה מספר גדול יותר: שמונה עשרה או שלוש עשרה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "איזה מספר גדול יותר: שְׁמוֹנֶה עֶשְׂרֵה או שְׁלוֹשׁ עֶשְׂרֵה?",
+      "bytes": 17997,
+      "trimmed": true
+    },
+    "be22a0efb8fa0aa9": {
+      "text": "דילגנו על מספר. נספור משש עשרה צעד אחד אחורה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 18861,
+      "trimmed": true
+    },
+    "f32adf69f6e8c637": {
+      "text": "בשורה: שבע עשרה, שמונה עשרה, תשע עשרה, עשרים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "בשורה: שְׁבַע עֶשְׂרֵה, שְׁמוֹנֶה עֶשְׂרֵה, תְּשַׁע עֶשְׂרֵה, עשרים.",
+      "bytes": 26253,
+      "trimmed": true
+    },
+    "9109731ef7cc60b5": {
+      "text": "נעמוד על שש ונקפוץ קפיצה אחת קדימה. לאן נגיע?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 19149,
+      "trimmed": true
+    },
+    "28c52ca1dbb1daa1": {
+      "text": "למשל, יש כאן שלושה עשר דגים: עשרה ועוד שלושה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 21069,
+      "trimmed": true
+    },
+    "dcb2837511452a26": {
+      "text": "נעמוד על שש ונקפוץ קפיצה אחת אחורה. לאן נגיע?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22029,
+      "trimmed": true
+    },
+    "25d2ef158962b686": {
+      "text": "דילגנו על מספר. נספור משש עשרה צעד אחד קדימה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 20877,
+      "trimmed": true
+    },
+    "772eb3bfd7afc65b": {
+      "text": "דילגנו על מספר. נספור מחמש עשרה צעד אחד קדימה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 18861,
+      "trimmed": true
+    },
+    "18ed1f67577554f8": {
+      "text": "למשל, יש כאן שלוש עשרה סוכריות: עשר ועוד שלוש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "למשל, יש כאן שְׁלוֹשׁ עֶשְׂרֵה סוכריות: עשר ועוד שלוש.",
+      "bytes": 21645,
+      "trimmed": true
+    },
+    "a042cf430eaf2c37": {
+      "text": "דילגנו על מספר. נספור מאחת עשרה צעד אחד קדימה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 19149,
+      "trimmed": true
+    },
+    "dcef0b5192d31839": {
+      "text": "דילגנו על מספר. נספור משבע עשרה צעד אחד קדימה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 19341,
+      "trimmed": true
+    },
+    "017649bfe606c399": {
+      "text": "דילגנו על מספר. נספור מאחת עשרה צעד אחד אחורה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 20109,
+      "trimmed": true
+    },
+    "4edc65f641ad72a5": {
+      "text": "דילגנו על מספר. נספור מחמש עשרה צעד אחד אחורה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 19341,
+      "trimmed": true
+    },
+    "8468108b53318d18": {
+      "text": "דילגנו על מספר. נספור מתשע עשרה צעד אחד אחורה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 19821,
+      "trimmed": true
+    },
+    "bed9dfc8f184467d": {
+      "text": "דילגנו על מספר. נספור משבע עשרה צעד אחד אחורה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 20973,
+      "trimmed": true
+    },
+    "e7a61f1afbea47a9": {
+      "text": "בכל קבוצה יש שלושה פרפרים. כמה פרפרים יש ביחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 20877,
+      "trimmed": true
+    },
+    "ee76b8c110f8146e": {
+      "text": "בשורה: ארבע עשרה, חמש עשרה, שש עשרה, שבע עשרה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "בשורה: אַרְבַּע עֶשְׂרֵה, חֲמֵשׁ עֶשְׂרֵה, שֵׁשׁ עֶשְׂרֵה, שְׁבַע עֶשְׂרֵה.",
+      "bytes": 26733,
+      "trimmed": true
+    },
+    "d72b3b4dcffb5d01": {
+      "text": "בכל קבוצה יש שלושה בלונים. כמה בלונים יש ביחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 21357,
+      "trimmed": true
+    },
+    "8daff9a5bdc82619": {
+      "text": "בכל קבוצה יש חמישה כוכבים. כמה כוכבים יש ביחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 19533,
+      "trimmed": true
+    },
+    "8461398257943091": {
+      "text": "בכל קבוצה יש ארבעה תפוחים. כמה תפוחים יש ביחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 19053,
+      "trimmed": true
+    },
+    "0ff3fafacf6db0e0": {
+      "text": "בכל קבוצה יש חמישה תפוחים. כמה תפוחים יש ביחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 21165,
+      "trimmed": true
+    },
+    "19c885370ada3248": {
+      "text": "נעמוד על שש ונקפוץ שתי קפיצות קדימה. לאן נגיע?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 18189,
+      "trimmed": true
+    },
+    "ac520df6c2c7fbad": {
+      "text": "נעמוד על חמש ונקפוץ קפיצה אחת קדימה. לאן נגיע?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 19245,
+      "trimmed": true
+    },
+    "95f0e95db45b329b": {
+      "text": "נעמוד על שש ונקפוץ שתי קפיצות אחורה. לאן נגיע?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 18957,
+      "trimmed": true
+    },
+    "6dc850efe627e057": {
+      "text": "נעמוד על תשע ונקפוץ קפיצה אחת קדימה. לאן נגיע?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 21453,
+      "trimmed": true
+    },
+    "31a75eeacfdec822": {
+      "text": "נעמוד על חמש ונקפוץ קפיצה אחת אחורה. לאן נגיע?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 21645,
+      "trimmed": true
+    },
+    "7ff47b487907070f": {
+      "text": "למשל, יש כאן שלושה עשר תפוחים: עשרה ועוד שלושה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 21357,
+      "trimmed": true
+    },
+    "d55047dcc85579a1": {
+      "text": "למשל, יש כאן שלושה עשר פרפרים: עשרה ועוד שלושה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22893,
+      "trimmed": true
+    },
+    "193327cb346a5ac5": {
+      "text": "למשל, יש כאן שלושה עשר כוכבים: עשרה ועוד שלושה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22605,
+      "trimmed": true
+    },
+    "a0ad2971906ff075": {
+      "text": "נעמוד על תשע ונקפוץ קפיצה אחת אחורה. לאן נגיע?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 20397,
+      "trimmed": true
+    },
+    "d7f39cf14f74efe0": {
+      "text": "דילגנו על מספר. נספור משתים עשרה צעד אחד קדימה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 19821,
+      "trimmed": true
+    },
+    "a97282626ea55e24": {
+      "text": "זה המספר שבשאלה. איזה מספר אומרים מיד אחרי עשר?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 20301,
+      "trimmed": true
+    },
+    "73440ba8a9b754d9": {
+      "text": "למשל, יש כאן שלושה עשר בלונים: עשרה ועוד שלושה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22413,
+      "trimmed": true
+    },
+    "20155ee9927d72a2": {
+      "text": "דילגנו על מספר. נספור מארבע עשרה צעד אחד קדימה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 20493,
+      "trimmed": true
+    },
+    "1fe68d844914bc6d": {
+      "text": "דילגנו על מספר. נספור מארבע עשרה צעד אחד אחורה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 16845,
+      "trimmed": true
+    },
+    "c6acd75a6635c44f": {
+      "text": "דילגנו על מספר. נספור משלוש עשרה צעד אחד קדימה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 19341,
+      "trimmed": true
+    },
+    "2360adb4123dde7a": {
+      "text": "דילגנו על מספר. נספור משלוש עשרה צעד אחד אחורה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 21453,
+      "trimmed": true
+    },
+    "62ed364293c33571": {
+      "text": "על ישר המספרים כל מספר גדול באחד מהמספר שלפניו.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 19725,
+      "trimmed": true
+    },
+    "fd684e98b413f848": {
+      "text": "דילגנו על מספר. נספור משתים עשרה צעד אחד אחורה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 18573,
+      "trimmed": true
+    },
+    "281820ce0d5a5c6a": {
+      "text": "בשורה: שלוש עשרה, ארבע עשרה, חמש עשרה, שש עשרה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "בשורה: שְׁלוֹשׁ עֶשְׂרֵה, אַרְבַּע עֶשְׂרֵה, חֲמֵשׁ עֶשְׂרֵה, שֵׁשׁ עֶשְׂרֵה.",
+      "bytes": 32013,
+      "trimmed": true
+    },
+    "bf08857cf22b814f": {
+      "text": "בשורה: חמש עשרה, שש עשרה, שבע עשרה, שמונה עשרה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "בשורה: חֲמֵשׁ עֶשְׂרֵה, שֵׁשׁ עֶשְׂרֵה, שְׁבַע עֶשְׂרֵה, שְׁמוֹנֶה עֶשְׂרֵה.",
+      "bytes": 26925,
+      "trimmed": true
+    },
+    "b8fe55c976802981": {
+      "text": "בכל קבוצה יש ארבע סוכריות. כמה סוכריות יש ביחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 19629,
+      "trimmed": true
+    },
+    "9768843b6eb6ad69": {
+      "text": "בכל קבוצה יש שלוש סוכריות. כמה סוכריות יש ביחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 21741,
+      "trimmed": true
+    },
+    "33f3b62fda98ba50": {
+      "text": "נעמוד על שבע ונקפוץ שתי קפיצות קדימה. לאן נגיע?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 20109,
+      "trimmed": true
+    },
+    "5cc09e7b02312127": {
+      "text": "בשורה: שש עשרה, שבע עשרה, שמונה עשרה, תשע עשרה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "בשורה: שֵׁשׁ עֶשְׂרֵה, שְׁבַע עֶשְׂרֵה, שְׁמוֹנֶה עֶשְׂרֵה, תְּשַׁע עֶשְׂרֵה.",
+      "bytes": 27309,
+      "trimmed": true
+    },
+    "4ee3c417c5ede080": {
+      "text": "נעמוד על תשע ונקפוץ שתי קפיצות קדימה. לאן נגיע?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22125,
+      "trimmed": true
+    },
+    "d708c60d455eff7b": {
+      "text": "נעמוד על עשר ונקפוץ שתי קפיצות קדימה. לאן נגיע?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 20205,
+      "trimmed": true
+    },
+    "fd21b2968f91fed6": {
+      "text": "נעמוד על עשר ונקפוץ שתי קפיצות אחורה. לאן נגיע?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 18957,
+      "trimmed": true
+    },
+    "206c0e0a2bd47366": {
+      "text": "נעמוד על תשע ונקפוץ שתי קפיצות אחורה. לאן נגיע?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 21357,
+      "trimmed": true
+    },
+    "a8c8380138fc5761": {
+      "text": "נעמוד על שבע ונקפוץ שתי קפיצות אחורה. לאן נגיע?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22893,
+      "trimmed": true
+    },
+    "6c271320b4eee31d": {
+      "text": "דילגנו על מספר. נספור משמונה עשרה צעד אחד קדימה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 19725,
+      "trimmed": true
+    },
+    "257412dbf5a2e174": {
+      "text": "נעמוד על ארבע ונקפוץ שתי קפיצות קדימה. לאן נגיע?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 20973,
+      "trimmed": true
+    },
+    "0f1aeb1e5137fbb7": {
+      "text": "דילגנו על מספר. נספור משמונה עשרה צעד אחד אחורה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 20013,
+      "trimmed": true
+    },
+    "6fd001a4f00dabac": {
+      "text": "נעמוד על שבע ונקפוץ שלוש קפיצות קדימה. לאן נגיע?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 23661,
+      "trimmed": true
+    },
+    "939415ca28c0453d": {
+      "text": "נעמוד על שמונה ונקפוץ קפיצה אחת קדימה. לאן נגיע?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 21165,
+      "trimmed": true
+    },
+    "e32cf8345217a2a9": {
+      "text": "נעמוד על חמש ונקפוץ שלוש קפיצות אחורה. לאן נגיע?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 20493,
+      "trimmed": true
+    },
+    "819065f1bfac969d": {
+      "text": "נעמוד על חמש ונקפוץ שלוש קפיצות קדימה. לאן נגיע?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22413,
+      "trimmed": true
+    },
+    "ad78cbb7c1a75627": {
+      "text": "נעמוד על עשר ונקפוץ שלוש קפיצות קדימה. לאן נגיע?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22125,
+      "trimmed": true
+    },
+    "e644f144ef031e78": {
+      "text": "נעמוד על שבע ונקפוץ שלוש קפיצות אחורה. לאן נגיע?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 20973,
+      "trimmed": true
+    },
+    "fe556d149303c794": {
+      "text": "נעמוד על שמונה ונקפוץ קפיצה אחת אחורה. לאן נגיע?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 21453,
+      "trimmed": true
+    },
+    "fbb2e1d7578eec0f": {
+      "text": "נעמוד על עשר ונקפוץ שלוש קפיצות אחורה. לאן נגיע?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 20397,
+      "trimmed": true
+    },
+    "39a424b8f639d256": {
+      "text": "נעמוד על עשרים ונקפוץ קפיצה אחת אחורה. לאן נגיע?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 20013,
+      "trimmed": true
+    },
+    "1fac4059d2c01d4f": {
+      "text": "בקובייה הראשונה אחת, ובשנייה שש. ביחד שבע נקודות.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 23277,
+      "trimmed": true
+    },
+    "7553dc55a6f881f0": {
+      "text": "בקובייה הראשונה חמש, ובשנייה אחת. ביחד שש נקודות.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 28173,
+      "trimmed": true
+    },
+    "934cbc73a86b975d": {
+      "text": "בקובייה הראשונה שש, ובשנייה אחת. ביחד שבע נקודות.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 26445,
+      "trimmed": true
+    },
+    "d005181bfa658843": {
+      "text": "תשע בא לפני עשר. אנחנו מחפשים את המספר שבא אחריו.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 18477,
+      "trimmed": true
+    },
+    "8504566175799e2f": {
+      "text": "זה המספר שבשאלה. איזה מספר אומרים ממש לפני עשרים?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 20685,
+      "trimmed": true
+    },
+    "e9dc3a24b259e88d": {
+      "text": "המספר שש כבר נמצא בשורה. איזה מספר בא במקום הריק?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 19437,
+      "trimmed": true
+    },
+    "fbd597f204510560": {
+      "text": "בשורה: אחת עשרה, שתים עשרה, שלוש עשרה, ארבע עשרה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "בשורה: אַחַת עֶשְׂרֵה, שְׁתֵּים עֶשְׂרֵה, שְׁלוֹשׁ עֶשְׂרֵה, אַרְבַּע עֶשְׂרֵה.",
+      "bytes": 25581,
+      "trimmed": true
+    },
+    "b711b0ba0ab5729c": {
+      "text": "בשורה: שתים עשרה, שלוש עשרה, ארבע עשרה, חמש עשרה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "בשורה: שְׁתֵּים עֶשְׂרֵה, שְׁלוֹשׁ עֶשְׂרֵה, אַרְבַּע עֶשְׂרֵה, חֲמֵשׁ עֶשְׂרֵה.",
+      "bytes": 25485,
+      "trimmed": true
+    },
+    "5c3f865b1e599a15": {
+      "text": "בקבוצה הגדולה יש {ten}. נתחיל מעשר, ונמשיך לספור.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22701,
+      "trimmed": true
+    },
+    "102fcb086443f3fd": {
+      "text": "בקובייה הראשונה אחת, ובשנייה חמש. ביחד שש נקודות.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 24429,
+      "trimmed": true
+    },
+    "58d741ac1473b5f6": {
+      "text": "נעמוד על ארבע ונקפוץ שלוש קפיצות קדימה. לאן נגיע?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22701,
+      "trimmed": true
+    },
+    "3b06d468decf5c8c": {
+      "text": "בקובייה הראשונה אחת, ובשנייה אחת. ביחד שתי נקודות.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 24237,
+      "trimmed": true
+    },
+    "73b704e3ce34d714": {
+      "text": "בקובייה הראשונה חמש, ובשנייה חמש. ביחד עשר נקודות.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 25197,
+      "trimmed": true
+    },
+    "a99db43ecb025dcf": {
+      "text": "בקובייה הראשונה שש, ובשנייה שלוש. ביחד תשע נקודות.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 26061,
+      "trimmed": true
+    },
+    "9927d6410d6b33e7": {
+      "text": "בקובייה הראשונה שלוש, ובשנייה שש. ביחד תשע נקודות.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 24621,
+      "trimmed": true
+    },
+    "0335975c19b51ad6": {
+      "text": "בקובייה הראשונה שש, ובשנייה ארבע. ביחד עשר נקודות.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 25869,
+      "trimmed": true
+    },
+    "7e47ea6ca98624b3": {
+      "text": "המספר עשר כבר נמצא בשורה. איזה מספר בא במקום הריק?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22125,
+      "trimmed": true
+    },
+    "e1800e2c3407fd0d": {
+      "text": "בקובייה הראשונה ארבע, ובשנייה שש. ביחד עשר נקודות.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 26157,
+      "trimmed": true
+    },
+    "47c71924dd9880c5": {
+      "text": "נעמוד על שמונה ונקפוץ שלוש קפיצות אחורה. לאן נגיע?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 20877,
+      "trimmed": true
+    },
+    "b9cc656833c6382d": {
+      "text": "נעמוד על עשרים ונקפוץ שלוש קפיצות אחורה. לאן נגיע?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 21261,
+      "trimmed": true
+    },
+    "0ddd8948a8743d50": {
+      "text": "נעמוד על שמונה ונקפוץ שלוש קפיצות קדימה. לאן נגיע?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 23757,
+      "trimmed": true
+    },
+    "ffd5c94dd0be5138": {
+      "text": "בקובייה הראשונה אחת, ובשנייה ארבע. ביחד חמש נקודות.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 27981,
+      "trimmed": true
+    },
+    "65e91df69b109746": {
+      "text": "בקובייה הראשונה שלוש, ובשנייה שלוש. ביחד שש נקודות.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 26925,
+      "trimmed": true
+    },
+    "eaa680c4ba0c0846": {
+      "text": "בקובייה הראשונה ארבע, ובשנייה אחת. ביחד חמש נקודות.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 24525,
+      "trimmed": true
+    },
+    "c3e8e6db17ba338f": {
+      "text": "זה המספר שבשאלה. איזה מספר אומרים מיד אחרי שש עשרה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "זה המספר שבשאלה. איזה מספר אומרים מיד אחרי שֵׁשׁ עֶשְׂרֵה?",
+      "bytes": 22029,
+      "trimmed": true
+    },
+    "961404b60f687d55": {
+      "text": "בקובייה הראשונה ארבע, ובשנייה חמש. ביחד תשע נקודות.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 23277,
+      "trimmed": true
+    },
+    "47626288adf8e636": {
+      "text": "בקובייה הראשונה חמש, ובשנייה ארבע. ביחד תשע נקודות.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 28845,
+      "trimmed": true
+    },
+    "65bd4e9100197c7b": {
+      "text": "זה המספר שבשאלה. איזה מספר אומרים ממש לפני שש עשרה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "זה המספר שבשאלה. איזה מספר אומרים ממש לפני שֵׁשׁ עֶשְׂרֵה?",
+      "bytes": 23469,
+      "trimmed": true
+    },
+    "021726aac0f06285": {
+      "text": "המספר ארבע כבר נמצא בשורה. איזה מספר בא במקום הריק?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 19437,
+      "trimmed": true
+    },
+    "a795146f29979852": {
+      "text": "ספרנו רק קבוצה אחת. בקבוצה השנייה יש עוד אותו מספר.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 21837,
+      "trimmed": true
+    },
+    "4ee4c333152d2267": {
+      "text": "נעמוד על אחת עשרה ונקפוץ קפיצה אחת קדימה. לאן נגיע?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "נעמוד על אַחַת עֶשְׂרֵה ונקפוץ קפיצה אחת קדימה. לאן נגיע?",
+      "bytes": 21165,
+      "trimmed": true
+    },
+    "7cf0a677aff3180a": {
+      "text": "נעמוד על חמש עשרה ונקפוץ קפיצה אחת קדימה. לאן נגיע?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "נעמוד על חֲמֵשׁ עֶשְׂרֵה ונקפוץ קפיצה אחת קדימה. לאן נגיע?",
+      "bytes": 23085,
+      "trimmed": true
+    },
+    "f0392052fefa39d7": {
+      "text": "נעמוד על שש עשרה ונקפוץ שתי קפיצות קדימה. לאן נגיע?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "נעמוד על שֵׁשׁ עֶשְׂרֵה ונקפוץ שתי קפיצות קדימה. לאן נגיע?",
+      "bytes": 21453,
+      "trimmed": true
+    },
+    "bec1e266b63dcc2c": {
+      "text": "נעמוד על חמש עשרה ונקפוץ קפיצה אחת אחורה. לאן נגיע?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "נעמוד על חֲמֵשׁ עֶשְׂרֵה ונקפוץ קפיצה אחת אחורה. לאן נגיע?",
+      "bytes": 21933,
+      "trimmed": true
+    },
+    "16e1d8bb7fbbc5be": {
+      "text": "נעמוד על שבע עשרה ונקפוץ קפיצה אחת קדימה. לאן נגיע?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "נעמוד על שְׁבַע עֶשְׂרֵה ונקפוץ קפיצה אחת קדימה. לאן נגיע?",
+      "bytes": 20589,
+      "trimmed": true
+    },
+    "4d522e43020a31b0": {
+      "text": "נעמוד על אחת עשרה ונקפוץ קפיצה אחת אחורה. לאן נגיע?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "נעמוד על אַחַת עֶשְׂרֵה ונקפוץ קפיצה אחת אחורה. לאן נגיע?",
+      "bytes": 22701,
+      "trimmed": true
+    },
+    "b3861edc837a23c8": {
+      "text": "נעמוד על שש עשרה ונקפוץ שתי קפיצות אחורה. לאן נגיע?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "נעמוד על שֵׁשׁ עֶשְׂרֵה ונקפוץ שתי קפיצות אחורה. לאן נגיע?",
+      "bytes": 24717,
+      "trimmed": true
+    },
+    "ce76790043d1e4ef": {
+      "text": "אולי דילגנו על נקודה. נספור שוב לאט, ונגע בכל נקודה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 24237,
+      "trimmed": true
+    },
+    "0b5c76a613000905": {
+      "text": "נעמוד על שבע עשרה ונקפוץ קפיצה אחת אחורה. לאן נגיע?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "נעמוד על שְׁבַע עֶשְׂרֵה ונקפוץ קפיצה אחת אחורה. לאן נגיע?",
+      "bytes": 21357,
+      "trimmed": true
+    },
+    "2ab1a2bfa9f8e922": {
+      "text": "בקובייה הראשונה אחת, ובשנייה שלוש. ביחד ארבע נקודות.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 27213,
+      "trimmed": true
+    },
+    "fa984d3f700b2e4b": {
+      "text": "בקובייה הראשונה שתיים, ובשנייה ארבע. ביחד שש נקודות.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 29229,
+      "trimmed": true
+    },
+    "60affc912ff36870": {
+      "text": "בקובייה הראשונה שלוש, ובשנייה אחת. ביחד ארבע נקודות.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 24141,
+      "trimmed": true
+    },
+    "f8c0fe5fbd4e0bdf": {
+      "text": "בקובייה הראשונה שלוש, ובשנייה ארבע. ביחד שבע נקודות.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 27597,
+      "trimmed": true
+    },
+    "b29be91e016ce0b2": {
+      "text": "בקובייה הראשונה ארבע, ובשנייה שתיים. ביחד שש נקודות.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 24141,
+      "trimmed": true
+    },
+    "49270c0f3e5a8713": {
+      "text": "בקובייה הראשונה שתיים, ובשנייה חמש. ביחד שבע נקודות.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 25485,
+      "trimmed": true
+    },
+    "355be942fe1b2084": {
+      "text": "בקובייה הראשונה חמש, ובשנייה שתיים. ביחד שבע נקודות.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 25197,
+      "trimmed": true
+    },
+    "32b88976367e38fc": {
+      "text": "בקובייה הראשונה ארבע, ובשנייה שלוש. ביחד שבע נקודות.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 28461,
+      "trimmed": true
+    },
+    "43438ce7d6e1c3e2": {
+      "text": "זה המספר שבשאלה. איזה מספר אומרים מיד אחרי שבע עשרה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "זה המספר שבשאלה. איזה מספר אומרים מיד אחרי שְׁבַע עֶשְׂרֵה?",
+      "bytes": 20877,
+      "trimmed": true
+    },
+    "72efc95cd1a0228e": {
+      "text": "זה המספר שבשאלה. איזה מספר אומרים מיד אחרי אחת עשרה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "זה המספר שבשאלה. איזה מספר אומרים מיד אחרי אַחַת עֶשְׂרֵה?",
+      "bytes": 23469,
+      "trimmed": true
+    },
+    "5dac7a98cd47159f": {
+      "text": "זה המספר שבשאלה. איזה מספר אומרים מיד אחרי חמש עשרה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "זה המספר שבשאלה. איזה מספר אומרים מיד אחרי חֲמֵשׁ עֶשְׂרֵה?",
+      "bytes": 22221,
+      "trimmed": true
+    },
+    "e84a6706257bfc39": {
+      "text": "זה המספר שבשאלה. איזה מספר אומרים ממש לפני אחת עשרה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "זה המספר שבשאלה. איזה מספר אומרים ממש לפני אַחַת עֶשְׂרֵה?",
+      "bytes": 20493,
+      "trimmed": true
+    },
+    "308cba8097f166dc": {
+      "text": "זה המספר שבשאלה. איזה מספר אומרים ממש לפני חמש עשרה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "זה המספר שבשאלה. איזה מספר אומרים ממש לפני חֲמֵשׁ עֶשְׂרֵה?",
+      "bytes": 21645,
+      "trimmed": true
+    },
+    "f05ad5cf08967a2a": {
+      "text": "זה המספר שבשאלה. איזה מספר אומרים מיד אחרי תשע עשרה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "זה המספר שבשאלה. איזה מספר אומרים מיד אחרי תְּשַׁע עֶשְׂרֵה?",
+      "bytes": 24045,
+      "trimmed": true
+    },
+    "a968669b15359916": {
+      "text": "זה המספר שבשאלה. איזה מספר אומרים ממש לפני תשע עשרה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "זה המספר שבשאלה. איזה מספר אומרים ממש לפני תְּשַׁע עֶשְׂרֵה?",
+      "bytes": 20973,
+      "trimmed": true
+    },
+    "eeaf87e7ddb9f059": {
+      "text": "המספר שמונה כבר נמצא בשורה. איזה מספר בא במקום הריק?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 19245,
+      "trimmed": true
+    },
+    "e22d5b931386e340": {
+      "text": "המספר שתיים כבר נמצא בשורה. איזה מספר בא במקום הריק?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 21933,
+      "trimmed": true
+    },
+    "528db3360e188817": {
+      "text": "נספור את הקבוצה הראשונה, ונמשיך לספור בקבוצה השנייה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 18381,
+      "trimmed": true
+    },
+    "46d1bd91d6b9897f": {
+      "text": "נעמוד על שתים עשרה ונקפוץ קפיצה אחת קדימה. לאן נגיע?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "נעמוד על שְׁתֵּים עֶשְׂרֵה ונקפוץ קפיצה אחת קדימה. לאן נגיע?",
+      "bytes": 22317,
+      "trimmed": true
+    },
+    "10b707a965469036": {
+      "text": "המספר עשרים כבר נמצא בשורה. איזה מספר בא במקום הריק?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 20973,
+      "trimmed": true
+    },
+    "31a6bb2ead83d5bf": {
+      "text": "זה המספר שבשאלה. איזה מספר אומרים ממש לפני שבע עשרה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "זה המספר שבשאלה. איזה מספר אומרים ממש לפני שְׁבַע עֶשְׂרֵה?",
+      "bytes": 22989,
+      "trimmed": true
+    },
+    "e3b537cb95c7b40d": {
+      "text": "נעמוד על ארבע עשרה ונקפוץ קפיצה אחת קדימה. לאן נגיע?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "נעמוד על אַרְבַּע עֶשְׂרֵה ונקפוץ קפיצה אחת קדימה. לאן נגיע?",
+      "bytes": 20493,
+      "trimmed": true
+    },
+    "40583a82af13906c": {
+      "text": "נעמוד על חמש עשרה ונקפוץ שתי קפיצות קדימה. לאן נגיע?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "נעמוד על חֲמֵשׁ עֶשְׂרֵה ונקפוץ שתי קפיצות קדימה. לאן נגיע?",
+      "bytes": 20589,
+      "trimmed": true
+    },
+    "1d083992b88e76c9": {
+      "text": "נעמוד על שש עשרה ונקפוץ שלוש קפיצות קדימה. לאן נגיע?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "נעמוד על שֵׁשׁ עֶשְׂרֵה ונקפוץ שלוש קפיצות קדימה. לאן נגיע?",
+      "bytes": 23181,
+      "trimmed": true
+    },
+    "b30add9b2accb1cc": {
+      "text": "נעמוד על ארבע עשרה ונקפוץ קפיצה אחת אחורה. לאן נגיע?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "נעמוד על אַרְבַּע עֶשְׂרֵה ונקפוץ קפיצה אחת אחורה. לאן נגיע?",
+      "bytes": 24717,
+      "trimmed": true
+    },
+    "10db34f818e43e6b": {
+      "text": "נעמוד על תשע עשרה ונקפוץ שתי קפיצות אחורה. לאן נגיע?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "נעמוד על תְּשַׁע עֶשְׂרֵה ונקפוץ שתי קפיצות אחורה. לאן נגיע?",
+      "bytes": 18861,
+      "trimmed": true
+    },
+    "19ded28cd6ccad29": {
+      "text": "נעמוד על שתים עשרה ונקפוץ קפיצה אחת אחורה. לאן נגיע?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "נעמוד על שְׁתֵּים עֶשְׂרֵה ונקפוץ קפיצה אחת אחורה. לאן נגיע?",
+      "bytes": 22509,
+      "trimmed": true
+    },
+    "b1c553fc2bcf8bb4": {
+      "text": "נעמוד על שש עשרה ונקפוץ שלוש קפיצות אחורה. לאן נגיע?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "נעמוד על שֵׁשׁ עֶשְׂרֵה ונקפוץ שלוש קפיצות אחורה. לאן נגיע?",
+      "bytes": 22221,
+      "trimmed": true
+    },
+    "dff360d9cd138664": {
+      "text": "בקובייה הראשונה אחת, ובשנייה שתיים. ביחד שלוש נקודות.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 25677,
+      "trimmed": true
+    },
+    "3cfe77f27c327272": {
+      "text": "נעמוד על חמש עשרה ונקפוץ שתי קפיצות אחורה. לאן נגיע?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "נעמוד על חֲמֵשׁ עֶשְׂרֵה ונקפוץ שתי קפיצות אחורה. לאן נגיע?",
+      "bytes": 22509,
+      "trimmed": true
+    },
+    "53ff37f94039027a": {
+      "text": "בקובייה הראשונה שתיים, ובשנייה אחת. ביחד שלוש נקודות.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 26733,
+      "trimmed": true
+    },
+    "733ad8c52f3c2089": {
+      "text": "בקובייה הראשונה שתיים, ובשנייה שלוש. ביחד חמש נקודות.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 24621,
+      "trimmed": true
+    },
+    "8aa86c52514bd6ac": {
+      "text": "בקובייה הראשונה שלוש, ובשנייה שתיים. ביחד חמש נקודות.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 28749,
+      "trimmed": true
+    },
+    "81dfcb6d207bffae": {
+      "text": "בקובייה הראשונה שש, ובשנייה שתיים. ביחד שמונה נקודות.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 23373,
+      "trimmed": true
+    },
+    "2c388500e6a7059c": {
+      "text": "בקובייה הראשונה שתיים, ובשנייה שש. ביחד שמונה נקודות.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 23661,
+      "trimmed": true
+    },
+    "02a2d114f9c29efe": {
+      "text": "בקובייה הראשונה חמש, ובשנייה שלוש. ביחד שמונה נקודות.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 25869,
+      "trimmed": true
+    },
+    "cd5099d0a04fc364": {
+      "text": "בקבוצה הגדולה יש עשרה דגים. נתחיל מעשר, ונמשיך לספור.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 24525,
+      "trimmed": true
+    },
+    "1de511c7fe142355": {
+      "text": "בקובייה הראשונה שלוש, ובשנייה חמש. ביחד שמונה נקודות.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 28653,
+      "trimmed": true
+    },
+    "a1212ea5352cdc46": {
+      "text": "זה המספר שבשאלה. איזה מספר אומרים מיד אחרי שתים עשרה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "זה המספר שבשאלה. איזה מספר אומרים מיד אחרי שְׁתֵּים עֶשְׂרֵה?",
+      "bytes": 22605,
+      "trimmed": true
+    },
+    "1db4d2cdfec10e8e": {
+      "text": "זה המספר שבשאלה. איזה מספר אומרים מיד אחרי שלוש עשרה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "זה המספר שבשאלה. איזה מספר אומרים מיד אחרי שְׁלוֹשׁ עֶשְׂרֵה?",
+      "bytes": 20973,
+      "trimmed": true
+    },
+    "f7d65a726b4a32dd": {
+      "text": "זה המספר שבשאלה. איזה מספר אומרים מיד אחרי ארבע עשרה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "זה המספר שבשאלה. איזה מספר אומרים מיד אחרי אַרְבַּע עֶשְׂרֵה?",
+      "bytes": 20781,
+      "trimmed": true
+    },
+    "135e5ba01d175899": {
+      "text": "זה המספר שבשאלה. איזה מספר אומרים ממש לפני שתים עשרה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "זה המספר שבשאלה. איזה מספר אומרים ממש לפני שְׁתֵּים עֶשְׂרֵה?",
+      "bytes": 24045,
+      "trimmed": true
+    },
+    "18671a253b2fe241": {
+      "text": "זה המספר שבשאלה. איזה מספר אומרים ממש לפני שלוש עשרה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "זה המספר שבשאלה. איזה מספר אומרים ממש לפני שְׁלוֹשׁ עֶשְׂרֵה?",
+      "bytes": 23085,
+      "trimmed": true
+    },
+    "0b889c1101138a49": {
+      "text": "זה המספר שבשאלה. איזה מספר אומרים ממש לפני ארבע עשרה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "זה המספר שבשאלה. איזה מספר אומרים ממש לפני אַרְבַּע עֶשְׂרֵה?",
+      "bytes": 23661,
+      "trimmed": true
+    },
+    "aa269ba7df6efad4": {
+      "text": "נעמוד על אחת עשרה ונקפוץ שלוש קפיצות קדימה. לאן נגיע?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "נעמוד על אַחַת עֶשְׂרֵה ונקפוץ שלוש קפיצות קדימה. לאן נגיע?",
+      "bytes": 21933,
+      "trimmed": true
+    },
+    "1293d79fed81c1a8": {
+      "text": "נעמוד על שלוש עשרה ונקפוץ שתי קפיצות קדימה. לאן נגיע?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "נעמוד על שְׁלוֹשׁ עֶשְׂרֵה ונקפוץ שתי קפיצות קדימה. לאן נגיע?",
+      "bytes": 23565,
+      "trimmed": true
+    },
+    "0923f7476e0919d5": {
+      "text": "נעמוד על שבע עשרה ונקפוץ שלוש קפיצות קדימה. לאן נגיע?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "נעמוד על שְׁבַע עֶשְׂרֵה ונקפוץ שלוש קפיצות קדימה. לאן נגיע?",
+      "bytes": 21645,
+      "trimmed": true
+    },
+    "eee25afa6703e7d2": {
+      "text": "נעמוד על שתים עשרה ונקפוץ שתי קפיצות קדימה. לאן נגיע?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "נעמוד על שְׁתֵּים עֶשְׂרֵה ונקפוץ שתי קפיצות קדימה. לאן נגיע?",
+      "bytes": 23277,
+      "trimmed": true
+    },
+    "1fe70cd5ab598e1d": {
+      "text": "נעמוד על אחת עשרה ונקפוץ שלוש קפיצות אחורה. לאן נגיע?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "נעמוד על אַחַת עֶשְׂרֵה ונקפוץ שלוש קפיצות אחורה. לאן נגיע?",
+      "bytes": 22605,
+      "trimmed": true
+    },
+    "99dc7378901b8d8f": {
+      "text": "נעמוד על שתים עשרה ונקפוץ שתי קפיצות אחורה. לאן נגיע?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "נעמוד על שְׁתֵּים עֶשְׂרֵה ונקפוץ שתי קפיצות אחורה. לאן נגיע?",
+      "bytes": 24333,
+      "trimmed": true
+    },
+    "391679d991473183": {
+      "text": "נעמוד על שבע עשרה ונקפוץ שלוש קפיצות אחורה. לאן נגיע?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "נעמוד על שְׁבַע עֶשְׂרֵה ונקפוץ שלוש קפיצות אחורה. לאן נגיע?",
+      "bytes": 23373,
+      "trimmed": true
+    },
+    "51049ba929e2f0f5": {
+      "text": "נעמוד על שלוש עשרה ונקפוץ שתי קפיצות אחורה. לאן נגיע?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "נעמוד על שְׁלוֹשׁ עֶשְׂרֵה ונקפוץ שתי קפיצות אחורה. לאן נגיע?",
+      "bytes": 20589,
+      "trimmed": true
+    },
+    "a12af483f251166e": {
+      "text": "נעמוד על תשע עשרה ונקפוץ שלוש קפיצות אחורה. לאן נגיע?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "נעמוד על תְּשַׁע עֶשְׂרֵה ונקפוץ שלוש קפיצות אחורה. לאן נגיע?",
+      "bytes": 22029,
+      "trimmed": true
+    },
+    "f8991775949bdbe4": {
+      "text": "בקובייה הראשונה ארבע, ובשנייה ארבע. ביחד שמונה נקודות.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 24813,
+      "trimmed": true
+    },
+    "df99fe0f3bff85ce": {
+      "text": "בקבוצה הגדולה יש עשר דבורים. נתחיל מעשר, ונמשיך לספור.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 25773,
+      "trimmed": true
+    },
+    "83f95c9c0e17ed08": {
+      "text": "נעמוד על שמונה עשרה ונקפוץ קפיצה אחת אחורה. לאן נגיע?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "נעמוד על שְׁמוֹנֶה עֶשְׂרֵה ונקפוץ קפיצה אחת אחורה. לאן נגיע?",
+      "bytes": 20685,
+      "trimmed": true
+    },
+    "143ea0bc990ded82": {
+      "text": "בקבוצה הגדולה יש עשר עוגיות. נתחיל מעשר, ונמשיך לספור.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 26829,
+      "trimmed": true
+    },
+    "5d11cb07c7a74c51": {
+      "text": "זה המספר שבשאלה. איזה מספר אומרים מיד אחרי שמונה עשרה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "זה המספר שבשאלה. איזה מספר אומרים מיד אחרי שְׁמוֹנֶה עֶשְׂרֵה?",
+      "bytes": 22413,
+      "trimmed": true
+    },
+    "8bc1e894fc7a48e8": {
+      "text": "עשר בא לפני אחת עשרה. אנחנו מחפשים את המספר שבא אחריו.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "עשר בא לפני אַחַת עֶשְׂרֵה. אנחנו מחפשים את המספר שבא אחריו.",
+      "bytes": 22605,
+      "trimmed": true
+    },
+    "47562891b6b05f5f": {
+      "text": "זה המספר שבשאלה. איזה מספר אומרים ממש לפני שמונה עשרה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "זה המספר שבשאלה. איזה מספר אומרים ממש לפני שְׁמוֹנֶה עֶשְׂרֵה?",
+      "bytes": 22989,
+      "trimmed": true
+    },
+    "049e80c97878a8f7": {
+      "text": "נעמוד על שלוש עשרה ונקפוץ שלוש קפיצות קדימה. לאן נגיע?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "נעמוד על שְׁלוֹשׁ עֶשְׂרֵה ונקפוץ שלוש קפיצות קדימה. לאן נגיע?",
+      "bytes": 20589,
+      "trimmed": true
+    },
+    "468c97d321f70fb4": {
+      "text": "נעמוד על ארבע עשרה ונקפוץ שלוש קפיצות קדימה. לאן נגיע?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "נעמוד על אַרְבַּע עֶשְׂרֵה ונקפוץ שלוש קפיצות קדימה. לאן נגיע?",
+      "bytes": 19533,
+      "trimmed": true
+    },
+    "43917f4a590e8b6e": {
+      "text": "המספר שש עשרה כבר נמצא בשורה. איזה מספר בא במקום הריק?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "המספר שֵׁשׁ עֶשְׂרֵה כבר נמצא בשורה. איזה מספר בא במקום הריק?",
+      "bytes": 22413,
+      "trimmed": true
+    },
+    "c3120d8480e55fac": {
+      "text": "נעמוד על שלוש עשרה ונקפוץ שלוש קפיצות אחורה. לאן נגיע?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "נעמוד על שְׁלוֹשׁ עֶשְׂרֵה ונקפוץ שלוש קפיצות אחורה. לאן נגיע?",
+      "bytes": 19917,
+      "trimmed": true
+    },
+    "5b260640d1827f1d": {
+      "text": "נעמוד על ארבע עשרה ונקפוץ שלוש קפיצות אחורה. לאן נגיע?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "נעמוד על אַרְבַּע עֶשְׂרֵה ונקפוץ שלוש קפיצות אחורה. לאן נגיע?",
+      "bytes": 23565,
+      "trimmed": true
+    },
+    "af1a46ae2844c8e9": {
+      "text": "נעמוד על שמונה עשרה ונקפוץ שתי קפיצות אחורה. לאן נגיע?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "נעמוד על שְׁמוֹנֶה עֶשְׂרֵה ונקפוץ שתי קפיצות אחורה. לאן נגיע?",
+      "bytes": 23757,
+      "trimmed": true
+    },
+    "7fc3b928f2586972": {
+      "text": "נעמוד על עשר, ונקפוץ קפיצה אחת על כל ציור בקבוצה הקטנה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 21837,
+      "trimmed": true
+    },
+    "70840643ae7b82c1": {
+      "text": "בקובייה הראשונה שתיים, ובשנייה שתיים. ביחד ארבע נקודות.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 27885,
+      "trimmed": true
+    },
+    "d1b3c1f0fcf94f7f": {
+      "text": "בקבוצה הגדולה יש עשרה פרפרים. נתחיל מעשר, ונמשיך לספור.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 23469,
+      "trimmed": true
+    },
+    "4f907a8e42a9aa1f": {
+      "text": "בקבוצה הגדולה יש עשרה בלונים. נתחיל מעשר, ונמשיך לספור.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22221,
+      "trimmed": true
+    },
+    "38fcb473ebe8aae2": {
+      "text": "בקבוצה הגדולה יש עשר סוכריות. נתחיל מעשר, ונמשיך לספור.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 24429,
+      "trimmed": true
+    },
+    "50ee195684581a66": {
+      "text": "בקבוצה הגדולה יש עשרה תפוחים. נתחיל מעשר, ונמשיך לספור.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 25581,
+      "trimmed": true
+    },
+    "d73ffb295ebaaf47": {
+      "text": "בקבוצה הגדולה יש עשרה כוכבים. נתחיל מעשר, ונמשיך לספור.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 24813,
+      "trimmed": true
+    },
+    "ac9a68c289eeb5c6": {
+      "text": "למשל, בשורה: שתים עשרה, שלוש עשרה, ארבע עשרה, חמש עשרה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "למשל, בשורה: שְׁתֵּים עֶשְׂרֵה, שְׁלוֹשׁ עֶשְׂרֵה, אַרְבַּע עֶשְׂרֵה, חֲמֵשׁ עֶשְׂרֵה.",
+      "bytes": 25389,
+      "trimmed": true
+    },
+    "084c20ae4155ced1": {
+      "text": "עשרים בא אחרי תשע עשרה. אנחנו מחפשים את המספר שבא לפניו.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "עשרים בא אחרי תְּשַׁע עֶשְׂרֵה. אנחנו מחפשים את המספר שבא לפניו.",
+      "bytes": 23661,
+      "trimmed": true
+    },
+    "af84606947386d5f": {
+      "text": "נקרא את המספרים לפי הסדר, מימין לשמאל, ונגיע למקום הריק.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22797,
+      "trimmed": true
+    },
+    "28f83c5ece855b4d": {
+      "text": "המספר שתים עשרה כבר נמצא בשורה. איזה מספר בא במקום הריק?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "המספר שְׁתֵּים עֶשְׂרֵה כבר נמצא בשורה. איזה מספר בא במקום הריק?",
+      "bytes": 21741,
+      "trimmed": true
+    },
+    "48b5f875580163c6": {
+      "text": "המספר ארבע עשרה כבר נמצא בשורה. איזה מספר בא במקום הריק?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "המספר אַרְבַּע עֶשְׂרֵה כבר נמצא בשורה. איזה מספר בא במקום הריק?",
+      "bytes": 23469,
+      "trimmed": true
+    },
+    "7d59b2fbcc255e5d": {
+      "text": "למשל, בקובייה הראשונה ארבע, ובשנייה אחת. ביחד חמש נקודות.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 29325,
+      "trimmed": true
+    },
+    "7420038006c42069": {
+      "text": "המספר שמונה עשרה כבר נמצא בשורה. איזה מספר בא במקום הריק?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "המספר שְׁמוֹנֶה עֶשְׂרֵה כבר נמצא בשורה. איזה מספר בא במקום הריק?",
+      "bytes": 22317,
+      "trimmed": true
+    },
+    "0445aaa77cf42764": {
+      "text": "נספור את הנקודות בקובייה אחת, ונמשיך לספור בקובייה השנייה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 18669,
+      "trimmed": true
+    },
+    "98d54fecec3fe1c7": {
+      "text": "למשל, בקובייה הראשונה שתיים, ובשנייה ארבע. ביחד שש נקודות.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 27693,
+      "trimmed": true
+    },
+    "83e7b01405f43e3e": {
+      "text": "שש עשרה בא לפני שבע עשרה. אנחנו מחפשים את המספר שבא אחריו.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "שֵׁשׁ עֶשְׂרֵה בא לפני שְׁבַע עֶשְׂרֵה. אנחנו מחפשים את המספר שבא אחריו.",
+      "bytes": 22989,
+      "trimmed": true
+    },
+    "c6c6e01e2ddd9411": {
+      "text": "שש עשרה בא אחרי חמש עשרה. אנחנו מחפשים את המספר שבא לפניו.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "שֵׁשׁ עֶשְׂרֵה בא אחרי חֲמֵשׁ עֶשְׂרֵה. אנחנו מחפשים את המספר שבא לפניו.",
+      "bytes": 24525,
+      "trimmed": true
+    },
+    "209bd990f03f7e69": {
+      "text": "שבע עשרה בא אחרי שש עשרה. אנחנו מחפשים את המספר שבא לפניו.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "שְׁבַע עֶשְׂרֵה בא אחרי שֵׁשׁ עֶשְׂרֵה. אנחנו מחפשים את המספר שבא לפניו.",
+      "bytes": 21357,
+      "trimmed": true
+    },
+    "6567c8c1be7d9e32": {
+      "text": "חמש עשרה בא לפני שש עשרה. אנחנו מחפשים את המספר שבא אחריו.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "חֲמֵשׁ עֶשְׂרֵה בא לפני שֵׁשׁ עֶשְׂרֵה. אנחנו מחפשים את המספר שבא אחריו.",
+      "bytes": 24333,
+      "trimmed": true
+    },
+    "df2a752c9a479e4c": {
+      "text": "למשל, בקובייה הראשונה שלוש, ובשנייה שתיים. ביחד חמש נקודות.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 29229,
+      "trimmed": true
+    },
+    "5e28d099601da4b3": {
+      "text": "אחת עשרה בא לפני שתים עשרה. אנחנו מחפשים את המספר שבא אחריו.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "אַחַת עֶשְׂרֵה בא לפני שְׁתֵּים עֶשְׂרֵה. אנחנו מחפשים את המספר שבא אחריו.",
+      "bytes": 25869,
+      "trimmed": true
+    },
+    "89170febe30f9f39": {
+      "text": "למשל, בקובייה הראשונה חמש, ובשנייה שלוש. ביחד שמונה נקודות.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 26829,
+      "trimmed": true
+    },
+    "60f431a51eff4934": {
+      "text": "שתים עשרה בא אחרי אחת עשרה. אנחנו מחפשים את המספר שבא לפניו.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "שְׁתֵּים עֶשְׂרֵה בא אחרי אַחַת עֶשְׂרֵה. אנחנו מחפשים את המספר שבא לפניו.",
+      "bytes": 22413,
+      "trimmed": true
+    },
+    "69fcb10c7e653add": {
+      "text": "ארבע עשרה בא לפני חמש עשרה. אנחנו מחפשים את המספר שבא אחריו.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "אַרְבַּע עֶשְׂרֵה בא לפני חֲמֵשׁ עֶשְׂרֵה. אנחנו מחפשים את המספר שבא אחריו.",
+      "bytes": 25773,
+      "trimmed": true
+    },
+    "fd2f481b42fd19bb": {
+      "text": "שתים עשרה בא לפני שלוש עשרה. אנחנו מחפשים את המספר שבא אחריו.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "שְׁתֵּים עֶשְׂרֵה בא לפני שְׁלוֹשׁ עֶשְׂרֵה. אנחנו מחפשים את המספר שבא אחריו.",
+      "bytes": 21261,
+      "trimmed": true
+    },
+    "ebf901cc831eea52": {
+      "text": "שלוש עשרה בא לפני ארבע עשרה. אנחנו מחפשים את המספר שבא אחריו.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "שְׁלוֹשׁ עֶשְׂרֵה בא לפני אַרְבַּע עֶשְׂרֵה. אנחנו מחפשים את המספר שבא אחריו.",
+      "bytes": 23181,
+      "trimmed": true
+    },
+    "e2652f2ba8af0114": {
+      "text": "חמש עשרה בא אחרי ארבע עשרה. אנחנו מחפשים את המספר שבא לפניו.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "חֲמֵשׁ עֶשְׂרֵה בא אחרי אַרְבַּע עֶשְׂרֵה. אנחנו מחפשים את המספר שבא לפניו.",
+      "bytes": 21549,
+      "trimmed": true
+    },
+    "fad7b16bb29257c3": {
+      "text": "שמונה עשרה בא לפני תשע עשרה. אנחנו מחפשים את המספר שבא אחריו.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "שְׁמוֹנֶה עֶשְׂרֵה בא לפני תְּשַׁע עֶשְׂרֵה. אנחנו מחפשים את המספר שבא אחריו.",
+      "bytes": 24909,
+      "trimmed": true
+    },
+    "c6dfd8be6aeaf266": {
+      "text": "שלוש עשרה בא אחרי שתים עשרה. אנחנו מחפשים את המספר שבא לפניו.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "שְׁלוֹשׁ עֶשְׂרֵה בא אחרי שְׁתֵּים עֶשְׂרֵה. אנחנו מחפשים את המספר שבא לפניו.",
+      "bytes": 26733,
+      "trimmed": true
+    },
+    "322fb049ae15a983": {
+      "text": "שבע עשרה בא לפני שמונה עשרה. אנחנו מחפשים את המספר שבא אחריו.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "שְׁבַע עֶשְׂרֵה בא לפני שְׁמוֹנֶה עֶשְׂרֵה. אנחנו מחפשים את המספר שבא אחריו.",
+      "bytes": 25101,
+      "trimmed": true
+    },
+    "18c7ba09c44f5473": {
+      "text": "שמונה עשרה בא אחרי שבע עשרה. אנחנו מחפשים את המספר שבא לפניו.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "שְׁמוֹנֶה עֶשְׂרֵה בא אחרי שְׁבַע עֶשְׂרֵה. אנחנו מחפשים את המספר שבא לפניו.",
+      "bytes": 21453,
+      "trimmed": true
+    },
+    "9bc32e8c8c81124d": {
+      "text": "ספרנו רק קובייה אחת. נמשיך לספור גם את הנקודות בקובייה השנייה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 20685,
+      "trimmed": true
+    },
+    "3edbc1ad395435b5": {
+      "text": "תשע עשרה בא אחרי שמונה עשרה. אנחנו מחפשים את המספר שבא לפניו.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "תְּשַׁע עֶשְׂרֵה בא אחרי שְׁמוֹנֶה עֶשְׂרֵה. אנחנו מחפשים את המספר שבא לפניו.",
+      "bytes": 23469,
+      "trimmed": true
+    },
+    "ba2db24e452799d1": {
+      "text": "ארבע עשרה בא אחרי שלוש עשרה. אנחנו מחפשים את המספר שבא לפניו.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "אַרְבַּע עֶשְׂרֵה בא אחרי שְׁלוֹשׁ עֶשְׂרֵה. אנחנו מחפשים את המספר שבא לפניו.",
+      "bytes": 31917,
+      "trimmed": true
+    },
+    "427efbb9c0c8be5f": {
+      "text": "נקרא שוב את השורה לאט, מספר אחרי מספר, ונראה מה בא במקום הריק.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 25485,
+      "trimmed": true
+    },
+    "384917d562d704ac": {
+      "text": "אולי ספרנו נקודה אחת פעמיים. נספור שוב לאט, ונגע בכל נקודה פעם אחת.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 31437,
+      "trimmed": true
+    },
+    "cc79a7186a496591": {
+      "text": "נתחיל מהקובייה שיש בה יותר, ונקפוץ על ישר המספרים כמו בקובייה השנייה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 23373,
       "trimmed": true
     }
   }
