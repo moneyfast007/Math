@@ -122,11 +122,10 @@ function storyRow(s: [Pic, Pic, Pic], gap: Place | null): Visual {
     w: 90,
     h: 30,
     props: [{ kind: 'arrow', from: [80, 5], to: [10, 5] }],
-    items: s.map(
-      (x, i): SceneItem =>
-        i === gap
-          ? { blank: true, x: xs[i] as number, y: 18, size: 14 }
-          : { emoji: x.emoji, x: xs[i] as number, y: 18, size: 16 },
+    items: s.map((x, i): SceneItem =>
+      i === gap
+        ? { blank: true, x: xs[i] as number, y: 18, size: 14 }
+        : { emoji: x.emoji, x: xs[i] as number, y: 18, size: 16 },
     ),
   };
 }
