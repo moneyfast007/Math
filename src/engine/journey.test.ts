@@ -152,6 +152,7 @@ describe('worlds', () => {
       'space-0',
       'add-sub-20',
       'count-20',
+      'measure-0',
     ]);
   });
 

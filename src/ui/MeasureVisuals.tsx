@@ -568,3 +568,64 @@ export function WeekView({ v }: { v: Extract<Visual, { type: 'weekDays' }> }) {
     </div>
   );
 }
+
+/* ---------- Glasses of water (gan) ---------- */
+
+/** One glass: a tumbler a little wider at the top, water up to `level` of its height. */
+function Glass({ x, level }: { x: number; level: number }) {
+  const top = 8;
+  const bottom = 112;
+  const wTop = 76;
+  const wBottom = 58;
+  // The inside, from the bottom up to the water line.
+  const inner = (y: number) => {
+    const t = (y - top) / (bottom - top);
+    return (wTop + (wBottom - wTop) * t) / 2 - 5;
+  };
+  const waterTop = bottom - 6 - (bottom - 6 - (top + 6)) * Math.max(0, Math.min(1, level));
+  const cx = x + wTop / 2;
+  return (
+    <g>
+      {level > 0 ? (
+        <path
+          d={`M${cx - inner(waterTop)} ${waterTop} L${cx + inner(waterTop)} ${waterTop} L${cx + inner(bottom - 6)} ${bottom - 6} L${cx - inner(bottom - 6)} ${bottom - 6} Z`}
+          fill="#7cc4ef"
+        />
+      ) : null}
+      {level > 0 && level < 1 ? (
+        <line
+          x1={cx - inner(waterTop)}
+          y1={waterTop}
+          x2={cx + inner(waterTop)}
+          y2={waterTop}
+          stroke="#3c93c9"
+          strokeWidth={2.5}
+        />
+      ) : null}
+      <path
+        d={`M${x} ${top} L${x + wTop} ${top} L${x + wTop / 2 + wBottom / 2} ${bottom} L${x + wTop / 2 - wBottom / 2} ${bottom} Z`}
+        fill="rgb(255 255 255 / 35%)"
+        stroke="#8aa6b8"
+        strokeWidth={3.5}
+        strokeLinejoin="round"
+      />
+    </g>
+  );
+}
+
+export function CupsView({ v }: { v: Extract<Visual, { type: 'cups' }> }) {
+  const step = 100;
+  const width = v.levels.length * step;
+  return svg(
+    width,
+    120,
+    v.icon ? '84px' : `min(${v.levels.length * 120}px, 86vw)`,
+    <>
+      {v.levels.map((level, i) => (
+        // The first glass on the right, as a child reads.
+        <Glass key={i} x={width - (i + 1) * step + 12} level={level} />
+      ))}
+    </>,
+    'cups',
+  );
+}

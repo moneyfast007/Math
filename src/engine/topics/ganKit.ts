@@ -115,6 +115,14 @@ export const THINGS = {
   castle: th('castle', '🏰', 'ארמון', 'ארמונות', 'm'),
   icecream: th('icecream', '🍦', 'גלידה', 'גלידות', 'f'),
   carousel: th('carousel', '🎠', 'קרוסלה', 'קרוסלות', 'f'),
+  // Heavy and light (the measuring world).
+  elephant: th('elephant', '🐘', 'פיל', 'פילים', 'm'),
+  watermelon: th('watermelon', '🍉', 'אבטיח', 'אבטיחים', 'm'),
+  feather: th('feather', '🪶', 'נוצה', 'נוצות', 'f'),
+  horse: th('horse', '🐴', 'סוס', 'סוסים', 'm'),
+  truck: th('truck', '🚚', 'משאית', 'משאיות', 'f'),
+  leaf: th('leaf', '🍃', 'עלה', 'עלים', 'm'),
+  footprints: th('footprints', '👣', 'צעד', 'צעדים', 'm'),
 } as const satisfies Record<string, Thing>;
 
 export type ThingId = keyof typeof THINGS;

@@ -131,6 +131,11 @@
   overflow: visible;
 }
 
+/* One tower alone (gan: how many cubes?): as narrow as a tower, so it is not too tall. */
+.cube-stack--one {
+  width: min(62px, 18vw);
+}
+
 .cube-stack .solid__face {
   stroke-width: 1.1;
 }

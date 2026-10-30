@@ -4,6 +4,7 @@ import { topicsForGrade } from '../registry';
 import { seededRng } from '../rng';
 import type { Exercise, SceneItem, Visual } from '../types';
 import { count20 } from './count20';
+import { measure0 } from './measure0';
 import { THINGS, type ThingId } from './ganKit';
 import { sort0 } from './sort0';
 import { space0 } from './space0';
@@ -254,6 +255,50 @@ describe('count-20', () => {
   });
 });
 
+describe('measure-0', () => {
+  it('on a balance, the heavy thing is on the side that went down', () => {
+    for (const level of [3, 4])
+      for (const e of played(measure0, level)) {
+        const v = e.visual;
+        if (v?.type !== 'balance') throw new Error(`${e.factId}: no balance`);
+        const down = v.down === 'left' ? v.left.emoji : v.right.emoji;
+        const up = v.down === 'left' ? v.right.emoji : v.left.emoji;
+        expect(emojiOn(e, e.answer), e.factId).toBe(level === 3 ? down : up);
+      }
+  });
+
+  it('glasses: the answer has more (or less) water than every other button', () => {
+    const fillOf = (e: Exercise, i: number): number => {
+      const v = e.input.type === 'choices' ? e.input.visuals?.[i] : undefined;
+      if (v?.type !== 'cups') throw new Error(`${e.factId}: not a glass`);
+      return v.levels[0] ?? -1;
+    };
+    for (const level of [5, 6])
+      for (const e of played(measure0, level)) {
+        const right = fillOf(e, e.answer);
+        labels(e).forEach((_, i) => {
+          if (i === e.answer) return;
+          expect(level === 5 ? right > fillOf(e, i) : right < fillOf(e, i), e.factId).toBe(true);
+        });
+      }
+    for (const e of played(measure0, 7)) {
+      const want = e.factId.includes(':full') ? 1 : e.factId.includes(':empty') ? 0 : 0.5;
+      expect(fillOf(e, e.answer), e.factId).toBe(want);
+    }
+  });
+
+  it('steps and towers: the answer is the steps drawn, the cubes stacked', () => {
+    for (const e of all(measure0, 9)) {
+      const steps = scene(e.visual).items.filter((it) => it.emoji === '👣');
+      expect(steps.length, e.factId).toBe(e.answer);
+    }
+    for (const e of all(measure0, 10)) {
+      if (e.visual?.type !== 'cubeStack') throw new Error(`${e.factId}: no tower`);
+      expect(e.visual.columns, e.factId).toEqual([e.answer]);
+    }
+  });
+});
+
 describe('the gan journey', () => {
   it('counting and shapes first, then sorting and space, adding and taking away; then to twenty', () => {
     expect(topicsForGrade(0).map((t) => t.id)).toEqual([
@@ -263,6 +308,7 @@ describe('the gan journey', () => {
       'space-0',
       'add-sub-20',
       'count-20',
+      'measure-0',
     ]);
   });
 });

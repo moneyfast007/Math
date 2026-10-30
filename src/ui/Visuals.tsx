@@ -17,7 +17,7 @@ import {
 import { FigureView } from './FigureVisual';
 import { SceneView } from './SceneVisual';
 import { CubeStackView, SolidsView, ThingView } from './SolidsVisual';
-import { BalanceView, LengthsView, WeekView } from './MeasureVisuals';
+import { BalanceView, CupsView, LengthsView, WeekView } from './MeasureVisuals';
 import { VerticalView } from './Vertical';
 
 /**
@@ -101,6 +101,8 @@ export function VisualView({
       return <LengthsView v={visual} />;
     case 'balance':
       return <BalanceView v={visual} />;
+    case 'cups':
+      return <CupsView v={visual} />;
     case 'weekDays':
       return <WeekView v={visual} />;
     case 'figure':

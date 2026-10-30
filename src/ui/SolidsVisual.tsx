@@ -317,7 +317,10 @@ export function CubeStackView({ v }: { v: Extract<Visual, { type: 'cubeStack' }>
   });
   return (
     <div className="solids" dir="ltr" data-visual="cubeStack" aria-hidden="true">
-      <svg viewBox={`0 0 ${width} ${height}`} className="cube-stack">
+      <svg
+        viewBox={`0 0 ${width} ${height}`}
+        className={v.columns.length === 1 ? 'cube-stack cube-stack--one' : 'cube-stack'}
+      >
         <ellipse cx={width / 2} cy={base} rx={width / 2} ry="5" className="solid__shadow" />
         {cubes}
       </svg>

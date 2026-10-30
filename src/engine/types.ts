@@ -116,6 +116,11 @@ export type Visual =
   | { type: 'solids'; items: SolidItem[]; stacked?: boolean }
   /** Unit cubes in columns standing side by side, one deep, so every cube shows. */
   | { type: 'cubeStack'; columns: number[] }
+  /**
+   * Glasses of water side by side (gan): each `level` is how full it is, 0 (empty) to 1
+   * (full). `icon`: one small glass for an answer button.
+   */
+  | { type: 'cups'; levels: number[]; icon?: boolean }
   /** Dice side by side, each showing 1–6 pips in the usual pattern (`tone`: the pips' colour). */
   | { type: 'dice'; dice: number[]; tone?: 0 | 1 }
   /** One everyday thing, drawn big (an emoji): which solid does it look like? */
