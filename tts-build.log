@@ -1,0 +1,67 @@
+
+> heshbon@0.1.0 tts:build
+> tsx --tsconfig tsconfig.node.json scripts/tts/generate.ts --max-minutes 180 --concurrency 8
+
+111105 phrases in the bank, 501 to generate.
+  gemini-3.1-flash/Leda/quick: 501 clips, ~0.66 USD (Gemini 3.1 Flash TTS preview, ~22 min audio)
+  50/501
+  100/501
+  150/501
+  200/501
+  250/501
+  300/501
+  350/501
+  400/501
+  450/501
+  500/501
+  501/501
+  Longest for their text (added words or long silences?):
+    1212 B/char  029a76ce06ccb209  זמן וסדר
+    1027 B/char  c17153e7cb9cc68c  חרוט ותיבה
+    992 B/char  d54ce28c13073b27  קווים?
+    976 B/char  8e4124273ab288b1  ישנים בלילה.
+    936 B/char  e8ec64d9b71af5aa  בסך הכול ענו
+    928 B/char  eff88cf0b2c3609b  גרפים וספירה
+    899 B/char  7d9b6613e94f2b0d  זה חורף: קר ויורד שלג.
+    898 B/char  2680a8741e08d4c9  השבוע היה גשום
+    891 B/char  19fb3acfca8af607  כדור, קובייה וגליל
+    864 B/char  a36e2791ec241d82  קווים.
+    864 B/char  c710c73fceae98b0  השבוע היה שמשי
+    858 B/char  f6a63156c5c07207  למשל, זה קיץ: חם ואוכלים אבטיח.
+    843 B/char  f5d253fc4f726a7f  כמה בחרו?
+    806 B/char  ad58a2fe2ebdb857  מתי ישנים?
+    758 B/char  f755acff3afdfc5d  למשל, זה חורף: קר ויורד שלג.
+    748 B/char  1f0ebfa71ce25b74  למשל, קודם בלוט, אחר כך נבט, ובסוף עץ.
+    745 B/char  1c42afbf0a63e893  ילדים בחרו ריקוד,
+    744 B/char  7d25548e9c55586d  קודם תינוק, ואחר כך ילד.
+    742 B/char  156c36d26cfa56d0  השבוע היה מעונן
+    741 B/char  729cadab87840c1d  מה בא אחר כך: נבט או חמנייה?
+  Shortest for their text (dropped words?):
+    426 B/char  c2143a4739471667  בכמה ימים השבוע היה גשום?
+    425 B/char  f70ae453cbf9b152  נמצא שני גופים שדומים זה לזה, גם אם הצבע שלהם שונה.
+    424 B/char  ea3b0b3383ff29f2  את זה עושים בזמן אחר. מה עושים בזמן ששאלנו עליו?
+    423 B/char  d99669f4a132a29f  מתי חוזרים הביתה מהגן?
+    422 B/char  93a09e824508e132  לנופף לשלום לוקח פחות זמן מאשר להרכיב פאזל גדול.
+    421 B/char  f849ddcad174296b  איזה סימן ספירה מראה שני קווים?
+    420 B/char  47b0631a66f895f6  נספור עמודה אחרי עמודה, ונמשיך לספור בלי להתחיל מחדש.
+    419 B/char  fc5a5a8ed49a23fa  כל תמונה היא יום אחד. נספור את התמונות בעמודה.
+    417 B/char  d9f3ec9d04af8fac  נספור את כל התמונות בכל העמודות.
+    415 B/char  9b5fa33eb2a7a885  נספור כמה תמונות נשארו בעמודה הגבוהה, בלי זוג.
+    413 B/char  623e77610ebc64d5  נסתכל שוב על התמונה: מה רואים בה?
+    410 B/char  cb3ccba17a9106cc  איזה סימן ספירה מראה שלושה קווים?
+    410 B/char  242c6b7d9828d5dc  כמה קווים יש בסימן הספירה?
+    409 B/char  333a8bc7bbc8740b  נחפש את הסימן שיש בו בדיוק שלושה קווים.
+    406 B/char  8dc2111e8cc3751b  מה מתאים במקום הריק, כדי שהסיפור יהיה נכון?
+    397 B/char  5d2892f233ab2121  זה לא חלק מהסיפור הזה. מה מתאים בין התמונות?
+    395 B/char  e76e42c097563c34  מתי אוכלים דייסה לפני הגן?
+    376 B/char  44b9e7ec7b0db07a  נדמיין שאנחנו יוצאים החוצה. מה היינו רוצים ללבוש?
+    370 B/char  bfb4321b52816806  איך היה מזג האוויר ברוב ימי השבוע?
+    350 B/char  a2729ebf34f5d7d4  נחשוב על היום שלנו: מה עושים כשמתעוררים, ומה עושים לפני השינה?
+Done. 117637 clips in audio/clips.
+
+> heshbon@0.1.0 tts:trim
+> tsx --tsconfig tsconfig.node.json scripts/tts/trim.ts --max-minutes 25
+
+501 clips to trim.
+  500/501
+Trimmed 501 clips; 0 failed.
