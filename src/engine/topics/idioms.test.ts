@@ -18,8 +18,9 @@ describe('the bonus world of idioms', () => {
   it('asks every idiom of a station both ways, with four answers from the same station', () => {
     for (let level = 1; level <= 10; level++) {
       const group = stationIdioms(level);
+      // Enumerated once for each gender: the same twelve facts twice.
       const facts = idioms.enumerate(level);
-      expect(facts).toHaveLength(12);
+      expect(new Set(facts.map((e) => e.factId)).size).toBe(12);
       for (const e of facts) {
         if (e.input.type !== 'choices') throw new Error(`${e.factId}: not a choice`);
         const labels = e.input.labels ?? [];
