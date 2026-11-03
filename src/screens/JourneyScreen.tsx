@@ -342,7 +342,8 @@ function Journey({ profile }: { profile: Profile }) {
                   {t('child.otherLevel')}
                 </button>
               ) : null}
-              <SpeakerButton text={spokenLabel(stopName)} />
+              {/* A world with no recordings (the test practice, the idioms): nothing to play. */}
+              {world.topic.silent ? null : <SpeakerButton text={spokenLabel(stopName)} />}
             </div>
           </div>
           <button
