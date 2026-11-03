@@ -88,6 +88,8 @@ function parseProfile(value: unknown, index: number): Profile {
   const effects = settings['effects'] === 'quiet' ? ('quiet' as const) : undefined;
   // Added later: only "hidden" is kept; anything else means shown.
   const testPrep = settings['testPrep'] === false ? (false as const) : undefined;
+  // Added later: only "shown" is kept; anything else means not shown.
+  const idioms = settings['idioms'] === true ? (true as const) : undefined;
   // Added later and optional: absent in older data.
   const introSeen = p['journeyIntroSeenAt'];
   // A colour this version does not know is simply left out (the usual one).
@@ -107,6 +109,7 @@ function parseProfile(value: unknown, index: number): Profile {
       ...(dailyGoal === undefined ? {} : { dailyGoal }),
       ...(effects ? { effects } : {}),
       ...(testPrep === false ? { testPrep } : {}),
+      ...(idioms ? { idioms } : {}),
     },
     ...(introSeen === undefined
       ? {}

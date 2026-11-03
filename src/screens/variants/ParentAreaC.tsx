@@ -1103,6 +1103,8 @@ function ChildSettings({
         ? { dailyGoal: merged.goal }
         : {}),
       ...(merged.prep ? {} : { testPrep: false as const }),
+      // Not changed here: kept as it is (app/bonus.ts).
+      ...(s.idioms ? { idioms: true as const } : {}),
     };
     updateProfile(profile.id, {
       name: profile.name,

@@ -40,6 +40,7 @@ import { polygons2 } from './topics/polygons2';
 import { percent } from './topics/percent';
 import { percentIntro } from './topics/percentIntro';
 import { ratio } from './topics/ratio';
+import { idioms } from './topics/idioms';
 import { map4Fractions, map4Numbers } from './topics/map4';
 import { shapesTopic } from './topics/shapes';
 import { solids1 } from './topics/solids1';
@@ -94,6 +95,8 @@ export const TOPICS: readonly Topic[] = [
   // Grade 4, beside the journey: practice for the school's autumn test.
   map4Fractions,
   map4Numbers,
+  // Every grade, beside the journey: one family's bonus world of Hebrew idioms.
+  idioms,
   // Grade 5
   decimals,
   percentIntro, // grades 5–6

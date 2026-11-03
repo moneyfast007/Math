@@ -121,6 +121,11 @@ export type Visual =
    * (full). `icon`: one small glass for an answer button.
    */
   | { type: 'cups'; levels: number[]; icon?: boolean }
+  /**
+   * A saying in words, on a card of its own (the idioms world): `idiom` the
+   * saying itself, big; `meaning` what one means, as a quieter sentence.
+   */
+  | { type: 'phrase'; text: string; kind: 'idiom' | 'meaning' }
   /** Dice side by side, each showing 1–6 pips in the usual pattern (`tone`: the pips' colour). */
   | { type: 'dice'; dice: number[]; tone?: 0 | 1 }
   /** One everyday thing, drawn big (an emoji): which solid does it look like? */
@@ -469,6 +474,8 @@ export interface Exercise {
         visuals?: Visual[];
         /** Words read right to left (column names): laid out from the right, like the columns. */
         rtl?: boolean;
+        /** Whole sentences (an idiom's meaning): one under the other, full width, read from the right. */
+        stack?: boolean;
       }
     | { type: 'numpad'; maxDigits: number; decimal?: boolean }
     /**
@@ -544,9 +551,14 @@ export interface Topic {
   /**
    * A world beside the journey, not on it: it never appears among the grade's
    * worlds in order, and is opened on its own ('map4': grade 4's practice for
-   * the school's autumn test).
+   * the school's autumn test; 'idioms': a family's bonus world of Hebrew idioms).
    */
-  track?: 'map4';
+  track?: 'map4' | 'idioms';
+  /**
+   * Its stations are parts, not steps (the idioms world: six other idioms in
+   * each): a stuck round never drops to the station before.
+   */
+  parts?: boolean;
   /**
    * Everything this topic can ever say, for pre-generating audio: whole
    * sentences when the topic is finite, otherwise the literal pieces of its

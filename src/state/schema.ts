@@ -51,6 +51,8 @@ export interface ProfileSettings {
   effects?: 'quiet';
   /** Grade 4's test practice hidden by the parent. Absent: shown (to a grade-4 child). */
   testPrep?: false;
+  /** The bonus world of idioms, for one family's children (app/bonus.ts). Absent: not shown. */
+  idioms?: true;
 }
 
 export interface Profile {

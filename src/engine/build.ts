@@ -445,7 +445,9 @@ export interface TopicDef {
   /** Not read aloud (see Topic.silent): nothing goes to the audio bank. */
   silent?: boolean;
   /** Beside the journey (see Topic.track). */
-  track?: 'map4';
+  track?: 'map4' | 'idioms';
+  /** Stations that are parts, not steps (see Topic.parts). */
+  parts?: boolean;
 }
 
 /** How many exercises per level the bank samples from open levels to collect their pieces. */
@@ -633,6 +635,7 @@ export function defineTopic(def: TopicDef): Topic & { enumerate: (level: number)
     ...(def.lastLevel ? { lastLevel: def.lastLevel } : {}),
     ...(def.silent ? { silent: true } : {}),
     ...(def.track ? { track: def.track } : {}),
+    ...(def.parts ? { parts: true } : {}),
     generate,
     spokenBank,
     enumerate,

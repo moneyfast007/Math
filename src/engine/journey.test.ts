@@ -188,6 +188,16 @@ describe('worldsFor', () => {
     ]);
     expect(trackWorlds(3, undefined)).toEqual([]);
   });
+
+  it('keeps the bonus world of idioms beside the journey of every grade', () => {
+    for (const grade of [0, 1, 2, 3, 4, 5, 6] as const) {
+      expect(worldsFor(grade, undefined).map((w) => w.topic.id)).not.toContain('idioms');
+      expect(trackWorlds(grade, undefined, 'idioms').map((w) => [w.topic.id, w.index])).toEqual([
+        ['idioms', 1],
+      ]);
+    }
+    expect(trackWorlds(4, undefined).map((w) => w.topic.id)).not.toContain('idioms');
+  });
 });
 
 describe('worldsMap', () => {

@@ -197,7 +197,8 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
       topicId: topic.id,
       level,
       // The review never suggests a level change: every exercise is from a different one.
-      minLevel: review ? level : (topic.levels[0]?.level ?? 1),
+      // Nor does a world whose stations are parts, not steps (the idioms).
+      minLevel: review || topic.parts ? level : (topic.levels[0]?.level ?? 1),
       maxLevel: review ? level : (gradeLevels.at(-1)?.level ?? 10),
       band,
       ...(profile.settings.roundLength ? { roundLength: profile.settings.roundLength } : {}),
@@ -609,10 +610,10 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
     <section ref={answersRef} className="answer">
       {e.input.type === 'choices' ? (
         <div
-          className="choices-big"
+          className={e.input.stack ? 'choices-big choices-big--stack' : 'choices-big'}
           role="group"
           aria-label={t('practice.choicesLabel')}
-          dir={e.input.rtl ? 'rtl' : 'ltr'}
+          dir={e.input.rtl || e.input.stack ? 'rtl' : 'ltr'}
         >
           {e.input.choices.map((c, i) => {
             const label = e.input.type === 'choices' ? e.input.labels?.[i] : undefined;
@@ -628,6 +629,20 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
                   onClick={() => answer(c)}
                 >
                   <VisualView visual={picture} />
+                </button>
+              );
+            }
+            // A whole sentence (an idiom's meaning): one per row, as it is written.
+            if (e.input.type === 'choices' && e.input.stack && label) {
+              return (
+                <button
+                  key={c}
+                  type="button"
+                  className="choice-big choice-big--sentence"
+                  disabled={tried.includes(c)}
+                  onClick={() => answer(c)}
+                >
+                  {label}
                 </button>
               );
             }

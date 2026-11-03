@@ -250,11 +250,12 @@ function Journey({ profile }: { profile: Profile }) {
         <div className="journey__mapcol">
           {/* The world's name; "כל העולמות" stands at its other end, under the tools. */}
           <div className="journey__world">
-            {!young ? (
+            {/* Beside the journey, even a young child sees where she is, and the way back. */}
+            {!young || inTrack ? (
               <div className="journey__world-text">
                 <h2 className="journey__world-name">
                   {inTrack
-                    ? t('map4.here', {
+                    ? t(world.topic.track === 'idioms' ? 'idioms.here' : 'map4.here', {
                         params: { name: t(world.topic.labelKey as TranslationKey) },
                       })
                     : t('journey.world', {

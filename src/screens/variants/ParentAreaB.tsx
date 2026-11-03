@@ -569,6 +569,7 @@ function ChildSettings({
       ...(g === 0 ? {} : { dailyGoal: g }),
       // Kept as it is (design B has no control for it).
       ...(s.effects ? { effects: s.effects } : {}),
+      ...(s.idioms ? { idioms: true as const } : {}),
     });
     setSaved((n) => n + 1);
   };

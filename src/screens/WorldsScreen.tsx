@@ -3,7 +3,7 @@ import { speaker } from '@/audio/speaker';
 import { useSpeaking } from '@/audio/useSpeaker';
 import { setReplayTopic } from '@/app/replay';
 import { navigate } from '@/app/router';
-import { leaveTrack, showsTestPrep } from '@/app/track';
+import { leaveTrack, showsIdioms, showsTestPrep } from '@/app/track';
 import { dailyPool } from '@/engine/daily';
 import { worldsMap, type WorldMapEntry } from '@/engine/journey';
 import { t, type TranslationKey } from '@/i18n';
@@ -19,6 +19,7 @@ import { applyPlusiColor } from '@/ui/plusiColor';
 import { Sticker } from '@/ui/Sticker';
 import { stickerForWorld } from '@/ui/stickers';
 import { IntroSpeaker, JourneySteps, LockIcon } from './JourneyIntro';
+import { IdiomsSection } from './IdiomsBonus';
 import { TestPrepSection } from './TestPrep';
 import './worldsPath.css';
 
@@ -98,6 +99,9 @@ export function WorldsScreen() {
 
       {/* Grade 4's practice for the school's test, open at any time (the parent can hide it). */}
       {showsTestPrep(profile) ? <TestPrepSection profile={profile} progress={progress} /> : null}
+
+      {/* One family's bonus world, Hebrew idioms (app/bonus.ts). */}
+      {showsIdioms(profile) ? <IdiomsSection profile={profile} progress={progress} /> : null}
 
       {/* Review from every world she has passed stations in: the place for it is here. */}
       {dailyPool(profile.grade, progress).length > 0 ? (

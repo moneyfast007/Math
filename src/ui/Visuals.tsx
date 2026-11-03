@@ -109,7 +109,18 @@ export function VisualView({
       return <FigureView v={visual} />;
     case 'scene':
       return <SceneView v={visual} />;
+    case 'phrase':
+      return <PhraseView v={visual} />;
   }
+}
+
+/** A saying on a card of its own (the idioms world): the idiom big, a meaning as a sentence. */
+function PhraseView({ v }: { v: Extract<Visual, { type: 'phrase' }> }) {
+  return (
+    <div className={`phrase phrase--${v.kind}`} dir="rtl">
+      <p className="phrase__text">{v.text}</p>
+    </div>
+  );
 }
 
 function rowsOfFive(n: number): number[] {

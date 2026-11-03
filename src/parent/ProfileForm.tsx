@@ -65,6 +65,7 @@ export function ProfileForm({ profile, onSave, onDelete, onClose }: ProfileFormP
         ...(dailyGoal === 0 ? {} : { dailyGoal }),
         // Not on this form: kept as the parent set it elsewhere.
         ...(profile?.settings.testPrep === false ? { testPrep: false as const } : {}),
+        ...(profile?.settings.idioms ? { idioms: true as const } : {}),
       },
     });
   };

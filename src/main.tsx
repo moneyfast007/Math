@@ -1,11 +1,12 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { App } from './app/App';
+import { startBonus } from './app/bonus';
 import { startCrashReports } from './app/crashReport';
 import { startUpdates } from './app/updates';
 import { speaker } from './audio/speaker';
 import { appStore } from './state/store';
-import { startSync } from './sync';
+import { startSync, syncEngine } from './sync';
 import { applyAgeBand } from './ui/ageBand';
 import './ui/global.css';
 
@@ -19,7 +20,11 @@ applyAgeBand('middle');
 void appStore
   .getState()
   .hydrate()
-  .then(() => startSync());
+  .then(() => {
+    startSync();
+    // One family's bonus world, opened by its email (app/bonus.ts).
+    startBonus(syncEngine.ui, appStore);
+  });
 
 // The speaker looks for clips in the chosen child's grade list, fetched (a few
 // tens of kilobytes) as soon as she is chosen, so her first tap plays at once.

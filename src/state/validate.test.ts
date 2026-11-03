@@ -149,6 +149,17 @@ describe('parseAppData', () => {
     }
   });
 
+  it('keeps the bonus world of idioms when it is on; any other value means off', () => {
+    const base = makeProfile();
+    const on = { ...base, settings: { ...base.settings, idioms: true as const } };
+    const odd = { ...base, id: 'p2', settings: { ...base.settings, idioms: 'yes' } } as never;
+    const result = parseAppData(clone(makeData({ profiles: [on, odd] })));
+    expect(result.ok).toBe(true);
+    if (!result.ok) return;
+    expect(result.data.profiles[0]?.settings.idioms).toBe(true);
+    expect(result.data.profiles[1]?.settings).not.toHaveProperty('idioms');
+  });
+
   it('trims names', () => {
     const result = parseAppData(makeData({ profiles: [makeProfile({ name: '  נועה  ' })] }));
     expect(result.ok && result.data.profiles[0]?.name).toBe('נועה');

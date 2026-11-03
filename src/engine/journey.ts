@@ -106,9 +106,13 @@ export function worldsFor(grade: Grade, progress: ProfileProgress | undefined): 
   return topicsForGrade(grade).map((topic, i) => worldFor(topic, i + 1, grade, progress));
 }
 
-/** The worlds beside the journey (grade 4's test practice), each numbered in its own list. */
-export function trackWorlds(grade: Grade, progress: ProfileProgress | undefined): World[] {
-  return trackTopics(grade).map((topic, i) => worldFor(topic, i + 1, grade, progress));
+/** The worlds beside the journey (grade 4's test practice, say), each numbered in its own list. */
+export function trackWorlds(
+  grade: Grade,
+  progress: ProfileProgress | undefined,
+  track: NonNullable<Topic['track']> = 'map4',
+): World[] {
+  return trackTopics(grade, track).map((topic, i) => worldFor(topic, i + 1, grade, progress));
 }
 
 /** The world she is in: the first one not completed, else the last. */

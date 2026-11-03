@@ -3,7 +3,7 @@ import type { Profile, ProfileProgress } from '@/state/schema';
 
 /**
  * A world beside the journey that the child is playing now (grade 4's practice
- * for the school's test): chosen on its own screen, left with "חזרה למסע". While
+ * for the school's test, or a family's bonus world): chosen on its own screen, left with "חזרה למסע". While
  * one is chosen, the journey's map and its rounds are that world's; the journey
  * itself stays where it was.
  *
@@ -47,6 +47,11 @@ export function showsTestPrep(profile: Profile): boolean {
   return profile.grade === 4 && profile.settings.testPrep !== false;
 }
 
+/** The bonus world of idioms shows for this child (her family's, see app/bonus.ts). */
+export function showsIdioms(profile: Profile): boolean {
+  return profile.settings.idioms === true;
+}
+
 /** The world beside the journey she is playing, if any (and still hers). */
 export function trackedWorld(
   profile: Profile,
@@ -54,7 +59,11 @@ export function trackedWorld(
 ): World | undefined {
   const id = trackOf(profile.id);
   if (!id) return undefined;
-  return trackWorlds(profile.grade, progress).find((w) => w.topic.id === id);
+  const worlds = [
+    ...trackWorlds(profile.grade, progress, 'map4'),
+    ...(showsIdioms(profile) ? trackWorlds(profile.grade, progress, 'idioms') : []),
+  ];
+  return worlds.find((w) => w.topic.id === id);
 }
 
 /** The world her map and rounds are about: one beside the journey she chose, else the journey's. */
