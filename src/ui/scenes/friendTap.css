@@ -1,0 +1,984 @@
+/*
+ * A collected friend, tapped: its own move (on .friend__body) and a little effect
+ * around it (.friend__fx, five dots <i> each effect uses as it likes). Once per tap.
+ */
+
+.friend__tap {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.friend__tap:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 4px;
+  border-radius: 50%;
+}
+
+.friend__body {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: 100%;
+  transform-origin: 50% 90%;
+}
+
+.friend__fx {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.friend__fx i {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  margin: -4px 0 0 -4px;
+  border-radius: 50%;
+  opacity: 0;
+}
+
+/* ---------- The moves ---------- */
+
+.friend__tap--zap .friend__body {
+  animation: ft-zap 0.8s ease-out;
+}
+
+.friend__tap--bounce .friend__body {
+  animation: ft-bounce 0.9s ease-out;
+}
+
+.friend__tap--swim .friend__body {
+  animation: ft-swim 1.1s ease-in-out;
+}
+
+.friend__tap--float .friend__body {
+  animation: ft-float 1.4s ease-in-out;
+}
+
+.friend__tap--chug .friend__body {
+  animation: ft-chug 1s linear;
+}
+
+.friend__tap--wobble .friend__body {
+  animation: ft-wobble 1s ease-in-out;
+}
+
+.friend__tap--puff .friend__body {
+  animation: ft-puff 1s ease-in-out;
+}
+
+.friend__tap--jelly .friend__body {
+  animation: ft-jelly 0.9s ease-out;
+}
+
+.friend__tap--blast .friend__body {
+  animation: ft-blast 1.2s ease-in;
+}
+
+.friend__tap--zoom .friend__body {
+  animation: ft-zoom 1.1s ease-in-out;
+}
+
+.friend__tap--spin .friend__body {
+  transform-origin: 50% 50%;
+  animation: ft-spin 0.9s cubic-bezier(0.5, -0.3, 0.4, 1.4);
+}
+
+.friend__tap--dive .friend__body {
+  animation: ft-dive 1.2s ease-in-out;
+}
+
+.friend__tap--jump .friend__body {
+  animation: ft-jump 0.9s ease-out;
+}
+
+.friend__tap--swing .friend__body {
+  transform-origin: 50% 0;
+  animation: ft-swing 1.2s ease-in-out;
+}
+
+.friend__tap--twinkle .friend__body {
+  transform-origin: 50% 50%;
+  animation: ft-twinkle 1s ease-in-out;
+}
+
+.friend__tap--roar .friend__body {
+  animation: ft-roar 0.9s ease-out;
+}
+
+@keyframes ft-zap {
+  0%,
+  100% {
+    transform: none;
+    filter: none;
+  }
+
+  15% {
+    transform: scale(1.25);
+    filter: brightness(1.5) drop-shadow(0 0 8px #ffd45c);
+  }
+
+  25%,
+  45% {
+    transform: scale(1.2) rotate(-8deg);
+  }
+
+  35%,
+  55% {
+    transform: scale(1.2) rotate(8deg);
+  }
+
+  70% {
+    transform: scale(1.05);
+    filter: brightness(1.2) drop-shadow(0 0 4px #ffd45c);
+  }
+}
+
+@keyframes ft-bounce {
+  0%,
+  100% {
+    transform: none;
+  }
+
+  15% {
+    transform: scale(1.2, 0.8);
+  }
+
+  40% {
+    transform: translateY(-34px) scale(0.9, 1.12);
+  }
+
+  65% {
+    transform: scale(1.25, 0.75);
+  }
+
+  80% {
+    transform: translateY(-8px) scale(0.97, 1.04);
+  }
+}
+
+@keyframes ft-swim {
+  0%,
+  100% {
+    transform: none;
+  }
+
+  20% {
+    transform: translateX(-26px) rotate(8deg);
+  }
+
+  40% {
+    transform: translateX(-10px) rotate(-6deg);
+  }
+
+  60% {
+    transform: translateX(22px) scaleX(-1) rotate(6deg);
+  }
+
+  80% {
+    transform: translateX(8px) scaleX(-1) rotate(-6deg);
+  }
+}
+
+@keyframes ft-float {
+  0%,
+  100% {
+    transform: none;
+  }
+
+  45% {
+    transform: translateY(-38px) rotate(-6deg);
+  }
+
+  70% {
+    transform: translateY(-30px) rotate(5deg);
+  }
+}
+
+@keyframes ft-chug {
+  0%,
+  100% {
+    transform: none;
+  }
+
+  10%,
+  30%,
+  50%,
+  70% {
+    transform: translate(-6px, -3px);
+  }
+
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translate(-12px, 0);
+  }
+}
+
+@keyframes ft-wobble {
+  0%,
+  100% {
+    transform: none;
+  }
+
+  20% {
+    transform: rotate(-16deg);
+  }
+
+  40% {
+    transform: rotate(13deg);
+  }
+
+  60% {
+    transform: rotate(-9deg);
+  }
+
+  80% {
+    transform: rotate(5deg);
+  }
+}
+
+@keyframes ft-puff {
+  0%,
+  100% {
+    transform: none;
+  }
+
+  30% {
+    transform: scale(1.3, 1.15);
+  }
+
+  55% {
+    transform: scale(0.92, 1.05);
+  }
+
+  75% {
+    transform: scale(1.1, 1.02);
+  }
+}
+
+@keyframes ft-jelly {
+  0%,
+  100% {
+    transform: none;
+  }
+
+  20% {
+    transform: scale(1.25, 0.78);
+  }
+
+  40% {
+    transform: scale(0.82, 1.2);
+  }
+
+  60% {
+    transform: scale(1.12, 0.9);
+  }
+
+  80% {
+    transform: scale(0.96, 1.05);
+  }
+}
+
+@keyframes ft-blast {
+  0% {
+    transform: none;
+  }
+
+  15% {
+    transform: translateY(4px) scale(1.05, 0.95);
+  }
+
+  50% {
+    transform: translateY(-120px);
+    opacity: 1;
+  }
+
+  51% {
+    transform: translateY(-120px);
+    opacity: 0;
+  }
+
+  52% {
+    transform: translateY(70px);
+    opacity: 0;
+  }
+
+  53% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: none;
+  }
+}
+
+@keyframes ft-zoom {
+  0% {
+    transform: none;
+  }
+
+  12% {
+    transform: translateX(8px) scaleX(0.92);
+  }
+
+  45% {
+    transform: translateX(-140px);
+    opacity: 1;
+  }
+
+  46% {
+    transform: translateX(-140px);
+    opacity: 0;
+  }
+
+  47% {
+    transform: translateX(140px);
+    opacity: 0;
+  }
+
+  48% {
+    opacity: 1;
+  }
+
+  85% {
+    transform: translateX(-6px);
+  }
+
+  100% {
+    transform: none;
+  }
+}
+
+@keyframes ft-spin {
+  0% {
+    transform: none;
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes ft-dive {
+  0%,
+  100% {
+    transform: none;
+  }
+
+  35% {
+    transform: translate(-10px, 24px) rotate(-18deg);
+  }
+
+  70% {
+    transform: translate(6px, -10px) rotate(10deg);
+  }
+}
+
+@keyframes ft-jump {
+  0%,
+  100% {
+    transform: none;
+  }
+
+  15% {
+    transform: scale(1.15, 0.82);
+  }
+
+  45% {
+    transform: translateY(-46px) rotate(-12deg);
+  }
+
+  75% {
+    transform: scale(1.12, 0.88);
+  }
+}
+
+@keyframes ft-swing {
+  0%,
+  100% {
+    transform: none;
+  }
+
+  20% {
+    transform: rotate(18deg);
+  }
+
+  45% {
+    transform: rotate(-14deg);
+  }
+
+  65% {
+    transform: rotate(9deg);
+  }
+
+  85% {
+    transform: rotate(-4deg);
+  }
+}
+
+@keyframes ft-twinkle {
+  0%,
+  100% {
+    transform: none;
+    filter: none;
+  }
+
+  40% {
+    transform: scale(1.3) rotate(180deg);
+    filter: brightness(1.3) drop-shadow(0 0 10px #ffe27a);
+  }
+
+  70% {
+    transform: scale(1.1) rotate(330deg);
+  }
+}
+
+@keyframes ft-roar {
+  0%,
+  100% {
+    transform: none;
+  }
+
+  15% {
+    transform: scale(0.92) rotate(6deg);
+  }
+
+  30% {
+    transform: scale(1.15) rotate(-8deg) translateX(-4px);
+  }
+
+  40%,
+  60% {
+    transform: scale(1.15) rotate(-6deg) translateX(-6px);
+  }
+
+  50% {
+    transform: scale(1.15) rotate(-10deg) translateX(-4px);
+  }
+}
+
+/* ---------- The effects ---------- */
+
+/* Sparks (the spark), sparkles (the star, the crane), sprinkles (the cupcake): a burst. */
+.friend__fx--sparks i,
+.friend__fx--sparkles i,
+.friend__fx--sprinkles i {
+  animation: ft-burst 0.8s ease-out forwards;
+}
+
+.friend__fx--sparks i {
+  background: #ffc93c;
+  box-shadow: 0 0 6px #ffd45c;
+}
+
+.friend__fx--sparkles i {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  background: #ffe27a;
+  rotate: 45deg;
+  box-shadow: 0 0 6px #fff3b0;
+}
+
+.friend__fx--sprinkles i {
+  width: 5px;
+  height: 11px;
+  border-radius: 3px;
+}
+
+.friend__fx--sprinkles i:nth-child(1) {
+  background: #ff7aa8;
+}
+
+.friend__fx--sprinkles i:nth-child(2) {
+  background: #6fd0ff;
+}
+
+.friend__fx--sprinkles i:nth-child(3) {
+  background: #ffd45c;
+}
+
+.friend__fx--sprinkles i:nth-child(4) {
+  background: #8fe388;
+}
+
+.friend__fx--sprinkles i:nth-child(5) {
+  background: #c79bff;
+}
+
+.friend__fx i:nth-child(1) {
+  --dx: 0px;
+  --dy: -46px;
+}
+
+.friend__fx i:nth-child(2) {
+  --dx: 42px;
+  --dy: -18px;
+  animation-delay: 0.04s;
+}
+
+.friend__fx i:nth-child(3) {
+  --dx: 30px;
+  --dy: 34px;
+  animation-delay: 0.08s;
+}
+
+.friend__fx i:nth-child(4) {
+  --dx: -30px;
+  --dy: 34px;
+  animation-delay: 0.06s;
+}
+
+.friend__fx i:nth-child(5) {
+  --dx: -42px;
+  --dy: -18px;
+  animation-delay: 0.02s;
+}
+
+@keyframes ft-burst {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) scale(0.4);
+  }
+
+  70% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(var(--dx), var(--dy)) scale(1);
+  }
+}
+
+/* Bubbles (the fish, the submarine): rising from it, wobbling. */
+.friend__fx--bubbles i {
+  top: 40%;
+  width: 9px;
+  height: 9px;
+  background: rgb(255 255 255 / 55%);
+  border: 2px solid #7cc8f0;
+  animation: ft-rise 1.1s ease-out forwards;
+}
+
+.friend__fx--bubbles i:nth-child(1) {
+  left: 30%;
+}
+
+.friend__fx--bubbles i:nth-child(2) {
+  left: 55%;
+  width: 6px;
+  height: 6px;
+  animation-delay: 0.15s;
+}
+
+.friend__fx--bubbles i:nth-child(3) {
+  left: 70%;
+  animation-delay: 0.3s;
+}
+
+.friend__fx--bubbles i:nth-child(4) {
+  left: 42%;
+  width: 12px;
+  height: 12px;
+  animation-delay: 0.45s;
+}
+
+.friend__fx--bubbles i:nth-child(5) {
+  left: 62%;
+  width: 5px;
+  height: 5px;
+  animation-delay: 0.55s;
+}
+
+@keyframes ft-rise {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0);
+  }
+
+  20% {
+    opacity: 1;
+  }
+
+  50% {
+    transform: translate(5px, -30px);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-4px, -64px);
+  }
+}
+
+/* Hearts (the bear): rising like his balloons. */
+.friend__fx--hearts i {
+  top: 30%;
+  width: 10px;
+  height: 10px;
+  border-radius: 0;
+  background: #ff6b8a;
+  rotate: 45deg;
+  animation: ft-rise 1.3s ease-out forwards;
+}
+
+.friend__fx--hearts i::before,
+.friend__fx--hearts i::after {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: inherit;
+}
+
+.friend__fx--hearts i::before {
+  left: -5px;
+}
+
+.friend__fx--hearts i::after {
+  top: -5px;
+}
+
+.friend__fx--hearts i:nth-child(1) {
+  left: 25%;
+}
+
+.friend__fx--hearts i:nth-child(2) {
+  left: 72%;
+  animation-delay: 0.25s;
+}
+
+.friend__fx--hearts i:nth-child(3) {
+  left: 50%;
+  animation-delay: 0.5s;
+}
+
+.friend__fx--hearts i:nth-child(n + 4) {
+  display: none;
+}
+
+/* Steam (the engine): puffs from its chimney, growing. */
+.friend__fx--steam i {
+  top: 18%;
+  left: 62%;
+  width: 14px;
+  height: 14px;
+  background: #eef1f6;
+  box-shadow: inset -2px -2px 0 #cfd6e2;
+  animation: ft-steam 1s ease-out forwards;
+}
+
+.friend__fx--steam i:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.friend__fx--steam i:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+.friend__fx--steam i:nth-child(4) {
+  animation-delay: 0.6s;
+}
+
+.friend__fx--steam i:nth-child(5) {
+  display: none;
+}
+
+@keyframes ft-steam {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) scale(0.5);
+  }
+
+  20% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(18px, -40px) scale(1.8);
+  }
+}
+
+/* Snow (the snowman), rain (the cloud): falling past it. */
+.friend__fx--snow i,
+.friend__fx--rain i {
+  top: 0;
+  animation: ft-fall 1s ease-in forwards;
+}
+
+.friend__fx--snow i {
+  width: 7px;
+  height: 7px;
+  background: #fff;
+  box-shadow: 0 0 0 1.5px #c9e3f5;
+}
+
+.friend__fx--rain i {
+  top: 60%;
+  width: 4px;
+  height: 10px;
+  border-radius: 2px 2px 4px 4px;
+  background: #5bb4ef;
+  animation-duration: 0.7s;
+}
+
+.friend__fx--snow i:nth-child(1),
+.friend__fx--rain i:nth-child(1) {
+  left: 20%;
+}
+
+.friend__fx--snow i:nth-child(2),
+.friend__fx--rain i:nth-child(2) {
+  left: 40%;
+  animation-delay: 0.2s;
+}
+
+.friend__fx--snow i:nth-child(3),
+.friend__fx--rain i:nth-child(3) {
+  left: 60%;
+  animation-delay: 0.1s;
+}
+
+.friend__fx--snow i:nth-child(4),
+.friend__fx--rain i:nth-child(4) {
+  left: 80%;
+  animation-delay: 0.3s;
+}
+
+.friend__fx--snow i:nth-child(5),
+.friend__fx--rain i:nth-child(5) {
+  left: 50%;
+  animation-delay: 0.45s;
+}
+
+@keyframes ft-fall {
+  0% {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+
+  20% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+}
+
+/* Flame (the rocket pilot): under him as he takes off. */
+.friend__fx--flame i {
+  top: auto;
+  bottom: -4px;
+  width: 16px;
+  height: 22px;
+  margin: 0 0 0 -8px;
+  border-radius: 50% 50% 50% 50% / 30% 30% 70% 70%;
+  background: radial-gradient(circle at 50% 30%, #fff3a0, #ffb02e 55%, #ff6a2b);
+  animation: ft-flame 0.6s ease-out forwards;
+}
+
+.friend__fx--flame i:nth-child(n + 2) {
+  display: none;
+}
+
+@keyframes ft-flame {
+  0% {
+    opacity: 0;
+    transform: scaleY(0.4);
+  }
+
+  30% {
+    opacity: 1;
+    transform: scaleY(1.4);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(18px) scaleY(1.8);
+  }
+}
+
+/* Speed lines (the racing driver): behind him as he drives off. */
+.friend__fx--lines i {
+  left: 70%;
+  width: 26px;
+  height: 3px;
+  margin: 0;
+  border-radius: 2px;
+  background: #9aa6d4;
+  animation: ft-line 0.5s ease-out forwards;
+}
+
+.friend__fx--lines i:nth-child(1) {
+  top: 30%;
+}
+
+.friend__fx--lines i:nth-child(2) {
+  top: 48%;
+  animation-delay: 0.06s;
+}
+
+.friend__fx--lines i:nth-child(3) {
+  top: 66%;
+  animation-delay: 0.12s;
+}
+
+.friend__fx--lines i:nth-child(n + 4) {
+  display: none;
+}
+
+@keyframes ft-line {
+  0% {
+    opacity: 0;
+    transform: translateX(-20px) scaleX(0.3);
+  }
+
+  40% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateX(20px) scaleX(1);
+  }
+}
+
+/* Beep (the robot), dust (the climber landing), splash (the drop): a ring. */
+.friend__fx--beep i,
+.friend__fx--dust i,
+.friend__fx--splash i {
+  width: 40px;
+  height: 40px;
+  margin: -20px 0 0 -20px;
+  background: none;
+  animation: ft-ring 0.8s ease-out forwards;
+}
+
+.friend__fx--beep i {
+  border: 3px solid #34e0d0;
+}
+
+.friend__fx--splash i,
+.friend__fx--dust i {
+  top: 92%;
+  height: 12px;
+  margin-top: -6px;
+  border-radius: 50%;
+  animation-delay: 0.5s;
+}
+
+.friend__fx--splash i {
+  border: 3px solid #7cc8f0;
+}
+
+.friend__fx--dust i {
+  border: 0;
+  background: rgb(190 160 120 / 45%);
+  animation-delay: 0.6s;
+}
+
+.friend__fx--beep i:nth-child(2),
+.friend__fx--splash i:nth-child(2) {
+  animation-delay: 0.25s;
+}
+
+.friend__fx--splash i:nth-child(2) {
+  animation-delay: 0.65s;
+}
+
+.friend__fx--beep i:nth-child(n + 3),
+.friend__fx--splash i:nth-child(n + 3),
+.friend__fx--dust i:nth-child(n + 2) {
+  display: none;
+}
+
+@keyframes ft-ring {
+  0% {
+    opacity: 0.9;
+    transform: scale(0.4);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(1.8);
+  }
+}
+
+/* Fire (the dragon): a puff of flame out in front of him. */
+.friend__fx--fire i {
+  top: 46%;
+  left: 18%;
+  width: 14px;
+  height: 14px;
+  background: radial-gradient(circle, #fff3a0 0 25%, #ffb02e 50%, #ff5a2b 90%);
+  animation: ft-fire 0.7s ease-out forwards;
+  animation-delay: 0.22s;
+}
+
+.friend__fx--fire i:nth-child(2) {
+  --fy: -10px;
+
+  animation-delay: 0.28s;
+}
+
+.friend__fx--fire i:nth-child(3) {
+  --fy: 10px;
+
+  animation-delay: 0.34s;
+}
+
+.friend__fx--fire i:nth-child(n + 4) {
+  display: none;
+}
+
+@keyframes ft-fire {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) scale(0.5);
+  }
+
+  25% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-40px, var(--fy, 0)) scale(2.2);
+  }
+}
+
+/* Without motion (the system's setting): a small nod, no effects. */
+@media (prefers-reduced-motion: reduce) {
+  .friend__tap[class*='friend__tap--'] .friend__body {
+    animation: ft-nod 0.4s ease-out;
+  }
+
+  .friend__fx {
+    display: none;
+  }
+}
+
+@keyframes ft-nod {
+  50% {
+    transform: scale(1.08);
+  }
+}

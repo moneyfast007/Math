@@ -11,6 +11,7 @@ import { BrandMark } from '@/ui/BrandMark';
 import { Plusi } from '@/ui/Plusi';
 import { PlusiPicker } from '@/ui/PlusiPicker';
 import { CompanionArt, companionFor, sceneStyleForGrade } from '@/ui/scenes/companions';
+import { FriendTap } from '@/ui/scenes/FriendTap';
 import { applyPlusiColor } from '@/ui/plusiColor';
 import { SpeakerButton } from '@/ui/SpeakerButton';
 import { Sticker } from '@/ui/Sticker';
@@ -175,7 +176,10 @@ function Friends({ worlds, grade }: { worlds: ReturnType<typeof worldsFor>; grad
               }
             >
               <span className="friend__art">
-                {friend ? (
+                {/* A friend she has: tap it, and it does its own little move. */}
+                {friend && w.completed ? (
+                  <FriendTap id={friend.id} name={name ?? ''} />
+                ) : friend ? (
                   <CompanionArt id={friend.id} size="100%" />
                 ) : (
                   <span aria-hidden="true">?</span>

@@ -23,19 +23,19 @@ describe('<WorldComplete>', () => {
   };
   const profile = makeProfile({ grade: 2 });
 
-  it("the first world's friend joins: ניצוצית for the young ones, קוסמו from grade 3", () => {
+  it("the first world's friend joins: לומה for the young ones, ג'ט from grade 3", () => {
     render(<WorldComplete profile={profile} world={at(0)} next={at(1)} spoken="יש!" />);
-    expect(screen.getByText('ניצוצית מצטרפת לחברים שלך!')).toBeInTheDocument();
+    expect(screen.getByText('לומה מצטרפת לחברים שלך!')).toBeInTheDocument();
   });
 
-  it("the second world's friend: טיפי", () => {
+  it("the second world's friend: טליה", () => {
     render(<WorldComplete profile={profile} world={at(1)} next={at(2)} spoken="יש!" />);
-    expect(screen.getByText('טיפי מצטרפת לחברים שלך!')).toBeInTheDocument();
+    expect(screen.getByText('טליה מצטרפת לחברים שלך!')).toBeInTheDocument();
   });
 
   it('every world of the grade has its friend: the last one too', () => {
     render(<WorldComplete profile={profile} world={at(7)} next={null} spoken="יש!" />);
-    expect(screen.getByText('שוקי מצטרף לחברים שלך!')).toBeInTheDocument();
+    expect(screen.getByText("צ'רי מצטרף לחברים שלך!")).toBeInTheDocument();
   });
 
   it('celebrates the world, names the one it opens, and leads on to it', () => {
