@@ -223,7 +223,9 @@ async function preload(srcs: string[], waitMs = 2500): Promise<HTMLAudioElement[
 }
 
 export async function defaultFetchIndex(name: IndexName): Promise<ClipIndex> {
-  const res = await fetch(`/audio/index/${name}.json`);
+  // Always asked again: a new world adds its sentences to the list. ("no-cache" also
+  // passes over a copy the browser was once told to keep for a year.)
+  const res = await fetch(`/audio/index/${name}.json`, { cache: 'no-cache' });
   if (!res.ok) throw new Error(`audio index ${name}: ${res.status}`);
   return (await res.json()) as ClipIndex;
 }

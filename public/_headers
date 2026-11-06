@@ -18,9 +18,10 @@
 /assets/*
   Cache-Control: public, max-age=31536000, immutable
 
-# Audio clips are content-addressed by text hash (see scripts/tts); also immutable.
-/audio/*
-  Cache-Control: public, max-age=31536000, immutable
+# The per-grade lists of recorded sentences change with every new world: always
+# revalidated. (The clips themselves come from the worker, with headers of their own.)
+/audio/index/*
+  Cache-Control: no-cache
 
 # The service worker and the HTML shell must always be revalidated.
 /sw.js
