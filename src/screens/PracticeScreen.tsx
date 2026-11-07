@@ -48,6 +48,7 @@ import { groupDigits } from '@/lang/groupDigits';
 import { NumberPad } from '@/ui/NumberPad';
 import { Plusi, type PlusiMood } from '@/ui/Plusi';
 import { applyPlusiColor } from '@/ui/plusiColor';
+import { ExerciseTimer } from '@/ui/ExerciseTimer';
 import { SpeakerButton } from '@/ui/SpeakerButton';
 import { ColumnWork } from '@/ui/Vertical';
 import { sceneForWorld, sceneStyleForGrade } from '@/ui/scenes/companions';
@@ -63,6 +64,8 @@ const LONG_PROMPT = 40;
 
 /** How long a correct answer stays on screen before the next exercise. */
 const CORRECT_PAUSE_MS = 1400;
+/** After "time is up", long enough to read it. */
+const TIME_UP_PAUSE_MS = 2200;
 
 /**
  * The exercise card shrinks its question text and pictures to fit the height
@@ -366,10 +369,11 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
     apply({ type: 'next', exercise: generate(cur.level) });
   };
 
-  // A correct answer moves on by itself after a short celebration.
+  // A correct answer moves on by itself after a short celebration; so does an
+  // exercise whose time ran out, after a line that says so.
   useEffect(() => {
-    if (s.phase !== 'correct') return;
-    const id = window.setTimeout(advance, CORRECT_PAUSE_MS);
+    if (s.phase !== 'correct' && !(s.phase === 'revealed' && s.timedOut)) return;
+    const id = window.setTimeout(advance, s.timedOut ? TIME_UP_PAUSE_MS : CORRECT_PAUSE_MS);
     return () => window.clearTimeout(id);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [s.phase, s.done]);
@@ -558,6 +562,8 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
   // A world with no recordings shows no speaker at all.
   const silent = topicById(e.topicId)?.silent === true;
   const finished = s.phase === 'correct' || s.phase === 'revealed';
+  // A minute for each exercise in some worlds (the idioms): when it runs out, the next one.
+  const timeLimit = topicById(e.topicId)?.timeLimit;
   // Things to count (not a frame): each can be tapped, and counted together after a miss.
   const countable = e.visual?.type === 'objects' && !e.visual.frame;
   // A long typed number is easier to check with separators (1,462,743), as everywhere else.
@@ -811,6 +817,15 @@ function Practice({ profile, mode }: { profile: Profile; mode: PracticeMode }) {
         className={e.input.type === 'vertical' ? 'exercise exercise--column card' : 'exercise card'}
         aria-live="polite"
       >
+        {timeLimit && !finished ? (
+          <ExerciseTimer
+            // Its own key (the picture beside it uses the plain one): a new exercise, a new clock.
+            key={`timer:${s.done}:${e.factId}`}
+            seconds={timeLimit}
+            running
+            onUp={() => apply({ type: 'timeUp' })}
+          />
+        ) : null}
         <div
           className={
             // A word problem: its text starts at the speaker's side and gets the rest of the row.
@@ -1159,6 +1174,13 @@ function Feedback({
         {sparkle && first ? <Sparkles /> : null}
         {silent ? null : <SpeakerButton text={text} />}
         <span>{text}</span>
+      </div>
+    );
+  }
+  if (s.phase === 'revealed' && s.timedOut) {
+    return (
+      <div className="feedback feedback--reveal" role="status">
+        <span>{t('timer.up')}</span>
       </div>
     );
   }

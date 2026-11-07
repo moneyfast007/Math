@@ -560,6 +560,11 @@ export interface Topic {
    */
   parts?: boolean;
   /**
+   * Seconds for each exercise (the idioms world: a minute, like the competition).
+   * When they run out the exercise is over, not solved, and the next one comes.
+   */
+  timeLimit?: number;
+  /**
    * Everything this topic can ever say, for pre-generating audio: whole
    * sentences when the topic is finite, otherwise the literal pieces of its
    * templates (numbers are recorded separately).

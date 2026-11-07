@@ -448,6 +448,8 @@ export interface TopicDef {
   track?: 'map4' | 'idioms';
   /** Stations that are parts, not steps (see Topic.parts). */
   parts?: boolean;
+  /** Seconds for each exercise (see Topic.timeLimit). */
+  timeLimit?: number;
 }
 
 /** How many exercises per level the bank samples from open levels to collect their pieces. */
@@ -636,6 +638,7 @@ export function defineTopic(def: TopicDef): Topic & { enumerate: (level: number)
     ...(def.silent ? { silent: true } : {}),
     ...(def.track ? { track: def.track } : {}),
     ...(def.parts ? { parts: true } : {}),
+    ...(def.timeLimit ? { timeLimit: def.timeLimit } : {}),
     generate,
     spokenBank,
     enumerate,

@@ -126,6 +126,23 @@ describe('practice session', () => {
     expect(s.history).toEqual(['later']);
   });
 
+  it('ends an exercise whose time ran out as not solved, and starts the next one fresh', () => {
+    const s = start();
+    const up = reduce(s, { type: 'timeUp' });
+    expect(completedExercise(s, up)).toBe(true);
+    expect(up.phase).toBe('revealed');
+    expect(up.timedOut).toBe(true);
+    expect(up.history.at(-1)).toBe('revealed');
+    expect(up.firstTryCount).toBe(0);
+    // After a wrong try too; and never once the exercise is over.
+    const late = reduce(wrong(start()), { type: 'timeUp' });
+    expect(late.phase).toBe('revealed');
+    expect(reduce(right(start()), { type: 'timeUp' }).phase).toBe('correct');
+    const after = next(up);
+    expect(after.timedOut).toBe(false);
+    expect(after.phase).toBe('answering');
+  });
+
   it('opens at most three hints, only while answering', () => {
     let s = start();
     for (let i = 0; i < 5; i++) s = reduce(s, { type: 'hint' });

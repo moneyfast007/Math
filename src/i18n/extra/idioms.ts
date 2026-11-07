@@ -22,6 +22,10 @@ export const heIdioms = {
   'idioms.parts': '60 ביטויים · 10 תחנות · מבחן אמריקאי',
   'idioms.here': 'עולם בונוס · {name}',
 
+  // A minute for each question (Topic.timeLimit).
+  'timer.left': 'נשארו {n} שניות',
+  'timer.up': 'נגמר הזמן! עוברים לשאלה הבאה.',
+
   // Both ways: what an idiom means, and which idiom means this.
   'idioms.meaning.prompt': 'מה פירוש הביטוי?',
   'idioms.phrase.prompt': 'איזה ביטוי מתאים לפירוש?',

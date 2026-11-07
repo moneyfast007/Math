@@ -7887,3 +7887,62 @@ body {
 .practice[data-screen='practice']:has(.choices-big--stack) > .hints {
   min-height: min(26%, 170px);
 }
+
+/* ---------- The time for one exercise (Topic.timeLimit) ---------- */
+
+.ex-timer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  max-width: 640px;
+  margin-inline: auto;
+}
+
+.ex-timer__bar {
+  position: relative;
+  flex: 1;
+  height: 8px;
+  overflow: hidden;
+  border-radius: var(--radius-pill);
+  background: var(--color-surface-alt);
+}
+
+.ex-timer__bar > span {
+  position: absolute;
+  inset-block: 0;
+  inset-inline-start: 0;
+  border-radius: inherit;
+  background: #2fa86f;
+  transition: width 0.25s linear;
+}
+
+.ex-timer__secs {
+  min-width: 3.2em;
+  color: var(--color-text-muted);
+  font-family: var(--font-math);
+  font-size: 16px;
+  font-weight: 800;
+  text-align: end;
+  direction: ltr;
+}
+
+.ex-timer--late .ex-timer__bar > span {
+  background: #e5484d;
+}
+
+.ex-timer--late .ex-timer__secs {
+  color: #c62f35;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .ex-timer--late .ex-timer__secs {
+    animation: ex-timer-beat 1s ease-in-out infinite;
+  }
+}
+
+@keyframes ex-timer-beat {
+  50% {
+    scale: 1.15;
+  }
+}

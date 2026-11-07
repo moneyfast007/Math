@@ -97,6 +97,8 @@ export interface SessionState {
   suggestion: 'down' | null;
   /** A digit of a column exercise had to be written for the child (see 'stepMiss'). */
   assisted: boolean;
+  /** The exercise's time ran out (Topic.timeLimit): over, not solved. */
+  timedOut: boolean;
 }
 
 export type SessionAction =
@@ -109,6 +111,8 @@ export type SessionAction =
    */
   | { type: 'stepMiss'; mistake: MistakeKind | null; assisted: boolean }
   | { type: 'hint' }
+  /** The exercise's time ran out (Topic.timeLimit): it ends as not solved. */
+  | { type: 'timeUp' }
   | { type: 'next'; exercise: Exercise }
   | { type: 'changeLevel'; level: number; exercise: Exercise }
   | { type: 'dismissSuggestion' };
@@ -144,6 +148,7 @@ export function startSession(o: StartOptions): SessionState {
     firstTryCount: 0,
     suggestion: null,
     assisted: false,
+    timedOut: false,
   };
 }
 
@@ -180,6 +185,7 @@ function freshExercise(s: SessionState, exercise: Exercise): SessionState {
     firstMistake: null,
     suggestion: null,
     assisted: false,
+    timedOut: false,
   };
 }
 
@@ -214,6 +220,9 @@ export function reduce(s: SessionState, a: SessionAction): SessionState {
         firstMistake: s.firstMistake ?? a.mistake ?? 'other',
         assisted: s.assisted || a.assisted,
       };
+    case 'timeUp':
+      if (s.phase !== 'answering' && s.phase !== 'wrong') return s;
+      return complete({ ...s, timedOut: true }, 'revealed', 'revealed');
     case 'hint':
       if (s.phase !== 'answering' && s.phase !== 'wrong') return s;
       return { ...s, hintsShown: Math.min(3, s.hintsShown + 1) };

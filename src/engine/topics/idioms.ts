@@ -134,5 +134,7 @@ export const idioms = defineTopic({
   track: 'idioms',
   // Station 3 is not easier than station 4, only other idioms: a stuck round stays.
   parts: true,
+  // A minute for each question, as in the competition.
+  timeLimit: 60,
   levels: Array.from({ length: 10 }, (_, i) => station(i + 1)),
 });
