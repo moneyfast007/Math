@@ -12,6 +12,7 @@ import { story0 } from './story0';
 import { share0 } from './share0';
 import { money0 } from './money0';
 import { week0 } from './week0';
+import { build0 } from './build0';
 import { THINGS, type ThingId } from './ganKit';
 import { sort0 } from './sort0';
 import { space0 } from './space0';
@@ -553,6 +554,19 @@ describe('week-0', () => {
   });
 });
 
+describe('build-0', () => {
+  it("grade 1's lines, halves and building, filed under this world and its stations", () => {
+    for (let level = 1; level <= 10; level++) {
+      const es = all(build0, level);
+      expect(es.length, `level ${level}`).toBeGreaterThan(3);
+      for (const e of es) {
+        expect(e.topicId, e.factId).toBe('build-0');
+        expect(e.level, e.factId).toBe(level);
+      }
+    }
+  });
+});
+
 describe('the gan journey', () => {
   it('counting and shapes first, then sorting and space, adding and taking away; then to twenty', () => {
     expect(topicsForGrade(0).map((t) => t.id)).toEqual([
@@ -571,6 +585,7 @@ describe('the gan journey', () => {
       'share-0',
       'money-0',
       'week-0',
+      'build-0',
     ]);
   });
 });

@@ -161,6 +161,7 @@ describe('worlds', () => {
       'share-0',
       'money-0',
       'week-0',
+      'build-0',
     ]);
   });
 

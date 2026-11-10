@@ -370,9 +370,9 @@ const lineFigure = (kind: LineKind, i: number): Visual => ({
   parts: [{ d: LINES[kind][i % 4] as string, line: true }],
 });
 
-type LineFact = { ask: LineKind; v: number };
+export type LineFact = { ask: LineKind; v: number };
 
-const lineFacts = (): LineFact[] =>
+export const lineFacts = (): LineFact[] =>
   LINE_KINDS.flatMap((ask) => [0, 1, 2, 3].map((v) => ({ ask, v })));
 
 /** For the example: another kind than the one asked, explained. */
@@ -382,7 +382,7 @@ const LINE_EXAMPLE: Record<LineKind, LineKind> = {
   broken: 'curved',
 };
 
-function lines(f: LineFact, rng: Rng): Exercise {
+export function lines(f: LineFact, rng: Rng): Exercise {
   const items = shuffle(
     rng,
     LINE_KINDS.map((k, j) => ({ k, v: k === f.ask ? f.v : (f.v + 1 + j) % 4 })),
@@ -529,15 +529,15 @@ function picture(pic: string, only?: Kind): Visual {
   return { type: 'figure', w: 100, h: 100, parts };
 }
 
-type CountFact = { pic: string; kind: Counted };
+export type CountFact = { pic: string; kind: Counted };
 
 /** Every picture with each kind of shape it has (at least one). */
-const countFacts = (): CountFact[] =>
+export const countFacts = (): CountFact[] =>
   PICTURE_IDS.flatMap((pic) =>
     COUNTED.filter((kind) => countOf(pic, kind) > 0).map((kind) => ({ pic, kind })),
   );
 
-function countShapes(f: CountFact, rng: Rng): Exercise {
+export function countShapes(f: CountFact, rng: Rng): Exercise {
   const n = countOf(f.pic, f.kind);
   const noun = KIND_NAME[f.kind];
   // The example: another picture with a different number of these shapes.
@@ -663,14 +663,14 @@ function halfPicture(id: string, whole = false): Visual {
   return { type: 'figure', w: 100, h: 100, parts, axis: 50 };
 }
 
-type HalfFact = { id: string; other: string };
+export type HalfFact = { id: string; other: string };
 
-const halfFacts = (): HalfFact[] =>
+export const halfFacts = (): HalfFact[] =>
   HALF_IDS.flatMap((id, i) =>
     [1, 2].map((d) => ({ id, other: HALF_IDS[(i + d) % HALF_IDS.length] as string })),
   );
 
-function symmetry(f: HalfFact, rng: Rng): Exercise {
+export function symmetry(f: HalfFact, rng: Rng): Exercise {
   const items = shuffle(rng, [
     { k: 'right', v: halfButton(f.id, true), label: t(K('half.right')) },
     { k: 'same', v: halfButton(f.id, false), label: t(K('half.same')) },
@@ -866,9 +866,9 @@ const targetPicture = (target: Target, cut = false): Visual => ({
   ],
 });
 
-type BuildFact = { target: Target; right: Pair; others: [Pair, Pair] };
+export type BuildFact = { target: Target; right: Pair; others: [Pair, Pair] };
 
-const buildFacts = (): BuildFact[] =>
+export const buildFacts = (): BuildFact[] =>
   TARGETS.flatMap((target) => {
     const rights = PAIRS.filter((p) => BUILDS[p].includes(target));
     const wrong = PAIRS.filter((p) => !rights.includes(p) && !NOT_FOR[target]?.includes(p));
@@ -885,7 +885,7 @@ const buildFacts = (): BuildFact[] =>
     });
   });
 
-function buildShape(f: BuildFact, rng: Rng, gender: Gender): Exercise {
+export function buildShape(f: BuildFact, rng: Rng, gender: Gender): Exercise {
   const items = shuffle(rng, [f.right, ...f.others]);
   const ex: Target = f.target === 'wideRect' ? 'square' : 'wideRect';
   return exercise({

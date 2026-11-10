@@ -36,6 +36,7 @@ import { heGan9 } from './extra/gan9';
 import { heGan10 } from './extra/gan10';
 import { heGan11 } from './extra/gan11';
 import { heGan12 } from './extra/gan12';
+import { heGan13 } from './extra/gan13';
 import { heIdioms } from './extra/idioms';
 import { heMap4 } from './extra/map4';
 import { heRound3 } from './extra/round3';
@@ -2187,6 +2188,7 @@ export const he = {
   ...heGan10,
   ...heGan11,
   ...heGan12,
+  ...heGan13,
 } as const;
 
 export type HebrewKey = keyof typeof he;
