@@ -732162,6 +732162,924 @@
       "voice": "gemini-3.1-flash/Leda/quick",
       "bytes": 26733,
       "trimmed": true
+    },
+    "d5c09ae1fbb918b6": {
+      "text": "כדור עולה",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 4557,
+      "trimmed": true
+    },
+    "34ad7c415e5aeece": {
+      "text": "מדבקה עולה",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 5709,
+      "trimmed": true
+    },
+    "7f6bc0c6b9c14c37": {
+      "text": "כסף ומטבעות",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 7437,
+      "trimmed": true
+    },
+    "10909a666d23d213": {
+      "text": "בלון עולה",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 7245,
+      "trimmed": true
+    },
+    "0899f8c148ccaa51": {
+      "text": "מטבעות עם עשר",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 6477,
+      "trimmed": true
+    },
+    "77d8e17d91f8b6a6": {
+      "text": "מטבעות מאותו סוג",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 8973,
+      "trimmed": true
+    },
+    "d2e633be16591b77": {
+      "text": "מטבעות של אחת ושל שתיים",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 11661,
+      "trimmed": true
+    },
+    "185d3d2842bcebe6": {
+      "text": "מטבעות עם חמש",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 10317,
+      "trimmed": true
+    },
+    "c2683fb06a353c2a": {
+      "text": "מחברת עולה",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 6093,
+      "trimmed": true
+    },
+    "9bab64765fa9bf55": {
+      "text": "בארנק הזה יש",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 6477,
+      "trimmed": true
+    },
+    "6037d64c85212154": {
+      "text": "סוכרייה עולה",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 5517,
+      "trimmed": true
+    },
+    "be99387bea1dd14f": {
+      "text": "בארנק הזה יש רק",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 7629,
+      "trimmed": true
+    },
+    "728a25efe9585333": {
+      "text": "בארנק הזה יש בדיוק",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 10029,
+      "trimmed": true
+    },
+    "ef5244c8b510e3f0": {
+      "text": "למשל, יש כאן עשרים שקלים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 12717,
+      "trimmed": true
+    },
+    "6b060b340b35833e": {
+      "text": "שקלים. זה פחות מהמחיר.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 12045,
+      "trimmed": true
+    },
+    "d3fc529b7432a347": {
+      "text": "שקלים. באיזה ארנק יש בדיוק",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 15405,
+      "trimmed": true
+    },
+    "15688d8797950639": {
+      "text": "למשל, יש כאן שבעה עשר שקלים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 12333,
+      "trimmed": true
+    },
+    "e43a7286b1ba4052": {
+      "text": "למשל, יש כאן שישה עשר שקלים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 13197,
+      "trimmed": true
+    },
+    "f80aa0007b504e81": {
+      "text": "בארנק הזה יש בדיוק שישה שקלים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 12237,
+      "trimmed": true
+    },
+    "70b2c22976a2d305": {
+      "text": "בארנק הזה יש בדיוק שבעה שקלים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 14157,
+      "trimmed": true
+    },
+    "26b69d6ada6016e6": {
+      "text": "בארנק הזה יש בדיוק תשעה שקלים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 12237,
+      "trimmed": true
+    },
+    "093606a531c63a38": {
+      "text": "בארנק הזה יש בדיוק שלושה שקלים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 13677,
+      "trimmed": true
+    },
+    "cd7cfac97c4c09fc": {
+      "text": "בארנק הזה יש בדיוק ארבעה שקלים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 14733,
+      "trimmed": true
+    },
+    "6c82d2e91eec12d8": {
+      "text": "בארנק הזה יש בדיוק עשרה שקלים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 13005,
+      "trimmed": true
+    },
+    "4714250a054bdbe1": {
+      "text": "בארנק הזה יש בדיוק שמונה שקלים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 12621,
+      "trimmed": true
+    },
+    "bcac67b8eff7d7cc": {
+      "text": "למשל, בארנק הזה יש בדיוק שישה שקלים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 16557,
+      "trimmed": true
+    },
+    "d0f568c495999f81": {
+      "text": "למשל, בארנק הזה יש בדיוק שבעה שקלים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 17133,
+      "trimmed": true
+    },
+    "4e3a94ec7e551270": {
+      "text": "בארנק הזה יש רק שני שקלים. זה פחות מהמחיר.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 16461,
+      "trimmed": true
+    },
+    "de2905adf6f16dd2": {
+      "text": "נתחיל מהמטבע הגדול, ונמשיך לספור את הקטנים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 15981,
+      "trimmed": true
+    },
+    "47f135b203948003": {
+      "text": "בארנק הזה יש רק שבעה שקלים. זה פחות מהמחיר.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 17325,
+      "trimmed": true
+    },
+    "3b69f444887abdfc": {
+      "text": "בארנק הזה יש רק תשעה שקלים. זה פחות מהמחיר.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 17037,
+      "trimmed": true
+    },
+    "46f9c81c71077d32": {
+      "text": "בארנק הזה יש רק שלושה שקלים. זה פחות מהמחיר.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 18957,
+      "trimmed": true
+    },
+    "e783d081e737b3b8": {
+      "text": "בארנק הזה יש רק ארבעה שקלים. זה פחות מהמחיר.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 18189,
+      "trimmed": true
+    },
+    "22129a396a4c8093": {
+      "text": "בארנק הזה יש רק שמונה שקלים. זה פחות מהמחיר.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 16653,
+      "trimmed": true
+    },
+    "5d2c3e106f726417": {
+      "text": "בארנק הזה יש רק חמישה שקלים. זה פחות מהמחיר.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 18669,
+      "trimmed": true
+    },
+    "69902e02f80c4a21": {
+      "text": "יש שבעה שקלים, והמחיר הוא שישה שקלים. יש מספיק כסף!",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 17805,
+      "trimmed": true
+    },
+    "c3bbcaa2676c8be2": {
+      "text": "בארנק הזה יש רק שישה שקלים. זה פחות מהמחיר.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 19245,
+      "trimmed": true
+    },
+    "daf1a1d980c81cb9": {
+      "text": "שקלים. זה יותר מהמחיר: אפשר לשלם, אבל לא בדיוק.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 23565,
+      "trimmed": true
+    },
+    "ba71cd77e1c5b48c": {
+      "text": "יש שבעה שקלים, והמחיר הוא שבעה שקלים. יש מספיק כסף!",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22605,
+      "trimmed": true
+    },
+    "580721ed5654ad9b": {
+      "text": "יש עשרה שקלים, והמחיר הוא עשרה שקלים. יש מספיק כסף!",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 20781,
+      "trimmed": true
+    },
+    "4df407220283c2e2": {
+      "text": "יש שבעה שקלים, והמחיר הוא שלושה שקלים. יש מספיק כסף!",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 21549,
+      "trimmed": true
+    },
+    "d3a8a4f58d63df31": {
+      "text": "יש שישה שקלים, והמחיר הוא שלושה שקלים. יש מספיק כסף!",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 24621,
+      "trimmed": true
+    },
+    "477a95473d51eda5": {
+      "text": "יש שישה שקלים, והמחיר הוא שבעה שקלים. אין מספיק כסף.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 21165,
+      "trimmed": true
+    },
+    "3717193c981b552a": {
+      "text": "יש שישה שקלים, והמחיר הוא ארבעה שקלים. יש מספיק כסף!",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22029,
+      "trimmed": true
+    },
+    "a7995a127d7035ec": {
+      "text": "יש תשעה שקלים, והמחיר הוא שמונה שקלים. יש מספיק כסף!",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 25677,
+      "trimmed": true
+    },
+    "687a4396be898a84": {
+      "text": "בארנק הזה יש בדיוק חמישה שקלים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 11661,
+      "trimmed": true
+    },
+    "a22c04f9cf9a6edd": {
+      "text": "יש שבעה שקלים, והמחיר הוא חמישה שקלים. יש מספיק כסף!",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22989,
+      "trimmed": true
+    },
+    "34a318dfd4f27b80": {
+      "text": "יש שישה שקלים, והמחיר הוא תשעה שקלים. אין מספיק כסף.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 23085,
+      "trimmed": true
+    },
+    "80ea80374401694c": {
+      "text": "יש תשעה שקלים, והמחיר הוא עשרה שקלים. אין מספיק כסף.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 23949,
+      "trimmed": true
+    },
+    "fd108566b881fbbd": {
+      "text": "יש שבעה שקלים, והמחיר הוא עשרה שקלים. אין מספיק כסף.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 23853,
+      "trimmed": true
+    },
+    "f7a85d0dc07088ad": {
+      "text": "יש ארבעה שקלים, והמחיר הוא שבעה שקלים. אין מספיק כסף.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 19917,
+      "trimmed": true
+    },
+    "34a0e5a6c7bc9313": {
+      "text": "יש עשרה שקלים, והמחיר הוא שמונה שקלים. יש מספיק כסף!",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 21837,
+      "trimmed": true
+    },
+    "399a0576c53f20f0": {
+      "text": "יש ארבעה שקלים, והמחיר הוא שלושה שקלים. יש מספיק כסף!",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 20973,
+      "trimmed": true
+    },
+    "c3ccd25367d0b0e0": {
+      "text": "יש חמישה שקלים, והמחיר הוא שבעה שקלים. אין מספיק כסף.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 23565,
+      "trimmed": true
+    },
+    "693acfabd3f5534b": {
+      "text": "יש חמישה שקלים, והמחיר הוא חמישה שקלים. יש מספיק כסף!",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 26253,
+      "trimmed": true
+    },
+    "6858339ef2085c46": {
+      "text": "יש ארבעה שקלים, והמחיר הוא ארבעה שקלים. יש מספיק כסף!",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 23181,
+      "trimmed": true
+    },
+    "1aa72e07d5191396": {
+      "text": "יש שמונה שקלים, והמחיר הוא שמונה שקלים. יש מספיק כסף!",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 19725,
+      "trimmed": true
+    },
+    "f3a4c0b4b4519ac2": {
+      "text": "יש חמישה שקלים, והמחיר הוא שלושה שקלים. יש מספיק כסף!",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22029,
+      "trimmed": true
+    },
+    "f0dea339d8b538e5": {
+      "text": "יש חמישה שקלים, והמחיר הוא שישה שקלים. אין מספיק כסף.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22605,
+      "trimmed": true
+    },
+    "b9c88d053df94d18": {
+      "text": "יש שבעה שקלים, והמחיר הוא שמונה שקלים. אין מספיק כסף.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 21933,
+      "trimmed": true
+    },
+    "010c82de7ce9821d": {
+      "text": "יש ארבעה שקלים, והמחיר הוא שישה שקלים. אין מספיק כסף.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 21165,
+      "trimmed": true
+    },
+    "764a25e8ebf43e18": {
+      "text": "יש חמישה שקלים, והמחיר הוא ארבעה שקלים. יש מספיק כסף!",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 21453,
+      "trimmed": true
+    },
+    "851cedef96721eb7": {
+      "text": "יש שישה שקלים, והמחיר הוא שמונה שקלים. אין מספיק כסף.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22701,
+      "trimmed": true
+    },
+    "dbe10e9ebbb09cbc": {
+      "text": "יש ארבעה שקלים, והמחיר הוא תשעה שקלים. אין מספיק כסף.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22317,
+      "trimmed": true
+    },
+    "a71d942c15c52215": {
+      "text": "יש חמישה שקלים, והמחיר הוא עשרה שקלים. אין מספיק כסף.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22605,
+      "trimmed": true
+    },
+    "0147ab4b0e9ed053": {
+      "text": "כדור עולה שבעה שקלים. באיזה ארנק יש בדיוק שבעה שקלים?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22509,
+      "trimmed": true
+    },
+    "83d7f08f848828ea": {
+      "text": "יש ארבעה שקלים, והמחיר הוא חמישה שקלים. אין מספיק כסף.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 21165,
+      "trimmed": true
+    },
+    "d3acd98a103fe67e": {
+      "text": "יש חמישה שקלים, והמחיר הוא שמונה שקלים. אין מספיק כסף.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22413,
+      "trimmed": true
+    },
+    "a7f00735aee84ca0": {
+      "text": "בלון עולה תשעה שקלים. באיזה ארנק יש בדיוק תשעה שקלים?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 28941,
+      "trimmed": true
+    },
+    "e73cefa0889f10e5": {
+      "text": "מחברת עולה שישה שקלים. באיזה ארנק יש בדיוק שישה שקלים?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 21933,
+      "trimmed": true
+    },
+    "3b8b63b5bdf67842": {
+      "text": "מחברת עולה שבעה שקלים. באיזה ארנק יש בדיוק שבעה שקלים?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 27309,
+      "trimmed": true
+    },
+    "1dc159465a85dc6e": {
+      "text": "מדבקה עולה עשרה שקלים. באיזה ארנק יש בדיוק עשרה שקלים?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 26157,
+      "trimmed": true
+    },
+    "c4508b591ae9de52": {
+      "text": "מדבקה עולה תשעה שקלים. באיזה ארנק יש בדיוק תשעה שקלים?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 25485,
+      "trimmed": true
+    },
+    "55d9e82fdeb8bb53": {
+      "text": "יש שישה שקלים, והמחיר הוא אחד עשר שקלים. אין מספיק כסף.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 23565,
+      "trimmed": true
+    },
+    "5c25a09f692b83b3": {
+      "text": "יש תשעה שקלים, והמחיר הוא אחד עשר שקלים. אין מספיק כסף.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22797,
+      "trimmed": true
+    },
+    "282ce22ebb2393dd": {
+      "text": "כדור עולה שלושה שקלים. באיזה ארנק יש בדיוק שלושה שקלים?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22701,
+      "trimmed": true
+    },
+    "35cca0aacd8f2621": {
+      "text": "בלון עולה שלושה שקלים. באיזה ארנק יש בדיוק שלושה שקלים?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 24429,
+      "trimmed": true
+    },
+    "39c9cf1be0299882": {
+      "text": "כדור עולה שמונה שקלים. באיזה ארנק יש בדיוק שמונה שקלים?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 26925,
+      "trimmed": true
+    },
+    "45c5307a315d04de": {
+      "text": "בלון עולה ארבעה שקלים. באיזה ארנק יש בדיוק ארבעה שקלים?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 26637,
+      "trimmed": true
+    },
+    "fc15dcc8cd90aca7": {
+      "text": "בלון עולה שמונה שקלים. באיזה ארנק יש בדיוק שמונה שקלים?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 25485,
+      "trimmed": true
+    },
+    "9a64475d49115684": {
+      "text": "יש עשרה שקלים, והמחיר הוא שנים עשר שקלים. אין מספיק כסף.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 23565,
+      "trimmed": true
+    },
+    "814ab3fb665517ab": {
+      "text": "יש תשעה שקלים, והמחיר הוא שנים עשר שקלים. אין מספיק כסף.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 24909,
+      "trimmed": true
+    },
+    "475fee1126d330c0": {
+      "text": "מדבקה עולה חמישה שקלים. באיזה ארנק יש בדיוק חמישה שקלים?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 23085,
+      "trimmed": true
+    },
+    "7b9d86174992b4ea": {
+      "text": "מדבקה עולה ארבעה שקלים. באיזה ארנק יש בדיוק ארבעה שקלים?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 23277,
+      "trimmed": true
+    },
+    "c84181b11951cab8": {
+      "text": "סוכרייה עולה שישה שקלים. באיזה ארנק יש בדיוק שישה שקלים?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 26733,
+      "trimmed": true
+    },
+    "bf41af28e93294b3": {
+      "text": "יש עשרה שקלים, והמחיר הוא שלושה עשר שקלים. אין מספיק כסף.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 25869,
+      "trimmed": true
+    },
+    "4e3d146816ab2804": {
+      "text": "סוכרייה עולה עשרה שקלים. באיזה ארנק יש בדיוק עשרה שקלים?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 29517,
+      "trimmed": true
+    },
+    "609e15d195b3c5c3": {
+      "text": "סוכרייה עולה חמישה שקלים. באיזה ארנק יש בדיוק חמישה שקלים?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 25677,
+      "trimmed": true
+    },
+    "f102c03b3d0f62c9": {
+      "text": "בארנק הזה יש שישה שקלים. זה יותר מהמחיר: אפשר לשלם, אבל לא בדיוק.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 27885,
+      "trimmed": true
+    },
+    "2a0437686ae79bd7": {
+      "text": "נספור את הכסף בכל ארנק, ונחפש את הארנק שיש בו בדיוק כמו המחיר.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 23565,
+      "trimmed": true
+    },
+    "52da4678186341c2": {
+      "text": "בארנק הזה יש תשעה שקלים. זה יותר מהמחיר: אפשר לשלם, אבל לא בדיוק.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 27597,
+      "trimmed": true
+    },
+    "ac814e566d3ed2e7": {
+      "text": "בארנק הזה יש שבעה שקלים. זה יותר מהמחיר: אפשר לשלם, אבל לא בדיוק.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 27693,
+      "trimmed": true
+    },
+    "a648836beac7b9a7": {
+      "text": "בארנק הזה יש עשרה שקלים. זה יותר מהמחיר: אפשר לשלם, אבל לא בדיוק.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 29133,
+      "trimmed": true
+    },
+    "188b53464d6db8aa": {
+      "text": "בארנק הזה יש ארבעה שקלים. זה יותר מהמחיר: אפשר לשלם, אבל לא בדיוק.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 25101,
+      "trimmed": true
+    },
+    "82c688f1296b9bd1": {
+      "text": "בארנק הזה יש חמישה שקלים. זה יותר מהמחיר: אפשר לשלם, אבל לא בדיוק.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 25677,
+      "trimmed": true
+    },
+    "362001d3f571371a": {
+      "text": "יותר כסף יש בארנק שיש בו תשעה עשר שקלים. בארנק השני יש חמישה שקלים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 26733,
+      "trimmed": true
+    },
+    "1a6b6580bf000b7d": {
+      "text": "בארנק הזה יש שמונה שקלים. זה יותר מהמחיר: אפשר לשלם, אבל לא בדיוק.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 30381,
+      "trimmed": true
+    },
+    "1052d11e14080d9b": {
+      "text": "יותר כסף יש בארנק שיש בו עשרים ואחד שקלים. בארנק השני יש עשרה שקלים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 28749,
+      "trimmed": true
+    },
+    "58bac63d62197684": {
+      "text": "יותר כסף יש בארנק שיש בו עשרים שקלים. בארנק השני יש תשעה עשר שקלים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 29325,
+      "trimmed": true
+    },
+    "1595df3521f8fa08": {
+      "text": "בארנק הזה יש אחד עשר שקלים. זה יותר מהמחיר: אפשר לשלם, אבל לא בדיוק.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 30093,
+      "trimmed": true
+    },
+    "9a474bf1a8982245": {
+      "text": "יותר כסף יש בארנק שיש בו עשרים וארבעה שקלים. בארנק השני יש עשרה שקלים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 27405,
+      "trimmed": true
+    },
+    "1e5294f4688b814d": {
+      "text": "יותר כסף יש בארנק שיש בו עשרים ושניים שקלים. בארנק השני יש חמישה שקלים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 28845,
+      "trimmed": true
+    },
+    "4419dc70b1db89ef": {
+      "text": "יותר כסף יש בארנק שיש בו עשרים ושלושה שקלים. בארנק השני יש חמישה שקלים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 28461,
+      "trimmed": true
+    },
+    "67a4942e7a8b3f34": {
+      "text": "יותר כסף יש בארנק שיש בו שמונה עשר שקלים. בארנק השני יש חמישה עשר שקלים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 27885,
+      "trimmed": true
+    },
+    "09b94e7a783df071": {
+      "text": "דנה רוצה לקנות כדור שעולה עשרה שקלים. יש לה את הכסף שבתמונה. יש לה מספיק כסף?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 29517,
+      "trimmed": true
+    },
+    "41ed2db1e7b9de50": {
+      "text": "סבא קנה מחברת שעולה שבעה שקלים, ושילם בשטר של עשרים שקלים. כמה עודף הוא יקבל?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 27789,
+      "trimmed": true
+    },
+    "7ff62d9e5e084378": {
+      "text": "נועם רוצה לקנות כדור שעולה עשרה שקלים. יש לו את הכסף שבתמונה. יש לו מספיק כסף?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 34125,
+      "trimmed": true
+    },
+    "479f580bd379f61f": {
+      "text": "סבא רוצה לקנות מחברת שעולה תשעה שקלים. יש לו את הכסף שבתמונה. יש לו מספיק כסף?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 31725,
+      "trimmed": true
+    },
+    "c42f416996085c47": {
+      "text": "סבא קנה מחברת שעולה שלושה שקלים, ושילם בשטר של עשרים שקלים. כמה עודף הוא יקבל?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 28173,
+      "trimmed": true
+    },
+    "076bbd010c5b80e5": {
+      "text": "סבתא רוצה לקנות כדור שעולה עשרה שקלים. יש לה את הכסף שבתמונה. יש לה מספיק כסף?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 29133,
+      "trimmed": true
+    },
+    "a47c63c5b43fd86d": {
+      "text": "נועם קנה מחברת שעולה שישה שקלים, ושילם במטבע של עשרה שקלים. כמה עודף הוא יקבל?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 34509,
+      "trimmed": true
+    },
+    "6896167b47fc84e0": {
+      "text": "נועם קנה מחברת שעולה תשעה שקלים, ושילם במטבע של עשרה שקלים. כמה עודף הוא יקבל?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 33357,
+      "trimmed": true
+    },
+    "545c174989eef1c5": {
+      "text": "דנה רוצה לקנות מחברת שעולה שלושה שקלים. יש לה את הכסף שבתמונה. יש לה מספיק כסף?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 32109,
+      "trimmed": true
+    },
+    "7f1819711a7713a6": {
+      "text": "בארנק הזה יש שנים עשר שקלים. זה יותר מהמחיר: אפשר לשלם, אבל לא בדיוק.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 30573,
+      "trimmed": true
+    },
+    "8c5704c3adf2f279": {
+      "text": "יובל רוצה לקנות מחברת שעולה עשרה שקלים. יש לו את הכסף שבתמונה. יש לו מספיק כסף?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 29805,
+      "trimmed": true
+    },
+    "13f5db476c8ffbe6": {
+      "text": "סבתא רוצה לקנות מחברת שעולה תשעה שקלים. יש לה את הכסף שבתמונה. יש לה מספיק כסף?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 30285,
+      "trimmed": true
+    },
+    "599de7c70d4edcac": {
+      "text": "דנה רוצה לקנות מחברת שעולה שמונה שקלים. יש לה את הכסף שבתמונה. יש לה מספיק כסף?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 32205,
+      "trimmed": true
+    },
+    "f12d3cf8ef280a8e": {
+      "text": "מאיה רוצה לקנות מחברת שעולה שישה שקלים. יש לה את הכסף שבתמונה. יש לה מספיק כסף?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 29901,
+      "trimmed": true
+    },
+    "64c214fc47e6c84d": {
+      "text": "יובל רוצה לקנות מחברת שעולה שישה שקלים. יש לו את הכסף שבתמונה. יש לו מספיק כסף?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 31245,
+      "trimmed": true
+    },
+    "055fee02fff0f1d2": {
+      "text": "סבא רוצה לקנות מחברת שעולה שמונה שקלים. יש לו את הכסף שבתמונה. יש לו מספיק כסף?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 32205,
+      "trimmed": true
+    },
+    "8cebb8d6df521b14": {
+      "text": "נועם רוצה לקנות מחברת שעולה שישה שקלים. יש לו את הכסף שבתמונה. יש לו מספיק כסף?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 33357,
+      "trimmed": true
+    },
+    "47488a22afcc9fcc": {
+      "text": "דנה קנתה מחברת שעולה שישה שקלים, ושילמה במטבע של עשרה שקלים. כמה עודף היא תקבל?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 30093,
+      "trimmed": true
+    },
+    "9c1af53282a5c354": {
+      "text": "נועם קנה מחברת שעולה חמישה שקלים, ושילם במטבע של עשרה שקלים. כמה עודף הוא יקבל?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 32205,
+      "trimmed": true
+    },
+    "af2df39a5dfa2029": {
+      "text": "יובל קנה מחברת שעולה חמישה שקלים, ושילם במטבע של עשרה שקלים. כמה עודף הוא יקבל?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 32493,
+      "trimmed": true
+    },
+    "b4dd86fdfa2309c8": {
+      "text": "סבתא רוצה לקנות מחברת שעולה שבעה שקלים. יש לה את הכסף שבתמונה. יש לה מספיק כסף?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 30765,
+      "trimmed": true
+    },
+    "99eb27b9d6a94eb6": {
+      "text": "סבתא קנתה כדור שעולה עשרה שקלים, ושילמה בשטר של עשרים שקלים. כמה עודף היא תקבל?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 30093,
+      "trimmed": true
+    },
+    "207b5ed45b43dd0a": {
+      "text": "נועם קנה מחברת שעולה ארבעה שקלים, ושילם בשטר של עשרים שקלים. כמה עודף הוא יקבל?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 36813,
+      "trimmed": true
+    },
+    "c53f52199adcd61f": {
+      "text": "סבתא רוצה לקנות מחברת שעולה חמישה שקלים. יש לה את הכסף שבתמונה. יש לה מספיק כסף?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 30189,
+      "trimmed": true
+    },
+    "0fbb3ebe1f5b83e0": {
+      "text": "מאיה רוצה לקנות מחברת שעולה ארבעה שקלים. יש לה את הכסף שבתמונה. יש לה מספיק כסף?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 30861,
+      "trimmed": true
+    },
+    "3e5174cceb3883e4": {
+      "text": "יובל רוצה לקנות מחברת שעולה שלושה שקלים. יש לו את הכסף שבתמונה. יש לו מספיק כסף?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 34317,
+      "trimmed": true
+    },
+    "42b6d7f029d60262": {
+      "text": "דנה רוצה לקנות כדור שעולה אחד עשר שקלים. יש לה את הכסף שבתמונה. יש לה מספיק כסף?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 33453,
+      "trimmed": true
+    },
+    "f15b323441f78fb9": {
+      "text": "נועם רוצה לקנות מחברת שעולה שמונה שקלים. יש לו את הכסף שבתמונה. יש לו מספיק כסף?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 32013,
+      "trimmed": true
+    },
+    "6c96d9ef6efbd807": {
+      "text": "מאיה רוצה לקנות מחברת שעולה חמישה שקלים. יש לה את הכסף שבתמונה. יש לה מספיק כסף?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 28653,
+      "trimmed": true
+    },
+    "99399d2948c9fb3e": {
+      "text": "סבתא רוצה לקנות מחברת שעולה שלושה שקלים. יש לה את הכסף שבתמונה. יש לה מספיק כסף?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 30477,
+      "trimmed": true
+    },
+    "ce07f1ff9c15d737": {
+      "text": "נועם רוצה לקנות מחברת שעולה ארבעה שקלים. יש לו את הכסף שבתמונה. יש לו מספיק כסף?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 30669,
+      "trimmed": true
+    },
+    "c68eafae269eaa3e": {
+      "text": "סבתא קנתה מחברת שעולה שבעה שקלים, ושילמה במטבע של עשרה שקלים. כמה עודף היא תקבל?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 30861,
+      "trimmed": true
+    },
+    "d01b5f1cc8706025": {
+      "text": "דנה קנתה מחברת שעולה ארבעה שקלים, ושילמה במטבע של עשרה שקלים. כמה עודף היא תקבל?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 33357,
+      "trimmed": true
+    },
+    "6692f3d8947ef95f": {
+      "text": "סבא רוצה לקנות מחברת שעולה אחד עשר שקלים. יש לו את הכסף שבתמונה. יש לו מספיק כסף?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 31725,
+      "trimmed": true
+    },
+    "e027c64986244d34": {
+      "text": "יובל קנה כדור שעולה שישה עשר שקלים, ושילם בשטר של עשרים שקלים. כמה עודף הוא יקבל?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 34029,
+      "trimmed": true
+    },
+    "9442ebba65605f7b": {
+      "text": "סבתא רוצה לקנות כדור שעולה אחד עשר שקלים. יש לה את הכסף שבתמונה. יש לה מספיק כסף?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 28749,
+      "trimmed": true
+    },
+    "253dabb30db734f5": {
+      "text": "מאיה קנתה מחברת שעולה תשעה שקלים, ושילמה בשטר של עשרים שקלים. כמה עודף היא תקבל?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 33069,
+      "trimmed": true
+    },
+    "8fed3fbf7e169e34": {
+      "text": "סבתא קנתה מחברת שעולה חמישה שקלים, ושילמה בשטר של עשרים שקלים. כמה עודף היא תקבל?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 29133,
+      "trimmed": true
+    },
+    "854fdbd4492e1c82": {
+      "text": "מאיה רוצה לקנות מחברת שעולה אחד עשר שקלים. יש לה את הכסף שבתמונה. יש לה מספיק כסף?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 34125,
+      "trimmed": true
+    },
+    "1f18151ddf7042c3": {
+      "text": "דנה קנתה כדור שעולה שנים עשר שקלים, ושילמה בשטר של עשרים שקלים. כמה עודף היא תקבל?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 29229,
+      "trimmed": true
+    },
+    "2e7e75ae4fe9af85": {
+      "text": "נועם רוצה לקנות כדור שעולה שנים עשר שקלים. יש לו את הכסף שבתמונה. יש לו מספיק כסף?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 33069,
+      "trimmed": true
+    },
+    "a91b8eb41c651a25": {
+      "text": "יובל קנה בובה שעולה שמונה עשר שקלים, ושילם בשטר של עשרים שקלים. כמה עודף הוא יקבל?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 28845,
+      "trimmed": true
+    },
+    "e7260b96d16758df": {
+      "text": "סבתא קנתה בובה שעולה תשעה עשר שקלים, ושילמה בשטר של עשרים שקלים. כמה עודף היא תקבל?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 30861,
+      "trimmed": true
+    },
+    "21c8c8dbe5e6b6d5": {
+      "text": "מאיה רוצה לקנות כדור שעולה ארבעה עשר שקלים. יש לה את הכסף שבתמונה. יש לה מספיק כסף?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 30957,
+      "trimmed": true
+    },
+    "f4e43823d9be0128": {
+      "text": "יובל רוצה לקנות מחברת שעולה שנים עשר שקלים. יש לו את הכסף שבתמונה. יש לו מספיק כסף?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 33069,
+      "trimmed": true
+    },
+    "06a16808f3b93024": {
+      "text": "מאיה קנתה מחברת שעולה אחד עשר שקלים, ושילמה בשטר של עשרים שקלים. כמה עודף היא תקבל?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 34317,
+      "trimmed": true
+    },
+    "098f8ea8868ab327": {
+      "text": "נועם קנה מחברת שעולה שלושה עשר שקלים, ושילם בשטר של עשרים שקלים. כמה עודף הוא יקבל?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 32973,
+      "trimmed": true
+    },
+    "42b284e292f63824": {
+      "text": "סבתא קנתה כדור שעולה חמישה עשר שקלים, ושילמה בשטר של עשרים שקלים. כמה עודף היא תקבל?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 34989,
+      "trimmed": true
+    },
+    "0475b5722cb94cce": {
+      "text": "מאיה קנתה כדור שעולה ארבעה עשר שקלים, ושילמה בשטר של עשרים שקלים. כמה עודף היא תקבל?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 33165,
+      "trimmed": true
     }
   }
 }
