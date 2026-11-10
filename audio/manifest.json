@@ -730721,6 +730721,18 @@
       "voice": "gemini-3.1-flash/Leda/quick",
       "bytes": 41805,
       "trimmed": true
+    },
+    "c4838abb03b7805c": {
+      "text": "ארבע ועוד שתיים זה שש, ופחות ארבע זה שתיים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22221,
+      "trimmed": true
+    },
+    "b863eefb5d6ebb7d": {
+      "text": "לסבא יש תשעה בלונים. לסבתא יש ארבעה בלונים. בכמה בלונים יש לסבא יותר?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 32781,
+      "trimmed": true
     }
   }
 }
