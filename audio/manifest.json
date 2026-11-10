@@ -21481,14 +21481,14 @@
     },
     "1a8cdd21d51a2f5a": {
       "text": "שתיים ועוד כמה זה חמש?",
-      "voice": "wavenet/he-IL-Wavenet-A",
-      "bytes": 15021,
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 11853,
       "trimmed": true
     },
     "74d8b9d9a79b20be": {
       "text": "שתיים ועוד כמה זה שש?",
-      "voice": "wavenet/he-IL-Wavenet-A",
-      "bytes": 14253,
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 11373,
       "trimmed": true
     },
     "b29f214feea06825": {
@@ -21505,8 +21505,8 @@
     },
     "3debd4b944529b18": {
       "text": "שתיים ועוד כמה זה שבע?",
-      "voice": "wavenet/he-IL-Wavenet-A",
-      "bytes": 14253,
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 9837,
       "trimmed": true
     },
     "92cc8f54a40b2414": {
@@ -21517,14 +21517,14 @@
     },
     "5c472ba46262463c": {
       "text": "שתיים ועוד כמה זה שמונה?",
-      "voice": "wavenet/he-IL-Wavenet-A",
-      "bytes": 14445,
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 12813,
       "trimmed": true
     },
     "8f602ae3b887cf52": {
       "text": "שתיים ועוד כמה זה תשע?",
-      "voice": "wavenet/he-IL-Wavenet-A",
-      "bytes": 15021,
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 12909,
       "trimmed": true
     },
     "ba47ceb6e8f2bbfe": {
@@ -21596,8 +21596,8 @@
     },
     "a8c769ecf16f8bd4": {
       "text": "שלוש ועוד כמה זה חמש?",
-      "voice": "wavenet/he-IL-Wavenet-A",
-      "bytes": 14829,
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 10989,
       "trimmed": true
     },
     "e14f074bdf6723df": {
@@ -21615,14 +21615,14 @@
     },
     "ff810077e2782327": {
       "text": "שלוש ועוד כמה זה שש?",
-      "voice": "wavenet/he-IL-Wavenet-A",
-      "bytes": 14061,
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 11181,
       "trimmed": true
     },
     "52d728296c1669d5": {
       "text": "שלוש ועוד כמה זה שבע?",
-      "voice": "wavenet/he-IL-Wavenet-A",
-      "bytes": 14253,
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 9645,
       "trimmed": true
     },
     "eff6532d01226677": {
@@ -21633,8 +21633,8 @@
     },
     "ff8e00b52635f94f": {
       "text": "שלוש ועוד כמה זה שמונה?",
-      "voice": "wavenet/he-IL-Wavenet-A",
-      "bytes": 14445,
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 10317,
       "trimmed": true
     },
     "f7f4294712bdebd8": {
@@ -21645,8 +21645,8 @@
     },
     "57422dc1200cf3dc": {
       "text": "שלוש ועוד כמה זה תשע?",
-      "voice": "wavenet/he-IL-Wavenet-A",
-      "bytes": 15021,
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 10989,
       "trimmed": true
     },
     "c2e20b7b17b52a09": {
@@ -21719,14 +21719,14 @@
     },
     "54cb0e6e22865760": {
       "text": "ארבע ועוד כמה זה חמש?",
-      "voice": "wavenet/he-IL-Wavenet-A",
-      "bytes": 14829,
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 8013,
       "trimmed": true
     },
     "93fbc4a04a35d65a": {
       "text": "ארבע ועוד כמה זה שש?",
-      "voice": "wavenet/he-IL-Wavenet-A",
-      "bytes": 13869,
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 12429,
       "trimmed": true
     },
     "38bb9262872743a7": {
@@ -21743,8 +21743,8 @@
     },
     "544130fb28315c98": {
       "text": "ארבע ועוד כמה זה שבע?",
-      "voice": "wavenet/he-IL-Wavenet-A",
-      "bytes": 14061,
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 12141,
       "trimmed": true
     },
     "3a29549057885c87": {
@@ -21761,14 +21761,14 @@
     },
     "f974808c56774de6": {
       "text": "ארבע ועוד כמה זה שמונה?",
-      "voice": "wavenet/he-IL-Wavenet-A",
-      "bytes": 14445,
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 13773,
       "trimmed": true
     },
     "b119fbe3771cf006": {
       "text": "ארבע ועוד כמה זה תשע?",
-      "voice": "wavenet/he-IL-Wavenet-A",
-      "bytes": 14637,
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 10029,
       "trimmed": true
     },
     "85fbc9a585c92857": {
@@ -21846,8 +21846,8 @@
     },
     "356e09c53160922d": {
       "text": "חמש ועוד כמה זה שש?",
-      "voice": "wavenet/he-IL-Wavenet-A",
-      "bytes": 14253,
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 10413,
       "trimmed": true
     },
     "561980c84326978c": {
@@ -21871,14 +21871,14 @@
     },
     "657fd5eef176e0bb": {
       "text": "חמש ועוד כמה זה שבע?",
-      "voice": "wavenet/he-IL-Wavenet-A",
-      "bytes": 14253,
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 11181,
       "trimmed": true
     },
     "18497e41d7c2e3df": {
       "text": "חמש ועוד כמה זה שמונה?",
-      "voice": "wavenet/he-IL-Wavenet-A",
-      "bytes": 14445,
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 12333,
       "trimmed": true
     },
     "3564234568bd635a": {
@@ -21895,8 +21895,8 @@
     },
     "1d38b042fe56bcf1": {
       "text": "חמש ועוד כמה זה תשע?",
-      "voice": "wavenet/he-IL-Wavenet-A",
-      "bytes": 15213,
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 14541,
       "trimmed": true
     },
     "86853ce3c3707cf2": {
@@ -21987,8 +21987,8 @@
     },
     "4e64e75f87803996": {
       "text": "שש ועוד כמה זה שבע?",
-      "voice": "wavenet/he-IL-Wavenet-A",
-      "bytes": 13293,
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 10029,
       "trimmed": true
     },
     "9fb1c08581a80272": {
@@ -21999,8 +21999,8 @@
     },
     "aed2960914d30420": {
       "text": "שש ועוד כמה זה שמונה?",
-      "voice": "wavenet/he-IL-Wavenet-A",
-      "bytes": 13485,
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 14157,
       "trimmed": true
     },
     "5a2503a75311efe2": {
@@ -22011,8 +22011,8 @@
     },
     "1ca66c940c18ee8c": {
       "text": "שש ועוד כמה זה תשע?",
-      "voice": "wavenet/he-IL-Wavenet-A",
-      "bytes": 14061,
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 11661,
       "trimmed": true
     },
     "168c35bad068bf18": {
@@ -22132,14 +22132,14 @@
     },
     "d228452b927054a0": {
       "text": "שבע ועוד כמה זה שמונה?",
-      "voice": "wavenet/he-IL-Wavenet-A",
-      "bytes": 13677,
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 11565,
       "trimmed": true
     },
     "0a8cc202f0b7bb75": {
       "text": "שבע ועוד כמה זה תשע?",
-      "voice": "wavenet/he-IL-Wavenet-A",
-      "bytes": 13869,
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 10797,
       "trimmed": true
     },
     "06fc6befab8bcd03": {
@@ -22248,8 +22248,8 @@
     },
     "6eef64d5794938b8": {
       "text": "שמונה ועוד כמה זה תשע?",
-      "voice": "wavenet/he-IL-Wavenet-A",
-      "bytes": 15021,
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 17901,
       "trimmed": true
     },
     "f857348af3ba3c58": {
@@ -723892,6 +723892,2406 @@
       "text": "בחורף קר ויורד גשם, באביב פורחים פרחים, בקיץ חם והולכים לים, ובסתיו העלים נושרים.",
       "voice": "gemini-3.1-flash/Leda/quick",
       "bytes": 48141,
+      "trimmed": true
+    },
+    "ba8882ddad568c42": {
+      "text": "כמה חסר?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 4653,
+      "trimmed": true
+    },
+    "0707b50988820753": {
+      "text": "פירוק מספרים",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 5613,
+      "trimmed": true
+    },
+    "da134e09249b6437": {
+      "text": "ניבים וביטויים",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 6957,
+      "trimmed": true
+    },
+    "4b1d8734572d752c": {
+      "text": "אצבעות בשתי ידיים",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 9741,
+      "trimmed": true
+    },
+    "ad31bcf409da151a": {
+      "text": "ביטויים אחת–שש",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 10317,
+      "trimmed": true
+    },
+    "86ba303a989ef1ae": {
+      "text": "איזה זוג לא מתאים?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 6477,
+      "trimmed": true
+    },
+    "353c8dfe85cc35d3": {
+      "text": "בית המספר עד עשר",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 11661,
+      "trimmed": true
+    },
+    "b13d06a035b62ec3": {
+      "text": "בית המספר עד חמש",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 11181,
+      "trimmed": true
+    },
+    "100733c676d84a6b": {
+      "text": "ביטויים שבע–שתים עשרה",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 13965,
+      "trimmed": true
+    },
+    "4203aea13a210fff": {
+      "text": "מה מסתתר בקופסה? עד עשר",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 12141,
+      "trimmed": true
+    },
+    "3eebc481bb2ee061": {
+      "text": "ביטויים עשרים וחמש–שלושים",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 13197,
+      "trimmed": true
+    },
+    "9d46ebb1e5f82518": {
+      "text": "איזה זוג עושה ארבע או חמש?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 13101,
+      "trimmed": true
+    },
+    "a526a0eadf27e123": {
+      "text": "מה מסתתר בקופסה? עד חמש",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 15885,
+      "trimmed": true
+    },
+    "71aa90763a7a561a": {
+      "text": "ביטויים חמישים וחמש–שישים",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 17037,
+      "trimmed": true
+    },
+    "a1fa2a884f2df1cd": {
+      "text": "ביטויים תשע עשרה–עשרים וארבע",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 15021,
+      "trimmed": true
+    },
+    "e9ba2fbfd94575c5": {
+      "text": "ביטויים שלוש עשרה–שמונה עשרה",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 15597,
+      "trimmed": true
+    },
+    "edb265042d557b66": {
+      "text": "גרים",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 3117,
+      "trimmed": true
+    },
+    "5a6d312b6c4121a5": {
+      "text": "ביטויים שלושים ואחת–שלושים ושש",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 15309,
+      "trimmed": true
+    },
+    "6fea7cedca188a03": {
+      "text": "הרמתי",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 3885,
+      "trimmed": true
+    },
+    "8981f5288f14ecb9": {
+      "text": ", וזה",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 4077,
+      "trimmed": true
+    },
+    "5380401314b1758c": {
+      "text": "איזה זוג עושה שש, שבע או שמונה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 17421,
+      "trimmed": true
+    },
+    "704970ce70e9da55": {
+      "text": "ביטויים שלושים ושבע–ארבעים ושתיים",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 16365,
+      "trimmed": true
+    },
+    "c0bd60c0d93a92d9": {
+      "text": "ביטויים ארבעים ותשע–חמישים וארבע",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 17613,
+      "trimmed": true
+    },
+    "47b61b589533ac04": {
+      "text": "נתחיל",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 2829,
+      "trimmed": true
+    },
+    "b17493a7c6f1e613": {
+      "text": "נקודות?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 4269,
+      "trimmed": true
+    },
+    "6b922436d14c5fec": {
+      "text": "בבית של",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 8973,
+      "trimmed": true
+    },
+    "f402d0980e8aed5d": {
+      "text": ". בקופסה יש",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 7245,
+      "trimmed": true
+    },
+    "173dbc8aee9e216c": {
+      "text": "חמש ועוד",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 9357,
+      "trimmed": true
+    },
+    "e1ad4f6a59d82666": {
+      "text": "בזוג הזה יש",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 6093,
+      "trimmed": true
+    },
+    "1b84f87369ff19a0": {
+      "text": ", וזה בדיוק",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 6381,
+      "trimmed": true
+    },
+    "65926696f3e60472": {
+      "text": ". ביד השנייה",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 4557,
+      "trimmed": true
+    },
+    "e86c861434011afc": {
+      "text": "ביטויים ארבעים ושלוש–ארבעים ושמונה",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 20301,
+      "trimmed": true
+    },
+    "673f625411339647": {
+      "text": ". אנחנו מחפשים",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 5805,
+      "trimmed": true
+    },
+    "11f514d4c65407dc": {
+      "text": ": כמה חסר עד",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 10893,
+      "trimmed": true
+    },
+    "a96f3a702a515585": {
+      "text": "דגים בסך הכול.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 6957,
+      "trimmed": true
+    },
+    "bcbe26f2389f6a83": {
+      "text": ". נחפש זוג אחר.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 6189,
+      "trimmed": true
+    },
+    "a5e6cfa2d75eb4f1": {
+      "text": "כוכבים בסך הכול.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 6093,
+      "trimmed": true
+    },
+    "ff9824f76d2e60b7": {
+      "text": "עוגיות בסך הכול.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 6381,
+      "trimmed": true
+    },
+    "a3493a32a22edd0c": {
+      "text": "שני זוגות עושים",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 18669,
+      "trimmed": true
+    },
+    "01d8151dfa94c2e4": {
+      "text": "דבורים בסך הכול.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 5805,
+      "trimmed": true
+    },
+    "c503cad0989c52b7": {
+      "text": "פרפרים בסך הכול.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 5613,
+      "trimmed": true
+    },
+    "b01675e3265d6abc": {
+      "text": "תפוחים בסך הכול.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 6189,
+      "trimmed": true
+    },
+    "34612672059ba53e": {
+      "text": "בלונים בסך הכול.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 6477,
+      "trimmed": true
+    },
+    "5c3ec98e8ab52633": {
+      "text": "ועוד כמה זה עשר?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 6957,
+      "trimmed": true
+    },
+    "e10888a27d3957ea": {
+      "text": "סוכריות בסך הכול.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 7437,
+      "trimmed": true
+    },
+    "e1da7a53944fa65d": {
+      "text": "אחת ועוד כמה זה שש?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 10029,
+      "trimmed": true
+    },
+    "a154e351c32a759c": {
+      "text": "אחת ועוד כמה זה חמש?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 9933,
+      "trimmed": true
+    },
+    "75780029d085c315": {
+      "text": "אחת ועוד כמה זה שבע?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 10221,
+      "trimmed": true
+    },
+    "37d9f1acdf58587d": {
+      "text": "אחת ועוד כמה זה תשע?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 11757,
+      "trimmed": true
+    },
+    "c2519b93a582be49": {
+      "text": "במסגרת יש עשר משבצות,",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 11661,
+      "trimmed": true
+    },
+    "d4efeb6fd6c6f646": {
+      "text": ", ונספור על האצבעות עד",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 13773,
+      "trimmed": true
+    },
+    "8c1a78696a586d2d": {
+      "text": "אחת ועוד כמה זה שמונה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 9645,
+      "trimmed": true
+    },
+    "8f63096d64d235b9": {
+      "text": "בחוץ. כמה מסתתרים בקופסה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 12429,
+      "trimmed": true
+    },
+    "9b3457a674596ca9": {
+      "text": "בחוץ. כמה מסתתרות בקופסה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 13197,
+      "trimmed": true
+    },
+    "b0f6d8e3e6fa480b": {
+      "text": "באיזה זוג קוביות יש בסך הכול",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 12045,
+      "trimmed": true
+    },
+    "8044c89582815b82": {
+      "text": "מהן מלאות. כמה משבצות ריקות?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 14541,
+      "trimmed": true
+    },
+    "10af45d33047054c": {
+      "text": "בבית של שש גרים אחת ועוד כמה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 17229,
+      "trimmed": true
+    },
+    "42d37a579264bd0f": {
+      "text": "בבית של שש גרים חמש ועוד כמה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 16557,
+      "trimmed": true
+    },
+    "ccf0162ff32d735b": {
+      "text": "בבית של שבע גרים שש ועוד כמה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 15501,
+      "trimmed": true
+    },
+    "b6d4b7fd06a4f80e": {
+      "text": "בבית של עשר גרים שש ועוד כמה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 15885,
+      "trimmed": true
+    },
+    "3d4efaebf6e0e12e": {
+      "text": "בבית של תשע גרים שש ועוד כמה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 17229,
+      "trimmed": true
+    },
+    "1c68cd59a337b000": {
+      "text": "בבית של חמש גרים אחת ועוד כמה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 17037,
+      "trimmed": true
+    },
+    "3cc67b288bbdf4e4": {
+      "text": "בבית של שש גרים ארבע ועוד כמה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 15789,
+      "trimmed": true
+    },
+    "55123383ead30bb0": {
+      "text": "בבית של שבע גרים חמש ועוד כמה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 16269,
+      "trimmed": true
+    },
+    "c727f88b880d583f": {
+      "text": "בבית של שש גרים שלוש ועוד כמה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 18957,
+      "trimmed": true
+    },
+    "d34be21f84b985a0": {
+      "text": "בבית של שבע גרים אחת ועוד כמה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 17229,
+      "trimmed": true
+    },
+    "a57c63ebd5a04f27": {
+      "text": "בבית של תשע גרים שבע ועוד כמה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 14445,
+      "trimmed": true
+    },
+    "8182a7d3b7639545": {
+      "text": "בבית של תשע גרים אחת ועוד כמה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 18861,
+      "trimmed": true
+    },
+    "f577299669348b8a": {
+      "text": "בבית של תשע גרים חמש ועוד כמה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 19629,
+      "trimmed": true
+    },
+    "38e040e405f568d1": {
+      "text": "בבית של עשר גרים אחת ועוד כמה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 17613,
+      "trimmed": true
+    },
+    "804fcc2d8e6f7c04": {
+      "text": "בבית של עשר גרים חמש ועוד כמה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 17229,
+      "trimmed": true
+    },
+    "62d1d6c41a14b53c": {
+      "text": "בבית של עשר גרים שבע ועוד כמה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 19533,
+      "trimmed": true
+    },
+    "ea38ec6c32b57a95": {
+      "text": "בבית של שלוש גרים אחת ועוד כמה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 17229,
+      "trimmed": true
+    },
+    "ad34ebb91b96adcc": {
+      "text": "בבית של ארבע גרים אחת ועוד כמה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 15597,
+      "trimmed": true
+    },
+    "602103c085d31cfd": {
+      "text": "בבית של עשר גרים תשע ועוד כמה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 21261,
+      "trimmed": true
+    },
+    "7c65ead5ef82946b": {
+      "text": "בבית של חמש גרים שלוש ועוד כמה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 16557,
+      "trimmed": true
+    },
+    "3bf402a9934a5906": {
+      "text": "בבית של חמש גרים ארבע ועוד כמה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 17997,
+      "trimmed": true
+    },
+    "30396e6021d372ae": {
+      "text": "בבית של שש גרים שתיים ועוד כמה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 15885,
+      "trimmed": true
+    },
+    "6fe2e7c0caf12533": {
+      "text": "בבית של שבע גרים שלוש ועוד כמה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 16653,
+      "trimmed": true
+    },
+    "b739f61a66a7b5da": {
+      "text": "בבית של שבע גרים ארבע ועוד כמה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 16557,
+      "trimmed": true
+    },
+    "38d2b4ee1a263209": {
+      "text": "בבית של שמונה גרים שש ועוד כמה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 16653,
+      "trimmed": true
+    },
+    "82e18cdd579a01c2": {
+      "text": "בבית של תשע גרים שלוש ועוד כמה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 15501,
+      "trimmed": true
+    },
+    "57e1d0a6fece9958": {
+      "text": "בבית של תשע גרים ארבע ועוד כמה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 15597,
+      "trimmed": true
+    },
+    "551135f3e5e2012d": {
+      "text": "בבית של עשר גרים שלוש ועוד כמה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 16941,
+      "trimmed": true
+    },
+    "372ce670dbdc2ca7": {
+      "text": "בבית של עשר גרים ארבע ועוד כמה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 16653,
+      "trimmed": true
+    },
+    "8f40e6779dee0d36": {
+      "text": "בבית של שתיים גרים אחת ועוד כמה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 16845,
+      "trimmed": true
+    },
+    "8df2dc7af2ac402a": {
+      "text": "בבית של שבע גרים שתיים ועוד כמה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 14925,
+      "trimmed": true
+    },
+    "ebe5d820c44a7efe": {
+      "text": "בבית של שמונה גרים אחת ועוד כמה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 15501,
+      "trimmed": true
+    },
+    "c4ad4f2023d9544c": {
+      "text": "בבית של חמש גרים שתיים ועוד כמה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 15693,
+      "trimmed": true
+    },
+    "93502380f399b13f": {
+      "text": "בבית של שמונה גרים שבע ועוד כמה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 17613,
+      "trimmed": true
+    },
+    "6633b7b86a3a01dc": {
+      "text": "בבית של ארבע גרים שלוש ועוד כמה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 19533,
+      "trimmed": true
+    },
+    "0ebe0a594c6cbba7": {
+      "text": "בבית של תשע גרים שתיים ועוד כמה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 16173,
+      "trimmed": true
+    },
+    "be30ae3ac4428281": {
+      "text": "בבית של עשר גרים שתיים ועוד כמה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 16461,
+      "trimmed": true
+    },
+    "e6b1679f94a9e917": {
+      "text": "בבית של תשע גרים שמונה ועוד כמה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 21357,
+      "trimmed": true
+    },
+    "ed5c485c820acc65": {
+      "text": "בבית של שמונה גרים חמש ועוד כמה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 19917,
+      "trimmed": true
+    },
+    "0035cdc07c4ebf3f": {
+      "text": "בבית של שלוש גרים שתיים ועוד כמה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 17421,
+      "trimmed": true
+    },
+    "65aeafda39b7cabd": {
+      "text": "בבית של ארבע גרים שתיים ועוד כמה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 18093,
+      "trimmed": true
+    },
+    "c4aa6571ac1053f9": {
+      "text": "בבית של עשר גרים שמונה ועוד כמה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 19533,
+      "trimmed": true
+    },
+    "fc9a66544bbc2a56": {
+      "text": "בבית של שמונה גרים שלוש ועוד כמה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 19533,
+      "trimmed": true
+    },
+    "e9749ef8525ffe25": {
+      "text": "בבית של שמונה גרים ארבע ועוד כמה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 19149,
+      "trimmed": true
+    },
+    "6e02c0b2db132458": {
+      "text": "שש ועוד אחת זה שבע. בקופסה יש אחת.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 17517,
+      "trimmed": true
+    },
+    "f1b68c355c32b415": {
+      "text": "חמש ועוד אחת זה שש. בקופסה יש אחת.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 21645,
+      "trimmed": true
+    },
+    "63089002c43bf6e4": {
+      "text": "ארבע ועוד שש זה עשר. בקופסה יש שש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 23757,
+      "trimmed": true
+    },
+    "e84783e945f13f1c": {
+      "text": "שלוש ועוד שש זה תשע. בקופסה יש שש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22893,
+      "trimmed": true
+    },
+    "5fe158f7cd766df8": {
+      "text": "בבית של שמונה גרים שתיים ועוד כמה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 17805,
+      "trimmed": true
+    },
+    "a2c7f855279d4c8c": {
+      "text": "חמש ועוד חמש זה עשר. בקופסה יש חמש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 18957,
+      "trimmed": true
+    },
+    "1b78cfaaabd50739": {
+      "text": "תשע ועוד אחת זה עשר. בקופסה יש אחת.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22605,
+      "trimmed": true
+    },
+    "338fe3baf3c6bc71": {
+      "text": "חמש ועוד אחת זה שש. ביד השנייה אחת.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 27501,
+      "trimmed": true
+    },
+    "8d1015c29e01772e": {
+      "text": "נקודות, ואחד לא. איזה זוג לא מתאים?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 23757,
+      "trimmed": true
+    },
+    "136e68f513a2a0c8": {
+      "text": "שש ועוד שלוש זה תשע. בקופסה יש שלוש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 18669,
+      "trimmed": true
+    },
+    "45199379c0f7713c": {
+      "text": "ארבע ועוד חמש זה תשע. בקופסה יש חמש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 21933,
+      "trimmed": true
+    },
+    "87e68820037a3f41": {
+      "text": "שש ועוד ארבע זה עשר. בקופסה יש ארבע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 19725,
+      "trimmed": true
+    },
+    "4833744b3f44c692": {
+      "text": "ארבע ועוד אחת זה חמש. בקופסה יש אחת.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 24045,
+      "trimmed": true
+    },
+    "484ed4f66d82047f": {
+      "text": "שלוש ועוד שבע זה עשר. בקופסה יש שבע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 24813,
+      "trimmed": true
+    },
+    "7ac5fbb06edadee6": {
+      "text": "נתחיל מאחת, ונספור על האצבעות עד שש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 16845,
+      "trimmed": true
+    },
+    "b35bc27f861a5399": {
+      "text": "נתחיל מחמש, ונספור על האצבעות עד שש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 16365,
+      "trimmed": true
+    },
+    "b05ea36deab29a61": {
+      "text": "נתחיל משש, ונספור על האצבעות עד שבע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 14541,
+      "trimmed": true
+    },
+    "9fee42300d2a3df2": {
+      "text": "חמש ועוד חמש זה עשר. ביד השנייה חמש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 23373,
+      "trimmed": true
+    },
+    "04fac66076892a65": {
+      "text": "בגג כתוב המספר של כל הבית. בחלון אחד",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 20685,
+      "trimmed": true
+    },
+    "f1725408275d3822": {
+      "text": "נתחיל משש, ונספור על האצבעות עד תשע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 15693,
+      "trimmed": true
+    },
+    "9f7816fc58d14901": {
+      "text": "שלוש ועוד אחת זה ארבע. בקופסה יש אחת.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 21645,
+      "trimmed": true
+    },
+    "ac4f5bddd5905e96": {
+      "text": "אחת ועוד ארבע זה חמש. בקופסה יש ארבע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 21069,
+      "trimmed": true
+    },
+    "cd030d430d52dc7e": {
+      "text": "שלוש ועוד שלוש זה שש. בקופסה יש שלוש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 21357,
+      "trimmed": true
+    },
+    "8edb6eb1947fcb3f": {
+      "text": "שתיים ועוד חמש זה שבע. בקופסה יש חמש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 21165,
+      "trimmed": true
+    },
+    "d14d85b91b3a31fb": {
+      "text": "שתיים ועוד שבע זה תשע. בקופסה יש שבע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 19149,
+      "trimmed": true
+    },
+    "8f20ab4e4f235c2f": {
+      "text": "חמש ועוד ארבע זה תשע. בקופסה יש ארבע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 19341,
+      "trimmed": true
+    },
+    "11020237a79751ec": {
+      "text": "שתיים ועוד שש זה שמונה. בקופסה יש שש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 20397,
+      "trimmed": true
+    },
+    "eaee7ff85595df27": {
+      "text": "שבע ועוד אחת זה שמונה. בקופסה יש אחת.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 20301,
+      "trimmed": true
+    },
+    "7c75bf53e28a12ac": {
+      "text": "נתחיל מאחת, ונספור על האצבעות עד חמש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 16269,
+      "trimmed": true
+    },
+    "b8f80152015f70c2": {
+      "text": "שבע ועוד שלוש זה עשר. בקופסה יש שלוש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22029,
+      "trimmed": true
+    },
+    "61d0ccd27e7d3698": {
+      "text": "נתחיל משלוש, ונספור על האצבעות עד שש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 17421,
+      "trimmed": true
+    },
+    "30b0f2f1adbe16c5": {
+      "text": "שמונה ועוד אחת זה תשע. בקופסה יש אחת.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 28269,
+      "trimmed": true
+    },
+    "7a6cd3ef6b6e6c28": {
+      "text": "נתחיל מארבע, ונספור על האצבעות עד שש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 16941,
+      "trimmed": true
+    },
+    "8b83553af23c6eb2": {
+      "text": "נתחיל מאחת, ונספור על האצבעות עד שבע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 16269,
+      "trimmed": true
+    },
+    "a65d10bfcb6c016a": {
+      "text": "נתחיל מאחת, ונספור על האצבעות עד תשע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 17805,
+      "trimmed": true
+    },
+    "23f74983ded1ce81": {
+      "text": "נתחיל מחמש, ונספור על האצבעות עד שבע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 17997,
+      "trimmed": true
+    },
+    "d369cf19dd4e95ad": {
+      "text": "נתחיל מחמש, ונספור על האצבעות עד תשע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 16269,
+      "trimmed": true
+    },
+    "4e69e0ecbbfdafad": {
+      "text": "נתחיל משבע, ונספור על האצבעות עד תשע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 16365,
+      "trimmed": true
+    },
+    "ed7d5e0940bfcdd6": {
+      "text": "שתיים ועוד ארבע זה שש. בקופסה יש ארבע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 17709,
+      "trimmed": true
+    },
+    "4e10bc2b5abe980f": {
+      "text": "שלוש ועוד חמש זה שמונה. בקופסה יש חמש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 16461,
+      "trimmed": true
+    },
+    "96c173f77156a59e": {
+      "text": "שתיים ועוד אחת זה שלוש. בקופסה יש אחת.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 20301,
+      "trimmed": true
+    },
+    "3f9416aaefc0cb92": {
+      "text": "אחת ועוד שלוש זה ארבע. בקופסה יש שלוש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 21549,
+      "trimmed": true
+    },
+    "535440dc39c3a5f4": {
+      "text": "שלוש ועוד ארבע זה שבע. בקופסה יש ארבע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 19533,
+      "trimmed": true
+    },
+    "bcafd8f443791b7f": {
+      "text": "ארבע ועוד שלוש זה שבע. בקופסה יש שלוש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 23565,
+      "trimmed": true
+    },
+    "c74482ad14750635": {
+      "text": "נתחיל משלוש, ונספור על האצבעות עד חמש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 16653,
+      "trimmed": true
+    },
+    "7dbb1403b24ae165": {
+      "text": "חמש ועוד ארבע זה תשע. ביד השנייה ארבע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 23373,
+      "trimmed": true
+    },
+    "4b9795230a5e63bd": {
+      "text": "נתחיל משלוש, ונספור על האצבעות עד שבע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 15501,
+      "trimmed": true
+    },
+    "e227fda4fd018359": {
+      "text": "נתחיל מארבע, ונספור על האצבעות עד חמש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 18093,
+      "trimmed": true
+    },
+    "7c140f4eee5d695e": {
+      "text": "נתחיל מארבע, ונספור על האצבעות עד שבע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 16941,
+      "trimmed": true
+    },
+    "d6545c18218a3137": {
+      "text": "נתחיל משש, ונספור על האצבעות עד שמונה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 17037,
+      "trimmed": true
+    },
+    "40b81f1b2af0deb6": {
+      "text": "נתחיל משלוש, ונספור על האצבעות עד תשע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 14733,
+      "trimmed": true
+    },
+    "d1edc5daff6eb8e8": {
+      "text": "נתחיל משתיים, ונספור על האצבעות עד שש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 16557,
+      "trimmed": true
+    },
+    "f37b7020d7212538": {
+      "text": "נתחיל מארבע, ונספור על האצבעות עד תשע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 18381,
+      "trimmed": true
+    },
+    "54b4887904fa6b70": {
+      "text": "שתיים ועוד שלוש זה חמש. בקופסה יש שלוש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 18861,
+      "trimmed": true
+    },
+    "4bcd5c201412e1ea": {
+      "text": "חמש ועוד שתיים זה שבע. בקופסה יש שתיים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 18669,
+      "trimmed": true
+    },
+    "7635f8daf0bad1cd": {
+      "text": "ארבע ועוד שתיים זה שש. בקופסה יש שתיים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 19917,
+      "trimmed": true
+    },
+    "52cfe27f910cecc3": {
+      "text": "שבע ועוד שתיים זה תשע. בקופסה יש שתיים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 20109,
+      "trimmed": true
+    },
+    "58ae7c05bae9c152": {
+      "text": "באיזה זוג קוביות יש בסך הכול שש נקודות?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 16749,
+      "trimmed": true
+    },
+    "3966987676eedd0a": {
+      "text": "למשל, אחת ועוד שש זה שבע. בקופסה יש שש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 25869,
+      "trimmed": true
+    },
+    "a17d1974797f7140": {
+      "text": "ביד אחת חמש אצבעות. נמשיך לספור מחמש עד",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22029,
+      "trimmed": true
+    },
+    "940b05d81d329e29": {
+      "text": "חמש ועוד שלוש זה שמונה. בקופסה יש שלוש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 25005,
+      "trimmed": true
+    },
+    "cff616a6f9eba55d": {
+      "text": "נתחיל משתיים, ונספור על האצבעות עד חמש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 17613,
+      "trimmed": true
+    },
+    "e09dd6db0ccf4de9": {
+      "text": "נתחיל משתיים, ונספור על האצבעות עד שבע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 15309,
+      "trimmed": true
+    },
+    "fc0030f21d308da5": {
+      "text": "נתחיל מאחת, ונספור על האצבעות עד שמונה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 15501,
+      "trimmed": true
+    },
+    "758252134786428a": {
+      "text": "נתחיל משתיים, ונספור על האצבעות עד תשע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 15981,
+      "trimmed": true
+    },
+    "fd97cd2343c66abb": {
+      "text": "נתחיל מחמש, ונספור על האצבעות עד שמונה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 17133,
+      "trimmed": true
+    },
+    "fc5471640968b250": {
+      "text": "נתחיל משמונה, ונספור על האצבעות עד תשע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 17421,
+      "trimmed": true
+    },
+    "30549e15fdca7090": {
+      "text": "נתחיל משבע, ונספור על האצבעות עד שמונה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 19149,
+      "trimmed": true
+    },
+    "87c28f1970dc2536": {
+      "text": "אחת ועוד שתיים זה שלוש. בקופסה יש שתיים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22029,
+      "trimmed": true
+    },
+    "bb6c4f0db3a7419c": {
+      "text": "למשל, אחת ועוד חמש זה שש. בקופסה יש חמש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 23661,
+      "trimmed": true
+    },
+    "8c75877266dbb698": {
+      "text": "שלוש ועוד שתיים זה חמש. בקופסה יש שתיים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 24621,
+      "trimmed": true
+    },
+    "2b4efab41526f3b4": {
+      "text": "ארבע ועוד ארבע זה שמונה. בקופסה יש ארבע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 21357,
+      "trimmed": true
+    },
+    "685fa99ac07260c8": {
+      "text": "באיזה זוג קוביות יש בסך הכול חמש נקודות?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 16461,
+      "trimmed": true
+    },
+    "3d5d2a90ea417c28": {
+      "text": "שש ועוד שתיים זה שמונה. בקופסה יש שתיים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 24237,
+      "trimmed": true
+    },
+    "b1b53145d964f41e": {
+      "text": "באיזה זוג קוביות יש בסך הכול שבע נקודות?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 16557,
+      "trimmed": true
+    },
+    "d902908148c5be68": {
+      "text": "חמש ועוד שלוש זה שמונה. ביד השנייה שלוש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 28653,
+      "trimmed": true
+    },
+    "3372e394b6f23e55": {
+      "text": "חמש ועוד שתיים זה שבע. ביד השנייה שתיים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 28173,
+      "trimmed": true
+    },
+    "1d20c060e0ee3477": {
+      "text": "נספור את הנקודות בכל זוג, ונבדוק איפה יש",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 17229,
+      "trimmed": true
+    },
+    "fbda1a930248f44f": {
+      "text": "נתחיל משלוש, ונספור על האצבעות עד שמונה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 16461,
+      "trimmed": true
+    },
+    "42d097c1c1883f97": {
+      "text": "נתחיל מארבע, ונספור על האצבעות עד שמונה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 17805,
+      "trimmed": true
+    },
+    "86e35ffb91f92c81": {
+      "text": "באיזה זוג קוביות יש בסך הכול ארבע נקודות?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 16365,
+      "trimmed": true
+    },
+    "523b75d5e63dfe31": {
+      "text": "נתחיל משתיים, ונספור על האצבעות עד שמונה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 16941,
+      "trimmed": true
+    },
+    "88ab37aab5dde401": {
+      "text": "בזוג הזה יש אחת ועוד שש, וזה שבע, ולא שש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 20973,
+      "trimmed": true
+    },
+    "0acb22df9742f59e": {
+      "text": "שתיים ועוד שמונה זה עשר. בקופסה יש שמונה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 29901,
+      "trimmed": true
+    },
+    "a16a2d46d9bdd9c4": {
+      "text": "שמונה ועוד שתיים זה עשר. בקופסה יש שתיים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 27309,
+      "trimmed": true
+    },
+    "7679df4f5fe66a8a": {
+      "text": "בזוג הזה יש שש ועוד אחת, וזה שבע, ולא שש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22509,
+      "trimmed": true
+    },
+    "559cb9ef95e3ce57": {
+      "text": "למשל, ארבע ועוד אחת זה חמש. בקופסה יש אחת.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 23757,
+      "trimmed": true
+    },
+    "051baed734b22668": {
+      "text": "באיזה זוג קוביות יש בסך הכול שמונה נקודות?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 17613,
+      "trimmed": true
+    },
+    "38b81f02438a29e1": {
+      "text": "שתיים ועוד שתיים זה ארבע. בקופסה יש שתיים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 23757,
+      "trimmed": true
+    },
+    "64e3a7b3b57087c1": {
+      "text": "בזוג הזה יש אחת ועוד חמש, וזה שש, ולא חמש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 21069,
+      "trimmed": true
+    },
+    "7a9039fe4c381dc1": {
+      "text": "בזוג הזה יש חמש ועוד אחת, וזה שש, ולא חמש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 23085,
+      "trimmed": true
+    },
+    "366be875a8890262": {
+      "text": "למשל, אחת ועוד ארבע זה חמש. בקופסה יש ארבע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22029,
+      "trimmed": true
+    },
+    "79ddf74c4ab91593": {
+      "text": "למשל, שתיים ועוד חמש זה שבע. בקופסה יש חמש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 20973,
+      "trimmed": true
+    },
+    "809e87b2e60f7090": {
+      "text": "למשל, אחת ועוד שבע זה שמונה. בקופסה יש שבע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 19821,
+      "trimmed": true
+    },
+    "52978bd7346a3635": {
+      "text": "למשל, שתיים ועוד שש זה שמונה. בקופסה יש שש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 29133,
+      "trimmed": true
+    },
+    "107894da33398ebd": {
+      "text": "אצבעות. ביד אחת חמש. כמה אצבעות ביד השנייה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 24333,
+      "trimmed": true
+    },
+    "f835f3c05ca90ff8": {
+      "text": "בכל זוג נספור את הנקודות בשתי הקוביות ביחד.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 17709,
+      "trimmed": true
+    },
+    "8e83adf83cf53483": {
+      "text": "ביד אחת חמש אצבעות. נמשיך לספור מחמש עד שש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22317,
+      "trimmed": true
+    },
+    "c0a5012589a6525c": {
+      "text": "בזוג הזה יש אחת ועוד ארבע, וזה חמש, ולא שש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 20877,
+      "trimmed": true
+    },
+    "45fa578392a02122": {
+      "text": "בזוג הזה יש ארבע ועוד אחת, וזה חמש, ולא שש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22605,
+      "trimmed": true
+    },
+    "e64675c45e9807c1": {
+      "text": "למשל, שתיים ועוד אחת זה שלוש. בקופסה יש אחת.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 23565,
+      "trimmed": true
+    },
+    "460bd13a18d77379": {
+      "text": "למשל, שלוש ועוד חמש זה שמונה. בקופסה יש חמש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 24237,
+      "trimmed": true
+    },
+    "580ebd00aa77b6a5": {
+      "text": "למשל, אחת ועוד שלוש זה ארבע. בקופסה יש שלוש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 24429,
+      "trimmed": true
+    },
+    "107eed642512d98e": {
+      "text": "למשל, שלוש ועוד ארבע זה שבע. בקופסה יש ארבע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 20589,
+      "trimmed": true
+    },
+    "739897170055641d": {
+      "text": "ביד אחת חמש אצבעות. נמשיך לספור מחמש עד שבע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 20973,
+      "trimmed": true
+    },
+    "d88de6fee430d706": {
+      "text": "ביד אחת חמש אצבעות. נמשיך לספור מחמש עד תשע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 24045,
+      "trimmed": true
+    },
+    "44dff1fe950fc5da": {
+      "text": "ביד אחת חמש אצבעות. נמשיך לספור מחמש עד עשר.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 25101,
+      "trimmed": true
+    },
+    "4d9a9f7a47422910": {
+      "text": "בזוג הזה יש שלוש ועוד שלוש, וזה שש, ולא חמש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 23277,
+      "trimmed": true
+    },
+    "599e36e63da10712": {
+      "text": "בזוג הזה יש שלוש ועוד ארבע, וזה שבע, ולא שש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 23085,
+      "trimmed": true
+    },
+    "994592aaa4c19170": {
+      "text": "בזוג הזה יש ארבע ועוד שלוש, וזה שבע, ולא שש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 25869,
+      "trimmed": true
+    },
+    "09ddeb5504c88b33": {
+      "text": "בזוג הזה יש חמש ועוד שתיים, וזה שבע, ולא שש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 21933,
+      "trimmed": true
+    },
+    "f44702fc7684020e": {
+      "text": "בזוג הזה יש שתיים ועוד חמש, וזה שבע, ולא שש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22989,
+      "trimmed": true
+    },
+    "1b12654728f11a59": {
+      "text": "בזוג הזה יש אחת ועוד שלוש, וזה ארבע, ולא חמש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 23757,
+      "trimmed": true
+    },
+    "8e4d83007709d41d": {
+      "text": "למשל, שתיים ועוד שלוש זה חמש. בקופסה יש שלוש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 25389,
+      "trimmed": true
+    },
+    "6a3489bb72163da2": {
+      "text": "בזוג הזה יש שלוש ועוד אחת, וזה ארבע, ולא חמש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 25389,
+      "trimmed": true
+    },
+    "f935370869e0e70f": {
+      "text": "בזוג הזה יש ארבע ועוד שתיים, וזה שש, ולא חמש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22509,
+      "trimmed": true
+    },
+    "2028f78f3eff5ea7": {
+      "text": "בזוג הזה יש שתיים ועוד שלוש, וזה חמש, ולא שש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 21261,
+      "trimmed": true
+    },
+    "3a5d47094fcb7a1c": {
+      "text": "בזוג הזה יש שתיים ועוד ארבע, וזה שש, ולא חמש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 27789,
+      "trimmed": true
+    },
+    "9a6da3bedf27b3bc": {
+      "text": "בזוג הזה יש שלוש ועוד שתיים, וזה חמש, ולא שש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22221,
+      "trimmed": true
+    },
+    "10ce1da707fa7c34": {
+      "text": "למשל, שלוש ועוד שתיים זה חמש. בקופסה יש שתיים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 26829,
+      "trimmed": true
+    },
+    "83460938e6c91d5a": {
+      "text": "למשל, חמש ועוד שתיים זה שבע. ביד השנייה שתיים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 26349,
+      "trimmed": true
+    },
+    "beef2b2cb1d186e6": {
+      "text": "למשל, חמש ועוד שלוש זה שמונה. ביד השנייה שלוש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 25485,
+      "trimmed": true
+    },
+    "dbddf87fea18a5ab": {
+      "text": "ביד אחת חמש אצבעות. נמשיך לספור מחמש עד שמונה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22029,
+      "trimmed": true
+    },
+    "1b20051e4fa08e6b": {
+      "text": "זה המספר שאנחנו רוצים להגיע אליו. כמה צריך להוסיף",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 18669,
+      "trimmed": true
+    },
+    "9b32af44b94a8c92": {
+      "text": "בזוג הזה יש שתיים ועוד שתיים, וזה ארבע, ולא חמש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22221,
+      "trimmed": true
+    },
+    "0ce8aace9f5ba74b": {
+      "text": "זה המספר של מה שבחוץ. השאלה כמה מסתתר בתוך הקופסה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 25101,
+      "trimmed": true
+    },
+    "ce4ef27642581126": {
+      "text": "למשל, שתיים ועוד שתיים זה ארבע. בקופסה יש שתיים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 23469,
+      "trimmed": true
+    },
+    "e5d33fbd5cfa4b65": {
+      "text": "נספור את מה שבחוץ, ונמשיך לספור על האצבעות עד שנגיע",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 21453,
+      "trimmed": true
+    },
+    "6938be0b0dfdd7aa": {
+      "text": "בזוג הזה יש אחת ועוד שש, וזה שבע. אנחנו מחפשים שש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 28749,
+      "trimmed": true
+    },
+    "7c58abfb1f79a81f": {
+      "text": "בזוג הזה יש אחת ועוד חמש, וזה שש. אנחנו מחפשים חמש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 27789,
+      "trimmed": true
+    },
+    "8a76eaadf6963fc7": {
+      "text": "בזוג הזה יש חמש ועוד אחת, וזה שש. אנחנו מחפשים שבע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 25773,
+      "trimmed": true
+    },
+    "4d0d05586761ac39": {
+      "text": "בזוג הזה יש אחת ועוד חמש, וזה שש. אנחנו מחפשים שבע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 27213,
+      "trimmed": true
+    },
+    "698defe612ca7736": {
+      "text": "נספור את הנקודות בכל זוג, ונבדוק איפה יש שש נקודות.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 20493,
+      "trimmed": true
+    },
+    "051e13db643f34d9": {
+      "text": "יש שש דבורים בסך הכול. חמש בחוץ. כמה מסתתרות בקופסה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 26637,
+      "trimmed": true
+    },
+    "97d2fa4fdc9eae06": {
+      "text": "הרמתי שש אצבעות. ביד אחת חמש. כמה אצבעות ביד השנייה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 23469,
+      "trimmed": true
+    },
+    "5c6bb1174d46c86c": {
+      "text": "נספור את הנקודות בכל זוג, ונבדוק איפה יש חמש נקודות.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 21261,
+      "trimmed": true
+    },
+    "9cabe5089dbd371f": {
+      "text": "בזוג הזה יש אחת ועוד ארבע, וזה חמש. אנחנו מחפשים שש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 28461,
+      "trimmed": true
+    },
+    "aefb9efe4f6ee538": {
+      "text": "בזוג הזה יש ארבע ועוד אחת, וזה חמש. אנחנו מחפשים שש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 28749,
+      "trimmed": true
+    },
+    "dcee39026e414bf2": {
+      "text": "יש שש עוגיות בסך הכול. שלוש בחוץ. כמה מסתתרות בקופסה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 24909,
+      "trimmed": true
+    },
+    "5b6d07ebb345141a": {
+      "text": "יש שבעה דגים בסך הכול. שישה בחוץ. כמה מסתתרים בקופסה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 24813,
+      "trimmed": true
+    },
+    "12d268594f30dfd8": {
+      "text": "יש עשר עוגיות בסך הכול. שבע בחוץ. כמה מסתתרות בקופסה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 23853,
+      "trimmed": true
+    },
+    "6b1aeeb587089956": {
+      "text": "הרמתי שבע אצבעות. ביד אחת חמש. כמה אצבעות ביד השנייה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 21933,
+      "trimmed": true
+    },
+    "0869ffcdaf9d2462": {
+      "text": "יש עשר דבורים בסך הכול. תשע בחוץ. כמה מסתתרות בקופסה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 24045,
+      "trimmed": true
+    },
+    "e29fd17190f840bb": {
+      "text": "הרמתי תשע אצבעות. ביד אחת חמש. כמה אצבעות ביד השנייה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 25197,
+      "trimmed": true
+    },
+    "420720294083a103": {
+      "text": "הרמתי עשר אצבעות. ביד אחת חמש. כמה אצבעות ביד השנייה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 27021,
+      "trimmed": true
+    },
+    "4fa2aa3274676821": {
+      "text": "בזוג הזה יש שלוש ועוד שלוש, וזה שש. אנחנו מחפשים חמש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 27789,
+      "trimmed": true
+    },
+    "6061a785c424774d": {
+      "text": "בזוג הזה יש שתיים ועוד חמש, וזה שבע. אנחנו מחפשים שש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 28749,
+      "trimmed": true
+    },
+    "dcc0e09b86259641": {
+      "text": "בזוג הזה יש שלוש ועוד ארבע, וזה שבע. אנחנו מחפשים שש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 28749,
+      "trimmed": true
+    },
+    "bf303971fb50c0ba": {
+      "text": "בזוג הזה יש חמש ועוד שתיים, וזה שבע. אנחנו מחפשים שש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 24813,
+      "trimmed": true
+    },
+    "007c92bc9591c000": {
+      "text": "בזוג הזה יש ארבע ועוד שלוש, וזה שבע. אנחנו מחפשים שש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 28941,
+      "trimmed": true
+    },
+    "c032386366c564e8": {
+      "text": "בזוג הזה יש שלוש ועוד שלוש, וזה שש. אנחנו מחפשים שבע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 27597,
+      "trimmed": true
+    },
+    "cc0e723ca007fe4d": {
+      "text": "בזוג הזה יש אחת ועוד שש, וזה שבע. אנחנו מחפשים שמונה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 25005,
+      "trimmed": true
+    },
+    "7d481cd6aedd4446": {
+      "text": "זה המספר של כולם ביחד. חלק כבר בחוץ: כמה נשארו בקופסה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 24429,
+      "trimmed": true
+    },
+    "793b88571edf0636": {
+      "text": "בזוג הזה יש אחת ועוד חמש, וזה בדיוק שש. נחפש זוג אחר.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 29133,
+      "trimmed": true
+    },
+    "1765ee2c09176341": {
+      "text": "יש ארבע עוגיות בסך הכול. אחת בחוץ. כמה מסתתרות בקופסה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 25197,
+      "trimmed": true
+    },
+    "6c38ab0fa38a68db": {
+      "text": "יש שש סוכריות בסך הכול. ארבע בחוץ. כמה מסתתרות בקופסה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22125,
+      "trimmed": true
+    },
+    "9c495fd6b9a20396": {
+      "text": "יש תשעה דגים בסך הכול. שמונה בחוץ. כמה מסתתרים בקופסה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 25677,
+      "trimmed": true
+    },
+    "a43be634abaa936f": {
+      "text": "יש תשע דבורים בסך הכול. ארבע בחוץ. כמה מסתתרות בקופסה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 23373,
+      "trimmed": true
+    },
+    "4bba0cbc8bcaaa20": {
+      "text": "יש עשרה דגים בסך הכול. חמישה בחוץ. כמה מסתתרים בקופסה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 23181,
+      "trimmed": true
+    },
+    "66078617a635b77b": {
+      "text": "בזוג הזה יש אחת ועוד ארבע, וזה חמש. אנחנו מחפשים ארבע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 26445,
+      "trimmed": true
+    },
+    "9a8a4af0f21b4874": {
+      "text": "בזוג הזה יש אחת ועוד שלוש, וזה ארבע. אנחנו מחפשים חמש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 24621,
+      "trimmed": true
+    },
+    "dc9291e0ec8ca814": {
+      "text": "בזוג הזה יש שלוש ועוד אחת, וזה ארבע. אנחנו מחפשים חמש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 27789,
+      "trimmed": true
+    },
+    "e5af01e087c921ba": {
+      "text": "בזוג הזה יש שתיים ועוד ארבע, וזה שש. אנחנו מחפשים חמש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 27693,
+      "trimmed": true
+    },
+    "ea21d18d69e6acc4": {
+      "text": "בזוג הזה יש שתיים ועוד ארבע, וזה שש. אנחנו מחפשים שבע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 23661,
+      "trimmed": true
+    },
+    "48db39c73258827f": {
+      "text": "בזוג הזה יש שתיים ועוד שלוש, וזה חמש. אנחנו מחפשים שש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 26733,
+      "trimmed": true
+    },
+    "bf90aad7c243f379": {
+      "text": "בזוג הזה יש ארבע ועוד שתיים, וזה שש. אנחנו מחפשים חמש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 29517,
+      "trimmed": true
+    },
+    "3e4deb3dba98f65c": {
+      "text": "בזוג הזה יש שלוש ועוד שתיים, וזה חמש. אנחנו מחפשים שש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 25869,
+      "trimmed": true
+    },
+    "9a2ed189f3c54230": {
+      "text": "בזוג הזה יש ארבע ועוד שתיים, וזה שש. אנחנו מחפשים שבע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 30573,
+      "trimmed": true
+    },
+    "25d33d6944c5b38e": {
+      "text": "בזוג הזה יש שלוש ועוד שש, וזה תשע. אנחנו מחפשים שמונה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 27597,
+      "trimmed": true
+    },
+    "a38bc811f52bf416": {
+      "text": "בזוג הזה יש שש ועוד שלוש, וזה תשע. אנחנו מחפשים שמונה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 24525,
+      "trimmed": true
+    },
+    "cb07291be8787986": {
+      "text": "שני זוגות עושים שש נקודות, ואחד לא. איזה זוג לא מתאים?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 24621,
+      "trimmed": true
+    },
+    "908cc6d1be33fa4e": {
+      "text": "זה המספר שאנחנו רוצים להגיע אליו. כמה צריך להוסיף לשש?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 20589,
+      "trimmed": true
+    },
+    "4cc439c947fbf1a1": {
+      "text": "יש שלושה כוכבים בסך הכול. אחד בחוץ. כמה מסתתרים בקופסה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22989,
+      "trimmed": true
+    },
+    "a9dde39a3ee293a2": {
+      "text": "במסגרת יש עשר משבצות, ושש מהן מלאות. כמה משבצות ריקות?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 26349,
+      "trimmed": true
+    },
+    "c196eeccd4ae689c": {
+      "text": "יש שלושה דגים בסך הכול. שניים בחוץ. כמה מסתתרים בקופסה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 23277,
+      "trimmed": true
+    },
+    "ef3631a149551c36": {
+      "text": "יש ארבע דבורים בסך הכול. שלוש בחוץ. כמה מסתתרות בקופסה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 24045,
+      "trimmed": true
+    },
+    "29dca25c84d97a82": {
+      "text": "יש חמישה דגים בסך הכול. ארבעה בחוץ. כמה מסתתרים בקופסה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 24909,
+      "trimmed": true
+    },
+    "15f2d0c52642f7e6": {
+      "text": "יש שמונה עוגיות בסך הכול. חמש בחוץ. כמה מסתתרות בקופסה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22701,
+      "trimmed": true
+    },
+    "9aa2eb63fdd70bb2": {
+      "text": "יש שבע דבורים בסך הכול. שתיים בחוץ. כמה מסתתרות בקופסה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 23949,
+      "trimmed": true
+    },
+    "2448dda766c63b28": {
+      "text": "יש שמונה דגים בסך הכול. שלושה בחוץ. כמה מסתתרים בקופסה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 25485,
+      "trimmed": true
+    },
+    "71a28d38c231c260": {
+      "text": "יש חמישה תפוחים בסך הכול. אחד בחוץ. כמה מסתתרים בקופסה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 26157,
+      "trimmed": true
+    },
+    "f70a47bcf72f51ca": {
+      "text": "יש תשע עוגיות בסך הכול. שתיים בחוץ. כמה מסתתרות בקופסה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22989,
+      "trimmed": true
+    },
+    "b74e103aaa8dc3a1": {
+      "text": "יש שמונה סוכריות בסך הכול. שש בחוץ. כמה מסתתרות בקופסה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 24909,
+      "trimmed": true
+    },
+    "e44f4a4f6f4a039b": {
+      "text": "יש שמונה דבורים בסך הכול. שבע בחוץ. כמה מסתתרות בקופסה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 24525,
+      "trimmed": true
+    },
+    "c8c7e8dffa25f08d": {
+      "text": "יש תשעה בלונים בסך הכול. שישה בחוץ. כמה מסתתרים בקופסה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 23469,
+      "trimmed": true
+    },
+    "b4a6a406a3763f80": {
+      "text": "יש תשע סוכריות בסך הכול. שלוש בחוץ. כמה מסתתרות בקופסה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 24717,
+      "trimmed": true
+    },
+    "7c6c4066f9212322": {
+      "text": "יש תשעה כוכבים בסך הכול. שבעה בחוץ. כמה מסתתרים בקופסה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22509,
+      "trimmed": true
+    },
+    "cf2484c4b0cf0a52": {
+      "text": "יש עשרה פרפרים בסך הכול. שישה בחוץ. כמה מסתתרים בקופסה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 23757,
+      "trimmed": true
+    },
+    "a04234bd779a29c8": {
+      "text": "הרמתי שמונה אצבעות. ביד אחת חמש. כמה אצבעות ביד השנייה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 25773,
+      "trimmed": true
+    },
+    "c961b9c0cfb3a752": {
+      "text": "בזוג הזה יש שתיים ועוד שש, וזה שמונה. אנחנו מחפשים שבע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 25773,
+      "trimmed": true
+    },
+    "45d2a54575b223e6": {
+      "text": "בזוג הזה יש שלוש ועוד חמש, וזה שמונה. אנחנו מחפשים שבע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 26445,
+      "trimmed": true
+    },
+    "88bcc5ffcb4b8ae7": {
+      "text": "בזוג הזה יש חמש ועוד שלוש, וזה שמונה. אנחנו מחפשים שבע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 25005,
+      "trimmed": true
+    },
+    "c6715b1b1d450d8f": {
+      "text": "בזוג הזה יש שש ועוד שתיים, וזה שמונה. אנחנו מחפשים שבע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 26829,
+      "trimmed": true
+    },
+    "ef39bd1b7c6e0387": {
+      "text": "שני זוגות עושים חמש נקודות, ואחד לא. איזה זוג לא מתאים?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22317,
+      "trimmed": true
+    },
+    "a34354e8f31e2ed4": {
+      "text": "בזוג הזה יש ארבע ועוד חמש, וזה תשע. אנחנו מחפשים שמונה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 25773,
+      "trimmed": true
+    },
+    "9dbf01b6dc6d966d": {
+      "text": "בזוג הזה יש חמש ועוד ארבע, וזה תשע. אנחנו מחפשים שמונה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 26349,
+      "trimmed": true
+    },
+    "a61fd137cdb934c2": {
+      "text": "זה המספר שאנחנו רוצים להגיע אליו. כמה צריך להוסיף לחמש?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22605,
+      "trimmed": true
+    },
+    "68662bd2816ba13a": {
+      "text": "זה המספר שאנחנו רוצים להגיע אליו. כמה צריך להוסיף לאחת?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 19053,
+      "trimmed": true
+    },
+    "392ac2f589993efb": {
+      "text": "זה המספר שאנחנו רוצים להגיע אליו. כמה צריך להוסיף לשבע?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 19917,
+      "trimmed": true
+    },
+    "371a26839fbc1d4b": {
+      "text": "בזוג הזה יש אחת ועוד ארבע, וזה בדיוק חמש. נחפש זוג אחר.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 28461,
+      "trimmed": true
+    },
+    "63159751dfd4da24": {
+      "text": "זה המספר שאנחנו רוצים להגיע אליו. כמה צריך להוסיף לתשע?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 18765,
+      "trimmed": true
+    },
+    "4a7943d1326459ff": {
+      "text": "במסגרת יש עשר משבצות, ואחת מהן מלאות. כמה משבצות ריקות?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 26253,
+      "trimmed": true
+    },
+    "eb89360c5b31d784": {
+      "text": "במסגרת יש עשר משבצות, ושבע מהן מלאות. כמה משבצות ריקות?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 24813,
+      "trimmed": true
+    },
+    "9f84e12d5a6cd535": {
+      "text": "במסגרת יש עשר משבצות, וחמש מהן מלאות. כמה משבצות ריקות?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 27309,
+      "trimmed": true
+    },
+    "c23be75a51e9fd9f": {
+      "text": "במסגרת יש עשר משבצות, ותשע מהן מלאות. כמה משבצות ריקות?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 27117,
+      "trimmed": true
+    },
+    "fca58bcb4bc3b209": {
+      "text": "יש שישה פרפרים בסך הכול. שניים בחוץ. כמה מסתתרים בקופסה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 25773,
+      "trimmed": true
+    },
+    "349eadacfa6f6c01": {
+      "text": "נספור את מה שבחוץ, ונמשיך לספור על האצבעות עד שנגיע לשש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22893,
+      "trimmed": true
+    },
+    "c7c58542d46fc85a": {
+      "text": "יש שבעה תפוחים בסך הכול. שלושה בחוץ. כמה מסתתרים בקופסה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22509,
+      "trimmed": true
+    },
+    "0f0280786a69cbd7": {
+      "text": "יש שבעה בלונים בסך הכול. ארבעה בחוץ. כמה מסתתרים בקופסה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 25773,
+      "trimmed": true
+    },
+    "257654937a39486e": {
+      "text": "יש שבעה כוכבים בסך הכול. חמישה בחוץ. כמה מסתתרים בקופסה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 23757,
+      "trimmed": true
+    },
+    "7d80d673438d71cd": {
+      "text": "יש תשעה תפוחים בסך הכול. חמישה בחוץ. כמה מסתתרים בקופסה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 24237,
+      "trimmed": true
+    },
+    "9829b796d79f6277": {
+      "text": "יש עשרה תפוחים בסך הכול. שניים בחוץ. כמה מסתתרים בקופסה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22989,
+      "trimmed": true
+    },
+    "91f50a63f9baa053": {
+      "text": "יש עשרה בלונים בסך הכול. שלושה בחוץ. כמה מסתתרים בקופסה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 23661,
+      "trimmed": true
+    },
+    "717f3227006192ed": {
+      "text": "יש עשרה כוכבים בסך הכול. ארבעה בחוץ. כמה מסתתרים בקופסה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 25101,
+      "trimmed": true
+    },
+    "39f8b180adccaa4d": {
+      "text": "יש עשר סוכריות בסך הכול. שמונה בחוץ. כמה מסתתרות בקופסה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 26541,
+      "trimmed": true
+    },
+    "4574f09248175797": {
+      "text": "זה המספר של כל האצבעות. ביד אחת כבר חמש: כמה ביד השנייה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 26061,
+      "trimmed": true
+    },
+    "e92cb039d500980a": {
+      "text": "נתחיל מהקובייה שיש בה יותר, ונמשיך לספור בקובייה השנייה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 19341,
+      "trimmed": true
+    },
+    "7821054613725bc7": {
+      "text": "בזוג הזה יש אחת ועוד שתיים, וזה שלוש. אנחנו מחפשים ארבע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 32589,
+      "trimmed": true
+    },
+    "0eee4750add43759": {
+      "text": "בזוג הזה יש שתיים ועוד אחת, וזה שלוש. אנחנו מחפשים ארבע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 27213,
+      "trimmed": true
+    },
+    "ba252d97f3e512cd": {
+      "text": "בזוג הזה יש שתיים ועוד שלוש, וזה חמש. אנחנו מחפשים ארבע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 26637,
+      "trimmed": true
+    },
+    "5a56fe519f664fc9": {
+      "text": "בזוג הזה יש שלוש ועוד שתיים, וזה חמש. אנחנו מחפשים ארבע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 29709,
+      "trimmed": true
+    },
+    "c0c42f49df7780bf": {
+      "text": "בזוג הזה יש ארבע ועוד ארבע, וזה שמונה. אנחנו מחפשים שבע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 27021,
+      "trimmed": true
+    },
+    "1fa627ed5d262e42": {
+      "text": "בזוג הזה יש שתיים ועוד חמש, וזה שבע. אנחנו מחפשים שמונה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 26829,
+      "trimmed": true
+    },
+    "b17251c14dc734a9": {
+      "text": "בזוג הזה יש ארבע ועוד שלוש, וזה שבע. אנחנו מחפשים שמונה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 26349,
+      "trimmed": true
+    },
+    "ffc62219f8f5e161": {
+      "text": "בזוג הזה יש שלוש ועוד ארבע, וזה שבע. אנחנו מחפשים שמונה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 31341,
+      "trimmed": true
+    },
+    "fa7076450ed7b201": {
+      "text": "בזוג הזה יש חמש ועוד שתיים, וזה שבע. אנחנו מחפשים שמונה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 25005,
+      "trimmed": true
+    },
+    "494d3c8238b672ea": {
+      "text": "זה המספר שאנחנו רוצים להגיע אליו. כמה צריך להוסיף לשלוש?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 18861,
+      "trimmed": true
+    },
+    "1dce6557c671ef83": {
+      "text": "זה המספר שאנחנו רוצים להגיע אליו. כמה צריך להוסיף לארבע?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 19725,
+      "trimmed": true
+    },
+    "6b75a4185f6e04d2": {
+      "text": "בזוג הזה יש שתיים ועוד ארבע, וזה בדיוק שש. נחפש זוג אחר.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 26349,
+      "trimmed": true
+    },
+    "006d4361f481c212": {
+      "text": "בגג כתוב המספר של כל הבית. בחלון אחד אחת: כמה חסר עד שש?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 27693,
+      "trimmed": true
+    },
+    "37172ade87d5b48f": {
+      "text": "בגג כתוב המספר של כל הבית. בחלון אחד חמש: כמה חסר עד שש?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 31149,
+      "trimmed": true
+    },
+    "5237c514b0a13d0e": {
+      "text": "בגג כתוב המספר של כל הבית. בחלון אחד שש: כמה חסר עד שבע?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 29613,
+      "trimmed": true
+    },
+    "1be210e3fca59b51": {
+      "text": "בגג כתוב המספר של כל הבית. בחלון אחד שש: כמה חסר עד תשע?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 31821,
+      "trimmed": true
+    },
+    "5a60c9f027a11c08": {
+      "text": "במסגרת יש עשר משבצות, ושלוש מהן מלאות. כמה משבצות ריקות?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 24141,
+      "trimmed": true
+    },
+    "e59e598ecc191cab": {
+      "text": "במסגרת יש עשר משבצות, וארבע מהן מלאות. כמה משבצות ריקות?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 29133,
+      "trimmed": true
+    },
+    "6083798a14a83d7c": {
+      "text": "בגג כתוב המספר של כל הבית. בחלון אחד שש: כמה חסר עד עשר?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 30093,
+      "trimmed": true
+    },
+    "eec769ab8670b720": {
+      "text": "יש ארבע סוכריות בסך הכול. שתיים בחוץ. כמה מסתתרות בקופסה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 25581,
+      "trimmed": true
+    },
+    "cc2a330f30812b17": {
+      "text": "נספור את מה שבחוץ, ונמשיך לספור על האצבעות עד שנגיע לחמש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 23853,
+      "trimmed": true
+    },
+    "d9835aaaaef57d77": {
+      "text": "יש חמישה בלונים בסך הכול. שניים בחוץ. כמה מסתתרים בקופסה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 23565,
+      "trimmed": true
+    },
+    "6980c813203760b2": {
+      "text": "יש חמישה כוכבים בסך הכול. שלושה בחוץ. כמה מסתתרים בקופסה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 25005,
+      "trimmed": true
+    },
+    "b63ac2b821f0fd95": {
+      "text": "יש שמונה כוכבים בסך הכול. שניים בחוץ. כמה מסתתרים בקופסה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 23085,
+      "trimmed": true
+    },
+    "7b80350cf3df5bbf": {
+      "text": "נספור את מה שבחוץ, ונמשיך לספור על האצבעות עד שנגיע לשבע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22797,
+      "trimmed": true
+    },
+    "f7f9fa6eb29c29a0": {
+      "text": "יש שמונה פרפרים בסך הכול. ארבעה בחוץ. כמה מסתתרים בקופסה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 23373,
+      "trimmed": true
+    },
+    "7ffe1ccd688c902e": {
+      "text": "נספור את מה שבחוץ, ונמשיך לספור על האצבעות עד שנגיע לתשע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22893,
+      "trimmed": true
+    },
+    "4e936ad8db66a5d0": {
+      "text": "נספור את מה שבחוץ, ונמשיך לספור על האצבעות עד שנגיע לעשר.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 20109,
+      "trimmed": true
+    },
+    "1c8cb6ac2184b08d": {
+      "text": "בזוג הזה יש שתיים ועוד שתיים, וזה ארבע. אנחנו מחפשים חמש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 30477,
+      "trimmed": true
+    },
+    "668c24de24cd2b51": {
+      "text": "זה המספר שאנחנו רוצים להגיע אליו. כמה צריך להוסיף לשתיים?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 19725,
+      "trimmed": true
+    },
+    "3f5522fd2ac635e5": {
+      "text": "בזוג הזה יש שתיים ועוד שלוש, וזה בדיוק חמש. נחפש זוג אחר.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 29037,
+      "trimmed": true
+    },
+    "10734e368859d62d": {
+      "text": "בגג כתוב המספר של כל הבית. בחלון אחד אחת: כמה חסר עד חמש?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 30189,
+      "trimmed": true
+    },
+    "9565e769eb5409a6": {
+      "text": "בגג כתוב המספר של כל הבית. בחלון אחד שלוש: כמה חסר עד שש?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 30093,
+      "trimmed": true
+    },
+    "745dabdae46b86ae": {
+      "text": "בגג כתוב המספר של כל הבית. בחלון אחד ארבע: כמה חסר עד שש?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 31245,
+      "trimmed": true
+    },
+    "beb25457be34bc2d": {
+      "text": "בגג כתוב המספר של כל הבית. בחלון אחד אחת: כמה חסר עד שבע?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 29517,
+      "trimmed": true
+    },
+    "aec6207288081210": {
+      "text": "בגג כתוב המספר של כל הבית. בחלון אחד חמש: כמה חסר עד שבע?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 30477,
+      "trimmed": true
+    },
+    "08fdb1b3a637cac8": {
+      "text": "בגג כתוב המספר של כל הבית. בחלון אחד אחת: כמה חסר עד תשע?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 28845,
+      "trimmed": true
+    },
+    "1194cb115d677070": {
+      "text": "בגג כתוב המספר של כל הבית. בחלון אחד חמש: כמה חסר עד תשע?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 28365,
+      "trimmed": true
+    },
+    "921644c60b5ab6ba": {
+      "text": "זה המספר שאנחנו רוצים להגיע אליו. כמה צריך להוסיף לשמונה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 19725,
+      "trimmed": true
+    },
+    "7084232c0730168a": {
+      "text": "בגג כתוב המספר של כל הבית. בחלון אחד שבע: כמה חסר עד תשע?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 28461,
+      "trimmed": true
+    },
+    "b9449cccef98d7a0": {
+      "text": "בגג כתוב המספר של כל הבית. בחלון אחד שבע: כמה חסר עד עשר?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 29037,
+      "trimmed": true
+    },
+    "883e1f8f057f1ab0": {
+      "text": "בגג כתוב המספר של כל הבית. בחלון אחד חמש: כמה חסר עד עשר?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 30861,
+      "trimmed": true
+    },
+    "69f0c7acbe3a64e8": {
+      "text": "בגג כתוב המספר של כל הבית. בחלון אחד אחת: כמה חסר עד עשר?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 32301,
+      "trimmed": true
+    },
+    "b3ce2cf7f39b1b6f": {
+      "text": "במסגרת יש עשר משבצות, ושתיים מהן מלאות. כמה משבצות ריקות?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 24813,
+      "trimmed": true
+    },
+    "7633323658e93804": {
+      "text": "בגג כתוב המספר של כל הבית. בחלון אחד תשע: כמה חסר עד עשר?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 31245,
+      "trimmed": true
+    },
+    "7fe0d71dbfc07a51": {
+      "text": "נספור את מה שבחוץ, ונמשיך לספור על האצבעות עד שנגיע לארבע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 21165,
+      "trimmed": true
+    },
+    "b4a75c72f22e85bd": {
+      "text": "נספור את מה שבחוץ, ונמשיך לספור על האצבעות עד שנגיע לשלוש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22317,
+      "trimmed": true
+    },
+    "c82ceacf52a1ccc2": {
+      "text": "במסגרת יש עשר משבצות, ושמונה מהן מלאות. כמה משבצות ריקות?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 29229,
+      "trimmed": true
+    },
+    "8ccd991794a49079": {
+      "text": "נרים חמש אצבעות ביד אחת, ונוסיף אצבעות ביד השנייה עד שיהיו",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22989,
+      "trimmed": true
+    },
+    "695c9140965cdba2": {
+      "text": "בגג כתוב המספר של כל הבית. בחלון אחד אחת: כמה חסר עד שלוש?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 30093,
+      "trimmed": true
+    },
+    "3439e86b9d7222ec": {
+      "text": "בגג כתוב המספר של כל הבית. בחלון אחד אחת: כמה חסר עד ארבע?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 27309,
+      "trimmed": true
+    },
+    "8e5505816369ed3c": {
+      "text": "בגג כתוב המספר של כל הבית. בחלון אחד שלוש: כמה חסר עד חמש?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 30669,
+      "trimmed": true
+    },
+    "a0f7a03526eadd5e": {
+      "text": "בגג כתוב המספר של כל הבית. בחלון אחד ארבע: כמה חסר עד חמש?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 29229,
+      "trimmed": true
+    },
+    "f7e8805e5de8ac87": {
+      "text": "בגג כתוב המספר של כל הבית. בחלון אחד שתיים: כמה חסר עד שש?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 31533,
+      "trimmed": true
+    },
+    "e2b2559986e65109": {
+      "text": "בגג כתוב המספר של כל הבית. בחלון אחד שלוש: כמה חסר עד שבע?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 32973,
+      "trimmed": true
+    },
+    "d0acdc1526722a1f": {
+      "text": "בגג כתוב המספר של כל הבית. בחלון אחד ארבע: כמה חסר עד שבע?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 29613,
+      "trimmed": true
+    },
+    "31457a30b27d980c": {
+      "text": "בגג כתוב המספר של כל הבית. בחלון אחד שש: כמה חסר עד שמונה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 29997,
+      "trimmed": true
+    },
+    "e872c2a45d37ead1": {
+      "text": "בגג כתוב המספר של כל הבית. בחלון אחד שלוש: כמה חסר עד תשע?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 29325,
+      "trimmed": true
+    },
+    "79c456859f51e0a8": {
+      "text": "בגג כתוב המספר של כל הבית. בחלון אחד ארבע: כמה חסר עד תשע?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 30381,
+      "trimmed": true
+    },
+    "94d0c9a8751a4a5d": {
+      "text": "בגג כתוב המספר של כל הבית. בחלון אחד שלוש: כמה חסר עד עשר?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 30957,
+      "trimmed": true
+    },
+    "0ee77584e5d70c24": {
+      "text": "נספור את מה שבחוץ, ונמשיך לספור על האצבעות עד שנגיע לשמונה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 21165,
+      "trimmed": true
+    },
+    "355b0019d6a37283": {
+      "text": "בגג כתוב המספר של כל הבית. בחלון אחד ארבע: כמה חסר עד עשר?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 29901,
+      "trimmed": true
+    },
+    "a50e14d7677e705b": {
+      "text": "בגג כתוב המספר של כל הבית. בחלון אחד אחת: כמה חסר עד שתיים?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 27885,
+      "trimmed": true
+    },
+    "e512409c86b9e41f": {
+      "text": "בגג כתוב המספר של כל הבית. בחלון אחד שלוש: כמה חסר עד ארבע?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 32013,
+      "trimmed": true
+    },
+    "dd3ab602c318a971": {
+      "text": "בגג כתוב המספר של כל הבית. בחלון אחד אחת: כמה חסר עד שמונה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 27501,
+      "trimmed": true
+    },
+    "ed25b5474e3ba952": {
+      "text": "בגג כתוב המספר של כל הבית. בחלון אחד שתיים: כמה חסר עד שבע?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 30861,
+      "trimmed": true
+    },
+    "c12ac0699ca61226": {
+      "text": "בגג כתוב המספר של כל הבית. בחלון אחד שתיים: כמה חסר עד חמש?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 33069,
+      "trimmed": true
+    },
+    "bb3758ebf587b68d": {
+      "text": "בגג כתוב המספר של כל הבית. בחלון אחד חמש: כמה חסר עד שמונה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 30477,
+      "trimmed": true
+    },
+    "bb48ad5a8c3ef7fb": {
+      "text": "בגג כתוב המספר של כל הבית. בחלון אחד שמונה: כמה חסר עד תשע?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 27021,
+      "trimmed": true
+    },
+    "a35728460441ed4f": {
+      "text": "בגג כתוב המספר של כל הבית. בחלון אחד שבע: כמה חסר עד שמונה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 28749,
+      "trimmed": true
+    },
+    "df56f9ed75d0a00d": {
+      "text": "בגג כתוב המספר של כל הבית. בחלון אחד שתיים: כמה חסר עד תשע?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 29133,
+      "trimmed": true
+    },
+    "43331388a23f0cd3": {
+      "text": "בגג כתוב המספר של כל הבית. בחלון אחד שתיים: כמה חסר עד עשר?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 31149,
+      "trimmed": true
+    },
+    "d2ef5ce227fa56ad": {
+      "text": "בגג כתוב המספר של כל הבית. בחלון אחד שמונה: כמה חסר עד עשר?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 31053,
+      "trimmed": true
+    },
+    "1506148a5d64c06b": {
+      "text": "בגג כתוב המספר של כל הבית. בחלון אחד שתיים: כמה חסר עד שלוש?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 28269,
+      "trimmed": true
+    },
+    "41a8ed8e2c28461f": {
+      "text": "בגג כתוב המספר של כל הבית. בחלון אחד שלוש: כמה חסר עד שמונה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 31437,
+      "trimmed": true
+    },
+    "e49bf2911f401906": {
+      "text": "בגג כתוב המספר של כל הבית. בחלון אחד ארבע: כמה חסר עד שמונה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 27981,
+      "trimmed": true
+    },
+    "1b6b4ebccb890f2b": {
+      "text": "בגג כתוב המספר של כל הבית. בחלון אחד שתיים: כמה חסר עד ארבע?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 35085,
+      "trimmed": true
+    },
+    "98a9c086ccbb9cca": {
+      "text": "נרים חמש אצבעות ביד אחת, ונוסיף אצבעות ביד השנייה עד שיהיו שש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 25101,
+      "trimmed": true
+    },
+    "309d359b1c8b638f": {
+      "text": "בגג כתוב המספר של כל הבית. בחלון אחד שתיים: כמה חסר עד שמונה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 29997,
+      "trimmed": true
+    },
+    "461a56d7a90e7a1e": {
+      "text": "נרים חמש אצבעות ביד אחת, ונוסיף אצבעות ביד השנייה עד שיהיו שבע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 26349,
+      "trimmed": true
+    },
+    "71903e0d179d6c0e": {
+      "text": "נרים חמש אצבעות ביד אחת, ונוסיף אצבעות ביד השנייה עד שיהיו תשע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 30093,
+      "trimmed": true
+    },
+    "3c1307b7c519cc47": {
+      "text": "נרים חמש אצבעות ביד אחת, ונוסיף אצבעות ביד השנייה עד שיהיו שמונה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 24909,
+      "trimmed": true
+    },
+    "354b82e8559ea52f": {
+      "text": "נרים חמש אצבעות ביד אחת, ונוסיף אצבעות ביד השנייה עד שיהיו עשר.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 25197,
       "trimmed": true
     }
   }
