@@ -29152,8 +29152,8 @@
     },
     "8e734d9dd56c0f03": {
       "text": "תפוחים. בכמה תפוחים יש לדנה יותר?",
-      "voice": "wavenet/he-IL-Wavenet-A",
-      "bytes": 25389,
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 15501,
       "trimmed": true
     },
     "f20594ae9b742d23": {
@@ -30232,8 +30232,8 @@
     },
     "300a60ab63d708a1": {
       "text": "תפוחים. בכמה תפוחים יש למאיה יותר?",
-      "voice": "wavenet/he-IL-Wavenet-A",
-      "bytes": 25197,
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 16461,
       "trimmed": true
     },
     "f8e2a5205a37301e": {
@@ -30850,8 +30850,8 @@
     },
     "28eb9c1dad0d5114": {
       "text": "עוגיות. בכמה עוגיות יש ליובל יותר?",
-      "voice": "wavenet/he-IL-Wavenet-A",
-      "bytes": 26157,
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 16173,
       "trimmed": true
     },
     "f9aba270978c4af7": {
@@ -33759,8 +33759,8 @@
     },
     "5076c804e70b0af0": {
       "text": "סוכריות. בכמה סוכריות יש לסבתא יותר?",
-      "voice": "wavenet/he-IL-Wavenet-A",
-      "bytes": 29037,
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 15693,
       "trimmed": true
     },
     "4a342029aab6e580": {
@@ -36243,8 +36243,8 @@
     },
     "625bbd5384050292": {
       "text": "עוגיות. בכמה עוגיות יש לסבא יותר?",
-      "voice": "wavenet/he-IL-Wavenet-A",
-      "bytes": 25581,
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 16845,
       "trimmed": true
     },
     "eca8fc4693a8f649": {
@@ -43013,8 +43013,8 @@
     },
     "9f6be0f309b03b04": {
       "text": "בלונים. בכמה בלונים יש לסבא יותר?",
-      "voice": "wavenet/he-IL-Wavenet-A",
-      "bytes": 26157,
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 17229,
       "trimmed": true
     },
     "4ecd84ca4bb361a3": {
@@ -52643,8 +52643,8 @@
     },
     "ab70be6300124a21": {
       "text": "בלונים. בכמה בלונים יש ליובל יותר?",
-      "voice": "wavenet/he-IL-Wavenet-A",
-      "bytes": 26733,
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 17805,
       "trimmed": true
     },
     "be45f230c7c408ab": {
@@ -726328,6 +726328,4398 @@
       "text": "בזוג הזה יש שלוש ועוד שתיים, וזה בדיוק חמש. נחפש זוג אחר.",
       "voice": "gemini-3.1-flash/Leda/quick",
       "bytes": 29421,
+      "trimmed": true
+    },
+    "ddd7dd5fd4239396": {
+      "text": "איזה תרגיל מתאים?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 6381,
+      "trimmed": true
+    },
+    "d03663296d6e21ac": {
+      "text": "סיפור בשני שלבים",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 9357,
+      "trimmed": true
+    },
+    "863d4f295a588758": {
+      "text": "סיפורים חשבוניים",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 6573,
+      "trimmed": true
+    },
+    "ab9153f60a781628": {
+      "text": "קיבלו עוד: עד עשר",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 11565,
+      "trimmed": true
+    },
+    "d654707f9adc20a9": {
+      "text": "נתנו לחבר: עד חמש",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 11181,
+      "trimmed": true
+    },
+    "1421a3062b8d90f8": {
+      "text": "כמה יש לשניהם ביחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 8301,
+      "trimmed": true
+    },
+    "a7ec548b7286b12c": {
+      "text": "נתנו לחבר: עד עשר",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 12429,
+      "trimmed": true
+    },
+    "3da6ea637468116b": {
+      "text": "קיבלו עוד: עד חמש",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 12429,
+      "trimmed": true
+    },
+    "5b22fef407ebccaf": {
+      "text": "הסיפור הוא",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 4845,
+      "trimmed": true
+    },
+    "3892303585ef58a7": {
+      "text": "סיפור בלי תמונה: נתנו",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 11469,
+      "trimmed": true
+    },
+    "1585f0166afb2b5e": {
+      "text": ", ופחות",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 4749,
+      "trimmed": true
+    },
+    "7bef381d0dbad7eb": {
+      "text": "למי יש יותר, ובכמה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 9357,
+      "trimmed": true
+    },
+    "c7090dcf560dbce6": {
+      "text": "סיפור בלי תמונה: קיבלו",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 11085,
+      "trimmed": true
+    },
+    "977ddc1fc77ad29a": {
+      "text": "דגים. הוא נתן",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 11661,
+      "trimmed": true
+    },
+    "3bb2c13c31d221cb": {
+      "text": ", ואחר כך נתן",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 7725,
+      "trimmed": true
+    },
+    "2725993b3d7a2ffc": {
+      "text": "דגים. לדנה יש",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 12813,
+      "trimmed": true
+    },
+    "759eec12bf765711": {
+      "text": ", ונקפוץ קדימה",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 6381,
+      "trimmed": true
+    },
+    "7cbd9445efcac623": {
+      "text": ", ונקפוץ אחורה",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 5901,
+      "trimmed": true
+    },
+    "c6e102fb4126cd0f": {
+      "text": ", ואחר כך נתנה",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 8685,
+      "trimmed": true
+    },
+    "7a3a39005bca5cc6": {
+      "text": "דגים, ולדנה יש",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 15405,
+      "trimmed": true
+    },
+    "20601e32f33d745b": {
+      "text": "דגים. למאיה יש",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 12237,
+      "trimmed": true
+    },
+    "3e7cc1eee338ffb2": {
+      "text": "דגים, ולמאיה יש",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 12909,
+      "trimmed": true
+    },
+    "811491c4639b8021": {
+      "text": "דבורים. הוא נתן",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 9645,
+      "trimmed": true
+    },
+    "9f5af66ceca58cd4": {
+      "text": "פרפרים. לסבא יש",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 12909,
+      "trimmed": true
+    },
+    "e9cb3c4c31e040b4": {
+      "text": "כוכבים. היא נתנה",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 9933,
+      "trimmed": true
+    },
+    "4770a6a46aa32822": {
+      "text": "דבורים. לדנה יש",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 14253,
+      "trimmed": true
+    },
+    "01082c853734ff33": {
+      "text": "תפוחים, ולסבא יש",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 14445,
+      "trimmed": true
+    },
+    "6c71b5b661cdb577": {
+      "text": "פרפרים. היא נתנה",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 11277,
+      "trimmed": true
+    },
+    "722afd7c13788bc8": {
+      "text": "עוגיות, ולדנה יש",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 12717,
+      "trimmed": true
+    },
+    "d353a57cd0f622ff": {
+      "text": "כוכבים. לנועם יש",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 12717,
+      "trimmed": true
+    },
+    "076d14749bbcf017": {
+      "text": "דבורים, ולדנה יש",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 14349,
+      "trimmed": true
+    },
+    "fa1c43576a7ec3ab": {
+      "text": "פרפרים. ליובל יש",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 13197,
+      "trimmed": true
+    },
+    "38e8618bcfa0cb26": {
+      "text": "עוגיות, ולמאיה יש",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 15501,
+      "trimmed": true
+    },
+    "7436dcf3d05e3528": {
+      "text": "בלונים, ולסבתא יש",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 12717,
+      "trimmed": true
+    },
+    "673dc54b04f0aed6": {
+      "text": "תפוחים, וליובל יש",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 12333,
+      "trimmed": true
+    },
+    "4c5e659e17106f07": {
+      "text": "עוגיות, ולסבתא יש",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 16269,
+      "trimmed": true
+    },
+    "189479a3a107727d": {
+      "text": "דבורים, ולמאיה יש",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 12429,
+      "trimmed": true
+    },
+    "026b2e9c3b2b4f97": {
+      "text": "פרפרים, וליובל יש",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 12525,
+      "trimmed": true
+    },
+    "999eafeaabf97b6e": {
+      "text": "סוכריות, ולסבא יש",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 9357,
+      "trimmed": true
+    },
+    "748a8ca3672b4194": {
+      "text": "כוכבים, ולנועם יש",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 14925,
+      "trimmed": true
+    },
+    "0924644f3216336c": {
+      "text": "סוכריות, ולנועם יש",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 12909,
+      "trimmed": true
+    },
+    "fa85274feaae0092": {
+      "text": "דגים. הוא קיבל עוד",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 16077,
+      "trimmed": true
+    },
+    "edee8eb670240720": {
+      "text": "דבורים. הוא קיבל עוד",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 11277,
+      "trimmed": true
+    },
+    "99412e52535d3e0b": {
+      "text": "על ישר המספרים: נתחיל",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 11469,
+      "trimmed": true
+    },
+    "e3ef920dae94dc4b": {
+      "text": "פרפרים. היא קיבלה עוד",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 10317,
+      "trimmed": true
+    },
+    "fa0bb7193395b8db": {
+      "text": "כוכבים. היא קיבלה עוד",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 12621,
+      "trimmed": true
+    },
+    "9750b9fda746dc19": {
+      "text": "הסיפור הוא שש פחות אחת.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 15213,
+      "trimmed": true
+    },
+    "91bc68caec5b8c6f": {
+      "text": "הסיפור הוא שש ועוד אחת.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 14541,
+      "trimmed": true
+    },
+    "b3e25a53e8f9b3c6": {
+      "text": "הסיפור הוא שש פחות חמש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 11277,
+      "trimmed": true
+    },
+    "08560982c77af7ce": {
+      "text": "הסיפור הוא שבע פחות שש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 14541,
+      "trimmed": true
+    },
+    "58021d439b0abd22": {
+      "text": "הנה הסיפור בציור. נספור.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 11277,
+      "trimmed": true
+    },
+    "d0320fc32984c108": {
+      "text": "איזה תרגיל מתאים לסיפור?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 8685,
+      "trimmed": true
+    },
+    "d9085243c1d5ae37": {
+      "text": "הסיפור הוא חמש ועוד אחת.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 15885,
+      "trimmed": true
+    },
+    "ec960660880ade1f": {
+      "text": "הסיפור הוא שבע ועוד אחת.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 17901,
+      "trimmed": true
+    },
+    "2aea7994f52600aa": {
+      "text": "הסיפור הוא חמש פחות אחת.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 15693,
+      "trimmed": true
+    },
+    "2d4a245b614b9fea": {
+      "text": "הסיפור הוא שש פחות ארבע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 13581,
+      "trimmed": true
+    },
+    "20559f1703274ba6": {
+      "text": "הסיפור הוא שבע פחות אחת.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 13485,
+      "trimmed": true
+    },
+    "b84696012fe04ed0": {
+      "text": ". כמה דגים יש לסבא עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 8685,
+      "trimmed": true
+    },
+    "33dfde15bd4cee2c": {
+      "text": "לנועם יש דג אחד, ולדנה יש",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 17997,
+      "trimmed": true
+    },
+    "2357b8c83374d730": {
+      "text": "הסיפור הוא שבע פחות חמש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 18285,
+      "trimmed": true
+    },
+    "24cdb0d4a36c4b04": {
+      "text": "הסיפור הוא שתיים ועוד שש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 14157,
+      "trimmed": true
+    },
+    "1ac2f1da17a075e3": {
+      "text": "הסיפור הוא שלוש ועוד אחת.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 14253,
+      "trimmed": true
+    },
+    "f2eb24303ac11e52": {
+      "text": "הסיפור הוא חמש ועוד שלוש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 12621,
+      "trimmed": true
+    },
+    "9f715149240125b4": {
+      "text": "הסיפור הוא שלוש ועוד חמש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 17229,
+      "trimmed": true
+    },
+    "2d8e3a4aec91773e": {
+      "text": "הסיפור הוא ארבע ועוד אחת.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 12525,
+      "trimmed": true
+    },
+    "cc3f5e8c147d9de1": {
+      "text": "הסיפור הוא שש ועוד שתיים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 11853,
+      "trimmed": true
+    },
+    "cb987835a61b9451": {
+      "text": "הסיפור הוא שלוש פחות אחת.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 13005,
+      "trimmed": true
+    },
+    "1edc2b6ff12c8a5e": {
+      "text": "הסיפור הוא ארבע פחות אחת.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 15885,
+      "trimmed": true
+    },
+    "bea51c10f589833a": {
+      "text": "הסיפור הוא חמש פחות שלוש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 11853,
+      "trimmed": true
+    },
+    "2b9e57e545c6aa21": {
+      "text": "הסיפור הוא חמש פחות ארבע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 14349,
+      "trimmed": true
+    },
+    "aecea988ecdce611": {
+      "text": "הסיפור הוא שש פחות שתיים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 13389,
+      "trimmed": true
+    },
+    "92ee9b2588a82aca": {
+      "text": "הסיפור הוא שבע פחות ארבע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 11469,
+      "trimmed": true
+    },
+    "4122d7125cb5ccf5": {
+      "text": "הסיפור הוא שבע פחות שלוש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 14253,
+      "trimmed": true
+    },
+    "85efbdaec53957d1": {
+      "text": "הסיפור הוא שמונה פחות שש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 16653,
+      "trimmed": true
+    },
+    "50080608916223bb": {
+      "text": ". כמה דגים יש ליובל עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 8205,
+      "trimmed": true
+    },
+    "658eee3ddb654c39": {
+      "text": "לחבר. כמה דגים נשארו לסבא?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 13005,
+      "trimmed": true
+    },
+    "01423ed4c98f9314": {
+      "text": ". כמה דגים יש לנועם עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 7821,
+      "trimmed": true
+    },
+    "c041d97b45e897e9": {
+      "text": "הסיפור הוא שתיים ועוד חמש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 10989,
+      "trimmed": true
+    },
+    "d947987bb1c8afd9": {
+      "text": "הסיפור הוא שתיים ועוד אחת.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 11565,
+      "trimmed": true
+    },
+    "710fa839559d1908": {
+      "text": "הסיפור הוא שלוש ועוד ארבע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 14061,
+      "trimmed": true
+    },
+    "4271f6427b30e404": {
+      "text": "הסיפור הוא ארבע ועוד שלוש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 14061,
+      "trimmed": true
+    },
+    "a05dfc1a046ddadb": {
+      "text": "הסיפור הוא חמש פחות שתיים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 12909,
+      "trimmed": true
+    },
+    "1e6aeafb7e3a334c": {
+      "text": "הסיפור הוא ארבע פחות שלוש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 17709,
+      "trimmed": true
+    },
+    "a722b92f78b43137": {
+      "text": "הסיפור הוא חמש ועוד שתיים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 16173,
+      "trimmed": true
+    },
+    "e7e29123c5af8b93": {
+      "text": "הסיפור הוא שבע פחות שתיים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 15789,
+      "trimmed": true
+    },
+    "4b74d46fad10afd2": {
+      "text": "הסיפור הוא שמונה פחות אחת.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 15693,
+      "trimmed": true
+    },
+    "9c4d215836d4d9ed": {
+      "text": "הסיפור הוא שמונה פחות חמש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 14253,
+      "trimmed": true
+    },
+    "68acc52af9dea819": {
+      "text": ". כמה עוגיות יש לסבא עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 8205,
+      "trimmed": true
+    },
+    "88e656e14fd4c7be": {
+      "text": ". כמה תפוחים יש לדנה עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 9645,
+      "trimmed": true
+    },
+    "f09f2e42a4b4b414": {
+      "text": "הסיפור הוא שמונה פחות שבע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 15405,
+      "trimmed": true
+    },
+    "bdbb25c99fe2961d": {
+      "text": ". כמה פרפרים יש לדנה עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 9741,
+      "trimmed": true
+    },
+    "6ef08173d8c445e7": {
+      "text": ". כמה דבורים יש לסבא עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 9069,
+      "trimmed": true
+    },
+    "90565344cc01146f": {
+      "text": ". כמה כוכבים יש לדנה עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 8973,
+      "trimmed": true
+    },
+    "12d8d9de3acd0554": {
+      "text": "לחבר. כמה דגים נשארו ליובל?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 13197,
+      "trimmed": true
+    },
+    "93425fd5ae89f013": {
+      "text": "לחבר. כמה דגים נשארו לנועם?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 12909,
+      "trimmed": true
+    },
+    "bfc34f1124c287a4": {
+      "text": "לדנה יש כוכב אחד, וליובל יש",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 16461,
+      "trimmed": true
+    },
+    "86d57e76135f20a4": {
+      "text": ". כמה בלונים יש לסבא עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 8973,
+      "trimmed": true
+    },
+    "aaa08e91036ab6b8": {
+      "text": "לסבא יש שני דגים, ולסבתא יש",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 17613,
+      "trimmed": true
+    },
+    "e2225b0a0cb2fe13": {
+      "text": "לנועם יש בלון אחד, ולדנה יש",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 15597,
+      "trimmed": true
+    },
+    "9b49b45c7bed99b3": {
+      "text": "למאיה יש תפוח אחד, ולסבא יש",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 18957,
+      "trimmed": true
+    },
+    "7aff6105ce34a8b7": {
+      "text": "הסיפור הוא שתיים ועוד שלוש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 17421,
+      "trimmed": true
+    },
+    "7026f696080f5f81": {
+      "text": "הסיפור הוא שלוש ועוד שתיים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 13389,
+      "trimmed": true
+    },
+    "50c9864ea6a28419": {
+      "text": "הסיפור הוא ארבע ועוד שתיים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 11853,
+      "trimmed": true
+    },
+    "e5cb3a8c283f3221": {
+      "text": "הסיפור הוא שמונה פחות שלוש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 11469,
+      "trimmed": true
+    },
+    "0644562d6b48a11e": {
+      "text": "הסיפור הוא שתיים ועוד ארבע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 12813,
+      "trimmed": true
+    },
+    "e5a1889d331cf4cc": {
+      "text": "לחבר. כמה דגים יש לו עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 13581,
+      "trimmed": true
+    },
+    "890e953e7f545132": {
+      "text": "הסיפור הוא שלוש פחות שתיים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 15597,
+      "trimmed": true
+    },
+    "00d7e1158a4bd79f": {
+      "text": ". כמה כוכבים יש למאיה עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 9453,
+      "trimmed": true
+    },
+    "cc6085388361d25b": {
+      "text": ". כמה תפוחים יש למאיה עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 9453,
+      "trimmed": true
+    },
+    "92d4f1f96529606f": {
+      "text": ". כמה עוגיות יש ליובל עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 9069,
+      "trimmed": true
+    },
+    "007cda4a5bf32171": {
+      "text": ". כמה דבורים יש לנועם עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 8205,
+      "trimmed": true
+    },
+    "609d0b46e0c98e41": {
+      "text": ". כמה תפוחים יש לסבתא עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 9741,
+      "trimmed": true
+    },
+    "4ba7d116212b4ea9": {
+      "text": ". כמה פרפרים יש לסבתא עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 8877,
+      "trimmed": true
+    },
+    "121f8832a67c17ac": {
+      "text": ". כמה דבורים יש ליובל עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 8493,
+      "trimmed": true
+    },
+    "9210f8c46050d67f": {
+      "text": ". כמה פרפרים יש למאיה עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 8877,
+      "trimmed": true
+    },
+    "a6bc247372e7af3e": {
+      "text": ". כמה כוכבים יש לסבתא עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 8589,
+      "trimmed": true
+    },
+    "12da63602e678d1f": {
+      "text": "לחבר. כמה עוגיות נשארו לסבא?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 14157,
+      "trimmed": true
+    },
+    "21325c327377e097": {
+      "text": "לחבר. כמה בלונים נשארו לסבא?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 13101,
+      "trimmed": true
+    },
+    "29f819750fc78940": {
+      "text": "לחבר. כמה דבורים נשארו לסבא?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 15117,
+      "trimmed": true
+    },
+    "8fa92260c3ad3ed8": {
+      "text": ". כמה בלונים יש ליובל עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 8973,
+      "trimmed": true
+    },
+    "38b8d630a394daeb": {
+      "text": ". כמה סוכריות יש לדנה עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 9357,
+      "trimmed": true
+    },
+    "1dedab970a2e527a": {
+      "text": ". כמה עוגיות יש לנועם עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 8973,
+      "trimmed": true
+    },
+    "1a4b1ae82ab3967d": {
+      "text": "לסבתא יש פרפר אחד, ולנועם יש",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 19149,
+      "trimmed": true
+    },
+    "dab813bd7bff0af3": {
+      "text": ". כמה בלונים יש לנועם עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 8877,
+      "trimmed": true
+    },
+    "12a7506b7dc486ae": {
+      "text": "לסבא יש דבורה אחת, ולסבתא יש",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 19725,
+      "trimmed": true
+    },
+    "f574d1c89f799a9b": {
+      "text": "לחבר. כמה דבורים נשארו לנועם?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 13965,
+      "trimmed": true
+    },
+    "8746d0da0a3e045e": {
+      "text": "לחברה. כמה כוכבים נשארו לדנה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 14445,
+      "trimmed": true
+    },
+    "84637172da1be086": {
+      "text": "לחבר. כמה עוגיות נשארו ליובל?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 15117,
+      "trimmed": true
+    },
+    "091866f5d06b0eda": {
+      "text": "הסיפור הוא שמונה פחות שתיים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 18861,
+      "trimmed": true
+    },
+    "a2b495abbcda825a": {
+      "text": "לחבר. כמה בלונים נשארו ליובל?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 14541,
+      "trimmed": true
+    },
+    "ad9158f21614ab89": {
+      "text": "לחבר. כמה דבורים נשארו ליובל?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 14061,
+      "trimmed": true
+    },
+    "12f00fba1a1b0795": {
+      "text": "לחברה. כמה פרפרים נשארו לדנה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 14445,
+      "trimmed": true
+    },
+    "f711d425c87214e9": {
+      "text": "לחבר. כמה עוגיות נשארו לנועם?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 13869,
+      "trimmed": true
+    },
+    "27a32f381eaaa7e6": {
+      "text": "לחברה. כמה תפוחים נשארו לדנה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 14349,
+      "trimmed": true
+    },
+    "18b0f181df991290": {
+      "text": ". כמה סוכריות יש למאיה עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 8877,
+      "trimmed": true
+    },
+    "79980efa1b05e61b": {
+      "text": "לחבר. כמה בלונים נשארו לנועם?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 13965,
+      "trimmed": true
+    },
+    "60e0ef5b52093d56": {
+      "text": ". כמה סוכריות יש לסבתא עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 11853,
+      "trimmed": true
+    },
+    "f7e228bec4505b73": {
+      "text": "למאיה יש שני פרפרים, ולסבא יש",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 20685,
+      "trimmed": true
+    },
+    "e034eaeac9c0b648": {
+      "text": "לחבר. כמה דבורים יש לו עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 11469,
+      "trimmed": true
+    },
+    "986a6475417eb5c5": {
+      "text": "לנועם יש שתי דבורים, ולדנה יש",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 19917,
+      "trimmed": true
+    },
+    "f29a5978d089f086": {
+      "text": "לחבר. כמה בלונים יש לו עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 14733,
+      "trimmed": true
+    },
+    "cef6eaaa7a6545bd": {
+      "text": "לנועם היו שני בלונים. הוא נתן",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 17613,
+      "trimmed": true
+    },
+    "0b971340b34820a0": {
+      "text": "לחבר. כמה עוגיות יש לו עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 14445,
+      "trimmed": true
+    },
+    "a7641566351b648f": {
+      "text": "לסבתא היו שני פרפרים. היא נתנה",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 15309,
+      "trimmed": true
+    },
+    "5369c506fe635ac1": {
+      "text": "לחברה. כמה פרפרים נשארו לסבתא?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 14061,
+      "trimmed": true
+    },
+    "018e5f3433733988": {
+      "text": "לחברה. כמה כוכבים נשארו למאיה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 15309,
+      "trimmed": true
+    },
+    "44f5349b4284c52f": {
+      "text": "לחברה. כמה תפוחים נשארו למאיה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 14061,
+      "trimmed": true
+    },
+    "f9e2a97e579e8e89": {
+      "text": "לחברה. כמה כוכבים נשארו לסבתא?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 13677,
+      "trimmed": true
+    },
+    "b9d4e59b039274d8": {
+      "text": "לחברה. כמה תפוחים נשארו לסבתא?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 13197,
+      "trimmed": true
+    },
+    "c9d67e2a453534a0": {
+      "text": "לחברה. כמה סוכריות נשארו לדנה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 12813,
+      "trimmed": true
+    },
+    "c9c5ed1d3d845296": {
+      "text": "דגים. כמה דגים יש לשניהם ביחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 14349,
+      "trimmed": true
+    },
+    "b09f911e04adc255": {
+      "text": "ליובל יש שני בלונים, ולמאיה יש",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 17997,
+      "trimmed": true
+    },
+    "789fb039bb125556": {
+      "text": "לסבתא יש שני כוכבים, ולנועם יש",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 18189,
+      "trimmed": true
+    },
+    "a49d005ab121c9f1": {
+      "text": "ליובל יש עוגייה אחת, ולמאיה יש",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 19053,
+      "trimmed": true
+    },
+    "558481780099765f": {
+      "text": "דגים. בכמה דגים יש לנועם יותר?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 15213,
+      "trimmed": true
+    },
+    "132ffba999ff23bf": {
+      "text": "לדנה יש שתי סוכריות, וליובל יש",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 18765,
+      "trimmed": true
+    },
+    "914b592520563eca": {
+      "text": "דגים. בכמה דגים יש ליובל יותר?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 16557,
+      "trimmed": true
+    },
+    "63fae97926289f48": {
+      "text": "לחברה. כמה פרפרים נשארו למאיה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 12717,
+      "trimmed": true
+    },
+    "1ee0c688d52184df": {
+      "text": "לחברה. כמה תפוחים יש לה עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 13485,
+      "trimmed": true
+    },
+    "3c0afd6f41f14243": {
+      "text": "לחברה. כמה פרפרים יש לה עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 13101,
+      "trimmed": true
+    },
+    "403e72934887b89f": {
+      "text": "לחברה. כמה כוכבים יש לה עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 13293,
+      "trimmed": true
+    },
+    "4fe44c259b4c99ca": {
+      "text": "לסבא היו שני דגים. הוא קיבל עוד",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 16461,
+      "trimmed": true
+    },
+    "322cf6e997d5b9c0": {
+      "text": "לחברה. כמה סוכריות נשארו לסבתא?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 13677,
+      "trimmed": true
+    },
+    "91dddcabac769b1c": {
+      "text": "לחברה. כמה סוכריות נשארו למאיה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 15117,
+      "trimmed": true
+    },
+    "e69c5e83bbe1fe21": {
+      "text": "לחברה. כמה סוכריות יש לה עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 13773,
+      "trimmed": true
+    },
+    "70c6415751c0b77f": {
+      "text": "לנועם היו שני דגים. הוא קיבל עוד",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 21261,
+      "trimmed": true
+    },
+    "ffa9557fd51a5ded": {
+      "text": "זה מה שהיה בהתחלה. מה קרה אחר כך?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 13197,
+      "trimmed": true
+    },
+    "b6c1b859e5aaa3bf": {
+      "text": "ליובל היו שני דגים. הוא קיבל עוד",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 20685,
+      "trimmed": true
+    },
+    "960a0362727b5650": {
+      "text": "לסבא היו שתי עוגיות. הוא קיבל עוד",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 14829,
+      "trimmed": true
+    },
+    "58f04824fa188e61": {
+      "text": "פרפרים. בכמה פרפרים יש לדנה יותר?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 16653,
+      "trimmed": true
+    },
+    "460b16deb4622d6d": {
+      "text": "לסבא היו שני בלונים. הוא קיבל עוד",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 17709,
+      "trimmed": true
+    },
+    "aa6ac6cb30a627f0": {
+      "text": "לדנה היו שני פרפרים. היא קיבלה עוד",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 17997,
+      "trimmed": true
+    },
+    "458c4d22f322e653": {
+      "text": "לסבא היו שתי דבורים. הוא קיבל עוד",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 18861,
+      "trimmed": true
+    },
+    "9fa6f9e703bf6ae8": {
+      "text": "לנועם היו שתי דבורים. הוא קיבל עוד",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 15597,
+      "trimmed": true
+    },
+    "93a7fa72c05c446b": {
+      "text": "לדנה היו שני תפוחים. היא קיבלה עוד",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 17613,
+      "trimmed": true
+    },
+    "e0572381dd089e42": {
+      "text": "לנועם היו שתי עוגיות. הוא קיבל עוד",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 18573,
+      "trimmed": true
+    },
+    "63d92d65a093ecb2": {
+      "text": "למשל, הסיפור הוא שתיים ועוד שלוש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 19341,
+      "trimmed": true
+    },
+    "8bf1702d433a8db6": {
+      "text": "תפוחים. כמה תפוחים יש לשניהם ביחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 15021,
+      "trimmed": true
+    },
+    "55be3fd4df93d51b": {
+      "text": "כוכבים. כמה כוכבים יש לשניהם ביחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 14445,
+      "trimmed": true
+    },
+    "c9baba5d3e66b89c": {
+      "text": "עוגיות. כמה עוגיות יש לשניהם ביחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 16557,
+      "trimmed": true
+    },
+    "8d2a253003614071": {
+      "text": "דבורים. כמה דבורים יש לשניהם ביחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 14829,
+      "trimmed": true
+    },
+    "358e64620708cba3": {
+      "text": "לדנה היו שני כוכבים. היא קיבלה עוד",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 19533,
+      "trimmed": true
+    },
+    "08eb43f08604b13f": {
+      "text": "פרפרים. כמה פרפרים יש לשניהם ביחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 14637,
+      "trimmed": true
+    },
+    "999a72a499d01fda": {
+      "text": "בלונים. כמה בלונים יש לשניהם ביחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 16941,
+      "trimmed": true
+    },
+    "a6705c1ee2d6387a": {
+      "text": "דבורים. בכמה דבורים יש לנועם יותר?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 17805,
+      "trimmed": true
+    },
+    "a1fade276ea7289c": {
+      "text": "פרפרים. בכמה פרפרים יש למאיה יותר?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 16461,
+      "trimmed": true
+    },
+    "ce2ff6f36c593810": {
+      "text": "כוכבים. בכמה כוכבים יש לסבתא יותר?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 16749,
+      "trimmed": true
+    },
+    "3af7288c7524d029": {
+      "text": "ליובל היו שתי דבורים. הוא קיבל עוד",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 18189,
+      "trimmed": true
+    },
+    "65a1041bac3f1c65": {
+      "text": "ליובל היו שני בלונים. הוא קיבל עוד",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 21741,
+      "trimmed": true
+    },
+    "79a3e42cbf751a28": {
+      "text": "למאיה היו שני כוכבים. היא קיבלה עוד",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 21741,
+      "trimmed": true
+    },
+    "83c451efede97bb8": {
+      "text": "למאיה היו שני פרפרים. היא קיבלה עוד",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 16365,
+      "trimmed": true
+    },
+    "70d858a010710d7f": {
+      "text": "לנועם היו שני בלונים. הוא קיבל עוד",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 19725,
+      "trimmed": true
+    },
+    "2b2a3c95578dbe48": {
+      "text": "למאיה היו שני תפוחים. היא קיבלה עוד",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 20205,
+      "trimmed": true
+    },
+    "b5464f80fd2e9f4e": {
+      "text": "סוכריות. כמה סוכריות יש לשניהם ביחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 17997,
+      "trimmed": true
+    },
+    "2b40a1b435d8370a": {
+      "text": "לדנה היו שתי סוכריות. היא קיבלה עוד",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 19533,
+      "trimmed": true
+    },
+    "4d09a60a92cac7e9": {
+      "text": "לסבתא היו שני תפוחים. היא קיבלה עוד",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 18765,
+      "trimmed": true
+    },
+    "3ab95499ccb79a0a": {
+      "text": "נשים אחד מול אחד. כמה נשארים בלי זוג?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 16941,
+      "trimmed": true
+    },
+    "b5d1c50a257ef1c8": {
+      "text": "למאיה היו שתי סוכריות. היא קיבלה עוד",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 18189,
+      "trimmed": true
+    },
+    "ebf9d7fc5f311656": {
+      "text": "שש ועוד ארבע זה עשר, ופחות אחת זה תשע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 20397,
+      "trimmed": true
+    },
+    "49a84fb82d200b46": {
+      "text": "שלוש ועוד שלוש זה שש, ופחות אחת זה חמש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 20685,
+      "trimmed": true
+    },
+    "a94dc63ea555c260": {
+      "text": "ארבע ועוד שלוש זה שבע, ופחות אחת זה שש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 20685,
+      "trimmed": true
+    },
+    "54710055d93e0d64": {
+      "text": "שלוש ועוד ארבע זה שבע, ופחות אחת זה שש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 24333,
+      "trimmed": true
+    },
+    "ef774989a72b7183": {
+      "text": "חמש ועוד אחת זה שש, ופחות שלוש זה שלוש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 26925,
+      "trimmed": true
+    },
+    "424229afa7702021": {
+      "text": "חמש ועוד ארבע זה תשע, ופחות שלוש זה שש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 21165,
+      "trimmed": true
+    },
+    "862a92b2ce5c9e08": {
+      "text": "חמש ועוד שתיים זה שבע, ופחות אחת זה שש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 23373,
+      "trimmed": true
+    },
+    "659f51291ef088b1": {
+      "text": "שש ועוד אחת זה שבע, ופחות שתיים זה חמש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 16941,
+      "trimmed": true
+    },
+    "5a653020d33f61f2": {
+      "text": "שש ועוד אחת זה שבע, ופחות ארבע זה שלוש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 24429,
+      "trimmed": true
+    },
+    "a1d526628f0fa719": {
+      "text": "שש ועוד ארבע זה עשר, ופחות שלוש זה שבע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 17229,
+      "trimmed": true
+    },
+    "b9d00f8ff209845f": {
+      "text": "שש ועוד אחת זה שבע, ופחות שלוש זה ארבע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22797,
+      "trimmed": true
+    },
+    "9254c41627834fdd": {
+      "text": "שש ועוד שלוש זה תשע, ופחות ארבע זה חמש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 20973,
+      "trimmed": true
+    },
+    "5d87b1c1c5420129": {
+      "text": "שתיים ועוד ארבע זה שש, ופחות אחת זה חמש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 18861,
+      "trimmed": true
+    },
+    "61d94a883d7b02a1": {
+      "text": "חמש ועוד אחת זה שש, ופחות שתיים זה ארבע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 21837,
+      "trimmed": true
+    },
+    "7b67d9693acee1a0": {
+      "text": "ארבע ועוד אחת זה חמש, ופחות ארבע זה אחת.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 30957,
+      "trimmed": true
+    },
+    "b08d80894dd1efd2": {
+      "text": "ארבע ועוד שתיים זה שש, ופחות אחת זה חמש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 24333,
+      "trimmed": true
+    },
+    "ce4564baf3d21513": {
+      "text": "חמש ועוד אחת זה שש, ופחות ארבע זה שתיים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 24621,
+      "trimmed": true
+    },
+    "4097c3f2eb01c6e4": {
+      "text": "שש ועוד שלוש זה תשע, ופחות שתיים זה שבע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 19341,
+      "trimmed": true
+    },
+    "4851c874a0498f52": {
+      "text": "שש ועוד שלוש זה תשע, ופחות אחת זה שמונה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 19533,
+      "trimmed": true
+    },
+    "a20d8f95f7ad20bf": {
+      "text": "חמש ועוד שלוש זה שמונה, ופחות אחת זה שבע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 21357,
+      "trimmed": true
+    },
+    "5b26c2c7fc28de31": {
+      "text": "שלוש ועוד אחת זה ארבע, ופחות שלוש זה אחת.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22125,
+      "trimmed": true
+    },
+    "f74ebea6edeff000": {
+      "text": "חמש ועוד ארבע זה תשע, ופחות אחת זה שמונה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 20781,
+      "trimmed": true
+    },
+    "c51d419e41ffbc52": {
+      "text": "שש ועוד שתיים זה שמונה, ופחות אחת זה שבע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 20013,
+      "trimmed": true
+    },
+    "9b6d9c52e25a4a7c": {
+      "text": "חמש ועוד ארבע זה תשע, ופחות שתיים זה שבע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 24045,
+      "trimmed": true
+    },
+    "1131e477b94093c8": {
+      "text": "שתיים ועוד שלוש זה חמש, ופחות ארבע זה אחת.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 20301,
+      "trimmed": true
+    },
+    "85711d677a2cce0d": {
+      "text": "שתיים ועוד ארבע זה שש, ופחות שלוש זה שלוש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 19149,
+      "trimmed": true
+    },
+    "caa7e1fd978d74d1": {
+      "text": "שתיים ועוד שלוש זה חמש, ופחות אחת זה ארבע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 29517,
+      "trimmed": true
+    },
+    "606d5c5dbd2762f6": {
+      "text": "שלוש ועוד ארבע זה שבע, ופחות שתיים זה חמש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 15309,
+      "trimmed": true
+    },
+    "839f951957649c18": {
+      "text": "שלוש ועוד שתיים זה חמש, ופחות אחת זה ארבע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22797,
+      "trimmed": true
+    },
+    "e0e7bfc688455de6": {
+      "text": "שלוש ועוד שתיים זה חמש, ופחות ארבע זה אחת.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 20973,
+      "trimmed": true
+    },
+    "aff61104f5b02fcf": {
+      "text": "שלוש ועוד שלוש זה שש, ופחות ארבע זה שתיים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 20205,
+      "trimmed": true
+    },
+    "97d0eb360b04dde5": {
+      "text": "שלוש ועוד שלוש זה שש, ופחות שתיים זה ארבע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 20973,
+      "trimmed": true
+    },
+    "beff11049fff1132": {
+      "text": "ארבע ועוד אחת זה חמש, ופחות שתיים זה שלוש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 20973,
+      "trimmed": true
+    },
+    "9d722c9a3a20876f": {
+      "text": "שלוש ועוד ארבע זה שבע, ופחות שלוש זה ארבע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 26829,
+      "trimmed": true
+    },
+    "b6e616395fbbc9da": {
+      "text": "ארבע ועוד שלוש זה שבע, ופחות שתיים זה חמש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 20493,
+      "trimmed": true
+    },
+    "21c506bae483dcef": {
+      "text": "ארבע ועוד שלוש זה שבע, ופחות ארבע זה שלוש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 18765,
+      "trimmed": true
+    },
+    "3953e02ac4e9fb6d": {
+      "text": "ארבע ועוד אחת זה חמש, ופחות שלוש זה שתיים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 32685,
+      "trimmed": true
+    },
+    "5d184bb80fd75295": {
+      "text": "ארבע ועוד ארבע זה שמונה, ופחות אחת זה שבע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 18765,
+      "trimmed": true
+    },
+    "14bff114f0d16c3c": {
+      "text": "חמש ועוד שתיים זה שבע, ופחות שלוש זה ארבע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 24429,
+      "trimmed": true
+    },
+    "fe6a87ae37432730": {
+      "text": "חמש ועוד שלוש זה שמונה, ופחות שתיים זה שש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22989,
+      "trimmed": true
+    },
+    "d8dd70c7348ea838": {
+      "text": "חמש ועוד שתיים זה שבע, ופחות ארבע זה שלוש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 24813,
+      "trimmed": true
+    },
+    "bcc0af0733e743c2": {
+      "text": "שש ועוד ארבע זה עשר, ופחות שתיים זה שמונה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 18381,
+      "trimmed": true
+    },
+    "1e11139b1b2d4b4e": {
+      "text": "שתיים ועוד אחת זה שלוש, ופחות שתיים זה אחת.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 23373,
+      "trimmed": true
+    },
+    "c249c1d82afba655": {
+      "text": "שש ועוד שתיים זה שמונה, ופחות שלוש זה חמש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 23661,
+      "trimmed": true
+    },
+    "f8fa0e2a82c5a630": {
+      "text": "שתיים ועוד ארבע זה שש, ופחות שתיים זה ארבע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 19629,
+      "trimmed": true
+    },
+    "3c5e82028b42ccf0": {
+      "text": "ארבע ועוד שתיים זה שש, ופחות שלוש זה שלוש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22989,
+      "trimmed": true
+    },
+    "9b8f23d254a5969f": {
+      "text": "ארבע ועוד ארבע זה שמונה, ופחות שלוש זה חמש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 19341,
+      "trimmed": true
+    },
+    "8d3106fea4f75e6d": {
+      "text": "ארבע ועוד ארבע זה שמונה, ופחות שתיים זה שש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22125,
+      "trimmed": true
+    },
+    "da00f5332e2badf6": {
+      "text": "חמש ועוד שלוש זה שמונה, ופחות ארבע זה ארבע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22605,
+      "trimmed": true
+    },
+    "6dde3cdc5747ca3a": {
+      "text": "על ישר המספרים: נתחיל משש, ונקפוץ קדימה אחת.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 20493,
+      "trimmed": true
+    },
+    "ce18698387ace120": {
+      "text": "על ישר המספרים: נתחיל משש, ונקפוץ אחורה אחת.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 21069,
+      "trimmed": true
+    },
+    "5c48c212c3ad5932": {
+      "text": "שש ועוד שתיים זה שמונה, ופחות ארבע זה ארבע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 20973,
+      "trimmed": true
+    },
+    "518ffa7d8420cb16": {
+      "text": "על ישר המספרים: נתחיל משש, ונקפוץ אחורה חמש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22509,
+      "trimmed": true
+    },
+    "d236cc02508e01bf": {
+      "text": "על ישר המספרים: נתחיל משבע, ונקפוץ אחורה שש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22701,
+      "trimmed": true
+    },
+    "ba2379480b55dbe0": {
+      "text": "שתיים ועוד שתיים זה ארבע, ופחות שלוש זה אחת.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 18189,
+      "trimmed": true
+    },
+    "e632ededab3a5214": {
+      "text": "על ישר המספרים: נתחיל מאחת, ונקפוץ קדימה שש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22605,
+      "trimmed": true
+    },
+    "69b118a7d28e1ca3": {
+      "text": "על ישר המספרים: נתחיל מתשע, ונקפוץ אחורה שש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 19917,
+      "trimmed": true
+    },
+    "abe7da211e43b7f3": {
+      "text": "על ישר המספרים: נתחיל מעשר, ונקפוץ אחורה שש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 20685,
+      "trimmed": true
+    },
+    "4d6739af56225b04": {
+      "text": "שתיים ועוד שתיים זה ארבע, ופחות אחת זה שלוש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 24525,
+      "trimmed": true
+    },
+    "036b89b11fcbb32b": {
+      "text": "שתיים ועוד שלוש זה חמש, ופחות שתיים זה שלוש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 20877,
+      "trimmed": true
+    },
+    "3077c4f3bfe08ea7": {
+      "text": "שלוש ועוד אחת זה ארבע, ופחות שתיים זה שתיים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 23085,
+      "trimmed": true
+    },
+    "55468bcb9f7bf783": {
+      "text": "שלוש ועוד שתיים זה חמש, ופחות שלוש זה שתיים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 35853,
+      "trimmed": true
+    },
+    "8ef6688622b36378": {
+      "text": "על ישר המספרים: נתחיל משלוש, ונקפוץ קדימה שש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22029,
+      "trimmed": true
+    },
+    "912fd624d84ca9e5": {
+      "text": "על ישר המספרים: נתחיל מארבע, ונקפוץ קדימה שש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 21645,
+      "trimmed": true
+    },
+    "cf6751559bcff391": {
+      "text": "על ישר המספרים: נתחיל מחמש, ונקפוץ קדימה חמש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 21069,
+      "trimmed": true
+    },
+    "b2dc592d0f973a22": {
+      "text": "על ישר המספרים: נתחיל מחמש, ונקפוץ קדימה אחת.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 21069,
+      "trimmed": true
+    },
+    "88f192de6907f661": {
+      "text": "על ישר המספרים: נתחיל משש, ונקפוץ קדימה שלוש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 20301,
+      "trimmed": true
+    },
+    "229f97db98f8c28d": {
+      "text": "על ישר המספרים: נתחיל משש, ונקפוץ קדימה ארבע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 21645,
+      "trimmed": true
+    },
+    "8784bdfa5d22da58": {
+      "text": "על ישר המספרים: נתחיל משבע, ונקפוץ קדימה אחת.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22509,
+      "trimmed": true
+    },
+    "b6ce8227eebe196b": {
+      "text": "על ישר המספרים: נתחיל מתשע, ונקפוץ קדימה אחת.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 23853,
+      "trimmed": true
+    },
+    "748b9e1a2294f1ec": {
+      "text": "על ישר המספרים: נתחיל משש, ונקפוץ אחורה שלוש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 23085,
+      "trimmed": true
+    },
+    "dad12930f9838017": {
+      "text": "על ישר המספרים: נתחיל משש, ונקפוץ אחורה ארבע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 21933,
+      "trimmed": true
+    },
+    "229b25f893eede83": {
+      "text": "על ישר המספרים: נתחיל משבע, ונקפוץ אחורה חמש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 23085,
+      "trimmed": true
+    },
+    "8917daf9dc1c165b": {
+      "text": "על ישר המספרים: נתחיל משבע, ונקפוץ אחורה אחת.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 21453,
+      "trimmed": true
+    },
+    "fdd663c847154c3e": {
+      "text": "על ישר המספרים: נתחיל מתשע, ונקפוץ אחורה אחת.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 20013,
+      "trimmed": true
+    },
+    "f385bb97d3554bff": {
+      "text": "על ישר המספרים: נתחיל מתשע, ונקפוץ אחורה חמש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 21933,
+      "trimmed": true
+    },
+    "ff1b17b83de96376": {
+      "text": "על ישר המספרים: נתחיל מחמש, ונקפוץ אחורה אחת.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 23661,
+      "trimmed": true
+    },
+    "8b7f001d7613b907": {
+      "text": "על ישר המספרים: נתחיל מעשר, ונקפוץ אחורה אחת.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 20589,
+      "trimmed": true
+    },
+    "922f51f35a4809f0": {
+      "text": "על ישר המספרים: נתחיל מתשע, ונקפוץ אחורה שבע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22989,
+      "trimmed": true
+    },
+    "f052b5687631376a": {
+      "text": "על ישר המספרים: נתחיל מעשר, ונקפוץ אחורה שבע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 21069,
+      "trimmed": true
+    },
+    "05466edde8467fe2": {
+      "text": "על ישר המספרים: נתחיל מאחת, ונקפוץ קדימה חמש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 18765,
+      "trimmed": true
+    },
+    "09fe94c884ee9290": {
+      "text": "על ישר המספרים: נתחיל מעשר, ונקפוץ אחורה חמש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 21357,
+      "trimmed": true
+    },
+    "4f75f6460e35ba51": {
+      "text": "על ישר המספרים: נתחיל מעשר, ונקפוץ אחורה תשע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 24429,
+      "trimmed": true
+    },
+    "7b8d5cfee750222e": {
+      "text": "על ישר המספרים: נתחיל מאחת, ונקפוץ קדימה אחת.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 21357,
+      "trimmed": true
+    },
+    "c588bd6038ae61a3": {
+      "text": "על ישר המספרים: נתחיל מאחת, ונקפוץ קדימה שבע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 21549,
+      "trimmed": true
+    },
+    "345edc3cc580deaf": {
+      "text": "על ישר המספרים: נתחיל מאחת, ונקפוץ קדימה תשע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22893,
+      "trimmed": true
+    },
+    "5578b407c374a386": {
+      "text": "על ישר המספרים: נתחיל משלוש, ונקפוץ קדימה אחת.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 20493,
+      "trimmed": true
+    },
+    "26a619f348c708cb": {
+      "text": "על ישר המספרים: נתחיל משתיים, ונקפוץ קדימה שש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 19629,
+      "trimmed": true
+    },
+    "1bbebb1e7486ba35": {
+      "text": "על ישר המספרים: נתחיל מארבע, ונקפוץ קדימה אחת.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 23949,
+      "trimmed": true
+    },
+    "c604c22d78b8ea82": {
+      "text": "על ישר המספרים: נתחיל משלוש, ונקפוץ קדימה חמש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 23757,
+      "trimmed": true
+    },
+    "dc7225e13ded739f": {
+      "text": "על ישר המספרים: נתחיל משלוש, ונקפוץ קדימה שבע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 21741,
+      "trimmed": true
+    },
+    "5ae73cdd29752613": {
+      "text": "על ישר המספרים: נתחיל מארבע, ונקפוץ קדימה חמש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 21549,
+      "trimmed": true
+    },
+    "40abe87876cc44df": {
+      "text": "על ישר המספרים: נתחיל מחמש, ונקפוץ קדימה שלוש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22509,
+      "trimmed": true
+    },
+    "32a40893041f1847": {
+      "text": "על ישר המספרים: נתחיל מחמש, ונקפוץ קדימה ארבע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 18861,
+      "trimmed": true
+    },
+    "436bcc7155aa4314": {
+      "text": "על ישר המספרים: נתחיל משבע, ונקפוץ קדימה שלוש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 19245,
+      "trimmed": true
+    },
+    "beac1ed30d2f256f": {
+      "text": "על ישר המספרים: נתחיל משש, ונקפוץ קדימה שתיים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 21453,
+      "trimmed": true
+    },
+    "505393343e739365": {
+      "text": "על ישר המספרים: נתחיל משלוש, ונקפוץ אחורה אחת.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 21357,
+      "trimmed": true
+    },
+    "c83ec20c799bc50b": {
+      "text": "על ישר המספרים: נתחיל מארבע, ונקפוץ אחורה אחת.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22989,
+      "trimmed": true
+    },
+    "5cad0f96786e14cb": {
+      "text": "על ישר המספרים: נתחיל מחמש, ונקפוץ אחורה שלוש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22317,
+      "trimmed": true
+    },
+    "e1bb3c71bc5a341b": {
+      "text": "על ישר המספרים: נתחיל משש, ונקפוץ אחורה שתיים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 21165,
+      "trimmed": true
+    },
+    "0f7cf3c3f2173a6c": {
+      "text": "על ישר המספרים: נתחיל מחמש, ונקפוץ אחורה ארבע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 21261,
+      "trimmed": true
+    },
+    "eabefab50414dddb": {
+      "text": "על ישר המספרים: נתחיל משבע, ונקפוץ אחורה שלוש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22317,
+      "trimmed": true
+    },
+    "999c2997aaffc723": {
+      "text": "על ישר המספרים: נתחיל משבע, ונקפוץ אחורה ארבע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 21933,
+      "trimmed": true
+    },
+    "4ba387deb5d2cb18": {
+      "text": "על ישר המספרים: נתחיל משמונה, ונקפוץ אחורה שש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 21645,
+      "trimmed": true
+    },
+    "c8bdfdf8f7b47d5a": {
+      "text": "על ישר המספרים: נתחיל מתשע, ונקפוץ אחורה שלוש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 21645,
+      "trimmed": true
+    },
+    "2816134f151e749c": {
+      "text": "על ישר המספרים: נתחיל מתשע, ונקפוץ אחורה ארבע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 21741,
+      "trimmed": true
+    },
+    "fa54c7050ebe826a": {
+      "text": "על ישר המספרים: נתחיל מעשר, ונקפוץ אחורה שלוש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22317,
+      "trimmed": true
+    },
+    "f14b257bf7285b38": {
+      "text": "על ישר המספרים: נתחיל מאחת, ונקפוץ קדימה ארבע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 19725,
+      "trimmed": true
+    },
+    "f061391abb9cc534": {
+      "text": "על ישר המספרים: נתחיל מאחת, ונקפוץ קדימה שלוש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22701,
+      "trimmed": true
+    },
+    "b94cd7ab600a8aaa": {
+      "text": "על ישר המספרים: נתחיל מעשר, ונקפוץ אחורה ארבע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22605,
+      "trimmed": true
+    },
+    "4cb840d64c240f4f": {
+      "text": "בתרגיל הזה יש ועוד. נחשוב שוב: קיבלו, או נתנו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 23661,
+      "trimmed": true
+    },
+    "df7fb09c589f8ab2": {
+      "text": "על ישר המספרים: נתחיל משתיים, ונקפוץ קדימה אחת.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 23853,
+      "trimmed": true
+    },
+    "d4c9299a8f6c0fdc": {
+      "text": "על ישר המספרים: נתחיל משתיים, ונקפוץ קדימה חמש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22893,
+      "trimmed": true
+    },
+    "ae8ba7cdd417c3ad": {
+      "text": "על ישר המספרים: נתחיל משתיים, ונקפוץ קדימה שבע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 21069,
+      "trimmed": true
+    },
+    "bc3b54e91123bd8f": {
+      "text": "על ישר המספרים: נתחיל משלוש, ונקפוץ קדימה שלוש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 23277,
+      "trimmed": true
+    },
+    "0027c82b45d88a40": {
+      "text": "על ישר המספרים: נתחיל משלוש, ונקפוץ קדימה ארבע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 21933,
+      "trimmed": true
+    },
+    "af8c350a398aa534": {
+      "text": "על ישר המספרים: נתחיל מארבע, ונקפוץ קדימה שלוש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 21357,
+      "trimmed": true
+    },
+    "b5bdc9787b6df25b": {
+      "text": "על ישר המספרים: נתחיל מארבע, ונקפוץ קדימה ארבע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 20397,
+      "trimmed": true
+    },
+    "dd3a5bd1e93aef72": {
+      "text": "על ישר המספרים: נתחיל מחמש, ונקפוץ קדימה שתיים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22413,
+      "trimmed": true
+    },
+    "09747d6b2610d1bc": {
+      "text": "על ישר המספרים: נתחיל משבע, ונקפוץ קדימה שתיים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 20013,
+      "trimmed": true
+    },
+    "036e48071a5e2b26": {
+      "text": "על ישר המספרים: נתחיל משמונה, ונקפוץ קדימה אחת.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 21453,
+      "trimmed": true
+    },
+    "c05348f1ab552d84": {
+      "text": "על ישר המספרים: נתחיל משתיים, ונקפוץ אחורה אחת.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 21933,
+      "trimmed": true
+    },
+    "fd80ef8da6d90e4b": {
+      "text": "על ישר המספרים: נתחיל מארבע, ונקפוץ אחורה שלוש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 23661,
+      "trimmed": true
+    },
+    "643458d9b0dfa853": {
+      "text": "על ישר המספרים: נתחיל מחמש, ונקפוץ אחורה שתיים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22605,
+      "trimmed": true
+    },
+    "358075555e4a419e": {
+      "text": "על ישר המספרים: נתחיל משבע, ונקפוץ אחורה שתיים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 20205,
+      "trimmed": true
+    },
+    "72a671b833c65ea1": {
+      "text": "על ישר המספרים: נתחיל משמונה, ונקפוץ אחורה אחת.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 20397,
+      "trimmed": true
+    },
+    "243cea85c3326809": {
+      "text": "על ישר המספרים: נתחיל משמונה, ונקפוץ אחורה חמש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 24333,
+      "trimmed": true
+    },
+    "f192ff5c871301cc": {
+      "text": "על ישר המספרים: נתחיל משמונה, ונקפוץ אחורה שבע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22125,
+      "trimmed": true
+    },
+    "e0fd171831dcde04": {
+      "text": "על ישר המספרים: נתחיל מתשע, ונקפוץ אחורה שתיים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 20205,
+      "trimmed": true
+    },
+    "0049dc12f05cbd5c": {
+      "text": "על ישר המספרים: נתחיל מתשע, ונקפוץ אחורה שמונה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 21741,
+      "trimmed": true
+    },
+    "280ffd7f98a5a401": {
+      "text": "על ישר המספרים: נתחיל מעשר, ונקפוץ אחורה שתיים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 20877,
+      "trimmed": true
+    },
+    "58e48a9c5680f7c4": {
+      "text": "על ישר המספרים: נתחיל מאחת, ונקפוץ קדימה שתיים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 20781,
+      "trimmed": true
+    },
+    "47684181d42aaed8": {
+      "text": "על ישר המספרים: נתחיל מעשר, ונקפוץ אחורה שמונה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 23085,
+      "trimmed": true
+    },
+    "8ee6cff9512cc030": {
+      "text": "על ישר המספרים: נתחיל משתיים, ונקפוץ קדימה שלוש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 20973,
+      "trimmed": true
+    },
+    "aeb6d72484b6a1b9": {
+      "text": "דגים. למאיה יש דג אחד. בכמה דגים יש ליובל יותר?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 24045,
+      "trimmed": true
+    },
+    "7ae35506561c806f": {
+      "text": "על ישר המספרים: נתחיל מאחת, ונקפוץ קדימה שמונה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 23469,
+      "trimmed": true
+    },
+    "dab92bdf44f477e3": {
+      "text": "בתרגיל הזה יש פחות. נחשוב שוב: קיבלו, או נתנו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 26445,
+      "trimmed": true
+    },
+    "1d6af978cec41d99": {
+      "text": "על ישר המספרים: נתחיל משלוש, ונקפוץ קדימה שתיים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 21453,
+      "trimmed": true
+    },
+    "03973ac3a81944de": {
+      "text": "על ישר המספרים: נתחיל משתיים, ונקפוץ קדימה ארבע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 20589,
+      "trimmed": true
+    },
+    "ae2b8c09f167a19f": {
+      "text": "כשנותנים, נשאר פחות ממה שהיה, לא יותר. ננסה שוב.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 20205,
+      "trimmed": true
+    },
+    "f1ed326d70cf79b3": {
+      "text": "על ישר המספרים: נתחיל מארבע, ונקפוץ קדימה שתיים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 20781,
+      "trimmed": true
+    },
+    "455e4ed516db8e61": {
+      "text": "על ישר המספרים: נתחיל משלוש, ונקפוץ אחורה שתיים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 19533,
+      "trimmed": true
+    },
+    "6cbb4347711b7d81": {
+      "text": "על ישר המספרים: נתחיל מארבע, ונקפוץ אחורה שתיים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22221,
+      "trimmed": true
+    },
+    "60870419267e7c94": {
+      "text": "על ישר המספרים: נתחיל משמונה, ונקפוץ אחורה שלוש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22029,
+      "trimmed": true
+    },
+    "1ea4f71090a43723": {
+      "text": "על ישר המספרים: נתחיל משמונה, ונקפוץ אחורה ארבע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 21933,
+      "trimmed": true
+    },
+    "e5b4791202931c24": {
+      "text": "למשל, שלוש ועוד שתיים זה חמש, ופחות אחת זה ארבע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 21261,
+      "trimmed": true
+    },
+    "630a669b4b4f0bec": {
+      "text": "למשל, ארבע ועוד שלוש זה שבע, ופחות שתיים זה חמש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 23085,
+      "trimmed": true
+    },
+    "15c02a73edc4f5ab": {
+      "text": "דגים. לדנה יש שני דגים. בכמה דגים יש לנועם יותר?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 25389,
+      "trimmed": true
+    },
+    "4083c350055004ed": {
+      "text": "על ישר המספרים: נתחיל משתיים, ונקפוץ קדימה שתיים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 19917,
+      "trimmed": true
+    },
+    "ae694f38c0a3032b": {
+      "text": "דגים, ולסבתא יש דג אחד. כמה דגים יש לשניהם ביחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 31437,
+      "trimmed": true
+    },
+    "ffb062597082b0f4": {
+      "text": "על ישר המספרים: נתחיל משתיים, ונקפוץ קדימה שמונה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22797,
+      "trimmed": true
+    },
+    "8ff0478e68823ede": {
+      "text": "על ישר המספרים: נתחיל משמונה, ונקפוץ קדימה שתיים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 24621,
+      "trimmed": true
+    },
+    "aad7306eb393e6ef": {
+      "text": "היו, ונתנו חלק: עכשיו יש פחות. נוריד את מה שנתנו.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 25197,
+      "trimmed": true
+    },
+    "0a608773eaad8b4f": {
+      "text": "כשמקבלים עוד, יש יותר ממה שהיה, לא פחות. ננסה שוב.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 23181,
+      "trimmed": true
+    },
+    "3687b2aa3adf25f0": {
+      "text": "על ישר המספרים: נתחיל משמונה, ונקפוץ אחורה שתיים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 21357,
+      "trimmed": true
+    },
+    "7998c8b9004fe6ef": {
+      "text": "דגים, ולמאיה יש שני דגים. כמה דגים יש לשניהם ביחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 28077,
+      "trimmed": true
+    },
+    "4d9da023f70445f4": {
+      "text": "תפוחים. לסבא יש תפוח אחד. בכמה תפוחים יש למאיה יותר?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 27693,
+      "trimmed": true
+    },
+    "e0d5e6a8b2346b2d": {
+      "text": "פרפרים. ליובל יש פרפר אחד. בכמה פרפרים יש לדנה יותר?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 28365,
+      "trimmed": true
+    },
+    "ac3ff803cfb79b46": {
+      "text": "כוכבים. לסבא יש כוכב אחד. בכמה כוכבים יש למאיה יותר?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 25677,
+      "trimmed": true
+    },
+    "dbb84557212fb891": {
+      "text": "בלונים. לדנה יש בלון אחד. בכמה בלונים יש לנועם יותר?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 27789,
+      "trimmed": true
+    },
+    "cf243c4812400cf1": {
+      "text": "דבורים. לדנה יש דבורה אחת. בכמה דבורים יש לנועם יותר?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 29613,
+      "trimmed": true
+    },
+    "81db5d3344255347": {
+      "text": "פרפרים, ולנועם יש פרפר אחד. כמה פרפרים יש לשניהם ביחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 27885,
+      "trimmed": true
+    },
+    "3d70631218b16f03": {
+      "text": "כוכבים, וליובל יש כוכב אחד. כמה כוכבים יש לשניהם ביחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 27309,
+      "trimmed": true
+    },
+    "2b298a819c82b890": {
+      "text": "בלונים, ולמאיה יש בלון אחד. כמה בלונים יש לשניהם ביחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 25005,
+      "trimmed": true
+    },
+    "50d1c83b08400bdb": {
+      "text": "פרפרים. לסבא יש שני פרפרים. בכמה פרפרים יש למאיה יותר?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 29805,
+      "trimmed": true
+    },
+    "9384aeb3dc897875": {
+      "text": "עוגיות. לסבתא יש עוגייה אחת. בכמה עוגיות יש לסבא יותר?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 27885,
+      "trimmed": true
+    },
+    "286d967ea5283d9d": {
+      "text": "בלונים. לסבתא יש שני בלונים. בכמה בלונים יש לסבא יותר?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 28173,
+      "trimmed": true
+    },
+    "e9b6d36eeffae392": {
+      "text": "תפוחים. ליובל יש שני תפוחים. בכמה תפוחים יש לדנה יותר?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 27213,
+      "trimmed": true
+    },
+    "93823ab703c849ee": {
+      "text": "עוגיות, ולדנה יש עוגייה אחת. כמה עוגיות יש לשניהם ביחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 27405,
+      "trimmed": true
+    },
+    "5f96ad9b78194093": {
+      "text": "דבורים, ולמאיה יש דבורה אחת. כמה דבורים יש לשניהם ביחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 28749,
+      "trimmed": true
+    },
+    "2236cc3fe51cda2a": {
+      "text": "כוכבים, ולסבא יש שני כוכבים. כמה כוכבים יש לשניהם ביחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 29613,
+      "trimmed": true
+    },
+    "9f1b6ea7a851915c": {
+      "text": "בלונים, ולדנה יש שני בלונים. כמה בלונים יש לשניהם ביחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 29997,
+      "trimmed": true
+    },
+    "eea7de3367e0333f": {
+      "text": "עוגיות. למאיה יש שתי עוגיות. בכמה עוגיות יש ליובל יותר?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 31053,
+      "trimmed": true
+    },
+    "39e99543774f649c": {
+      "text": "כוכבים. לנועם יש שני כוכבים. בכמה כוכבים יש לסבתא יותר?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 34413,
+      "trimmed": true
+    },
+    "b12bfe0e8b5d91f8": {
+      "text": "נעשה את זה לאט, צעד אחרי צעד: קודם קיבלו, ואחר כך נתנו.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 24045,
+      "trimmed": true
+    },
+    "9daba5781550523d": {
+      "text": "פרפרים, וליובל יש שני פרפרים. כמה פרפרים יש לשניהם ביחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 27789,
+      "trimmed": true
+    },
+    "8ce45105a24619b7": {
+      "text": "דבורים. למאיה יש שתי דבורים. בכמה דבורים יש ליובל יותר?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 29229,
+      "trimmed": true
+    },
+    "e63800c9b721f574": {
+      "text": "תפוחים, ולנועם יש שני תפוחים. כמה תפוחים יש לשניהם ביחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 28653,
+      "trimmed": true
+    },
+    "d43c4deb33c04278": {
+      "text": "דבורים, ולסבתא יש שתי דבורים. כמה דבורים יש לשניהם ביחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 27117,
+      "trimmed": true
+    },
+    "aa9a5007dfd75efd": {
+      "text": "קיבלו עוד, או שהיו ביחד? זה ועוד. נתנו או הלכו? זה פחות.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 34029,
+      "trimmed": true
+    },
+    "2b2245033a136a51": {
+      "text": "סוכריות. לסבא יש שתי סוכריות. בכמה סוכריות יש למאיה יותר?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 33741,
+      "trimmed": true
+    },
+    "d9d41f2d8868474c": {
+      "text": "לסבא היו שש עוגיות. הוא נתן אחת לחבר. כמה עוגיות נשארו לסבא?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 25005,
+      "trimmed": true
+    },
+    "4fb56475bb68f6f1": {
+      "text": "לסבא היו תשע עוגיות. הוא נתן שש לחבר. כמה עוגיות נשארו לסבא?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 27501,
+      "trimmed": true
+    },
+    "c094bc3cff8e99f9": {
+      "text": "סוכריות, ולסבא יש סוכרייה אחת. כמה סוכריות יש לשניהם ביחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 26925,
+      "trimmed": true
+    },
+    "d55a14b57a672173": {
+      "text": "סוכריות. לנועם יש סוכרייה אחת. בכמה סוכריות יש לסבתא יותר?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 30189,
+      "trimmed": true
+    },
+    "37d6919fe61920bf": {
+      "text": "לסבא היו שישה דגים. הוא נתן שלושה לחבר. כמה דגים נשארו לסבא?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 29133,
+      "trimmed": true
+    },
+    "7b8e47b43b4e633c": {
+      "text": "לסבא היו תשעה דגים. הוא נתן שמונה לחבר. כמה דגים נשארו לסבא?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 28269,
+      "trimmed": true
+    },
+    "bb13f4dd6748c7be": {
+      "text": "לנועם היו שבעה דגים. הוא נתן שישה לחבר. כמה דגים נשארו לנועם?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 26253,
+      "trimmed": true
+    },
+    "c45aa049d6910637": {
+      "text": "היו, וקיבלו עוד: עכשיו יש יותר. נתחיל ממה שהיה, ונמשיך לספור.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 34701,
+      "trimmed": true
+    },
+    "91b2133dc54d185c": {
+      "text": "לסבא יש שבעה דגים, ולסבתא יש דג אחד. כמה דגים יש לשניהם ביחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 29133,
+      "trimmed": true
+    },
+    "0e9074dc66220610": {
+      "text": "לנועם היו שמונה דגים. הוא נתן אחד לחבר. כמה דגים נשארו לנועם?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 27885,
+      "trimmed": true
+    },
+    "1e9ba6f32cf6c9aa": {
+      "text": "ליובל היו עשרה דגים. הוא נתן שבעה לחבר. כמה דגים נשארו ליובל?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 27405,
+      "trimmed": true
+    },
+    "1fb2d3adf15cd2b9": {
+      "text": "ליובל היו שש עוגיות. הוא נתן חמש לחבר. כמה עוגיות נשארו ליובל?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 28749,
+      "trimmed": true
+    },
+    "b1480fe3a42e198a": {
+      "text": "ליובל היו תשעה דגים. הוא נתן ארבעה לחבר. כמה דגים נשארו ליובל?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 27597,
+      "trimmed": true
+    },
+    "f35013c5ec7c601a": {
+      "text": "לנועם היו עשרה דגים. הוא נתן שלושה לחבר. כמה דגים נשארו לנועם?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 29517,
+      "trimmed": true
+    },
+    "f0e1070ceea22170": {
+      "text": "לנועם יש דג אחד, ולדנה יש שלושה דגים. כמה דגים יש לשניהם ביחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 32397,
+      "trimmed": true
+    },
+    "3b9351bfef53b27e": {
+      "text": "לסבא היו שמונה דגים. הוא נתן חמישה לחבר. כמה דגים נשארו לסבא?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 28845,
+      "trimmed": true
+    },
+    "d9cfb89c77c71214": {
+      "text": "ליובל יש שמונה דגים. למאיה יש דג אחד. בכמה דגים יש ליובל יותר?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 34125,
+      "trimmed": true
+    },
+    "f95c2f5af0c3c25b": {
+      "text": "ליובל היו שבעה דגים. הוא נתן שניים לחבר. כמה דגים נשארו ליובל?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 27597,
+      "trimmed": true
+    },
+    "5af6f11670033186": {
+      "text": "ליובל היו שבע דבורים. הוא נתן שש לחבר. כמה דבורים נשארו ליובל?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 26157,
+      "trimmed": true
+    },
+    "79f5874f6aa260c2": {
+      "text": "לסבא היו תשע דבורים. הוא נתן ארבע לחבר. כמה דבורים נשארו לסבא?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 27213,
+      "trimmed": true
+    },
+    "4463f8163fe2653a": {
+      "text": "לסבא היו שני דגים. הוא קיבל עוד שניים. כמה דגים יש לסבא עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 26253,
+      "trimmed": true
+    },
+    "2d2babeca26b0069": {
+      "text": "לסבא היו שש דבורים. הוא קיבל עוד אחת. כמה דבורים יש לסבא עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 26637,
+      "trimmed": true
+    },
+    "56c5427e211c5f01": {
+      "text": "ליובל היו חמישה דגים. הוא נתן שלושה לחבר. כמה דגים נשארו ליובל?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 27885,
+      "trimmed": true
+    },
+    "cba38527d65823cc": {
+      "text": "ליובל היו חמש עוגיות. הוא נתן אחת לחבר. כמה עוגיות נשארו ליובל?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 30189,
+      "trimmed": true
+    },
+    "7678610f7d5b4e6c": {
+      "text": "ליובל היו שש דבורים. הוא נתן שלוש לחבר. כמה דבורים נשארו ליובל?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 28173,
+      "trimmed": true
+    },
+    "8626807feff19b07": {
+      "text": "לסבא היו שמונה דבורים. הוא נתן אחת לחבר. כמה דבורים נשארו לסבא?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 30957,
+      "trimmed": true
+    },
+    "e24861af79b1ebe4": {
+      "text": "לנועם היו עשר עוגיות. הוא נתן אחת לחבר. כמה עוגיות נשארו לנועם?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 30189,
+      "trimmed": true
+    },
+    "ec5753fd62f60558": {
+      "text": "לנועם היו עשר דבורים. הוא נתן שבע לחבר. כמה דבורים נשארו לנועם?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 28269,
+      "trimmed": true
+    },
+    "b6a3034586eeb1dd": {
+      "text": "לנועם היו עשר עוגיות. הוא נתן תשע לחבר. כמה עוגיות נשארו לנועם?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 30669,
+      "trimmed": true
+    },
+    "d99b1f82025d5b93": {
+      "text": "לנועם יש חמישה דגים. לדנה יש שני דגים. בכמה דגים יש לנועם יותר?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 35565,
+      "trimmed": true
+    },
+    "fc18aa0dcdae0a29": {
+      "text": "לנועם היו שני בלונים. הוא נתן אחד לחבר. כמה בלונים נשארו לנועם?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 26157,
+      "trimmed": true
+    },
+    "0907aee7fd788f43": {
+      "text": "לנועם יש תשעה דגים. לדנה יש שישה דגים. בכמה דגים יש לנועם יותר?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 33549,
+      "trimmed": true
+    },
+    "bad32711ab23bfa0": {
+      "text": "לסבא היו שתי דבורים. הוא קיבל עוד שש. כמה דבורים יש לסבא עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 27693,
+      "trimmed": true
+    },
+    "58b65e903297ba6f": {
+      "text": "לנועם היו חמישה דגים. הוא נתן ארבעה לחבר. כמה דגים נשארו לנועם?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 26445,
+      "trimmed": true
+    },
+    "7bf3f1e9f8319bc1": {
+      "text": "ליובל היו עשר עוגיות. הוא נתן חמש לחבר. כמה עוגיות נשארו ליובל?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 28077,
+      "trimmed": true
+    },
+    "beda88d9d277058c": {
+      "text": "לסבא היו שלוש עוגיות. הוא קיבל עוד שש. כמה עוגיות יש לסבא עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 30093,
+      "trimmed": true
+    },
+    "f9864d4392c7d096": {
+      "text": "לנועם היו שלוש דבורים. הוא נתן אחת לחבר. כמה דבורים נשארו לנועם?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 26061,
+      "trimmed": true
+    },
+    "0310cea597cfabfa": {
+      "text": "לסבא היו שש עוגיות. הוא קיבל עוד שלוש. כמה עוגיות יש לסבא עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 27789,
+      "trimmed": true
+    },
+    "f67c27856635c87b": {
+      "text": "לסבא היו ארבע עוגיות. הוא נתן שתיים לחבר. כמה עוגיות נשארו לסבא?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 25197,
+      "trimmed": true
+    },
+    "00db434f58193288": {
+      "text": "לדנה היו שבעה פרפרים. היא נתנה אחד לחברה. כמה פרפרים נשארו לדנה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 27213,
+      "trimmed": true
+    },
+    "39db339a3921e9e1": {
+      "text": "ליובל היו שישה בלונים. הוא נתן אחד לחבר. כמה בלונים נשארו ליובל?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 33549,
+      "trimmed": true
+    },
+    "b9a2a00d735b04ed": {
+      "text": "לנועם היו שבע עוגיות. הוא נתן ארבע לחבר. כמה עוגיות נשארו לנועם?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 30573,
+      "trimmed": true
+    },
+    "22b5e47f54d13285": {
+      "text": "לסבא היו שמונה בלונים. הוא נתן שבעה לחבר. כמה בלונים נשארו לסבא?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 29421,
+      "trimmed": true
+    },
+    "5252e1d56c0923f1": {
+      "text": "לסבא יש בלון אחד, ולסבתא יש בלון אחד. כמה בלונים יש לשניהם ביחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 29325,
+      "trimmed": true
+    },
+    "f6a45f30e972120d": {
+      "text": "לסבא היו שמונה עוגיות. הוא נתן שלוש לחבר. כמה עוגיות נשארו לסבא?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 33165,
+      "trimmed": true
+    },
+    "6df689eb2b8c6fbe": {
+      "text": "לסבא יש שני דגים, ולסבתא יש שמונה דגים. כמה דגים יש לשניהם ביחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 30957,
+      "trimmed": true
+    },
+    "57e9b199ff9d9d87": {
+      "text": "לנועם יש שבעה דגים. לדנה יש ארבעה דגים. בכמה דגים יש לנועם יותר?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 33357,
+      "trimmed": true
+    },
+    "ed084e22499f53a1": {
+      "text": "לסבא היו חמש עוגיות. הוא קיבל עוד חמש. כמה עוגיות יש לסבא עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 28365,
+      "trimmed": true
+    },
+    "3cf68cd8e14dc963": {
+      "text": "לסבא היו שלוש דבורים. הוא נתן שתיים לחבר. כמה דבורים נשארו לסבא?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 27213,
+      "trimmed": true
+    },
+    "16f7c668192e4406": {
+      "text": "ליובל היו שלושה דגים. הוא קיבל עוד אחד. כמה דגים יש ליובל עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 25869,
+      "trimmed": true
+    },
+    "2766042dd56ddb7d": {
+      "text": "לסבא היו שישה בלונים. הוא נתן חמישה לחבר. כמה בלונים נשארו לסבא?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 28269,
+      "trimmed": true
+    },
+    "0f74a5fc4816bec6": {
+      "text": "ליובל היו ארבע דבורים. הוא נתן אחת לחבר. כמה דבורים נשארו ליובל?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 29997,
+      "trimmed": true
+    },
+    "1810b305e1270205": {
+      "text": "לסבא היו תשעה בלונים. הוא נתן שניים לחבר. כמה בלונים נשארו לסבא?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 27981,
+      "trimmed": true
+    },
+    "3cd263fb1be3950d": {
+      "text": "ליובל היו עשר דבורים. הוא נתן שלוש לחבר. כמה דבורים נשארו ליובל?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 29133,
+      "trimmed": true
+    },
+    "50e45160fb95b874": {
+      "text": "לסבתא היו שני פרפרים. היא נתנה אחד לחברה. כמה פרפרים נשארו לסבתא?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 29901,
+      "trimmed": true
+    },
+    "91eb876cc9dd5a6e": {
+      "text": "ליובל היו עשרה בלונים. הוא נתן אחד לחבר. כמה בלונים נשארו ליובל?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 28461,
+      "trimmed": true
+    },
+    "b2e6b49214b8606a": {
+      "text": "ליובל היו תשעה בלונים. הוא נתן שישה לחבר. כמה בלונים נשארו ליובל?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 27789,
+      "trimmed": true
+    },
+    "1073d79a8291fb2d": {
+      "text": "לנועם היו שבע דבורים. הוא נתן שתיים לחבר. כמה דבורים נשארו לנועם?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 29421,
+      "trimmed": true
+    },
+    "40071381e060720f": {
+      "text": "ליובל היו תשע דבורים. הוא נתן שמונה לחבר. כמה דבורים נשארו ליובל?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 29229,
+      "trimmed": true
+    },
+    "eb88b3d270513a7d": {
+      "text": "לדנה היו עשרה פרפרים. היא נתנה שישה לחברה. כמה פרפרים נשארו לדנה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 29517,
+      "trimmed": true
+    },
+    "e43836723f3d7b8c": {
+      "text": "לסבא יש שש עוגיות. לסבתא יש עוגייה אחת. בכמה עוגיות יש לסבא יותר?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 31725,
+      "trimmed": true
+    },
+    "b2c489695c713c28": {
+      "text": "ליובל יש ארבעה דגים, ולמאיה יש שני דגים. כמה דגים יש לשניהם ביחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 28941,
+      "trimmed": true
+    },
+    "654771f8e5db14ef": {
+      "text": "ליובל יש עשרה דגים. למאיה יש שלושה דגים. בכמה דגים יש ליובל יותר?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 33261,
+      "trimmed": true
+    },
+    "def91d7f45b31e0c": {
+      "text": "ליובל היו תשע עוגיות. הוא נתן שתיים לחבר. כמה עוגיות נשארו ליובל?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 28749,
+      "trimmed": true
+    },
+    "abea4a6cb50dcf7e": {
+      "text": "לדנה יש שבעה פרפרים. ליובל יש פרפר אחד. בכמה פרפרים יש לדנה יותר?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 36237,
+      "trimmed": true
+    },
+    "820bc33ce1a151e1": {
+      "text": "לסבא היו חמש דבורים. הוא קיבל עוד שלוש. כמה דבורים יש לסבא עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 28557,
+      "trimmed": true
+    },
+    "a7ca97c721408469": {
+      "text": "ליובל היו ארבע עוגיות. הוא נתן שלוש לחבר. כמה עוגיות נשארו ליובל?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 30189,
+      "trimmed": true
+    },
+    "f7be1f5dd48efa68": {
+      "text": "לדנה היו חמישה כוכבים. היא נתנה אחד לחברה. כמה כוכבים נשארו לדנה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 30669,
+      "trimmed": true
+    },
+    "f3b994e28ec7adb2": {
+      "text": "לנועם היו חמש עוגיות. הוא נתן שתיים לחבר. כמה עוגיות נשארו לנועם?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 30381,
+      "trimmed": true
+    },
+    "0991e6c8ab3e309c": {
+      "text": "לנועם היו שמונה דבורים. הוא נתן חמש לחבר. כמה דבורים נשארו לנועם?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 28269,
+      "trimmed": true
+    },
+    "ada7e446b5949439": {
+      "text": "לסבא היו שתי עוגיות. הוא קיבל עוד שתיים. כמה עוגיות יש לסבא עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 29037,
+      "trimmed": true
+    },
+    "6bfd8956a76049ee": {
+      "text": "לדנה היו שני כוכבים. היא קיבלה עוד שישה. כמה כוכבים יש לדנה עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 26637,
+      "trimmed": true
+    },
+    "804752697cee3389": {
+      "text": "לנועם היו שמונה עוגיות. הוא נתן שבע לחבר. כמה עוגיות נשארו לנועם?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 31053,
+      "trimmed": true
+    },
+    "e01c9c97962962e7": {
+      "text": "ליובל היו עשרה בלונים. הוא נתן תשעה לחבר. כמה בלונים נשארו ליובל?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 29037,
+      "trimmed": true
+    },
+    "de0df99a03a70c65": {
+      "text": "לנועם היו שתי דבורים. הוא קיבל עוד חמש. כמה דבורים יש לנועם עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 28077,
+      "trimmed": true
+    },
+    "b86bbf2eef7184dc": {
+      "text": "לנועם היו שתי עוגיות. הוא קיבל עוד שבע. כמה עוגיות יש לנועם עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 27213,
+      "trimmed": true
+    },
+    "4d8bd3f2c9330674": {
+      "text": "לסבא היו שלוש דבורים. הוא קיבל עוד ארבע. כמה דבורים יש לסבא עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 29037,
+      "trimmed": true
+    },
+    "c68ab6ab4736b54c": {
+      "text": "לדנה היו שבעה כוכבים. היא נתנה שלושה לחברה. כמה כוכבים נשארו לדנה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 29133,
+      "trimmed": true
+    },
+    "dc9d5ebcd853d870": {
+      "text": "לדנה היו עשרה תפוחים. היא נתנה שניים לחברה. כמה תפוחים נשארו לדנה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 28941,
+      "trimmed": true
+    },
+    "1ea3814e1fcc7487": {
+      "text": "לדנה היו שבעה תפוחים. היא נתנה חמישה לחברה. כמה תפוחים נשארו לדנה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 25293,
+      "trimmed": true
+    },
+    "38dc88bdfd727796": {
+      "text": "לסבתא היו תשעה כוכבים. היא נתנה אחד לחברה. כמה כוכבים נשארו לסבתא?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 26925,
+      "trimmed": true
+    },
+    "7f9d328b5d2c166b": {
+      "text": "לדנה היו עשר סוכריות. היא נתנה ארבע לחברה. כמה סוכריות נשארו לדנה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 29037,
+      "trimmed": true
+    },
+    "e971f02e3f9129eb": {
+      "text": "לנועם היו עשרה בלונים. הוא נתן חמישה לחבר. כמה בלונים נשארו לנועם?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 29517,
+      "trimmed": true
+    },
+    "cd6b1af9f8c9d770": {
+      "text": "לדנה היו עשרה כוכבים. היא נתנה שמונה לחברה. כמה כוכבים נשארו לדנה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 28941,
+      "trimmed": true
+    },
+    "515ba511a377cb70": {
+      "text": "לדנה יש שני תפוחים, וליובל יש תפוח אחד. כמה תפוחים יש לשניהם ביחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 34989,
+      "trimmed": true
+    },
+    "15de0b9f7fb20a0c": {
+      "text": "לנועם יש שלושה דגים, ולדנה יש חמישה דגים. כמה דגים יש לשניהם ביחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 32397,
+      "trimmed": true
+    },
+    "9794194db53fdc2e": {
+      "text": "ליובל יש שישה דגים, ולמאיה יש ארבעה דגים. כמה דגים יש לשניהם ביחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 29229,
+      "trimmed": true
+    },
+    "9567a12251e9df03": {
+      "text": "למאיה יש תשעה כוכבים. לסבא יש כוכב אחד. בכמה כוכבים יש למאיה יותר?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 37389,
+      "trimmed": true
+    },
+    "8d1e468b1674517f": {
+      "text": "לסבא היו שתי עוגיות. הוא קיבל עוד שמונה. כמה עוגיות יש לסבא עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 28365,
+      "trimmed": true
+    },
+    "fdc389021a8d453f": {
+      "text": "לנועם יש עשרה בלונים. לדנה יש בלון אחד. בכמה בלונים יש לנועם יותר?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 32301,
+      "trimmed": true
+    },
+    "cac6f56e7d42e924": {
+      "text": "לנועם היו ארבע עוגיות. הוא קיבל עוד שש. כמה עוגיות יש לנועם עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 28461,
+      "trimmed": true
+    },
+    "445c451168eeec52": {
+      "text": "ליובל יש שני בלונים. למאיה יש בלון אחד. בכמה בלונים יש ליובל יותר?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 33837,
+      "trimmed": true
+    },
+    "a9f56163a67b5279": {
+      "text": "לסבא היו שני בלונים. הוא קיבל עוד ארבעה. כמה בלונים יש לסבא עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 27021,
+      "trimmed": true
+    },
+    "6e3f9b99ca7777e7": {
+      "text": "לסבא יש עשר עוגיות. לסבתא יש חמש עוגיות. בכמה עוגיות יש לסבא יותר?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 34797,
+      "trimmed": true
+    },
+    "d034f321cd93e03a": {
+      "text": "לסבא היו חמישה בלונים. הוא קיבל עוד אחד. כמה בלונים יש לסבא עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 28365,
+      "trimmed": true
+    },
+    "3e89c8cccc449b7c": {
+      "text": "ליובל היו שש עוגיות. הוא קיבל עוד ארבע. כמה עוגיות יש ליובל עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 27213,
+      "trimmed": true
+    },
+    "6a68f47f9a5ee70a": {
+      "text": "לנועם היו שבע דבורים. הוא קיבל עוד אחת. כמה דבורים יש לנועם עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 26445,
+      "trimmed": true
+    },
+    "f9a6a4401a00f86e": {
+      "text": "ליובל היו שבעה בלונים. הוא נתן ארבעה לחבר. כמה בלונים נשארו ליובל?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 29229,
+      "trimmed": true
+    },
+    "c58158405d68e0da": {
+      "text": "ליובל היו תשע עוגיות. הוא קיבל עוד אחת. כמה עוגיות יש ליובל עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 28077,
+      "trimmed": true
+    },
+    "f2e380e4822efdbe": {
+      "text": "לסבתא היו שבעה תפוחים. היא נתנה אחד לחברה. כמה תפוחים נשארו לסבתא?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 24237,
+      "trimmed": true
+    },
+    "fcf427760af1d93b": {
+      "text": "ליובל היו שלוש עוגיות. הוא קיבל עוד אחת. כמה עוגיות יש ליובל עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 29613,
+      "trimmed": true
+    },
+    "334ae040511a90b4": {
+      "text": "לדנה היו שמונה כוכבים. היא נתנה שישה לחברה. כמה כוכבים נשארו לדנה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 30573,
+      "trimmed": true
+    },
+    "45de6508ba625459": {
+      "text": "לדנה היו ארבעה תפוחים. היא קיבלה עוד אחד. כמה תפוחים יש לדנה עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 26829,
+      "trimmed": true
+    },
+    "63f2aa21c8d54f7c": {
+      "text": "לדנה היו שני פרפרים. היא קיבלה עוד ארבעה. כמה פרפרים יש לדנה עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 27501,
+      "trimmed": true
+    },
+    "a55f8090e109023f": {
+      "text": "ליובל היו ארבע עוגיות. הוא קיבל עוד חמש. כמה עוגיות יש ליובל עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 27309,
+      "trimmed": true
+    },
+    "ec763b074a963977": {
+      "text": "לדנה היו שני תפוחים. היא קיבלה עוד שמונה. כמה תפוחים יש לדנה עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 24909,
+      "trimmed": true
+    },
+    "054edd4aa03f4700": {
+      "text": "לנועם היו חמש עוגיות. הוא קיבל עוד ארבע. כמה עוגיות יש לנועם עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 27597,
+      "trimmed": true
+    },
+    "ca3b9f09d646f7a6": {
+      "text": "לדנה היו חמישה פרפרים. היא קיבלה עוד אחד. כמה פרפרים יש לדנה עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 27405,
+      "trimmed": true
+    },
+    "f1248d084f09a0e0": {
+      "text": "לדנה היו שלושה כוכבים. היא נתנה שניים לחברה. כמה כוכבים נשארו לדנה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 26733,
+      "trimmed": true
+    },
+    "21289169d2c3018a": {
+      "text": "למאיה היו ארבעה כוכבים. היא נתנה אחד לחברה. כמה כוכבים נשארו למאיה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 29421,
+      "trimmed": true
+    },
+    "1acfad6049c122a6": {
+      "text": "לסבתא היו תשע סוכריות. היא נתנה חמש לחברה. כמה סוכריות נשארו לסבתא?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 30189,
+      "trimmed": true
+    },
+    "1d0d5aae0e4acf1a": {
+      "text": "למאיה היו שני כוכבים. היא קיבלה עוד אחד. כמה כוכבים יש למאיה עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 29133,
+      "trimmed": true
+    },
+    "7abc84769947c373": {
+      "text": "לסבתא היו תשעה פרפרים. היא נתנה שבעה לחברה. כמה פרפרים נשארו לסבתא?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 32877,
+      "trimmed": true
+    },
+    "92759a324a9b15dc": {
+      "text": "ביחד פירושו: של שניהם. נספור את של הראשון, ונמשיך לספור את של השני.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 27789,
+      "trimmed": true
+    },
+    "f2de39f1180ca6a8": {
+      "text": "לדנה יש כוכב אחד, וליובל יש שישה כוכבים. כמה כוכבים יש לשניהם ביחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 32109,
+      "trimmed": true
+    },
+    "3989a8d433ea8ba7": {
+      "text": "לסבא יש דבורה אחת, ולסבתא יש שבע דבורים. כמה דבורים יש לשניהם ביחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 28557,
+      "trimmed": true
+    },
+    "a1bf515fd5ed1191": {
+      "text": "למאיה יש שלושה תפוחים. לסבא יש תפוח אחד. בכמה תפוחים יש למאיה יותר?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 35181,
+      "trimmed": true
+    },
+    "1b4e0c162db99ce4": {
+      "text": "לנועם יש בלון אחד, ולדנה יש תשעה בלונים. כמה בלונים יש לשניהם ביחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 31245,
+      "trimmed": true
+    },
+    "2d209b0525fa2142": {
+      "text": "לנועם יש ארבע דבורים. לדנה יש דבורה אחת. בכמה דבורים יש לנועם יותר?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 35757,
+      "trimmed": true
+    },
+    "855453cce110c56b": {
+      "text": "ליובל יש שבע עוגיות. למאיה יש שש עוגיות. בכמה עוגיות יש ליובל יותר?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 36237,
+      "trimmed": true
+    },
+    "b79b7a43c3e42703": {
+      "text": "לנועם יש שש דבורים. לדנה יש שלוש דבורים. בכמה דבורים יש לנועם יותר?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 32493,
+      "trimmed": true
+    },
+    "111039bd3c0e4d99": {
+      "text": "לסבא יש שבעה בלונים. לסבתא יש שני בלונים. בכמה בלונים יש לסבא יותר?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 33069,
+      "trimmed": true
+    },
+    "096ff8b646ee6cc8": {
+      "text": "לנועם יש עשר דבורים. לדנה יש שבע דבורים. בכמה דבורים יש לנועם יותר?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 34701,
+      "trimmed": true
+    },
+    "c7bcb358ad86824a": {
+      "text": "למאיה היו שני תפוחים. היא קיבלה עוד אחד. כמה תפוחים יש למאיה עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 29613,
+      "trimmed": true
+    },
+    "f66cda5f0c91498c": {
+      "text": "ליובל היו שלוש דבורים. הוא קיבל עוד חמש. כמה דבורים יש ליובל עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 28557,
+      "trimmed": true
+    },
+    "decdcd83df0d9bac": {
+      "text": "ליובל היו שש דבורים. הוא קיבל עוד שתיים. כמה דבורים יש ליובל עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 29613,
+      "trimmed": true
+    },
+    "3bd4a4b2a140c89c": {
+      "text": "ליובל היו שלוש עוגיות. הוא קיבל עוד שבע. כמה עוגיות יש ליובל עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 28749,
+      "trimmed": true
+    },
+    "492bfa9f02115c5c": {
+      "text": "לנועם היו שבע עוגיות. הוא קיבל עוד שלוש. כמה עוגיות יש לנועם עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 28077,
+      "trimmed": true
+    },
+    "c55696ea84e43fa0": {
+      "text": "למאיה היו שלושה פרפרים. היא נתנה אחד לחברה. כמה פרפרים נשארו למאיה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 28941,
+      "trimmed": true
+    },
+    "a73b8dbaf1c63b55": {
+      "text": "לדנה היו חמישה תפוחים. היא נתנה שלושה לחברה. כמה תפוחים נשארו לדנה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 29709,
+      "trimmed": true
+    },
+    "8b7a1c239098b4e5": {
+      "text": "למאיה היו שש סוכריות. היא נתנה ארבע לחברה. כמה סוכריות נשארו למאיה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 28173,
+      "trimmed": true
+    },
+    "da397f7d72712aa2": {
+      "text": "לדנה היו שמונה פרפרים. היא נתנה ארבעה לחברה. כמה פרפרים נשארו לדנה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 29037,
+      "trimmed": true
+    },
+    "e1c07f3f385ebd92": {
+      "text": "לנועם היו שמונה בלונים. הוא נתן שלושה לחבר. כמה בלונים נשארו לנועם?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 29517,
+      "trimmed": true
+    },
+    "549ed27faca79844": {
+      "text": "למאיה היו תשע סוכריות. היא נתנה אחת לחברה. כמה סוכריות נשארו למאיה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 29901,
+      "trimmed": true
+    },
+    "7a0c951b81d606ec": {
+      "text": "למאיה היו תשעה תפוחים. היא נתנה שבעה לחברה. כמה תפוחים נשארו למאיה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 31533,
+      "trimmed": true
+    },
+    "e130f0c481b491fa": {
+      "text": "לסבתא היו עשרה תפוחים. היא נתנה שישה לחברה. כמה תפוחים נשארו לסבתא?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 30285,
+      "trimmed": true
+    },
+    "6e4288ca94c51b08": {
+      "text": "לנועם היו חמש דבורים. הוא קיבל עוד שתיים. כמה דבורים יש לנועם עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 29709,
+      "trimmed": true
+    },
+    "bb25ac6ef465152f": {
+      "text": "ליובל היו שבע עוגיות. הוא קיבל עוד שתיים. כמה עוגיות יש ליובל עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 28173,
+      "trimmed": true
+    },
+    "e0fb231bc8e88285": {
+      "text": "לנועם היו שמונה עוגיות. הוא קיבל עוד אחת. כמה עוגיות יש לנועם עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 28941,
+      "trimmed": true
+    },
+    "6b7218946be8923f": {
+      "text": "למאיה היו תשעה תפוחים. היא קיבלה עוד אחד. כמה תפוחים יש למאיה עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 30093,
+      "trimmed": true
+    },
+    "a425dd1f69d01520": {
+      "text": "ליובל היו ארבע דבורים. הוא קיבל עוד שלוש. כמה דבורים יש ליובל עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 29133,
+      "trimmed": true
+    },
+    "39449067faec8a1d": {
+      "text": "לסבתא היו שבעה כוכבים. היא קיבלה עוד אחד. כמה כוכבים יש לסבתא עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 28077,
+      "trimmed": true
+    },
+    "d977a548fac77f30": {
+      "text": "לסבתא היו חמש סוכריות. היא נתנה ארבע לחברה. כמה סוכריות נשארו לסבתא?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 29901,
+      "trimmed": true
+    },
+    "3fa34ff556871001": {
+      "text": "לסבתא היו שישה פרפרים. היא נתנה שניים לחברה. כמה פרפרים נשארו לסבתא?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 29901,
+      "trimmed": true
+    },
+    "4bb17b51a4802eb3": {
+      "text": "לסבתא היו שישה כוכבים. היא נתנה ארבעה לחברה. כמה כוכבים נשארו לסבתא?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 33357,
+      "trimmed": true
+    },
+    "5f24b2b806f48be7": {
+      "text": "למאיה היו שמונה סוכריות. היא נתנה שש לחברה. כמה סוכריות נשארו למאיה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 29997,
+      "trimmed": true
+    },
+    "5a72c462573e460b": {
+      "text": "למאיה יש תפוח אחד, ולסבא יש ארבעה תפוחים. כמה תפוחים יש לשניהם ביחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 28749,
+      "trimmed": true
+    },
+    "628f10cf32370b2f": {
+      "text": "לנועם יש ארבע דבורים, ולדנה יש שש דבורים. כמה דבורים יש לשניהם ביחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 30285,
+      "trimmed": true
+    },
+    "dec29fe71955b48f": {
+      "text": "לסבא יש שתי עוגיות, ולסבתא יש שתי עוגיות. כמה עוגיות יש לשניהם ביחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 31437,
+      "trimmed": true
+    },
+    "26f0ddaf84897913": {
+      "text": "לסבתא יש שישה פרפרים, ולנועם יש פרפר אחד. כמה פרפרים יש לשניהם ביחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 32493,
+      "trimmed": true
+    },
+    "f254f8224a876305": {
+      "text": "לדנה יש שמונה כוכבים, וליובל יש כוכב אחד. כמה כוכבים יש לשניהם ביחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 29421,
+      "trimmed": true
+    },
+    "2b9b7d8b8f4b6576": {
+      "text": "לסבתא היו תשעה תפוחים. היא נתנה שלושה לחברה. כמה תפוחים נשארו לסבתא?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 28365,
+      "trimmed": true
+    },
+    "9cc3919f7e859317": {
+      "text": "לנועם יש חמש עוגיות, ולדנה יש עוגייה אחת. כמה עוגיות יש לשניהם ביחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 31917,
+      "trimmed": true
+    },
+    "71be1054d6b2bf40": {
+      "text": "ליובל יש תשעה בלונים, ולמאיה יש בלון אחד. כמה בלונים יש לשניהם ביחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 31725,
+      "trimmed": true
+    },
+    "3e31b81b4376833b": {
+      "text": "לדנה יש שמונה תפוחים. ליובל יש שני תפוחים. בכמה תפוחים יש לדנה יותר?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 32109,
+      "trimmed": true
+    },
+    "cc73724c364e55f5": {
+      "text": "ליובל יש תשע דבורים. למאיה יש שתי דבורים. בכמה דבורים יש ליובל יותר?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 33645,
+      "trimmed": true
+    },
+    "4d2c24f9524adae2": {
+      "text": "לדנה היו ארבע סוכריות. היא קיבלה עוד אחת. כמה סוכריות יש לדנה עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 29325,
+      "trimmed": true
+    },
+    "45af99724bbbf2be": {
+      "text": "למאיה היו שני כוכבים. היא קיבלה עוד שבעה. כמה כוכבים יש למאיה עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 28269,
+      "trimmed": true
+    },
+    "a822ddc1577828a1": {
+      "text": "לסבתא היו שישה פרפרים. היא קיבלה עוד אחד. כמה פרפרים יש לסבתא עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 27117,
+      "trimmed": true
+    },
+    "1cb85efe1c7f335f": {
+      "text": "לנועם היו ארבע דבורים. הוא קיבל עוד ארבע. כמה דבורים יש לנועם עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 29805,
+      "trimmed": true
+    },
+    "8517f35adef8e377": {
+      "text": "לדנה היו שבעה כוכבים. היא קיבלה עוד שניים. כמה כוכבים יש לדנה עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 27693,
+      "trimmed": true
+    },
+    "7579cb4b219f0b74": {
+      "text": "למאיה היו שישה תפוחים. היא נתנה שניים לחברה. כמה תפוחים נשארו למאיה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 30285,
+      "trimmed": true
+    },
+    "ae852803b8f1b406": {
+      "text": "לסבא היו שמונה עוגיות. הוא קיבל עוד שתיים. כמה עוגיות יש לסבא עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 28077,
+      "trimmed": true
+    },
+    "ef6c7f751607aea0": {
+      "text": "לסבתא היו שבע סוכריות. היא נתנה שלוש לחברה. כמה סוכריות נשארו לסבתא?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 31245,
+      "trimmed": true
+    },
+    "2a2f0d8101ce209d": {
+      "text": "לסבתא היו שבעה פרפרים. היא נתנה חמישה לחברה. כמה פרפרים נשארו לסבתא?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 30573,
+      "trimmed": true
+    },
+    "8d412d14e74eaa2b": {
+      "text": "למאיה היו תשעה פרפרים. היא נתנה שלושה לחברה. כמה פרפרים נשארו למאיה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 31533,
+      "trimmed": true
+    },
+    "13c29f6ae3959ad3": {
+      "text": "לסבתא היו עשרה פרפרים. היא נתנה שניים לחברה. כמה פרפרים נשארו לסבתא?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 28653,
+      "trimmed": true
+    },
+    "ee8496161eae072b": {
+      "text": "למאיה היו תשעה כוכבים. היא נתנה חמישה לחברה. כמה כוכבים נשארו למאיה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 31821,
+      "trimmed": true
+    },
+    "3b3f9cfe2a19944a": {
+      "text": "לסבתא היו עשרה כוכבים. היא נתנה ארבעה לחברה. כמה כוכבים נשארו לסבתא?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 29709,
+      "trimmed": true
+    },
+    "560fb5ebf67b03b2": {
+      "text": "לדנה היו חמישה כוכבים. היא קיבלה עוד שלושה. כמה כוכבים יש לדנה עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 27981,
+      "trimmed": true
+    },
+    "ea0cb22e4ae25fff": {
+      "text": "למאיה היו שני תפוחים. היא קיבלה עוד שלושה. כמה תפוחים יש למאיה עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 29517,
+      "trimmed": true
+    },
+    "da7e36fe1dc64925": {
+      "text": "לדנה היו שמונה תפוחים. היא קיבלה עוד שניים. כמה תפוחים יש לדנה עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 27405,
+      "trimmed": true
+    },
+    "a36deabb62776b7c": {
+      "text": "למאיה היו ארבעה תפוחים. היא נתנה שלושה לחברה. כמה תפוחים נשארו למאיה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 26061,
+      "trimmed": true
+    },
+    "0c1345679560adf3": {
+      "text": "לדנה היו חמישה תפוחים. היא קיבלה עוד חמישה. כמה תפוחים יש לדנה עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 27981,
+      "trimmed": true
+    },
+    "2fdd7bc71a33881f": {
+      "text": "לסבתא היו חמישה תפוחים. היא נתנה שניים לחברה. כמה תפוחים נשארו לסבתא?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 26733,
+      "trimmed": true
+    },
+    "8e80a98f5819b0f5": {
+      "text": "למאיה היו שמונה כוכבים. היא נתנה שניים לחברה. כמה כוכבים נשארו למאיה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 28269,
+      "trimmed": true
+    },
+    "3ff428de57eb16a4": {
+      "text": "למאיה היו שמונה תפוחים. היא נתנה ארבעה לחברה. כמה תפוחים נשארו למאיה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 29901,
+      "trimmed": true
+    },
+    "59d0f38f73f4face": {
+      "text": "לסבתא יש פרפר אחד, ולנועם יש שמונה פרפרים. כמה פרפרים יש לשניהם ביחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 32013,
+      "trimmed": true
+    },
+    "53aaaf0499fb76ea": {
+      "text": "ליובל יש עוגייה אחת, ולמאיה יש חמש עוגיות. כמה עוגיות יש לשניהם ביחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 31821,
+      "trimmed": true
+    },
+    "db0ff91d1a9d9245": {
+      "text": "לנועם יש שתי דבורים, ולדנה יש ארבע דבורים. כמה דבורים יש לשניהם ביחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 30381,
+      "trimmed": true
+    },
+    "69982096a28d3c62": {
+      "text": "ליובל יש שלוש דבורים, ולמאיה יש דבורה אחת. כמה דבורים יש לשניהם ביחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 33933,
+      "trimmed": true
+    },
+    "ffbe0c866d3b8b33": {
+      "text": "לנועם יש שישה בלונים, ולדנה יש שני בלונים. כמה בלונים יש לשניהם ביחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 31917,
+      "trimmed": true
+    },
+    "88ffa656602b9c3e": {
+      "text": "לנועם יש שבע עוגיות, ולדנה יש שלוש עוגיות. כמה עוגיות יש לשניהם ביחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 29613,
+      "trimmed": true
+    },
+    "5d6691c8298ad8fd": {
+      "text": "ליובל יש שלוש עוגיות. למאיה יש שתי עוגיות. בכמה עוגיות יש ליובל יותר?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 34317,
+      "trimmed": true
+    },
+    "8ff22ba23315fb4e": {
+      "text": "ליובל יש חמש עוגיות. למאיה יש ארבע עוגיות. בכמה עוגיות יש ליובל יותר?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 34029,
+      "trimmed": true
+    },
+    "cc296c3afe6eb921": {
+      "text": "למאיה יש ארבעה פרפרים. לסבא יש שני פרפרים. בכמה פרפרים יש למאיה יותר?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 35373,
+      "trimmed": true
+    },
+    "fb546d0b4e5fa023": {
+      "text": "לסבתא יש שישה כוכבים. לנועם יש שני כוכבים. בכמה כוכבים יש לסבתא יותר?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 31917,
+      "trimmed": true
+    },
+    "c3cd904981ca91a9": {
+      "text": "לנועם יש שמונה דבורים. לדנה יש חמש דבורים. בכמה דבורים יש לנועם יותר?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 31245,
+      "trimmed": true
+    },
+    "fe8554b7429a73a2": {
+      "text": "למאיה יש תשעה תפוחים. לסבא יש שבעה תפוחים. בכמה תפוחים יש למאיה יותר?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 36045,
+      "trimmed": true
+    },
+    "b7d5b8e35cb82eff": {
+      "text": "לסבא יש שמונה עוגיות. לסבתא יש שלוש עוגיות. בכמה עוגיות יש לסבא יותר?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 36429,
+      "trimmed": true
+    },
+    "a6f207394e979356": {
+      "text": "לדנה יש עשרה תפוחים. ליובל יש ארבעה תפוחים. בכמה תפוחים יש לדנה יותר?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 32685,
+      "trimmed": true
+    },
+    "b5e9294f0751745c": {
+      "text": "לדנה יש תשעה פרפרים. ליובל יש שלושה פרפרים. בכמה פרפרים יש לדנה יותר?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 34509,
+      "trimmed": true
+    },
+    "faac29c782f34d3a": {
+      "text": "לדנה היו ארבעה פרפרים. היא קיבלה עוד שלושה. כמה פרפרים יש לדנה עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 29325,
+      "trimmed": true
+    },
+    "57adf1f3b0a8b126": {
+      "text": "לדנה היו ארבעה כוכבים. היא קיבלה עוד חמישה. כמה כוכבים יש לדנה עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 27693,
+      "trimmed": true
+    },
+    "fdd5d95d0b387190": {
+      "text": "למאיה היו שמונה כוכבים. היא קיבלה עוד אחד. כמה כוכבים יש למאיה עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 28077,
+      "trimmed": true
+    },
+    "d04761385e727b36": {
+      "text": "לדנה היו שמונה סוכריות. היא נתנה שתיים לחברה. כמה סוכריות נשארו לדנה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 29901,
+      "trimmed": true
+    },
+    "e4a3e366ac027627": {
+      "text": "לסבתא היו ארבעה כוכבים. היא נתנה שניים לחברה. כמה כוכבים נשארו לסבתא?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 28269,
+      "trimmed": true
+    },
+    "3ace382c0f0066fe": {
+      "text": "לסבתא היו עשר סוכריות. היא נתנה שמונה לחברה. כמה סוכריות נשארו לסבתא?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 31725,
+      "trimmed": true
+    },
+    "76b96fb8f9f187e3": {
+      "text": "למאיה היו שלושה תפוחים. היא קיבלה עוד שבעה. כמה תפוחים יש למאיה עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 30477,
+      "trimmed": true
+    },
+    "e8c1a9636c7b4560": {
+      "text": "לסבתא היו ארבעה תפוחים. היא קיבלה עוד שישה. כמה תפוחים יש לסבתא עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 28269,
+      "trimmed": true
+    },
+    "ca6232e21a50a168": {
+      "text": "למאיה היו שישה כוכבים. היא קיבלה עוד שניים. כמה כוכבים יש למאיה עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 28365,
+      "trimmed": true
+    },
+    "ae75b094a9d94a01": {
+      "text": "למאיה היו שישה תפוחים. היא קיבלה עוד ארבעה. כמה תפוחים יש למאיה עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 29901,
+      "trimmed": true
+    },
+    "a2ef5c0f344f7800": {
+      "text": "לסבתא היו שבעה תפוחים. היא קיבלה עוד שלושה. כמה תפוחים יש לסבתא עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 29805,
+      "trimmed": true
+    },
+    "6dc737591abd18c0": {
+      "text": "למאיה יש שני פרפרים, ולסבא יש חמישה פרפרים. כמה פרפרים יש לשניהם ביחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 37485,
+      "trimmed": true
+    },
+    "550524ff27182549": {
+      "text": "ליובל יש שני בלונים, ולמאיה יש שישה בלונים. כמה בלונים יש לשניהם ביחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 28653,
+      "trimmed": true
+    },
+    "6272b385ed6fa159": {
+      "text": "לדנה יש שלושה פרפרים, וליובל יש שני פרפרים. כמה פרפרים יש לשניהם ביחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 33933,
+      "trimmed": true
+    },
+    "678b71eeb011bb92": {
+      "text": "ליובל יש שלוש עוגיות, ולמאיה יש שבע עוגיות. כמה עוגיות יש לשניהם ביחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 32973,
+      "trimmed": true
+    },
+    "516ce9161188ac5b": {
+      "text": "לסבא יש ארבע עוגיות, ולסבתא יש ארבע עוגיות. כמה עוגיות יש לשניהם ביחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 30477,
+      "trimmed": true
+    },
+    "07c34f1ededd7602": {
+      "text": "למאיה יש חמישה כוכבים, ולסבא יש שני כוכבים. כמה כוכבים יש לשניהם ביחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 30957,
+      "trimmed": true
+    },
+    "332a957ba3264e0e": {
+      "text": "למאיה היו שני פרפרים. היא קיבלה עוד חמישה. כמה פרפרים יש למאיה עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 30285,
+      "trimmed": true
+    },
+    "3c443ae3a980e687": {
+      "text": "ליובל יש חמש דבורים, ולמאיה יש שלוש דבורים. כמה דבורים יש לשניהם ביחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 30957,
+      "trimmed": true
+    },
+    "b03d56ba4eb47d9c": {
+      "text": "לסבתא יש שבעה תפוחים, ולנועם יש שני תפוחים. כמה תפוחים יש לשניהם ביחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 32109,
+      "trimmed": true
+    },
+    "cf5b46852350de16": {
+      "text": "לסבא יש שמונה דבורים, ולסבתא יש שתי דבורים. כמה דבורים יש לשניהם ביחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 29901,
+      "trimmed": true
+    },
+    "7be5b31a3f20b1bb": {
+      "text": "למאיה יש שישה פרפרים. לסבא יש ארבעה פרפרים. בכמה פרפרים יש למאיה יותר?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 34509,
+      "trimmed": true
+    },
+    "76083ba2b1ad945f": {
+      "text": "למאיה יש שבעה תפוחים. לסבא יש חמישה תפוחים. בכמה תפוחים יש למאיה יותר?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 39213,
+      "trimmed": true
+    },
+    "7a964efeef5cb064": {
+      "text": "למאיה יש שמונה פרפרים. לסבא יש שישה פרפרים. בכמה פרפרים יש למאיה יותר?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 35469,
+      "trimmed": true
+    },
+    "b1ce559d00e4de90": {
+      "text": "ליובל יש עשרה בלונים. למאיה יש תשעה בלונים. בכמה בלונים יש ליובל יותר?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 30765,
+      "trimmed": true
+    },
+    "0ef1ecb56e566a7a": {
+      "text": "ליובל יש תשע עוגיות. למאיה יש שמונה עוגיות. בכמה עוגיות יש ליובל יותר?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 32301,
+      "trimmed": true
+    },
+    "cee8d4e7a8acf201": {
+      "text": "לסבתא יש עשרה כוכבים. לנועם יש שישה כוכבים. בכמה כוכבים יש לסבתא יותר?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 33165,
+      "trimmed": true
+    },
+    "7fc2334850caa25c": {
+      "text": "למאיה היו שתי סוכריות. היא קיבלה עוד שלוש. כמה סוכריות יש למאיה עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 27885,
+      "trimmed": true
+    },
+    "9eb2066e20bd0edd": {
+      "text": "ליובל היו שלושה בלונים. הוא קיבל עוד שלושה. כמה בלונים יש ליובל עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 27021,
+      "trimmed": true
+    },
+    "5be75d73b392e0e1": {
+      "text": "לסבתא היו שלושה כוכבים. היא קיבלה עוד שישה. כמה כוכבים יש לסבתא עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 28749,
+      "trimmed": true
+    },
+    "550851d5767c95b9": {
+      "text": "לסבתא היו שלושה תפוחים. היא קיבלה עוד שניים. כמה תפוחים יש לסבתא עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 27117,
+      "trimmed": true
+    },
+    "cb500a9dcc045888": {
+      "text": "לנועם היו ארבעה בלונים. הוא קיבל עוד שניים. כמה בלונים יש לנועם עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 25965,
+      "trimmed": true
+    },
+    "a9d113f206f65a0a": {
+      "text": "למאיה יש עשרה פרפרים. לסבא יש שמונה פרפרים. בכמה פרפרים יש למאיה יותר?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 35469,
+      "trimmed": true
+    },
+    "5c0fbcd5c97cee74": {
+      "text": "לסבתא היו שישה כוכבים. היא קיבלה עוד שלושה. כמה כוכבים יש לסבתא עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 28461,
+      "trimmed": true
+    },
+    "f69641e29ed41b13": {
+      "text": "למאיה יש עשר סוכריות. לסבא יש שתי סוכריות. בכמה סוכריות יש למאיה יותר?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 34605,
+      "trimmed": true
+    },
+    "25a10860eca9cb85": {
+      "text": "למאיה היו שלושה כוכבים. היא קיבלה עוד חמישה. כמה כוכבים יש למאיה עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 26637,
+      "trimmed": true
+    },
+    "1f1c1a94141add41": {
+      "text": "לסבתא היו ארבעה פרפרים. היא קיבלה עוד שניים. כמה פרפרים יש לסבתא עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 29421,
+      "trimmed": true
+    },
+    "d5c6028128783664": {
+      "text": "לסבתא היו ארבעה כוכבים. היא קיבלה עוד ארבעה. כמה כוכבים יש לסבתא עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 27405,
+      "trimmed": true
+    },
+    "d81dbc49b65d5f0a": {
+      "text": "למאיה היו שלושה פרפרים. היא קיבלה עוד שלושה. כמה פרפרים יש למאיה עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 32301,
+      "trimmed": true
+    },
+    "358bf01933c7134f": {
+      "text": "לסבתא יש שני כוכבים, ולנועם יש שלושה כוכבים. כמה כוכבים יש לשניהם ביחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 30669,
+      "trimmed": true
+    },
+    "f1facebc68b8704c": {
+      "text": "לדנה יש שתי סוכריות, וליובל יש שבע סוכריות. כמה סוכריות יש לשניהם ביחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 34317,
+      "trimmed": true
+    },
+    "4c1e11aa327ac13c": {
+      "text": "למאיה יש שש סוכריות, ולסבא יש שלוש סוכריות. כמה סוכריות יש לשניהם ביחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 31725,
+      "trimmed": true
+    },
+    "cc9c2bf6f98dc344": {
+      "text": "למאיה יש שלושה תפוחים, ולסבא יש שישה תפוחים. כמה תפוחים יש לשניהם ביחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 33453,
+      "trimmed": true
+    },
+    "2a2e80b2b7637b4a": {
+      "text": "לסבתא יש חמש סוכריות. לנועם יש סוכרייה אחת. בכמה סוכריות יש לסבתא יותר?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 33549,
+      "trimmed": true
+    },
+    "558c99a837ee4e5e": {
+      "text": "ליובל יש שישה בלונים. למאיה יש חמישה בלונים. בכמה בלונים יש ליובל יותר?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 32109,
+      "trimmed": true
+    },
+    "bc2f6e95ff20c5c8": {
+      "text": "למאיה יש חמישה תפוחים. לסבא יש שלושה תפוחים. בכמה תפוחים יש למאיה יותר?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 33549,
+      "trimmed": true
+    },
+    "1f1b8402159e2cae": {
+      "text": "ליובל יש שמונה בלונים. למאיה יש שבעה בלונים. בכמה בלונים יש ליובל יותר?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 31437,
+      "trimmed": true
+    },
+    "d82d85d9afe14904": {
+      "text": "לסבתא היו שלושה פרפרים. היא קיבלה עוד ארבעה. כמה פרפרים יש לסבתא עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 30669,
+      "trimmed": true
+    },
+    "7fccf558a09cacfe": {
+      "text": "למאיה היו חמישה פרפרים. היא קיבלה עוד שניים. כמה פרפרים יש למאיה עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 26637,
+      "trimmed": true
+    },
+    "b6862c6ea3af2de6": {
+      "text": "לסבתא יש תשע סוכריות. לנועם יש חמש סוכריות. בכמה סוכריות יש לסבתא יותר?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 39021,
+      "trimmed": true
+    },
+    "d3b4443f6164dc00": {
+      "text": "למאיה היו חמישה כוכבים. היא קיבלה עוד ארבעה. כמה כוכבים יש למאיה עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 27597,
+      "trimmed": true
+    },
+    "588c195b04f7220c": {
+      "text": "לסבתא יש סוכרייה אחת, ולנועם יש שתי סוכריות. כמה סוכריות יש לשניהם ביחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 32589,
+      "trimmed": true
+    },
+    "04910ec45acbe709": {
+      "text": "למאיה יש ארבע סוכריות, ולסבא יש סוכרייה אחת. כמה סוכריות יש לשניהם ביחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 31533,
+      "trimmed": true
+    },
+    "9e378d1191e0ad7a": {
+      "text": "לסבא יש שלושה בלונים, ולסבתא יש שלושה בלונים. כמה בלונים יש לשניהם ביחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 33165,
+      "trimmed": true
+    },
+    "f303fc8757f5da6e": {
+      "text": "לדנה יש ארבעה תפוחים, וליובל יש שלושה תפוחים. כמה תפוחים יש לשניהם ביחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 31821,
+      "trimmed": true
+    },
+    "4ec880656004d5a8": {
+      "text": "לדנה יש חמישה פרפרים, וליובל יש ארבעה פרפרים. כמה פרפרים יש לשניהם ביחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 33549,
+      "trimmed": true
+    },
+    "86497cb8202d227a": {
+      "text": "לסבא יש חמישה בלונים, ולסבתא יש חמישה בלונים. כמה בלונים יש לשניהם ביחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 32301,
+      "trimmed": true
+    },
+    "78650ee9af8f0ee9": {
+      "text": "ליובל יש ארבעה בלונים. למאיה יש שלושה בלונים. בכמה בלונים יש ליובל יותר?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 33357,
+      "trimmed": true
+    },
+    "5844f0fa11c23545": {
+      "text": "לסבתא יש שבע סוכריות. לנועם יש שלוש סוכריות. בכמה סוכריות יש לסבתא יותר?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 34605,
+      "trimmed": true
+    },
+    "89e43a6812600fc1": {
+      "text": "לסבתא יש שמונה כוכבים. לנועם יש ארבעה כוכבים. בכמה כוכבים יש לסבתא יותר?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 31437,
+      "trimmed": true
+    },
+    "66ec4699f6e78ad5": {
+      "text": "לסבתא יש ארבעה כוכבים, ולנועם יש חמישה כוכבים. כמה כוכבים יש לשניהם ביחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 29133,
+      "trimmed": true
+    },
+    "14223f3615437435": {
+      "text": "לסבתא היו שלוש סוכריות. היא קיבלה עוד שתיים. כמה סוכריות יש לסבתא עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 28653,
+      "trimmed": true
+    },
+    "c07162413553b450": {
+      "text": "לסבתא יש שלוש סוכריות, ולנועם יש ארבע סוכריות. כמה סוכריות יש לשניהם ביחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 32493,
+      "trimmed": true
+    },
+    "cab2fe798b57615f": {
+      "text": "ליובל היו שני דגים. הוא קיבל עוד אחד, ואחר כך נתן שניים לחבר. כמה דגים יש לו עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 37485,
+      "trimmed": true
+    },
+    "98177bec816e8aec": {
+      "text": "לסבא היו שישה דגים. הוא קיבל עוד ארבעה, ואחר כך נתן אחד לחבר. כמה דגים יש לו עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 42573,
+      "trimmed": true
+    },
+    "0c0a9197060a0342": {
+      "text": "לסבא היו שמונה דגים. הוא נתן אחד לחבר. כמה דגים נשארו לסבא? איזה תרגיל מתאים לסיפור?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 43437,
+      "trimmed": true
+    },
+    "1f1422eddd1b03c7": {
+      "text": "לסבא היו ארבעה דגים. הוא קיבל עוד שניים, ואחר כך נתן אחד לחבר. כמה דגים יש לו עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 35469,
+      "trimmed": true
+    },
+    "76e45fe4ed303539": {
+      "text": "לסבא היו שני דגים. הוא קיבל עוד שלושה, ואחר כך נתן ארבעה לחבר. כמה דגים יש לו עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 38157,
+      "trimmed": true
+    },
+    "5c923ef5bc938f28": {
+      "text": "לסבא היו חמישה דגים. הוא קיבל עוד שלושה, ואחר כך נתן אחד לחבר. כמה דגים יש לו עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 34797,
+      "trimmed": true
+    },
+    "6ec82f1907a3e39f": {
+      "text": "לסבא היו חמש דבורים. הוא קיבל עוד אחת, ואחר כך נתן שלוש לחבר. כמה דבורים יש לו עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 37389,
+      "trimmed": true
+    },
+    "70dfa64a6e1449ab": {
+      "text": "לנועם היו שבעה דגים. הוא נתן שישה לחבר. כמה דגים נשארו לנועם? איזה תרגיל מתאים לסיפור?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 38925,
+      "trimmed": true
+    },
+    "01675eb56d2f92cc": {
+      "text": "לנועם היו שני דגים. הוא קיבל עוד שניים, ואחר כך נתן שלושה לחבר. כמה דגים יש לו עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 36909,
+      "trimmed": true
+    },
+    "6e5c29340327a9b2": {
+      "text": "לנועם היו שתי דבורים. הוא קיבל עוד ארבע, ואחר כך נתן אחת לחבר. כמה דבורים יש לו עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 37965,
+      "trimmed": true
+    },
+    "057deb7a5273001d": {
+      "text": "לנועם היו שש דבורים. הוא קיבל עוד אחת, ואחר כך נתן שתיים לחבר. כמה דבורים יש לו עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 37293,
+      "trimmed": true
+    },
+    "b34427bf450e9c72": {
+      "text": "לסבא היו שש עוגיות. הוא קיבל עוד שלוש, ואחר כך נתן שתיים לחבר. כמה עוגיות יש לו עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 37581,
+      "trimmed": true
+    },
+    "1b648d304efb181f": {
+      "text": "לנועם היו שש עוגיות. הוא קיבל עוד שתיים, ואחר כך נתן אחת לחבר. כמה עוגיות יש לו עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 39597,
+      "trimmed": true
+    },
+    "396528d0f3b574a8": {
+      "text": "לסבא היו שש דבורים. הוא קיבל עוד שתיים, ואחר כך נתן שלוש לחבר. כמה דבורים יש לו עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 34413,
+      "trimmed": true
+    },
+    "37662b6d588dcb54": {
+      "text": "ליובל היו שש עוגיות. הוא קיבל עוד ארבע, ואחר כך נתן שלוש לחבר. כמה עוגיות יש לו עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 39693,
+      "trimmed": true
+    },
+    "f163bedb0046634f": {
+      "text": "ליובל היו שש דבורים. הוא קיבל עוד שלוש, ואחר כך נתן ארבע לחבר. כמה דבורים יש לו עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 37773,
+      "trimmed": true
+    },
+    "9f1762f2d9beefbe": {
+      "text": "לנועם היו שני דגים. הוא קיבל עוד אחד. כמה דגים יש לנועם עכשיו? איזה תרגיל מתאים לסיפור?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 37389,
+      "trimmed": true
+    },
+    "d84eb41ce3169da7": {
+      "text": "לסבא היו חמש דבורים. הוא נתן ארבע לחבר. כמה דבורים נשארו לסבא? איזה תרגיל מתאים לסיפור?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 38157,
+      "trimmed": true
+    },
+    "0cd516f31a9dc2a8": {
+      "text": "לסבא היו ארבע עוגיות. הוא קיבל עוד אחת, ואחר כך נתן שתיים לחבר. כמה עוגיות יש לו עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 35757,
+      "trimmed": true
+    },
+    "4b3432b740500619": {
+      "text": "ליובל היו שש עוגיות. הוא נתן חמש לחבר. כמה עוגיות נשארו ליובל? איזה תרגיל מתאים לסיפור?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 42765,
+      "trimmed": true
+    },
+    "a4f341234c46e376": {
+      "text": "ליובל היו שלוש עוגיות. הוא קיבל עוד אחת, ואחר כך נתן שלוש לחבר. כמה עוגיות יש לו עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 38157,
+      "trimmed": true
+    },
+    "87cc3f8928073482": {
+      "text": "ליובל היו שני בלונים. הוא קיבל עוד שניים, ואחר כך נתן אחד לחבר. כמה בלונים יש לו עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 35277,
+      "trimmed": true
+    },
+    "623f784c6637ff27": {
+      "text": "ליובל היו ארבע דבורים. הוא קיבל עוד אחת, ואחר כך נתן ארבע לחבר. כמה דבורים יש לו עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 34221,
+      "trimmed": true
+    },
+    "bde64ef1944d4a67": {
+      "text": "לנועם היו ארבעה דגים. הוא קיבל עוד ארבעה, ואחר כך נתן שלושה לחבר. כמה דגים יש לו עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 35757,
+      "trimmed": true
+    },
+    "bc7b01c9068e27f7": {
+      "text": "ליובל היו חמישה דגים. הוא קיבל עוד ארבעה, ואחר כך נתן שניים לחבר. כמה דגים יש לו עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 32685,
+      "trimmed": true
+    },
+    "12d95b6aaae0487c": {
+      "text": "ליובל היו ארבעה דגים. הוא קיבל עוד שלושה, ואחר כך נתן שניים לחבר. כמה דגים יש לו עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 42093,
+      "trimmed": true
+    },
+    "6ac60beed45b5de6": {
+      "text": "לסבא היו שבע דבורים. הוא נתן שתיים לחבר. כמה דבורים נשארו לסבא? איזה תרגיל מתאים לסיפור?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 39789,
+      "trimmed": true
+    },
+    "380d2c35cc13c521": {
+      "text": "לסבא היו שני בלונים. הוא קיבל עוד ארבעה, ואחר כך נתן שלושה לחבר. כמה בלונים יש לו עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 34317,
+      "trimmed": true
+    },
+    "b589164d1f6d8b22": {
+      "text": "ליובל היו שלושה דגים. הוא נתן שניים לחבר. כמה דגים נשארו ליובל? איזה תרגיל מתאים לסיפור?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 37869,
+      "trimmed": true
+    },
+    "9faf91e33930ad82": {
+      "text": "לנועם היו ארבע עוגיות. הוא קיבל עוד שלוש, ואחר כך נתן ארבע לחבר. כמה עוגיות יש לו עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 40269,
+      "trimmed": true
+    },
+    "963201a3305b3be9": {
+      "text": "לסבא היו שישה בלונים. הוא קיבל עוד אחד, ואחר כך נתן ארבעה לחבר. כמה בלונים יש לו עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 38925,
+      "trimmed": true
+    },
+    "0cc475a75a64c7a0": {
+      "text": "ליובל היו חמש דבורים. הוא קיבל עוד שתיים, ואחר כך נתן ארבע לחבר. כמה דבורים יש לו עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 36621,
+      "trimmed": true
+    },
+    "405bfb3e437aa08c": {
+      "text": "לנועם היו שישה בלונים. הוא נתן אחד לחבר. כמה בלונים נשארו לנועם? איזה תרגיל מתאים לסיפור?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 39021,
+      "trimmed": true
+    },
+    "ac80df9d6b571b4e": {
+      "text": "ליובל היו ארבע דבורים. הוא נתן אחת לחבר. כמה דבורים נשארו ליובל? איזה תרגיל מתאים לסיפור?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 41229,
+      "trimmed": true
+    },
+    "ce98adabd5a63c66": {
+      "text": "לנועם היו שני בלונים. הוא קיבל עוד שלושה, ואחר כך נתן שניים לחבר. כמה בלונים יש לו עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 36141,
+      "trimmed": true
+    },
+    "d56717da95f8b785": {
+      "text": "ליובל היו שלושה בלונים. הוא קיבל עוד שלושה, ואחר כך נתן אחד לחבר. כמה בלונים יש לו עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 34413,
+      "trimmed": true
+    },
+    "4db4a238f698a464": {
+      "text": "לסבא היו שמונה בלונים. הוא נתן שבעה לחבר. כמה בלונים נשארו לסבא? איזה תרגיל מתאים לסיפור?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 41901,
+      "trimmed": true
+    },
+    "cbb54899940a857b": {
+      "text": "ליובל היו ארבע עוגיות. הוא קיבל עוד שתיים, ואחר כך נתן שלוש לחבר. כמה עוגיות יש לו עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 35373,
+      "trimmed": true
+    },
+    "ef44a9bc99830919": {
+      "text": "לנועם היו שלוש עוגיות. הוא קיבל עוד שתיים, ואחר כך נתן ארבע לחבר. כמה עוגיות יש לו עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 36621,
+      "trimmed": true
+    },
+    "d056df994281cc9e": {
+      "text": "ליובל היו ארבעה בלונים. הוא קיבל עוד ארבעה, ואחר כך נתן אחד לחבר. כמה בלונים יש לו עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 38157,
+      "trimmed": true
+    },
+    "618ba67744158779": {
+      "text": "לסבא היו שתי עוגיות. הוא קיבל עוד שלוש. כמה עוגיות יש לסבא עכשיו? איזה תרגיל מתאים לסיפור?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 40941,
+      "trimmed": true
+    },
+    "35db5c4710df0c44": {
+      "text": "לסבא היו ארבע עוגיות. הוא קיבל עוד אחת. כמה עוגיות יש לסבא עכשיו? איזה תרגיל מתאים לסיפור?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 38061,
+      "trimmed": true
+    },
+    "4d14f08202ab8877": {
+      "text": "ליובל היו שש דבורים. הוא קיבל עוד אחת. כמה דבורים יש ליובל עכשיו? איזה תרגיל מתאים לסיפור?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 39597,
+      "trimmed": true
+    },
+    "e749de6c00b70aa2": {
+      "text": "לנועם היו חמש עוגיות. הוא נתן שתיים לחבר. כמה עוגיות נשארו לנועם? איזה תרגיל מתאים לסיפור?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 37197,
+      "trimmed": true
+    },
+    "2960ec3426a4d309": {
+      "text": "לדנה היו שלושה כוכבים. היא נתנה אחד לחברה. כמה כוכבים נשארו לדנה? איזה תרגיל מתאים לסיפור?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 40461,
+      "trimmed": true
+    },
+    "414a96c500d677f1": {
+      "text": "ליובל היו שתי דבורים. הוא קיבל עוד חמש. כמה דבורים יש ליובל עכשיו? איזה תרגיל מתאים לסיפור?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 39501,
+      "trimmed": true
+    },
+    "a59df61b5c9e599e": {
+      "text": "לנועם היו שמונה דבורים. הוא נתן חמש לחבר. כמה דבורים נשארו לנועם? איזה תרגיל מתאים לסיפור?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 40269,
+      "trimmed": true
+    },
+    "ecdd31a8161bfd01": {
+      "text": "למאיה היו שני תפוחים. היא קיבלה עוד שלושה, ואחר כך נתנה אחד לחברה. כמה תפוחים יש לה עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 40845,
+      "trimmed": true
+    },
+    "db7b70f8bcac7f1b": {
+      "text": "ליובל היו שלושה דגים. הוא קיבל עוד ארבעה. כמה דגים יש ליובל עכשיו? איזה תרגיל מתאים לסיפור?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 37005,
+      "trimmed": true
+    },
+    "f1ddf0957bde6f4f": {
+      "text": "ליובל היו חמישה דגים. הוא קיבל עוד שניים. כמה דגים יש ליובל עכשיו? איזה תרגיל מתאים לסיפור?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 34605,
+      "trimmed": true
+    },
+    "6a758bc67a1165dc": {
+      "text": "ליובל היו שבעה בלונים. הוא נתן ארבעה לחבר. כמה בלונים נשארו ליובל? איזה תרגיל מתאים לסיפור?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 36813,
+      "trimmed": true
+    },
+    "6239ce00d76249df": {
+      "text": "לדנה היו שבעה תפוחים. היא נתנה שלושה לחברה. כמה תפוחים נשארו לדנה? איזה תרגיל מתאים לסיפור?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 41421,
+      "trimmed": true
+    },
+    "3c6aba2508ba0c02": {
+      "text": "לדנה היו שישה פרפרים. היא נתנה ארבעה לחברה. כמה פרפרים נשארו לדנה? איזה תרגיל מתאים לסיפור?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 39789,
+      "trimmed": true
+    },
+    "7824d9f32e2ea7fc": {
+      "text": "ליובל היו שמונה עוגיות. הוא נתן שלוש לחבר. כמה עוגיות נשארו ליובל? איזה תרגיל מתאים לסיפור?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 39501,
+      "trimmed": true
+    },
+    "e85626cf4ae06729": {
+      "text": "לדנה היו שלושה פרפרים. היא קיבלה עוד אחד, ואחר כך נתנה שניים לחברה. כמה פרפרים יש לה עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 37677,
+      "trimmed": true
+    },
+    "6414fd70078b604b": {
+      "text": "לדנה היו שלושה כוכבים. היא קיבלה עוד שניים, ואחר כך נתנה אחד לחברה. כמה כוכבים יש לה עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 38925,
+      "trimmed": true
+    },
+    "428fcdb5ab63460b": {
+      "text": "לנועם היו שלושה בלונים. הוא קיבל עוד ארבעה, ואחר כך נתן שניים לחבר. כמה בלונים יש לו עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 38925,
+      "trimmed": true
+    },
+    "3503e0d760afa7d5": {
+      "text": "לדנה היו ארבע סוכריות. היא קיבלה עוד אחת, ואחר כך נתנה שלוש לחברה. כמה סוכריות יש לה עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 37197,
+      "trimmed": true
+    },
+    "0e8470dfd562364c": {
+      "text": "לדנה היו ארבעה כוכבים. היא קיבלה עוד שלושה, ואחר כך נתנה אחד לחברה. כמה כוכבים יש לה עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 35181,
+      "trimmed": true
+    },
+    "aeb2bbe8b05375f5": {
+      "text": "לדנה היו חמישה כוכבים. היא קיבלה עוד ארבעה, ואחר כך נתנה אחד לחברה. כמה כוכבים יש לה עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 35469,
+      "trimmed": true
+    },
+    "009b715386cada78": {
+      "text": "לדנה היו חמישה תפוחים. היא קיבלה עוד אחד, ואחר כך נתנה ארבעה לחברה. כמה תפוחים יש לה עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 40077,
+      "trimmed": true
+    },
+    "ca55889b4bd12497": {
+      "text": "לסבתא היו שישה תפוחים. היא קיבלה עוד אחד, ואחר כך נתנה שלושה לחברה. כמה תפוחים יש לה עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 36525,
+      "trimmed": true
+    },
+    "e48cbe00a453b589": {
+      "text": "לסבתא היו שישה פרפרים. היא קיבלה עוד שלושה, ואחר כך נתנה אחד לחברה. כמה פרפרים יש לה עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 40077,
+      "trimmed": true
+    },
+    "f38341745ccbec2f": {
+      "text": "לדנה היו חמישה כוכבים. היא קיבלה עוד אחד. כמה כוכבים יש לדנה עכשיו? איזה תרגיל מתאים לסיפור?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 37581,
+      "trimmed": true
+    },
+    "61fc20f5a56110fb": {
+      "text": "למאיה היו חמישה פרפרים. היא נתנה אחד לחברה. כמה פרפרים נשארו למאיה? איזה תרגיל מתאים לסיפור?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 40365,
+      "trimmed": true
+    },
+    "cb3a1004816c8989": {
+      "text": "לדנה היו שמונה פרפרים. היא נתנה שניים לחברה. כמה פרפרים נשארו לדנה? איזה תרגיל מתאים לסיפור?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 34893,
+      "trimmed": true
+    },
+    "838473591dddbc04": {
+      "text": "לסבתא היו שבע סוכריות. היא נתנה אחת לחברה. כמה סוכריות נשארו לסבתא? איזה תרגיל מתאים לסיפור?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 38925,
+      "trimmed": true
+    },
+    "89b1a21d747e12b6": {
+      "text": "לסבתא היו שני תפוחים. היא קיבלה עוד ארבעה, ואחר כך נתנה שניים לחברה. כמה תפוחים יש לה עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 33165,
+      "trimmed": true
+    },
+    "fdffc021fa566b8b": {
+      "text": "לנועם היו ארבעה בלונים. הוא נתן שלושה לחבר. כמה בלונים נשארו לנועם? איזה תרגיל מתאים לסיפור?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 45933,
+      "trimmed": true
+    },
+    "9744545b3ede7163": {
+      "text": "למאיה היו שלושה תפוחים. היא קיבלה עוד ארבעה, ואחר כך נתנה אחד לחברה. כמה תפוחים יש לה עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 37869,
+      "trimmed": true
+    },
+    "5d8421abcf5edb03": {
+      "text": "לסבתא היו חמש סוכריות. היא קיבלה עוד אחת, ואחר כך נתנה שתיים לחברה. כמה סוכריות יש לה עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 36333,
+      "trimmed": true
+    },
+    "21de731de1b1ae5a": {
+      "text": "לסבתא היו חמישה פרפרים. היא קיבלה עוד שניים, ואחר כך נתנה אחד לחברה. כמה פרפרים יש לה עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 38445,
+      "trimmed": true
+    },
+    "376a8c34cfe92338": {
+      "text": "לדנה היו שישה תפוחים. היא קיבלה עוד שניים, ואחר כך נתנה ארבעה לחברה. כמה תפוחים יש לה עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 37773,
+      "trimmed": true
+    },
+    "d938868c20c1a55f": {
+      "text": "למאיה היו חמש סוכריות. היא קיבלה עוד שלוש, ואחר כך נתנה ארבע לחברה. כמה סוכריות יש לה עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 38733,
+      "trimmed": true
+    },
+    "de00de4cfac7ba84": {
+      "text": "לדנה היו חמש סוכריות. היא קיבלה עוד שתיים, ואחר כך נתנה שלוש לחברה. כמה סוכריות יש לה עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 37293,
+      "trimmed": true
+    },
+    "1c8ffca043412032": {
+      "text": "לדנה היו שתי סוכריות. היא קיבלה עוד ארבע. כמה סוכריות יש לדנה עכשיו? איזה תרגיל מתאים לסיפור?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 35661,
+      "trimmed": true
+    },
+    "c7d6b57f4b133d10": {
+      "text": "לדנה היו שישה פרפרים. היא קיבלה עוד ארבעה, ואחר כך נתנה שניים לחברה. כמה פרפרים יש לה עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 38253,
+      "trimmed": true
+    },
+    "ada1da05f76978f7": {
+      "text": "למאיה היו שני תפוחים. היא קיבלה עוד שישה. כמה תפוחים יש למאיה עכשיו? איזה תרגיל מתאים לסיפור?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 40557,
+      "trimmed": true
+    },
+    "80ad24f8ebbc7ab2": {
+      "text": "לסבא היו שלושה בלונים. הוא קיבל עוד שניים. כמה בלונים יש לסבא עכשיו? איזה תרגיל מתאים לסיפור?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 36141,
+      "trimmed": true
+    },
+    "1ca2380b9b3d2340": {
+      "text": "ליובל היו ארבע דבורים. הוא קיבל עוד שלוש. כמה דבורים יש ליובל עכשיו? איזה תרגיל מתאים לסיפור?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 39501,
+      "trimmed": true
+    },
+    "76afdb5a1ef0de66": {
+      "text": "לסבתא היו חמש סוכריות. היא נתנה שלוש לחברה. כמה סוכריות נשארו לסבתא? איזה תרגיל מתאים לסיפור?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 39213,
+      "trimmed": true
+    },
+    "952ff127f01c5997": {
+      "text": "למאיה היו שבעה פרפרים. היא קיבלה עוד אחד. כמה פרפרים יש למאיה עכשיו? איזה תרגיל מתאים לסיפור?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 36717,
+      "trimmed": true
+    },
+    "e01b513355208d05": {
+      "text": "לסבתא היו שישה כוכבים. היא נתנה שניים לחברה. כמה כוכבים נשארו לסבתא? איזה תרגיל מתאים לסיפור?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 40461,
+      "trimmed": true
+    },
+    "37e54a6a213d7046": {
+      "text": "לסבתא היו שמונה תפוחים. היא נתנה שישה לחברה. כמה תפוחים נשארו לסבתא? איזה תרגיל מתאים לסיפור?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 37197,
+      "trimmed": true
+    },
+    "0a5479be421f9ef9": {
+      "text": "למאיה היו שבעה כוכבים. היא נתנה חמישה לחברה. כמה כוכבים נשארו למאיה? איזה תרגיל מתאים לסיפור?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 41037,
+      "trimmed": true
+    },
+    "868f9bdc65291215": {
+      "text": "לסבתא היו שלושה תפוחים. היא קיבלה עוד אחד. כמה תפוחים יש לסבתא עכשיו? איזה תרגיל מתאים לסיפור?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 35757,
+      "trimmed": true
+    },
+    "885c12caf83f6440": {
+      "text": "לדנה היו חמישה פרפרים. היא קיבלה עוד שלושה, ואחר כך נתנה שניים לחברה. כמה פרפרים יש לה עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 38349,
+      "trimmed": true
+    },
+    "f39bc161fbf4b29b": {
+      "text": "למאיה היו שלושה פרפרים. היא קיבלה עוד שניים, ואחר כך נתנה שלושה לחברה. כמה פרפרים יש לה עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 36717,
+      "trimmed": true
+    },
+    "1a9843d766baad65": {
+      "text": "למאיה היו שלושה כוכבים. היא קיבלה עוד שלושה, ואחר כך נתנה שניים לחברה. כמה כוכבים יש לה עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 37293,
+      "trimmed": true
+    },
+    "be1e604427f71987": {
+      "text": "לסבתא היו שלושה פרפרים. היא קיבלה עוד שלושה, ואחר כך נתנה ארבעה לחברה. כמה פרפרים יש לה עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 38637,
+      "trimmed": true
+    },
+    "05512961dbee6677": {
+      "text": "למאיה היו ארבע סוכריות. היא קיבלה עוד שתיים, ואחר כך נתנה ארבע לחברה. כמה סוכריות יש לה עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 35085,
+      "trimmed": true
+    },
+    "836071eb978476c8": {
+      "text": "לסבתא היו שלושה כוכבים. היא קיבלה עוד ארבעה, ואחר כך נתנה שלושה לחברה. כמה כוכבים יש לה עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 36909,
+      "trimmed": true
+    },
+    "a20718aa4bf5d1ca": {
+      "text": "לדנה היו ארבע סוכריות. היא קיבלה עוד שתיים. כמה סוכריות יש לדנה עכשיו? איזה תרגיל מתאים לסיפור?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 37581,
+      "trimmed": true
+    },
+    "80116bff32c25590": {
+      "text": "למאיה היו חמישה פרפרים. היא קיבלה עוד ארבעה, ואחר כך נתנה שלושה לחברה. כמה פרפרים יש לה עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 40941,
+      "trimmed": true
+    },
+    "e57ff2f8f3d4eead": {
+      "text": "למאיה היו שישה תפוחים. היא קיבלה עוד שניים. כמה תפוחים יש למאיה עכשיו? איזה תרגיל מתאים לסיפור?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 37581,
+      "trimmed": true
+    },
+    "2a58641edfa56119": {
+      "text": "למאיה היו ארבעה כוכבים. היא קיבלה עוד ארבעה, ואחר כך נתנה שניים לחברה. כמה כוכבים יש לה עכשיו?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 36429,
+      "trimmed": true
+    },
+    "a1ad255c722b70f6": {
+      "text": "למאיה היו שלושה פרפרים. היא קיבלה עוד חמישה. כמה פרפרים יש למאיה עכשיו? איזה תרגיל מתאים לסיפור?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 39981,
+      "trimmed": true
+    },
+    "78866d401a4be6b3": {
+      "text": "למאיה היו חמישה פרפרים. היא קיבלה עוד שלושה. כמה פרפרים יש למאיה עכשיו? איזה תרגיל מתאים לסיפור?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 41805,
       "trimmed": true
     }
   }
