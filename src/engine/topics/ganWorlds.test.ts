@@ -10,6 +10,7 @@ import { data0 } from './data0';
 import { bonds0 } from './bonds0';
 import { story0 } from './story0';
 import { share0 } from './share0';
+import { money0 } from './money0';
 import { THINGS, type ThingId } from './ganKit';
 import { sort0 } from './sort0';
 import { space0 } from './space0';
@@ -502,6 +503,44 @@ describe('share-0', () => {
   });
 });
 
+describe('money-0', () => {
+  it('counting coins: the answer is what the coins are worth, on three buttons', () => {
+    for (const level of [2, 3, 4, 5])
+      for (const e of played(money0, level)) {
+        if (e.visual?.type !== 'money') throw new Error(`${e.factId}: no coins`);
+        expect(
+          e.visual.items.reduce((a, b) => a + b, 0),
+          e.factId,
+        ).toBe(e.answer);
+        expect(e.input.type, e.factId).toBe('choices');
+      }
+  });
+
+  it('paying exactly: the right wallet holds the price, the others do not', () => {
+    for (const e of played(money0, 8)) {
+      if (e.input.type !== 'choices' || !e.input.visuals || e.visual?.type !== 'money')
+        throw new Error(e.factId);
+      const price = e.visual.price;
+      const sums = e.input.visuals.map((v) =>
+        v.type === 'money' ? v.items.reduce((a, b) => a + b, 0) : -1,
+      );
+      expect(sums[e.answer], e.factId).toBe(price);
+      expect(
+        sums.filter((s) => s === price),
+        e.factId,
+      ).toHaveLength(1);
+    }
+  });
+
+  it('every exercise is filed under this world', () => {
+    for (let level = 1; level <= 10; level++)
+      for (const e of played(money0, level)) {
+        expect(e.topicId, e.factId).toBe('money-0');
+        expect(e.level, e.factId).toBe(level);
+      }
+  });
+});
+
 describe('the gan journey', () => {
   it('counting and shapes first, then sorting and space, adding and taking away; then to twenty', () => {
     expect(topicsForGrade(0).map((t) => t.id)).toEqual([
@@ -518,6 +557,7 @@ describe('the gan journey', () => {
       'bonds-0',
       'story-0',
       'share-0',
+      'money-0',
     ]);
   });
 });

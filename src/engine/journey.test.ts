@@ -159,6 +159,7 @@ describe('worlds', () => {
       'bonds-0',
       'story-0',
       'share-0',
+      'money-0',
     ]);
   });
 
