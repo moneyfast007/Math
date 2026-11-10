@@ -730733,6 +730733,1435 @@
       "voice": "gemini-3.1-flash/Leda/quick",
       "bytes": 32781,
       "trimmed": true
+    },
+    "0456f986e8174dad": {
+      "text": "חצי מקבוצה",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 5133,
+      "trimmed": true
+    },
+    "c947f90566ce36e1": {
+      "text": "האם זה הוגן?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 5709,
+      "trimmed": true
+    },
+    "770d79caf0927259": {
+      "text": "איפה חילקו שווה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 5229,
+      "trimmed": true
+    },
+    "784921d1d8d2dc36": {
+      "text": "כמה זוגות?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 3981,
+      "trimmed": true
+    },
+    "92118a4338fea279": {
+      "text": "חלוקה שווה וחצי",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 8781,
+      "trimmed": true
+    },
+    "b6709a56a0e15add": {
+      "text": "אפשר לחלק לשניים?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 6765,
+      "trimmed": true
+    },
+    "01375119f92b252b": {
+      "text": "מחלקים לשני ילדים",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 9837,
+      "trimmed": true
+    },
+    "9ed1256708a9ef36": {
+      "text": ", כי",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 3789,
+      "trimmed": true
+    },
+    "cf4ec84a517ca731": {
+      "text": "מחלקים לשלושה ילדים",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 9069,
+      "trimmed": true
+    },
+    "7e71430371480b3d": {
+      "text": "דגים?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 3309,
+      "trimmed": true
+    },
+    "a09c3473f44a917a": {
+      "text": "ולשני",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 4269,
+      "trimmed": true
+    },
+    "1dde5861936c6746": {
+      "text": "איפה צבוע חצי מהפס?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 9165,
+      "trimmed": true
+    },
+    "f07bf119b4f63f3e": {
+      "text": "איפה צבוע חצי מהעוגה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 9165,
+      "trimmed": true
+    },
+    "494fff00160913a8": {
+      "text": "חצי בלי תמונה",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 6861,
+      "trimmed": true
+    },
+    "5454464a774e5743": {
+      "text": "זוגות.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 3789,
+      "trimmed": true
+    },
+    "56ef615e01734349": {
+      "text": "תפוחים?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 3597,
+      "trimmed": true
+    },
+    "a562f376b1d29e1f": {
+      "text": "פרפרים?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 3981,
+      "trimmed": true
+    },
+    "85420b7f391a7c1a": {
+      "text": "כוכבים?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 3693,
+      "trimmed": true
+    },
+    "b0024b1d0d6e6131": {
+      "text": "דבורים?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 3501,
+      "trimmed": true
+    },
+    "73b5031faae9f5ea": {
+      "text": "מה חצי",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 4941,
+      "trimmed": true
+    },
+    "4fa0633b26b2fabd": {
+      "text": "עוגיות?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 3693,
+      "trimmed": true
+    },
+    "914ffca944b34cab": {
+      "text": "סוכריות?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 4365,
+      "trimmed": true
+    },
+    "9f70f7e014afbf84": {
+      "text": "בלונים?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 3693,
+      "trimmed": true
+    },
+    "27ddc894668b5ba5": {
+      "text": "אפשר לחלק",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 5613,
+      "trimmed": true
+    },
+    "0816a7fec582cf2e": {
+      "text": "מה חצי מעשר?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 6765,
+      "trimmed": true
+    },
+    "741686b5ebc40255": {
+      "text": "מה חצי משש?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 5805,
+      "trimmed": true
+    },
+    "31d46de14683623b": {
+      "text": ": כל אחד מקבל",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 5613,
+      "trimmed": true
+    },
+    "c1a63043cbce3dcf": {
+      "text": ": חלוקה שווה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 5037,
+      "trimmed": true
+    },
+    "92312545cd7367f1": {
+      "text": "כמה זה חצי",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 5997,
+      "trimmed": true
+    },
+    "02c890202e51ca18": {
+      "text": ": כל ילד מקבל",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 6189,
+      "trimmed": true
+    },
+    "557f8534f500d173": {
+      "text": ". זה לא שווה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 4173,
+      "trimmed": true
+    },
+    "76b7f6bd3423c34e": {
+      "text": "מה חצי מארבע?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 6285,
+      "trimmed": true
+    },
+    "e0d1f31f4aabb093": {
+      "text": "מה חצי משתיים?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 6765,
+      "trimmed": true
+    },
+    "4a67241514e9ab28": {
+      "text": "מה חצי משמונה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 6189,
+      "trimmed": true
+    },
+    "40d8e444c099704d": {
+      "text": "כאן יש לכל ילד",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 10125,
+      "trimmed": true
+    },
+    "88fc4b092b770718": {
+      "text": "דנה ונועם מחלקים",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 9645,
+      "trimmed": true
+    },
+    "c8847bcbfdad7d07": {
+      "text": "נועם ודנה מחלקים",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 9645,
+      "trimmed": true
+    },
+    "8c6794507d378209": {
+      "text": "כאן לילד אחד יש",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 11469,
+      "trimmed": true
+    },
+    "b3a6f0cf44fe3910": {
+      "text": "סבתא וסבא מחלקים",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 9645,
+      "trimmed": true
+    },
+    "070b05a9b4572f7e": {
+      "text": "סבא וסבתא מחלקים",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 7533,
+      "trimmed": true
+    },
+    "0dbeabf360050319": {
+      "text": "תפוחים. זה הוגן.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 7917,
+      "trimmed": true
+    },
+    "0608d13451e3d253": {
+      "text": "בלונים. זה הוגן.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 7629,
+      "trimmed": true
+    },
+    "341da683529983ec": {
+      "text": "דבורים. זה הוגן.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 7917,
+      "trimmed": true
+    },
+    "c89a8bd8f7fee142": {
+      "text": "יובל ומאיה מחלקים",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 9837,
+      "trimmed": true
+    },
+    "d546e171ca372f38": {
+      "text": "בלונים, ולדנה יש",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 13677,
+      "trimmed": true
+    },
+    "b9844a9fdd223554": {
+      "text": "בלונים, ולמאיה יש",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 14541,
+      "trimmed": true
+    },
+    "f840d7d985665beb": {
+      "text": "מאיה ויובל מחלקים",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 11373,
+      "trimmed": true
+    },
+    "9895e6b2f02b4cd8": {
+      "text": "תפוחים, ולנועם יש",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 12621,
+      "trimmed": true
+    },
+    "08f174e0ec3d7bf3": {
+      "text": "שש זה שלוש זוגות.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 10221,
+      "trimmed": true
+    },
+    "e4cb3d0ed5bec051": {
+      "text": "דבורים, ולסבתא יש",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 13869,
+      "trimmed": true
+    },
+    "de1ef156e8b92ee2": {
+      "text": "עשר זה חמש זוגות.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 9453,
+      "trimmed": true
+    },
+    "26b928f088e01606": {
+      "text": "בלונים. זה לא הוגן.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 10413,
+      "trimmed": true
+    },
+    "f3e7d7131b696d32": {
+      "text": "שלושה ילדים מחלקים",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 9261,
+      "trimmed": true
+    },
+    "269fde954952839c": {
+      "text": "דבורים. זה לא הוגן.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 9837,
+      "trimmed": true
+    },
+    "8245b14d526e16a4": {
+      "text": "שתיים זה אחת זוגות.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 12141,
+      "trimmed": true
+    },
+    "5e2b8e6bceb0710b": {
+      "text": "לשניהם יש אותו מספר:",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 9069,
+      "trimmed": true
+    },
+    "15485b8fa81a3b45": {
+      "text": "ארבע זה שתיים זוגות.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 10029,
+      "trimmed": true
+    },
+    "a8aaf14a85eacc7d": {
+      "text": "שמונה זה ארבע זוגות.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 9741,
+      "trimmed": true
+    },
+    "d3612af9641ab5da": {
+      "text": "כפפות. כמה זוגות יש?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 10413,
+      "trimmed": true
+    },
+    "4e44914e39e389ca": {
+      "text": "נעליים. כמה זוגות יש?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 11085,
+      "trimmed": true
+    },
+    "87f7de79f5b05f1c": {
+      "text": ": אפשר, ולא נשאר כלום.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 10701,
+      "trimmed": true
+    },
+    "e1da49b6b7e436bf": {
+      "text": "גרביים. כמה זוגות יש?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 10509,
+      "trimmed": true
+    },
+    "0a54d8c8673d8350": {
+      "text": "כמה זה חצי משתי עוגיות?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 9549,
+      "trimmed": true
+    },
+    "defc308b1d28233d": {
+      "text": "כמה זה חצי משני תפוחים?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 9933,
+      "trimmed": true
+    },
+    "4ddddd1d23ee2608": {
+      "text": "כמה זה חצי משמונה דגים?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 9261,
+      "trimmed": true
+    },
+    "e6059820bf32f148": {
+      "text": "כמה זה חצי מעשר עוגיות?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 11085,
+      "trimmed": true
+    },
+    "663a165f05a61c6d": {
+      "text": "למשל, שש זה שלוש זוגות.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 13581,
+      "trimmed": true
+    },
+    "6b74d18d247877a6": {
+      "text": "כמה זה חצי מארבע דבורים?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 13293,
+      "trimmed": true
+    },
+    "25f25dd997735778": {
+      "text": "כמה זה חצי משישה בלונים?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 10125,
+      "trimmed": true
+    },
+    "a04e11209cc3e4cb": {
+      "text": "כמה זה חצי משישה פרפרים?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 11469,
+      "trimmed": true
+    },
+    "09b042a08dcfdba7": {
+      "text": "כמה זה חצי מעשרה תפוחים?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 10893,
+      "trimmed": true
+    },
+    "f3a0cc459c3ed768": {
+      "text": "באיזה פס צבוע בדיוק חצי?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 12237,
+      "trimmed": true
+    },
+    "ab3dd0df62cf559e": {
+      "text": "תפוחים. האם החלוקה הוגנת?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 12429,
+      "trimmed": true
+    },
+    "fd6a699fc90440eb": {
+      "text": "בלונים. האם החלוקה הוגנת?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 12429,
+      "trimmed": true
+    },
+    "c96b7106ed54004a": {
+      "text": "כמה זה חצי מארבעה כוכבים?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 10509,
+      "trimmed": true
+    },
+    "423e1885beb93c00": {
+      "text": "דבורים. האם החלוקה הוגנת?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 13101,
+      "trimmed": true
+    },
+    "fc8590758b6c788e": {
+      "text": "כמה זה חצי משמונה סוכריות?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 11085,
+      "trimmed": true
+    },
+    "8d4ea21d8ce613f0": {
+      "text": ", ונשאר עוד אחד: אי אפשר.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 13293,
+      "trimmed": true
+    },
+    "f8114f3e3de1c862": {
+      "text": "למשל, שמונה זה ארבע זוגות.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 13005,
+      "trimmed": true
+    },
+    "39347f8445ed3643": {
+      "text": "באיזו עוגה צבוע בדיוק חצי?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 13293,
+      "trimmed": true
+    },
+    "075212814ffda9d8": {
+      "text": "יש שתי כפפות. כמה זוגות יש?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 13773,
+      "trimmed": true
+    },
+    "d66c819f79f23b1f": {
+      "text": "יש שש נעליים. כמה זוגות יש?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 15117,
+      "trimmed": true
+    },
+    "ba317a7fb9020dda": {
+      "text": "יש שני גרביים. כמה זוגות יש?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 15597,
+      "trimmed": true
+    },
+    "929f6e7945eba81a": {
+      "text": "יש עשר כפפות. כמה זוגות יש?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 15213,
+      "trimmed": true
+    },
+    "4519ebedee979905": {
+      "text": "יש ארבע כפפות. כמה זוגות יש?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 14349,
+      "trimmed": true
+    },
+    "10cb04491657c0bf": {
+      "text": "יש עשר נעליים. כמה זוגות יש?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 16173,
+      "trimmed": true
+    },
+    "839b0782ae9ad13d": {
+      "text": "יש ארבע נעליים. כמה זוגות יש?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 13485,
+      "trimmed": true
+    },
+    "fca6d36dc4f1f309": {
+      "text": "יש שמונה כפפות. כמה זוגות יש?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 14925,
+      "trimmed": true
+    },
+    "67bbddfe2c268c93": {
+      "text": "יש שישה גרביים. כמה זוגות יש?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 14925,
+      "trimmed": true
+    },
+    "ee76d1810eec17c4": {
+      "text": "כאן יש לכל ילד חמש: חלוקה שווה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 13389,
+      "trimmed": true
+    },
+    "0edbc04d8ab03cce": {
+      "text": "כאן יש לכל ילד שלוש: חלוקה שווה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 15021,
+      "trimmed": true
+    },
+    "f0d69ee9ea07e0a5": {
+      "text": "כאן יש לכל ילד ארבע: חלוקה שווה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 16077,
+      "trimmed": true
+    },
+    "f9ef3d5e6307a4b3": {
+      "text": "יש שמונה גרביים. כמה זוגות יש?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 18669,
+      "trimmed": true
+    },
+    "c6aad929ff84fd16": {
+      "text": "כאן יש לכל ילד שתיים: חלוקה שווה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 13869,
+      "trimmed": true
+    },
+    "edb92ddcdb723729": {
+      "text": "חלקים. חצי זה אחד משני חלקים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 20109,
+      "trimmed": true
+    },
+    "1a38ac1dc429a995": {
+      "text": "הנה החלוקה בציור. כמה יש בכל שורה?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 14157,
+      "trimmed": true
+    },
+    "9ff7379db49a4122": {
+      "text": "נשים אחד מול אחד. נשאר מישהו בלי זוג?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 14541,
+      "trimmed": true
+    },
+    "8bb16dfc6a0c8592": {
+      "text": "דגים שווה בשווה. כמה דגים יקבל כל ילד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 15981,
+      "trimmed": true
+    },
+    "f11e1db02ec902ec": {
+      "text": "דגים שווה בשווה. כמה דגים יקבל כל אחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 16941,
+      "trimmed": true
+    },
+    "2ecf1c6c2294badd": {
+      "text": "למשל, כאן יש לכל ילד ארבע: חלוקה שווה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 17997,
+      "trimmed": true
+    },
+    "7ec8bc5fca814ee1": {
+      "text": "למשל, כאן יש לכל ילד שלוש: חלוקה שווה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 18477,
+      "trimmed": true
+    },
+    "c19b81836883a969": {
+      "text": "חמש ועוד חמש זה עשר: כל אחד מקבל חמש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 25389,
+      "trimmed": true
+    },
+    "8200fc2302cf82a1": {
+      "text": "אחת ועוד אחת זה שתיים: כל אחד מקבל אחת.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 21453,
+      "trimmed": true
+    },
+    "626d90c01cd69452": {
+      "text": "שלוש ועוד שלוש זה שש: כל אחד מקבל שלוש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22125,
+      "trimmed": true
+    },
+    "a7a7f515ad075f77": {
+      "text": "לשניהם יש אותו מספר: תפוח אחד. זה הוגן.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 18285,
+      "trimmed": true
+    },
+    "725c5988e743d19d": {
+      "text": "חצי מעשר זה חמש, כי חמש ועוד חמש זה עשר.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 19725,
+      "trimmed": true
+    },
+    "0cebda96c4192fe5": {
+      "text": "לשניהם יש אותו מספר: שני תפוחים. זה הוגן.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 18669,
+      "trimmed": true
+    },
+    "0d2809ea4f97e45e": {
+      "text": "חלוקה הוגנת: לכל ילד יש אותו מספר בדיוק.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 21165,
+      "trimmed": true
+    },
+    "aa7c36638dbdb07c": {
+      "text": "נספור שוב: האם לשניהם יש בדיוק אותו מספר?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 19245,
+      "trimmed": true
+    },
+    "c3884e0f09855d5a": {
+      "text": "בלונים שווה בשווה. כמה בלונים יקבל כל אחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 18669,
+      "trimmed": true
+    },
+    "d3acbfd16e6e649d": {
+      "text": "עשר זה חמש ועוד חמש: אפשר, ולא נשאר כלום.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 23853,
+      "trimmed": true
+    },
+    "633dce69c01e83b9": {
+      "text": "כאן יש שישה חלקים. חצי זה אחד משני חלקים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22221,
+      "trimmed": true
+    },
+    "aa3caf7a96d18095": {
+      "text": "חצי משש זה שלוש, כי שלוש ועוד שלוש זה שש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 20781,
+      "trimmed": true
+    },
+    "b34af2f4140e0a46": {
+      "text": "תפוחים שווה בשווה. כמה תפוחים יקבל כל אחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 16941,
+      "trimmed": true
+    },
+    "2cda43a9f78d2214": {
+      "text": "עוגיות שווה בשווה. כמה עוגיות יקבל כל אחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 17709,
+      "trimmed": true
+    },
+    "09bfe23790c5ca88": {
+      "text": "כוכבים שווה בשווה. כמה כוכבים יקבל כל אחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 19917,
+      "trimmed": true
+    },
+    "937267ac0bf7c716": {
+      "text": "ארבע ועוד ארבע זה שמונה: כל אחד מקבל ארבע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 17613,
+      "trimmed": true
+    },
+    "204ca7d3f86a4b7f": {
+      "text": "עוגיות שווה בשווה. כמה עוגיות יקבל כל ילד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 17133,
+      "trimmed": true
+    },
+    "545b19d128c46e36": {
+      "text": "פרפרים שווה בשווה. כמה פרפרים יקבל כל אחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 18861,
+      "trimmed": true
+    },
+    "77a118bdd3d7da77": {
+      "text": "דבורים שווה בשווה. כמה דבורים יקבל כל אחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 19725,
+      "trimmed": true
+    },
+    "504ca0192a067409": {
+      "text": "בלונים שווה בשווה. כמה בלונים יקבל כל ילד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 19053,
+      "trimmed": true
+    },
+    "2b4c6588434f36e8": {
+      "text": "כוכבים שווה בשווה. כמה כוכבים יקבל כל ילד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 20205,
+      "trimmed": true
+    },
+    "74a95d382e6220b2": {
+      "text": "פרפרים שווה בשווה. כמה פרפרים יקבל כל ילד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 17517,
+      "trimmed": true
+    },
+    "bc81ffc1450b5af0": {
+      "text": "תפוחים שווה בשווה. כמה תפוחים יקבל כל ילד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 16941,
+      "trimmed": true
+    },
+    "eb6a9b51294f8d27": {
+      "text": "לשניהם יש אותו מספר: שבעה תפוחים. זה הוגן.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 18573,
+      "trimmed": true
+    },
+    "258438909790d342": {
+      "text": "לשניהם יש אותו מספר: שישה תפוחים. זה הוגן.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 19149,
+      "trimmed": true
+    },
+    "6ae84bf23bda226c": {
+      "text": "שש זה שלוש ועוד שלוש: אפשר, ולא נשאר כלום.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 23181,
+      "trimmed": true
+    },
+    "3d862479e85d4298": {
+      "text": "כאן לילד אחד יש אחת ולשני חמש. זה לא שווה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 24717,
+      "trimmed": true
+    },
+    "ea9b8996bcaa61c2": {
+      "text": "כאן לילד אחד יש שש ולשני ארבע. זה לא שווה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22989,
+      "trimmed": true
+    },
+    "617b0bf5516c43c8": {
+      "text": "כאן יש שני חלקים שווים, ואחד צבוע: זה חצי.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 18957,
+      "trimmed": true
+    },
+    "60135868f148df2e": {
+      "text": "כאן יש שלושה חלקים. חצי זה אחד משני חלקים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 21549,
+      "trimmed": true
+    },
+    "92f9856c7c2ba27e": {
+      "text": "כאן יש ארבעה חלקים. חצי זה אחד משני חלקים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 25677,
+      "trimmed": true
+    },
+    "e36059b82d46a7a7": {
+      "text": "לשניהם יש אותו מספר: שלושה תפוחים. זה הוגן.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 21069,
+      "trimmed": true
+    },
+    "33e4b70d4a90cb0e": {
+      "text": "כאן יש חמישה חלקים. חצי זה אחד משני חלקים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 20685,
+      "trimmed": true
+    },
+    "a5e6d5f386769644": {
+      "text": "לשניהם יש אותו מספר: חמישה תפוחים. זה הוגן.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 19437,
+      "trimmed": true
+    },
+    "02b976503f296666": {
+      "text": "כאן לילד אחד יש שלוש ולשני אחת. זה לא שווה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22317,
+      "trimmed": true
+    },
+    "336cc300e8cf6345": {
+      "text": "כאן לילד אחד יש אחת ולשני שלוש. זה לא שווה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 21837,
+      "trimmed": true
+    },
+    "9c3f5fea71f4abc8": {
+      "text": "כאן לילד אחד יש חמש ולשני שלוש. זה לא שווה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 20973,
+      "trimmed": true
+    },
+    "bbf7f43d57e31704": {
+      "text": "לשניהם יש אותו מספר: ארבעה תפוחים. זה הוגן.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 19629,
+      "trimmed": true
+    },
+    "c01bd77b28fdb7c6": {
+      "text": "סוכריות שווה בשווה. כמה סוכריות יקבל כל אחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 17805,
+      "trimmed": true
+    },
+    "0defa66ec1cd06ca": {
+      "text": "כאן לילד אחד יש שתיים ולשני שש. זה לא שווה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 20685,
+      "trimmed": true
+    },
+    "8b2b2f1cd5408ad1": {
+      "text": "שתיים ועוד שתיים זה ארבע: כל אחד מקבל שתיים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 17613,
+      "trimmed": true
+    },
+    "6f6e99171a20dc4b": {
+      "text": "איפה חילקו את הפרפרים שווה בשווה לשני ילדים?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 16365,
+      "trimmed": true
+    },
+    "ba98898dec9ed3fd": {
+      "text": "שתיים זה אחת ועוד אחת: אפשר, ולא נשאר כלום.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 23181,
+      "trimmed": true
+    },
+    "a1e38802eee950db": {
+      "text": "כאן לילד אחד יש שלוש ולשני שבע. זה לא שווה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 18765,
+      "trimmed": true
+    },
+    "d8945d9f137cf747": {
+      "text": "איפה חילקו את הכוכבים שווה בשווה לשני ילדים?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 16845,
+      "trimmed": true
+    },
+    "a65e815159e87ff3": {
+      "text": "איפה חילקו את התפוחים שווה בשווה לשני ילדים?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 14541,
+      "trimmed": true
+    },
+    "a18c15fd9223c3ea": {
+      "text": "איפה חילקו את הסוכריות שווה בשווה לשני ילדים?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 16365,
+      "trimmed": true
+    },
+    "7ad6df13723f7184": {
+      "text": "חצי משתיים זה אחת, כי אחת ועוד אחת זה שתיים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 20109,
+      "trimmed": true
+    },
+    "067ba68e60244933": {
+      "text": "כאן לילד אחד יש ארבע ולשני שתיים. זה לא שווה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 18861,
+      "trimmed": true
+    },
+    "2401a742b2433afb": {
+      "text": "למשל, שלוש ועוד שלוש זה שש: כל אחד מקבל שלוש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 21357,
+      "trimmed": true
+    },
+    "2afc7d82ab08a5b9": {
+      "text": "שמונה זה ארבע ועוד ארבע: אפשר, ולא נשאר כלום.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 20493,
+      "trimmed": true
+    },
+    "88b0d8f58c6cd5e0": {
+      "text": "חצי זה אחד משני חלקים שווים. נחלק לשני ילדים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 23469,
+      "trimmed": true
+    },
+    "8ae4b800e0435a48": {
+      "text": "שלוש זה אחת ועוד אחת, ונשאר עוד אחד: אי אפשר.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22413,
+      "trimmed": true
+    },
+    "2780db562695f0a5": {
+      "text": "ארבע זה שתיים ועוד שתיים: אפשר, ולא נשאר כלום.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 17709,
+      "trimmed": true
+    },
+    "43fc0b5053c5b0b3": {
+      "text": "זה המספר של כולם ביחד. כל ילד מקבל רק חלק מהם.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22605,
+      "trimmed": true
+    },
+    "8a92efb0c201bd89": {
+      "text": "תשע זה ארבע ועוד ארבע, ונשאר עוד אחד: אי אפשר.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 20397,
+      "trimmed": true
+    },
+    "4cc405594807f3f6": {
+      "text": "שבע זה שלוש ועוד שלוש, ונשאר עוד אחד: אי אפשר.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 26157,
+      "trimmed": true
+    },
+    "ef6bc331f92b5178": {
+      "text": "חצי משמונה זה ארבע, כי ארבע ועוד ארבע זה שמונה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22029,
+      "trimmed": true
+    },
+    "a1dbf2f74fa879ce": {
+      "text": "אחת ועוד אחת ועוד אחת זה שלוש: כל ילד מקבל אחת.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 26541,
+      "trimmed": true
+    },
+    "ba1d18c7af7d5b2d": {
+      "text": "למשל, חצי משש זה שלוש, כי שלוש ועוד שלוש זה שש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 26253,
+      "trimmed": true
+    },
+    "26d6dd5708b15a98": {
+      "text": "דגים לשני ילדים, שווה בשווה, בלי שיישאר אף אחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 20397,
+      "trimmed": true
+    },
+    "a6c58eb0c36722bd": {
+      "text": "למשל, ארבע ועוד ארבע זה שמונה: כל אחד מקבל ארבע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 20205,
+      "trimmed": true
+    },
+    "8bd79da7e985d8e8": {
+      "text": "חצי מארבע זה שתיים, כי שתיים ועוד שתיים זה ארבע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 18093,
+      "trimmed": true
+    },
+    "06a5c3e057231841": {
+      "text": "חצי: מחלקים לשני חלקים שווים, וצובעים אחד מהם.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22509,
+      "trimmed": true
+    },
+    "8c7d913410e44753": {
+      "text": "למשל, לשניהם יש אותו מספר: שלוש דבורים. זה הוגן.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 20877,
+      "trimmed": true
+    },
+    "d83c0b8a0787b7b0": {
+      "text": "למשל, לשניהם יש אותו מספר: שלושה תפוחים. זה הוגן.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22221,
+      "trimmed": true
+    },
+    "dcf74890342edaff": {
+      "text": "חמש זה שתיים ועוד שתיים, ונשאר עוד אחד: אי אפשר.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 25293,
+      "trimmed": true
+    },
+    "dbbcaadf851b5c89": {
+      "text": "למשל, שש זה שלוש ועוד שלוש: אפשר, ולא נשאר כלום.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 27597,
+      "trimmed": true
+    },
+    "7d9c955afd6ebaf1": {
+      "text": "למשל, לשניהם יש אותו מספר: שלושה בלונים. זה הוגן.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 23853,
+      "trimmed": true
+    },
+    "58572b3505bb530d": {
+      "text": "למשל, כאן יש שני חלקים שווים, ואחד צבוע: זה חצי.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 24525,
+      "trimmed": true
+    },
+    "71a5e498d098418b": {
+      "text": "למשל, לשניהם יש אותו מספר: ארבעה בלונים. זה הוגן.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 23373,
+      "trimmed": true
+    },
+    "add736ed7a80ea45": {
+      "text": "בלונים לשני ילדים, שווה בשווה, בלי שיישאר אף אחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22029,
+      "trimmed": true
+    },
+    "276c542cfca38d65": {
+      "text": "למשל, לשניהם יש אותו מספר: ארבעה תפוחים. זה הוגן.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22221,
+      "trimmed": true
+    },
+    "ba61badfe38bfb49": {
+      "text": "דבורים לשני ילדים, שווה בשווה, בלי שיישאר אף אחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 21165,
+      "trimmed": true
+    },
+    "1780d3767ce6c847": {
+      "text": "כוכבים לשני ילדים, שווה בשווה, בלי שיישאר אף אחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22317,
+      "trimmed": true
+    },
+    "7302de652805ecc1": {
+      "text": "פרפרים לשני ילדים, שווה בשווה, בלי שיישאר אף אחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 20109,
+      "trimmed": true
+    },
+    "2f548e5b22c215cd": {
+      "text": "עוגיות לשני ילדים, שווה בשווה, בלי שיישאר אף אחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22317,
+      "trimmed": true
+    },
+    "8e507622df5b921a": {
+      "text": "תפוחים לשני ילדים, שווה בשווה, בלי שיישאר אף אחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 21741,
+      "trimmed": true
+    },
+    "eeb3eea02c3c8a5e": {
+      "text": "אחת עשרה זה חמש ועוד חמש, ונשאר עוד אחד: אי אפשר.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "sent": "אַחַת עֶשְׂרֵה זה חמש ועוד חמש, ונשאר עוד אחד: אי אפשר.",
+      "bytes": 24813,
+      "trimmed": true
+    },
+    "2928270de9c8b1a8": {
+      "text": "סוכריות לשני ילדים, שווה בשווה, בלי שיישאר אף אחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22605,
+      "trimmed": true
+    },
+    "53a4807e25a5333e": {
+      "text": "לנועם יש בלון אחד, ולדנה יש שני בלונים. זה לא הוגן.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 28077,
+      "trimmed": true
+    },
+    "68ed2c2008045b3c": {
+      "text": "לנועם יש שתי דבורים, ולדנה יש דבורה אחת. זה לא הוגן.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 23277,
+      "trimmed": true
+    },
+    "27daff72b1b0adb3": {
+      "text": "שלוש ועוד שלוש ועוד שלוש זה תשע: כל ילד מקבל שלוש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 31533,
+      "trimmed": true
+    },
+    "e8619b2b7977bb7b": {
+      "text": "נחלק אחד לכל ילד, שוב ושוב. נשאר בסוף אחד בלי זוג?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 23469,
+      "trimmed": true
+    },
+    "f241cd963cec8526": {
+      "text": "לסבא יש שש דבורים, ולסבתא יש חמש דבורים. זה לא הוגן.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 22125,
+      "trimmed": true
+    },
+    "71572dbe38665297": {
+      "text": "למשל, ארבע זה שתיים ועוד שתיים: אפשר, ולא נשאר כלום.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 23661,
+      "trimmed": true
+    },
+    "beabe65f40280b76": {
+      "text": "שתיים ועוד שתיים ועוד שתיים זה שש: כל ילד מקבל שתיים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 34029,
+      "trimmed": true
+    },
+    "c82e7511eedc6489": {
+      "text": "למשל, חצי משמונה זה ארבע, כי ארבע ועוד ארבע זה שמונה.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 24141,
+      "trimmed": true
+    },
+    "de601251d37ec384": {
+      "text": "למאיה יש תפוח אחד, ולסבא יש תפוח אחד. האם החלוקה הוגנת?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 28173,
+      "trimmed": true
+    },
+    "7b0850b57f234f81": {
+      "text": "למשל, שלוש ועוד שלוש ועוד שלוש זה תשע: כל ילד מקבל שלוש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 29517,
+      "trimmed": true
+    },
+    "2636dac59d22cdba": {
+      "text": "ליובל יש ארבע דבורים, ולמאיה יש שלוש דבורים. זה לא הוגן.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 24429,
+      "trimmed": true
+    },
+    "c06d8e8ec8892fb4": {
+      "text": "לסבא יש חמישה בלונים, ולסבתא יש שישה בלונים. זה לא הוגן.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 24333,
+      "trimmed": true
+    },
+    "102fc6f346d2b894": {
+      "text": "לנועם יש שבעה בלונים, ולדנה יש שמונה בלונים. זה לא הוגן.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 27405,
+      "trimmed": true
+    },
+    "2c30d32f4b8b3e85": {
+      "text": "לנועם יש שתי דבורים, ולדנה יש דבורה אחת. האם החלוקה הוגנת?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 27117,
+      "trimmed": true
+    },
+    "c1cbeac699e6ffb1": {
+      "text": "ליובל יש שלושה בלונים, ולמאיה יש ארבעה בלונים. זה לא הוגן.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 23949,
+      "trimmed": true
+    },
+    "007c4e35fb7e17d4": {
+      "text": "לנועם יש בלון אחד, ולדנה יש שני בלונים. האם החלוקה הוגנת?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 30285,
+      "trimmed": true
+    },
+    "03802262409f7409": {
+      "text": "זוג זה שניים. נעשה עיגול סביב כל שניים, ונספור את העיגולים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 24141,
+      "trimmed": true
+    },
+    "b428380d36f76a9e": {
+      "text": "לסבא יש שש דבורים, ולסבתא יש חמש דבורים. האם החלוקה הוגנת?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 29325,
+      "trimmed": true
+    },
+    "689c7dfcc92104bb": {
+      "text": "למשל, שתיים ועוד שתיים ועוד שתיים זה שש: כל ילד מקבל שתיים.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 27789,
+      "trimmed": true
+    },
+    "4d2baf803eb4d64c": {
+      "text": "נועם ודנה מחלקים שישה דגים שווה בשווה. כמה דגים יקבל כל אחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 28749,
+      "trimmed": true
+    },
+    "26dfd43595fb1a75": {
+      "text": "לסבתא יש שני תפוחים, ולנועם יש שני תפוחים. האם החלוקה הוגנת?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 26445,
+      "trimmed": true
+    },
+    "dc491cd502f943d0": {
+      "text": "לדנה יש שישה תפוחים, וליובל יש שישה תפוחים. האם החלוקה הוגנת?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 26157,
+      "trimmed": true
+    },
+    "9b872e215baf0417": {
+      "text": "נספור בכל ציור לכמה חלקים הוא מחולק. איפה יש בדיוק שני חלקים?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 27597,
+      "trimmed": true
+    },
+    "053e2d2b34da47be": {
+      "text": "למאיה יש שבעה תפוחים, ולסבא יש שבעה תפוחים. האם החלוקה הוגנת?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 31437,
+      "trimmed": true
+    },
+    "f764db9245dbaa8f": {
+      "text": "ליובל יש ארבע דבורים, ולמאיה יש שלוש דבורים. האם החלוקה הוגנת?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 26253,
+      "trimmed": true
+    },
+    "d76d99d4a840e1b5": {
+      "text": "שלושה ילדים מחלקים תשעה דגים שווה בשווה. כמה דגים יקבל כל ילד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 28077,
+      "trimmed": true
+    },
+    "015f3a8d1a1a2288": {
+      "text": "לסבא יש חמישה בלונים, ולסבתא יש שישה בלונים. האם החלוקה הוגנת?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 28077,
+      "trimmed": true
+    },
+    "c28430c557d0a6e1": {
+      "text": "אפשר לחלק תשעה דגים לשני ילדים, שווה בשווה, בלי שיישאר אף אחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 24429,
+      "trimmed": true
+    },
+    "a5fb37b999900ac2": {
+      "text": "לנועם יש שבעה בלונים, ולדנה יש שמונה בלונים. האם החלוקה הוגנת?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 28749,
+      "trimmed": true
+    },
+    "a7dd64d71036cd8e": {
+      "text": "סבתא וסבא מחלקים שני פרפרים שווה בשווה. כמה פרפרים יקבל כל אחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 25293,
+      "trimmed": true
+    },
+    "fed40144109d6f24": {
+      "text": "סבא וסבתא מחלקים שתי דבורים שווה בשווה. כמה דבורים יקבל כל אחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 23949,
+      "trimmed": true
+    },
+    "4a193002ada7a67b": {
+      "text": "לדנה יש שלושה תפוחים, וליובל יש שלושה תפוחים. האם החלוקה הוגנת?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 27597,
+      "trimmed": true
+    },
+    "da3429a3069313f0": {
+      "text": "למאיה יש ארבעה תפוחים, ולסבא יש ארבעה תפוחים. האם החלוקה הוגנת?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 30957,
+      "trimmed": true
+    },
+    "487d11a9712297e2": {
+      "text": "אפשר לחלק חמש דבורים לשני ילדים, שווה בשווה, בלי שיישאר אף אחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 23085,
+      "trimmed": true
+    },
+    "5ec973ed1f1ad275": {
+      "text": "יובל ומאיה מחלקים עשר דבורים שווה בשווה. כמה דבורים יקבל כל אחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 27021,
+      "trimmed": true
+    },
+    "91c72d015c6a6f8c": {
+      "text": "אפשר לחלק שבע עוגיות לשני ילדים, שווה בשווה, בלי שיישאר אף אחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 28173,
+      "trimmed": true
+    },
+    "b54dffdf9d1a3524": {
+      "text": "דנה ונועם מחלקים עשרה פרפרים שווה בשווה. כמה פרפרים יקבל כל אחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 25773,
+      "trimmed": true
+    },
+    "d66f4d707f228b55": {
+      "text": "ליובל יש שלושה בלונים, ולמאיה יש ארבעה בלונים. האם החלוקה הוגנת?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 30093,
+      "trimmed": true
+    },
+    "4f4fdf22f5754fbd": {
+      "text": "לסבתא יש חמישה תפוחים, ולנועם יש חמישה תפוחים. האם החלוקה הוגנת?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 30189,
+      "trimmed": true
+    },
+    "868e963e35194f6e": {
+      "text": "אפשר לחלק שישה כוכבים לשני ילדים, שווה בשווה, בלי שיישאר אף אחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 25677,
+      "trimmed": true
+    },
+    "6355a20b5aba8cb3": {
+      "text": "אפשר לחלק שתי סוכריות לשני ילדים, שווה בשווה, בלי שיישאר אף אחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 25773,
+      "trimmed": true
+    },
+    "ecbc093b02405139": {
+      "text": "מאיה ויובל מחלקים שישה תפוחים שווה בשווה. כמה תפוחים יקבל כל אחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 26541,
+      "trimmed": true
+    },
+    "605bd9669dba30ca": {
+      "text": "אפשר לחלק עשר סוכריות לשני ילדים, שווה בשווה, בלי שיישאר אף אחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 27117,
+      "trimmed": true
+    },
+    "46783f3cb2d2501b": {
+      "text": "סבתא וסבא מחלקים שמונה כוכבים שווה בשווה. כמה כוכבים יקבל כל אחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 24525,
+      "trimmed": true
+    },
+    "5e9eb549a5cf1677": {
+      "text": "נחלק כמו במשחק קלפים: אחד לכל ילד, ושוב אחד לכל ילד, עד שלא נשאר.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 29709,
+      "trimmed": true
+    },
+    "b5f94bf69e476cd1": {
+      "text": "אפשר לחלק שלושה בלונים לשני ילדים, שווה בשווה, בלי שיישאר אף אחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 25197,
+      "trimmed": true
+    },
+    "31ad19424fa109a6": {
+      "text": "אפשר לחלק ארבעה פרפרים לשני ילדים, שווה בשווה, בלי שיישאר אף אחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 24909,
+      "trimmed": true
+    },
+    "9e138d53876326bd": {
+      "text": "סבא וסבתא מחלקים שמונה עוגיות שווה בשווה. כמה עוגיות יקבל כל אחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 25197,
+      "trimmed": true
+    },
+    "9eef0cd1f1976e0a": {
+      "text": "אפשר לחלק שמונה תפוחים לשני ילדים, שווה בשווה, בלי שיישאר אף אחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 27981,
+      "trimmed": true
+    },
+    "a819ca85969768f0": {
+      "text": "דנה ונועם מחלקים ארבע סוכריות שווה בשווה. כמה סוכריות יקבל כל אחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 29709,
+      "trimmed": true
+    },
+    "e66745ae7593f5b2": {
+      "text": "שלושה ילדים מחלקים שלוש עוגיות שווה בשווה. כמה עוגיות יקבל כל ילד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 26925,
+      "trimmed": true
+    },
+    "624e37bcb64f83b4": {
+      "text": "יובל ומאיה מחלקים ארבעה בלונים שווה בשווה. כמה בלונים יקבל כל אחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 26829,
+      "trimmed": true
+    },
+    "8ebb6f52a9dd323f": {
+      "text": "שלושה ילדים מחלקים שישה פרפרים שווה בשווה. כמה פרפרים יקבל כל ילד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 28269,
+      "trimmed": true
+    },
+    "d5bfcf0fbc2048a1": {
+      "text": "שלושה ילדים מחלקים תשעה תפוחים שווה בשווה. כמה תפוחים יקבל כל ילד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 27213,
+      "trimmed": true
+    },
+    "cecb8dd2f7007536": {
+      "text": "שלושה ילדים מחלקים שלושה כוכבים שווה בשווה. כמה כוכבים יקבל כל ילד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 27501,
+      "trimmed": true
+    },
+    "9985765e60df6c07": {
+      "text": "שלושה ילדים מחלקים שישה בלונים שווה בשווה. כמה בלונים יקבל כל ילד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 29037,
+      "trimmed": true
+    },
+    "d287e1559dbce44b": {
+      "text": "אפשר לחלק אחד עשר בלונים לשני ילדים, שווה בשווה, בלי שיישאר אף אחד?",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 26733,
+      "trimmed": true
     }
   }
 }
