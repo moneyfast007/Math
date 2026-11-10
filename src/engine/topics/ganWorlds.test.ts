@@ -8,6 +8,7 @@ import { measure0 } from './measure0';
 import { time0 } from './time0';
 import { data0 } from './data0';
 import { bonds0 } from './bonds0';
+import { story0 } from './story0';
 import { THINGS, type ThingId } from './ganKit';
 import { sort0 } from './sort0';
 import { space0 } from './space0';
@@ -413,6 +414,47 @@ describe('bonds-0', () => {
   });
 });
 
+describe('story-0', () => {
+  it('getting more adds, giving away takes away, two children together add', () => {
+    for (const level of [1, 2, 7])
+      for (const e of all(story0, level)) {
+        const [a, b] = (/:(\d+),(\d+)$/.exec(e.factId) ?? []).slice(1).map(Number);
+        expect(e.answer, e.factId).toBe((a ?? 0) + (b ?? 0));
+      }
+    for (const level of [3, 4, 8])
+      for (const e of all(story0, level)) {
+        const [a, b] = (/:(\d+),(\d+)$/.exec(e.factId) ?? []).slice(1).map(Number);
+        expect(e.answer, e.factId).toBe((a ?? 0) - (b ?? 0));
+      }
+    for (const e of all(story0, 5)) {
+      const [a, b] = (/:(\d+),(\d+)$/.exec(e.factId) ?? []).slice(1).map(Number);
+      expect(e.answer, e.factId).toBe((a ?? 0) + (b ?? 0));
+    }
+  });
+
+  it('the stories with no picture have none, but show it in a hint', () => {
+    for (const level of [7, 8])
+      for (const e of all(story0, level)) {
+        expect(e.visual, e.factId).toBeUndefined();
+        expect(e.hints[1]?.visual?.type, e.factId).toBe('objects');
+      }
+  });
+
+  it('which exercise: the right one adds for getting, takes away for giving', () => {
+    for (const e of played(story0, 9)) {
+      const label = e.input.type === 'choices' ? e.input.labels?.[e.answer] : undefined;
+      expect(label, e.factId).toMatch(e.factId.includes(':get:') ? /^\d+\+\d+$/ : /^\d+−\d+$/);
+    }
+  });
+
+  it('two steps: what she had, plus what she got, less what she gave', () => {
+    for (const e of all(story0, 10)) {
+      const [a, b, c] = (/two:(\d+),(\d+),(\d+)/.exec(e.factId) ?? []).slice(1).map(Number);
+      expect(e.answer, e.factId).toBe((a ?? 0) + (b ?? 0) - (c ?? 0));
+    }
+  });
+});
+
 describe('the gan journey', () => {
   it('counting and shapes first, then sorting and space, adding and taking away; then to twenty', () => {
     expect(topicsForGrade(0).map((t) => t.id)).toEqual([
@@ -427,6 +469,7 @@ describe('the gan journey', () => {
       'solids-0',
       'data-0',
       'bonds-0',
+      'story-0',
     ]);
   });
 });
