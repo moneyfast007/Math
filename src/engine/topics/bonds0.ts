@@ -185,8 +185,11 @@ const pairsOf = (s: number): Pair[] =>
     .filter((a) => s - a >= 1 && s - a <= 6)
     .map((a): Pair => [a, s - a]);
 
-/** Two wrong pairs, one more and one less than the sum (or two more, at the edge). */
-function wrongPairs(right: Pair, rng: Rng): [Pair, Pair] {
+/**
+ * Two wrong pairs, one more and one less than the sum (or two more, at the edge).
+ * Chosen from the pair itself, not by chance: what is said about each is recorded.
+ */
+function wrongPairs(right: Pair): [Pair, Pair] {
   const s = sum(right);
   const near1 = s - 1 >= 2 ? s - 1 : s + 2;
   const near2 = s + 1 <= 12 ? s + 1 : s - 2;
@@ -194,14 +197,14 @@ function wrongPairs(right: Pair, rng: Rng): [Pair, Pair] {
     // Keep one die of the right pair where it can, so the child has to count, not glance.
     const keep = pairsOf(target).filter((p) => p[0] === right[0] || p[1] === right[1]);
     const from = keep.length > 0 ? keep : pairsOf(target);
-    return from[Math.floor(rng() * from.length)] as Pair;
+    return from[(right[0] + 2 * right[1]) % from.length] as Pair;
   };
   return [pickOne(near1), pickOne(near2)];
 }
 
 function pairQuestion(level: number, right: Pair, rng: Rng): Exercise {
   const s = sum(right);
-  const [w1, w2] = wrongPairs(right, rng);
+  const [w1, w2] = wrongPairs(right);
   const spoken = say('ex.b0.pair.spoken', { t: { n: s, noun: DOT } });
   const ex: Pair = s === 5 ? [3, 3] : [2, 3];
   const advice = (p: Pair, option: number) => ({
@@ -234,12 +237,15 @@ function pairQuestion(level: number, right: Pair, rng: Rng): Exercise {
 type Odd = { t: number; wrong: Pair };
 
 function oddQuestion(level: number, { t: total, wrong }: Odd, rng: Rng): Exercise {
-  // Two pairs that make it, not the same two numbers turned round; each turned by chance.
+  // Two pairs that make it, not the same two numbers turned round. Chosen from the
+  // fact, not by chance: what is said about each is recorded.
   const kinds = pairsOf(total).filter((p) => p[0] <= p[1]);
-  const order = kinds.map((p) => ({ p, k: rng() })).sort((a, b) => a.k - b.k);
-  const turn = (p: Pair): Pair => (rng() < 0.5 ? p : [p[1], p[0]]);
-  const r1 = turn(order[0]?.p ?? [1, total - 1]);
-  const r2 = turn(order[1]?.p ?? [2, total - 2]);
+  const seed = wrong[0] * 3 + wrong[1];
+  const k1 = seed % kinds.length;
+  const k2 = (k1 + 1) % kinds.length;
+  const turn = (p: Pair, flip: boolean): Pair => (flip ? [p[1], p[0]] : p);
+  const r1 = turn(kinds[k1] ?? [1, total - 1], seed % 2 === 0);
+  const r2 = turn(kinds[k2] ?? [2, total - 2], seed % 3 === 0);
   const spoken = say('ex.b0.odd.spoken', { t: { n: total, noun: DOT } });
   const ex: Pair = total === 6 ? [3, 3] : [4, 2];
   const okAdvice = (p: Pair, option: number) => ({
