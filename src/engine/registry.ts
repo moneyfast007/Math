@@ -40,6 +40,7 @@ import { polygons2 } from './topics/polygons2';
 import { percent } from './topics/percent';
 import { percentIntro } from './topics/percentIntro';
 import { ratio } from './topics/ratio';
+import { bonds0 } from './topics/bonds0';
 import { idioms } from './topics/idioms';
 import { map4Fractions, map4Numbers } from './topics/map4';
 import { shapesTopic } from './topics/shapes';
@@ -59,6 +60,7 @@ export const TOPICS: readonly Topic[] = [
   time0,
   solids0,
   data0,
+  bonds0,
   shapesTopic,
   sort0,
   space0,
@@ -123,7 +125,19 @@ export function topicById(id: string): Topic | undefined {
  */
 const ORDER: Partial<Record<Grade, readonly Topic[]>> = {
   // Counting and the shapes first (sorting by shape names them); adding and taking away last.
-  0: [count10, shapesTopic, sort0, space0, addSub20, count20, measure0, time0, solids0, data0],
+  0: [
+    count10,
+    shapesTopic,
+    sort0,
+    space0,
+    addSub20,
+    count20,
+    measure0,
+    time0,
+    solids0,
+    data0,
+    bonds0,
+  ],
   // Patterns after the numbers to 100 they count in; solids beside the flat shapes.
   1: [addSub20, numbers100, patterns1, polygons, solids1, measure1, clockMoney1, data],
   2: [addSub100, numbers1000, moneyTopic, multIntro, clockTopic, polygons2, vertical2, data],

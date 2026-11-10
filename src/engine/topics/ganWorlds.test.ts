@@ -7,6 +7,7 @@ import { count20 } from './count20';
 import { measure0 } from './measure0';
 import { time0 } from './time0';
 import { data0 } from './data0';
+import { bonds0 } from './bonds0';
 import { THINGS, type ThingId } from './ganKit';
 import { sort0 } from './sort0';
 import { space0 } from './space0';
@@ -356,6 +357,62 @@ describe('data-0', () => {
   });
 });
 
+describe('bonds-0', () => {
+  const said = (e: Exercise) => e.spokenText;
+  it('what hides in the box is the whole less what is outside', () => {
+    for (const level of [1, 2])
+      for (const e of all(bonds0, level)) {
+        const [, total, out] = /hide:(\d+)-(\d+)/.exec(e.factId) ?? [];
+        expect(e.answer, e.factId).toBe(Number(total) - Number(out));
+        const things = scene(e.visual).items.filter((i) => i.emoji);
+        expect(things, e.factId).toHaveLength(Number(out));
+      }
+  });
+
+  it('the other hand: the fingers less five', () => {
+    for (const e of all(bonds0, 3)) {
+      const total = Number(/hand:(\d+)/.exec(e.factId)?.[1]);
+      expect(e.answer, e.factId).toBe(total - 5);
+    }
+  });
+
+  it('pairs of dice: the right pair makes the number, the others do not', () => {
+    for (const level of [4, 5])
+      for (const e of played(bonds0, level)) {
+        if (e.input.type !== 'choices' || !e.input.visuals) throw new Error(e.factId);
+        const sums = e.input.visuals.map((v) =>
+          v.type === 'dice' ? (v.dice[0] ?? 0) + (v.dice[1] ?? 0) : -1,
+        );
+        const target = sums[e.answer] ?? -2;
+        expect(
+          sums.filter((s) => s === target),
+          e.factId,
+        ).toHaveLength(1);
+        expect(said(e), e.factId).toContain('נקודות');
+      }
+    for (const e of played(bonds0, 6)) {
+      if (e.input.type !== 'choices' || !e.input.visuals) throw new Error(e.factId);
+      const sums = e.input.visuals.map((v) =>
+        v.type === 'dice' ? (v.dice[0] ?? 0) + (v.dice[1] ?? 0) : -1,
+      );
+      const target = Number(/odd:(\d+)/.exec(e.factId)?.[1]);
+      expect(
+        sums.filter((s) => s === target),
+        e.factId,
+      ).toHaveLength(2);
+      expect(sums[e.answer], e.factId).not.toBe(target);
+    }
+  });
+
+  it('the house and the missing number: the whole less the part', () => {
+    for (const level of [7, 8, 9, 10])
+      for (const e of all(bonds0, level)) {
+        const [, total, part] = /(?:house|miss):(\d+)-(\d+)/.exec(e.factId) ?? [];
+        expect(e.answer, e.factId).toBe(Number(total) - Number(part));
+      }
+  });
+});
+
 describe('the gan journey', () => {
   it('counting and shapes first, then sorting and space, adding and taking away; then to twenty', () => {
     expect(topicsForGrade(0).map((t) => t.id)).toEqual([
@@ -369,6 +426,7 @@ describe('the gan journey', () => {
       'time-0',
       'solids-0',
       'data-0',
+      'bonds-0',
     ]);
   });
 });

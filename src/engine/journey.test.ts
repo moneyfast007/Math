@@ -156,6 +156,7 @@ describe('worlds', () => {
       'time-0',
       'solids-0',
       'data-0',
+      'bonds-0',
     ]);
   });
 
