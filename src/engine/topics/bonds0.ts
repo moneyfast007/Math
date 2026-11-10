@@ -215,7 +215,7 @@ function pairQuestion(level: number, right: Pair, rng: Rng): Exercise {
     {
       topicId: ID,
       level,
-      factId: `pair:${right[0]}+${right[1]}`,
+      factId: `pair:${right[0]},${right[1]}`,
       spoken,
       options: [pairOption(right), pairOption(w1), pairOption(w2)],
       hints: [
@@ -256,7 +256,7 @@ function oddQuestion(level: number, { t: total, wrong }: Odd, rng: Rng): Exercis
     {
       topicId: ID,
       level,
-      factId: `odd:${total}:${wrong[0]}+${wrong[1]}`,
+      factId: `odd:${total}:${wrong[0]},${wrong[1]}`,
       spoken,
       options: [pairOption(wrong), pairOption(r1), pairOption(r2)],
       hints: [
