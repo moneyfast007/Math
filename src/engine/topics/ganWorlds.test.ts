@@ -11,6 +11,7 @@ import { bonds0 } from './bonds0';
 import { story0 } from './story0';
 import { share0 } from './share0';
 import { money0 } from './money0';
+import { week0 } from './week0';
 import { THINGS, type ThingId } from './ganKit';
 import { sort0 } from './sort0';
 import { space0 } from './space0';
@@ -541,6 +542,17 @@ describe('money-0', () => {
   });
 });
 
+describe('week-0', () => {
+  it("grade 1's days and whole hours, filed under this world and its stations", () => {
+    for (let level = 1; level <= 10; level++)
+      for (const e of all(week0, level)) {
+        expect(e.topicId, e.factId).toBe('week-0');
+        expect(e.level, e.factId).toBe(level);
+      }
+    for (const e of all(week0, 7)) expect(e.factId, e.factId).toMatch(/^story:shabbat:/);
+  });
+});
+
 describe('the gan journey', () => {
   it('counting and shapes first, then sorting and space, adding and taking away; then to twenty', () => {
     expect(topicsForGrade(0).map((t) => t.id)).toEqual([
@@ -558,6 +570,7 @@ describe('the gan journey', () => {
       'story-0',
       'share-0',
       'money-0',
+      'week-0',
     ]);
   });
 });

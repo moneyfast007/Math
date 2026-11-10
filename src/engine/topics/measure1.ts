@@ -559,12 +559,12 @@ const week = (mark: number, tag?: string): Visual => ({
   ...(tag ? { tags: [{ day: mod7(mark), text: tag }] } : {}),
 });
 
-type OrderFact = { day: number; dir: 'after' | 'before' };
+export type OrderFact = { day: number; dir: 'after' | 'before' };
 
 const orderFacts = (): OrderFact[] =>
   range(0, 6).flatMap((day) => (['after', 'before'] as const).map((dir) => ({ day, dir })));
 
-function dayOrder(f: OrderFact, rng: Rng, gender: Gender): Exercise {
+export function dayOrder(f: OrderFact, rng: Rng, gender: Gender): Exercise {
   const step = f.dir === 'after' ? 1 : -1;
   const ans = f.day + step;
   const opposite = f.day - step;
@@ -611,7 +611,7 @@ function dayOrder(f: OrderFact, rng: Rng, gender: Gender): Exercise {
 }
 
 type RelKind = 'tomorrow' | 'yesterday' | 'fromTomorrow' | 'fromYesterday';
-type RelFact = { day: number; kind: RelKind };
+export type RelFact = { day: number; kind: RelKind };
 
 /** How far the answer is from the day said, and the tag under that day in the hint's week. */
 const REL: Record<RelKind, { step: number; tag: TranslationKey }> = {
@@ -636,7 +636,7 @@ function relGender(kind: RelKind, day: number, ans: number): Gender {
   return 'm';
 }
 
-function relative(f: RelFact, rng: Rng, gender: Gender): Exercise {
+export function relative(f: RelFact, rng: Rng, gender: Gender): Exercise {
   const { step, tag } = REL[f.kind];
   const ans = f.day + step;
   const { input, answer, order } = dayButtons(rng, ans, [f.day, f.day - step]);
@@ -672,7 +672,7 @@ function relative(f: RelFact, rng: Rng, gender: Gender): Exercise {
 
 /* ---------- Level 10: word problems ---------- */
 
-type StoryFact =
+export type StoryFact =
   | { kind: 'longer'; a: number; b: number; who: number }
   | { kind: 'shorter'; a: number; b: number; who: number }
   | { kind: 'weights'; x: Obj; y: Obj; a: number; b: number }
@@ -786,7 +786,7 @@ function numberStory(
   });
 }
 
-function story(f: StoryFact, rng: Rng, gender: Gender): Exercise {
+export function story(f: StoryFact, rng: Rng, gender: Gender): Exercise {
   if (f.kind === 'longer' || f.kind === 'shorter' || f.kind === 'weights')
     return numberStory(f, rng, gender);
   const person = who(f.who);

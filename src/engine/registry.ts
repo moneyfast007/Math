@@ -44,6 +44,7 @@ import { bonds0 } from './topics/bonds0';
 import { story0 } from './topics/story0';
 import { share0 } from './topics/share0';
 import { money0 } from './topics/money0';
+import { week0 } from './topics/week0';
 import { idioms } from './topics/idioms';
 import { map4Fractions, map4Numbers } from './topics/map4';
 import { shapesTopic } from './topics/shapes';
@@ -67,6 +68,7 @@ export const TOPICS: readonly Topic[] = [
   story0,
   share0,
   money0,
+  week0,
   shapesTopic,
   sort0,
   space0,
@@ -146,6 +148,7 @@ const ORDER: Partial<Record<Grade, readonly Topic[]>> = {
     story0,
     share0,
     money0,
+    week0,
   ],
   // Patterns after the numbers to 100 they count in; solids beside the flat shapes.
   1: [addSub20, numbers100, patterns1, polygons, solids1, measure1, clockMoney1, data],
