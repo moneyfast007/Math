@@ -343,9 +343,7 @@ function missing(level: number, { t: total, a }: Missing, rng: Rng): Exercise {
     prompt: shown(spoken),
     display: `${a} + ? = ${total}`,
     spoken,
-    ...(ten
-      ? { visual: { type: 'objects', kind: nounFor(a), groups: [a], frame: 10 } as Visual }
-      : {}),
+    ...(ten ? { visual: { type: 'objects', kind: nounFor(a), groups: [a], frame: 10 } } : {}),
     answer: h,
     operation: 'sub',
     input: { type: 'choices', choices: near(rng, h, total) },
