@@ -23,6 +23,7 @@ const WORLDS: Record<number, string[]> = {
     'data-0',
     'bonds-0',
     'story-0',
+    'share-0',
   ],
   1: [
     'add-sub-20',

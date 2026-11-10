@@ -9,6 +9,7 @@ import { time0 } from './time0';
 import { data0 } from './data0';
 import { bonds0 } from './bonds0';
 import { story0 } from './story0';
+import { share0 } from './share0';
 import { THINGS, type ThingId } from './ganKit';
 import { sort0 } from './sort0';
 import { space0 } from './space0';
@@ -455,6 +456,52 @@ describe('story-0', () => {
   });
 });
 
+describe('share-0', () => {
+  it('sharing: each child gets the whole divided by the children', () => {
+    for (const [level, ways] of [
+      [1, 2],
+      [2, 3],
+      [5, 2],
+    ] as const)
+      for (const e of all(share0, level)) {
+        const n = Number(/:(\d+)/.exec(e.factId)?.[1]);
+        expect(e.answer * ways, e.factId).toBe(n);
+      }
+  });
+
+  it('fair is "yes" exactly when both have the same', () => {
+    for (const e of all(share0, 3)) {
+      const [a, b] = (/fair:(\d+),(\d+)/.exec(e.factId) ?? []).slice(1).map(Number);
+      expect(e.answer, e.factId).toBe(a === b ? 1 : 0);
+    }
+  });
+
+  it('the even plate, the pairs, and what two children can share', () => {
+    for (const e of played(share0, 4)) {
+      if (e.input.type !== 'choices' || !e.input.visuals) throw new Error(e.factId);
+      const v = e.input.visuals[e.answer];
+      expect(v?.type === 'objects' && v.groups[0] === v.groups[1], e.factId).toBe(true);
+    }
+    for (const e of all(share0, 6)) {
+      const n = Number(/pairs:(\d+)/.exec(e.factId)?.[1]);
+      expect(e.answer * 2, e.factId).toBe(n);
+    }
+    for (const e of all(share0, 7)) {
+      const n = Number(/even:(\d+)/.exec(e.factId)?.[1]);
+      expect(e.answer, e.factId).toBe(n % 2 === 0 ? 1 : 0);
+    }
+  });
+
+  it('half of a cake or a bar: the right picture is in two parts', () => {
+    for (const level of [8, 9])
+      for (const e of played(share0, level)) {
+        if (e.input.type !== 'choices' || !e.input.visuals) throw new Error(e.factId);
+        const v = e.input.visuals[e.answer];
+        expect(v?.type === 'fraction' && v.parts === 2 && v.shaded === 1, e.factId).toBe(true);
+      }
+  });
+});
+
 describe('the gan journey', () => {
   it('counting and shapes first, then sorting and space, adding and taking away; then to twenty', () => {
     expect(topicsForGrade(0).map((t) => t.id)).toEqual([
@@ -470,6 +517,7 @@ describe('the gan journey', () => {
       'data-0',
       'bonds-0',
       'story-0',
+      'share-0',
     ]);
   });
 });
