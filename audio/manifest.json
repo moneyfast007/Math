@@ -726293,6 +726293,42 @@
       "voice": "gemini-3.1-flash/Leda/quick",
       "bytes": 25197,
       "trimmed": true
+    },
+    "683b710a216cbca2": {
+      "text": "בזוג הזה יש שלוש ועוד שלוש, וזה בדיוק שש. נחפש זוג אחר.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 25389,
+      "trimmed": true
+    },
+    "3f7b723c98aa94be": {
+      "text": "בזוג הזה יש ארבע ועוד אחת, וזה חמש. אנחנו מחפשים ארבע.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 28365,
+      "trimmed": true
+    },
+    "5bebdc31d86224f2": {
+      "text": "בזוג הזה יש ארבע ועוד שתיים, וזה בדיוק שש. נחפש זוג אחר.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 29037,
+      "trimmed": true
+    },
+    "4869d7fcd7c9c940": {
+      "text": "בזוג הזה יש שש ועוד אחת, וזה שבע. אנחנו מחפשים שש.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 27309,
+      "trimmed": true
+    },
+    "945ffc8d21465383": {
+      "text": "בזוג הזה יש ארבע ועוד אחת, וזה בדיוק חמש. נחפש זוג אחר.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 27981,
+      "trimmed": true
+    },
+    "22b549b73bc2c091": {
+      "text": "בזוג הזה יש שלוש ועוד שתיים, וזה בדיוק חמש. נחפש זוג אחר.",
+      "voice": "gemini-3.1-flash/Leda/quick",
+      "bytes": 29421,
+      "trimmed": true
     }
   }
 }
