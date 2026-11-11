@@ -80,11 +80,11 @@ const SLOTS: Record<SceneStyle, readonly (Companion | null)[]> = {
     { id: 'cubo', gender: 'm' },
     { id: 'hooti', gender: 'm' },
     { id: 'dotti', gender: 'f' },
-    { id: 'booki', gender: 'm' },
+    { id: 'booki', gender: 'f' },
     { id: 'pitzi', gender: 'f' },
     { id: 'kupi', gender: 'm' },
     { id: 'tik', gender: 'm' },
-    { id: 'shirbut', gender: 'm' },
+    { id: 'shirbut', gender: 'f' },
   ],
   older: [
     { id: 'cosmo', gender: 'm' },

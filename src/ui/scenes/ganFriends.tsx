@@ -30,7 +30,7 @@ function Face({ cx, cy, d = 10, r = 5.5 }: { cx: number; cy: number; d?: number;
   );
 }
 
-/** קובו: a wooden cube, its top and side showing. */
+/** בלוק: a wooden cube, its top and side showing. */
 export function CuboArt({ size }: Art) {
   return (
     <svg viewBox="0 0 100 100" width={size} height={size} aria-hidden="true">
@@ -63,7 +63,7 @@ export function CuboArt({ size }: Art) {
   );
 }
 
-/** הוטי: a little owl with big round eyes. */
+/** סהר: a little owl with big round eyes. */
 export function HootiArt({ size }: Art) {
   return (
     <svg viewBox="0 0 100 100" width={size} height={size} aria-hidden="true">
@@ -88,7 +88,7 @@ export function HootiArt({ size }: Art) {
   );
 }
 
-/** דוטי: a ladybird with seven dots, like a die. */
+/** קורל: a ladybird with seven dots, like a die. */
 export function DottiArt({ size }: Art) {
   return (
     <svg viewBox="0 0 100 100" width={size} height={size} aria-hidden="true">
@@ -111,7 +111,7 @@ export function DottiArt({ size }: Art) {
   );
 }
 
-/** בוקי: a storybook, open a little, with a bookmark. */
+/** אגדה: a storybook, open a little, with a bookmark. */
 export function BookiArt({ size }: Art) {
   return (
     <svg viewBox="0 0 100 100" width={size} height={size} aria-hidden="true">
@@ -142,7 +142,7 @@ export function BookiArt({ size }: Art) {
   );
 }
 
-/** פיצי: a slice of pizza, cheese and two olives. */
+/** מוצרלה: a slice of pizza, cheese and two olives. */
 export function PitziArt({ size }: Art) {
   return (
     <svg viewBox="0 0 100 100" width={size} height={size} aria-hidden="true">
@@ -167,7 +167,7 @@ export function PitziArt({ size }: Art) {
   );
 }
 
-/** קופי: a pink piggy bank with a coin going in. */
+/** גרוש: a pink piggy bank with a coin going in. */
 export function KupiArt({ size }: Art) {
   return (
     <svg viewBox="0 0 100 100" width={size} height={size} aria-hidden="true">
@@ -193,7 +193,7 @@ export function KupiArt({ size }: Art) {
   );
 }
 
-/** טיק: an alarm clock with two bells, its hands at ten past ten. */
+/** צלצול: an alarm clock with two bells, its hands at ten past ten. */
 export function TikArt({ size }: Art) {
   return (
     <svg viewBox="0 0 100 100" width={size} height={size} aria-hidden="true">
@@ -213,7 +213,7 @@ export function TikArt({ size }: Art) {
   );
 }
 
-/** שרבוט: a purple crayon, drawing a wavy line. */
+/** לילך: a purple crayon, drawing a wavy line. */
 export function ShirbutArt({ size }: Art) {
   return (
     <svg viewBox="0 0 100 100" width={size} height={size} aria-hidden="true">
