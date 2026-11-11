@@ -41,7 +41,11 @@ describe('the friends', () => {
     expect(companionFor('older', 2)?.id).toBe('bolt');
     expect(companionFor('young', 7)?.id).toBe('shoki');
     expect(companionFor('older', 7)?.id).toBe('draki');
-    expect(companionFor('young', 8)).toBeNull();
+    // Gan hova has sixteen worlds: the little ones have sixteen friends, the older ones eight.
+    expect(companionFor('young', 8)?.id).toBe('cubo');
+    expect(companionFor('young', 15)?.id).toBe('shirbut');
+    expect(companionFor('young', 16)).toBeNull();
+    expect(companionFor('older', 8)).toBeNull();
   });
 
   it('each drawn world has its scene; the others use the first', () => {

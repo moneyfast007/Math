@@ -4,6 +4,16 @@ import { BoltArt, BubiArt } from './world3Scenes';
 import { DubiArt, EchoArt } from './world4Scenes';
 import { TotoArt, TzukiArt } from './world5Scenes';
 import { AnaniArt, DrakiArt, KaftoriArt, MenofiArt, NovaArt, ShokiArt } from './laterScenes';
+import {
+  BookiArt,
+  CuboArt,
+  DottiArt,
+  HootiArt,
+  KupiArt,
+  PitziArt,
+  ShirbutArt,
+  TikArt,
+} from './ganFriends';
 import type { SceneKind } from './SceneStrip';
 import './scenes.css';
 
@@ -13,7 +23,8 @@ import './scenes.css';
  * and the older ones (grades 3 to 6) have friends of their own, matching the
  * scene they practise in (src/ui/scenes/SceneStrip.tsx).
  *
- * Every place has its friend and its scene (eight worlds at most in a grade).
+ * The little ones have sixteen (gan hova has sixteen worlds), the older ones eight;
+ * a world past the drawn scenes practises in the first one.
  */
 
 export type CompanionId =
@@ -32,7 +43,15 @@ export type CompanionId =
   | 'shoki'
   | 'menofi'
   | 'nova'
-  | 'draki';
+  | 'draki'
+  | 'cubo'
+  | 'hooti'
+  | 'dotti'
+  | 'booki'
+  | 'pitzi'
+  | 'kupi'
+  | 'tik'
+  | 'shirbut';
 
 export interface Companion {
   id: CompanionId;
@@ -57,6 +76,15 @@ const SLOTS: Record<SceneStyle, readonly (Companion | null)[]> = {
     { id: 'kaftori', gender: 'm' },
     { id: 'anani', gender: 'm' },
     { id: 'shoki', gender: 'm' },
+    // Gan hova's worlds 9 to 16.
+    { id: 'cubo', gender: 'm' },
+    { id: 'hooti', gender: 'm' },
+    { id: 'dotti', gender: 'f' },
+    { id: 'booki', gender: 'm' },
+    { id: 'pitzi', gender: 'f' },
+    { id: 'kupi', gender: 'm' },
+    { id: 'tik', gender: 'm' },
+    { id: 'shirbut', gender: 'm' },
   ],
   older: [
     { id: 'cosmo', gender: 'm' },
@@ -172,5 +200,21 @@ export function CompanionArt({ id, size }: { id: CompanionId; size: number | str
       return <NovaArt size={size} />;
     case 'draki':
       return <DrakiArt size={size} />;
+    case 'cubo':
+      return <CuboArt size={size} />;
+    case 'hooti':
+      return <HootiArt size={size} />;
+    case 'dotti':
+      return <DottiArt size={size} />;
+    case 'booki':
+      return <BookiArt size={size} />;
+    case 'pitzi':
+      return <PitziArt size={size} />;
+    case 'kupi':
+      return <KupiArt size={size} />;
+    case 'tik':
+      return <TikArt size={size} />;
+    case 'shirbut':
+      return <ShirbutArt size={size} />;
   }
 }

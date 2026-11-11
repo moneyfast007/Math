@@ -25,6 +25,14 @@ const MOVES: Record<CompanionId, { move: string; fx: string }> = {
   menofi: { move: 'swing', fx: 'sparkles' },
   nova: { move: 'twinkle', fx: 'sparkles' },
   draki: { move: 'roar', fx: 'fire' },
+  cubo: { move: 'jump', fx: 'dust' },
+  hooti: { move: 'wobble', fx: 'sparkles' },
+  dotti: { move: 'float', fx: 'hearts' },
+  booki: { move: 'jelly', fx: 'sparkles' },
+  pitzi: { move: 'spin', fx: 'sprinkles' },
+  kupi: { move: 'bounce', fx: 'sparks' },
+  tik: { move: 'chug', fx: 'beep' },
+  shirbut: { move: 'swing', fx: 'sprinkles' },
 };
 
 export function FriendTap({ id, name }: { id: CompanionId; name: string }) {
